@@ -32,11 +32,39 @@
 		<!--관리메뉴-->
 		<nav id = "admin_menu">
 		<ul>
-			<li><a href="#">상품</a></li>
+			<li>
+				<a href="#">상품</a>
+				<div id="sub">
+					<ul>
+						<li>상품등록</li>
+						<li>상품관리</li>
+						<li>삭제상품</li>
+					</ul>
+				</div>
+			</li>
 			<li><a href="#">주문</a></li>
 			<li><a href="#">회원</a></li>
-			<li><a href="#">게시판</a></li>
-			<li><a href="#">매출</a></li>
+			<li>
+				<a href="#">게시판</a>
+				<div id="sub">
+					<ul>
+						<li>공지사항</li>
+						<li>이벤트</li>
+						<li>Q&A</li>
+						<li>상품후기</li>
+						<li>자주하는 질문</li>
+					</ul>
+				</div>
+			</li>
+			<li>
+				<a href="#">매출</a>
+				<div id="sub">
+					<ul>
+						<li>매출조회</li>
+						<li>판매분석</li>
+					</ul>
+				</div>
+			</li>
 		</ul>
 		</nav>
 			
