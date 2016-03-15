@@ -14,6 +14,13 @@
 
 	<title>자연맘</title>  
   </head>
+  
+  <%
+  	request.setCharacterEncoding("UTF-8");
+  
+	boolean terms = false;
+  	if(request.getParameter("agree1") != null) terms = request.getParameter("agree1").equals("agree") ? true : false;
+  	%>
 
   <body>
 <!--  Start header --------------------------------------------------------------------->
@@ -62,13 +69,11 @@
 	
 		<!-------------Start content--------------------------------------------------->
 		<div id="content">
-		
-		<!--회원가입 폼-->
-		<form action="#" method="post">
-			<% %>				
-		</form>
-		
-
+		<%if(terms){%>
+			<jsp:include page="_membership_join.jsp" />
+		<%} else { %>
+			<jsp:include page="_membership_terms.jsp" />
+		<%} %>
 		</div>
 		<!--------------------------------------------------end content--------->
 	</div>
