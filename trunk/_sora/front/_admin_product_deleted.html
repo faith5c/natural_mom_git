@@ -31,10 +31,9 @@
 		table tr td { padding : 10px; }
 
 		table tr:not(:first-child) td:nth-child(1), table tr:not(:first-child) td:nth-child(3), table tr:not(:first-child) td:nth-child(4), 
-		table tr:not(:first-child) td:nth-child(5), table tr:not(:first-child) td:nth-child(8), table tr:not(:first-child) td:nth-child(9) { text-align: center; }
+		table tr:not(:first-child) td:nth-child(5) { text-align: center; }
 		table tr:not(:first-child) td:nth-child(2), table tr:not(:first-child) td:nth-child(6), table tr:not(:first-child) td:nth-child(7), 
-		table tr:not(:first-child) td:nth-child(10) { text-align: right; }
-
+		table tr:not(:first-child) td:nth-child(8) { text-align: right; }
 
 		#buttons { margin-top: 20px; text-align: right; }
 		#buttons input[type = "button"]
@@ -50,6 +49,8 @@
 			border : 0px;
 		}
 		#buttons input[type = "button"]:hover { opacity : 0.7; }
+
+		span { color: black; }
 
 	</style>
    </head>
@@ -83,7 +84,7 @@
 <!---Start container----------------------------------------------------------------->
 	
 	<div id="container">
-		<h2 id = "reg_title">상품 관리</h2>
+		<h2 id = "reg_title">삭제된 상품 관리</h2>
 		<table cellspacing = "0">
 			<tr>
 				<td>체크</td>
@@ -93,29 +94,22 @@
 				<td>이미지</td>
 				<td><a href = "#">▼ 가격(원가)</a></td>
 				<td><a href = "#">▼ 재고</a></td>
-				<td><a href = "#">▼ 진열 상태</a></td>
-				<td><a href = "#">▼ 재고 상태</a></td>
 				<td><a href = "#">▼ 총 누적판매량</a></td>
 			</tr>
 			<tr>
 				<td><input type = "checkbox" name = "" /></td>
 				<td>10525</td>
 				<td>아토피</td>
-				<td><a href = "#">어성초 비누</a></td>
+				<td>어성초 비누</td>
 				<td>[사진]</td>
 				<td>5000(3000)</td>
 				<td>155</td>
-				<td>Y</td>
-				<td>Y</td>
 				<td>1302</td>
 			</tr>
 		</table>
 		<div id = "buttons">
-			<input type = "button" id = "dis_y" value = "진열" />
-			<input type = "button" id = "dis_n" value = "진열 안함" />
-			<input type = "button" id = "sale_y" value = "판매" />
-			<input type = "button" id = "sale_n" value = "판매 안함" />
-			<input type = "button" id = "del" value = "삭제" />
+			<span>선택된 상품을</span>
+			<input type = "button" id = "restore" value = "복원" />
 		</div>
 	</div>
 <!--------------------------------------------------------end container------------->
