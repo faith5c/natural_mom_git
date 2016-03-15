@@ -17,7 +17,14 @@ table td{
 }
 
 #button { text-align: center; }
-#submit { width: 50px; }
+#submit { 
+	width: 70px; 
+	background-color: #635353;
+	color: white;
+	font-size: 13px;
+	text-align: center;
+	padding: 3px;
+}
 
 td:FIRST-CHILD {
 	width: 80px;
