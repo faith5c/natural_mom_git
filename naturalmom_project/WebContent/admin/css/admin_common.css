@@ -42,8 +42,7 @@ nav li { font : 15px "환경R", "나눔바른고딕", "맑은 고딕",  Arial; }
 #admin_menu li a
 {
 	display : block;
-	padding-top : 9px;
-	padding-bottom : 8px;
+	padding : 10px;
 	color : #fff;
 	text-align : center;
 }
@@ -51,16 +50,13 @@ nav li { font : 15px "환경R", "나눔바른고딕", "맑은 고딕",  Arial; }
 
 #sub
 		{
-			background-color : #626266;
+			
 			position : absolute;
 			overflow : hidden;
 			width : 100px;
-
 			height : 0;
-			margin-top : 2px;
 			margin-left : 0px;
 			margin-right : 15px;
-
 			transition : height 1s ease-out;
 			-webkit-transition : height 1s ease-out;
 			-o-transition : height 1s ease-out;
@@ -69,11 +65,12 @@ nav li { font : 15px "환경R", "나눔바른고딕", "맑은 고딕",  Arial; }
 
 		#sub li 
 		{ 
-			margin : 0 -10px;
+			background-color : #626266;
+			margin : 0 -25px;
 			width : 150px;
-			height : 30px;
 			text-align : center;
 			vertical-align : middle;
+			color: white;
 		}
 
-		nav ul li:hover #sub, #sub:hover { height : 150px; }
+		nav ul li:hover #sub, #sub:hover { height : 210px; }
