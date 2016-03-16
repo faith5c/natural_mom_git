@@ -69,7 +69,7 @@ td:FIRST-CHILD {
 			<tr>
 				<td>휴대폰번호</td>
 				<td>
-					<select id="phone1">
+					<select id="phone1" name="phone1">
                         <option value="010">&nbsp;010&nbsp;</option>
                         <option value="016">&nbsp;016&nbsp;</option>
                         <option value="017">&nbsp;017&nbsp;</option>
