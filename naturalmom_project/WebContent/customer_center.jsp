@@ -10,7 +10,7 @@
 	
 	<link rel="apple-touch-icon" href="images/logo.ico" /> <!--애플아이콘등록-->
 	<link rel="shortcut icon" href="images/logo.ico" /> <!--단축키아이콘등록-->
-	<link rel="stylesheet" href="css/membership.css" />
+	<link rel="stylesheet" href="css/mypage.css" />
 
 	<title>자연맘</title>  
   </head>
@@ -62,6 +62,14 @@
 	
 		<!-------------Start content--------------------------------------------------->
 		<div id="content">
+			<div id="sidebar">
+				<ul>
+					<li><a href="#">공지사항</a></li>
+					<li><a href="#">이벤트</a></li>
+					<li><a href="#">Q&A</a></li>
+					<li><a href="#">자주하는 질문</a></li>
+				</ul>
+			</div>
 		
 		<!--회원가입 폼-->
 		<form action="#" method="post">
