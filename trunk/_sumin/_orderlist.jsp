@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>환불 신청</title>
 <style type="text/css">
 	* { font-family : "나눔바른고딕", "맑은 고딕"; }
 	#content { text-align : center; }
