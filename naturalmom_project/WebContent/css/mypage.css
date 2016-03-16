@@ -81,6 +81,7 @@ input[type="submit"]:hover, input[type="reset"]:hover{
 	float: right;
 	width: 800px;
 	height: 100%;
+	margin-top: 50px;
 }
 
 footer{

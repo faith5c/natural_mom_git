@@ -27,7 +27,7 @@ table td{
 }
 
 td:FIRST-CHILD {
-	width: 80px;
+	width: 85px;
 	vertical-align: top;
 }
 
@@ -74,7 +74,13 @@ td:FIRST-CHILD {
 			<tr>
 				<td>휴대폰번호</td>
 				<td>
-					<input type="number" id="phone1" name="phone1" />-
+					<select id="phone1" name="phone2">
+                        <option value="010">&nbsp;010&nbsp;</option>
+                        <option value="016">&nbsp;016&nbsp;</option>
+                        <option value="017">&nbsp;017&nbsp;</option>
+                        <option value="018">&nbsp;018&nbsp;</option>
+                        <option value="019">&nbsp;019&nbsp;</option>
+                     </select>-
 					<input type="number" id="phone2" name="phone2" />-
 					<input type="number" id="phone3" name="phone3" />
 				</td>

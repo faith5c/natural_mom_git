@@ -64,7 +64,7 @@
 		<div id="content">
 			<div id="sidebar">
 				<ul>
-					<li><a href="#">관심상품</a></li>
+					<li><a href="#" onclick="wishlist()">관심상품</a></li>
 					<li><a href="#" onclick="edit_member()">회원정보 수정</a></li>
 				</ul>
 			</div>
@@ -102,6 +102,11 @@
 
 <script type="text/javascript">
 	function edit_member() {
-		var edit_page = "_edit_member.jsp"
+		var edit_page = 'http://localhost:8082/naturalmom_project/_edit_member.jsp';
+		$('#content_body').load(edit_page); 
+	}
+	function wishlist() {
+		var wish_page = 'http://localhost:8082/naturalmom_project/_wishlist.jsp';
+		$('#content_body').load(wish_page); 
 	}
 </script>
