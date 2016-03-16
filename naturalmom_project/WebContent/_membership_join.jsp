@@ -32,7 +32,7 @@ td:FIRST-CHILD {
 }
 
 #id, #name, #email1, #email2 { width: 100px; }
-#phone1, #phone2, #phone3, #post_num1, #post_num2
+#phone1, #phone2, #phone3, #post_num1, #post_num2, #year
 	{ width: 70px; }
 #address, #address_detail { width: 250px; }
 
@@ -69,7 +69,19 @@ td:FIRST-CHILD {
 			</tr>
 			<tr>
 				<td>생년월일</td>
-				<td><input type="date" id="birth" name="birth" /></td>
+				<td>
+					<input id="year" name="year" type="number" placeholder="1999"/>년 
+					<select id="month" name="month">
+                        <%for(int i=1; i<13; i++){ %>
+                     		<option value="<%= i %>">&nbsp;<%= i %>&nbsp;</option>
+                     	<%} %>
+                     </select>월
+                     <select id="day" name="day">
+                     	<%for(int i=1; i<32; i++){ %>
+                     		<option value="<%= i %>">&nbsp;<%= i %>&nbsp;</option>
+                     	<%} %>
+                     </select>일
+				</td>
 			</tr>
 			<tr>
 				<td>휴대폰번호</td>
