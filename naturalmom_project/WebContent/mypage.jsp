@@ -65,13 +65,12 @@
 			<div id="sidebar">
 				<ul>
 					<li><a href="#">관심상품</a></li>
-					<li><a href="#">회원정보 수정</a></li>
+					<li><a href="#" onclick="edit_member()">회원정보 수정</a></li>
 				</ul>
 			</div>
-		<!--회원가입 폼-->
-		<form action="#" method="post">
-			<% %>				
-		</form>
+			<div id="content_body">
+			
+			</div>
 		
 
 		</div>
@@ -100,3 +99,9 @@
 <!-------------------------------------------------------------end footer----------->		
   </body>
 </html>
+
+<script type="text/javascript">
+	function edit_member() {
+		var edit_page = "_edit_member.jsp"
+	}
+</script>

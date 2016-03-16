@@ -72,9 +72,9 @@
 			</div>
 		
 		<!--회원가입 폼-->
-		<form action="#" method="post">
-			<% %>				
-		</form>
+		<div id="content_body">
+			
+		</div>
 		
 
 		</div>
