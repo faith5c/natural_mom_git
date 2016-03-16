@@ -103,11 +103,11 @@ td:FIRST-CHILD {
 					<input type="text" id="email1" name="email1" />@<input type="text" id="email2" name="email2" />
 					<select id="email_select" name="email_select">
 						<option>직접입력</option>
-						<option>naver.com</option>
-						<option>hanmail.net</option>
-						<option>nate.com</option>
-						<option>hotmail.com</option>
-						<option>gmail.com</option>
+						<option value="naver.com">naver.com</option>
+						<option value="hanmail.net">hanmail.net</option>
+						<option value="nate.com">nate.com</option>
+						<option value="hotmail.com">hotmail.com</option>
+						<option value="gmail.com">gmail.com</option>
 					</select>
 				</td>
 			</tr>
@@ -116,6 +116,7 @@ td:FIRST-CHILD {
 				<td>
 					<input type="number" id="post_num1" name="post_num1" disabled="disabled"/>-
 					<input type="number" id="post_num2" name="post_num2" disabled="disabled"/>
+					<!-- post_num1 + post_num2 = addr_post -->
 					<button id="find_post_num">우편번호 찾기</button><br>
 					<input type="text" id="address" name="address" disabled="disabled"/>
 				</td>
@@ -124,6 +125,7 @@ td:FIRST-CHILD {
 				<td>상세주소</td>
 				<td>
 					<input type="text" id="address_detail" name="address_detail" />
+					<!-- address+address_detail = addr_detail -->
 				</td>
 			</tr>
 			<tr>
