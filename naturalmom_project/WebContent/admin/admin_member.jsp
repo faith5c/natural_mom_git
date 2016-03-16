@@ -273,14 +273,7 @@
 				<input type = "button" id = "set_drop_out" value = "회원탈퇴 처리" />
 				<input type = "button" id = "set_blacklist" value = "불량회원 처리" />
 			</div>
-			
-			
 		</form>
-		
-		
-		
-		
-		
 	</div>
 <!--------------------------------------------------------end container------------->
   </body>
