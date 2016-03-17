@@ -1,0 +1,21 @@
+@charset "utf-8";
+
+@import url(common.css);
+
+#content img:hover{
+	opacity : 1;
+}
+.company_img1, .company_img2, .company_img3, .bannner_delivery { width : 100%; }
+
+@media screen and ( max-width : 599px ){
+.company_img1, .company_img2, .company_img3, .bannner_delivery { border-top : 30px solid #cec5ce; }
+
+}
+
+@media screen and (min-width : 600px) and (max-width : 1023px){
+	
+}
+
+@media screen and (min-width : 1024px){
+
+}
