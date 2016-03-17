@@ -56,13 +56,6 @@ input[type="submit"]:hover, input[type="reset"]:hover{
 
 #sidebar a:visited { font-style: bold; }
 
-#content_body {
-	float: right;
-	width: 800px;
-	height: 100%;
-	margin-top: 50px;
-}
-
 footer{
 	clear : both;
 }

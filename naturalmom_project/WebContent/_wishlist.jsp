@@ -8,11 +8,12 @@
 </head>
 <body>
 	<style type = "text/css">
-	table { width :640px;  }
+	table { width :640px; 
+			margin-left: 190px; } 
 	th, td { text-align : center;  padding : 5px; }
 	td { border-bottom : solid 1px lightgray; }
 
-	table tr:first-child td { border-bottom : 0px; text-align: left;}
+	table tr:first-child td { border-bottom : 0px; text-align: left; padding: 20px 0 }
 	table tr:nth-child(2) { background-color : #918686; color : white; padding: 7px;}	
 	table tr:last-child td { border-bottom : 0px; text-align : right; }
 	table tr:last-child input 
@@ -30,20 +31,19 @@
 	table tr:last-child input:hover { opacity : 0.7; }
 	table img { width : 50px; height : 50px; }
 	table a { text-decoration : none; color : #000000; }
-	table { margin : auto; }
 	h2 { color : #004523; border-bottom : 0px; text-align : left; }
 	</style>
 	<form action="#" method="post">
-	
+	<br><br>
 	<table cellspacing="0">
 		<tr>
 			<td colspan="4"><h3>관심상품</h3></td>
 		</tr>
 		<tr>
-			<th width="50px">선택</th> 
-			<th width="150px">상품이미지</th> 
-			<th width>상품명</th> 
-			<th width = "150px">가격</th>
+			<td widtd="30px">선택</td> 
+			<td widtd="150px">상품이미지</td> 
+			<td widtd>상품명</td> 
+			<td widtd = "150px">가격</td>
 		</tr>
 		<tr>
 			<td><input type="checkbox" name="fav_sel" value="제품번호불러온거"></td>

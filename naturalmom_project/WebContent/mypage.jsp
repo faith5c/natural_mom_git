@@ -33,7 +33,7 @@
 				</ul>
 			</div>
 			<div id="content_body">
-			
+				<%@include file="_wishlist.jsp" %>
 			</div>
 		</div>
 		<!--------------------------------------------------end content--------->
