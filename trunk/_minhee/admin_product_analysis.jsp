@@ -32,15 +32,24 @@ admin_게시판_상품후기_내용
 	<link rel="shortcut icon" href="images/logo.ico" /> <!--단축키아이콘등록-->
 	<link rel="stylesheet" href="css/admin_common.css"/>
 		
-	<title>자연맘</title>
+		<title>자연맘</title>
 
 	<style type = "text/css">
+		* { font-family : "나눔바른고딕", "맑은 고딕"; }
 		#container { width : 1024px; margin : 100px auto; color: #85858d; }
 		
-		h2 { margin-bottom : 15px; }
+		h2 { margin-bottom : 15px; color: #85858D;}
 		
 		table { width: 100%; padding : 0px; }
-		table tr:first-child td { border-top : 1px solid grey; }
+		table tr:first-child th
+		{ 
+		
+			background-color: #918686; 
+			text-align: center; 
+			color: white;
+			text-style: bold; 
+		}
+		th, td { text-align : center; padding : 5px; }
 		table tr:nth-child td:first-child { border-left : 1px solid grey; }
 		table tr td { padding : 10px; }
 		table tr:first-child td
@@ -50,6 +59,7 @@ admin_게시판_상품후기_내용
 		}
 		table tr:nth-child(1) td
 		{ 
+			border-bottom : 1px solid lightgrey;
 			margin : 0px;
 		}
 
@@ -96,21 +106,15 @@ admin_게시판_상품후기_내용
 		<form action = "#" method = "post">
 			<table cellspacing = "0">
 				<tr>
-						<td>
-							<select name = "rank" id = "rank">
-							<option>순위</option>
-							</select>
-						</td>
-						<td>
-							<select name = "name" id = "name">
-							<option>상품명</option>
-							</select>
-						</td>
-						<td>
-							<select name = "total" id = "total">
-							<option>누적 판매 수</option>
-							</select>
-						</td>
+						<th>
+							<a> ▼ 순위</a>
+						</th>
+						<th>
+							<a> ▼ 상품명</a>
+						</th>
+						<th>
+							<a> ▼ 누적 판매 수</a>
+						</th>
 				</tr>			
 				<tr>
 					<td><label for = "rank"> 1 </label></td>
