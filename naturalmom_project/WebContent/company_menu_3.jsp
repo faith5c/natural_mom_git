@@ -61,21 +61,8 @@
 <!--Start footer---------------------------------------------------------------------->
 	<footer>
 		
-		<!--회사메뉴-->
-		<nav id="company_menu">
-			<ul>
-				<a href="company_menu_1.jsp">회사소개</a>
-				<a href="company_menu_2.jsp">Natural 시스템</a>
-				<a href="company_menu_3.jsp">Natural 파머스</a>
-			</ul>
-		</nav>
-
-		<address>상호 : 한결유통&nbsp;&nbsp;
-		주소 : 전북 남원시 광치농공 2길 36&nbsp;&nbsp;
-		전화번호 : 1800-9388&nbsp;&nbsp;<br>
-		이메일 : naturalmom@nate.com<br>
-		<em>copyright&copy; 자연맘 All Right Reserved</em><br>
-		</address>
+		<%@include file="_default_footer.jsp" %>
+		
 	</footer>
 <!-------------------------------------------------------------end footer----------->	
   </body>
