@@ -20,20 +20,8 @@
 <!--  Start header --------------------------------------------------------------------->
 	<header>
 
-		<!--유저메뉴-->
-		<nav id = "user_menu_pc">
-			<ul>
-				<li><a href="#">고객센터</a></li>
-				<li><a href="#">마이페이지</a></li>
-				<li><a href="#">주문조회</a></li>
-				<li><a href="#">장바구니</a></li>
-				<li><a href="membership.jsp">회원가입</a></li>
-				<li><a href="login.jsp">로그인</a></li>
-			</ul>
-		</nav>
+			<%@include file="_default_header.jsp" %>
 
-		<!--로고-->
-		<a href="index.jsp"><img id="logo" src="images/logo_gray.gif" alt="로고"></a>			
 	</header>
 <!-----------------------------------------------------------end header ----------->	
 <!---Start container----------------------------------------------------------------->
