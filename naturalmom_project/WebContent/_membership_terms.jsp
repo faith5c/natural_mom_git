@@ -27,12 +27,15 @@ p {
 }
 
 #inside #button{
-	width: 100%;
-	background-color: #635353;
-	color: white;
-	font-size: 13px;
-	text-align: center;
-	padding: 3px;
+	padding : 7px 30px;
+	margin-left : 5px;
+	margin-right : 5px; 
+	background-color : #85858D;
+	color : white;
+	font-family : "나눔바른고딕", "맑은 고딕";
+	font-size : 16px;
+	border-radius : 10px; 
+	border : 0px;
 }
 
 </style><!-- End CSS -->
@@ -313,6 +316,8 @@ p {
 	</form>
 </div>
 
+
+	<!-- ---------------------------------------------------------------Script -->
 	<script type="text/javascript">
 		var agree1 = document.getElementById("agree1");
 		var agree2 = document.getElementById("agree2");

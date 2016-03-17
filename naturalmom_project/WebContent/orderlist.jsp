@@ -28,15 +28,15 @@
 		<div id="content">
 		
 	<style type="text/css">
-		* { font-family : "나눔바른고딕", "맑은 고딕"; }
-		#content { text-align : center;  padding-top: 100px; }
-		h2 { color : #004523; text-align : left; }
+		#content { text-align : center; }
+		h3 { color : black; text-align : left; margin-top: 20px;}
 		table { width : 640px; margin : auto; }
 		th, td { text-align : center; padding : 5px; }
 		td { border-bottom : solid 1px lightgray; }
 		
 		table tr:first-child td { border-bottom : 0px; padding-bottom : 30px;}
-		table tr:nth-child(2) th { background-color : #cccccc; color : white; }
+		table tr:nth-child(2) td { background-color : #918686; color : white; padding: 7px; }
+		table td { font-size: 15px; }
 		table tr:last-child td { border-bottom : 0px; text-align : right; }
 		table tr:last-child input 
 		{
@@ -57,19 +57,20 @@
 	</style>
 	<!--주문내역 조회 부분-->
 	<form action="#" method="post">
+		<br><br>
 		<table cellspacing="0">
 			<tr>
-				<td colspan = "8"><h2>주문내역 조회</h2></td>
+				<td colspan = "8"><h3>주문내역 조회</h3></td>
 			</tr>
 			<tr>
-				<th>선택</th>
-				<th>주문번호</th>
-				<th>주문일자</th>
-				<th>상품이미지</th>
-				<th>상품명</th>
-				<th>수량</th>
-				<th>결제금액</th>
-				<th>처리상태</th>
+				<td>선택</td>
+				<td>주문번호</td>
+				<td>주문일자</td>
+				<td>상품이미지</td>
+				<td>상품명</td>
+				<td>수량</td>
+				<td>결제금액</td>
+				<td>처리상태</td>
 			</tr>
 			<tr>
 				<td><input type="checkbox" name="orderlist_sel" value="선택된주문번호 랑 상품번호"></td>

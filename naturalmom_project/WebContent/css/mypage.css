@@ -54,28 +54,7 @@ input[type="submit"]:hover, input[type="reset"]:hover{
 	margin-bottom : 100px;
 }
 
-#sidebar{
-	min-height: 700px;
-	background-color: #808080;
-	width: 200px;
-	float: left;
-	margin-top: -20px;
-}
-
-#sidebar ul{
-	padding-top: 150px;
-	margin-left: 50px;
-	
-}
-
-#sidebar li{
-	padding-top: 15px;
-	padding-bottom: 10px;
-}
-
-#sidebar a, #sidebar a:VISITED {
-	color: white;
-}
+#sidebar a:visited { font-style: bold; }
 
 #content_body {
 	float: right;
@@ -86,4 +65,20 @@ input[type="submit"]:hover, input[type="reset"]:hover{
 
 footer{
 	clear : both;
+}
+#sidebar{
+	width: 120px;
+	float: left;
+	margin-top: 40px;
+	margin-left: 10px;
+	font-size: 15px
+}
+
+#sidebar li{
+	padding: 10px 10px;
+	border-bottom : 1px solid lightgray;
+	
+}
+#sidebar a, #sidebar a:visited {
+	color: #635353;
 }
