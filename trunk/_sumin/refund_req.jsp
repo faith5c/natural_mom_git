@@ -5,37 +5,37 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>환불 신청</title>
-<style type="text/css">
-	* { font-family : "나눔바른고딕", "맑은 고딕"; }
-	#content { text-align : center; }
-	h2 { color : #004523; text-align : left; }
-	table { width : 640px; margin : auto; }
-	th, td { text-align : center; padding : 5px; }
-	td { border-bottom : solid 1px lightgray; }
-	
-	table tr:first-child td { border-bottom : 0px; padding-bottom : 30px;}
-	table tr:nth-child(2) th { background-color : #cccccc; color : white; }
-	table tr:last-child td { border-bottom : 0px; text-align : right; }
-	table tr:last-child input 
-	{
-		padding : 7px 30px;
-		margin-left : 10px;
-		margin-right : 5px;
-		margin-top : 20px;
-		background-color : #85858D;
-		color : white;
-		font-size : 16px;
-		border-radius : 20px;
-		border : 0px;
-	}
-	table tr:last-child input:hover { opacity : 0.7; }
-	table img { width : 50px; height : 50px; }
-	.refund_price { background-color : #cccccc; }
-</style>
-
 </head>
 <body>
 	<!--주문내역 조회 부분-->
+	
+	<style type="text/css">
+		* { font-family : "나눔바른고딕", "맑은 고딕"; }
+		#content { text-align : center; }
+		h2 { color : #004523; text-align : left; }
+		table { width : 640px; margin : auto; }
+		th, td { text-align : center; padding : 5px; }
+		td { border-bottom : solid 1px lightgray; }
+		
+		table tr:first-child td { border-bottom : 0px; padding-bottom : 30px;}
+		table tr:nth-child(2) th { background-color : #cccccc; color : white; }
+		table tr:last-child td { border-bottom : 0px; text-align : right; }
+		table tr:last-child input 
+		{
+			padding : 7px 30px;
+			margin-left : 10px;
+			margin-right : 5px;
+			margin-top : 20px;
+			background-color : #85858D;
+			color : white;
+			font-size : 16px;
+			border-radius : 20px;
+			border : 0px;
+		}
+		table tr:last-child input:hover { opacity : 0.7; }
+		table img { width : 50px; height : 50px; }
+		.refund_price { background-color : #cccccc; }
+	</style>
 	
 	<form action="#" method="post">
 		<table cellspacing="0">

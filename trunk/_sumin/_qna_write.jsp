@@ -4,6 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+</head>
+<body>
 	<script type="text/javascript" src="js/nicEdit.js"></script>
 	<script type="text/javascript">
 		bkLib.onDomLoaded(function(){
@@ -14,7 +18,7 @@
 	<style type="text/css">
 		h2, th, table tr:last-child input { font-family : "나눔바른고딕", "맑은 고딕"; }
 		h2 { color : #004523; padding-left : 10px; }
-		th { background-color : #f9f9f9; border : solid lightgray 1px; font-weight : normal;}
+		th { background-color : #918686;  font-weight : normal; color : white; }
 		table tr:last-child input 
 		{	
 			padding : 7px 30px;
@@ -31,8 +35,7 @@
 		table tr:last-child td { text-align : right; }
 	</style>
 	
-</head>
-<body>
+	
 	
 	<form action="#" method="post">
 	<table cellspacing="2">
