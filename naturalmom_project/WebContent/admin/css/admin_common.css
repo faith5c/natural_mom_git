@@ -37,7 +37,7 @@ nav li { font : 15px "환경R", "나눔바른고딕", "맑은 고딕",  Arial; }
 }
 #admin_info_menu li a:hover{ background-color : #AAAAB0; }
 
-#admin_menu { background-color : #635353; }
+#admin_menu { background-color : #635353; height: 38px; }
 #admin_menu li{ width : 97px; float: left; }
 #admin_menu li a
 {

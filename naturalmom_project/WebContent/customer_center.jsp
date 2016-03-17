@@ -65,13 +65,12 @@
 			<div id="sidebar">
 				<ul>
 					<li><a href="#">공지사항</a></li>
-					<li><a href="#">이벤트</a></li>
+					<li><a href="#" onclick="to_event()">이벤트</a></li>
 					<li><a href="#">Q&A</a></li>
 					<li><a href="#">자주하는 질문</a></li>
 				</ul>
 			</div>
 		
-		<!--회원가입 폼-->
 		<div id="content_body">
 			
 		</div>
@@ -103,3 +102,14 @@
 <!-------------------------------------------------------------end footer----------->		
   </body>
 </html>
+
+
+<!---------------------------------------------------------Script --------------------->
+<script type="text/javascript">
+	function to_event() {
+		var event = 'http://localhost:8082/naturalmom_project/_event_list.jsp';
+		event+="?page=event";
+		$('#content_body').load(event);
+	}
+
+</script>

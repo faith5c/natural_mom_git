@@ -2,17 +2,15 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <style type = "text/css">
-		* { margin: 0px; padding: 0px; 
-			font-family : "나눔바른고딕", "맑은 고딕";
-			font-size: 13px; }
-
-		#container { width : 764px; margin : 100px auto; color: #85858d; }
-		#container a { text-decoration: none; }
-		#container a:hover { opacity : 0.7; }
+		#content_body { 
+					font-family : "나눔바른고딕", "맑은 고딕";
+					margin : 30px auto; color: #85858d; }
+		#content_body a { text-decoration: none; }
+		#content_body a:hover { opacity : 0.7; }
 
 		h2 { margin-bottom : 15px; font-size: 24px; }
 		
-		table { width: 100%; padding : 0px; }
+		table { width: 100%; padding : 0px; font-size: 13px;  }
 		table tr:first-child td, table tr:last-child td { border-top : 1px solid grey; }
 		table tr td { padding : 10px; }
 		table tr:not(:last-child) td:first-child { border-right: 1px solid lightgrey; }
@@ -21,14 +19,14 @@
 			border-bottom : 1px solid lightgrey;
 			margin : 0px;
 		}
-
+		table tr:not(:first-child) td:not(:nth-child(2)) {text-align: center;}
 		table tr:first-child td
 		{ 
 			background-color: #918686; 
 			color: white;
 		}
 		table tr:first-child td, table tr:not(:last-child) td:first-child { text-align: center; }
-		table tr:first-child td:first-child { width: 50px; }
+
 		table tr:last-child td { text-align: right; }
 
 		table input[type = "button"]
@@ -46,7 +44,7 @@
 		table a{ color: black; }
 		
 
-		#pages { margin-top: 15px; }
+		#pages { margin-top: 15px;}
 
 		#pages a { color: #85858d; font-size: 20px;}
 		#pages a:hover { opacity : 0.7; }
@@ -70,15 +68,15 @@
 		#buttons tr td:last-child { text-align:right; }
 	</style>
 
-<div id="container">
+<div id="content_body">
 		<h2 id = "reg_title">이벤트</h2>
 		<table cellspacing = "0">
 			<tr>
-				<td>번호</td>
-				<td width="450px" >제목</td>
-				<td>작성자</td>
-				<td>작성일</td>
-				<td>조회</td>
+				<td width="10%">번호</td>
+				<td width="60%" >제목</td>
+				<td width="15%">작성자</td>
+				<td width="15%">작성일</td>
+				<td width="10%">조회</td>
 			</tr>
 			<tr>
 				<td id = "no">1</td>
@@ -88,7 +86,8 @@
 				<td id = "hits" >5</td>
 				
 			</tr>
-			<td colspan = "5"><input type = "button" value = "글쓰기" id = "write" name = "write"></td>
+			<td colspan = "4"></td>
+			<td><input type = "button" value = "글쓰기" id = "write" name = "write"></td>
 		</table>
 		<div id = "pages">
 			<a href = "#">&lsaquo;</a>

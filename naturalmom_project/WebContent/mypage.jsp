@@ -100,6 +100,7 @@
   </body>
 </html>
 
+<!---------------------------------------------------------Script --------------------->
 <script type="text/javascript">
 	function edit_member() {
 		var edit_page = 'http://localhost:8082/naturalmom_project/_edit_member.jsp';

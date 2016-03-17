@@ -19,7 +19,8 @@
   	request.setCharacterEncoding("UTF-8");
   
 	boolean terms = false;
-  	if(request.getParameter("agree1") != null) terms = request.getParameter("agree1").equals("agree") ? true : false;
+  	if(request.getParameter("agree1") != null) 
+  		terms = request.getParameter("agree1").equals("agree") ? true : false;
   	%>
 
   <body>
@@ -69,7 +70,7 @@
 	
 		<!-------------Start content--------------------------------------------------->
 		<div id="content">
-		<%if(terms){%>
+		<%if(terms){  terms = false; %>
 			<jsp:include page="_membership_join.jsp" />
 		<%} else { %>
 			<jsp:include page="_membership_terms.jsp" />
