@@ -8,13 +8,12 @@
 </head>
 <body>
 	<style type = "text/css">
-	* { font-family : "나눔바른고딕", "맑은 고딕"; }
 	table { width :640px;  }
 	th, td { text-align : center;  padding : 5px; }
 	td { border-bottom : solid 1px lightgray; }
 
-	table tr:first-child td { border-bottom : 0px; }
-	table tr:nth-child(2) { background-color : #cccccc; color : white; }	
+	table tr:first-child td { border-bottom : 0px; text-align: left;}
+	table tr:nth-child(2) { background-color : #918686; color : white; padding: 7px;}	
 	table tr:last-child td { border-bottom : 0px; text-align : right; }
 	table tr:last-child input 
 	{
@@ -38,11 +37,10 @@
 	
 	<table cellspacing="0">
 		<tr>
-			<td></td>
-			<td colospan="3"><h2>관심상품</h2></td>
+			<td colspan="4"><h3>관심상품</h3></td>
 		</tr>
 		<tr>
-			<th width="30px">선택</th> 
+			<th width="50px">선택</th> 
 			<th width="150px">상품이미지</th> 
 			<th width>상품명</th> 
 			<th width = "150px">가격</th>
