@@ -15,55 +15,31 @@
 	<title>자연맘</title>  
 
   </head>
-
   <body>
 
-<!--  Start header --------------------------------------------------------------------->
+
 	<header>
-
-			<%@include file="_default_header.jsp" %>
-
+		<%@include file="_default_header.jsp" %>
 	</header>
-<!-----------------------------------------------------------end header ----------->	
-<!---Start container----------------------------------------------------------------->
+
 	
 	<div id="container">
-		<section>
-			
-			<!--검색-->
-			<p id="search_pc"><label for="find">search </label><input type="text" size = 10; id="find"><a href="#"><img src="images/btn_search.gif"></a></p>
-			
-			<!--메인배너-->
-			<div id = "main_banner"></div>
-
-			<!--상품메뉴-->
-			<nav id = "product_menu">
-				<ul >
-					<li id="product_menu_li_1"><a href="product_menu.jsp">공지사항</a></li>
-					<li id="product_menu_li_2"><a href="product_menu.jsp">아토피/민감성/유아</a></li>
-					<li id="product_menu_li_3"><a href="product_menu.jsp">피부탄력/노화</a></li>
-					<li id="product_menu_li_4"><a href="product_menu.jsp">지성/여드름/트러블</a></li>
-					<li id="product_menu_li_5"><a href="product_menu.jsp">미백/피부톤개선</a></li>	
-				</ul>
-			</nav>
-		</section>
+		<%@include file="_default_menu.jsp" %>
 	
 		<!-------------Start content--------------------------------------------------->
 		<div id="content">
-		
+			
 		<img class="company_img1" src="images/info_company.jpg" alt="회사소개">
-
+		
 		</div>
 		<!--------------------------------------------------end content--------->
+	</div><!--end container-->
 
-	</div>
-<!--------------------------------------------------------end container------------->
-<!--Start footer---------------------------------------------------------------------->
+
 	<footer>
-		
 		<%@include file="_default_footer.jsp" %>
-		
 	</footer>
-<!-------------------------------------------------------------end footer----------->	
+
+
   </body>
 </html>
