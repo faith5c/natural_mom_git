@@ -12,6 +12,7 @@
 		}
 	</script>
 	<style type = "text/css">
+		
 		#container { width : 1024px; margin : 100px auto; color: #85858d; }
 		
 		#container h2 { margin-bottom : 15px; }
@@ -43,10 +44,11 @@
 			border : 1px solid lightgrey; font-size : 1em; 
 			font : 16px "나눔바른고딕", "맑은 고딕", Arial;
 		}
-		table tr td input[type = "radio"] { margin-right: 3px; }
-		table tr td label { margin-right: 25px; }
-		table tr .explain { text-align: left; }
+		table tr td input[type = "radio"] { margin-right : 3px; }
+		table tr td label { margin-right : 25px; }
+		table tr .explain { text-align : left; }
 		table tr .explain textarea { width: 100%; height: 500px; }
+
 		#buttons 
 		{ 
 			margin-top : 20px; text-align : right;
@@ -68,7 +70,7 @@
 	</style>
 	
 <!-- container 부분 -->	
-	<h2 id = "reg_title">상품 등록하기</h2>
+	<h2 id = "reg_title">상품 수정하기</h2>
 		<form action = "#" method = "post">
 			<table cellspacing = "0">
 				<tr>
@@ -130,7 +132,7 @@
 				</tr>
 				<tr>
 					<td colspan = "2" id = "buttons">
-						<input type = "submit" value = "등록">
+						<input type = "submit" value = "수정">
 						<input type = "button" value = "취소">
 					</td>
 				</tr>
