@@ -47,7 +47,7 @@
 					</tr>
 					<tr>
 						<td colspan=3><br><a href="membership.jsp">신규회원가입</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<a href="#">아이디패스워드찾기</a></td>
+						<a href="#" onclick="pop_idpw()">아이디·패스워드찾기</a></td>
 					</tr>
 				</table>
 				</div>
@@ -61,6 +61,15 @@
 	<footer>
 		<%@include file="_default_footer.jsp" %>
 	</footer>
-
   </body>
+  <!-- -------------------------------------------------------------------------------------------------Script -->
+ <script type="text/javascript">
+ 
+ 	function pop_idpw() {
+		window.open("login_popup.jsp", "ID&PW", "width=402px, height=455px, left=200px, top=30px, scrollbars=no, toolbar=no, location=no");
+	}
+ 
+ </script>
+  
 </html>
+
