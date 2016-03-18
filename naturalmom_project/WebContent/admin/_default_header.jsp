@@ -31,7 +31,7 @@
 				<div id="sub">
 					<ul>
 						<li><a href="#">공지사항</a></li>
-						<li><a href="#" onclick="to_board_event()">이벤트</a></li>
+						<li><a href="#" onclick="to_submenu('board', 'event')">이벤트</a></li>
 						<li><a href="#">Q&A</a></li>
 						<li><a href="#">상품후기</a></li>
 						<li><a href="#">자주하는 질문</a></li>
@@ -50,3 +50,14 @@
 		</ul>
 		</nav>
 </html>
+
+<!-- ----------------------------------------------------------------------Script -->
+
+<script type="text/javascript">
+	function to_submenu(category, submenu) {
+		var proc = "http://localhost:8082/naturalmom_project/admin/_default_header_proc.jsp";
+		proc+= "?category="+category + "&submenu="+submenu ;
+		$('#container').load(proc);
+	}
+
+</script>
