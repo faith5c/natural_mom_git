@@ -52,10 +52,12 @@
 <script type="text/javascript">
 	function to_edit_member() {
 		var edit_page = 'http://localhost:8082/naturalmom_project/_edit_member.jsp';
+		edit_page+= '?page=edit_member';
 		$('#content_body').load(edit_page); 
 	}
 	function to_wishlist() {
 		var wish_page = 'http://localhost:8082/naturalmom_project/_wishlist.jsp';
+		wish_page+= '?page=wishlist';
 		$('#content_body').load(wish_page); 
 	}
 </script>

@@ -5,7 +5,9 @@
 
 #inside {
 	text-align: left;
-	margin : 0 150px;
+	margin : 0 200px;
+	padding-top: 90px;
+	
 }
 
 table td{
@@ -18,12 +20,15 @@ table td{
 
 #button { text-align: center; }
 #submit { 
-	width: 70px; 
-	background-color: #635353;
-	color: white;
-	font-size: 13px;
-	text-align: center;
-	padding: 3px;
+	padding : 7px 30px;
+	margin-left : 5px;
+	margin-right : 5px; 
+	background-color : #85858D;
+	color : white;
+	font-family : "나눔바른고딕", "맑은 고딕";
+	font-size : 16px;
+	border-radius : 10px; 
+	border : 0px;
 }
 
 td:FIRST-CHILD {
