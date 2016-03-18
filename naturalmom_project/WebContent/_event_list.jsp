@@ -49,7 +49,7 @@
 
 		#pages a { color: #85858d; font-size: 20px;}
 		#pages a:hover { opacity : 0.7; }
-		#pages, #search { text-align: center; }
+		#pages, #search { text-align: center; width: 640px;}
 		#search { width: 764px; margin-top: 20px; }
 		#search input[type = "text"], #search select { font : 16px "나눔바른고딕", "맑은 고딕", Arial; }
 		#search input[type = "button"]
