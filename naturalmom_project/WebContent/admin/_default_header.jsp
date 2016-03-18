@@ -30,7 +30,7 @@
 				<a href="admin_board.jsp">게시판</a>
 				<div id="sub">
 					<ul>
-						<li><a href="#">공지사항</a></li>
+						<li><a href="#" onclick="to_submenu('board', 'notice')">공지사항</a></li>
 						<li><a href="#" onclick="to_submenu('board', 'event')">이벤트</a></li>
 						<li><a href="#" onclick="to_submenu('board', 'qna')">Q&A</a></li>
 						<li><a href="#" onclick="to_submenu('board', 'review')">상품후기</a></li>
