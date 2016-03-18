@@ -18,9 +18,9 @@
 				<a href="admin_product.jsp">상품</a>
 				<div id="sub">
 					<ul>
-						<li><a href="#">상품등록</a></li>
-						<li><a href="#">상품관리</a></li>
-						<li><a href="#">삭제상품</a></li>
+						<li><a href="#" onclick="to_submenu('product', 'register')">상품등록</a></li>
+						<li><a href="#" onclick="to_submenu('product', 'manage')">상품관리</a></li>
+						<li><a href="#" onclick="to_submenu('product', 'deleted')">삭제상품</a></li>
 					</ul>
 				</div>
 			</li>
@@ -32,9 +32,9 @@
 					<ul>
 						<li><a href="#">공지사항</a></li>
 						<li><a href="#" onclick="to_submenu('board', 'event')">이벤트</a></li>
-						<li><a href="#">Q&A</a></li>
-						<li><a href="#">상품후기</a></li>
-						<li><a href="#">자주하는 질문</a></li>
+						<li><a href="#" onclick="to_submenu('board', 'qna')">Q&A</a></li>
+						<li><a href="#" onclick="to_submenu('board', 'review')">상품후기</a></li>
+						<li><a href="#" onclick="to_submenu('board', 'faq')">자주하는 질문</a></li>
 					</ul>
 				</div>
 			</li>
@@ -42,8 +42,8 @@
 				<a href="admin_sales.jsp">매출</a>
 				<div id="sub">
 					<ul>
-						<li><a href="#">매출 조회</a></li>
-						<li><a href="#">매출 분석</a></li>
+						<li><a href="#" onclick="to_submenu('sales', 'table')">매출 조회</a></li>
+						<li><a href="#" onclick="to_submenu('sales', 'analysis')">매출 분석</a></li>
 					</ul>
 				</div>
 			</li>
