@@ -5,7 +5,7 @@
   <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="../js/jquery-1.11.3.min.js"></script>
 	<!-- [if lt IE 9]><script src="js/html5shiv.js"></script><![endif] -->
 	
 	<link rel="apple-touch-icon" href="images/logo.ico" /> <!--애플아이콘등록-->
@@ -14,16 +14,16 @@
 		
 	<title>자연맘</title>
 
-	<script type="text/javascript" src="js/nicEdit.js"></script>
+	<script type="text/javascript" src="../js/nicEdit.js"></script>
 	<script type="text/javascript">
 		bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
 	</script>
 	<style type = "text/css">
-		* { margin: 0px; padding: 0px;
+		body { margin: 0px; padding: 0px;
 			font-family : "나눔바른고딕", "맑은 고딕";
 			font-size: 13px; }
 
-		#container { width : 640px; margin : 100px auto; color: #85858d; }
+		#container { width : 764px; margin : 100px auto; color: #85858d; }
 		#container a { text-decoration: underline; }
 
 		h2 { margin-bottom : 15px;  font-size: 24px;}
