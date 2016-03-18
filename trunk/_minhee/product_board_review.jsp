@@ -16,11 +16,11 @@
 		table { width: 100%; padding : 0px; }
 		
 		table tr {border-top : 1px solid grey; }
-		table tr:first-child td{ text-align:center; background-color: #918686; color: white; font-style:bold;}
+		table tr:first-child td{ text-align:center; background-color: #CCCCCC; color: white; font-style:bold;}
 		table tr:not(:first-child) td { color: black; }
 		table tr td { border-bottom : 1px solid grey; }
 		table tr td nth-child(odd), table tr td(even) {border-top : 1px solid gray; }
-		table tr td { padding : 5px; color: black;}
+		table tr td { padding : 5px; color: black; border-bottom : 1px solid lightgrey;}
 		
 		#yuback1{margin-top:50px;}
 		#page {text-align:center;}

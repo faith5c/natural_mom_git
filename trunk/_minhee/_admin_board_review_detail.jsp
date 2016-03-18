@@ -19,7 +19,7 @@
 		h2 { margin-bottom : 15px; color:#85858D;}
 		
 		table { width: 100%; padding : 0px; }
-		
+		table tr td { border-bottom : 1px solid lightgrey; }
 		table tr:nth-child(3),table tr:nth-child(4),table tr:nth-child(5){text-align:left; margin-left:20px;}
 		table tr:first-child{background-color:#918686;}
 		table tr:not(:last-child) td
