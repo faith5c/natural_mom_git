@@ -1,21 +1,4 @@
-
-<!-- 
-
-admin_매출_판매분석  *  현재 페이지
-
-
-
-
-
-
-admin_매출_매출관리
-admin_게시판_상품후기_목록
-admin_게시판_상품후기_내용
-
-
- -->
-
-
+<!-- admin_sales.jsp - 매출 - 판매분석 -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -34,24 +17,29 @@ admin_게시판_상품후기_내용
 		
 		<title>자연맘</title>
 
-	<style type = "text/css">
-		* { font-family : "나눔바른고딕", "맑은 고딕"; }
-		#container { width : 1024px; margin : 100px auto; color: #85858d; }
+		<style type = "text/css">
+
+		#in { width : 1024px; margin : 100px auto; color: #85858d;font-family : "나눔바른고딕", "맑은 고딕"; }
+		table a{text-style:none;}
 		
 		h2 { margin-bottom : 15px; color: #85858D;}
 		
+		a{text-decoration: none;}
+		
 		table { width: 100%; padding : 0px; }
+		table tr {border-top : 1px solid grey; padding:5px;}
+		table tr:first-child td{ text-align:center; background-color: #918686; color: white; font-style:bold;}
+		table tr:not(:first-child) td { color: black; }
+		table tr td {   border-top : 1px solid grey;  color: black;}
 		table tr:first-child th
 		{ 
 		
 			background-color: #918686; 
 			text-align: center; 
-			color: white;
-			text-style: bold; 
+			color: white; 
 		}
-		th, td { text-align : center; padding : 5px; }
+		th, td { text-align : center; }
 		table tr:nth-child td:first-child { border-left : 1px solid grey; }
-		table tr td { padding : 10px; }
 		table tr:first-child td
 		{
 			border-bottom : 1px solid lightgrey;
@@ -65,7 +53,7 @@ admin_게시판_상품후기_내용
 
 		table tr:last-child td
 		{ 
-			border-bottom : 1px solid lightgrey;	
+			border-bottom : 1px solid grey;	
 			margin : 0px;
 		}
 
@@ -73,64 +61,42 @@ admin_게시판_상품후기_내용
    </head>
    <body>
 <!--  Start header --------------------------------------------------------------------->
-	<header>
 
-		<!--관리자 정보메뉴-->
-		<nav id = "admin_info_menu">
-			<ul>
-				<li><a href="#">정보 수정</a></li>
-				<li><a href="#">로그아웃</a></li>
-			</ul>
-			<h3>관리자 모드입니다.</h3>
-		</nav>
-
-		<!--관리메뉴-->
-		<nav id = "admin_menu">
-		<ul>
-			<li><a href="#">상품</a></li>
-			<li><a href="#">주문</a></li>
-			<li><a href="#">회원</a></li>
-			<li><a href="#">게시판</a></li>
-			<li><a href="#">매출</a></li>
-		</ul>
-		</nav>
-			
-	</header>
 <!-----------------------------------------------------------end header ----------->	
 <!---Start container----------------------------------------------------------------->
 
     
     
-    <div id="container">
+    <div id="in">
 		<h2 id = "product_rank"> 판매 상품 순위</h2>
 		<form action = "#" method = "post">
 			<table cellspacing = "0">
 				<tr>
 						<th>
-							<a> ▼ 순위</a>
+							<a href="#"> ▼ 순위</a>
 						</th>
 						<th>
-							<a> ▼ 상품명</a>
+							<a href="#"> ▼ 상품명</a>
 						</th>
 						<th>
-							<a> ▼ 누적 판매 수</a>
+							<a href="#"> ▼ 누적 판매 수</a>
 						</th>
 				</tr>			
-				<tr>
+				<a href="#"></a><tr>
 					<td><label for = "rank"> 1 </label></td>
 					<td><label for = "name"> 숯 비누 </label></td>
 					<td><label for = "total"> 3333 </label></td>
-				</tr>
-				<tr>
+				</tr></a>
+				<a href="#"><tr>
 					<td><label for = "rank"> 2 </label></td>
 					<td><label for = "name"> 어성초 비누 </label></td>
 					<td><label for = "total"> 2222 </label></td>
-				</tr>
-				<tr>
+				</tr></a>
+				<a href="#"><tr>
 					<td><label for = "rank"> 3 </label></td>
 					<td><label for = "name"> 우유 비누 </label></td>
 					<td><label for = "total"> 1111 </label></td>					
-				</tr>
+				</tr></a>
 			</table>
 			
 			<h2> 고객 분석</h2>

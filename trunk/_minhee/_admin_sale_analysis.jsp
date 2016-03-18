@@ -8,10 +8,11 @@
 <meta charset="utf-8">
 	<title>자연맘</title>
 	<style type = "text/css">
-		* { font-family : "나눔바른고딕", "맑은 고딕"; }
-		#container { width : 1024px; margin : 100px auto; color: #85858d; }
+		#in { width : 1024px; margin : 100px auto; color: #85858d;font-family : "나눔바른고딕", "맑은 고딕"; }
 		
 		h2 { margin-bottom : 15px; color: #85858D;}
+		
+		a{text-decoration: none;}
 		
 		table { width: 100%; padding : 0px; }
 		table tr:first-child th
@@ -53,19 +54,19 @@
 <!-----------------------------------------------------------end header ----------->	
 <!---Start container----------------------------------------------------------------->
 
-    <div id="container">
+    <div id="in">
 		<h2 id = "product_rank"> 판매 상품 순위</h2>
 		<form action = "#" method = "post">
 			<table cellspacing = "0">
 				<tr>
 						<th>
-							<a> ▼ 순위</a>
+							<a href="#"> ▼ 순위</a>
 						</th>
 						<th>
-							<a> ▼ 상품명</a>
+							<a href="#"> ▼ 상품명</a>
 						</th>
 						<th>
-							<a> ▼ 누적 판매 수</a>
+							<a href="#"> ▼ 누적 판매 수</a>
 						</th>
 				</tr>			
 				<tr>

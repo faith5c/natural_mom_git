@@ -1,4 +1,4 @@
-<!-- admin_board.jsp - 게사판 - 상품후기 - 목록 -->
+<!-- 사용자 - 게시판 - 상품후기 - 목록 -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -11,7 +11,7 @@
 
 		#in { width : 1024px; margin : 100px auto; color: #85858d; font-style: bold; margin: 0px; padding: 0px; font-family : "나눔바른고딕", "맑은 고딕"; }
 		
-		h2 { margin-bottom : 15px; color: #85858D; }
+		h2 { margin-bottom : 15px; color: #004523; }
 		
 		table { width: 100%; padding : 0px; }
 		

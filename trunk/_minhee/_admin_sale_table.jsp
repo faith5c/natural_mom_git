@@ -1,3 +1,5 @@
+<!-- admin_sales.jsp - 매출 - 매출조회 -->
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -8,10 +10,8 @@
 <title>자연맘</title>
 <style type = "text/css">
 
-		* { font-style: bold; margin: 0px; padding: 0px; font-family : "나눔바른고딕", "맑은 고딕"; } 
-
-		#container { width : 1024px; margin : 100px auto; color: #85858d; }
-		#container a { text-decoration: underline; }
+		in { width : 1024px; margin : 100px auto; color: #85858d;font-style: bold; margin: 0px; padding: 0px; font-family : "나눔바른고딕", "맑은 고딕"; }
+		#in a { text-decoration: none;}
 
 		h2 { margin-bottom : 15px; }
 		
@@ -59,8 +59,8 @@
 <!-----------------------------------------------------------end header ----------->	
 <!---Start container----------------------------------------------------------------->
 <body>
-<div id="container">
-	<h2 id="reg_title">매출조회</h2>
+<div id="in">
+	<h2>매출조회</h2>
 		<div id="option_time">
 			<input id="option-today" value="오늘" type="button">
 			<input id="option-week" value="7일" type="button">
