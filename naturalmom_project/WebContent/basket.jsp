@@ -28,6 +28,84 @@
 		<!-------------Start content--------------------------------------------------->
 		<div id="content">
 		
+	<style type="text/css">
+		#content { text-align : center; }
+		h3 { color : black; text-align : left; margin-top: 20px;}
+		table { width : 640px; margin : auto; }
+		th, td { text-align : center; padding : 5px; }
+		td { border-bottom : solid 1px lightgray; }
+		
+		table tr:first-child td { border-bottom : 0px; padding-bottom : 30px;}
+		table tr:nth-child(2) th { background-color : #918686; color : white; padding: 7px; font-weight : normal; }
+		table td { font-size: 15px; }
+		table tr:last-child td { border-bottom : 0px; text-align : right; }
+		table tr:last-child input 
+		{
+			padding : 7px 30px;
+			margin-left : 10px;
+			margin-right : 5px;
+			margin-top : 20px;
+			background-color : #85858D;
+			color : white;
+			font-size : 16px;
+			border-radius : 20px;
+			border : 0px;
+		}
+		table tr:last-child input:hover { opacity : 0.7; }
+		table img { width : 50px; height : 50px; }
+		table a { text-decoration : none; color : #000000; }
+		input[type="number"] { width : 40px; }
+		table tr:last-child td:first-child
+		{
+			text-align : left; 
+		}
+	</style>
+	<form action="#" method="post">
+		<br><br>
+		<table cellspacing="0">
+			<tr>
+				<td colspan = "8"><h3>장바구니</h3></td>
+			</tr>
+			<tr>
+				<th style="width:50px">선택</th>
+				<th style="width:100px">상품이미지</th>
+				<th>상품명</th>
+				<th style="width:80px">수량</th>
+				<th style="width:80px">가격</th>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="orderlist_sel" value="선택된장바구니번호 랑 상품번호"></td>
+				<td><img src="images/soap11.jpg" alt="쑥비누사진"></td>
+				<td><a href="#">쑥비누</a></td>
+				<td><input type="number" name="상품번호" size="5" value="1" min = "1"></td>
+				<td>4300원</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="orderlist_sel" value="선택된장바구니번호 랑 상품번호"></td>
+				<td><img src="images/soap1.jpg" alt="아마씨비누사진"></td>
+				<td><a href="#">아마씨비누</a></td>
+				<td><input type="number" name="상품번호" size="5" value="2" min = "1"></td>
+				<td>7000원</td>
+			</tr>
+			<tr style="background-color:#f0f0f0; ">
+				<td></td>
+				<td></td>
+				<td>배송료  +3000</td>
+				<td>총계</td>
+				<td>7000원</td>
+			</tr>
+			<tr>
+				<td colspan="3">
+				<input type="button" value="상품삭제">
+				<input type="button" value="관심상품 등록">
+				</td>
+				<td colspan="2">
+				<input type="button" value="주문하기">
+				</td>
+			</tr>
+		</table>
+	</form>
+		
 		</div>
 		<!--------------------------------------------------end content--------->
 	</div><!--end container-->
