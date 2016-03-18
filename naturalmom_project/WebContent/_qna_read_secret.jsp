@@ -73,6 +73,7 @@
 
 <tr>
 	<td colspan="4">
+	<br/>&nbsp;
 	<div class="pw_write"> 
 	비밀번호 확인
 	<hr/>
@@ -82,6 +83,7 @@
 	<input type="button" name="secret_check" value="확인">
 	<br/>&nbsp;
 	</div>
+	<br/>&nbsp;
 	</td>
 </tr>
 
