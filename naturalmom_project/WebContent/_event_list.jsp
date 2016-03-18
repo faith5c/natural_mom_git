@@ -4,13 +4,14 @@
 <style type = "text/css">
 		#content_body { 
 					font-family : "나눔바른고딕", "맑은 고딕";
+					padding-top : 20px; padding-left: 100px;
 					margin : 30px auto; color: #85858d; }
 		#content_body a { text-decoration: none; }
 		#content_body a:hover { opacity : 0.7; }
 
-		h2 { margin-bottom : 15px; font-size: 24px; }
+		h2 { margin-bottom : 15px; font-size: 24px; color: black}
 		
-		table { width: 100%; padding : 0px; font-size: 13px;  }
+		table { width : 640px; font-size: 13px;  }
 		table tr:first-child td, table tr:last-child td { border-top : 1px solid grey; }
 		table tr td { padding : 10px; }
 		table tr:not(:last-child) td:first-child { border-right: 1px solid lightgrey; }
@@ -75,8 +76,8 @@
 				<td width="10%">번호</td>
 				<td width="60%" >제목</td>
 				<td width="15%">작성자</td>
-				<td width="15%">작성일</td>
-				<td width="10%">조회</td>
+				<td width="20%">작성일</td>
+				<td width="5%">조회</td>
 			</tr>
 			<tr>
 				<td id = "no">1</td>
