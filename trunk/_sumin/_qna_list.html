@@ -5,15 +5,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<style type="text/css">
-		* { font-family : "나눔바른고딕", "맑은 고딕";}
-		table { width : 640px; }
+		a { text-decoration : none; color : black; }
+		table, table input, div, div input { font-family : "나눔바른고딕", "맑은 고딕";}
+		table { width : 720px; }
 		h2 { color : #004523; padding-left : 10px; text-align : left; }
 		th { background-color : #918686;  font-weight : normal; color : white; }
 		td, th { padding : 5px; }
 		td:not(:nth-child(2)) { text-align: center; }
 		td { border-bottom : solid 1px lightgray; }
 		tr:first-child td, tr:last-child td{ border-bottom : 0px; }
-	
+		
 		table tr:last-child input[type="submit"] {
 			padding : 7px 30px;
 			margin-right : 5px;
@@ -25,10 +26,16 @@
 			border-radius : 20px;
 			border : 0px;
 		}
+		table tr:last-child input[type="submit"]:hover {
+			opacity : 0.7;
+		}
 		table tr:last-child td {
 			text-align : right;
 		}
+		table { margin : 0 auto;  }
+		div { text-align : center; margin-bottom: 15px;}
 		
+
 	</style>
 </head>
 <body>
@@ -44,21 +51,21 @@
 	</tr>
 	<tr>
 		<td>3</td>
-		<td>재입고 언제 되나요</td>
+		<td><a href="#">재입고 언제 되나요</a></td>
 		<td>hook4u</td>
 		<td>2015/06/17</td>
 		<td>49</td>
 	</tr>
 	<tr>
 		<td>2</td>
-		<td>배송일 문의 [1]</td>
+		<td><a href="#">배송일 문의 [1]</a></td>
 		<td>faith5c</td>
 		<td>2015/06/15</td>
 		<td>24</td>
 	</tr>
 	<tr>
 		<td>1</td>
-		<td>배송문의 [1]</td>
+		<td><a href="#">배송문의 [1]</a></td>
 		<td>xhdydlf</td>
 		<td>2015/06/15</td>
 		<td>15</td>
@@ -68,7 +75,9 @@
 	</tr>
 </table>
 	<div>
-		<a href="#">〈</a>1<a href="#">〉</a>
+		<a href="#">〈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="#">〉</a>
 	</div>
 	<div>
 			<select>
@@ -81,7 +90,6 @@
 			<input type="button" value="검색">
 	</div>
 </form>
-
 
 </body>
 </html>
