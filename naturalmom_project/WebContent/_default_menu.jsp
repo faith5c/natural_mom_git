@@ -12,7 +12,7 @@
 			<!--상품메뉴-->
 			<nav id = "product_menu">
 				<ul >
-					<li id="product_menu_li_1"><a href="product_menu.jsp">공지사항</a></li>
+					<li id="product_menu_li_1"><a href="customer_center.jsp">공지사항</a></li>
 					<li id="product_menu_li_2"><a href="product_menu.jsp">아토피/민감성/유아</a></li>
 					<li id="product_menu_li_3"><a href="product_menu.jsp">피부탄력/노화</a></li>
 					<li id="product_menu_li_4"><a href="product_menu.jsp">지성/여드름/트러블</a></li>

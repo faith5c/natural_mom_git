@@ -38,7 +38,7 @@
 <%		}else if(submenu.equals("event")){%>
 			<%@include file="_admin_board_event_list.jsp" %>			
 <%		}else if(submenu.equals("qna")){%>
-			<%@include file="_admin_board_qna.jsp" %>			
+			<%@include file="_admin_board_qna_list.jsp" %>			
 <%		}else if(submenu.equals("review")){%>
 			<%@include file="_admin_board_review.jsp" %>			
 <%		}else if(submenu.equals("faq")){%>
