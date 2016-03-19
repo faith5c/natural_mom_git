@@ -44,19 +44,20 @@
 		table tr td { padding : 10px; }
 
 		table tr:not(:first-child) td:nth-child(1), table tr:not(:first-child) td:nth-child(3), table tr:not(:first-child) td:nth-child(4), 
-		table tr:not(:first-child) td:nth-child(2), table tr:not(:first-child) td:nth-child(5), table tr:not(:first-child) td:nth-child(7), table tr:not(:first-child) td:nth-child(8), table tr:not(:first-child) td:nth-child(9) { text-align: center; }
-		table tr:not(:first-child) td:nth-child(2), table tr:not(:first-child) td:nth-child(6), 
+		table tr:not(:first-child) td:nth-child(2), table tr:not(:first-child) td:nth-child(5), table tr:not(:first-child) td:nth-child(7), 
+		table tr:not(:first-child) td:nth-child(8), table tr:not(:first-child) td:nth-child(9),  td:nth-child(6) { text-align: center; }
+		table tr:not(:first-child) td:nth-child(2), table tr:not(:first-child),
 		table tr:not(:first-child) td:nth-child(10) { text-align: right; }
 
 		table tr:first-child td:nth-child(1){ width:5%; }
-		table tr:first-child td:nth-child(2){ width:9%; }
+		table tr:first-child td:nth-child(2){ width:11%; }
 		table tr:first-child td:nth-child(3){ width:9%; }
 		table tr:first-child td:nth-child(4){ width:9%; }
 		table tr:first-child td:nth-child(5){ width:9%; }
 		table tr:first-child td:nth-child(6){ width:9%; }
 		table tr:first-child td:nth-child(7){ width:6%; }
 		table tr:first-child td:nth-child(8){ width:9%; } 
-		table tr:first-child td:nth-child(9){ width:16%; } 
+		table tr:first-child td:nth-child(9){ width:14%; } 
 		table tr:first-child td:nth-child(10){ width:11%; } 
 		table tr:first-child td:nth-child(11){ width:8%; } 
 
