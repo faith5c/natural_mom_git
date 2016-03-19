@@ -20,15 +20,14 @@
 	</script>
 	<style type = "text/css">
 		* { margin: 0px; padding: 0px;
-			font-family : "나눔바른고딕", "맑은 고딕";
-			font-size: 13px; }
+			font-family : "나눔바른고딕", "맑은 고딕";}
 
-		#container { width : 640px; margin : 100px auto; color: #85858d; }
-		#container a { text-decoration: underline; }
+		#inside { color: #85858d;}
+		#inside a { text-decoration: underline; }
 
 		h2 { margin-bottom : 15px;  font-size: 24px;}
 		
-		table { width: 100%; padding : 0px; }
+		table { width : 640px; padding : 0px; }
 		table tr:first-child td, table tr:last-child td { border-top : 1px solid grey; }
 		table tr:not(:last-child) td:first-child { border-left : 1px solid grey; }
 		table tr:not(:last-child) td:last-child { border-right : 1px solid grey; }
@@ -81,7 +80,7 @@
   <body>
 <!---Start container----------------------------------------------------------------->
 	
-	<div id="container">
+	<div id="inside">
 		<h2 id = "reg_title">글쓰기 - 이벤트</h2>
 		<form action = "#" method = "post">
 			<table cellspacing = "0">

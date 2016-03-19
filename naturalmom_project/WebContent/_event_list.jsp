@@ -82,14 +82,15 @@
 			</tr>
 			<tr>
 				<td id = "no">1</td>
-				<td><a href = "#">3만원 이상 구매 시 무료배송</a></td>
+				<td><a href = "customer_center.jsp?page=event&r=1">3만원 이상 구매 시 무료배송</a></td>
 				<td id = "id" >자연맘</td>
 				<td id = "write_day" >2016-03-16</td>
 				<td id = "hits" >5</td>
 				
 			</tr>
 			<td colspan="5" style="text-align: right">
-				<a id = "write" name = "write" href="customer_center.jsp?page=event&w=true">글쓰기</a>
+				<a id = "write" name = "write" 
+					href="customer_center.jsp?page=event&w=true">글쓰기</a>
 			</td>
 		</table>
 		<div id = "pages">
