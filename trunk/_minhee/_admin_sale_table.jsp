@@ -1,4 +1,4 @@
-<!-- admin_sales.jsp - 매출 - 매출조회 -->
+<!-- admin_sales.jsp - 매출 - 매출조회-->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>

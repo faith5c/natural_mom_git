@@ -15,8 +15,8 @@
 		
 		table { width: 100%; padding : 0px; }
 		
-		table tr {border-top : 1px solid grey; }
-		table tr:first-child td{ text-align:center; background-color: #CCCCCC; color: white; font-style:bold;}
+		table tr {border-top : 1px solid grey;text-align:center;  }
+		table tr:first-child td{ background-color: #CCCCCC; color: white; font-style:bold;}
 		table tr:not(:first-child) td { color: black; }
 		table tr td { border-bottom : 1px solid grey; }
 		table tr td nth-child(odd), table tr td(even) {border-top : 1px solid gray; }

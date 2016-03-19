@@ -20,7 +20,8 @@
 		
 		table { width: 100%; padding : 0px; }
 		table tr td { border-bottom : 1px solid lightgrey; }
-		table tr:nth-child(3),table tr:nth-child(4),table tr:nth-child(5){text-align:left; margin-left:20px;}
+		table tr:nth-child(2),table tr:nth-child(3){text-align:center;}
+		table tr:nth-child(4),table tr:nth-child(5){text-align:left; margin-left:20px;}
 		table tr:first-child{background-color:#918686;}
 		table tr:not(:last-child) td
 		{
@@ -46,22 +47,14 @@
 			margin-top : 20px; text-align : right;
 		}
 		table td{ padding:5px;}
-		#buttons input
-		{	
-			padding : 7px 30px;
-			margin-left : 5px;
-			margin-right : 5px; 
-			background-color : #85858D;
-			color : white;
-			font-family : "나눔바른고딕", "맑은 고딕";
-			font-size : 16px;
-			border-radius : 10px; 
-			border : 0px;
-		}
-		#buttons input:hover { opacity : 0.7; }
+		
+		tr td input[type="submit"], tr td label { text-align:center; }
 
 		table tr td label{text-align:left; margin-left:20px;}
-		table tr 
+		#buttons.back {margin-left:40px;}
+		#buttons.back, #buttons.next { text-align:left; }
+		#buttons.delete {margin-right:40px;}
+		#buttons.delete, #buttons.list { text-align:right; }
 
 	</style>
    </head>
@@ -96,7 +89,7 @@
 				<tr><td colspan="6">지성 피부에 최고에여~!! 숯비누짱!!</td></tr>
 				<tr><td colspan="6"><label>자연맘  :  </label> 안녕하세요! sujinzzang님! 항상 저희 자연맘을 이용해주셔서 감사합니다~^^</td></tr>
 				<tr><td colspan="6"> <label>댓글입력</label>
-				<textarea>
+				<textarea name="ripple"cols="90" rows="3">
 				
 				
 				</textarea>
@@ -106,6 +99,13 @@
 				
 				
 			</table>
+			
+			<div id="buttons">
+				<button name="back">이전글</button>
+				<button name="next">다음글</button>
+				<button name="delelte">삭제</button>
+				<button name="list">목록</button>
+				</div>
 	
 	</div>
 <!--------------------------------------------------------end container------------->

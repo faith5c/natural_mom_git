@@ -79,7 +79,7 @@
 	</div>
 	<div id="yuback2"></div>
 	<div id="search">
-		<select name="condition" id="">
+		<select name="check" id="check">
 			<option value=""> 제목 </option>
 			<option value=""> 작성자 </option>
 			<option value=""> 내용 </option>
