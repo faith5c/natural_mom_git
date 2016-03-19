@@ -43,7 +43,9 @@
 		table { margin : 0 auto;  }
 		#page { text-align : center; margin-bottom: 15px;}
 		
-
+		body .search { text-align: center; }
+		
+		.search input[type="submit"] {padding : 2px 10px;}
 	</style>
 </head>
 <body>
@@ -90,7 +92,7 @@
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="#">〉〉</a>
 	</div>
-	<div>
+	<div class="search">
 			<select>
 				<option value="title">제목</option>
 				<option value="content">내용</option>
@@ -98,7 +100,7 @@
 				<option value="title+content">제목+내용</option>
 			</select>
 			<input type="text" placeholder="제목, 내용, 글쓴이, 제목+내용" name="search">
-			<input type="button" value="검색">
+			<input type="submit" value="검색">
 	</div>
 </form>
 

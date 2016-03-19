@@ -45,6 +45,7 @@
 		}
 		table { margin : 0 auto;  }
 		.page { text-align : center; margin-bottom: 15px;}
+		
 		.search input[type="submit"] {padding : 2px 10px;}
 	</style>
 </head>
