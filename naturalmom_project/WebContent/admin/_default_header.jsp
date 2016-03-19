@@ -18,9 +18,9 @@
 				<a href="admin_product.jsp">상품</a>
 				<div id="sub">
 					<ul>
-						<li><a href="#" onclick="to_submenu('product', 'register')">상품등록</a></li>
-						<li><a href="#" onclick="to_submenu('product', 'manage')">상품관리</a></li>
-						<li><a href="#" onclick="to_submenu('product', 'deleted')">삭제상품</a></li>
+						<li><a href="admin_product.jsp?page=register">상품등록</a></li>
+						<li><a href="admin_product.jsp?page=manage">상품관리</a></li>
+						<li><a href="admin_product.jsp?page=deleted">삭제상품</a></li>
 					</ul>
 				</div>
 			</li>
@@ -30,11 +30,11 @@
 				<a href="admin_board.jsp">게시판</a>
 				<div id="sub">
 					<ul>
-						<li><a href="#" onclick="to_submenu('board', 'notice')">공지사항</a></li>
-						<li><a href="#" onclick="to_submenu('board', 'event')">이벤트</a></li>
-						<li><a href="#" onclick="to_submenu('board', 'qna')">Q&A</a></li>
-						<li><a href="#" onclick="to_submenu('board', 'review')">상품후기</a></li>
-						<li><a href="#" onclick="to_submenu('board', 'faq')">자주하는 질문</a></li>
+						<li><a href="admin_board.jsp?page=notice">공지사항</a></li>
+						<li><a href="admin_board.jsp?page=event">이벤트</a></li>
+						<li><a href="admin_board.jsp?page=qna">Q&A</a></li>
+						<li><a href="admin_board.jsp?page=review">상품후기</a></li>
+						<li><a href="admin_board.jsp?page=faq">자주하는 질문</a></li>
 					</ul>
 				</div>
 			</li>
@@ -42,8 +42,8 @@
 				<a href="admin_sales.jsp">매출</a>
 				<div id="sub">
 					<ul>
-						<li><a href="#" onclick="to_submenu('sales', 'table')">매출 조회</a></li>
-						<li><a href="#" onclick="to_submenu('sales', 'analysis')">매출 분석</a></li>
+						<li><a href="admin_sales.jsp?page=table">매출 조회</a></li>
+						<li><a href="admin_sales.jsp?page=analysis">매출 분석</a></li>
 					</ul>
 				</div>
 			</li>
@@ -51,13 +51,4 @@
 		</nav>
 </html>
 
-<!-- ----------------------------------------------------------------------Script -->
-
-<script type="text/javascript">
-	function to_submenu(category, submenu) {
-		var proc = "http://localhost:8082/naturalmom_project/admin/_default_header_proc.jsp";
-		proc+= "?category="+category + "&submenu="+submenu ;
-		$('#container').load(proc);
-	}
-
-</script>
+<!------------------------------------------------------------------------Script -->
