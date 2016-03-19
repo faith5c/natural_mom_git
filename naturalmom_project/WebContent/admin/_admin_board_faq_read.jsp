@@ -68,8 +68,15 @@
 					<td>
 						<input type = "button" value = "수정" id = "mod" name = "mod">
 						<input type = "button" value = "삭제" id = "del" name = "del">
-						<input type = "button" value = "목록" id = "list" name = "list">
+						<input type = "button" value = "목록" id = "list" name = "list" onclick = "go_page('list');">
 					</td>
 				</tr>
 			</table>
+<script type="text/javascript">
+	function go_page(val)
+	{
+		if (val == 'list')
+			location.href = "admin_board.jsp?page=faq";
+	}
+</script>
 </html>

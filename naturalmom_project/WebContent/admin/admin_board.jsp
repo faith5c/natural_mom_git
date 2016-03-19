@@ -19,6 +19,10 @@
 	if(submenu==null){
 		submenu= "notice";
 	}
+	String r = (String)request.getParameter("r");
+	if (r == null) r = "";
+	String w = (String)request.getParameter("w");
+	if (w == null || w.isEmpty()) w = "false";
 %>
 	
    </head>
@@ -42,7 +46,13 @@
 <%		}else if(submenu.equals("review")){%>
 			<%@include file="_admin_board_review.jsp" %>			
 <%		}else if(submenu.equals("faq")){%>
-			<%@include file="_admin_board_faq_list.jsp" %>			
+			<%if (r.equals("1")) {%>
+				<%@include file = "_admin_board_faq_read.jsp" %>
+			<%} else if (w.equals("true")) { %>
+				<%@include file = "_admin_board_faq_write.jsp" %>
+			<%} else { %>
+				<%@include file="_admin_board_faq_list.jsp" %>
+			<%} %>			
 <%		}else{
 			System.out.println("board page submenu error");
 		}
