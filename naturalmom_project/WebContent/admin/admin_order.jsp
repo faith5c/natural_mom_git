@@ -216,7 +216,7 @@
 			</tr>
 		</table>
 		<br>
-		선택한 상품을
+		
 		<br>
 		<div id = "buttons">
 			<input type = "button" onclick = "order_popup();" id = "delivery_register" value = "운송장등록" />
