@@ -21,7 +21,7 @@
 	<script>
 		function order_popup()
 		{
-			window.open("_admin_order_manage_popup.html", "운송장 등록", "width = 420px, height = 410px, left = 500px, top = 200px, scrollbars = no, toobar = no, menubar = no, status = no, location = no, resizeable = no");
+			window.open("_admin_order_manage_popup.jsp", "운송장 등록", "width = 420px, height = 410px, left = 500px, top = 200px, scrollbars = no, toobar = no, menubar = no, status = no, location = no, resizeable = no");
 		}
 	</script>
 	<style type = "text/css">
