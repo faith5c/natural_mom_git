@@ -13,6 +13,10 @@
 	<link rel="stylesheet" href="css/admin_common.css"/>
 		
 	<title>자연맘</title>
+<% 
+	request.setCharacterEncoding("UTF-8");
+	String submenu = (String)request.getParameter("page");
+%>
 	
    </head>
 
@@ -25,7 +29,21 @@
 <!---Start container----------------------------------------------------------------->
 	
 	<div id="container">
-
+<%
+		if(submenu.equals("notice")){%>
+			<%@include file="_admin_board_notice.jsp" %>
+<%		}else if(submenu.equals("event")){%>
+			<%@include file="_admin_board_event_list.jsp" %>			
+<%		}else if(submenu.equals("qna")){%>
+			<%@include file="_admin_board_qna.jsp" %>			
+<%		}else if(submenu.equals("review")){%>
+			<%@include file="_admin_board_review.jsp" %>			
+<%		}else if(submenu.equals("faq")){%>
+			<%@include file="_admin_board_faq_list.jsp" %>			
+<%		}else{
+			System.out.println("board page submenu error");
+		}
+%>
 	</div>
 <!--------------------------------------------------------end container------------->
   </body>
