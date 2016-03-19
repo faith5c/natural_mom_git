@@ -12,6 +12,15 @@
 	<title>자연맘</title>
 
 	<script type="text/javascript" src="js/nicEdit.js"></script>
+	<script type="text/javascript">
+		bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+	</script>
+	<script>
+		function order_popup()
+		{
+			window.open("_admin_order_manage_popup.html", "운송장 등록", "width = 400px, height = 380px, left = 500px, top = 200px, scrollbars = no, toobar = no, menubar = no, status = no, location = no, resizeable = no");
+		}
+	</script>
 	<style type = "text/css">
 
 		* { margin: 0px; padding: 0px; }
@@ -114,7 +123,7 @@
 	
 	<div id="container">
 		<input type = "button" id = "save" value = "저장" />
-		<h2 id = "reg_title">상품 관리</h2>
+		<h2 id = "order_title">주문 관리</h2>
 		<table cellspacing = "0">
 			<tr>
 				<td>체크</td>
@@ -226,9 +235,9 @@
 		선택한 상품을
 		<br>
 		<div id = "buttons">
-			<input type = "button" id = "delivery_register" value = "운송장등록" />
+			<input type = "button" onclick = "order_popup();" id = "delivery_register" value = "운송장등록" />
 			<input type = "button" id = "delivery_stand_by" value = "배송대기" />
-			<input type = "button" id = "refund_process" value = "환불처리" />
+			<input type = "button" id = "refund_process" value = "환불처리"/>
 			<input type = "button" id = "refund_complete" value = "환불완료" />
 		</div>
 	</div>
