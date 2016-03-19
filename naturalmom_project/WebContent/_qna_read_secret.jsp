@@ -10,14 +10,13 @@
 
 <style type="text/css">
 	* { font-family : "나눔바른고딕", "맑은 고딕"}
-	h2 { color: #004523 }
+	h2 { color: #004523; padding-left : 10px; padding-bottom : 20px; padding-top : 10px; }
 	td,th { border : 0px solid blue; padding : 5px; }
 	tr:nth-child(2) th s{ background-color : blue; }
 	
 	table { width : 720px; 
 		margin : 0 auto; 
 	}
-	tr:first-child td{ padding-left : 10px; }
 	tr:nth-child(2) th{ 
 		text-align : center; 
 		color : gray; 

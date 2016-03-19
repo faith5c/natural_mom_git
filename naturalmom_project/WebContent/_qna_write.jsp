@@ -17,7 +17,7 @@
 	
 	<style type="text/css">
 		h2, th, table tr:last-child input { font-family : "나눔바른고딕", "맑은 고딕"; }
-		h2 { color : #004523; padding-left : 10px; }
+		h2 { color : #004523; padding-left : 10px;  padding-bottom : 20px; padding-top : 10px; }
 		th { background-color : #F0F0F0;  
 			font-weight : normal; 
 			color : gray;
