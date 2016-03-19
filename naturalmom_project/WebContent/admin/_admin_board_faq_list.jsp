@@ -50,7 +50,7 @@
 		#pages, #search { text-align: center; }
 		#search { width: 764px; margin-top: 20px; }
 		#search input[type = "text"], #search select { font : 16px "나눔바른고딕", "맑은 고딕", Arial; }
-		#search input[type = "button"]
+		#search input[type = "submit"], input[type = "button"]
 		{
 			padding : 5px 10px;
 			margin-left : 3px;
@@ -63,7 +63,7 @@
 			border : 0px;
 		}
 
-		input[type = "button"]:hover { opacity : 0.7; }
+		input[type = "submit"]:hover, input[type = "button"]:hover { opacity : 0.7; }
 		#buttons tr td:last-child { text-align:right; }
 	</style>	
 	
@@ -88,12 +88,14 @@
 			<a href = "#">&rsaquo;</a>
 		</div>
 		<div id = "search">
-			<select id = "option">
-				<option>제목</option>
-				<option>내용</option>
-				<option>제목+내용</option>
-			</select>
-			<input type = "text" name = "search_val" />
-			<input type = "button" value = "검색" />
+			<form action = "#" method = "get">
+				<select id = "option">
+					<option>제목</option>
+					<option>내용</option>
+					<option>제목+내용</option>
+				</select>
+				<input type = "text" name = "search_val" />
+				<input type = "submit" value = "검색" />
+			</form>
 		</div>
 </html>

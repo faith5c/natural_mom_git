@@ -66,8 +66,14 @@
 					<input type = "button" value = "다음글" id = "next" name = "next">
 				</td>
 				<td>
-					<input type = "button" value = "목록" id = "list" name = "list">
+					<input type = "button" value = "목록" id = "list" name = "list" onclick = "go_list();">
 				</td>
 			</tr>
 		</table>
+		<script>
+			function go_list()
+			{
+				location.href = "customer_center.jsp?page=faq";
+			}
+		</script>
 </html>

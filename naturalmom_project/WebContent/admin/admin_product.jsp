@@ -34,7 +34,7 @@
 <% } else if (page_param != null && page_param.equals("deleted")) {%>	
 	<%@ include file = "_admin_product_deleted.jsp" %>
 <% } else { %>
-	<%@ include file = "_admin_product_register.jsp" %>
+	<%@ include file = "_admin_product_manage.jsp" %>
 <% } %>
 	</div>
 <!--------------------------------------------------------end container------------->

@@ -19,6 +19,12 @@
 	boolean write = request.getParameter("w")!=null? true : false;
 	
 	if(submenu==null){ submenu = "notice"; }
+	
+	// 게시글 내용 보기인지 글쓰기인지 확인하는 부분
+	String w = request.getParameter("w");
+	if (w == null || w.isEmpty()) w = "false";
+	String r = request.getParameter("r");	// 일단 int형 처리 안함
+	if (r == null) r = "";
 %>
   </head>
 
@@ -55,12 +61,15 @@
 <%				}else if(submenu.equals("qna")){%>
 					<%@include file="_qna_list.jsp" %>					
 <%				}else if(submenu.equals("faq")){%>
-					<%@include file="_faq_list.jsp" %>					
+					<% if(submenu.equals("faq") && r.equals("1")) { %>
+					<%@ include file = "_faq_read.jsp" %>
+					<% } else { %>
+					<%@include file="_faq_list.jsp" %>
+					<% } %>			
 <%				}else{
 					System.out.println("board submenu error");
-				}
+				}					
 %>
-			
 			</div>	
 		</div>
 		<!--------------------------------------------------end content--------->
