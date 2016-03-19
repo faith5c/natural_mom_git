@@ -53,11 +53,13 @@
 				if(submenu.equals("notice")){%>
 					<%@include file="_notice_list.jsp" %>
 <%				}else if(submenu.equals("event")){
-					if(write){%>
-					<%@include file="_event_write.jsp" %>
-<% 					}else{%>
+					if(r.equals("")&& w.equals("false")){%>
 					<%@include file="_event_list.jsp" %>
-<%					}%>					
+<% 					}else if(w.equals("true")){%>
+					<%@include file="_event_write.jsp" %>
+<%					}else if(r.equals("1")){%>
+					<%@include file="_event_read.jsp" %>					
+<%					} %>					
 <%				}else if(submenu.equals("qna")){%>
 					<% if(r.equals("") && w.equals("false")){ %>
 					<%@include file="_qna_list.jsp" %>	
