@@ -2,14 +2,13 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <title>자연맘</title>
 <style type = "text/css">
 	
 
-		#in { width : 1024px; margin : 100px auto; color: #85858d; font-style: bold; margin: 0px; padding: 0px; font-family : "나눔바른고딕", "맑은 고딕"; }
+		#in { width : 720px; margin : 0 auto; color: #85858d; font-style: bold; padding: 0px; font-family : "나눔바른고딕", "맑은 고딕"; }
 		
 		h2 { margin-bottom : 15px; color: #004523; }
 		
@@ -85,7 +84,7 @@
 			<option value=""> 내용 </option>
 		</select>
 	<input type="text" placeholder="제목, 내용, 작성자로 검색하실 수 있습니다."></input>
-	<input type="submit" value="검색"><button id ="write">글 쓰기</button>
+	<input type="submit" value="검색">&nbsp;&nbsp;<button id ="write">글 쓰기</button>
 	</div>
 	</div>
 

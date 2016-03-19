@@ -9,7 +9,7 @@
 <meta charset="utf-8">
 	<title>자연맘</title>
 	<style type = "text/css">
-		#in { width : 1024px; margin : 100px auto; color: #85858d;font-family : "나눔바른고딕", "맑은 고딕"; }
+		#in { width : 720px; margin : 0 auto; color: #85858d;font-family : "나눔바른고딕", "맑은 고딕"; }
 		
 		h2 { margin-bottom : 15px; color: #85858D;}
 		

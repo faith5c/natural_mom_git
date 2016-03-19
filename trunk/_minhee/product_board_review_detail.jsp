@@ -15,7 +15,7 @@
 
 	<style type = "text/css">
 
-		#in { font-style: bold; margin: 0px; padding: 0px; font-family : "나눔바른고딕", "맑은 고딕"; width : 1024px; margin : 100px auto; color: #85858d; }
+		#in { font-style: bold; padding: 0px; font-family : "나눔바른고딕", "맑은 고딕"; width : 720px; margin : 0 auto; color: #85858d; }
 		
 		h2 { margin-bottom : 15px; color: #004523; }
 		
