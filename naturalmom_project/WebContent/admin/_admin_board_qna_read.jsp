@@ -10,14 +10,13 @@
 
 <style type="text/css">
 	* { font-family : "나눔바른고딕", "맑은 고딕"}
-	h2 { color: #004523 }
+	h2 { color: #004523; padding-left : 10px; padding-bottom : 20px; padding-top : 10px; }
 	td,th { border : 0px solid blue; padding : 5px; }
 	tr:nth-child(2) th s{ background-color : blue; }
 	
 	table { width : 720px; 
 		margin : 0 auto; 
 	}
-	tr:first-child td{ padding-left : 10px; }
 	tr:nth-child(2) th{ 
 		text-align : center; 
 		color : gray; 
@@ -81,7 +80,7 @@
 	<td colspan = "4">라벤더 비누 언제 재입고 되나요</td>
 </tr>
 <tr class="dat">
-	<td>자연맘</td>
+	<td>관리자</td>
 	<td colspan="2">안녕하세요 hook4u님! 라벤더 비누는 6월 말 재입고 예정입니다.^^</td>
 	<td style="width:80px;">2015/06/27</td>
 </tr>
@@ -91,12 +90,12 @@
 	<td style="width:80px;">2015/06/27</td>
 </tr>
 <tr class="dat_write">
-	<td>faith5c</td>
+	<td>관리자</td>
 	<td colspan="2">
-		<textarea rows="2" cols="30"></textarea>
+		<textarea style="width:100%; resize : none;" cols="30"></textarea>
 	</td>
 	<td>
-		<input type="submit" value="댓글등록">
+		<input type="submit" style="padding : 2px 10px; " value="댓글등록">
 	</td>
 </tr>
 <tr>

@@ -80,7 +80,7 @@
 	<td colspan = "4">라벤더 비누 언제 재입고 되나요</td>
 </tr>
 <tr class="dat">
-	<td>자연맘</td>
+	<td>관리자</td>
 	<td colspan="2">안녕하세요 hook4u님! 라벤더 비누는 6월 말 재입고 예정입니다.^^</td>
 	<td style="width:80px;">2015/06/27</td>
 </tr>

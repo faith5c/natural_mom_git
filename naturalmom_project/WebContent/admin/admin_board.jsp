@@ -42,7 +42,16 @@
 <%		}else if(submenu.equals("event")){%>
 			<%@include file="_admin_board_event_list.jsp" %>			
 <%		}else if(submenu.equals("qna")){%>
-			<%@include file="_admin_board_qna_list.jsp" %>			
+			<% if(r.equals("") && w.equals("false")){ %>
+			<%@include file="_admin_board_qna_list.jsp" %>	
+			<% } else if(r.equals("3")){ %>
+			<%@include file="_admin_board_qna_read.jsp" %>		
+			<% } else if(r.equals("2")){ %>
+			<%@include file="_admin_board_qna_read_secret.jsp" %>
+			<% } else if(w.equals("true")){ %>
+			<%@include file="_admin_board_qna_write.jsp" %>
+			<% } %>	
+			
 <%		}else if(submenu.equals("review")){%>
 			<%@include file="_admin_board_review.jsp" %>			
 <%		}else if(submenu.equals("faq")){%>

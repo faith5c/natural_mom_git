@@ -17,7 +17,7 @@
 	
 	<style type="text/css">
 		h2, th, table tr:last-child input { font-family : "나눔바른고딕", "맑은 고딕"; }
-		h2 { color : #004523; padding-left : 10px; }
+		h2 { color : #004523; padding-left : 10px;  padding-bottom : 20px; padding-top : 10px; }
 		th { background-color : #F0F0F0;  
 			font-weight : normal; 
 			color : gray;
@@ -47,7 +47,7 @@
 	<table cellspacing="2">
 		<tr><td colspan="2"><h2>Q&A</h2></td></tr>
 		<tr>
-			<th style="width:100px;"><label for="title">제목</label></th>
+			<th style="width:80px;"><label for="title">제목</label></th>
 			<td>
 			<input style="width:99%;" type="text" id="title" maxlength="127" placeholder="제목을 입력하세요"/>
 			</td>
@@ -56,7 +56,7 @@
 		<tr>
 			<th>작성자</th>
 			<td>
-				<input type="text" maxlength="15" style="width:30%" value="hook4u" readonly="readonly"/>
+				<input type="text" maxlength="15" style="width:30%" value="관리자" readonly="readonly"/>
 			</td>
 		</tr>
 		<tr>
@@ -70,7 +70,7 @@
 		<tr>
 			<th>내용</th>
 			<td>
-			<textarea id="qna_area" name="text" cols="74" rows="14"></textarea>
+			<textarea id="qna_area" name="text" style="width:100%; resize:none;" rows="14"></textarea>
 			</td>
 		</tr>
 		<tr>

@@ -7,17 +7,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <style type="text/css">
 	* { font-family : "나눔바른고딕", "맑은 고딕"}
-	h2 { color: #004523 }
-	td,th { border : 0px solid blue; padding : 5px; }
+	h2 { color: #004523; padding-left : 10px; padding-bottom : 20px; padding-top : 10px; }
+	td,th { padding : 5px; }
 	tr:nth-child(2) th s{ background-color : blue; }
 	
 	table { width : 720px; 
 		margin : 0 auto; 
 	}
-	tr:first-child td{ padding-left : 10px; }
 	tr:nth-child(2) th{ 
 		text-align : center; 
 		color : gray; 
@@ -28,7 +27,7 @@
 		border-top : solid 1px #cccccc; 
 		border-bottom : solid 1px #cccccc;	
 	}
-	tr:nth-child(4) td{ 
+	tr:nth-child(5) td{ 
 		border-top : solid 1px #CCCCCC; 
 		padding : 10px 20px 30px 20px; 
 	}
@@ -60,15 +59,15 @@
 		border : solid 1px #85858D;
 		color : #555555;
 	}
-	
+	.pw_write input[type="button"] { padding : 2px 10px; }
 </style>
 
 <form>
 <table cellspacing="0">
 <tr><td colspan = "4"><h2>Q&A</h2></td></tr>
 <tr>
-	<th style="width:80px;">3</th>
-	<td colspan="3">재입고 언제 되나요</td>
+	<th style="width:80px;">2</th>
+	<td colspan="3">배송일 문의 [1]<span>&nbsp;<i class="fa fa-lock"></i></span></td>
 </tr>
 
 <tr>
@@ -77,16 +76,19 @@
 	<div class="pw_write"> 
 	비밀번호 확인
 	<hr/>
-	이 글은 비밀글입니다. 비밀번호를 입력해주세요<br/><br/>
-	비밀번호&nbsp;&nbsp;&nbsp;
-	<input type="password" name="pw" size="8">&nbsp;&nbsp;&nbsp;
+	<br/>
+	이 글은 비밀글입니다. 관리자는 확인 버튼을 눌러주세요<br/><br/>
 	<input type="button" name="secret_check" value="확인">
 	<br/>&nbsp;
 	</div>
-	<br/>&nbsp;
 	</td>
 </tr>
-
+<tr>
+	<td></td>
+	<td style="width:30%">&nbsp;</td>
+	<td></td>
+	<td></td>
+</tr>
 <tr>
 	<td colspan="2">
 		<input type="button" value="이전글">
