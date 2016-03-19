@@ -50,8 +50,6 @@
 			border : 0px;
 		}
 		#buttons input:hover { opacity : 0.7; }
-		
-		#buttons tr td{border: 1px solid black;}
 
 		#buttons tr td:last-child { text-align:right; }
 		
