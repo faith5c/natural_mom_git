@@ -14,6 +14,14 @@
 		
 	<title>자연맘</title>
 	
+	<% 
+	request.setCharacterEncoding("UTF-8");
+	String submenu = (String)request.getParameter("page");
+	if(submenu==null){
+		submenu= "table";
+	}
+%>
+	
    </head>
 
   <body>
@@ -25,6 +33,17 @@
 <!---Start container----------------------------------------------------------------->
 	
 	<div id="container">
+
+<%
+		if(submenu.equals("table")){%>
+			<%@include file="_admin_sale_table.jsp" %>
+<%		}else if(submenu.equals("event")){%>
+			<%@include file="_admin_sale_analysis.jsp" %>
+<%		}else{
+			System.out.println("board page submenu error");
+		}
+%>
+
 
 	</div>
 <!--------------------------------------------------------end container------------->
