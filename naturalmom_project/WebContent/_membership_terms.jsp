@@ -7,10 +7,8 @@
 	text-align: center;
 	margin : 0 143px;
 }
-
-#inside h3 {
-	text-align: left;
-}
+#inside h2 { text-align: left; color: #004523;  }
+#inside h3 { text-align: left; }
 
 textarea{
 width: 100%
@@ -44,7 +42,9 @@ p {
 <br><br><br>
 <div id="inside">
 	<br><br>
-	<h3>이용약관</h3>
+	<h2>회원가입</h2>
+	<br><br>
+	<h3>1. 이용약관</h3>
 	<br>
 	<form action="membership.jsp" method="post">
 		<textarea id="terms1" rows="8" cols="120" readonly="readonly" style="font-family: '맑은고딕'; font-size: 10; ">
@@ -238,7 +238,7 @@ p {
 		<p><label for="agree1">이용약관에 동의함 </label><input id="agree1" name="agree1" type="checkbox" value="agree" ></p>
 	
 		<br><br>
-		<h3>개인정보취급방침</h3>
+		<h3>2. 개인정보취급방침</h3>
 		<br>
 		<textarea id="terms2" rows="8" cols="120" readonly="readonly" style="font-family: '맑은고딕'; font-size: 10; ">
 한결유통은 (이하 `회사`는)
