@@ -13,6 +13,13 @@
 	<link rel="stylesheet" href="css/mypage.css" />
 
 	<title>자연맘</title>  
+<%
+	request.setCharacterEncoding("UTF-8");
+	String submenu = request.getParameter("page");
+	if(submenu==null){
+		submenu = "wishlist";
+	}
+%>
   </head>
   <body>
 
@@ -28,12 +35,21 @@
 		<div id="content">
 			<div id="sidebar">
 				<ul>
-					<li><a href="#" onclick="to_wishlist()">관심상품</a></li>
-					<li><a href="#" onclick="to_edit_member()">회원정보 수정</a></li>
+					<li><a href="mypage.jsp?page=wishlist" onclick="to_wishlist()">관심상품</a></li>
+					<li><a href="mypage.jsp?page=edit" onclick="to_edit_member()">회원정보 수정</a></li>
 				</ul>
 			</div>
 			<div id="content_body">
-				<%@include file="_wishlist.jsp" %>
+<%
+				if(submenu.equals("wishlist")){%>
+					<%@include file="_wishlist.jsp" %>
+<%				}else if(submenu.equals("edit")){%>
+					<%@include file="_edit_member.jsp" %>
+<%				}else{
+					System.out.println("mypage submenu error");
+				}
+%>
+				
 			</div>
 		</div>
 		<!--------------------------------------------------end content--------->
@@ -49,15 +65,3 @@
 </html>
 
 <!---------------------------------------------------------Script --------------------->
-<script type="text/javascript">
-	function to_edit_member() {
-		var edit_page = 'http://localhost:8082/naturalmom_project/_edit_member.jsp';
-		edit_page+= '?page=edit_member';
-		$('#content_body').load(edit_page); 
-	}
-	function to_wishlist() {
-		var wish_page = 'http://localhost:8082/naturalmom_project/_wishlist.jsp';
-		wish_page+= '?page=wishlist';
-		$('#content_body').load(wish_page); 
-	}
-</script>

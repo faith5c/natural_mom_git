@@ -18,7 +18,10 @@ table td{
 	color: black;
 }
 
-#button { text-align: center; }
+#button { 
+	text-align: center; 
+	}
+.drop{ text-align: right;}
 #submit { 
 	padding : 7px 30px;
 	margin-left : 5px;
@@ -30,16 +33,27 @@ table td{
 	border-radius : 10px; 
 	border : 0px;
 }
+#drop_out, #find_post_num{
+	padding : 3px 15px;
+	margin-left : 5px;
+	margin-right : 5px; 
+	background-color : #85858D;
+	color : white;
+	font-family : "나눔바른고딕", "맑은 고딕";
+	font-size : 14px;
+	border-radius : 10px; 
+	border : 0px;
+}
 
 td:FIRST-CHILD {
-	width: 85px;
+	width: 20%;
 	vertical-align: top;
 }
 
 #id, #name, #email1, #email2 { width: 100px; }
 #phone1, #phone2, #phone3, #post_num1, #post_num2
 	{ width: 70px; }
-#address, #address_detail { width: 250px; }
+#address, #address_detail { width: 300px; }
 
 #quit {
 	margin-left: 170px;
@@ -54,8 +68,7 @@ td:FIRST-CHILD {
 		<table>
 			<tr>
 				<td>아이디</td>
-				<td><input type="text" id="id" name="id" disabled="disabled"/>
-					<button id="drop_out">회원탈퇴</button></td>
+				<td><input type="text" id="id" name="id" disabled="disabled"/></td>
 			</tr>
 			<tr>
 				<td>비밀번호</td>
@@ -115,6 +128,9 @@ td:FIRST-CHILD {
 					<input type="text" id="address_detail" name="address_detail" />
 					<!-- address+address_detail = addr_detail -->
 				</td>
+			</tr>
+			<tr>
+				<td colspan="2" class="drop"><button id="drop_out">회원탈퇴</button></td>
 			</tr>
 			<tr>
 				<td colspan="2"><p id="button"><input type="submit" id="submit" value="확인" /></p></td>
