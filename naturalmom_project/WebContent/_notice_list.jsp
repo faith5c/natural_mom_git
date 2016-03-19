@@ -41,7 +41,7 @@
 			text-align : right;
 		}
 		table { margin : 0 auto;  }
-		div { text-align : center; margin-bottom: 15px;}
+		#page { text-align : center; margin-bottom: 15px;}
 		
 
 	</style>
@@ -82,7 +82,7 @@
 		<td colspan="5"><input type="submit" value="글쓰기"></td>
 	</tr>
 </table>
-	<div>
+	<div id="page">
 	<a href="#">〈〈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="#">〈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
