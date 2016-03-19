@@ -16,6 +16,9 @@
 <% 
 	request.setCharacterEncoding("UTF-8");
 	String submenu = (String)request.getParameter("page");
+	if(submenu==null){
+		submenu= "notice";
+	}
 %>
 	
    </head>
@@ -31,7 +34,7 @@
 	<div id="container">
 <%
 		if(submenu.equals("notice")){%>
-			<%@include file="_admin_board_notice.jsp" %>
+			<%@include file="_admin_board_notice_list.jsp" %>
 <%		}else if(submenu.equals("event")){%>
 			<%@include file="_admin_board_event_list.jsp" %>			
 <%		}else if(submenu.equals("qna")){%>
