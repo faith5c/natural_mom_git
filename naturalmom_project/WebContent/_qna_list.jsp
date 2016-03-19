@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<style type="text/css">
 		a { text-decoration : none; color : black; }
 		table, table input, div, div input { font-family : "나눔바른고딕", "맑은 고딕";}
@@ -24,17 +25,17 @@
 		tr:first-child td, tr:last-child td, .qna_write td{ 
 			border-bottom : 0px; 
 		}
-		
-		.qna_write input[type="submit"] {
-			padding : 5px 30px;
-			margin-right : 5px;
-			margin-top : 10px;
-			margin-left : 10px; 
+		.qna_write span {
+			display : inline-block;
+			padding : 5px 30px; 
 			background-color : #85858D;
 			color : white;
 			font-size : 16px;
 			border-radius : 20px;
 			border : 0px;
+			margin-right : 5px;
+			margin-top : 10px;
+			margin-left : 10px;
 		}
 		.qna_write input[type="submit"]:hover {
 			opacity : 0.7;
@@ -44,7 +45,7 @@
 		}
 		table { margin : 0 auto;  }
 		.page { text-align : center; margin-bottom: 15px;}
-		.search input[type="button"] {padding : 2px 10px;}
+		.search input[type="submit"] {padding : 2px 10px;}
 	</style>
 </head>
 <body>
@@ -60,14 +61,14 @@
 	</tr>
 	<tr>
 		<td>3</td>
-		<td><a href="#">재입고 언제 되나요</a></td>
+		<td><a href="customer_center.jsp?page=qna&r=3">재입고 언제 되나요</a></td>
 		<td>hook4u</td>
 		<td>2015/06/17</td>
 		<td>49</td>
 	</tr>
 	<tr>
 		<td>2</td>
-		<td><a href="#">배송일 문의 [1]</a></td>
+		<td><a href="customer_center.jsp?page=qna&r=2">배송일 문의 [1]<span>&nbsp;<i class="fa fa-lock"></i></span></a></td>
 		<td>faith5c</td>
 		<td>2015/06/15</td>
 		<td>24</td>
@@ -80,7 +81,7 @@
 		<td>15</td>
 	</tr>
 	<tr class="qna_write">
-		<td colspan="5"><input type="submit" value="글쓰기"></td>
+		<td colspan="5"><a href="customer_center.jsp?page=qna&w=true"><span>글쓰기</span></a></td>
 	</tr>
 	<tr>
 		<td colspan = "5">
@@ -97,7 +98,7 @@
 					<option value="title+content">제목+내용</option>
 				</select>
 				<input type="text" placeholder="제목, 내용, 글쓴이, 제목+내용" name="search">
-				<input type="button" value="검색">
+				<input type="submit" value="검색">
 		</td>
 	</div>	
 	</tr>
