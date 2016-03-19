@@ -62,7 +62,7 @@
 	</style>
 	<form action="#" method="post">
 		<br><br>
-		<table cellspacing="0">
+		<table cellspacing="0" class="cart">
 			<tr>
 				<td colspan = "8"><h3>장바구니</h3></td>
 			</tr>
