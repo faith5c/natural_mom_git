@@ -30,7 +30,7 @@ footer {
 	min-height: 600px;
 }
 
-#content img:hover{
+#content section img:hover{
 	opacity : 0.7;
 }
 #logo { 
