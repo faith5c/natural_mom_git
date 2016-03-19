@@ -3,13 +3,13 @@
 <!DOCTYPE html>
 	<style type = "text/css">
 
-		#content_body { width : 764px; margin : 100px auto; color: #85858d; }
+		#content_body { color: #85858d; padding: 100px; padding-left: 225px; }
 		#content_body a { text-decoration: none; }
 		#content_body a:hover { opacity : 0.7; }
 
 		#content_body h2 { margin-bottom : 15px; }
 		
-		table { width: 100%; padding : 0px; }
+		table { width: 720px; padding : 0px; }
 		table tr:first-child td { border-top : 1px solid grey; }
 		table tr:last-child td { border-bottom : 1px solid grey; }
 		table tr td { padding : 10px; }
