@@ -15,7 +15,6 @@
 	<title>자연맘</title>
 	
    </head>
-
   <body>
 
 	<header>
@@ -25,7 +24,18 @@
 <!---Start container----------------------------------------------------------------->
 	
 	<div id="container">
+	
+<% String page_param = request.getParameter("page"); %>
 
+<% if (page_param != null && page_param.equals("register")) { %>
+	<%@ include file = "_admin_product_register.jsp" %>
+<% } else if (page_param != null && page_param.equals("manage")) { %>
+	<%@ include file = "_admin_product_manage.jsp" %>
+<% } else if (page_param != null && page_param.equals("deleted")) {%>	
+	<%@ include file = "_admin_product_deleted.jsp" %>
+<% } else { %>
+	<%@ include file = "_admin_product_register.jsp" %>
+<% } %>
 	</div>
 <!--------------------------------------------------------end container------------->
   </body>
