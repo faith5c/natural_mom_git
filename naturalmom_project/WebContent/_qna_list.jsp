@@ -21,9 +21,11 @@
 			border-right : solid 1px lightgray;
 		}
 		
-		tr:first-child td, tr:last-child td{ border-bottom : 0px; }
+		tr:first-child td, tr:last-child td, .qna_write td{ 
+			border-bottom : 0px; 
+		}
 		
-		table tr:last-child input[type="submit"] {
+		.qna_write input[type="submit"] {
 			padding : 5px 30px;
 			margin-right : 5px;
 			margin-top : 10px;
@@ -34,15 +36,14 @@
 			border-radius : 20px;
 			border : 0px;
 		}
-		table tr:last-child input[type="submit"]:hover {
+		.qna_write input[type="submit"]:hover {
 			opacity : 0.7;
 		}
-		table tr:last-child td {
+		.qna_write td {
 			text-align : right;
 		}
 		table { margin : 0 auto;  }
-		#page { text-align : center; margin-bottom: 15px;}
-		
+		.page { text-align : center; margin-bottom: 15px;}
 
 	</style>
 </head>
@@ -78,25 +79,31 @@
 		<td>2015/06/15</td>
 		<td>15</td>
 	</tr>
-	<tr>
+	<tr class="qna_write">
 		<td colspan="5"><input type="submit" value="글쓰기"></td>
 	</tr>
+	<tr>
+		<td colspan = "5">
+		<div class="page">
+			<a href="#">〈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="#">〉</a>
+		</div>
+		<div class="search">
+				<select>
+					<option value="title">제목</option>
+					<option value="content">내용</option>
+					<option value="writer">글쓴이</option>
+					<option value="title+content">제목+내용</option>
+				</select>
+				<input type="text" placeholder="제목, 내용, 글쓴이, 제목+내용" name="search">
+				<input type="button" value="검색">
+		</td>
+	</div>	
+	</tr>
+	
 </table>
-	<div id="page">
-		<a href="#">〈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="#">〉</a>
-	</div>
-	<div>
-			<select>
-				<option value="title">제목</option>
-				<option value="content">내용</option>
-				<option value="writer">글쓴이</option>
-				<option value="title+content">제목+내용</option>
-			</select>
-			<input type="text" placeholder="제목, 내용, 글쓴이, 제목+내용" name="search">
-			<input type="button" value="검색">
-	</div>
+	
 </form>
 
 </body>
