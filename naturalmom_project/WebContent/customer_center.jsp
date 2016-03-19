@@ -16,9 +16,9 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String submenu = request.getParameter("page");
-	if(submenu==null){
-		submenu = "notice";
-	}
+	boolean write = request.getParameter("w")!=null? true : false;
+	
+	if(submenu==null){ submenu = "notice"; }
 %>
   </head>
 
@@ -46,8 +46,12 @@
 <%
 				if(submenu.equals("notice")){%>
 					<%@include file="_notice_list.jsp" %>
-<%				}else if(submenu.equals("event")){%>
-					<%@include file="_event_list.jsp" %>					
+<%				}else if(submenu.equals("event")){
+					if(write){%>
+					<%@include file="_event_write.jsp" %>
+<% 					}else{%>
+					<%@include file="_event_list.jsp" %>
+<%					}%>					
 <%				}else if(submenu.equals("qna")){%>
 					<%@include file="_qna_list.jsp" %>					
 <%				}else if(submenu.equals("faq")){%>
@@ -73,11 +77,3 @@
 
 
 <!---------------------------------------------------------Script --------------------->
-<script type="text/javascript">
-	function to_event() {
-		var event = 'http://localhost:8082/naturalmom_project/_event_list.jsp';
-		event+="?page=event";
-		$('#content_body').load(event);
-	}
-
-</script>
