@@ -17,7 +17,6 @@
 			width: 400px;
 			padding-bottom: 15px; 
 			padding-top: 0px; 
-			border: 1px solid lightgray;
 		}
 		h3 
 		{ 

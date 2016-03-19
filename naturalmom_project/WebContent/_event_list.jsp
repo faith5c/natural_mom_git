@@ -52,7 +52,7 @@
 		#pages, #search { text-align: center; width: 640px;}
 		#search { width: 764px; margin-top: 20px; }
 		#search input[type = "text"], #search select { font : 16px "나눔바른고딕", "맑은 고딕", Arial; }
-		#search input[type = "button"]
+		#search input[type = "button"],#write
 		{
 			padding : 5px 10px;
 			margin-left : 3px;
@@ -65,7 +65,7 @@
 			border : 0px;
 		}
 
-		input[type = "button"]:hover { opacity : 0.7; }
+		input[type = "button"]:hover, #write:hover { opacity : 0.7; }
 		#buttons tr td:last-child { text-align:right; }
 	</style>
 
@@ -88,7 +88,7 @@
 				
 			</tr>
 			<td colspan = "4"></td>
-			<td><input type = "button" value = "글쓰기" id = "write" name = "write"></td>
+			<td><input type = "submit" value = "글쓰기" id = "write" name = "write"></td>
 		</table>
 		<div id = "pages">
 			<a href = "#">&lsaquo;</a>
