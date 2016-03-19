@@ -70,7 +70,7 @@
 		<tr>
 			<th>내용</th>
 			<td>
-			<textarea id="qna_area" name="text" style="width:100%" rows="14"></textarea>
+			<textarea id="qna_area" name="text" style="width:100%; resize:none;" rows="14"></textarea>
 			</td>
 		</tr>
 		<tr>

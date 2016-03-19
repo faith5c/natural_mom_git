@@ -92,10 +92,10 @@
 <tr class="dat_write">
 	<td>faith5c</td>
 	<td colspan="2">
-		<textarea rows="2" cols="30"></textarea>
+		<textarea style="width:100%; resize : none;" cols="30"></textarea>
 	</td>
 	<td>
-		<input type="submit" value="댓글등록">
+		<input type="submit" style="padding : 2px 10px; " value="댓글등록">
 	</td>
 </tr>
 <tr>

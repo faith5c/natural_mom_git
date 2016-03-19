@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <style type="text/css">
 	* { font-family : "나눔바른고딕", "맑은 고딕"}
 	h2 { color: #004523; padding-left : 10px; padding-bottom : 20px; padding-top : 10px; }
@@ -59,15 +59,15 @@
 		border : solid 1px #85858D;
 		color : #555555;
 	}
-	
+	.pw_write input[type="button"] { padding : 2px 10px; }
 </style>
 
 <form>
 <table cellspacing="0">
 <tr><td colspan = "4"><h2>Q&A</h2></td></tr>
 <tr>
-	<th style="width:80px;">3</th>
-	<td colspan="3">재입고 언제 되나요</td>
+	<th style="width:80px;">2</th>
+	<td colspan="3">배송일 문의 [1]<span>&nbsp;<i class="fa fa-lock"></i></span></td>
 </tr>
 
 <tr>
