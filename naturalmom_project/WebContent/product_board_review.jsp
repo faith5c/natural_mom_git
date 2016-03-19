@@ -1,8 +1,7 @@
-<!-- admin_board.jsp - 게사판 - 상품후기 - 목록 -->
+<!-- 사용자 - 게시판 - 상품후기 - 목록 -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE>
 <html>
 <head>
 <title>자연맘</title>
@@ -11,16 +10,16 @@
 
 		#in { width : 720px; margin : 0 auto; color: #85858d; font-style: bold; padding: 0px; font-family : "나눔바른고딕", "맑은 고딕"; }
 		
-		h2 { margin-bottom : 15px; color: #85858D; }
+		h2 { margin-bottom : 15px; color: #004523; }
 		
 		table { width: 100%; padding : 0px; }
 		
-		table tr {border-top : 1px solid grey; }
-		table tr:first-child td{ text-align:center; background-color: #918686; color: white; font-style:bold;}
-		table tr:not(:first-child) td { color: black; text-align:center;}
-		table tr td { border-bottom : 1px solid lightgrey; }
+		table tr {border-top : 1px solid grey;text-align:center;  }
+		table tr:first-child td{ background-color: #CCCCCC; color: white; font-style:bold;}
+		table tr:not(:first-child) td { color: black; }
+		table tr td { border-bottom : 1px solid grey; }
 		table tr td nth-child(odd), table tr td(even) {border-top : 1px solid gray; }
-		table tr td { padding : 5px; color: black;border-bottom : 1px solid lightgrey;}
+		table tr td { padding : 5px; color: black; border-bottom : 1px solid lightgrey;}
 		
 		#yuback1{margin-top:50px;}
 		#page {text-align:center;}
@@ -79,7 +78,7 @@
 	</div>
 	<div id="yuback2"></div>
 	<div id="search">
-		<select name="check" id="check">
+		<select name="condition" id="">
 			<option value=""> 제목 </option>
 			<option value=""> 작성자 </option>
 			<option value=""> 내용 </option>
