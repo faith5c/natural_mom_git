@@ -22,7 +22,7 @@
 	
 	// 게시글 내용 보기인지 글쓰기인지 확인하는 부분
 	String w = request.getParameter("w");
-	if (w == null || w.isEmpty()) w = "false";
+	if (w == null || w.isEmpty()) w = "false"; //여기도 boolean형으로 처리 안해놨음
 	String r = request.getParameter("r");	// 일단 int형 처리 안함
 	if (r == null) r = "";
 %>
@@ -59,7 +59,15 @@
 					<%@include file="_event_list.jsp" %>
 <%					}%>					
 <%				}else if(submenu.equals("qna")){%>
-					<%@include file="_qna_list.jsp" %>					
+					<% if(r.equals("") && w.equals("false")){ %>
+					<%@include file="_qna_list.jsp" %>	
+					<% } else if(r.equals("3")){ %>
+					<%@include file="_qna_read.jsp" %>		
+					<% } else if(r.equals("2")){ %>
+					<%@include file="_qna_read_secret.jsp" %>
+					<% } else if(w.equals("true")){ %>
+					<%@include file="_qna_write.jsp" %>
+					<% } %>
 <%				}else if(submenu.equals("faq")){%>
 					<% if(submenu.equals("faq") && r.equals("1")) { %>
 					<%@ include file = "_faq_read.jsp" %>
