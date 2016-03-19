@@ -47,7 +47,7 @@
 	<table cellspacing="2">
 		<tr><td colspan="2"><h2>Q&A</h2></td></tr>
 		<tr>
-			<th style="width:100px;"><label for="title">제목</label></th>
+			<th style="width:80px;"><label for="title">제목</label></th>
 			<td>
 			<input style="width:99%;" type="text" id="title" maxlength="127" placeholder="제목을 입력하세요"/>
 			</td>
@@ -70,7 +70,7 @@
 		<tr>
 			<th>내용</th>
 			<td>
-			<textarea id="qna_area" name="text" cols="74" rows="14"></textarea>
+			<textarea id="qna_area" name="text" style="width:100%" rows="14"></textarea>
 			</td>
 		</tr>
 		<tr>

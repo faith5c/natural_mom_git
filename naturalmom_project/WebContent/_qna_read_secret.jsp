@@ -11,7 +11,7 @@
 <style type="text/css">
 	* { font-family : "나눔바른고딕", "맑은 고딕"}
 	h2 { color: #004523; padding-left : 10px; padding-bottom : 20px; padding-top : 10px; }
-	td,th { border : 0px solid blue; padding : 5px; }
+	td,th { padding : 5px; }
 	tr:nth-child(2) th s{ background-color : blue; }
 	
 	table { width : 720px; 
@@ -27,7 +27,7 @@
 		border-top : solid 1px #cccccc; 
 		border-bottom : solid 1px #cccccc;	
 	}
-	tr:nth-child(4) td{ 
+	tr:nth-child(5) td{ 
 		border-top : solid 1px #CCCCCC; 
 		padding : 10px 20px 30px 20px; 
 	}
@@ -82,10 +82,14 @@
 	<input type="button" name="secret_check" value="확인">
 	<br/>&nbsp;
 	</div>
-	<br/>&nbsp;
 	</td>
 </tr>
-
+<tr>
+	<td></td>
+	<td style="width:30%">&nbsp;</td>
+	<td></td>
+	<td></td>
+</tr>
 <tr>
 	<td colspan="2">
 		<input type="button" value="이전글">
