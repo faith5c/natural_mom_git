@@ -13,6 +13,13 @@
 	<link rel="stylesheet" href="css/mypage.css" />
 
 	<title>자연맘</title>  
+<%
+	request.setCharacterEncoding("UTF-8");
+	String submenu = request.getParameter("page");
+	if(submenu==null){
+		submenu = "notice";
+	}
+%>
   </head>
 
   <body>
@@ -29,13 +36,26 @@
 		<div id="content">
 			<div id="sidebar">
 				<ul>
-					<li><a href="#">공지사항</a></li>
-					<li><a href="#" onclick="to_event()">이벤트</a></li>
-					<li><a href="#">Q&A</a></li>
-					<li><a href="#">자주하는 질문</a></li>
+					<li><a href="customer_center.jsp?page=notice">공지사항</a></li>
+					<li><a href="customer_center.jsp?page=event">이벤트</a></li>
+					<li><a href="customer_center.jsp?page=qna">Q&A</a></li>
+					<li><a href="customer_center.jsp?page=faq">자주하는 질문</a></li>
 				</ul>
 			</div>
 			<div id="content_body">
+<%
+				if(submenu.equals("notice")){%>
+					<%@include file="_notice_list.jsp" %>
+<%				}else if(submenu.equals("event")){%>
+					<%@include file="_event_list.jsp" %>					
+<%				}else if(submenu.equals("qna")){%>
+					<%@include file="_qna_list.jsp" %>					
+<%				}else if(submenu.equals("faq")){%>
+					<%@include file="_faq_list.jsp" %>					
+<%				}else{
+					System.out.println("board submenu error");
+				}
+%>
 			
 			</div>	
 		</div>
