@@ -5,24 +5,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<style type="text/css">
-		a { text-decoration : none; color : black; }
+		table a { text-decoration : none; color : black; }
+		table a:hover  { opacity : 0.7; }
 		table, table input, div, div input { font-family : "나눔바른고딕", "맑은 고딕";}
-		table { width : 720px; font-size: 13px; }
-		h2 { color : #004523; padding-left : 10px; text-align : left; }
-		th { background-color : #F0F0F0;  font-weight : normal; color : gray; 
-			border-top : solid 1px lightgray;
-		}
-		td, th { padding : 5px; }
+		table { width : 720px; }
+		h2 { color : #004523;  text-align : left;  padding-top : 30px; padding-bottom: 10px; }
+		th { background-color : #918686;  font-weight : normal; color : white; 
+			border-top : solid 1px lightgray; padding: 10px; }
 		td:not(:nth-child(2)) { text-align: center; }
-		td, th{ 
-			border-bottom : solid 1px lightgray; 
-		}
+		td, th{ border-bottom : solid 1px lightgray; }
+		td:not(:first-child) { font-size: 13px; padding: 10px;}
 		td:not(:last-child), th:not(:last-child){ 
 			border-right : solid 1px lightgray;
 		}
 		
 		tr:first-child td, tr:last-child td{ border-bottom : 0px; }
-		
+		th { border-top : 1px solid gray; }
 		table tr:last-child input[type="submit"] {
 			padding : 5px 30px;
 			margin-right : 5px;
@@ -81,7 +79,7 @@
 		<td>15</td>
 	</tr>
 	<tr>
-		<td colspan="5"><input type="submit" value="글쓰기"></td>
+		<td colspan="5" style="border-top : 1px solid gray"><input type="submit" value="글쓰기"></td>
 	</tr>
 </table>
 	<div id="page">

@@ -6,13 +6,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<style type="text/css">
-		a { text-decoration : none; color : black; }
+		table a { text-decoration : none; color : black; }
+		table a:hover  { opacity : 0.7; }
 		table, table input, div, div input { font-family : "나눔바른고딕", "맑은 고딕";}
 		table { width : 720px; }
 		h2 { color : #004523; text-align : left; padding-top : 20px; }
 		th { background-color : #918686;  font-weight : normal; color : white; 
-			border-top : solid 1px lightgray;
-		}
+			border-top : solid 1px lightgray; }
 		td, th { padding : 10px; }
 		td:not(:nth-child(2)) { text-align: center; }
 		td:not(:first-child) { font-size: 13px; }
@@ -24,7 +24,7 @@
 		}
 		
 		tr:first-child td, tr:last-child td, .qna_write td{ border-bottom : 0px; }
-		th, .qna_write { border-top : 1px solid grey; }
+		th { border-top : 1px solid gray; }
 		.qna_write span {
 			display : inline-block;
 			padding : 5px 30px; 
@@ -82,7 +82,7 @@
 		<td>15</td>
 	</tr>
 	<tr class="qna_write">
-		<td colspan="5"><a href="customer_center.jsp?page=qna&w=true"><span>글쓰기</span></a></td>
+		<td colspan="5" style="border-top: 1px solid grey"><a href="customer_center.jsp?page=qna&w=true"><span>글쓰기</span></a></td>
 	</tr>
 	<tr>
 		<td colspan = "5">
