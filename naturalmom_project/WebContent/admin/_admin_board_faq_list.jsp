@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 	<style type = "text/css">
 
-		#container { width : 764px; margin : 100px auto; color: #85858d; }
+		#container { width : 764px; margin : 50px auto; color: #85858d; }
 		#container a { text-decoration: none; }
 		#container a:hover { opacity : 0.7; }
 

@@ -28,7 +28,7 @@
 
 		* { margin: 0px; padding: 0px; }
 
-		#container { width : 1024px; margin : 100px auto; color: #85858d; }
+		#container { width : 1024px; margin : 50px auto; color: #85858d; }
 		#container a { text-decoration: underline; }
 
 		h2 { margin-bottom : 15px; }

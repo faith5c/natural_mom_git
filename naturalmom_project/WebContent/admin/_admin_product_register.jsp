@@ -8,11 +8,11 @@
 	<script>
 		function reg_popup()
 		{
-			window.open("admin_product_popup.html", "카테고리 등록", "width = 420px, height = 430px, left = 200px, top = 200px, scrollbars = no, toobar = no, menubar = no, status = no, location = no, resizeable = no");
+			window.open("admin_product_popup.jsp", "카테고리 등록", "width = 420px, height = 430px, left = 200px, top = 200px, scrollbars = no, toobar = no, menubar = no, status = no, location = no, resizeable = no");
 		}
 	</script>
 	<style type = "text/css">
-		#container { width : 1024px; margin : 100px auto; color: #85858d; }
+		#container { width : 1024px; margin : 50px auto; color: #85858d; }
 		
 		#container h2 { margin-bottom : 15px; }
 		
