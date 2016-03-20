@@ -70,8 +70,8 @@
 	<h2 id = "reg_title">자주하는 질문</h2>
 		<table cellspacing = "0">
 			<tr>
-				<td id = "no">No</td>
-				<td id = "title">Title</td>
+				<td id = "no">번호</td>
+				<td id = "title">제목</td>
 			</tr>
 			<tr>
 				<td>1</td>

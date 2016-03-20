@@ -6,7 +6,7 @@
 		#content_body { color: #85858d; padding: 100px; padding-left: 225px; }
 		#content_body a { text-decoration: underline; }
 
-		#content_body h2 { margin-bottom : 15px; }
+		#content_body h2 { margin-bottom : 15px;  color: #004523; }
 		
 		table { width: 720px; padding : 0px; }
 		#board tr:first-child td { border-top : 1px solid grey; }
@@ -48,6 +48,8 @@
 		#buttons input:hover { opacity : 0.7; }
 
 		#buttons tr td:last-child { text-align:right; }
+		
+		#faq_content { height: 150px; vertical-align: top;}
 	</style>
 
 <!-- content_body 부분 -->
@@ -57,7 +59,7 @@
 				<td id = "no">1</td>
 				<td id = "title">임시 타이틀</td>
 			</tr>
-			<tr><td colspan = "2" id = "content">임시 자주하는 질문 내용입니다.</td></tr>
+			<tr><td colspan = "2" id = "faq_content">임시 자주하는 질문 내용입니다.</td></tr>
 		</table>
 		<table cellspacing = "0" id = "buttons">
 			<tr>
