@@ -4,14 +4,15 @@
 <style type = "text/css">
 		#content_body { 
 					font-family : "나눔바른고딕", "맑은 고딕";
-					padding-top : 20px; padding-left: 100px;
-					margin : 30px auto; color: #85858d; }
+					width : 764px;
+					margin : 50px auto;
+					color: #85858d; }
 		#content_body a { text-decoration: none; }
 		#content_body a:hover { opacity : 0.7; }
 
 		h2 { margin-bottom : 15px; font-size: 24px; color: black}
 		
-		table { width : 764px; font-size: 13px;  }
+		table { width:100%; font-size: 13px;  }
 		table tr:first-child td, table tr:last-child td { border-top : 1px solid grey; }
 		table tr td { padding : 10px; }
 		table tr:not(:last-child) td:first-child { border-right: 1px solid lightgrey; }
@@ -52,7 +53,7 @@
 		#pages, #search { text-align: center; }
 		#search { width: 764px; margin-top: 20px; }
 		#search input[type = "text"], #search select { font : 16px "나눔바른고딕", "맑은 고딕", Arial; }
-		#search input[type = "button"]
+		#search input[type = "submit"], #write
 		{
 			padding : 5px 10px;
 			margin-left : 3px;
@@ -65,7 +66,7 @@
 			border : 0px;
 		}
 
-		input[type = "button"]:hover { opacity : 0.7; }
+		input[type = "submit"]:hover, #write { opacity : 0.7; }
 		#buttons tr td:last-child { text-align:right; }
 	</style>
 
@@ -73,22 +74,22 @@
 		<h2 id = "reg_title">이벤트</h2>
 		<table cellspacing = "0">
 			<tr>
-				<td width="10%">번호</td>
+				<td width="8%">번호</td>
 				<td width="60%" >제목</td>
-				<td width="15%">작성자</td>
-				<td width="20%">작성일</td>
-				<td width="5%">조회</td>
+				<td width="10%">작성자</td>
+				<td width="15%">작성일</td>
+				<td width="10%">조회</td>
 			</tr>
 			<tr>
 				<td id = "no">1</td>
-				<td><a href = "#">3만원 이상 구매 시 무료배송</a></td>
+				<td><a href = "admin_board.jsp?page=event&r=1">3만원 이상 구매 시 무료배송</a></td>
 				<td id = "id" >자연맘</td>
 				<td id = "write_day" >2016-03-16</td>
 				<td id = "hits" >5</td>
 				
 			</tr>
-			<td colspan = "4"></td>
-			<td><input type = "button" value = "글쓰기" id = "write" name = "write"></td>
+			<td colspan="5" style="text-align: right"><a id = "write" name = "write" 
+					href="admin_board.jsp?page=event&w=true">글쓰기</a></td>
 		</table>
 		<div id = "pages">
 			<a href = "#">&lsaquo;</a>
@@ -103,8 +104,8 @@
 				<option>내용</option>
 				<option>제목+내용</option>
 			</select>
-			<input type = "text" name = "search_val" />
-			<input type = "button" value = "검색" />
+			<input type = "text" name = "search" />
+			<input type = "submit" value = "검색" />
 		</div>
 	</div>
 

@@ -7,17 +7,17 @@
 			font-family : "나눔바른고딕", "맑은 고딕";
 			}
 
-		#container { width : 764px; margin : 100px auto; color: #85858d; }
-		#container a { text-decoration: underline; }
+		#inside { margin-left : 200px; color: #85858d; font-size: 14px; }
+		#inside a { text-decoration: underline; }
 
 		h2 { margin-bottom : 15px; font-size: 24px;}
 		
-		table { width: 100%; padding : 0px; 	font-size: 13px; }
+		table { width: 764px; padding : 0px; }
 		#board tr:first-child td { border-top : 1px solid grey; }
 		#board tr:last-child td { border-bottom : 1px solid grey; }
-		#board tr td:first-child { border-left : 1px solid grey;  width: 70px;}
+		#board tr td:first-child { border-left : 1px solid grey;}
 		#board tr td:last-child { border-right : 1px solid grey; }
-		#board tr td { padding : 10px; }
+		#board tr td { padding : 10px;}
 		#board tr:first-child td:first-child { border-right: 1px solid lightgrey; }
 		#board tr:not(:last-child) td
 		{
@@ -32,11 +32,11 @@
 		}
 		#board tr:first-child td:first-child
 		{ 
-			width: 50px;
+			
 			text-align: center;
 		}
 
-		#buttons { width: 100%; margin-top: 20px; }
+		#buttons { width: 764px; margin-top: 20px; }
 		#buttons input
 		{
 			padding : 7px 20px;
@@ -53,34 +53,36 @@
 
 		#buttons tr td:last-child { text-align:right; }
 		
-		#content { min-height: 100px; vertical-align: top }
+		#event_content { height: 100px; vertical-align: top }
 		#re_submit { 
 			padding: 15px 10px; 
 			background-color: #85858d; 
 			color : white;
 			border-radius : 10px; 
 		}
+		.re_title{ width: 80px;}
+		
 	</style>
 <html>
-	<div id="container">
+	<div id="inside">
 		<h2 id = "reg_title">이벤트</h2>
 			<table cellspacing = "0" id = "board">
 				<tr>
-					<td id = "no">1</td>
-					<td id = "title" width="450px" colspan="2">임시 타이틀</td>
-					<td id = "id" >작성자</td>
-					<td id = "write_day" >작성일</td>
-					<td id = "hits" >조회</td>
+					<td id = "no" width="15%">1</td>
+					<td id = "title" width="55%" colspan="2" >임시 타이틀</td>
+					<td id = "id" width="13%">작성자</td>
+					<td id = "write_day" width="15%">2016-03-20</td>
+					<td id = "hits" width="5%">조회</td>
 				</tr>
-				<tr><td colspan = "6" id = "content">임시 이벤트 내용입니다.</td></tr>
+				<tr><td colspan="6" id="event_content">임시 이벤트 내용입니다.</td></tr>
 				<tr>
-					<td id = "re_id" colspan="2">댓글작성자</td>
-					<td id = "re_content" colspan="2">댓글 내용입니다.</td>
-					<td id = "re_write_day" colspan="2">댓글작성일</td>
+					<td id = "re_id" class="re_title">댓글작성자</td>
+					<td id = "re_content" colspan="3" width="55%">댓글 내용입니다.</td>
+					<td id = "re_write_day" colspan="2" style="text-align: right">댓글작성일</td>
 				</tr>
 				<tr>
-					<td colspan="2">댓글입력</td>
-					<td colspan="3"><textarea rows="3" cols="90"></textarea></td>
+					<td class="re_title">댓글입력</td>
+					<td colspan="4"><textarea style="width:100%; resize : none;" cols="30" rows="3"></textarea></td>
 					<td><input type = "button" value = "등록" id = "re_submit" name = "re_submit"></td>
 				</tr>
 			</table>

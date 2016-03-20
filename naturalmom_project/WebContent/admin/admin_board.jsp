@@ -39,8 +39,15 @@
 <%
 		if(submenu.equals("notice")){%>
 			<%@include file="_admin_board_notice_list.jsp" %>
-<%		}else if(submenu.equals("event")){%>
-			<%@include file="_admin_board_event_list.jsp" %>			
+			
+<%		}else if(submenu.equals("event")){
+				if(r.equals("") && w.equals("false")){  %>
+				<%@include file="_admin_board_event_list.jsp" %>		
+<%			}else if(w.equals("true")){ %>
+				<%@include file="_admin_board_event_write.jsp" %>
+<%			}else if(r.equals("1")){ %>
+				<%@include file="_admin_board_event_read.jsp" %>
+<%			}%>					
 <%		}else if(submenu.equals("qna")){%>
 			<% if(r.equals("") && w.equals("false")){ %>
 			<%@include file="_admin_board_qna_list.jsp" %>	
@@ -53,7 +60,8 @@
 			<% } %>	
 			
 <%		}else if(submenu.equals("review")){%>
-			<%@include file="_admin_board_review.jsp" %>			
+			<%@include file="_admin_board_review.jsp" %>		
+				
 <%		}else if(submenu.equals("faq")){%>
 			<%if (r.equals("1")) {%>
 				<%@include file = "_admin_board_faq_read.jsp" %>
