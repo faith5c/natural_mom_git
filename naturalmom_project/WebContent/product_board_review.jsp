@@ -38,7 +38,7 @@
 		.review_write td {
 			text-align : right;
 		}
-				table { margin : 0 auto;  }
+		table { margin : 0 auto;  }
 		.page { text-align : center; margin-bottom: 15px;}
 		.search input[type="submit"] {padding : 2px 10px;}
 		
@@ -90,8 +90,6 @@
 				<td>2015/04/08</td>
 				<td>★★★★★</td></a>
 			</tr>
-		</table>
-		<div id="yuback1"></div>
 	<tr class="review_write">
 		<td colspan="5"><a href="admin_board.jsp?page=review&w=true"><span>글쓰기</span></a></td>
 	</tr>
@@ -114,6 +112,6 @@
 				<input type="submit" value="검색">
 	</div>
 	</div>
-
+</table>
  </body>
 </html>

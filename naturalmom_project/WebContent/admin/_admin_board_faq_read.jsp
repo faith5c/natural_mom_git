@@ -3,10 +3,10 @@
 <!DOCTYPE html>
 	<style type = "text/css">
 
-		#container { width : 764px; margin : 100px auto; color: #85858d; }
+		#container { width : 764px; margin : 50px auto; color: #85858d; }
 		#container a { text-decoration: underline; }
 
-		#container h2 { margin-bottom : 15px; }
+		#container h2 { margin-bottom : 15px; color: #004523;}
 		
 		table { width: 100%; padding : 0px; }
 		#board tr:first-child td { border-top : 1px solid grey; }

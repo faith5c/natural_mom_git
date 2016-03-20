@@ -2,17 +2,16 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <style type = "text/css">
+		* { margin: 0px; padding: 0px; }
+		#container { width : 764px; margin : 50px auto;}
 		#content_body { 
-					font-family : "나눔바른고딕", "맑은 고딕";
-					width : 764px;
-					margin : 50px auto;
-					color: #85858d; }
+					font-family : "나눔바른고딕", "맑은 고딕"; color: #85858d; }
 		#content_body a { text-decoration: none; }
 		#content_body a:hover { opacity : 0.7; }
 
-		h2 { margin-bottom : 15px; font-size: 24px; color: black}
+		h2 { margin-bottom : 15px; font-size: 24px; color: #004523;}
 		
-		table { width:100%; font-size: 13px;  }
+		table { width : 720px; font-size: 13px; }
 		table tr:first-child td, table tr:last-child td { border-top : 1px solid grey; }
 		table tr td { padding : 10px; }
 		table tr:not(:last-child) td:first-child { border-right: 1px solid lightgrey; }
@@ -46,14 +45,14 @@
 		table a{ color: black; }
 		
 
-		#pages { margin-top: 15px; width: 764px;}
+		#pages { margin-top: 15px;}
 
 		#pages a { color: #85858d; font-size: 20px;}
 		#pages a:hover { opacity : 0.7; }
-		#pages, #search { text-align: center; }
+		#pages, #search { text-align: center; width: 720px;}
 		#search { width: 764px; margin-top: 20px; }
 		#search input[type = "text"], #search select { font : 16px "나눔바른고딕", "맑은 고딕", Arial; }
-		#search input[type = "submit"], #write
+		#search input[type = "submit"],#write
 		{
 			padding : 5px 10px;
 			margin-left : 3px;
@@ -66,7 +65,7 @@
 			border : 0px;
 		}
 
-		input[type = "submit"]:hover, #write { opacity : 0.7; }
+		input[type = "submit"]:hover, #write:hover { opacity : 0.7; }
 		#buttons tr td:last-child { text-align:right; }
 	</style>
 

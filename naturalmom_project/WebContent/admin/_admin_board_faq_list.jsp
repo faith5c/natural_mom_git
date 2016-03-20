@@ -7,7 +7,7 @@
 		#container a { text-decoration: none; }
 		#container a:hover { opacity : 0.7; }
 
-		#container h2 { margin-bottom : 15px; }
+		#container h2 { margin-bottom : 15px; color: #004523; }
 		
 		table { width: 100%; padding : 0px; }
 		table tr:first-child td, table tr:last-child td { border-top : 1px solid grey; }

@@ -19,16 +19,13 @@
 		bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
 	</script>
 	<style type = "text/css">
-		body { margin: 0px; padding: 0px;
-			font-family : "나눔바른고딕", "맑은 고딕";
-			font-size: 13px; }
+		#container { width : 764px; margin : 50px auto;}
+		#inside { color: #85858d; }
+		#inside a { text-decoration: underline; }
 
-		#container { width : 764px; margin : 100px auto; color: #85858d; }
-		#container a { text-decoration: underline; }
-
-		h2 { margin-bottom : 15px;  font-size: 24px;}
+		h2 { margin-bottom : 15px; font-size: 24px; color: #004523;}
 		
-		table { width: 100%; padding : 0px; }
+		table { width : 720px; padding : 0px; }
 		table tr:first-child td, table tr:last-child td { border-top : 1px solid grey; }
 		table tr:not(:last-child) td:first-child { border-left : 1px solid grey; }
 		table tr:not(:last-child) td:last-child { border-right : 1px solid grey; }
@@ -81,7 +78,7 @@
   <body>
 <!---Start container----------------------------------------------------------------->
 	
-	<div id="container">
+	<div id="inside">
 		<h2 id = "reg_title">글쓰기 - 이벤트</h2>
 		<form action = "#" method = "post">
 			<table cellspacing = "0">
