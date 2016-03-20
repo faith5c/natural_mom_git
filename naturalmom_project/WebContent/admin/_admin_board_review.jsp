@@ -21,7 +21,7 @@
 		
 		table tr {border-top : 1px solid grey; }
 		table tr:first-child td{ text-align:center; background-color: #918686; color: white; font-style:bold;}
-		table tr:not(:first-child) td { color: black; text-align:center;}
+		table tr:not(:first-child):not(.review_write) td { color: black; text-align:center;}
 		table tr td { border-bottom : 1px solid lightgrey; }
 		table tr td nth-child(odd), table tr td(even) {border-top : 1px solid gray; }
 		table tr td { padding : 5px; color: black;border-bottom : 1px solid lightgrey;}
@@ -40,10 +40,10 @@
 		.review_write input[type="submit"]:hover {
 			opacity : 0.7;
 		}
-		.review_write td {
+		.review_write {
 			text-align : right;
 		}
-				table { margin : 0 auto;  }
+		table { margin : 0 auto;  }
 		.page { text-align : center; margin-bottom: 15px;}
 		.search input[type="submit"] {padding : 2px 10px;}
 		
@@ -94,19 +94,16 @@
 				<td>2015/04/08</td>
 				<td>★★★★★</td></a>
 			</tr>
-		</table>
-		<div id="yuback1"></div>
 	<tr class="review_write">
-		<td colspan="5"><a href="admin_board.jsp?page=review&w=true"><span>글쓰기</span></a></td>
+		<td colspan="6" style="border: 0px;"><a href="admin_board.jsp?page=review&w=true"><span>글쓰기</span></a></td>
 	</tr>
 	<tr>
-		<td colspan = "5">
+		<td colspan = "6" style="border: 0px;">
 		<div class="page">
 			<a href="#">〈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="#">〉</a>
 		</div>
-	<div id="yuback2"></div>
 		<div class="search">
 				<select>
 					<option value="title">제목</option>
@@ -117,6 +114,8 @@
 				<input type="text" placeholder="제목, 내용, 글쓴이, 제목+내용" name="search">
 				<input type="submit" value="검색">
 	</div>
+	
+	</table>
 	</div>
 
  </body>

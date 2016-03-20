@@ -17,10 +17,10 @@
 
 	<style type="text/css">
 	#in { 
-					font-family : "나눔바른고딕", "맑은 고딕";
-					width : 764px;
-					margin : 50px auto;
-					color: #85858d; }
+			font-family : "나눔바른고딕", "맑은 고딕";
+			width : 764px;
+			margin : 50px auto;
+			color: #85858d; }
 
 	h2 { color: #85858D; padding-left : 10px; padding-bottom : 20px; padding-top : 10px; ;}
 	td,th { border : 0px solid blue; padding : 5px; }
