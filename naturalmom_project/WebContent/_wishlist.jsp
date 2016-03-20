@@ -10,7 +10,7 @@
 	<style type = "text/css">
 	h2 { color : #004523; border-bottom : 0px; text-align : left; }
 	table { width :640px; 
-			margin-left: 195px; } 
+			margin: 0 auto; } 
 	th, td { text-align : center;  padding : 5px; }
 	td { border-bottom : solid 1px lightgray; }
 

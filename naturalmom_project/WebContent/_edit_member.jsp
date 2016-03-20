@@ -5,25 +5,27 @@
 
 #inside {
 	text-align: left;
-	margin : 0 200px;
-	padding-top: 90px;
-	
+	padding-top: 85px;
 }
 
-table td{
+table {
+		margin : 0 auto;
+		width: 640px;
+		font-family : "나눔바른고딕", "맑은 고딕";
+}
+
+table tr:not(:first-child) td{
 	border: 1px solid white;
-	padding: 10px;
 	text-align: left;
 	font-size: 13px;
 	color: black;
+	padding-bottom: 15px;
 }
 
 h2{color: #004523;}
 
-#button { 
-	text-align: center; 
-	}
-.drop{ text-align: right;}
+#button { text-align: center; }
+
 #submit { 
 	padding : 7px 30px;
 	margin-left : 5px;
@@ -64,10 +66,12 @@ td:FIRST-CHILD {
 </style>
 <html>
 <div id="inside">
-	<h2>회원정보 수정</h2>
-	<br><hr>
+	
 	<form action="" method="post">
 		<table>
+			<tr>
+				<td colspan="2"><h2>회원정보 수정</h2><br><hr><br></td>
+			</tr>
 			<tr>
 				<td>아이디</td>
 				<td><input type="text" id="id" name="id" disabled="disabled"/></td>
@@ -132,7 +136,7 @@ td:FIRST-CHILD {
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2" class="drop"><button id="drop_out">회원탈퇴</button></td>
+				<td colspan="2" style="text-align: right"><button id="drop_out">회원탈퇴</button></td>
 			</tr>
 			<tr>
 				<td colspan="2"><p id="button"><input type="submit" id="submit" value="확인" /></p></td>

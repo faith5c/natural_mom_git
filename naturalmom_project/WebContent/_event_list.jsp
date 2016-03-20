@@ -4,14 +4,14 @@
 <style type = "text/css">
 		#content_body { 
 					font-family : "나눔바른고딕", "맑은 고딕";
-					padding-top : 20px; padding-left: 100px;
+					padding-top : 20px; padding-left: 110px;
 					margin : 30px auto; color: #85858d; }
 		#content_body a { text-decoration: none; }
 		#content_body a:hover { opacity : 0.7; }
 
 		h2 { margin-bottom : 15px; font-size: 24px; color: #004523;}
 		
-		table { width : 640px; font-size: 13px; }
+		table { width : 720px; font-size: 13px; }
 		table tr:first-child td, table tr:last-child td { border-top : 1px solid grey; }
 		table tr td { padding : 10px; }
 		table tr:not(:last-child) td:first-child { border-right: 1px solid lightgrey; }
@@ -49,7 +49,7 @@
 
 		#pages a { color: #85858d; font-size: 20px;}
 		#pages a:hover { opacity : 0.7; }
-		#pages, #search { text-align: center; width: 640px;}
+		#pages, #search { text-align: center; width: 720px;}
 		#search { width: 764px; margin-top: 20px; }
 		#search input[type = "text"], #search select { font : 16px "나눔바른고딕", "맑은 고딕", Arial; }
 		#search input[type = "submit"],#write

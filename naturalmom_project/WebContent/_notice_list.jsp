@@ -7,7 +7,7 @@
 	<style type="text/css">
 		a { text-decoration : none; color : black; }
 		table, table input, div, div input { font-family : "나눔바른고딕", "맑은 고딕";}
-		table { width : 720px; }
+		table { width : 720px; font-size: 13px; }
 		h2 { color : #004523; padding-left : 10px; text-align : left; }
 		th { background-color : #F0F0F0;  font-weight : normal; color : gray; 
 			border-top : solid 1px lightgray;

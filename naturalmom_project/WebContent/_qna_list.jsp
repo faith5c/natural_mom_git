@@ -9,12 +9,13 @@
 		a { text-decoration : none; color : black; }
 		table, table input, div, div input { font-family : "나눔바른고딕", "맑은 고딕";}
 		table { width : 720px; }
-		h2 { color : #004523; text-align : left; padding-left : 10px; padding-bottom : 20px; padding-top : 10px; }
-		th { background-color : #F0F0F0;  font-weight : normal; color : gray; 
+		h2 { color : #004523; text-align : left; padding-top : 20px; }
+		th { background-color : #918686;  font-weight : normal; color : white; 
 			border-top : solid 1px lightgray;
 		}
-		td, th { padding : 5px; }
+		td, th { padding : 10px; }
 		td:not(:nth-child(2)) { text-align: center; }
+		td:not(:first-child) { font-size: 13px; }
 		td, th{ 
 			border-bottom : solid 1px lightgray; 
 		}
@@ -22,9 +23,8 @@
 			border-right : solid 1px lightgray;
 		}
 		
-		tr:first-child td, tr:last-child td, .qna_write td{ 
-			border-bottom : 0px; 
-		}
+		tr:first-child td, tr:last-child td, .qna_write td{ border-bottom : 0px; }
+		th, .qna_write { border-top : 1px solid grey; }
 		.qna_write span {
 			display : inline-block;
 			padding : 5px 30px; 
@@ -54,7 +54,7 @@
 <table cellspacing="0">
 	<tr><td colspan="5"><h2>Q&A</h2></td></tr>
 	<tr>
-		<th width="50px;">글번호</th>
+		<th width="50px;">번호</th>
 		<th>제목</th>
 		<th width="100px">작성자</th>
 		<th width="100px">작성일</th>
