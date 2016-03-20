@@ -2,17 +2,14 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <style type = "text/css">
-		* { 
-			margin: 0px; padding: 0px;
-			font-family : "나눔바른고딕", "맑은 고딕";
-			}
 
-		#inside { margin-left : 200px; color: #85858d; font-size: 14px; }
+		#inside { padding-top : 70px; padding-left: 220px;
+					margin : 30px auto; color: #85858d; font-size: 14px; }
 		#inside a { text-decoration: underline; }
 
-		h2 { margin-bottom : 15px; font-size: 24px;}
+		h2 { margin-bottom : 15px; font-size: 24px; color: #004523;}
 		
-		table { width: 764px; padding : 0px; }
+		table { width: 720px; padding : 0px; }
 		#board tr:first-child td { border-top : 1px solid grey; }
 		#board tr:last-child td { border-bottom : 1px solid grey; }
 		#board tr td:first-child { border-left : 1px solid grey;}
@@ -36,7 +33,7 @@
 			text-align: center;
 		}
 
-		#buttons { width: 764px; margin-top: 20px; }
+		#buttons { width: 720px; margin-top: 20px; }
 		#buttons input
 		{
 			padding : 7px 20px;
@@ -53,7 +50,7 @@
 
 		#buttons tr td:last-child { text-align:right; }
 		
-		#event_content { height: 100px; vertical-align: top }
+		#event_content { height: 100px; vertical-align: top; color: black; }
 		#re_submit { 
 			padding: 15px 10px; 
 			background-color: #85858d; 
