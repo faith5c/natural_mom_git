@@ -55,6 +55,14 @@
 		table a { text-decoration : none; color : #000000; }
 		
 	</style>
+	
+	<script type="text/javascript">
+		function pop_refund_req(){
+			var center_width = (screen.width/2) - (720/2);
+			var center_height = (screen.height/2) - (400/2);
+			window.open("refund_req_popup.jsp", "refund_req", "width=720px, height=400px, left="+center_width+", top="+center_height+", scrollbars=no, toolbar=no, location=no");
+		}
+	</script>
 	<!--주문내역 조회 부분-->
 	<form action="#" method="post">
 		<br><br>
@@ -124,7 +132,7 @@
 			</tr>
 			<tr>
 				<td colspan="8">
-				<input type="button" value="환불신청">
+				<input type="button" onclick="pop_refund_req()" value="환불신청">
 				<input type="button" value="구매확정">
 				</td>
 			</tr>
