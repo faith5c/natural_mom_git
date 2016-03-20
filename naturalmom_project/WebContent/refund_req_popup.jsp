@@ -80,7 +80,7 @@
 			</tr>
 			<tr>
 				<td colspan="7">
-				<input type="submit" value="환불신청">
+				<input type="submit" onclick="window.close()" value="환불신청">
 				</td>
 			</tr>
 		</table>
