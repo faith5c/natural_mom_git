@@ -6,8 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<style type="text/css">
 		#container { width : 764px; margin : 50px auto;}
-		table a { text-decoration : none; color : black; }
-		table a:hover  { opacity : 0.7; }
+		a { text-decoration : none; color : black; }
+		a:hover  { opacity : 0.7; }
 		table, table input, div, div input { font-family : "나눔바른고딕", "맑은 고딕";}
 		table { width : 100%; }
 		h2 { color : #004523;  text-align : left; padding-bottom: 10px; }
