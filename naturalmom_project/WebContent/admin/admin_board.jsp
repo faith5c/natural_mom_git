@@ -64,8 +64,16 @@
 			<%@include file="_admin_board_qna_write.jsp" %>
 			<% } %>	
 			
-<%		}else if(submenu.equals("review")){%>
-			<%@include file="_admin_board_review.jsp" %>		
+
+<%		}else if(submenu.equals("review")){
+			if(r.equals("") && w.equals("false")){ %>
+			<%@include file="_admin_board_review.jsp" %>	
+			<% }else if(r.equals("1")){%>
+			<%@include file="_admin_board_review_read.jsp" %>		
+			<% } else if(w.equals("true")){ %>
+			<%@include file="_admin_board_review_write.jsp" %>
+			<% } %>		
+		
 				
 <%		}else if(submenu.equals("faq")){%>
 			<%if (r.equals("1")) {%>

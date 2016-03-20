@@ -10,7 +10,7 @@
 <title>자연맘</title>
 <style type = "text/css">
 
-		#in{ width : 720px; margin : 0 auto; color: #85858d;font-style: bold; margin: 0px; padding: 0px; font-family : "나눔바른고딕", "맑은 고딕"; }
+		#in{ width : 720px; margin : 0 auto; color: #85858d;font-style: bold; padding: 0px; font-family : "나눔바른고딕", "맑은 고딕"; }
 		#in a { text-decoration: none;}
 
 		h2 { margin-bottom : 15px; }

@@ -20,10 +20,30 @@
 		table tr td nth-child(odd), table tr td(even) {border-top : 1px solid gray; }
 		table tr td { padding : 5px; color: black; border-bottom : 1px solid lightgrey;}
 		
+		.review_write span {
+			display : inline-block;
+			padding : 5px 30px; 
+			background-color : #85858D;
+			color : white;
+			font-size : 16px;
+			border-radius : 20px;
+			border : 0px;
+			margin-right : 5px;
+			margin-top : 10px;
+			margin-left : 10px;
+		}
+		.review_write input[type="submit"]:hover {
+			opacity : 0.7;
+		}
+		.review_write td {
+			text-align : right;
+		}
+				table { margin : 0 auto;  }
+		.page { text-align : center; margin-bottom: 15px;}
+		.search input[type="submit"] {padding : 2px 10px;}
+		
 		#yuback1{margin-top:50px;}
-		#page {text-align:center;}
-		#yuback2 {margin-top:10px;}
-		#search {text-align:center;}
+
 	</style>
  </head>
  <body>
@@ -72,18 +92,26 @@
 			</tr>
 		</table>
 		<div id="yuback1"></div>
-	<div id="page">
-		<a>&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> 1 <a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;</a>
-	</div>
+	<tr class="review_write">
+		<td colspan="5"><a href="admin_board.jsp?page=review&w=true"><span>글쓰기</span></a></td>
+	</tr>
+	<tr>
+		<td colspan = "5">
+		<div class="page">
+			<a href="#">〈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="#">〉</a>
+		</div>
 	<div id="yuback2"></div>
-	<div id="search">
-		<select name="condition" id="">
-			<option value=""> 제목 </option>
-			<option value=""> 작성자 </option>
-			<option value=""> 내용 </option>
-		</select>
-	<input type="text" placeholder="제목, 내용, 작성자로 검색하실 수 있습니다."></input>
-	<input type="submit" value="검색">&nbsp;&nbsp;<button id ="write">글 쓰기</button>
+		<div class="search">
+				<select>
+					<option value="title">제목</option>
+					<option value="content">내용</option>
+					<option value="writer">글쓴이</option>
+					<option value="title+content">제목+내용</option>
+				</select>
+				<input type="text" placeholder="제목, 내용, 글쓴이, 제목+내용" name="search">
+				<input type="submit" value="검색">
 	</div>
 	</div>
 

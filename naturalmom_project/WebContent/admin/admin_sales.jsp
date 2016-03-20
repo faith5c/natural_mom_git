@@ -37,7 +37,7 @@
 <%
 		if(submenu.equals("table")){%>
 			<%@include file="_admin_sale_table.jsp" %>
-<%		}else if(submenu.equals("event")){%>
+<%		}else if(submenu.equals("analysis")){%>
 			<%@include file="_admin_sale_analysis.jsp" %>
 <%		}else{
 			System.out.println("board page submenu error");
