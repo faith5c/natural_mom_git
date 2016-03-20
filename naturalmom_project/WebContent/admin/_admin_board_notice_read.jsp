@@ -101,7 +101,7 @@
 	</td>
 	<td colspan="2">
 		<input type="button" value="삭제">
-		<input type="button" value="목록">
+		<input type="button" value="목록" onclick = "location.href='admin_board.jsp?page=notice';">
 	</td>
 </tr>
 </table>
