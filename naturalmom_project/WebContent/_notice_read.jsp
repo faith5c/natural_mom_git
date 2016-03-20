@@ -96,12 +96,12 @@
 </tr>
 <tr>
 	<td colspan="2">
-		<input type="button" value="이전글">
-		<input type="button" value="다음글">
+		<input type="button" value="이전글" name = "prev">
+		<input type="button" value="다음글" name = "next">
 	</td>
 	<td colspan="2">
-		<input type="button" value="삭제">
-		<input type="button" value="목록">
+		<input type="button" value="삭제" name="delet">
+		<input type="button" value="목록" name="list">
 	</td>
 </tr>
 </table>

@@ -37,9 +37,14 @@
 	
 	<div id="container">
 <%
-		if(submenu.equals("notice")){%>
-			<%@include file="_admin_board_notice_list.jsp" %>
-			
+			if(submenu.equals("notice")){
+				if(r.equals("") && w.equals("false")){  %>
+				<%@include file="_admin_board_notice_list.jsp" %>	
+<%			}else if(w.equals("true")){ %>
+				<%@include file="_admin_board_notice_write.jsp" %>
+<%			}else if(r.equals("2")){ %>
+				<%@include file="_admin_board_notice_read.jsp" %>
+<%			}%>%>
 <%		}else if(submenu.equals("event")){
 				if(r.equals("") && w.equals("false")){  %>
 				<%@include file="_admin_board_event_list.jsp" %>		

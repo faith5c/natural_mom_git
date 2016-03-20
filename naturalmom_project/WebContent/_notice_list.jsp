@@ -44,6 +44,26 @@
 		body .search { text-align: center; }
 		
 		.search input[type="submit"] {padding : 2px 10px;}
+		
+		.notice_write span {
+			display : inline-block;
+			padding : 5px 30px; 
+			background-color : #85858D;
+			color : white;
+			font-size : 16px;
+			border-radius : 20px;
+			border : 0px;
+			margin-right : 5px;
+			margin-top : 10px;
+			margin-left : 10px;
+		}
+		.notice_write input[type="submit"]:hover {
+			opacity : 0.7;
+		}
+		.notice_write td {
+			text-align : right;
+		}
+		
 	</style>
 </head>
 <body>
@@ -66,7 +86,7 @@
 	</tr>
 	<tr>
 		<td>2</td>
-		<td><a href="#">8월 14일 임시공휴일 안내</a></td>
+		<td><a href="customer_center.jsp?page=notice&r=2">8월 14일 임시공휴일 안내</a></td>
 		<td>관리자</td>
 		<td>2015/08/11</td>
 		<td>24</td>
@@ -78,8 +98,8 @@
 		<td>2015/06/15</td>
 		<td>15</td>
 	</tr>
-	<tr>
-		<td colspan="5" style="border-top : 1px solid gray"><input type="submit" value="글쓰기"></td>
+	<tr class="notice_write">
+		<td colspan="5" style="border-top: 1px solid grey"><a href="customer_center.jsp?page=notice&w=true"><span>글쓰기</span></a></td>
 	</tr>
 </table>
 	<div id="page">

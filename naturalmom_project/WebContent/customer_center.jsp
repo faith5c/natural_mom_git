@@ -51,7 +51,13 @@
 			<div id="content_body">
 <%
 				if(submenu.equals("notice")){%>
+<%				if(r.equals("")&& w.equals("false")){%>
 					<%@include file="_notice_list.jsp" %>
+<% 					}else if(w.equals("true")){%>
+					<%@include file="_notice_write.jsp" %>
+<%					}else if(r.equals("2")){%>
+					<%@include file="_notice_read.jsp" %>					
+<%					} %>	
 <%				}else if(submenu.equals("event")){
 					if(r.equals("")&& w.equals("false")){%>
 					<%@include file="_event_list.jsp" %>
