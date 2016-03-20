@@ -88,7 +88,7 @@
 <tr class="dat_write">
 	<td>faith5c</td>
 	<td colspan="2">
-		<textarea rows="2" cols="30"></textarea>
+		<textarea rows="2" cols="30" style="width: 100%"></textarea>
 	</td>
 	<td>
 		<input type="submit" value="댓글등록">
