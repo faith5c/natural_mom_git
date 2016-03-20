@@ -16,9 +16,10 @@
 	</script>	
 	
 	<style type="text/css">
+		#container { width : 764px; margin : 50px auto;}
 		h2, th, table tr:last-child input { font-family : "나눔바른고딕", "맑은 고딕"; }
-		h2 { color: #004523; padding-top : 20px;}
-		td:first-child { padding : 10px; }
+		h2 { color: #004523; }
+		td:first-child { padding-left : 10px; padding-right : 10px; padding-bottom : 10px; padding-top : 0px; }
 		th { background-color : #918686;  
 			font-weight : normal; 
 			color : white;
@@ -40,7 +41,7 @@
 		table tr:last-child input:hover { opacity : 0.7; }
 		table tr:last-child td { text-align : right; }
 		table { margin : 0 auto; }
-		table { width : 720px; }
+		table { width : 100%; }
 	</style>
 	
 	

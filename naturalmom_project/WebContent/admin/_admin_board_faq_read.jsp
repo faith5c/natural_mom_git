@@ -9,10 +9,7 @@
 		#container h2 { margin-bottom : 15px; color: #004523;}
 		
 		table { width: 100%; padding : 0px; }
-		#board tr:first-child td { border-top : 1px solid grey; }
-		#board tr:last-child td { border-bottom : 1px solid grey; }
-		#board tr td:first-child { border-left : 1px solid grey; }
-		#board tr td:last-child { border-right : 1px solid grey; }
+		#board tr:last-child td { border-bottom : 1px solid lightgrey;}
 		#board tr td { padding : 10px; }
 		#board tr:first-child td:first-child { border-right: 1px solid lightgrey; }
 		#board tr:not(:last-child) td

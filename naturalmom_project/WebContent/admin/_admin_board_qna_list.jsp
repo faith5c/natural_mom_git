@@ -6,15 +6,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<style type="text/css">
-		a { text-decoration : none; color : black; }
+		#container { width : 764px; margin : 40px auto;}
+		table a { text-decoration : none; color : black; }
+		table a:hover  { opacity : 0.7; }
 		table, table input, div, div input { font-family : "나눔바른고딕", "맑은 고딕";}
-		table { width : 720px; }
-		h2 { color : #004523; text-align : left; padding-left : 10px; padding-bottom : 20px; padding-top : 10px; }
-		th { background-color : #F0F0F0;  font-weight : normal; color : gray; 
-			border-top : solid 1px lightgray;
-		}
-		td, th { padding : 5px; }
+		table { width : 100%; }
+		h2 { color : #004523; text-align : left;}
+		th { background-color : #918686;  font-weight : normal; color : white; 
+			border-top : solid 1px lightgray; }
+		td, th:not(first-child) { padding : 10px; }
 		td:not(:nth-child(2)) { text-align: center; }
+		td:not(:first-child) { font-size: 13px; }
 		td, th{ 
 			border-bottom : solid 1px lightgray; 
 		}
@@ -22,9 +24,8 @@
 			border-right : solid 1px lightgray;
 		}
 		
-		tr:first-child td, tr:last-child td, .qna_write td{ 
-			border-bottom : 0px; 
-		}
+		tr:first-child td, tr:last-child td, .qna_write td{ border-bottom : 0px; }
+		th { border-top : 1px solid gray; }
 		.qna_write span {
 			display : inline-block;
 			padding : 5px 30px; 
@@ -45,7 +46,18 @@
 		}
 		table { margin : 0 auto;  }
 		.page { text-align : center; margin-bottom: 15px;}
-		.search input[type="submit"] {padding : 2px 10px;}
+		
+		.search input[type="submit"]{
+			padding : 2px 10px;
+			margin-left : 3px;
+			margin-right : 3px; 
+			background-color : #85858D;
+			color : white;
+			font-family : "나눔바른고딕", "맑은 고딕";
+			font-size : 16px;
+			border-radius : 10px; 
+			border : 0px;
+		}
 	</style>
 </head>
 <body>

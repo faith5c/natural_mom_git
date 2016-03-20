@@ -13,7 +13,7 @@
 		th { background-color : #918686;  font-weight : normal; color : white; 
 			border-top : solid 1px lightgray; padding: 10px; }
 		td:not(:nth-child(2)) { text-align: center; }
-		td, th{ border-bottom : solid 1px lightgray; }
+		tr:not(:nth-child(7)) td, th{ border-bottom : solid 1px lightgray; }
 		td:not(:first-child) { font-size: 13px; padding: 10px;}
 		td:not(:last-child), th:not(:last-child){ 
 			border-right : solid 1px lightgray;
@@ -39,14 +39,14 @@
 			text-align : right;
 		}
 		table { margin : 0 auto;  }
-		#page { text-align : center; margin-bottom: 15px;}
+		#page { text-align : center; margin-bottom: 15px; padding-top : 40px; }
 		
-		body .search { text-align: center; }
+		table .search { text-align: center; }
 		
 		.search input[type="submit"]{
-			padding : 2px 10px;
-			margin-left : 3px;
-			margin-right : 3px; 
+			padding : 2px 7px;
+			margin-left : 1px;
+			margin-right : 1px; 
 			background-color : #85858D;
 			color : white;
 			font-family : "나눔바른고딕", "맑은 고딕";
@@ -78,59 +78,71 @@
 </head>
 <body>
 <form>
-<table cellspacing="0">
-	<tr><td colspan="5"><h2>공지사항</h2></td></tr>
-	<tr>
-		<th width="50px;">글번호</th>
-		<th>제목</th>
-		<th width="100px">작성자</th>
-		<th width="100px">작성일</th>
-		<th width="50px">조회</th>
-	</tr>
-	<tr>
-		<td>3</td>
-		<td><a href="#">회원 특별 혜택 및 사은품 안내</a></td>
-		<td>관리자</td>
-		<td>2015/10/14</td>
-		<td>49</td>
-	</tr>
-	<tr>
-		<td>2</td>
-		<td><a href="customer_center.jsp?page=notice&r=2">8월 14일 임시공휴일 안내</a></td>
-		<td>관리자</td>
-		<td>2015/08/11</td>
-		<td>24</td>
-	</tr>
-	<tr>
-		<td>1</td>
-		<td><a href="#">No.1 파머스 쇼핑몰 자연맘 리뉴얼!</a></td>
-		<td>관리자</td>
-		<td>2015/06/15</td>
-		<td>15</td>
-	</tr>
-	<tr class="notice_write">
-		<td colspan="5" style="border-top: 1px solid grey"><a href="customer_center.jsp?page=notice&w=true"><span>글쓰기</span></a></td>
-	</tr>
-</table>
-	<div id="page">
-	<a href="#">〈〈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="#">〈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="#">〉</a>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="#">〉〉</a>
-	</div>
-	<div class="search">
-			<select>
-				<option value="title">제목</option>
-				<option value="content">내용</option>
-				<option value="writer">글쓴이</option>
-				<option value="title+content">제목+내용</option>
-			</select>
-			<input type="text" placeholder="제목, 내용, 글쓴이, 제목+내용" name="search">
-			<input type="submit" value="검색">
-	</div>
-</form>
+		<table cellspacing="0">
+			<tr>
+				<td colspan="5"><h2>공지사항</h2></td>
+			</tr>
+			<tr>
+				<th width="50px;">글번호</th>
+				<th>제목</th>
+				<th width="100px">작성자</th>
+				<th width="100px">작성일</th>
+				<th width="50px">조회</th>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td><a href="#">회원 특별 혜택 및 사은품 안내</a></td>
+				<td>관리자</td>
+				<td>2015/10/14</td>
+				<td>49</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td><a href="customer_center.jsp?page=notice&r=2">8월 14일
+						임시공휴일 안내</a></td>
+				<td>관리자</td>
+				<td>2015/08/11</td>
+				<td>24</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td><a href="#">No.1 파머스 쇼핑몰 자연맘 리뉴얼!</a></td>
+				<td>관리자</td>
+				<td>2015/06/15</td>
+				<td>15</td>
+			</tr>
+			<tr class="notice_write">
+				<td colspan="5" style="border-top: 1px solid grey"></td>
+			</tr>
+
+			<tr>
+				<td colspan="5">
+					<div id="page">
+						<a href="#">〈〈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="#">〈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
+							href="#">〉</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="#">〉〉</a>
+					</div>
+				</td>
+			</tr>
+
+			<tr>
+				<td colspan="5" >
+					<div class="search">
+						<select>
+							<option value="title">제목</option>
+							<option value="content">내용</option>
+							<option value="writer">글쓴이</option>
+							<option value="title+content">제목+내용</option>
+						</select> <input type="text" placeholder="제목, 내용, 글쓴이, 제목+내용" name="search">
+						<input type="submit" value="검색">
+					</div>
+				</td>
+			</tr>
+
+		</table>
+
+
+	</form>
 
 </body>
 </html>

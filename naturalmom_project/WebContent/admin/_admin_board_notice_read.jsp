@@ -10,17 +10,18 @@
 
 <style type="text/css">
 	* { font-family : "나눔바른고딕", "맑은 고딕"}
-	h2 { color: #004523 }
-	td,th { border : 0px solid blue; padding : 5px; }
+	#container { width : 764px; margin : 40px auto;}
+	h2 { color: #004523; }
+	td, th:not(first-child) { padding : 10px; }
+	td:first-child {padding-left: 0px;}
 	tr:nth-child(2) th s{ background-color : blue; }
 	
-	table { width : 720px; 
+	table { width : 100%; 
 		margin : 0 auto; 
 	}
-	tr:first-child td{ padding-left : 10px; }
 	tr:nth-child(2) th{ 
 		text-align : center; 
-		color : gray; 
+		color : white; 
 		font-weight : normal; 
 		border-right : solid 1px #cccccc;
 	}	
@@ -62,13 +63,12 @@
 	table tr:last-child input:hover{
 		opacity : 0.7;
 	}
-	
 </style>
 
 <form>
 <table cellspacing="0">
 <tr><td colspan = "4"><h2>공지사항</h2></td></tr>
-<tr>
+<tr style="background: #918686; color: white;">
 	<th style="width:80px;">2</th>
 	<td colspan="3">8월 14일 임시공휴일 안내</td>
 </tr>
