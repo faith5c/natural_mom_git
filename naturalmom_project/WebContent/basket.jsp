@@ -100,7 +100,7 @@
 				<input type="button" value="관심상품 등록">
 				</td>
 				<td colspan="2">
-				<input type="button" value="주문하기">
+				<input type="button" value="주문하기" onclick="location.href='order.jsp';">
 				</td>
 			</tr>
 		</table>
