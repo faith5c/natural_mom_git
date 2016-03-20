@@ -31,7 +31,7 @@
 	<style type="text/css">
 		#content { text-align : center; }
 		h2 { color : #004523; text-align : left; margin-top: 20px;}
-		table { width : 640px; margin : auto; }
+		table { width : 720px; margin : auto; }
 		th, td { text-align : center; padding : 5px; }
 		td { border-bottom : solid 1px lightgray; }
 		
@@ -68,10 +68,10 @@
 			</tr>
 			<tr>
 				<th style="width:50px">선택</th>
-				<th style="width:100px">상품이미지</th>
+				<th style="width:150px">상품이미지</th>
 				<th>상품명</th>
-				<th style="width:80px">수량</th>
-				<th style="width:80px">가격</th>
+				<th style="width:100px">수량</th>
+				<th style="width:100px">가격</th>
 			</tr>
 			<tr>
 				<td><input type="checkbox" name="orderlist_sel" value="선택된장바구니번호 랑 상품번호"></td>
