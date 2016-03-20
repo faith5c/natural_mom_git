@@ -17,11 +17,13 @@
 	
 	<style type="text/css">
 		h2, th, table tr:last-child input { font-family : "나눔바른고딕", "맑은 고딕"; }
-		h2 { color : #004523; padding-left : 10px; }
-		th { background-color : #F0F0F0;  
+		h2 { color: #004523; padding-top : 20px;}
+		td:first-child { padding : 10px; }
+		th { background-color : #918686;  
 			font-weight : normal; 
-			color : gray;
+			color : white;
 			border : solid 1px #cccccc;
+			font-size: 13px;
 			}
 		table tr:last-child input 
 		{	
@@ -62,7 +64,7 @@
 		<tr>
 			<th>내용</th>
 			<td>
-			<textarea id="qna_area" name="text" cols="74" rows="14"></textarea>
+			<textarea id="qna_area" name="text" style="width:100%; resize:none;" rows="14"></textarea>
 			</td>
 		</tr>
 		<tr>

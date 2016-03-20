@@ -18,7 +18,7 @@
 	}
 	tr:nth-child(2) th{ 
 		text-align : center; 
-		color : color; 
+		color : white; 
 		font-weight : normal; 
 		border-right : solid 1px #cccccc;
 	}	

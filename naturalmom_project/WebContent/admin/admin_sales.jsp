@@ -14,6 +14,7 @@
 		
 	<title>자연맘</title>
 	
+	
 	<% 
 	request.setCharacterEncoding("UTF-8");
 	String submenu = (String)request.getParameter("page");

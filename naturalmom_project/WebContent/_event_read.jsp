@@ -29,7 +29,6 @@
 		}
 		#board tr:first-child td:first-child
 		{ 
-			
 			text-align: center;
 		}
 
