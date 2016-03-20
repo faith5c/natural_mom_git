@@ -18,17 +18,18 @@
 	</script>	
 	
 	<style type="text/css">
-			#in { 
-					font-family : "나눔바른고딕", "맑은 고딕";
-					width : 764px;
-					margin : 50px auto;
-					color: #85858d; }
+		#in { 
+			font-family : "나눔바른고딕", "맑은 고딕";
+			color: #85858d; }
+		#container { width : 764px; margin : 50px auto;}
 		h2, th, table tr:last-child input { font-family : "나눔바른고딕", "맑은 고딕"; }
-		h2 { color : #004523; padding-left : 10px; margin-bottom:15px; }
-		th { background-color : #F0F0F0;  
+		h2 { color: #004523; }
+		td:first-child { padding-left : 10px; padding-right : 10px; padding-bottom : 10px; padding-top : 0px; }
+		th { background-color : #918686;  
 			font-weight : normal; 
-			color : gray;
+			color : white;
 			border : solid 1px #cccccc;
+			font-size: 13px;
 			}
 		table tr:last-child input 
 		{	
@@ -45,7 +46,7 @@
 		table tr:last-child input:hover { opacity : 0.7; }
 		table tr:last-child td { text-align : right; }
 		table { margin : 0 auto; }
-		table { width : 720px; }
+		table { width : 100%; }
 	</style>
 	
 	
@@ -75,7 +76,7 @@
 		<tr>
 			<th>내용</th>
 			<td>
-			<textarea id="review_write" name="text" cols="74" rows="14"></textarea>
+			<textarea id="review_write" style="width: 100%" name="text" cols="74" rows="14"></textarea>
 			</td>
 		</tr>
 		<tr>
