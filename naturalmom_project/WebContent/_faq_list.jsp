@@ -7,7 +7,7 @@
 		#content_body a { text-decoration: none; }
 		#content_body a:hover { opacity : 0.7; }
 
-		#content_body h2 { margin-bottom : 15px; }
+		#content_body h2 { margin-bottom : 15px; color: #004523; }
 		
 		table { width: 720px; padding : 0px; }
 		table tr:first-child td { border-top : 1px solid grey; }

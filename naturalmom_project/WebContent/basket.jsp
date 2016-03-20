@@ -30,7 +30,7 @@
 		
 	<style type="text/css">
 		#content { text-align : center; }
-		h3 { color : black; text-align : left; margin-top: 20px;}
+		h2 { color : #004523; text-align : left; margin-top: 20px;}
 		table { width : 640px; margin : auto; }
 		th, td { text-align : center; padding : 5px; }
 		td { border-bottom : solid 1px lightgray; }
@@ -64,7 +64,7 @@
 		<br><br>
 		<table cellspacing="0" class="cart">
 			<tr>
-				<td colspan = "8"><h3>장바구니</h3></td>
+				<td colspan = "8"><h2>장바구니</h2></td>
 			</tr>
 			<tr>
 				<th style="width:50px">선택</th>

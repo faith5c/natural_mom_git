@@ -9,7 +9,7 @@
 		#content_body a { text-decoration: none; }
 		#content_body a:hover { opacity : 0.7; }
 
-		h2 { margin-bottom : 15px; font-size: 24px; color: black}
+		h2 { margin-bottom : 15px; font-size: 24px; color: #004523;}
 		
 		table { width : 640px; font-size: 13px; }
 		table tr:first-child td, table tr:last-child td { border-top : 1px solid grey; }

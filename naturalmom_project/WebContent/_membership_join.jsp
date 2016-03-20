@@ -17,6 +17,8 @@ table td{
 	color: black;
 }
 
+h3{color: #004523;}
+
 #button { text-align: center; }
 #submit { 
 			padding : 7px 30px;

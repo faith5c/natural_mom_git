@@ -8,8 +8,9 @@
 </head>
 <body>
 	<style type = "text/css">
+	h2 { color : #004523; border-bottom : 0px; text-align : left; }
 	table { width :640px; 
-			margin-left: 190px; } 
+			margin-left: 195px; } 
 	th, td { text-align : center;  padding : 5px; }
 	td { border-bottom : solid 1px lightgray; }
 
@@ -31,13 +32,13 @@
 	table tr:last-child input:hover { opacity : 0.7; }
 	table img { width : 50px; height : 50px; }
 	table a { text-decoration : none; color : #000000; }
-	h2 { color : #004523; border-bottom : 0px; text-align : left; }
+
 	</style>
 	<form action="#" method="post">
 	<br><br>
 	<table cellspacing="0">
 		<tr>
-			<td colspan="4"><h3>관심상품</h3></td>
+			<td colspan="4"><h2>관심상품</h2></td>
 		</tr>
 		<tr>
 			<td widtd="30px">선택</td> 

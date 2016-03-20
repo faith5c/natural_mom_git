@@ -18,6 +18,8 @@ table td{
 	color: black;
 }
 
+h2{color: #004523;}
+
 #button { 
 	text-align: center; 
 	}
@@ -62,7 +64,7 @@ td:FIRST-CHILD {
 </style>
 <html>
 <div id="inside">
-	<h3>&nbsp;&nbsp;회원정보 수정</h3>
+	<h2>회원정보 수정</h2>
 	<br><hr>
 	<form action="" method="post">
 		<table>

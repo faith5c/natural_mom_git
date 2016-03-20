@@ -28,6 +28,7 @@ body {
 }
 
 .order_title {
+    color: #004523;
 	margin-bottom: 5px;
 	margin-top: 100px;
 }
