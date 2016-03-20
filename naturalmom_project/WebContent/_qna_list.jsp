@@ -46,7 +46,17 @@
 		table { margin : 0 auto;  }
 		.page { text-align : center; margin-bottom: 15px;}
 		
-		.search input[type="submit"] {padding : 2px 10px;}
+		.search input[type="submit"]{
+			padding : 2px 10px;
+			margin-left : 3px;
+			margin-right : 3px; 
+			background-color : #85858D;
+			color : white;
+			font-family : "나눔바른고딕", "맑은 고딕";
+			font-size : 16px;
+			border-radius : 10px; 
+			border : 0px;
+		}
 	</style>
 </head>
 <body>
