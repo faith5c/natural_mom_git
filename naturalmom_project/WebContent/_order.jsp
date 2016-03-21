@@ -14,7 +14,6 @@
 <link rel="stylesheet" href="css/index.css" />
 
 <style type="text/css">
-
 .order_title {
     color: #004523;
 	margin-bottom: 5px;

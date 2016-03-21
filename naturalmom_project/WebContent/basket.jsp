@@ -59,6 +59,9 @@
 		{
 			text-align : left; 
 		}
+		input[:type="number"]{
+		text-align : center;
+		}
 	</style>
 	<form action="#" method="post">
 		<br><br>
@@ -67,11 +70,11 @@
 				<td colspan = "8"><h2>장바구니</h2></td>
 			</tr>
 			<tr>
-				<th style="width:50px">선택</th>
-				<th style="width:150px">상품이미지</th>
-				<th>상품명</th>
-				<th style="width:100px">수량</th>
-				<th style="width:100px">가격</th>
+				<th style="width:9.5%">선택</th>
+				<th style="width:25.5%">상품이미지</th>
+				<th style="width:30%" >상품명</th>
+				<th style="width:10%">수량</th>
+				<th style="width:25%">가격</th>
 			</tr>
 			<tr>
 				<td><input type="checkbox" name="orderlist_sel" value="선택된장바구니번호 랑 상품번호"></td>
