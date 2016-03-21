@@ -91,7 +91,7 @@
 					<td>
 						<input type = "button" value = "수정" id = "mod" name = "mod">
 						<input type = "button" value = "삭제" id = "del" name = "del">
-						<input type = "button" value = "목록" id = "list" name = "list">
+						<input type = "button" value = "목록" id = "list" name = "list" onclick="location.href='customer_center.jsp?page=event';">
 					</td>
 				</tr>
 			</table>
