@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <style type = "text/css">
 
-		#inside { padding-top : 70px; padding-left: 260px;
+		#inside { padding-top : 70px; padding-left: 220px;
 					margin : 30px auto; color: #85858d; font-size: 14px; }
 		#inside a { text-decoration: underline; }
 
