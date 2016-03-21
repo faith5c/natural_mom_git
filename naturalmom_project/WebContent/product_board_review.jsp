@@ -32,13 +32,14 @@
 				});
 		
 		});
+		
 	</script>
 
 <style type = "text/css">
 
-		#in { width : 720px; margin : 0 auto; color: #85858d; font-style: bold; padding: 0px; font-family : "나눔바른고딕", "맑은 고딕"; }
+		#in { width : 1100px; margin : 0 auto; color: #85858d; font-style: bold; padding: 0px; font-family : "나눔바른고딕", "맑은 고딕"; }
 		
-		h2 { border: 1px solide gray; margin : 5px; color: #004523;  text-align:center;}
+		h2 { font-size:2.5em; margin : 5px; color: #004523;  text-align:center;}
 		a { text-decoration : none; color : black; }
 		a:hover  { opacity : 0.7; }
 		table { width: 100%; padding : 0px; }
@@ -49,9 +50,7 @@
 		table tr td { border-bottom : 1px solid grey; }
 		table tr td nth-child(odd), table tr td(even),table tr td {border-top : 1px solid gray; }
 		table tr td { padding : 5px; color: black; border-bottom : 1px solid lightgrey;}
-		table tr:nth-child(3){ height: 100px auto;}
-
-
+	
 		.review_write span {
 			display : inline-block;
 			padding : 5px 30px; 
@@ -70,12 +69,14 @@
 		.review_write td {
 			text-align : right;
 		}
+		#button{text-align:bottom;}
+
 		table { margin : 0 auto;  }
 		.page { text-align : center; margin-bottom: 15px;}
 		.search input[type="submit"] {padding : 2px 10px;}
 		.search { text-align :center; }
-		
-		#yuback1{margin-top:50px;}
+		#button{margin-top:50px;}
+		#yuback2{margin-top:50px;}
 
 	</style>
  </head>
@@ -109,9 +110,20 @@
 				<td>★★★★☆</td>
 			</tr>
 			<tr>
-				<td colspan = "5">향기가 좋아요~</td>
-		
+				<td colspan = "4"class="reivew">향기가 좋아요~
+				향기가 좋아요~향기가 좋아요~향기가 좋아요~향기가 좋아요~				
+				향기가 좋아요~향기가 좋아요~향기가 좋아요~향기가 좋아요~
+				향기가 좋아요~향기가 좋아요~향기가 좋아요~향기가 좋아요~
+				향기가 좋아요~향기가 좋아요~향기가 좋아요~향기가 좋아요~
+				향기가 좋아요~향기가 좋아요~향기가 좋아요~향기가 좋아요~
+				향기가 좋아요~향기가 좋아요~향기가 좋아요~향기가 좋아요~
+				향기가 좋아요~!향기가 좋아요~!!!향기가 좋아요~!향기가 좋아요~</td>
 
+				
+				<td class="review_write" colspan="1" rowspan="0">
+				<a href="#"><span>수정</span></a>
+				<a href="#"><span>삭제</span></a></td>
+			
 			</tr>
 				<tr>
 				<td>52</td>
@@ -121,9 +133,13 @@
 				<td>★★★★☆</td>
 			</tr>
 			<tr>
-				<td colspan = "5">향기가 좋아요~</td>
+				<td colspan = "4">향기가 좋아요~</td>
 		
-
+			
+				<td class="review_write" colspan="1" rowspan="0">
+				<a href="#"><span>수정</span></a>
+				<a href="#"><span>삭제</span></a></td>
+			
 			</tr>
 				<tr>
 				<td>52</td>
@@ -133,9 +149,11 @@
 				<td>★★★★☆</td>
 			</tr>
 			<tr>
-				<td colspan = "5">향기가 좋아요~</td>
+				<td colspan = "4">향기가 좋아요~</td>
 		
-
+				<td class="review_write" colspan="1" rowspan="0">
+				<a href="#"><span>수정</span></a>
+				<a href="#"><span>삭제</span></a></td>
 			</tr>
 	<tr>
 		<td colspan = "5" style="border:0px;">

@@ -77,6 +77,7 @@
 			<div>
 				<img src="images/info_delivery.jpg" alt="배송정보"/>
 			</div>
+			<%@ include file="product_board_review.jsp" %>
 		</div>
 		<!--------------------------------------------------end content--------->
 	</div><!--end container-->
