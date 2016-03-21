@@ -9,11 +9,17 @@
 <meta charset="utf-8">
 	<title>자연맘</title>
 	<style type = "text/css">
-		#in { width : 720px; margin : 0 auto; color: #85858d;font-family : "나눔바른고딕", "맑은 고딕"; }
+	
+		
+		* { margin: 0px; padding: 0px; }
+
+		#in { width : 1024px; margin : 50px auto; color: #85858d; font-family : "나눔바른고딕", "맑은 고딕"; }
+		#in a { text-decoration: underline; text-decoration: none; color:white; }
+
+		h2 { margin-bottom : 15px; }
 		
 		h2 { margin-bottom : 15px; color: #85858D;}
 		
-		a{text-decoration: none;}
 		
 		table { width: 100%; padding : 0px; }
 		table tr:first-child th
