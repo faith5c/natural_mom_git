@@ -10,7 +10,7 @@
 
 table {
 		margin : 0 auto;
-		width: 640px;
+		width: 75%;
 		font-family : "나눔바른고딕", "맑은 고딕";
 }
 
