@@ -17,15 +17,6 @@
 <title>자연맘</title>
 
 <style type="text/css">
-body {
-	margin: 0;
-	padding: 0;
-}
-
-#container {
-	width: 1024px;
-	margin: 100px auto;
-}
 
 .order_title {
     color: #004523;
@@ -41,7 +32,7 @@ table tr td {
 	padding: 0;
 }
 
-input[type="text"], input[type="number"], select {
+table input[type="text"], table input[type="number"], table select {
 	font: 16px "나눔바른고딕", "맑은 고딕", Arial;
 	height: 25px;
 }
@@ -174,8 +165,6 @@ table tr .explain {
 }
 </style>
 
-</head>
-<body>
 	<h3 class="order_title">주문하기</h3>
 	<form action="_order_complete.jsp" method="post">
 		<table cellspacing="0" id="product_list">
@@ -394,5 +383,5 @@ table tr .explain {
 				<input type="submit" value="결제하기" class="buttons">
 			</p>
 			<!--------------------------------------------------------end container------------->
-</body>
+
 </html>
