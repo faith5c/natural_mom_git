@@ -9,9 +9,8 @@
 <body>
 
 <style type="text/css">
-	h2 { color: #004523; padding-top : 20px; }
+	h2 { color: #004523; padding-top : 20px; padding-bottom : 30px;}
 	td, th { padding : 10px; }
-	tr:nth-child(2) th s{ background-color : blue; }
 	
 	table { width : 720px; 
 		margin : 0 auto; 
@@ -43,7 +42,7 @@
 		padding : 10px;
 		
 	}
-	table tr:last-child input {
+	table tr:last-child input, tr:nth-child(1) td input{
 		padding : 5px 30px;
 		margin-right : 5px;
 		margin-top : 10px;
@@ -54,18 +53,24 @@
 		border-radius : 20px;
 		border : 0px;
 	}
-	table tr:last-child td:last-child {
+	tr:nth-child(1) td input {
+		margin-top : 30px;
+	}
+	table tr:last-child td:last-child , tr:nth-child(1) td{
 		text-align : right;
 	}
-	table tr:last-child input:hover{
+	table tr:last-child input:hover, tr:nth-child(1) td input:hover{
 		opacity : 0.7;
 	}
-	
 </style>
 
 <form>
 <table cellspacing="0">
-<tr><td colspan = "4"><h2>Q&A</h2></td></tr>
+<tr>
+	<td colspan = "1"><h2>Q&A</h2></td>
+	<td colspan="3"><input type="button" value="답변등록" onclick="location.href='customer_center.jsp?page=qna&w=true'"/></td>
+</tr>
+
 <tr style="background: #918686; color: white;">
 	<th style="width:80px;">3</th>
 	<td colspan="3">재입고 언제 되나요</td>
