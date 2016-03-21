@@ -14,15 +14,23 @@
 					width : 764px;
 					margin : 50px auto;
 					color: #85858d; }
-		#in a { text-decoration : none; color : black; }
-		#in a:hover  { opacity : 0.7; }
 		
-		#in h2 { margin-bottom : 15px; color: #004523; }
+		h2 { margin-bottom : 15px; color: #85858D; }
 		
-		.review { width: 100%; padding : 0px; }
+		table { width: 100%; padding : 0px; }
+
 		.review_write td a {
 			text-align : right;
 		}
+
+		
+		table tr {border-top : 1px solid grey; }
+		table tr:first-child td{ text-align:center; background-color: #918686; color: white; font-style:bold;}
+		table tr:not(:first-child):not(.review_write) td { color: black; text-align:center;}
+		table tr td { border-bottom : 1px solid lightgrey; }
+		table tr td nth-child(odd), table tr td(even) {border-top : 1px solid gray; }
+		table tr td { padding : 5px; color: black;border-bottom : 1px solid lightgrey;}
+
 		.review_write span {
 			display : inline-block;
 			padding : 5px 30px; 
@@ -35,24 +43,26 @@
 			margin-top : 10px;
 			margin-left : 10px;
 		}
-		.review tr {border-top : 1px solid grey; }
+		table tr {border-top : 1px solid grey; }
 		
-
-		.review tr th{color:white; text-align:center; background-color: #918686; padding:5px;}
-		.review tr:not(:last-child) td { color: black; text-align:center;}
-		.review tr td nth-child:(odd), table tr td:(even) {border-top : 1px solid gray; }
-		.review tr:not(:last-child) td { padding : 5px; color: black;border-bottom : 1px solid lightgrey;}
+		table tr:first-child td{ text-align:center; background-color: #918686; color: white; font-style:bold;}
+		table tr:not(:first-child) td { color: black; text-align:center;}
+		table tr td { border-bottom : 1px solid lightgrey; }
+		table tr td nth-child:(odd), table tr td:(even) {border-top : 1px solid gray; }
+		table tr td { padding : 5px; color: black;border-bottom : 1px solid lightgrey;}
 	
 		.review_write input[type="submit"]:hover {
-			opacity : 0.7; 
+			opacity : 0.7;
 		}
-		.review_write td {
+
+		
+
+		.review_write {
 			text-align : right;
 		}
-		
-		.review { margin : 0 auto;  }
+
+		table { margin : 0 auto;  }
 		.page { text-align : center; margin-bottom: 15px;}
-		.search{text-align:center;}
 		.search input[type="submit"] {padding : 2px 10px;}
 		
 		#yuback1{margin-top:50px;}
@@ -69,17 +79,17 @@
  <div id ="in">
   
 	<h2>상품 후기</h2>
-		<table class="review" cellspacing="0">
+		<table cellspacing="0">
 			<tr>
-				<th>상품명</th>
-				<th>상품번호</th>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>작성일</th>
-				<th>만족도</th>
+				<td>상품명</td>
+				<td>상품번호</td>
+				<td>제목</td>
+				<td>작성자</td>
+				<td>작성일</td>
+				<td>만족도</td>
 			</tr>
 			<tr>
-				<td>아마씨 비누</td>
+				<td>라벤더 비누</td>
 				<td>52</td>
 				<td><a href="admin_board.jsp?page=review&r=1">향이 너무 좋아요~</td>
 				<td>hook4u</td>
@@ -87,10 +97,10 @@
 				<td>★★★★☆</td>
 			</tr></a>
 			<tr>
-				<td>아마씨 비누</td>
+				<td>우유 비누</td>
 				<td>25</td>
-				<td><a href="admin_board.jsp?page=review&r=2">피부가 부들부들해염~~</td>
-				<td>agamom</td>
+				<td><a href="admin_board.jsp?page=review&r=2">뽀독뽀독~ 좋아염</td>
+				<td>fath5c</td>
 				<td>2015/04/10</td>
 				<td>★★★☆☆</td></a>
 			</tr>
@@ -102,17 +112,21 @@
 				<td>2015/04/08</td>
 				<td>★★★★★</td></a>
 			</tr>
-		
-	<tr class="review_write">
-		<td colspan="6"><a href="admin_board.jsp?page=review&w=true"><span>글쓰기</span></a></td>
-	</tr>
+
 		</table>
+
+
+	<tr class="review_write">
+		<td colspan="6" style="border: 0px;"><a href="admin_board.jsp?page=review&w=true"><span>글쓰기</span></a></td>
+	</tr>
+	<tr>
+		<td colspan = "6" style="border: 0px;">
 		<div class="page">
 			<a href="#">〈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="#">〉</a>
 		</div>
-		<div class="search" >
+		<div class="search">
 				<select>
 					<option value="title">제목</option>
 					<option value="content">내용</option>
@@ -121,7 +135,10 @@
 				</select>
 				<input type="text" placeholder="제목, 내용, 글쓴이, 제목+내용" name="search">
 				<input type="submit" value="검색">
+		</td>
 	</div>	
+	
+	</table>
 	</div>
 
  </body>

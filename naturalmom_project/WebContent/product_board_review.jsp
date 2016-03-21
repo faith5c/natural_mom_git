@@ -39,17 +39,17 @@
 
 		#in { width : 1100px; margin : 0 auto; color: #85858d; font-style: bold; padding: 0px; font-family : "나눔바른고딕", "맑은 고딕"; }
 		
-		h2 { font-size:2.5em; margin : 5px; color: #004523;  text-align:center;}
-		a { text-decoration : none; color : black; }
-		a:hover  { opacity : 0.7; }
-		table { width: 100%; padding : 0px; }
+		#in h2 { font-size:2.5em; margin : 5px; color: #004523;  text-align:center;}
+		#in a { text-decoration : none; color : black; }
+		#in a:hover  { opacity : 0.7; }
+		.review { width: 100%; padding : 0px; }
 		
-		table tr {border-top : 1px solid grey;text-align:center;  }
-		table tr:nth-child(2) td{ background-color: #CCCCCC; color: white; font-style:bold;}
-		table tr:not(:first-child) td { color: black; }
-		table tr td { border-bottom : 1px solid grey; }
-		table tr td nth-child(odd), table tr td(even),table tr td {border-top : 1px solid gray; }
-		table tr td { padding : 5px; color: black; border-bottom : 1px solid lightgrey;}
+		.review tr {border-top : 1px solid grey;text-align:center;  }
+		.review tr:nth-child(2) td{ background-color: #CCCCCC; color: white; font-style:bold;}
+		.review tr:not(:first-child) td { color: black; }
+		.review tr td { border-bottom : 1px solid grey; }
+		.review tr td nth-child(odd), table tr td(even),table tr td {border-top : 1px solid gray; }
+		.review tr td { padding : 5px; color: black; border-bottom : 1px solid lightgrey;}
 	
 		.review_write span {
 			display : inline-block;
@@ -77,7 +77,16 @@
 		.search { text-align :center; }
 		#button{margin-top:50px;}
 		#yuback2{margin-top:50px;}
-
+		.dat td{ background-color : #F0F0F0; }
+	.dat td:first-child{ text-align : center; border-bottom : dotted 1px #cccccc; }
+	.dat td{ font-size : 0.9em; border-bottom : dotted 1px #cccccc; }
+	.dat_write td:first-child{ text-align : center;}
+	.dat_write td{
+		font-size : 0.9em;
+		background-color : #F0F0F0;
+		padding : 10px;
+		
+	}
 	</style>
  </head>
  <body>
@@ -91,7 +100,7 @@
  <div id ="in">
  
  <h2>구매 후기</h2>
-  	<table cellspacing="0">
+  	<table class="review" cellspacing="0">
 		<tr class="review_write">
 			<td colspan="5"><a href="admin_board.jsp?page=review&w=true"><span>글쓰기</span></a></td>
 		</tr>
@@ -119,39 +128,37 @@
 				향기가 좋아요~향기가 좋아요~향기가 좋아요~향기가 좋아요~
 				향기가 좋아요~!향기가 좋아요~!!!향기가 좋아요~!향기가 좋아요~</td>
 
-				
-				<td class="review_write" colspan="1" rowspan="0">
+			
+				<td class="review_write" style="width:30%;">
+				<a href="#"><span>수정</span></a>
+				<a href="#"><span>삭제</span></a></td>
+			
+			
+				<tr>
+				<td>52</td>
+				<td><a href="#">피부가 부들부들해요~~</a></td>
+				<td>agamom</td>
+				<td>2015/06/17</td>
+				<td>★★★★★</td>
+			</tr>
+			<tr>
+				<td colspan = "4">아기랑 같이쓰고있는데 너무좋아요^^~</td>
+				<td class="review_write" colspan="1" style="width:30%;">
 				<a href="#"><span>수정</span></a>
 				<a href="#"><span>삭제</span></a></td>
 			
 			</tr>
 				<tr>
 				<td>52</td>
-				<td><a href="#">향이 너무 좋아요~</a></td>
-				<td>hook4u</td>
+				<td><a href="#">거품이 까매요...</a></td>
+				<td>maniac</td>
 				<td>2015/06/17</td>
-				<td>★★★★☆</td>
+				<td>★★★☆☆</td>
 			</tr>
 			<tr>
-				<td colspan = "4">향기가 좋아요~</td>
+				<td colspan = "4">거품이 원래까매요..?</td>
 		
-			
-				<td class="review_write" colspan="1" rowspan="0">
-				<a href="#"><span>수정</span></a>
-				<a href="#"><span>삭제</span></a></td>
-			
-			</tr>
-				<tr>
-				<td>52</td>
-				<td><a href="#">향이 너무 좋아요~</a></td>
-				<td>hook4u</td>
-				<td>2015/06/17</td>
-				<td>★★★★☆</td>
-			</tr>
-			<tr>
-				<td colspan = "4">향기가 좋아요~</td>
-		
-				<td class="review_write" colspan="1" rowspan="0">
+				<td class="review_write" style="width:30%;">
 				<a href="#"><span>수정</span></a>
 				<a href="#"><span>삭제</span></a></td>
 			</tr>

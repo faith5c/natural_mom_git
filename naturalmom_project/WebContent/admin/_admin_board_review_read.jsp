@@ -14,38 +14,25 @@
 	<link rel="stylesheet" href="css/admin_common.css"/>
 		
 	<title>자연맘</title>
-
-	<style type="text/css">
-	#in { 
-			font-family : "나눔바른고딕", "맑은 고딕";
-			width : 764px;
-			margin : 50px auto;
-			color: #85858d; }
-
-	h2 { color: #85858D; padding-left : 10px; padding-bottom : 20px; padding-top : 10px; ;}
-	td,th { border : 0px solid blue; padding : 5px; }
+<style type="text/css">
+	* { font-family : "나눔바른고딕", "맑은 고딕"}
+	#container { width : 764px; margin : 40px auto; }
+	h2 { color: #004523; }
+	td, th:not(first-child) { padding : 10px; }
+	tr:nth-child(2) th s{ background-color : blue; }
 	
-	table{ width : 720px; 
+	table { width : 100%; 
 		margin : 0 auto; 
 	}
-	tr:first-child th, tr:first-child td{ 
-		border-top : solid 1px #cccccc; 
-		font-weight : bold; 
-		color:white;
-		background-color:#918686;
-	}
-	tr:nth-child(2) { 
+	tr:nth-child(2) th{ 
 		text-align : center; 
-		color : black; 
+		color : white; 
 		font-weight : normal; 
-		
+		border-right : solid 1px #cccccc;
 	}	
-	tr:nth-child(2) td{ 
-		text-align:left;
+	tr:nth-child(2) th, tr:nth-child(2) td{ 
 		border-top : solid 1px #cccccc; 
 		border-bottom : solid 1px #cccccc;	
-	}tr:nth-child(2) td:nth-child(2){ 
-		text-align:center; margin-left:400px;
 	}
 	tr:nth-child(3) td div{ 
 		text-align : right; color : gray; font-size : 0.8em;
@@ -53,7 +40,6 @@
 	tr:nth-child(4) td{ 
 		border-bottom : solid 1px #CCCCCC; 
 		padding : 10px 20px 30px 20px; 
-		color : black;
 	}
 	.dat td{ background-color : #F0F0F0; }
 	.dat td:first-child{ text-align : center; border-bottom : dotted 1px #cccccc; }
@@ -65,7 +51,7 @@
 		padding : 10px;
 		
 	}
-	table tr:last-child input {
+	table tr:last-child input, tr:nth-child(1) td input{
 		padding : 5px 30px;
 		margin-right : 5px;
 		margin-top : 10px;
@@ -76,44 +62,38 @@
 		border-radius : 20px;
 		border : 0px;
 	}
-	table tr:last-child td:last-child {
+	tr:nth-child(1) td input {
+		margin-top : 30px;
+	}
+	table tr:last-child td:last-child, tr:nth-child(1) td {
 		text-align : right;
 	}
-	table tr:last-child input:hover{
+	table tr:last-child input:hover, tr:nth-child(1) td input:hover{
 		opacity : 0.7;
 	}
 	
 </style>
-   </head>
 
-  <body>
-<!--  Start header --------------------------------------------------------------------->
-	<header>
-		
-	</header>
-<!-----------------------------------------------------------end header ----------->	
-<!---Start container----------------------------------------------------------------->
-	
-	<div id="in">
-	<form>
-
+<form>
 <table cellspacing="0">
-<h2>상품후기</h2>
 <tr>
-	<th style="width:80px;">작성자 : </th>
-	<td colspan="3">&nbsp;naturalmother</td>
+	<td colspan="1"><h2>상품후기</h2></td>
+	
 </tr>
-<tr>
-	<td colspan="2">&nbsp;&nbsp;제품명 : 숯비누 </td>
-	<td colspan="3">제품번호 : 12345</td>
+<tr style="background: #918686; color: white;">
+				<th>아마씨 비누</th>
+				<th>52</th>
+				<th>향이 너무좋아요~</th>
+				<th>★★★★☆</th>
+
 </tr>
 <tr>
 	<td colspan="4">
-	<div> 2016/06/17 |  조회수 : 3</div> 
+	<div>hook4u | 2016/06/17 | 조회수 24</div> 
 	</td>
 </tr>
 <tr>
-	<td colspan = "4">숯비누는 사랑입니다!</td>
+	<td colspan = "4">향이 너무좋아요~~향이 너무좋아요~~향이 너무좋아요~~향이 너무좋아요~~향이 너무좋아요~~향이 너무좋아요~~</td>
 </tr>
 <tr class="dat">
 	<td>자연맘</td>
@@ -122,16 +102,16 @@
 </tr>
 <tr class="dat">
 	<td>babo</td>
-	<td colspan="2">먹어도 되나요?</td>
-	<td style="width:80px;">2015/06/27</td>
+	<td colspan="2">먹어도되나요?</td>
+	<td style="width:80px;">2015/07/19</td>
 </tr>
 <tr class="dat_write">
-	<td>faith5c</td>
+	<td>자연맘</td>
 	<td colspan="2">
-		<textarea rows="3" cols="90"></textarea>
+		<textarea style="width:100%; resize : none;" cols="30"></textarea>
 	</td>
 	<td>
-		<input type="submit" value="댓글등록">
+		<input type="submit" style="padding : 2px 10px; " value="댓글등록">
 	</td>
 </tr>
 <tr>
@@ -141,12 +121,18 @@
 	</td>
 	<td colspan="2">
 		<input type="button" value="삭제">
-		<input type="button" value="목록">
+		<input type="button" value="목록" onclick = "location.href='admin_board.jsp?page=review';">
 	</td>
 </tr>
 </table>
 </form>
-	
+
+</body>
+</html>		
+				
+			
+
+
 	</div>
 <!--------------------------------------------------------end container------------->
   </body>
