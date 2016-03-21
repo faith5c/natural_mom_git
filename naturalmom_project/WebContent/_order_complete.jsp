@@ -73,11 +73,11 @@
 			font-size : 20px;
 			border-radius : 10px; 
 			border : 0px;
-
+			width: 120px;
 		}
 		.button:hover { opacity : 0.7; }
 
-		#button { text-align : center;}
+		#button { text-align : center; }
 	</style>
 
 <!---Start container----------------------------------------------------------------->
@@ -116,7 +116,7 @@
 					</td>
 				</tr>
 			</table> 
-		<p id="button"><input type="button" value="확인" class="button"></p>
+		<p id="button"><input type="button" value="확인" class="button" onclick="location.href='index.jsp';"></p>
 
 <!--------------------------------------------------------end container------------->
 </html>
