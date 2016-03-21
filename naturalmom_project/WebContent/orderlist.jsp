@@ -30,7 +30,7 @@
 	<style type="text/css">
 		#content { text-align : center; }
 		h2 { color : #004523; text-align : left; margin-top: 20px;}
-		table { width : 720px; margin : auto; }
+		table { width : 100%; margin : auto; }
 		th, td { text-align : center; padding : 5px; }
 		td { border-bottom : solid 1px lightgray; }
 		
