@@ -13,6 +13,12 @@
 	<link rel="stylesheet" href="css/second.css"/>
 		
 	<title>자연맘</title>
+<%
+	request.setCharacterEncoding("UTF-8");
+	String orderPage = request.getParameter("page");
+	
+	if(orderPage==null){ orderPage = "order"; }
+%>
   </head>
   <body>
 
@@ -26,8 +32,12 @@
 		<%@include file="_default_menu.jsp" %>
 		<!-------------Start content--------------------------------------------------->
 		<div id="content">
+		<%if( orderPage.equals("order") ) {%>
 			<%@include file="_order.jsp" %>
+		<%} else {%>
 			<!-- 결제하기 버튼을 누르면 주문완료페이지 include -->
+			<%@include file="_order_complete.jsp" %>
+		<%} %>
 		</div>
 		<!--------------------------------------------------end content--------->
 	</div><!-- end container -->

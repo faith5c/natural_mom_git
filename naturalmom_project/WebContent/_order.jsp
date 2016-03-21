@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
-<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="js/jquery-1.11.3.min.js"></script>
@@ -13,8 +12,6 @@
 <link rel="shortcut icon" href="images/logo.ico" />
 <!--단축키아이콘등록-->
 <link rel="stylesheet" href="css/index.css" />
-
-<title>자연맘</title>
 
 <style type="text/css">
 
@@ -166,7 +163,7 @@ table tr .explain {
 </style>
 
 	<h3 class="order_title">주문하기</h3>
-	<form action="_order_complete.jsp" method="post">
+	<form action="order.jsp?page=order_complete" method="post">
 		<table cellspacing="0" id="product_list">
 			<tr>
 				<td>제품이미지</td>
@@ -262,8 +259,7 @@ table tr .explain {
 				<td style="padding-bottom: 5px;">&nbsp;<input type="checkbox"
 					value="true" name="order_same"
 					style="vertical-align: text-bottim; margin-top: 100px;">
-					&nbsp; <label
-					style="vertical-align: text-bottim; margin-top: 100px;">위와
+					&nbsp; <label style="vertical-align: text-bottim; margin-top: 100px;">위와
 						동일함<label></td>
 			</tr>
 		</table>

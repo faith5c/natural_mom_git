@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="js/jquery-1.11.3.min.js"></script>
@@ -11,17 +10,13 @@
 	<link rel="apple-touch-icon" href="images/logo.ico" /> <!--애플아이콘등록-->
 	<link rel="shortcut icon" href="images/logo.ico" /> <!--단축키아이콘등록-->
 	<link rel="stylesheet" href="css/index.css"/>
-		
-	<title>자연맘</title>
 	
 	<style type = "text/css">
-		
-		body { margin : 0; padding : 0; }
-
-		#container { width : 1024px; margin : 100px auto; }
-		
-		.order_title { margin-bottom : 5px; margin-top : 100px; }
-
+		.order_title { 
+			margin-bottom : 5px; 
+			margin-top : 100px; 
+    		color: #004523;
+		}
 		table tr td { padding : 20px; }
 		table tr td input[type = "radio"] { margin-right : 3px; }
 		table tr td label { margin-right : 25px; }
@@ -39,7 +34,7 @@
 		#product_list
 		{ 
 			width: 100%; padding : 0px; 
-			font : 16px "나눔바른고딕", "맑은 고딕", Arial;
+			font : 14px "나눔바른고딕", "맑은 고딕", Arial;
 			text-align : center;
 		}
 		#product_list tr:first-child td
@@ -85,16 +80,8 @@
 		#button { text-align : center;}
 	</style>
 
-   </head>
-	<body>
-
 <!---Start container----------------------------------------------------------------->
-	
-	<div id="container">		
-		<!--본문 페이지-->
-		<!--JSP로 구현해야 하는 부분-->
 		<h3 class = "order_title">주문완료</h3>
-		<div>  <!-- 주문완료 시작 -->
 			<table cellspacing = "0" id="product_list">
 				<tr>
 					<td width="14%">주문번호</td>
@@ -128,11 +115,8 @@
 						총 주문금액 : 11,300 + 배송비 3,000원 = <b>14,300원</b>
 					</td>
 				</tr>
-				</table> 
-		</div> <!-- 주문완료 끝 -->
+			</table> 
 		<p id="button"><input type="button" value="확인" class="button"></p>
 
-	</div>
 <!--------------------------------------------------------end container------------->
-  </body>
 </html>
