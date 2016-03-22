@@ -98,10 +98,4 @@
 				<input type = "submit" value = "검색" />
 			</form>
 		</div>
-<script>
-	function go_write()
-	{
-		
-	}
-</script>
 </html>
