@@ -33,7 +33,7 @@
 		
 		#product_list
 		{ 
-			width: 90%; padding : 0px; 
+			width: 100%; padding : 0px; 
 			font : 14px "나눔바른고딕", "맑은 고딕", Arial;
 			text-align : center;
 		}
