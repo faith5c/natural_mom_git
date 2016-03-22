@@ -33,6 +33,8 @@
 	<%@ include file = "_admin_product_manage.jsp" %>
 <% } else if (page_param != null && page_param.equals("deleted")) {%>	
 	<%@ include file = "_admin_product_deleted.jsp" %>
+<% } else if (page_param != null && page_param.equals("modify")) { %>
+	<%@ include file = "_admin_product_modify.jsp" %>
 <% } else { %>
 	<%@ include file = "_admin_product_manage.jsp" %>
 <% } %>

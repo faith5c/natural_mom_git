@@ -60,7 +60,7 @@
 				<td><input type = "checkbox" name = "" /></td>
 				<td>10525</td>
 				<td>아토피</td>
-				<td><a href = "#">어성초 비누</a></td>
+				<td><a href = "admin_product.jsp?page=modify">어성초 비누</a></td>
 				<td>[사진]</td>
 				<td>5000(3000)</td>
 				<td>155</td>
