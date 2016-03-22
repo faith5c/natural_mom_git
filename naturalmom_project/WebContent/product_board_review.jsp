@@ -76,7 +76,7 @@
 		margin-top : 10px;
 		margin-left : 10px;
 	}
-	#write input:hover, .review_button input:hover, 
+	#write input:hover, .review_buttons input:hover, 
 	.reply_button input:hover, .reply_buttons input:hover, i:hover { opacity : 0.7; }
 	
 	.review td .review_body:not(:last-child) { border-bottom : 1px solid lightgrey; padding-bottom: 5px; margin-bottom: 5px; }
