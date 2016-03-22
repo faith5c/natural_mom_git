@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <style type = "text/css">
 
 		#inside { padding-top : 70px; padding-left: 220px;
-					margin : 30px auto; color: #85858d; font-size: 14px; }
+					margin : 30px auto;  font-size: 14px; }
 		#inside a { text-decoration: underline; }
 
 		h2 { margin-bottom : 15px; font-size: 24px; color: #004523;}
@@ -58,6 +59,13 @@
 		}
 		.re_title{ width: 80px;}
 		
+		span {
+		color : black;
+		display : inline-block; 
+		width:20px; 
+		text-align : right;
+	}
+		
 	</style>
 <html>
 	<div id="inside">
@@ -74,7 +82,8 @@
 				<tr>
 					<td id = "re_id" class="re_title">댓글작성자</td>
 					<td id = "re_content" colspan="3" width="55%">댓글 내용입니다.</td>
-					<td id = "re_write_day" colspan="2" style="text-align: right">댓글작성일</td>
+					<td id = "re_write_day" colspan="2" style="text-align: right">댓글작성일	
+						<span onclick="location.href='#'"><i class="fa fa-times-circle"></i></span></td>
 				</tr>
 				<tr>
 					<td class="re_title">댓글입력</td>

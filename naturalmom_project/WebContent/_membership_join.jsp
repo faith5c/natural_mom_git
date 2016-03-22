@@ -8,6 +8,7 @@
 	margin : 0px 150px;
 	font : 16px "나눔바른고딕", "맑은 고딕", Arial;
 }
+table { width: 100% }
 
 table td{
 	border: 1px solid white;
@@ -62,7 +63,7 @@ td:FIRST-CHILD {
 			</tr>
 			<tr>
 				<td>비밀번호 확인</td>
-				<td><input type="password" id="pw2" name="pw2"/>&nbsp;
+				<td id="check_pw2"><input type="password" id="pw2" name="pw2" onblur="check_pw2()"/>&nbsp;
 					<span>비밀번호를 한번 더 입력하세요</span></td>
 			</tr>
 			<tr>
@@ -165,6 +166,17 @@ td:FIRST-CHILD {
 			$("#check_pw span").css("color", "red").text("비밀번호가 너무 짧습니다");
 		} else {
 			$("#check_pw span").text("");
+		}
+	}
+	
+	function check_pw2() {
+		var val_pw1= $('#pw').val();
+		var var_pw2 = $('#pw2').val();
+		
+		if( ! (val_pw1 == var_pw2) ){
+			$("#check_pw2 span").css("color", "red").text("비밀번호가 일치하지 않습니다");
+		}else{
+			$("#check_pw2 span").css("color", "gray").text("비밀번호가 일치합니다");
 		}
 	}
 
