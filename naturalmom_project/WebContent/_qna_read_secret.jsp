@@ -58,18 +58,16 @@
 		border : solid 1px #85858D;
 		color : #555555;
 	}
-	.pw_write input[type="button"] { padding : 2px 10px; }
-	
-	.secret input[type="button"] {
+	.pw_write input[type="button"] {
 		background : #cec5ce;
 		border-radius : 5px;
 		color : #635353;
 		border : none;
 		border : 1px solid #85858d;
-		padding : 5px; 
+		padding : 2px 10px; 
 	}
 	
-	.secret input[type="button"]:hover {
+	.pw_write input[type="button"]:hover {
 		opacity : 0.7;
 	}
 	
@@ -83,7 +81,7 @@
 	<td colspan="3">배송일 문의 [1]<span>&nbsp;<i class="fa fa-lock"></i></span></td>
 </tr>
 
-<tr class = "secret">
+<tr>
 	<td colspan="4">
 	<br/>&nbsp;
 	<div class="pw_write"> 

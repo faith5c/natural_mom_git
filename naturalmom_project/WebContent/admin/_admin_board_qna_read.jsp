@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -65,7 +66,26 @@
 	table tr:last-child input:hover, tr:nth-child(1) td input:hover{
 		opacity : 0.7;
 	}
+	.dat span {
+		display : inline-block; 
+		width:20px; 
+		text-align : right;
+	}
+	.dat span:hover {
+		opacity : 0.7;
+	}
 	
+	.dat_write input[type="submit"] {
+		background : #cec5ce;
+		border-radius : 5px;
+		color : #635353;
+		border : none;
+		border : 1px solid #85858d;
+		padding : 5px; 
+	}
+	.dat_write input[type="submit"]:hover {
+		opacity : 0.7;
+	}
 </style>
 
 <form>
@@ -89,12 +109,16 @@
 <tr class="dat">
 	<td>관리자</td>
 	<td colspan="2">안녕하세요 hook4u님! 라벤더 비누는 6월 말 재입고 예정입니다.^^</td>
-	<td style="width:80px;">2015/06/27</td>
+	<td style="width:120px;">2015/06/27
+	<span onclick="location.href='#'"><i class="fa fa-times-circle"></i></span>
+	</td>
 </tr>
 <tr class="dat">
 	<td>gag2</td>
 	<td colspan="2">빨리 재입고 해주세요</td>
-	<td style="width:80px;">2015/06/27</td>
+	<td>2015/06/27
+	<span onclick="location.href='#'"><i class="fa fa-times-circle"></i></span>
+	</td>
 </tr>
 <tr class="dat_write">
 	<td>관리자</td>

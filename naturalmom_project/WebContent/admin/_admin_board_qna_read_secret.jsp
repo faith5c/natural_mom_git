@@ -59,7 +59,17 @@
 		border : solid 1px #85858D;
 		color : #555555;
 	}
-	.pw_write input[type="button"] { padding : 2px 10px; }
+	.pw_write input[type="button"] { 
+		padding : 2px 10px; 
+		background : #cec5ce;
+		border-radius : 5px;
+		color : #635353;
+		border : none;
+		border : 1px solid #85858d;
+	}
+	.pw_write input[type="button"]:hover { 
+		opacity : 0.7;
+	}
 </style>
 
 <form>

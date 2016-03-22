@@ -9,7 +9,7 @@
 <style type = "text/css">
 	
 
-			#in { 
+		#in { 
 					font-family : "나눔바른고딕", "맑은 고딕";
 					width : 764px;
 					margin : 50px auto;
