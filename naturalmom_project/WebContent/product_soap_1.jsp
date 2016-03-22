@@ -63,7 +63,7 @@
 					<tr>
 						<td colspan="2">
 						<button>장바구니</button>
-						<button>바로구매</button>
+						<button onclick="location.href='order.jsp';">바로구매</button>
 						</td>
 					</tr>
 				</table>
