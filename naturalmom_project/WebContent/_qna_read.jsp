@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -62,6 +63,14 @@
 	table tr:last-child input:hover, tr:nth-child(1) td input:hover{
 		opacity : 0.7;
 	}
+	.dat span {
+		display : inline-block; 
+		width:20px; 
+		text-align : right;
+	}
+	.dat span:hover {
+		opacity : 0.7;
+	}
 </style>
 
 <form>
@@ -86,12 +95,17 @@
 <tr class="dat">
 	<td>관리자</td>
 	<td colspan="2">안녕하세요 hook4u님! 라벤더 비누는 6월 말 재입고 예정입니다.^^</td>
-	<td style="width:80px;">2015/06/27</td>
+	<td style="width:120px;">
+	2015/06/27
+	<span onclick="location.href='#'"><i class="fa fa-times-circle"></i></span>
+	</td>
 </tr>
 <tr class="dat">
 	<td>gag2</td>
 	<td colspan="2">빨리 재입고 해주세요</td>
-	<td style="width:80px;">2015/06/27</td>
+	<td style="width:80px;">2015/06/27
+	<span onclick="location.href='#'"><i class="fa fa-times-circle"></i></span>
+	</td>
 </tr>
 <tr class="dat_write">
 	<td>faith5c</td>
@@ -99,7 +113,7 @@
 		<textarea style="width:100%; resize : none;" cols="30"></textarea>
 	</td>
 	<td>
-		<input type="submit" style="padding : 2px 10px; " value="댓글등록">
+		<input type="submit" style="padding : 2px 10px;" value="댓글등록">
 	</td>
 </tr>
 <tr>
