@@ -81,8 +81,8 @@
 	
 </tr>
 <tr style="background: #918686; color: white;">
+				<th>제품번호:52</th>
 				<th>아마씨 비누</th>
-				<th>52</th>
 				<th>향이 너무좋아요~</th>
 				<th>★★★★☆</th>
 
