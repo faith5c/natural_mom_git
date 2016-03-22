@@ -5,7 +5,7 @@
 
 #inside {
 	text-align: left;
-	margin : 0 150px;
+	margin : 0px 150px;
 	font : 16px "나눔바른고딕", "맑은 고딕", Arial;
 }
 
@@ -17,7 +17,8 @@ table td{
 	color: black;
 }
 
-h3{color: #004523;}
+h2{color: #004523;
+	padding-top: 100px;}
 
 #button { text-align: center; }
 #submit { 
@@ -45,19 +46,19 @@ td:FIRST-CHILD {
 </style>
 <html>
 <div id="inside">
-	<h3>&nbsp;&nbsp;회원가입</h3>
+	<h2>&nbsp;&nbsp;회원가입</h2>
 	<br><hr>
 	<form action="" method="post">
 		<table>
 			<tr>
 				<td>아이디</td>
-				<td><input type="text" id="id" name="id"/>
-					<button id="check_id">중복확인</button></td>
+				<td id="check_id"><input type="text" id="id" name="id" onblur="check_id()"/>
+					<button>중복확인</button>&nbsp;&nbsp;<span>(6-18자 입력)</span></td>
 			</tr>
 			<tr>
 				<td>비밀번호</td>
-				<td><input type="password" id="pw" name="pw"/>&nbsp;
-					(영문, 숫자포함 6-18자 입력)</td>
+				<td id="check_pw"><input type="password" id="pw" name="pw" onblur="check_pw()"/>
+					&nbsp;&nbsp;<span>(영문, 숫자포함 6-18자 입력)</span></td>
 			</tr>
 			<tr>
 				<td>비밀번호 확인</td>
@@ -139,7 +140,35 @@ td:FIRST-CHILD {
 			</tr>
 		</table>
 	</form>
-	
 
 </div>
+<script type="text/javascript">
+	
+	function check_id() {
+		var length_id = $('#id').val().length;
+		
+		console.log(length_id);
+		if( length_id < 6){
+			$("#check_id span").css("color", "red").text("아이디가 너무 짧습니다");
+		} else if( length_id > 18){
+			$("#check_id span").css("color", "red").text("아이디가 너무 깁니다");
+		} else {
+			$("#check_id span").text("");
+		}
+	}
+
+	function check_pw() {
+		var length_pw = $('#pw').val().length;
+		
+		console.log(length_pw);
+		if( length_pw < 6){
+			$("#check_pw span").css("color", "red").text("비밀번호가 너무 짧습니다");
+		} else {
+			$("#check_pw span").text("");
+		}
+	}
+
+</script>
+
 </html>
+
