@@ -18,9 +18,11 @@
   <%
   	request.setCharacterEncoding("UTF-8");
   
-	boolean terms = false;
+	String flag ="";
   	if(request.getParameter("agree1") != null) 
-  		terms = request.getParameter("agree1").equals("agree") ? true : false;
+  		flag = request.getParameter("agree1").equals("agree") ? "join" : "";
+  	if(request.getParameter("page")!=null)
+  		flag =request.getParameter("page").equals("complete")? "complete" : "";
   	%>
   <body>
 
@@ -34,10 +36,12 @@
 		<%@include file="_default_menu.jsp" %>
 		<!-------------Start content--------------------------------------------------->
 		<div id="content">
-		<%if(terms){  terms = false; %>
-			<jsp:include page="_membership_join.jsp" />
-		<%} else { %>
+		<%if(flag.equals("")){   %>
 			<jsp:include page="_membership_terms.jsp" />
+		<%} else if(flag.equals("join")) { %>
+			<jsp:include page="_membership_join.jsp" />
+		<%} else if(flag.equals("complete")){%>
+			<jsp:include page="_membership_complete.jsp" />
 		<%} %>
 		</div>
 		<!--------------------------------------------------end content--------->

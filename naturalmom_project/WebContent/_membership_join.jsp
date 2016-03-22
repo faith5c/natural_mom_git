@@ -49,7 +49,7 @@ td:FIRST-CHILD {
 <div id="inside">
 	<h2>&nbsp;&nbsp;회원가입</h2>
 	<br><hr>
-	<form action="" method="post">
+	<form action="membership.jsp?page=complete" method="post">
 		<table>
 			<tr>
 				<td>아이디</td>
