@@ -53,7 +53,19 @@
 		.review { margin : 0 auto;  }
 		.page { text-align : center; margin-bottom: 15px;}
 		.search{text-align:center;}
-		.search input[type="submit"] {padding : 2px 10px;}
+		.search input[type="submit"] 
+		{
+			padding : 5px 10px;
+			margin-left : 3px;
+			margin-right : 3px; 
+			background-color : #85858D;
+			color : white;
+			font-family : "나눔바른고딕", "맑은 고딕";
+			font-size : 16px;
+			border-radius : 10px; 
+			border : 0px;
+		}
+		.search input[type="submit"]:hover { opacity : 0.7; }
 		
 		#yuback1{margin-top:50px;}
 	</style>
@@ -121,7 +133,7 @@
 				</select>
 				<input type="text" placeholder="제목, 내용, 글쓴이, 제목+내용" name="search">
 				<input type="submit" value="검색">
-	</div>	
+		</div>	
 	</div>
 
  </body>
