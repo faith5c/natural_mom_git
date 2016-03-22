@@ -71,6 +71,16 @@
 	.dat span:hover {
 		opacity : 0.7;
 	}
+	
+	.dat_write input[type="submit"] {
+		background : #cec5ce;
+		border-radius : 5px;
+		color : #635353;
+		border : none;
+		border : 1px solid #85858d;
+		padding : 5px; 
+	}
+	
 </style>
 
 <form>

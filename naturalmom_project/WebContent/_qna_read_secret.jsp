@@ -59,6 +59,20 @@
 		color : #555555;
 	}
 	.pw_write input[type="button"] { padding : 2px 10px; }
+	
+	.secret input[type="button"] {
+		background : #cec5ce;
+		border-radius : 5px;
+		color : #635353;
+		border : none;
+		border : 1px solid #85858d;
+		padding : 5px; 
+	}
+	
+	.secret input[type="button"]:hover {
+		opacity : 0.7;
+	}
+	
 </style>
 
 <form>
@@ -69,7 +83,7 @@
 	<td colspan="3">배송일 문의 [1]<span>&nbsp;<i class="fa fa-lock"></i></span></td>
 </tr>
 
-<tr>
+<tr class = "secret">
 	<td colspan="4">
 	<br/>&nbsp;
 	<div class="pw_write"> 
