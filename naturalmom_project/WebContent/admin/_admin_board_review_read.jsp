@@ -2,17 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-  <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script src="js/jquery-1.11.3.min.js"></script>
-	<!-- [if lt IE 9]><script src="js/html5shiv.js"></script><![endif] -->
-	
-	<link rel="apple-touch-icon" href="images/logo.ico" /> <!--애플아이콘등록-->
-	<link rel="shortcut icon" href="images/logo.ico" /> <!--단축키아이콘등록-->
-	<link rel="stylesheet" href="css/admin_common.css"/>
-		
+<html>	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<title>자연맘</title>
 <style type="text/css">
 	* { font-family : "나눔바른고딕", "맑은 고딕"}
@@ -71,7 +62,26 @@
 	table tr:last-child input:hover, tr:nth-child(1) td input:hover{
 		opacity : 0.7;
 	}
+	.dat span {
+		display : inline-block; 
+		width:20px; 
+		text-align : right;
+	}
+	.dat span:hover {
+		opacity : 0.7;
+	}
 	
+	.dat_write input[type="submit"] {
+		background : #cec5ce;
+		border-radius : 5px;
+		color : #635353;
+		border : none;
+		border : 1px solid #85858d;
+		padding : 5px; 
+	}
+	.dat_write input[type="submit"]:hover {
+		opacity : 0.7;
+	}
 </style>
 
 <form>
@@ -98,12 +108,16 @@
 <tr class="dat">
 	<td>자연맘</td>
 	<td colspan="2">저희 자연맘을이용해주셔서 감사합니다. 마일리지 10점 올려드렸어요^^</td>
-	<td style="width:80px;">2015/06/27</td>
+	<td style="width:120px;">2015/06/27
+	<span onclick="location.href='#'"><i class="fa fa-times-circle"></i></span>
+	</td>
 </tr>
 <tr class="dat">
 	<td>babo</td>
 	<td colspan="2">먹어도되나요?</td>
-	<td style="width:80px;">2015/07/19</td>
+	<td>2015/07/19
+	<span onclick="location.href='#'"><i class="fa fa-times-circle"></i></span>
+	</td>
 </tr>
 <tr class="dat_write">
 	<td>자연맘</td>

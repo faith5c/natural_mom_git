@@ -85,9 +85,6 @@
 		#result_table tr td:last-child { border-right: 1px solid grey; }
 		#result_table tr td { padding : 10px; }
 
-
-
-
 		#buttons { margin-top: 20px; text-align: right; }
 		#buttons input[type = "button"]
 		{
