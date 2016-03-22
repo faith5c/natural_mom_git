@@ -21,7 +21,7 @@ table td{
 h2{color: #004523;
 	padding-top: 100px;}
 
-#button { text-align: center; }
+
 #submit { 
 			padding : 7px 30px;
 			margin-left : 5px;
@@ -54,7 +54,7 @@ td:FIRST-CHILD {
 			<tr>
 				<td>아이디</td>
 				<td id="check_id"><input type="text" id="id" name="id" onblur="check_id()"/>
-					<button>중복확인</button>&nbsp;&nbsp;<span>(6-18자 입력)</span></td>
+					<input type="button" value="중복확인" name="check_id_double" onclick="pop_id()"/>&nbsp;&nbsp;<span>(6-18자 입력)</span></td>
 			</tr>
 			<tr>
 				<td>비밀번호</td>
@@ -125,7 +125,7 @@ td:FIRST-CHILD {
 					<input type="number" id="post_num1" name="post_num1" disabled="disabled"/>-
 					<input type="number" id="post_num2" name="post_num2" disabled="disabled"/>
 					<!-- post_num1 + post_num2 = addr_post -->
-					<button id="find_post_num">우편번호 찾기</button><br>
+					<input type="button" value="우편번호 찾기" name="find_postnum" onclick="pop_postNum()"/><br>
 					<input type="text" id="address" name="address" disabled="disabled"/>
 				</td>
 			</tr>
@@ -137,7 +137,7 @@ td:FIRST-CHILD {
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2"><p id="button"><input type="submit" id="submit" value="확인" /></p></td>
+				<td colspan="2" style="text-align: center"><input type="submit" id="submit" value="확인" /></td>
 			</tr>
 		</table>
 	</form>
@@ -179,6 +179,14 @@ td:FIRST-CHILD {
 			$("#check_pw2 span").css("color", "gray").text("비밀번호가 일치합니다");
 		}
 	}
+	 
+	 function pop_id() {
+		window.open("membership_pop_checkId.jsp", "CheckID", "width=402px, height=270px, left=600px, top=200px, scrollbars=no, toolbar=no, location=no");
+	 }
+	 
+	 function pop_postNum() {
+		window.open("membership_pop_post.jsp", "FindPostNumber", "width=402px, height=480px, left=600px, top=200px, scrollbars=no, toolbar=no, location=no");
+	 }
 
 </script>
 
