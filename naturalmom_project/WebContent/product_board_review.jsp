@@ -113,7 +113,7 @@
 			</tr>
 			<tr>
 				<td>52</td>
-				<td><a href="#">향이 너무 좋아요~</a></td>
+				<td><a href="javascript:void();">향이 너무 좋아요~</a></td>
 				<td>hook4u</td>
 				<td>2015/06/17</td>
 				<td>★★★★☆</td>
@@ -136,7 +136,7 @@
 			
 				<tr>
 				<td>52</td>
-				<td><a href="#">피부가 부들부들해요~~</a></td>
+				<td><a href="javascript:void();">피부가 부들부들해요~~</a></td>
 				<td>agamom</td>
 				<td>2015/06/17</td>
 				<td>★★★★★</td>
@@ -150,7 +150,7 @@
 			</tr>
 				<tr>
 				<td>52</td>
-				<td><a href="#">거품이 까매요...</a></td>
+				<td><a href="javascript:void();">거품이 까매요...</a></td>
 				<td>maniac</td>
 				<td>2015/06/17</td>
 				<td>★★★☆☆</td>
