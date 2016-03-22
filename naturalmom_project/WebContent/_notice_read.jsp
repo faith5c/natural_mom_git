@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -61,7 +62,23 @@
 	table tr:last-child input:hover{
 		opacity : 0.7;
 	}
+	.dat span {
+		display : inline-block; 
+		width:20px; 
+		text-align : right;
+	}
+	.dat span:hover {
+		opacity : 0.7;
+	}
 	
+	.dat_write input[type="submit"] {
+		background : #cec5ce;
+		border-radius : 5px;
+		color : #635353;
+		border : none;
+		border : 1px solid #85858d;
+		padding : 5px; 
+	}
 </style>
 
 <form>
@@ -82,7 +99,9 @@
 <tr class="dat">
 	<td>nata1116</td>
 	<td colspan="2">주문순서대로 발송되나염??</td>
-	<td style="width:80px;">2015/06/27</td>
+	<td style="width:120px;">2015/06/27
+	<span onclick="location.href='#'"><i class="fa fa-times-circle"></i></span>
+	</td>
 </tr>
 <tr class="dat_write">
 	<td>faith5c</td>

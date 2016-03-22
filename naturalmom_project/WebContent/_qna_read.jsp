@@ -113,7 +113,7 @@
 <tr class="dat">
 	<td>gag2</td>
 	<td colspan="2">빨리 재입고 해주세요</td>
-	<td style="width:80px;">2015/06/27
+	<td>2015/06/27
 	<span onclick="location.href='#'"><i class="fa fa-times-circle"></i></span>
 	</td>
 </tr>
