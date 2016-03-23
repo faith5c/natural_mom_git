@@ -43,7 +43,7 @@
 					</tr>
 					<tr>
 						<td>판매 가격</td>
-						<td class="price">3500원</td>
+						<td><label id="selling_price">3500</label>원</td>
 					</tr>
 					<tr>
 						<td>유통 기한</td>
@@ -60,7 +60,7 @@
 					<tr>
 						<td colspan="2">
 							총계
-							<label id="total">3500</label>원
+							<label id="total_price">3500</label>원
 						</td>
 					</tr>
 					<tr>
@@ -92,14 +92,21 @@
 
 	<script type="text/javascript">
 		$(function(){
-			var product_price = $(".price").html();
-			console.log(product_price);
+			var selling_price = $("#selling_price").html();
+			console.log("판매가 : "+selling_price);
 			
 			var purchase_count = $("#purchase_count").val();
-			console.log(purchase_count);
+			console.log("개수 : "+purchase_count);
 			
-			var total_price = product_price * count;
-			console.log(total_price);
+			var total_price = selling_price * purchase_count;
+			console.log("총계 : "+ total_price);
+			
+			$("#purchase_count").change(function(){
+				total_price = selling_price * $(this).val();
+				$("#total_price").html(total_price);
+				console.log("총계 : "+ total_price);
+			});
+			
 		})
 	</script>	
 
