@@ -6,13 +6,13 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <style type="text/css">
 
-	#container { width : 764px; margin : 40px auto; }
-	#container h2 { color: #004523; }
+	#container { width : 764px; margin : 50px auto; }
+	#container h2 { color: #004523; margin-bottom : 15px; }
 	
 	table { width : 100%; margin : 0 auto; }
 	table td { padding : 10px; }
 	
-	table tr:nth-child(2) td
+	table tr:nth-child(1) td
 	{ 
 		text-align : center; 
 		background: #918686;
@@ -21,13 +21,13 @@
 		border-top : solid 1px #cccccc; 
 		border-bottom : solid 1px #cccccc;
 	}
-	table tr:nth-child(3) td div
+	table tr:nth-child(2) td div
 	{ 
 		text-align : right; 
 		color : gray; 
 		font-size : 0.8em;
 	}
-	table tr:nth-child(4) td
+	table tr:nth-child(3) td
 	{ 
 		border-bottom : solid 1px #CCCCCC; 
 		padding : 10px 20px 30px 20px; 
@@ -83,13 +83,12 @@
 </style>
 
 <form action = "#" method = "post">
+<h2>상품 후기</h2>
+
 <table cellspacing = "0">
-	<tr>
-		<td><h2>상품후기</h2></td>
-	</tr>
 <!-- 제목 부분 -->
 	<tr>
-		<td>제품번호: 52</td>
+		<td>상품 번호: 52</td>
 		<td>아마씨 비누</td>
 		<td>향이 너무좋아요~</td>
 		<td>★★★★☆</td>
