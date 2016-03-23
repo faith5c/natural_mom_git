@@ -65,6 +65,10 @@
 		width:20px; 
 		text-align : right;
 	}
+	
+	span:hover {
+		opacity : 0.7;
+	}
 		
 	</style>
 <html>
