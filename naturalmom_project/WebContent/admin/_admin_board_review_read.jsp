@@ -59,11 +59,12 @@
 		background-color : #F0F0F0;
 		padding : 10px;	
 	}
+	.dat_write td textarea { font-family : "나눔바른고딕", "맑은 고딕"; }
 	
 	.dat span 
 	{
 		display : inline-block; 
-		width:20px; 
+		width: 20px; 
 		text-align : right;
 	}
 	.dat span:hover { opacity : 0.7; }

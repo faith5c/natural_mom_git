@@ -11,7 +11,7 @@
 		width : 764px;
 		margin : 50px auto;
 		color: #85858d; 
-	}	
+	}
 	#in h2 { margin-bottom : 15px; color: #004523; }
 	#in a { text-decoration : none; color : black; }
 	#in a:hover  { opacity : 0.7; }
@@ -38,6 +38,11 @@
 	#review_write td { text-align : right; }
 	#page { text-align : center; margin-bottom: 15px; }
 	#search { text-align:center; }
+	#search input, #search select
+	{
+		font-size : 16px;
+		font-family : "나눔바른고딕", "맑은 고딕";
+	}
 	
 	#search input[type="submit"] 
 	{
