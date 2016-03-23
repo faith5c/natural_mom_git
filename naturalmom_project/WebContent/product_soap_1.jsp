@@ -25,6 +25,9 @@
 	<div id="container">
 		<%@include file="_default_menu.jsp" %>
 		<!-------------Start content--------------------------------------------------->
+	
+		
+		
 		<div id="content">
 			<div id="soap_img">
 				<img src="images/soap1.jpg" alt="아마씨사진"/>
@@ -40,7 +43,7 @@
 					</tr>
 					<tr>
 						<td>판매 가격</td>
-						<td>3500원</td>
+						<td class="price">3500원</td>
 					</tr>
 					<tr>
 						<td>유통 기한</td>
@@ -52,7 +55,7 @@
 					</tr>
 					<tr>
 						<td>구매 수량</td>
-						<td><input type="number" min="1" max="100" step="1" value="1" size="3"/></td>
+						<td><input id="purchase_count" type="number" min="1" max="100" step="1" value="1" size="3"/></td>
 					</tr>
 					<tr>
 						<td colspan="2">
@@ -87,6 +90,18 @@
 		<%@include file="_default_footer.jsp" %>
 	</footer>
 
+	<script type="text/javascript">
+		$(function(){
+			var product_price = $(".price").html();
+			console.log(product_price);
+			
+			var purchase_count = $("#purchase_count").val();
+			console.log(purchase_count);
+			
+			var total_price = product_price * count;
+			console.log(total_price);
+		})
+	</script>	
 
   </body>
 </html>
