@@ -50,6 +50,7 @@
 	
 	.dat td { background-color : #F0F0F0; }
 	.dat td:first-child { text-align : center; border-bottom : dotted 1px #cccccc; }
+	.dat td:last-child { width : 120px; }
 	.dat td { font-size : 0.9em; border-bottom : dotted 1px #cccccc; }
 
 	.dat_write td:first-child { text-align : center; }
@@ -109,7 +110,7 @@
 	<tr class = "dat">
 		<td>자연맘</td>
 		<td colspan="2">저희 자연맘을이용해주셔서 감사합니다. 마일리지 10점 올려드렸어요^^</td>
-		<td style="width:120px;">
+		<td>
 			2015/06/27
 			<span onclick="location.href='#'"><i class="fa fa-times-circle"></i></span>
 		</td>
