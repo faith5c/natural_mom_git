@@ -32,7 +32,7 @@
 	
 	table tr:first-child td:last-child input { width : 99%; }
 	table tr:nth-child(2) td:last-child input { width : 30%; }
-	table tr:nth-child(3) td:last-child textarea { width : 100%; }
+	table tr:nth-child(3) td:last-child textarea { width : 100%; resize: none; }
 	
 	table tr td:last-child input
 	{
@@ -74,7 +74,7 @@
 		<tr>
 			<td>작성자</td>
 			<td>
-				<input type="text" maxlength="15" readonly="readonly"/>
+				<input type="text" maxlength="12" readonly="readonly"/>
 			</td>
 		</tr>
 		<tr>
