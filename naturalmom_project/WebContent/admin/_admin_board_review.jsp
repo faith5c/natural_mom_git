@@ -1,5 +1,4 @@
 <!-- admin_board.jsp - 게사판 - 상품후기 - 목록 -->
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE>
@@ -14,10 +13,10 @@
 		color: #85858d; 
 	}	
 	#in h2 { margin-bottom : 15px; color: #004523; }
+	#in a { text-decoration : none; color : black; }
+	#in a:hover  { opacity : 0.7; }
 		
 	#review { width: 100%; padding : 0px; margin: 0 auto; }
-	#review a { text-decoration : none; color : black; }
-	#review a:hover  { opacity : 0.7; }	
 	
 	#review tr {border-top : 1px solid grey; }	
 	#review tr th
@@ -67,17 +66,10 @@
 	}
 	
 	#review_write input[type="button"]:hover, #search input[type="submit"]:hover { opacity : 0.7; }
+	
 </style>
- <body>
-<!--  Start header --------------------------------------------------------------------->
-<header>
 
-</header>
-<!-----------------------------------------------------------end header ----------->	
-<!---Start container----------------------------------------------------------------->
- 
  <div id ="in">
-  
 	<h2>상품 후기</h2>
 	<table id = "review" cellspacing="0">
 		<tr>
@@ -119,11 +111,13 @@
 			</td>
 		</tr>
 	</table>
+<!-- 페이지 부분 -->
 		<div id = "page">
 			<a href="#">〈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="#">〉</a>
 		</div>
+<!-- 검색 부분 -->
 		<div id = "search" >
 			<select>
 				<option value="title">제목</option>
@@ -135,6 +129,5 @@
 			<input type="submit" value="검색">
 		</div>	
 	</div>
- </body>
 </html>
 
