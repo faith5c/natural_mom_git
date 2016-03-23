@@ -51,6 +51,8 @@ h2{color: #004523;}
 	border : 0px;
 }
 
+#submit:hover { opacity : 0.7; }
+
 td:FIRST-CHILD {
 	width: 20%;
 	vertical-align: top;
