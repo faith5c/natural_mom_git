@@ -88,13 +88,13 @@
 					<td><input type = "text" id = "title" name = "title" /></td>
 				</tr>
 				<tr>
-					<td><label for = "content" id = "content">내용</label></td><td></td>
+					<td><label for = "event_content" >내용</label></td><td></td>
 				</tr>
-				<tr><td colspan = "2"><textarea name = "content" id = "content"></textarea></td></tr>
+				<tr><td colspan = "2"><textarea name = "event_content" id = "event_content"></textarea></td></tr>
 				<tr>
 					<td colspan = "2" id = "buttons">
 						<input type = "submit" value = "저장">
-						<input type = "button" value = "취소" id = "cancel" name = "cancel">
+						<input type = "button" value = "취소" id = "cancel" name = "cancel" onclick="check()">
 					</td>
 				</tr>
 			</table>
@@ -102,5 +102,16 @@
 	</div>
 <!--------------------------------------------------------end container------------->
   </body>
+  
+  <script type="text/javascript">
+  
+  	function check() {
+  		var write = nicEditors.findEditor('event_content').getContent();
+  		
+  		alert(write);
+  		
+	}
+ 		
+  </script>
 
 </html>
