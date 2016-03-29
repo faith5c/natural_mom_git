@@ -9,6 +9,12 @@
 	bkLib.onDomLoaded(function(){
 		new nicEditor({maxHeight:300}).panelInstance('review_write')
 	});
+	
+	function viewContent()
+	{
+		var write = nicEditors.findEditor('review_write').getContent();
+		alert(write);
+	}
 </script>	
 	
 <style type="text/css">
@@ -86,7 +92,7 @@
 		<tr>
 			<td colspan="2">
 				<input type="submit" value="확인">
-				<input type="button" value="취소" onclick = "location.href ='admin_board.jsp?page=review'">
+				<input type="button" value="취소" onclick = "viewContent();">
 			</td>
 		</tr>
 	</table>
