@@ -32,6 +32,12 @@
 			$(this).removeClass("over");
 		});
 	});
+	
+	function write_popup()
+	{
+		window.open("review_write_popup.jsp", "카테고리 등록", "width = 800px, height = 500px, left = 200px, top = 200px, scrollbars = no, toobar = no, menubar = no, status = no, location = no, resizeable = no");
+	}
+	
 </script>
 
 <style type = "text/css">
@@ -124,7 +130,7 @@
   	<table id="review" cellspacing="0">
 		<tr id = "write">
 			<td colspan="5">
-				<input type = "button" value = "글쓰기" />
+				<input type = "button" value = "글쓰기" onclick = "write_popup();" />
 			</td>
 		</tr>
 		<tr id = "title">

@@ -1,9 +1,11 @@
-<!-- 사용자 - 게시판 - 상품후기 - 글쓰기 -->
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>자연맘 - 상품 후기 쓰기</title>
+
 <script type="text/javascript" src="../js/nicEdit.js"></script>
 <script type="text/javascript">
 	bkLib.onDomLoaded(function(){
@@ -62,11 +64,13 @@
 		border : 0px;
 	}
 	table tr:last-child input:hover { opacity : 0.7; }
-
-</style>
 	
+</style>
+
+</head>
+<body>
 <div id="in">
-	<h2>상품 후기 - 글쓰기</h2>
+	<h2>상품후기 - 글쓰기</h2>
 	<form action="#" method="post">
 	<table cellspacing="2">
 		<tr>
@@ -92,10 +96,11 @@
 		<tr>
 			<td colspan="2">
 				<input type="submit" value="확인">
-				<input type="button" value="취소" onclick = "viewContent();">
+				<input type="button" value="취소" onclick = "window.close();">
 			</td>
 		</tr>
 	</table>
 	</form>
 </div>
+</body>
 </html>
