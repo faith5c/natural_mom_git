@@ -128,14 +128,12 @@
 			</td>
 		</tr>
 		<tr id = "title">
-			<td>번호</td>
 			<td>제목</td>
 			<td>작성자</td>
 			<td>작성일</td>
 			<td>만족도</td>
 		</tr>
 		<tr id = "sub_title">
-			<td>52</td>
 			<td><a href="javascript:void();">향이 너무 좋아요~</a></td>
 			<td>hook4u</td>
 			<td>2015/06/17</td>
@@ -199,7 +197,6 @@
 				</div>
 			</td>
 		<tr id = "sub_title">
-			<td>52</td>
 			<td><a href="javascript:void();">피부가 부들부들해요~~</a></td>
 			<td>agamom</td>
 			<td>2015/06/17</td>
@@ -243,7 +240,6 @@
 			</td>
 		</tr>
 		<tr id = "sub_title">
-			<td>52</td>
 			<td><a href="javascript:void();">거품이 까매요...</a></td>
 			<td>maniac</td>
 			<td>2015/06/17</td>
