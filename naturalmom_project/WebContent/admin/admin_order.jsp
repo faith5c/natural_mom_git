@@ -47,19 +47,18 @@
 		table tr:not(:first-child) td:nth-child(2), table tr:not(:first-child) td:nth-child(5), table tr:not(:first-child) td:nth-child(7), 
 		table tr:not(:first-child) td:nth-child(8), table tr:not(:first-child) td:nth-child(9),  td:nth-child(6) { text-align: center; }
 		table tr:not(:first-child) td:nth-child(2), table tr:not(:first-child),
-		table tr:not(:first-child) td:nth-child(10) { text-align: right; }
+		table tr:not(:first-child) td:nth-child(9) { text-align: right; }
 
-		table tr:first-child td:nth-child(1){ width:5%; }
+		table tr:first-child td:nth-child(1){ width:7%; }
 		table tr:first-child td:nth-child(2){ width:11%; }
-		table tr:first-child td:nth-child(3){ width:9%; }
-		table tr:first-child td:nth-child(4){ width:9%; }
-		table tr:first-child td:nth-child(5){ width:9%; }
-		table tr:first-child td:nth-child(6){ width:9%; }
-		table tr:first-child td:nth-child(7){ width:6%; }
-		table tr:first-child td:nth-child(8){ width:9%; } 
-		table tr:first-child td:nth-child(9){ width:14%; } 
-		table tr:first-child td:nth-child(10){ width:11%; } 
-		table tr:first-child td:nth-child(11){ width:8%; } 
+		table tr:first-child td:nth-child(3){ width:10%; }
+		table tr:first-child td:nth-child(4){ width:10%; }
+		table tr:first-child td:nth-child(5){ width:10%; }
+		table tr:first-child td:nth-child(6){ width:8%; }
+		table tr:first-child td:nth-child(7){ width:9%; }
+		table tr:first-child td:nth-child(8){ width:14%; } 
+		table tr:first-child td:nth-child(9){ width:11%; } 
+		table tr:first-child td:nth-child(10){ width:10%; } 
 
 		#buttons { margin-top: 20px; text-align: right; }
 		#buttons input[type = "button"]
@@ -114,7 +113,6 @@
 				<td><a href = "#">▼ 주문일</a></td>
 				<td><a href = "#">▼ 주문번호</a></td>
 				<td><a href = "#">▼ 주문자</a></td>
-				<td><a href = "#">▼ 묶음선택</a></td>
 				<td><a href = "#">▼ 상품명</a></td>
 				<td><a href = "#">▼ 개수</a></td>
 				<td><a href = "#">▼ 결제금액</a></td>
@@ -127,7 +125,6 @@
 				<td>2016-03-04</td>
 				<td>242424</td>
 				<td>윤수민</td>
-				<td></td>
 				<td>어성초 비누</td>
 				<td>2</td>
 				<td>11,500</td>
@@ -150,7 +147,6 @@
 				<td>2016-03-05</td>
 				<td>242425</td>
 				<td>최소라</td>
-				<td>○</td>
 				<td>숯 비누</td>
 				<td>2</td>
 				<td>12,500</td>
@@ -173,7 +169,6 @@
 				<td>2016-03-05</td>
 				<td>242426</td>
 				<td>최소라</td>
-				<td>○</td>
 				<td>해초 비누</td>
 				<td>1</td>
 				<td>5,500</td>
@@ -196,7 +191,6 @@
 				<td>2016-03-05</td>
 				<td>242427</td>
 				<td>정미니</td>
-				<td></td>
 				<td>숯 비누</td>
 				<td>1</td>
 				<td>7,500</td>
