@@ -5,12 +5,7 @@
 	<script type="text/javascript">
 		bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
 	</script>
-	<script>
-		function reg_popup()
-		{
-			window.open("admin_product_popup.jsp", "카테고리 등록", "width = 420px, height = 430px, left = 200px, top = 200px, scrollbars = no, toobar = no, menubar = no, status = no, location = no, resizeable = no");
-		}
-	</script>
+	
 	<style type = "text/css">
 		#container { width : 1024px; margin : 50px auto; color: #85858d; }
 		
@@ -81,7 +76,6 @@
 						<select name = "cartegory" id = "category">
 							<option>분류를 선택하세요.</option>
 						</select>
-						<input type = "button" onclick = "reg_popup();" value = "카테고리 등록">
 					</td>
 				</tr>
 				<tr>
