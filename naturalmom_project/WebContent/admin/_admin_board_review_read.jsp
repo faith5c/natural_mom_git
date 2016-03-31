@@ -109,15 +109,15 @@
 <!-- 댓글 부분 -->
 	<tr class = "dat">
 		<td>자연맘</td>
-		<td colspan="2">저희 자연맘을이용해주셔서 감사합니다. 마일리지 10점 올려드렸어요^^</td>
+		<td colspan="2">구매해주셔서 고맙습니다. ^^ </td>
 		<td>
-			2015/06/27
+			2015/03/22
 			<span onclick="location.href='#'"><i class="fa fa-times-circle"></i></span>
 		</td>
 	</tr>
 	<tr class = "dat">
-		<td>babo</td>
-		<td colspan="2">먹어도되나요?</td>
+		<td>hook4u</td>
+		<td colspan="2">또살게여~</td>
 		<td>
 			2015/07/19
 			<span onclick="location.href='#'"><i class="fa fa-times-circle"></i></span>

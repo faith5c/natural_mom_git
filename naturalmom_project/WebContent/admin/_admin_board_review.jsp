@@ -99,18 +99,18 @@
 		<tr>
 			<td>25</td>
 			<td>아마씨 비누</td>
-			<td><a href="admin_board.jsp?page=review&r=2">피부가 부들부들해염~~</td>
+			<td><a href="admin_board.jsp?page=review&r=2">피부가 부들부들해요~~</td>
 			<td>agamom</td>
 			<td>2015/04/10</td>
-			<td>★★★☆☆</td></a>
+			<td>★★★★★</td></a>
 		</tr>
 		<tr>
 			<td>88</td>
 			<td>숯 비누</td>
-			<td><a href="admin_board.jsp?page=review&r=3">숯비누 레알인생템임!!</td>
+			<td><a href="admin_board.jsp?page=review&r=3">거품이까매요...</td>
 			<td>sutzzang</td>
 			<td>2015/04/08</td>
-			<td>★★★★★</td></a>
+			<td>★★★☆☆</td></a>
 		</tr>
 		
 		<tr id = "review_write">
