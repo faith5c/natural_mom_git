@@ -13,8 +13,10 @@
 	<link rel="stylesheet" href="css/product_soap.css"/>
 		
 	<title>자연맘</title>
+	
   </head>
   <body>
+
 
 
 	<header>
@@ -65,8 +67,9 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-						<button>장바구니</button>
-						<button onclick="location.href='order.jsp';">바로구매</button>
+						<button style="width:85px; padding : 13px 10px; margin : 0 5px;" >장바구니</button>
+						<button style="width:85px; padding : 13px 10px; margin : 0 5px;">관심상품</button>
+						<button style="width:85px; padding : 13px 10px; margin : 0 5px; background-color : #000000" onclick="location.href='order.jsp';">바로구매</button>
 						</td>
 					</tr>
 				</table>
