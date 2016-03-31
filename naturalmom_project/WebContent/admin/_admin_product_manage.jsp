@@ -53,7 +53,7 @@
 				<td><a href = "#">▼ 가격(원가)</a></td>
 				<td><a href = "#">▼ 재고</a></td>
 				<td><a href = "#">▼ 진열 상태</a></td>
-				<td><a href = "#">▼ 재고 상태</a></td>
+				<td><a href = "#">▼ 판매 상태</a></td>
 				<td><a href = "#">▼ 총 누적판매량</a></td>
 			</tr>
 			<tr>
