@@ -6,11 +6,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>자연맘 - 상품 후기 쓰기</title>
 
-<script type="text/javascript" src="../js/nicEdit.js"></script>
+<script type="text/javascript" src="js/nicEdit.js"></script>
 <script type="text/javascript">
 	bkLib.onDomLoaded(function(){
 		new nicEditor({maxHeight:300}).panelInstance('review_write')
-	});
+		});
 	
 	function viewContent()
 	{
@@ -49,7 +49,7 @@
 	}
 	
 	table tr:last-child td { text-align : right; }
-	table tr:last-child input { font-family : "나눔바른고딕", "맑은 고딕"; font-size : 16px; }
+	table tr:last-child input, table tr textarea { font-family : "나눔바른고딕", "맑은 고딕"; font-size : 16px; }
 	
 	table tr:last-child input 
 	{	
