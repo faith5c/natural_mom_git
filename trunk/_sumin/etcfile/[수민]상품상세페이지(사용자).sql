@@ -8,6 +8,7 @@
 -- 상품 상세 페이지 
 -- (sql : 상품번호를 받아올 필요가 있다. 상품번호에 해당하는 데이터 가져옴)
 -- (html : 판매상태 체크 [0품절 1판매중]해서 html 바꿈)
+-- (html : 판매상태가 [0판매안함]일 때 품절이라고 표시해주고 장바구니, 관심상품, 바로구매 버튼을 못누르게 함)
 -- 필요컬럼 : 상품번호, 상품명, 판매가격, 판매상태, 상품대표이미지, 상품상세이미지, 상품요약설명, 상품상세설명, 중량
 
 SELECT "product_no", "product_name", "selling_price", "sale_state", "represent_img", "detail_img", "summary_ex", "detail_ex", "weight" 

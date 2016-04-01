@@ -1,0 +1,663 @@
+# DB (스키마) 생성 SQL
+CREATE SCHEMA `url_manager` 
+ DEFAULT CHARACTER SET utf8 
+ COLLATE utf8_general_ci;
+
+
+# 테이블 생성 예
+CREATE TABLE `url_manager`.`members` (
+
+ `id` INT(4) NOT NULL AUTO_INCREMENT 
+	COMMENT '프라이머 키, PK, 멤버번호',
+  
+ `login` VARCHAR(64) NOT NULL COMMENT '',
+  
+ `pw` VARCHAR(24) NOT NULL COMMENT '',
+  
+ `name` VARCHAR(24) NULL COMMENT '',
+  
+ `age` SMALLINT NULL DEFAULT 19 COMMENT '',
+  
+ `address` VARCHAR(1024) NULL COMMENT '',
+  
+ `email` VARCHAR(64) NOT NULL COMMENT '',
+  
+ `joined_date` DATE NULL COMMENT '',
+  
+  PRIMARY KEY (`id`)  COMMENT ''
+);
+
+
+SELECT * FROM members;
+select id, login, pw from members;
+
+INSERT INTO `members` 
+ (`id`, `login`, `pw`, `name`, `age`,
+  `address`, `email`, `joined_date`)
+ VALUES ('1', 'seung', '1111', '승열',
+   '20', '뉴욕', 'ss@g.com', now());
+
+
+insert into url_manager.members 
+
+   () values(null, 'kisung', '1111', '기성',
+
+	22, '부산시', 'ki@g.com', now() );
+
+insert into url_manager.members 
+   () values(null, 'kisung', '1111', '기성',
+			22, '부산시', 'ki@g.com', now() );
+-- null은 id필드 PK/AI 옵션으로 자동증가.
+/*
+	MySQL AI => auto_increment 옵션...
+*/            
+
+
+insert into url_manager.members 
+   () values
+   ( null, 'kisung2', '1111', '기성2',
+			22, '부산시', 'ki@g.com', now() ), 
+   ( null, 'kyungcheol', '1111', '경철',
+			29, '제주시', 'kc@g.com', now() );
+
+-- SELECT id as my_id, login as my_login, name, id, login  
+--  FROM url_manager.members order by my_id asc;
+-- SELECT id as my_id, login as my_login, name, id, login  
+--  FROM url_manager.members order by my_id desc;  
+-- SELECT id as my_id, login as my_login, name, id, login  
+--  FROM url_manager.members order by login desc;
+SELECT id as my_id, login as my_login, name, id, login  
+  FROM url_manager.members order by login desc, id desc;
+
+UPDATE `url_manager`.`members`
+    SET `login`='kisungman', 
+        `pw`='1234', 
+        `age`='30' 
+    WHERE `id`='3';
+
+delete from url_manager.members 
+ 
+  where id = 4 and login = 'kisung2';
+
+select count(id) as total, avg(age) as average_age 
+, min(age) as young, max(age) as old 
+	from members;
+
+
+CREATE TABLE `url_manager`.`user_urls` (
+  `id` INT(4) NOT NULL AUTO_INCREMENT COMMENT 'sdfsdff',
+  `login` VARCHAR(64) NULL COMMENT '',
+  `ori_url` VARCHAR(512) NULL COMMENT '',
+  `title` VARCHAR(64) NULL COMMENT '',
+  `tags` VARCHAR(256) NULL COMMENT '',
+  `short_url` VARCHAR(64) NULL COMMENT '',
+  `views` INT(4) NULL DEFAULT 0 COMMENT '',
+  `created_date` DATE NULL COMMENT '',
+  PRIMARY KEY (`id`)  COMMENT ''
+   );
+
+insert into url_manager.user_urls () 
+        values ( null, 
+        'seung', 
+                'http://book.naver.com/bookdb/book_detail.nhn?bid=10029323',
+                '승열씨의 url 1', 
+                'drone, seung, url',
+                'H97Rxq',
+                0,
+                curdate()
+                ), 
+                ( null, 
+        'seung', 
+                'http://book.naver.com/bookdb/book_detail.nhn?bid=10185725',
+                '승열씨의 url 2', 
+                'drone, seung, url, maker',
+                'dj6RhQ',
+                0,
+                curdate()
+                );
+-- id 필드는 PK/AI 옵션으로 1씩 자동 증가함. 
+
+** export/import 해보기..
+
+DROP DATABASE `url_manager`;
+
+
+2015-12-24  오전 11:13    <DIR>          eclipse-jee-mars-1-win32-x86_64_mr_4th_
+1cl
+2016-01-07  오후 05:08    <DIR>          eclipse_mars
+2016-03-08  오후 03:26    <DIR>          fusion5
+2015-01-29  오후 02:48    <DIR>          Intel
+2015-08-03  오전 11:47    <DIR>          java6
+2016-02-24  오후 01:23    <DIR>          java_src
+2015-11-26  오전 11:59    <DIR>          java_src2
+2016-02-16  오후 12:11    <DIR>          jsp_3
+2013-05-09  오후 02:12            65,536 npchkaqua.dll
+2015-06-03  오후 02:47    <DIR>          NVIDIA
+2015-11-16  오후 01:39    <DIR>          oraclexe
+2015-11-16  오후 01:11    <DIR>          oracle_base
+2009-07-14  오후 12:20    <DIR>          PerfLogs
+2015-12-30  오후 12:45    <DIR>          Program Files
+2016-01-26  오후 04:46    <DIR>          Program Files (x86)
+2015-08-07  오후 12:52    <DIR>          Sinvas
+2015-07-15  오후 02:34    <DIR>          SQLGate for MySQL
+2016-02-23  오후 04:38    <DIR>          sts
+2015-08-19  오후 05:02    <DIR>          sts-bundle_370
+2015-07-02  오후 04:16    <DIR>          Tomcat 7.0
+2015-04-16  오후 12:44    <DIR>          Users
+2016-03-10  오전 09:08    <DIR>          Windows
+2016-03-10  오전 10:57    <DIR>          _j2ee_ws
+2016-03-10  오후 02:01    <DIR>          __not_yet2
+2016-03-10  오후 02:01    <DIR>          __not_yet_1_20160309
+               3개 파일              65,596 바이트
+              30개 디렉터리  94,446,968,832 바이트 남음
+
+C:\>dir /w
+ C 드라이브의 볼륨: Windows
+ 볼륨 일련 번호: 20EB-DD62
+
+ C:\ 디렉터리
+
+[apache-ant-1.8.0-bin]
+[apache-maven-3.3.9-bin]
+[apache-tomcat-7.0.67]
+[Bitnami]
+dd2.txt
+DevMgr.bat
+[eclipse]
+[eclipse-java-mars-R-win32-x86_64]
+[eclipse-jee-mars-1-win32-x86_64_mr_4th_1cl]
+[eclipse_mars]
+[fusion5]
+[Intel]
+[java6]
+[java_src]
+[java_src2]
+[jsp_3]
+npchkaqua.dll
+[NVIDIA]
+[oraclexe]
+[oracle_base]
+[PerfLogs]
+[Program Files]
+[Program Files (x86)]
+[Sinvas]
+[SQLGate for MySQL]
+[sts]
+[sts-bundle_370]
+[Tomcat 7.0]
+[Users]
+[Windows]
+[_j2ee_ws]
+[__not_yet2]
+[__not_yet_1_20160309]
+               3개 파일              65,596 바이트
+              30개 디렉터리  94,446,968,832 바이트 남음
+
+C:\>dir
+ C 드라이브의 볼륨: Windows
+ 볼륨 일련 번호: 20EB-DD62
+
+ C:\ 디렉터리
+
+2016-01-19  오전 11:19    <DIR>          apache-ant-1.8.0-bin
+2016-02-02  오전 09:48    <DIR>          apache-maven-3.3.9-bin
+2015-12-24  오전 11:19    <DIR>          apache-tomcat-7.0.67
+2015-11-24  오후 03:58    <DIR>          Bitnami
+2015-10-21  오후 03:33                23 dd2.txt
+2015-03-18  오전 05:09                37 DevMgr.bat
+2015-07-02  오후 04:42    <DIR>          eclipse
+2015-08-31  오후 03:33    <DIR>          eclipse-java-mars-R-win32-x86_64
+2015-12-24  오전 11:13    <DIR>          eclipse-jee-mars-1-win32-x86_64_mr_4th_
+1cl
+2016-01-07  오후 05:08    <DIR>          eclipse_mars
+2016-03-08  오후 03:26    <DIR>          fusion5
+2015-01-29  오후 02:48    <DIR>          Intel
+2015-08-03  오전 11:47    <DIR>          java6
+2016-02-24  오후 01:23    <DIR>          java_src
+2015-11-26  오전 11:59    <DIR>          java_src2
+2016-02-16  오후 12:11    <DIR>          jsp_3
+2013-05-09  오후 02:12            65,536 npchkaqua.dll
+2015-06-03  오후 02:47    <DIR>          NVIDIA
+2015-11-16  오후 01:39    <DIR>          oraclexe
+2015-11-16  오후 01:11    <DIR>          oracle_base
+2009-07-14  오후 12:20    <DIR>          PerfLogs
+2015-12-30  오후 12:45    <DIR>          Program Files
+2016-01-26  오후 04:46    <DIR>          Program Files (x86)
+2015-08-07  오후 12:52    <DIR>          Sinvas
+2015-07-15  오후 02:34    <DIR>          SQLGate for MySQL
+2016-02-23  오후 04:38    <DIR>          sts
+2015-08-19  오후 05:02    <DIR>          sts-bundle_370
+2015-07-02  오후 04:16    <DIR>          Tomcat 7.0
+2015-04-16  오후 12:44    <DIR>          Users
+2016-03-10  오전 09:08    <DIR>          Windows
+2016-03-10  오전 10:57    <DIR>          _j2ee_ws
+2016-03-10  오후 02:01    <DIR>          __not_yet2
+2016-03-10  오후 02:01    <DIR>          __not_yet_1_20160309
+               3개 파일              65,596 바이트
+              30개 디렉터리  94,446,968,832 바이트 남음
+
+C:\>cd fusion5
+
+C:\fusion5>dir
+ C 드라이브의 볼륨: Windows
+ 볼륨 일련 번호: 20EB-DD62
+
+ C:\fusion5 디렉터리
+
+2016-03-08  오후 03:26    <DIR>          .
+2016-03-08  오후 03:26    <DIR>          ..
+2016-03-02  오전 10:11             4,297 JobSurvey.war
+2016-03-08  오전 10:53    <DIR>          기타
+2016-03-11  오전 10:28    <DIR>          수업문서
+2016-03-10  오전 11:12    <DIR>          수업설치
+2016-03-11  오전 10:28    <DIR>          수업소스
+2016-03-08  오후 03:26               627 융합5기_6강_컴퓨터_시리얼번호_리스트.tx
+t
+2016-02-25  오전 11:11               466 융합5기_스타트.txt
+2016-03-10  오후 05:25    <DIR>          프로젝트
+               3개 파일               5,390 바이트
+               7개 디렉터리  94,446,968,832 바이트 남음
+
+C:\fusion5>cd "수업문서""
+
+C:\fusion5\수업문서>dir
+ C 드라이브의 볼륨: Windows
+ 볼륨 일련 번호: 20EB-DD62
+
+ C:\fusion5\수업문서 디렉터리
+
+2016-03-11  오전 10:28    <DIR>          .
+2016-03-11  오전 10:28    <DIR>          ..
+2014-03-19  오전 01:20         1,728,439 01장 웹 프로그래밍의 이해.pptx
+2014-03-19  오전 01:21         3,893,590 02장 JDK, Tomcat, Eclipse 설치.pptx
+2014-03-03  오전 11:00         1,707,431 03장 JSP 동작원리(Tomcat)와 서블릿.pptx
+
+2014-01-20  오후 10:08         2,482,125 04장 JAVA 기초 문법.pptx
+2014-02-11  오전 06:14         1,892,856 05장 JSP 기초 문법.pptx
+2014-01-15  오후 09:37         2,034,358 06장 JSP의 지시자와 액션 태그1.pptx
+2014-01-15  오후 09:38         1,742,283 06장 JSP의 지시자와 액션 태그2.pptx
+2015-12-30  오후 04:00         2,365,034 07장 JSP의 내부객체.pptx
+2014-01-15  오후 09:02         2,014,411 08장 JSP와 자바빈즈.pptx
+2014-01-26  오전 12:05         2,387,337 09장 데이터베이스 설치 및 기본 SQL문.pp
+tx
+2014-02-02  오후 04:52         2,199,190 10장 JDBC로 데이터베이스 연동.pptx
+2014-09-16  오후 12:15         1,681,075 11장 세션과 쿠키1.pptx
+2014-10-21  오전 09:32         2,573,575 11장 세션과 쿠키2.pptx
+2014-03-03  오후 07:37         2,133,899 12장 파일업로드.pptx
+2016-01-18  오전 11:24         2,294,289 13장 회원가입 및 로그인.pptx
+2014-09-24  오전 10:26         3,366,947 14장 계층형 게시판.pptx
+2014-10-02  오전 09:28         2,026,571 15장 투표 프로그램.pptx
+2014-01-17  오전 01:14         4,235,719 16장 홈페이지 구축.pptx
+2015-10-20  오후 03:08         2,008,072 17장 표현언어(EL)와 JSTL 1.pptx
+2015-10-22  오전 11:50         2,930,966 17장 표현언어(EL)와 JSTL 2.pptx
+2014-03-19  오전 12:19         1,901,290 18장 커스텀 태그(Custom Tag).pptx
+2016-03-03  오후 03:15               296 메모1.txt
+2016-02-25  오후 04:07               131 톰캣설명.txt
+              23개 파일          49,599,884 바이트
+               2개 디렉터리  94,446,444,544 바이트 남음
+
+C:\fusion5\수업문서>cd ..\수업소스
+
+C:\fusion5\수업소스>약
+'약'은(는) 내부 또는 외부 명령, 실행할 수 있는 프로그램, 또는
+배치 파일이 아닙니다.
+
+C:\fusion5\수업소스>dir
+ C 드라이브의 볼륨: Windows
+ 볼륨 일련 번호: 20EB-DD62
+
+ C:\fusion5\수업소스 디렉터리
+
+2016-03-11  오전 10:28    <DIR>          .
+2016-03-11  오전 10:28    <DIR>          ..
+2016-03-02  오후 03:57           166,579 #190000 Color Hex.pdf
+2016-02-25  오후 04:13    <DIR>          2016-02-25_정적페이지_vs_동적페이지_톰
+캣실습
+2016-03-04  오후 03:48         4,014,384 Balsamiq_Mockups_3.3.9.exe
+2016-03-04  오전 11:52           649,509 FAILURE.pdf
+2016-03-02  오후 03:57           552,471 Font Awesome Icons.pdf
+2016-02-26  오후 04:51             2,448 Fusion5Equals_객체동일성비교.zip
+2016-02-26  오후 02:43             4,523 HelloFusion5_1_JSP개요_스크립트릿_표현
+식_링크_if조건등.zip
+2016-02-26  오후 03:57             5,593 HelloFusion5_2_서브폴더_삼항식_루프FOR
+문_선언식_멤버함수_변수_GET링크연결등.zip
+2016-02-29  오전 10:37             5,809 HelloFusion5_3_이클립스톰캣_디렉터리_콘
+솔-웹-로그설명.zip
+2016-03-07  오후 04:20             9,208 hostname.png
+2016-02-29  오후 04:25           198,682 JOB SURVEY - 3단계.pdf
+2016-02-29  오전 11:40             4,655 JobSurvey_1_첫단계폼페이지_get_전달시작
+.zip
+2016-02-29  오후 01:53            36,951 JobSurvey_2_이름-성별-나이-form-get으로
+받아서_request로받기및출력예.pdf
+2016-02-29  오후 01:53             5,015 JobSurvey_2_이름-성별-나이-form-get으로
+받아서_request로받기및출력예.zip
+2016-02-29  오후 02:56             5,990 JobSurvey_3_2단계폼_post시작_포지션-연
+봉-규모_보내기.zip
+2016-02-29  오후 03:54             6,692 JobSurvey_4_3단계폼_post_표시_lorempixe
+l-fontawesome.zip
+2016-02-29  오후 04:04             6,732 JobSurvey_5_히든인풋태그로_name을페이지
+들거쳐서보내기.zip
+2016-03-04  오전 11:51           636,615 LifeGame_10_인생게임_출구판단_생명수치
+로_성공-포워드_실패_리다이렉트_차이비교.zip
+2016-03-04  오후 01:54           637,488 LifeGame_11_application내장객체에_게임
+통계_게이머리스트_스코어랭킹맵.zip
+2016-03-04  오후 02:52           637,741 LifeGame_12_게임통계_성공시에표시함_초
+기페이지이동_링크js함수화_location.href등.zip
+2016-03-02  오전 11:51             5,258 LifeGame_1_UTF-8인코딩정렬로_get-fillou
+t_FORM_템플릿레이아웃페이지_include지시자사용시작.zip
+2016-03-02  오후 02:08             6,144 LifeGame_2_템플릿정의_css적용_param으로
+기본스탯계산.zip
+2016-03-02  오후 02:48             6,508 LifeGame_3_common조각페이지에서_session
+이용해서_스탯_내용표시하는예.zip
+2016-03-02  오후 03:57             8,380 LifeGame_4_열거형으로_모든파라미터이름
+표시하기_체크박스로_동일이름에_다중값을받아서_표시해보기(빠른For문).zip
+2016-03-03  오전 11:41             8,579 LifeGame_5_include_actiontag사용예.zip
+2016-03-03  오전 11:50             9,146 LifeGame_6_checkbox입력이없을시해당안내
+페이지로_forwarding처리_액션태그_URL유지됨.zip
+2016-03-03  오후 01:34             9,331 LifeGame_7_포워드전내용은모두버려짐_포
+워드에서request에속성을전달가능.zip
+2016-03-03  오후 02:50             9,826 LifeGame_8_include액션태그로 param을보
+내서_사용자의선택을유지하고_페이지에_표시함.zip
+2016-03-04  오전 10:52            11,717 LifeGame_9_무한반복_form생성_포워드성공
+_리다이렉트실패_출구작성중.zip
+2016-02-29  오후 02:19           264,403 lorempixel - placeholder images for eve
+ry case.pdf
+2016-03-11  오전 10:37             3,365 mysql_실습_1.txt
+2016-03-04  오전 11:52           141,541 SUCCESS.pdf
+2016-03-04  오후 02:52           189,123 SUCCESS_게임통계예_스타트이동anchor까지
+.pdf
+2016-03-08  오전 11:48           212,659 URL 관리 사이트_가입예_스크린샷.pdf
+2016-03-08  오후 02:56           207,213 URL 관리 사이트_로그인예.pdf
+2016-03-09  오전 11:49            12,821 UrlManager_10_세션처리변경_레이아웃clea
+rboth적용_상품(UserUrl)스키마작성.zip
+2016-03-09  오후 01:52            15,264 UrlManager_11_자바빈_등장_um.model.User
+Url빈클래스정의_출력함수오버로딩적용등.zip
+2016-03-09  오후 02:52            16,435 UrlManager_12_자바빈수정_url_추가_폼연
+동설정중_post방식ajax시도전.zip
+2016-03-09  오후 03:53            17,086 UrlManager_13_자바빈에_디코딩후_저장해
+서_페이지에출력해서_post응답으로표시.zip
+2016-03-10  오전 10:56            18,369 UrlManager_14_UrlUser빈객체에_short_url
+_6개랜덤스트링_임의로뽑아주는메소드추가버젼.zip
+2016-03-07  오후 01:45             4,893 UrlManager_1_회원로그인폼_전체템플릿설
+정_가입폼연동준비전.zip
+2016-03-07  오후 02:25             5,788 UrlManager_2_회원가입폼_구현_ajax_load
+연동.zip
+2016-03-07  오후 02:50             6,793 UrlManager_3_join프록정의_에러전달처리
+중.zip
+2016-03-07  오후 03:56             7,507 UrlManager_4_join폼_프록_에러로_템플릿
+와서_다시_인클루드_액션태그로_요청파람전달예.zip
+2016-03-08  오전 10:51             8,597 UrlManager_5_join프록에_application회원
+속성저장(KVP)_리다이렉트처리전_기획문서md추가시작.zip
+2016-03-08  오전 11:48             9,299 UrlManager_6_회원가입을_레이아웃템플릿
+에서_보여주도록처리함_application인메모리방식_저장.zip
+2016-03-08  오후 01:57            10,346 UrlManager_7_로그인중복체크_AJAX_dup_pr
+oc_스크립트와메시지를응답으로span에표시함.zip
+2016-03-08  오후 02:56            11,315 UrlManager_8_로그인인증-login_proc_분기
+처리_예.zip
+2016-03-09  오전 11:16            12,420 UrlManager_9_로그인성공시_redirect 하고
+세션처리중.zip
+2016-03-11  오전 09:49    <DIR>          url_manager_db_1차_export.sql
+2016-03-11  오전 10:35             3,746 url_manager_db_2차_export_스키마.sql
+2016-03-08  오후 02:56           315,416 _focus() _ jQuery API Documentation.pdf
+
+2016-03-04  오후 03:35            86,620 목업_와이어프레이밍_프로토타이핑_Downlo
+ad Mockups _ Balsamiq.pdf
+2016-03-04  오후 03:35           111,674 목업_와이어프레이밍_프로토타이핑_Online
+ Mockup, Wireframe & UI Prototyping Tool · Moqups.pdf
+2016-03-02  오후 03:57           681,047 색상 휠 _ 색상 구성표 - Adobe Color CC.
+pdf
+2016-03-02  오후 03:57           209,246 인생 게임.pdf
+              54개 파일          10,244,960 바이트
+               4개 디렉터리  94,446,444,544 바이트 남음
+
+C:\fusion5\수업소스>dir *.sql
+ C 드라이브의 볼륨: Windows
+ 볼륨 일련 번호: 20EB-DD62
+
+ C:\fusion5\수업소스 디렉터리
+
+2016-03-11  오전 09:49    <DIR>          url_manager_db_1차_export.sql
+2016-03-11  오전 10:35             3,746 url_manager_db_2차_export_스키마.sql
+               1개 파일               3,746 바이트
+               1개 디렉터리  94,446,444,544 바이트 남음
+
+C:\fusion5\수업소스>
+
+
+C:\fusion5\수업소스>mysql --help
+
+C:\fusion5\수업소스>mysql -u root -p123456
+Warning: Using a password on the command line interface can be insecure.
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 10
+Server version: 5.6.25 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2015, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> exit
+Bye
+
+C:\fusion5\수업소스>
+
+
+C:\fusion5\수업소스>mysql -uroot -p123456 < url_manager_db_2차_export_스키마.sql
+
+Warning: Using a password on the command line interface can be insecure.
+
+C:\fusion5\수업소스>
+
+파이프 pipe 
+C:\fusion5\수업소스>dir *.* | more
+
+
+C:\>history
+'history'은(는) 내부 또는 외부 명령, 실행할 수 있는 프로그램, 또는
+배치 파일이 아닙니다.
+
+C:\>mysql -uroot -p123456
+Warning: Using a password on the command line interface can be insecure.
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 12
+Server version: 5.6.25 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2015, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use url_manager;
+Database changed
+mysql> show tables;
++-----------------------+
+| Tables_in_url_manager |
++-----------------------+
+| members               |
+| user_urls             |
++-----------------------+
+2 rows in set (0.00 sec)
+
+mysql> desc members;
++-------------+---------------+------+-----+---------+----------------+
+| Field       | Type          | Null | Key | Default | Extra          |
++-------------+---------------+------+-----+---------+----------------+
+| id          | int(4)        | NO   | PRI | NULL    | auto_increment |
+| login       | varchar(64)   | NO   |     | NULL    |                |
+| pw          | varchar(24)   | NO   |     | NULL    |                |
+| name        | varchar(24)   | YES  |     | NULL    |                |
+| age         | smallint(6)   | YES  |     | 19      |                |
+| address     | varchar(1024) | YES  |     | NULL    |                |
+| email       | varchar(64)   | NO   |     | NULL    |                |
+| joined_date | date          | YES  |     | NULL    |                |
++-------------+---------------+------+-----+---------+----------------+
+8 rows in set (0.02 sec)
+
+mysql> desc user_urls;
++--------------+--------------+------+-----+---------+----------------+
+| Field        | Type         | Null | Key | Default | Extra          |
++--------------+--------------+------+-----+---------+----------------+
+| id           | int(4)       | NO   | PRI | NULL    | auto_increment |
+| login        | varchar(64)  | YES  |     | NULL    |                |
+| ori_url      | varchar(512) | YES  |     | NULL    |                |
+| title        | varchar(64)  | YES  |     | NULL    |                |
+| tags         | varchar(256) | YES  |     | NULL    |                |
+| short_url    | varchar(64)  | YES  |     | NULL    |                |
+| views        | int(4)       | YES  |     | 0       |                |
+| created_date | date         | YES  |     | NULL    |                |
++--------------+--------------+------+-----+---------+----------------+
+8 rows in set (0.01 sec)
+
+mysql>
+
+
+mysql> status
+--------------
+mysql  Ver 14.14 Distrib 5.6.25, for Win32 (x86)
+
+Connection id:          12
+Current database:       url_manager
+Current user:           root@localhost
+SSL:                    Not in use
+Using delimiter:        ;
+Server version:         5.6.25 MySQL Community Server (GPL)
+Protocol version:       10
+Connection:             localhost via TCP/IP
+Server characterset:    utf8
+Db     characterset:    utf8
+Client characterset:    utf8
+Conn.  characterset:    utf8
+TCP port:               3306
+Uptime:                 1 hour 56 min 39 sec
+
+Threads: 5  Questions: 2586  Slow queries: 0  Opens: 80  Flush tables: 1  Open t
+ables: 63  Queries per second avg: 0.369
+--------------
+
+mysql> select * from url_manager.members;
++----+------------+------+--------+------+-----------+----------+-------------+
+| id | login      | pw   | name   | age  | address   | email    | joined_date |
++----+------------+------+--------+------+-----------+----------+-------------+
+|  1 | seung      | 1111 | 승열   |   20 | 뉴욕      | ss@g.com | 2016-03-10  |
+|  2 | kisung     | 1111 | 기성   |   22 | 부산시    | ki@g.com | 2016-03-10  |
+|  3 | kisungman  | 1234 | 기성   |   30 | 부산시    | ki@g.com | 2016-03-10  |
+|  5 | kyungcheol | 1111 | 경철   |   29 | 제주시    | kc@g.com | 2016-03-10  |
++----+------------+------+--------+------+-----------+----------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from members; (use url_manager; 적용되어서..)
++----+------------+------+--------+------+-----------+----------+-------------+
+| id | login      | pw   | name   | age  | address   | email    | joined_date |
++----+------------+------+--------+------+-----------+----------+-------------+
+|  1 | seung      | 1111 | 승열   |   20 | 뉴욕      | ss@g.com | 2016-03-10  |
+|  2 | kisung     | 1111 | 기성   |   22 | 부산시    | ki@g.com | 2016-03-10  |
+|  3 | kisungman  | 1234 | 기성   |   30 | 부산시    | ki@g.com | 2016-03-10  |
+|  5 | kyungcheol | 1111 | 경철   |   29 | 제주시    | kc@g.com | 2016-03-10  |
++----+------------+------+--------+------+-----------+----------+-------------+
+4 rows in set (0.00 sec)
+
+mysql>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
