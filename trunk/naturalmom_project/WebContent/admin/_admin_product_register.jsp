@@ -91,6 +91,10 @@
 					<td><input type = "number" id = "stock" name = "stock" size = "20"></td>
 				</tr>
 				<tr>
+					<td><label for = "stock">무게</label></td>
+					<td><input type = "number" id = "weight" name = "weight" size = "20"></td>
+				</tr>
+				<tr>
 					<td><label for = "img">상품 대표 이미지</label></td>
 					<td><input type = "file" id = "img_present" name = "img_present"></td>
 				</tr>
