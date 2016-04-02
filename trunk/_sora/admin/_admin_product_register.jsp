@@ -94,6 +94,10 @@
 					<td><label for = "img">상품 대표 이미지</label></td>
 					<td><input type = "file" id = "img" name = "img"></td>
 				</tr>
+				<tr>
+					<td><label for = "img">상품 상세 이미지</label></td>
+					<td><input type = "file" id = "img_detail" name = "img_detail"></td>
+				</tr>
 				<tr><td colspan = "2"><label for = "ex_summary">상품 요약 설명</label></tr>
 				<tr>
 					<td colspan = "2" class = "explain" >
