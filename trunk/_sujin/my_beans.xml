@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	
+	<!-- 데이터 소스 빈 등록 : DataSource : DS -->
+	<bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost/fusionbook" />
+		<property name="username" value="root" />
+		<property name="password" value="123456" />
+	</bean>
+	
+	<!-- 데이터 엑세스 빈 등록 : DataAccessObject : Dao -->
+	<bean id="bkdao" class="fusion.data.dao.BookDaoMySqlImpl">
+		<property name="dataSource" ref="ds"/>
+	</bean>
+	
+	<!-- 서비스 빈 등록(UI) : Service : SVC -->
+	<bean id="uisvc" class="fusion.ui.svc.BookUISvc">
+		<property name="bookDao">
+			<ref local="bkdao"/>
+		</property>
+	</bean>
+	
+	<!-- 메인 실행부 빈 등록 : main -->
+	<bean id="main" class="fusion.ui.BookMain">
+		<property name="ui_svc">
+			<ref local="uisvc"/>
+		</property>
+	</bean>
+	
+</beans>
