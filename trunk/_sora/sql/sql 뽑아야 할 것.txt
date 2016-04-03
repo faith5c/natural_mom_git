@@ -1,0 +1,211 @@
+-- 상품 등록하기
+상품명, 상품 분류, 상품 가격, 원가, 재고, 상품 이미지, 상품 요약 설명, 상품 상세 설명
+
+INSERT INTO "tb_product" ("product_name", "selling_price", "cost_price", "stock", "display_state", "sale_state", "represent_img", "detail_img", "summary_ex", "detail_ex", "deleted_state", "weight", "category_cd", "product_no") VALUES ('아마씨 비누',3500,3000,100,1,1,'http://i.imgur.com/XQxOgR0.jpg','http://naturalmom.co.kr/shop/shop_image/attach/1508/20150825103458_dssxswyt.jpg','영양 가득한 생명의 씨앗','null',0,100.0,1,PRODUCT_NO_SEQ.NEXTVAL);
+
+
+
+-- 상품 관리 페이지에 상품 리스트 목록 가져오기
+-- 상품번호, 분류, 상품명, 이미지, 가격, 원가, 재고, 진열 상태, 판매 상태, 총 누적 판매량
+-- 정렬 기준: 상품번호, 분류, 상품명, 가격, 재고, 진열 상태, 판매 상태, 총 누적판매량
+-- 수정: 진열상태, 판매 상태, 삭제
+
+-- VIEW v_product_manage
+CREATE VIEW v_product_manage AS
+SELECT "p"."product_no", "c"."category_nm", "p"."product_name",
+"p"."represent_img", "p"."selling_price", "p"."cost_price", 
+"p"."stock", "p"."display_state", "p"."sale_state",  
+NVL((SELECT SUM("o"."buy_num") FROM "tb_product_n_order" "o" WHERE "o"."product_no" = 
+"p"."product_no" AND "o"."process_cd" = 21
+GROUP BY "o"."product_no"), 0) AS all_sells
+FROM "tb_category" "c","tb_product" "p", "tb_product_n_order" "o"
+WHERE "c"."category_cd" = "p"."category_cd"
+AND "p"."product_no" = "o"."product_no"(+)
+AND "p"."deleted_state" = 0
+GROUP BY "p"."product_no", "c"."category_nm", "p"."product_name", "p"."represent_img", "p"."selling_price", 
+"p"."cost_price", "p"."stock", "p"."weight", "p"."display_state", "p"."sale_state"
+ORDER BY "p"."product_no";
+
+-- ORDER BY
+ORDER BY "p"."product_no";
+ORDER BY "p"."product_no" desc;
+ORDER BY "c"."category_nm", "p"."product_no";
+ORDER BY "c"."category_nm" desc, "p"."product_no";
+ORDER BY "p"."product_name", "p"."product_no";
+ORDER BY "p"."product_name" desc, "p"."product_no";
+ORDER BY "p"."selling_price", "p"."product_no";
+ORDER BY "p"."selling_price" desc, "p"."product_no";
+ORDER BY "p"."stock", "p"."product_no";
+ORDER BY "p"."stock" desc, "p"."product_no";
+ORDER BY "p"."display_state", "p"."product_no";
+ORDER BY "p"."display_state" desc, "p"."product_no";
+ORDER BY "p"."sale_state", "p"."product_no";
+ORDER BY "p"."sale_state" desc, "p"."product_no";
+ORDER BY all_sells, "p"."product_no";
+ORDER BY all_sells desc, "p"."product_no";
+
+-- SET (0: false, 1:true) : tb_produdct 테이블
+UPDATE "tb_product" SET "display_state" = 1 WHERE "product_no" = ?;
+UPDATE "tb_product" SET "sale_state" = 1 WHERE "product_no" = ?;
+UPDATE "tb_product" SET "deleted_state" = 1, "display_state" = 1, "sale_state" = 1 WHERE "product_no" = ?;
+
+
+-- 상품 수정하기 페이지에 상품 수정 시 내용 가져오기
+상품명, 상품분류, 상품 가격, 공급 원가, 재고, 상품대표 이미지, 상품 요약설명, 상품 상세 설명, 진열 상태, 판매 상태
+
+-- SELECT
+SELECT "product_name", "category_cd", "selling_price", "cost_price", "stock", "weight",
+"represent_img", "detail_img", "summary_ex", "detail_ex", "display_state", "sale_state"
+FROM "tb_product";
+
+-- UPDATE : 상품 수정한 것 내용에 넣기
+UPDATE "tb_product" SET "product_name" = '뽕잎 비누', "category_cd" = 3, "selling_price" = 4500, "cost_price" = 3700, "stock" = 80, "weight" = 100,
+"represent_img" = 'http://i.imgur.com/BgjzGXR.jpg',"detail_img" = 'http://naturalmom.co.kr/shop/shop_image/attach/1512/20151207144609_iumbvwrf.jpg', 
+"summary_ex" = '깨끗한 피부톤을 위한', "detail_ex" = NULL, "display_state" = 1, "sale_state" = 1
+WHERE "product_no" = 10002;
+
+
+
+-- 삭제된 상품 관리 페이지에 삭제된 상품 리스트 목록 가져오기
+상품번호, 분류, 상품명, 이미지, 가격(원가), 재고, 총 누적 판매량
+정렬 기준: 상품번호, 분류, 상품명, 가격(원가), 재고, 총 누적판매량
+수정: 선택 상품 복원
+
+-- VIEW v_product_deleted
+CREATE VIEW v_product_deleted AS
+SELECT "p"."product_no", "p"."product_name", "p"."represent_img", "p"."selling_price",
+"p"."cost_price", "p"."stock", 
+NVL((SELECT SUM("o"."buy_num") FROM "tb_product_n_order" "o" WHERE "o"."product_no" = 
+"p"."product_no" AND "o"."process_cd" = 21
+GROUP BY "o"."product_no"), 0) AS all_sells
+FROM "tb_product" "p"
+WHERE "p"."deleted_state" = 1;
+
+-- ORDER BY
+ORDER BY "p"."product_no";
+ORDER BY "p"."product_no" desc;
+ORDER BY "c"."category_nm", "p"."product_no";
+ORDER BY "c"."category_nm" desc, "p"."product_no";
+ORDER BY "p"."product_name", "p"."product_no";
+ORDER BY "p"."product_name" desc, "p"."product_no";
+ORDER BY "p"."selling_price", "p"."product_no";
+ORDER BY "p"."selling_price" desc, "p"."product_no";
+ORDER BY "p"."stock", "p"."product_no";
+ORDER BY "p"."stock" desc, "p"."product_no";
+ORDER BY all_sells, "p"."product_no";
+ORDER BY all_sells desc, "p"."product_no";
+
+-- UPDATE
+UPDATE "tb_product" SET "deleted_state" = 0, "display_state" = 1, "sale_state" = 1 WHERE "product_no" = ?;
+
+
+
+-- 총 판매량 계산하기
+CREATE VIEW v_rank_sells AS
+SELECT NVL((SELECT SUM("o"."buy_num") FROM "tb_product_n_order" "o" WHERE "o"."product_no" = 
+"p"."product_no" AND "o"."process_cd" = 21
+GROUP BY "o"."product_no"), 0) AS all_sells, "p"."product_name"
+FROM "tb_product" "p"
+WHERE "p"."deleted_state" = 0
+ORDER BY "ALL_SELLS" DESC, "product_name";
+
+-- ORDER BY
+SELECT ROWNUM, "ALL_SELLS", "product_name" FROM "V_RANK_SELLS"
+ORDER BY ROWNUM;
+SELECT ROWNUM, "ALL_SELLS", "product_name" FROM "V_RANK_SELLS"
+ORDER BY ROWNUM DESC;
+
+
+
+-- 게시판 목록 뽑기 (프론트)
+제목, 작성자, 작성일, 만족도, 내용
+SELECT "review_no", "rvw_title", "rvw_write_day", "rvw_hits", "rvw_content", "rvw_satisfaction", "mem_id"
+FROM "tb_review"
+WHERE "rvw_del_check" = 0 AND "product_no" = 10003;
+
+
+-- 게시판 댓글 뽑기 (프론트)
+아이디, 댓글 내용, 댓글 단 날짜
+SELECT "review_re_no",  "rvw_re_content", "rvw_re_write_day", "mem_id"
+FROM "tb_review_re"
+WHERE "rvw_re_del_check" = 0 AND "rvw_no" = 7;
+
+
+-- 게시판 글 쓴 내용 입력 (프론트)
+제목, 작성자, 내용
+INSERT INTO "tb_review" ("rvw_title", "rvw_write_day", "rvw_hits", "rvw_content", "rvw_del_check", "rvw_satisfaction", "product_no", "board_id", "mem_id", "review_no") VALUES ('어메이징',SYSDATE,5.0,'부들부들 해져요 짱좋! ',0.0,4.0,10003.0,5.0,'soojin', REVIEW_NO_SEQ.NEXTVAL);
+
+-- 게시판 글 수정 시 내용 불러오기 & 수정하기 (프론트)
+SELECT "rvw_title", "rvw_content", "mem_id"
+FROM "tb_review"
+WHERE "review_no" = ?;
+
+-- 게시판 목록 뽑기 (백)
+상품번호, 상품명, 제목, 작성자, 작성일, 만족도
+SELECT "r"."review_no", "r"."product_no", "p"."product_name", "r"."rvw_title",
+"r"."mem_id", "r"."rvw_write_day", "r"."rvw_satisfaction"
+FROM "tb_review" "r", "tb_product" "p"
+WHERE "r"."product_no" = "p"."product_no"
+AND "r"."rvw_del_check" = 0;
+
+-- 게시판 내용 뽑기 (백)
+상품번호, 상품명, 제목, 만족도, 작성자, 작성일, 조회수, 내용
+SELECT "r"."product_no", "p"."product_name", "r"."rvw_title",
+"r"."rvw_satisfaction", "r"."mem_id", "r"."rvw_write_day", 
+"r"."rvw_hits", "r"."rvw_content"
+FROM "tb_review" "r", "tb_product" "p"
+WHERE "r"."product_no" = "p"."product_no"
+AND "r"."review_no" = ?;
+
+-- 게시판 댓글 뽑기 (백)
+아이디, 댓글 내용, 날짜
+SELECT "review_re_no", "rvw_re_content", "rvw_re_write_day", "mem_id"
+FROM "tb_review_re"
+WHERE "rvw_re_del_check" = 0 AND "rvw_no" = 7;
+
+-- 댓글 등록하기(백&프론트)
+INSERT INTO "tb_review_re" ("rvw_re_content", "rvw_re_write_day", "rvw_re_del_check", "rvw_no", "mem_id", "review_re_no") VALUES ('구매해주셔서 고맙습니다~^^ 더 좋은 제품으로 보답하는 자연맘이 되겠습니다.',SYSDATE,0.0,1.0,'admin01', REVIEW_RE_NO_SEQ.NEXTVAL);
+
+-- 댓글 수정하기(백&프론트)
+UPDATE "tb_review_re" SET "rvw_re_content" = '넘나 좋다 전해라~'
+WHERE "review_re_no" = 1;
+
+-- 글 삭제하기(백&프론트)
+UPDATE "tb_review" SET "rvw_del_check" = 1
+WHERE "review_no" = ?;
+
+-- 댓글 삭제하기(백&프론트)
+UPDATE "tb_review_re" SET "rvw_re_del_check" = 1
+WHERE "review_re_no" = ?;
+
+-- 제목으로 검색하기 (백)
+SELECT "r"."review_no", "r"."product_no", "p"."product_name", "r"."rvw_title",
+"r"."mem_id", "r"."rvw_write_day", "r"."rvw_satisfaction"
+FROM "tb_review" "r", "tb_product" "p"
+WHERE "r"."product_no" = "p"."product_no"
+AND "r"."rvw_del_check" = 0
+AND "r"."rvw_title" LIKE '%구입%';
+
+-- 내용으로 검색하기 (백)
+SELECT "r"."review_no", "r"."product_no", "p"."product_name", "r"."rvw_title",
+"r"."mem_id", "r"."rvw_write_day", "r"."rvw_satisfaction"
+FROM "tb_review" "r", "tb_product" "p"
+WHERE "r"."product_no" = "p"."product_no"
+AND "r"."rvw_del_check" = 0
+AND "r"."rvw_content" LIKE '%짱좋%';
+
+-- 글쓴이로 검색하기 (백)
+SELECT "r"."review_no", "r"."product_no", "p"."product_name", "r"."rvw_title",
+"r"."mem_id", "r"."rvw_write_day", "r"."rvw_satisfaction"
+FROM "tb_review" "r", "tb_product" "p"
+WHERE "r"."product_no" = "p"."product_no"
+AND "r"."rvw_del_check" = 0
+AND "r"."mem_id" LIKE '%so%';
+
+-- 제목 + 내용으로 검색하기 (백)
+SELECT "r"."review_no", "r"."product_no", "p"."product_name", "r"."rvw_title",
+"r"."mem_id", "r"."rvw_write_day", "r"."rvw_satisfaction"
+FROM "tb_review" "r", "tb_product" "p"
+WHERE "r"."product_no" = "p"."product_no"
+AND "r"."rvw_del_check" = 0
+AND ("r"."rvw_title" LIKE '%짱좋%' OR "r"."rvw_content" LIKE '%짱좋%');
