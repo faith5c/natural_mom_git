@@ -13,6 +13,10 @@ SELECT "rvw_title", "rvw_content", "mem_id"
 FROM "tb_review"
 WHERE "review_no" = ?;
 
+-- 글 수정하기
+UPDATE "tb_review" SET "rvw_title" = '', "rvw_content" = ''
+WHERE "review_no" = ?;
+
 -- 게시판 목록 뽑기 (백)
 상품번호, 상품명, 제목, 작성자, 작성일, 만족도
 SELECT "r"."review_no", "r"."product_no", "p"."product_name", "r"."rvw_title",

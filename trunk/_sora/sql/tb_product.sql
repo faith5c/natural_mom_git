@@ -17,7 +17,8 @@ UPDATE "tb_product" SET "deleted_state" = 1, "display_state" = 1, "sale_state" =
 -- SELECT
 SELECT "product_name", "category_cd", "selling_price", "cost_price", "stock", "weight",
 "represent_img", "detail_img", "summary_ex", "detail_ex", "display_state", "sale_state"
-FROM "tb_product";
+FROM "tb_product"
+WHERE "product_no" = 10001;
 
 -- UPDATE : 상품 수정한 것 내용에 넣기
 UPDATE "tb_product" SET "product_name" = '뽕잎 비누', "category_cd" = 3, "selling_price" = 4500, "cost_price" = 3700, "stock" = 80, "weight" = 100,
