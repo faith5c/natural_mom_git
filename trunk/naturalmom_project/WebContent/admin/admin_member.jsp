@@ -171,7 +171,8 @@
 				</tr>
 				<tr>
 					<td><label for = "gender">성별</label></td>
-					<td><input type="radio" name="gender" id="male" value="male" checked="checked"/><label for="male">&nbsp;남</label>&nbsp;&nbsp;&nbsp;&nbsp;
+					<td><input type="radio" name="gender" id="none" value="none" checked="checked"/><label for="none">&nbsp;모두</label>&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="radio" name="gender" id="male" value="male"/><label for="male">&nbsp;남</label>&nbsp;&nbsp;&nbsp;&nbsp;
 						<input type="radio" name="gender" id="female" value="female"/><label for="female">&nbsp;여</label>
 					</td>
 				</tr>
