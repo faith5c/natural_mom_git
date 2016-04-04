@@ -19,6 +19,8 @@ public class QnaAndReVO {
 	private String qna_re_content;
 	private Date qna_re_write_day;
 	private int qna_re_del_check;
+	private int qna_no;
+	private String mem_id;
 	
 	
 }
