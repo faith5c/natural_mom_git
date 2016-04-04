@@ -1,41 +1,42 @@
----- È¸¿ø °ü·Ã ----------------------------------------------
+---- íšŒì› ê´€ë ¨ ----------------------------------------------
 
---·Î±×ÀÎÃ¼Å©
--- drop_out : return °ªÀÌ 0ÀÏ °æ¿ì ·Î±×ÀÎ ¼º°ø/ nullÀÌ°Å³ª 1ÀÏ °æ¿ì ·Î±×ÀÎ ½ÇÆĞ
-select "drop_out" from "tb_member" 
-	where "mem_id" ='minhee' and "mem_pw"='4321';
+--ë¡œê·¸ì¸ì²´í¬
+-- drop_out : return ê°’ì´ 0ì¼ ê²½ìš° ë¡œê·¸ì¸ ì„±ê³µ/ nullì´ê±°ë‚˜ 1ì¼ ê²½ìš° ë¡œê·¸ì¸ ì‹¤íŒ¨
+select drop_out from tb_member 
+	where mem_id ='minhee' and mem_pw='4321';
 	
---¾ÆÀÌµğÃ£±â
-select "mem_id" from "tb_member" 
-	where "drop_out"= 0
-	and "mem_name"='ÀÚ¿¬¸¾' 
-	and "mem_email"='sseun0402@hanmail.net';
+--ì•„ì´ë””ì°¾ê¸°
+select mem_id from tb_member 
+	where drop_out= 0
+	and mem_name='ìì—°ë§˜' 
+	and mem_email='sseun0402@hanmail.net';
 	
---ºñ¹Ğ¹øÈ£ Ã£±â
-select "mem_pw" from "tb_member" 
-    where  "drop_out"= 0
-	  and "mem_name"='ÀÚ¿¬¸¾' 
-      and "mem_id"='admin01' 
-      and "mem_email"='sseun0402@hanmail.net';
+--ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°
+select mem_pw from tb_member 
+    where  drop_out= 0
+	  and mem_name='ìì—°ë§˜' 
+      and mem_id='admin01' 
+      and mem_email='sseun0402@hanmail.net';
       
---¾ÆÀÌµğ Áßº¹È®ÀÎ
-select "mem_id" from "tb_member" 
-    where "mem_id"='admin01';
+--ì•„ì´ë”” ì¤‘ë³µí™•ì¸
+select mem_id from tb_member 
+    where mem_id='admin01';
     
---È¸¿ø°¡ÀÔ	-- ³»¿ë¿¡ ´ëÇÑ °ª È®ÀÎÀº Front¿¡¼­ Ã³¸®
-insert into "tb_member"
-  values ('kyungdae', 1234, '½Å°æ´ë', '010-4444-4444', '444-444', 
-          '°æ±âµµ ¼º³²½Ã Áß¿ø±¸ ¿©¼öµ¿ »êµé¸¶À» °ÅºÏÈ¨', 'sungeun@natural.com', '90/06/06', 1, 0, 1); --¼ºº°, Å»Åğ¿©ºÎ, µî±Ş
+--íšŒì›ê°€ì…	-- ë‚´ìš©ì— ëŒ€í•œ ê°’ í™•ì¸ì€ Frontì—ì„œ ì²˜ë¦¬
+insert into tb_member
+  values ('kyungdae', 1234, 'ì‹ ê²½ëŒ€', '010-4444-4444', '444-444', 
+          'ê²½ê¸°ë„ ì„±ë‚¨ì‹œ ì¤‘ì›êµ¬ ì—¬ìˆ˜ë™ ì‚°ë“¤ë§ˆì„ ê±°ë¶í™ˆ', 'sungeun@natural.com', '90/06/06', 1, 0, 1); --ì„±ë³„, íƒˆí‡´ì—¬ë¶€, ë“±ê¸‰
           
---È¸¿øÁ¤º¸ ¼öÁ¤
-UPDATE "NMDB"."tb_member" 
-SET "mem_pw" ='4321',
-    "mem_phone" = '010-5555-5555', 
-    "mem_addr_post" = '555-555', 
-    "mem_addr_detail" = '°æ±âµµ ¼º³²½Ã Áß¿ø±¸ ¿©¼öµ¿ »êµé¸¶À» °ÅºÏÈ¨ ¾ğÀú¸®', 
-    "mem_email" = 'sungjae@natural.com'
-    WHERE "mem_id"='sungjae';
+--íšŒì›ì •ë³´ ìˆ˜ì •
+UPDATE NMDB.tb_member 
+SET mem_pw ='4321',
+    mem_phone = '010-5555-5555', 
+    mem_addr_post = '555-555', 
+    mem_addr_detail = 'ê²½ê¸°ë„ ì„±ë‚¨ì‹œ ì¤‘ì›êµ¬ ì—¬ìˆ˜ë™ ì‚°ë“¤ë§ˆì„ ê±°ë¶í™ˆ ì–¸ì €ë¦¬', 
+    mem_email = 'sungjae@natural.com'
+    WHERE mem_id='sungjae';
 
---È¸¿øÅ»Åğ
-UPDATE "NMDB"."tb_member" SET "drop_out" = 1 
-    WHERE "mem_id"='minhee';
+--íšŒì›íƒˆí‡´
+UPDATE NMDB.tb_member SET drop_out = 1 
+    WHERE mem_id='minhee';
+

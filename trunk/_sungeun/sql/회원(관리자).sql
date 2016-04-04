@@ -1,25 +1,25 @@
----- È¸¿ø °ü¸® (°ü¸®ÀÚ) ----------------------------------------------
+---- íšŒì› ê´€ë¦¬ (ê´€ë¦¬ì) ----------------------------------------------
 
--- ¸ğµçÈ¸¿ø Á¶È¸
-SELECT "mem_id", "mem_name", "mem_addr_detail", "mem_phone", "mem_email", "mem_birth", "mem_gender", "drop_out" 
-FROM "tb_member" ;
+-- ëª¨ë“ íšŒì› ì¡°íšŒ
+SELECT mem_id, mem_name, mem_addr_detail, mem_phone, mem_email, mem_birth, mem_gender, drop_out 
+FROM tb_member ;
 
--- Á¶°ÇºÎ Á¶È¸
-	-- Á¶°Ç¹®Àº µ¿ÀûÀ¸·Î ÇÒ´ç
-SELECT "mem_id", "mem_name", "mem_addr_detail", "mem_phone", "mem_email", "mem_birth", "mem_gender", "drop_out" 
-FROM "tb_member" WHERE ( "mem_id" LIKE '%soo%' 
-                  OR "mem_name" LIKE '%¼ö¹Î%'
-                  OR "mem_phone"='010-1111-1111'
-                  OR "mem_email"='soomin@natural.com'
-                  OR "mem_birth"='90/01/01'
-                  OR "mem_gender"='1'
-                  OR "drop_out"='0' );
+-- ì¡°ê±´ë¶€ ì¡°íšŒ
+	-- ì¡°ê±´ë¬¸ì€ ë™ì ìœ¼ë¡œ í• ë‹¹
+SELECT mem_id, mem_name, mem_addr_detail, mem_phone, mem_email, mem_birth, mem_gender, drop_out 
+FROM tb_member WHERE ( mem_id LIKE '%soo%' 
+                  OR mem_name LIKE '%ìˆ˜ë¯¼%'
+                  OR mem_phone='010-1111-1111'
+                  OR mem_email='soomin@natural.com'
+                  OR mem_birth='90/01/01'
+                  OR mem_gender='1'
+                  OR drop_out='0' );
                   
--- È¸¿øÅ»Åğ          
-UPDATE "NMDB"."tb_member" SET "drop_out"=0 WHERE "mem_id"='admin02';
+-- íšŒì›íƒˆí‡´          
+UPDATE NMDB.tb_member SET drop_out=0 WHERE mem_id='admin02';
 
--- ºÒ·®È¸¿ø
-UPDATE "NMDB"."tb_member" SET "mem_level_cd"=2 WHERE "mem_id"='minhee';
+-- ë¶ˆëŸ‰íšŒì›
+UPDATE NMDB.tb_member SET mem_level_cd=2 WHERE mem_id='minhee';
 
--- °ü¸®ÀÚ ºñ¹Ğ¹øÈ£ ¼öÁ¤
-UPDATE "NMDB"."tb_member" SET "mem_pw"='1111' WHERE "mem_id"='admin01';
+-- ê´€ë¦¬ì ë¹„ë°€ë²ˆí˜¸ ìˆ˜ì •
+UPDATE NMDB.tb_member SET mem_pw='1111' WHERE mem_id='admin01';

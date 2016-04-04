@@ -1,80 +1,80 @@
----- ÀÌº¥Æ® °Ô½ÃÆÇ ----------------------------------------
+---- ì´ë²¤íŠ¸ ê²Œì‹œíŒ ----------------------------------------
 
---ÀÌº¥Æ® °Ô½ÃÆÇ ±ÇÇÑ Ã¼Å©
-SELECT "board_read", "board_write", "board_modify", "board_delete" 
-FROM "tb_mem_level_n_board" 
-WHERE "board_cd"=2 
-AND "mem_level_cd"=
-(SELECT "mem_level_cd" 
-FROM "tb_member" 
-WHERE "mem_id"='soojin');
-
-
---°Ô½ÃÆÇ ¸®½ºÆ®
-SELECT "event_no", "evt_title","mem_id", "evt_write_day", "evt_hits" 
-FROM "tb_event" WHERE "evt_del_check"=0 ORDER BY "event_no" DESC;
---°Ô½Ã±ÛÀÇ ¸®ÇÃ °¹¼ö
-SELECT "evt_no", count("event_re_no") FROM "tb_event_re" WHERE "evt_del_check"=0 GROUP BY "evt_no";
+--ì´ë²¤íŠ¸ ê²Œì‹œíŒ ê¶Œí•œ ì²´í¬
+SELECT board_read, board_write, board_modify, board_delete 
+FROM tb_mem_level_n_board 
+WHERE board_cd=2 
+AND mem_level_cd=
+(SELECT mem_level_cd 
+FROM tb_member 
+WHERE mem_id='soojin');
 
 
---°Ô½Ã±Û ³»¿ë
-SELECT * FROM "tb_event" 
-    WHERE "evt_del_check"=0
-    and "event_no" = '1';
-    -- °Ô½Ã±Û ¸®ÇÃ ³»¿ë
-SELECT "mem_id","evt_re_content","evt_re_write_day" FROM "tb_event_re"
-    WHERE "evt_re_del_check"=0
-    and "evt_no" = '1';
-    -- Á¶È¸¼ö +1
-UPDATE "NMDB"."tb_event" SET "evt_hits" = "evt_hits"+1;
+--ê²Œì‹œíŒ ë¦¬ìŠ¤íŠ¸
+SELECT event_no, evt_title,mem_id, evt_write_day, evt_hits 
+FROM tb_event WHERE evt_del_check=0 ORDER BY event_no DESC;
+--ê²Œì‹œê¸€ì˜ ë¦¬í”Œ ê°¯ìˆ˜
+SELECT evt_no, count(event_re_no) FROM tb_event_re WHERE evt_del_check=0 GROUP BY evt_no;
 
 
---´ñ±Û ¾²±â
-INSERT INTO "tb_event_re" VALUES(EVENT_RE_NO_SEQ.NEXTVAL,
-                                '´ñ±ÛÀÔ´Ï´Ù.', 
+--ê²Œì‹œê¸€ ë‚´ìš©
+SELECT * FROM tb_event 
+    WHERE evt_del_check=0
+    and event_no = '1';
+    -- ê²Œì‹œê¸€ ë¦¬í”Œ ë‚´ìš©
+SELECT mem_id,evt_re_content,evt_re_write_day FROM tb_event_re
+    WHERE evt_re_del_check=0
+    and evt_no = '1';
+    -- ì¡°íšŒìˆ˜ +1
+UPDATE NMDB.tb_event SET evt_hits = evt_hits+1;
+
+
+--ëŒ“ê¸€ ì“°ê¸°
+INSERT INTO tb_event_re VALUES(EVENT_RE_NO_SEQ.NEXTVAL,
+                                'ëŒ“ê¸€ì…ë‹ˆë‹¤.', 
                                 SYSDATE, 
                                 0, 1,
-                                'admin01'); --»èÁ¦¿©ºÎ, ºÎ¸ğ±Û
---´ñ±Û »èÁ¦ (*******Áú¹®ÇÒ°Í)
-UPDATE "tb_event_re" SET "evt_re_del_check"=1 WHERE "event_re_no"=1;
+                                'admin01'); --ì‚­ì œì—¬ë¶€, ë¶€ëª¨ê¸€
+--ëŒ“ê¸€ ì‚­ì œ (*******ì§ˆë¬¸í• ê²ƒ)
+UPDATE tb_event_re SET evt_re_del_check=1 WHERE event_re_no=1;
 
 
---±Û¾²±â
-INSERT INTO "tb_event" VALUES(EVENT_NO_SEQ.NEXTVAL,
-                              '¿À´ÃÀÇ ÃâÃ½ ÀÌº¥Æ®ÀÔ´Ï´Ù! ¸ğµÎ ¸¹ÀÌ Âü¿©ÇØÁÖ¼¼¿ä',
+--ê¸€ì“°ê¸°
+INSERT INTO tb_event VALUES(EVENT_NO_SEQ.NEXTVAL,
+                              'ì˜¤ëŠ˜ì˜ ì¶œì²µ ì´ë²¤íŠ¸ì…ë‹ˆë‹¤! ëª¨ë‘ ë§ì´ ì°¸ì—¬í•´ì£¼ì„¸ìš”',
                               SYSDATE, 1,
-                              'ÀÚ¿¬¸¾¿¡¼­ ÁØºñÇÑ »õ·Î¿î Ãâ¼®Ã¼Å© ÀÌº¥Æ®<br> ¿À´Ã Ãâ¼®Ã¼Å©¸¦ ÇÑ ¼±Âø¼ø 30ºĞ¿¡°Ô ºñ´© 1+1ÀÇ ±âÈ¸¸¦ µå·Á¿ä',
+                              'ìì—°ë§˜ì—ì„œ ì¤€ë¹„í•œ ìƒˆë¡œìš´ ì¶œì„ì²´í¬ ì´ë²¤íŠ¸<br> ì˜¤ëŠ˜ ì¶œì„ì²´í¬ë¥¼ í•œ ì„ ì°©ìˆœ 30ë¶„ì—ê²Œ ë¹„ëˆ„ 1+1ì˜ ê¸°íšŒë¥¼ ë“œë ¤ìš”',
                               0,2,
                               'admin01');
---±Û¼öÁ¤
-	-- ¼öÁ¤ÇÒ ³»¿ë ºÒ·¯¿À±â
-SELECT "evt_title", "evt_content" FROM "tb_event" WHERE "event_no"= 21;
-	-- ±Û ¼öÁ¤ÇÏ±â
-UPDATE "tb_event" SET 
-    "evt_write_day"=SYSDATE,
-    "evt_title"='¼öÁ¤µÈ ÃâÃ½ÀÌº¥Æ®!!', 
-    "evt_content"='ÀÚ¿¬¸¾¿¡¼­ ÁØºñÇÑ ¼öÁ¤µÈ ÃâÃ½ÀÌº¥Æ®!!!<br><br> ÃâÃ½À»ÇØ¶ó! »¡¸® ÇÑ»ç¶÷ 10¸í¿¡°Ô 1+1ºñ´© ÁõÁ¤'
-    WHERE "event_no"=21;
+--ê¸€ìˆ˜ì •
+	-- ìˆ˜ì •í•  ë‚´ìš© ë¶ˆëŸ¬ì˜¤ê¸°
+SELECT evt_title, evt_content FROM tb_event WHERE event_no= 21;
+	-- ê¸€ ìˆ˜ì •í•˜ê¸°
+UPDATE tb_event SET 
+    evt_write_day=SYSDATE,
+    evt_title='ìˆ˜ì •ëœ ì¶œì²µì´ë²¤íŠ¸!!', 
+    evt_content='ìì—°ë§˜ì—ì„œ ì¤€ë¹„í•œ ìˆ˜ì •ëœ ì¶œì²µì´ë²¤íŠ¸!!!<br><br> ì¶œì²µì„í•´ë¼! ë¹¨ë¦¬ í•œì‚¬ëŒ 10ëª…ì—ê²Œ 1+1ë¹„ëˆ„ ì¦ì •'
+    WHERE event_no=21;
     
     
---±Û»èÁ¦
-UPDATE "tb_event" SET "evt_del_check"=1 WHERE "event_no"=1;
-UPDATE "tb_event_re" SET "evt_re_del_check"=1 WHERE "evt_no"=1;
+--ê¸€ì‚­ì œ
+UPDATE tb_event SET evt_del_check=1 WHERE event_no=1;
+UPDATE tb_event_re SET evt_re_del_check=1 WHERE evt_no=1;
 
 
---°Ë»ö
-	-- Á¦¸ñÀ¸·Î °Ë»ö
-SELECT "event_no", "evt_title","mem_id", "evt_write_day", "evt_hits" 
-FROM "tb_event" WHERE "evt_del_check"=0 
-			AND "evt_title" LIKE '%ÇÇºÎ%' 
-			ORDER BY "event_no" DESC;
-	-- ³»¿ëÀ¸·Î °Ë»ö
-SELECT "event_no", "evt_title","mem_id", "evt_write_day", "evt_hits" 
-FROM "tb_event" WHERE "evt_del_check"=0 
-			AND "evt_content" LIKE '%ÀÚ¿¬¸¾%' 
-			ORDER BY "event_no" DESC;
-	-- Á¦¸ñ+³»¿ëÀ¸·Î °Ë»ö
-SELECT "event_no", "evt_title","mem_id", "evt_write_day", "evt_hits" 
-FROM "tb_event" WHERE "evt_del_check"=0 
-			AND ("evt_title" LIKE '%¼öÁ¤%' OR "evt_content" LIKE '%ÀÚ¿¬¸¾%') 
-			ORDER BY "event_no" DESC;
+--ê²€ìƒ‰
+	-- ì œëª©ìœ¼ë¡œ ê²€ìƒ‰
+SELECT event_no, evt_title,mem_id, evt_write_day, evt_hits 
+FROM tb_event WHERE evt_del_check=0 
+			AND evt_title LIKE '%í”¼ë¶€%' 
+			ORDER BY event_no DESC;
+	-- ë‚´ìš©ìœ¼ë¡œ ê²€ìƒ‰
+SELECT event_no, evt_title,mem_id, evt_write_day, evt_hits 
+FROM tb_event WHERE evt_del_check=0 
+			AND evt_content LIKE '%ìì—°ë§˜%' 
+			ORDER BY event_no DESC;
+	-- ì œëª©+ë‚´ìš©ìœ¼ë¡œ ê²€ìƒ‰
+SELECT event_no, evt_title,mem_id, evt_write_day, evt_hits 
+FROM tb_event WHERE evt_del_check=0 
+			AND (evt_title LIKE '%ìˆ˜ì •%' OR evt_content LIKE '%ìì—°ë§˜%') 
+			ORDER BY event_no DESC;
