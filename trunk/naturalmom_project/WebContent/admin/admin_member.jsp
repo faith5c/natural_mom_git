@@ -129,6 +129,7 @@
 					<td><label for = "phone1">전화번호</label></td>
 					<td>
 						<select id="phone1" name="phone1">
+							<option value="none">&nbsp;선택&nbsp;</option>
                     	    <option value="010">&nbsp;010&nbsp;</option>
                        		<option value="016">&nbsp;016&nbsp;</option>
                     	    <option value="017">&nbsp;017&nbsp;</option>
@@ -143,7 +144,7 @@
 					<td><label for = "email1">이메일</label></td>
 					<td>
 					<input type="text" id="email1" name="email1" />@<input type="text" id="email2" name="email2" />
-					<select id="email_select" name="email_select">
+					<select id="email_select" name="email_select" onchange="email_change()">
 							<option value="empty">직접입력</option>
 							<option value="naver.com">naver.com</option>	
 							<option value="hanmail.net">hanmail.net</option>
@@ -158,11 +159,13 @@
 					<td>
 						<input id="year" name="year" type="number" placeholder="1999"/>년 
 						<select id="month" name="month">
+								<option value="none">&nbsp;선택&nbsp;</option>
               	 	         <%for(int i=1; i<13; i++){ %>
               		       		<option value="<%= i %>">&nbsp;<%= i %>&nbsp;</option>
                		      	<%} %>
                 	     </select>월
                   	   <select id="day" name="day">
+                  	   			<option value="none">&nbsp;선택&nbsp;</option>
                    		  	<%for(int i=1; i<32; i++){ %>
                     	 		<option value="<%= i %>">&nbsp;<%= i %>&nbsp;</option>
                    		  	<%} %>
@@ -227,5 +230,13 @@
 	</div>
 <!--------------------------------------------------------end container------------->
   </body>
+  <script type="text/javascript">
+  
+	 function email_change() {
+		 var selectedEmail = $("#email_select").val();
+		 document.getElementById("email2").setAttribute("value", selectedEmail);
+	 }
+  
+  </script>
 
 </html>

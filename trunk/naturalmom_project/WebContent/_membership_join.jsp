@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <style type="text/css">
 
@@ -53,17 +54,17 @@ td:FIRST-CHILD {
 		<table>
 			<tr>
 				<td>아이디</td>
-				<td id="check_id"><input type="text" id="id" name="id" onblur="check_id()"/>
+				<td id="check_id"><input type="text" id="id" name="id" onchange="check_id()"/>
 					<input type="button" value="중복확인" name="check_id_double" onclick="pop_id()"/>&nbsp;&nbsp;<span>(6-18자 입력)</span></td>
 			</tr>
 			<tr>
 				<td>비밀번호</td>
-				<td id="check_pw"><input type="password" id="pw" name="pw" onblur="check_pw()"/>
+				<td id="check_pw"><input type="password" id="pw" name="pw" onchange="check_pw()"/>
 					&nbsp;&nbsp;<span>(영문, 숫자포함 6-18자 입력)</span></td>
 			</tr>
 			<tr>
 				<td>비밀번호 확인</td>
-				<td id="check_pw2"><input type="password" id="pw2" name="pw2" onblur="check_pw2()"/>&nbsp;
+				<td id="check_pw2"><input type="password" id="pw2" name="pw2" onchange="check_pw2()"/>&nbsp;
 					<span>비밀번호를 한번 더 입력하세요</span></td>
 			</tr>
 			<tr>
@@ -80,11 +81,13 @@ td:FIRST-CHILD {
 				<td>
 					<input id="year" name="year" type="number" placeholder="1999"/>년 
 					<select id="month" name="month">
+							<option value="none">&nbsp;선택&nbsp;</option>
                         <%for(int i=1; i<13; i++){ %>
                      		<option value="<%= i %>">&nbsp;<%= i %>&nbsp;</option>
                      	<%} %>
                      </select>월
                      <select id="day" name="day">
+                     		<option value="none">&nbsp;선택&nbsp;</option>
                      	<%for(int i=1; i<32; i++){ %>
                      		<option value="<%= i %>">&nbsp;<%= i %>&nbsp;</option>
                      	<%} %>
@@ -95,6 +98,7 @@ td:FIRST-CHILD {
 				<td>휴대폰번호</td>
 				<td>
 					<select id="phone1" name="phone1">
+						<option value="none">&nbsp;선택&nbsp;</option>
                         <option value="010">&nbsp;010&nbsp;</option>
                         <option value="016">&nbsp;016&nbsp;</option>
                         <option value="017">&nbsp;017&nbsp;</option>
@@ -109,8 +113,8 @@ td:FIRST-CHILD {
 				<td>이메일</td>
 				<td>
 					<input type="text" id="email1" name="email1" />@<input type="text" id="email2" name="email2" />
-					<select id="email_select" name="email_select">
-						<option>직접입력</option>
+					<select id="email_select" name="email_select" onchange="email_change()">
+						<option value="">직접입력</option>
 						<option value="naver.com">naver.com</option>
 						<option value="hanmail.net">hanmail.net</option>
 						<option value="nate.com">nate.com</option>
@@ -122,8 +126,7 @@ td:FIRST-CHILD {
 			<tr>
 				<td>주소</td>
 				<td>
-					<input type="number" id="post_num1" name="post_num1" disabled="disabled"/>-
-					<input type="number" id="post_num2" name="post_num2" disabled="disabled"/>
+					<input type="number" id="post_num" name="post_num" disabled="disabled"/>
 					<!-- post_num1 + post_num2 = addr_post -->
 					<input type="button" value="우편번호 찾기" name="find_postnum" onclick="pop_postNum()"/><br>
 					<input type="text" id="address" name="address" disabled="disabled"/>
@@ -143,6 +146,7 @@ td:FIRST-CHILD {
 	</form>
 
 </div>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
 	
 	function check_id() {
@@ -185,8 +189,23 @@ td:FIRST-CHILD {
 	 }
 	 
 	 function pop_postNum() {
-		window.open("membership_pop_post.jsp", "FindPostNumber", "width=402px, height=480px, left=600px, top=200px, scrollbars=no, toolbar=no, location=no");
+		 new daum.Postcode({
+		        oncomplete: function(data) {
+		            $('#post_num').val(data.zonecode);
+		            $('#address').val(data.address);
+                    $('#address_detail').focus();
+		        }
+		    }).open();
+//		window.open("membership_pop_post.jsp", "FindPostNumber", "width=402px, height=480px, left=600px, top=200px, scrollbars=no, toolbar=no, location=no");
 	 }
+	 
+	 
+	 function email_change() {
+		 var selectedEmail = $("#email_select").val();
+		 document.getElementById("email2").setAttribute("value", selectedEmail);
+	}
+	 
+	
 
 </script>
 

@@ -76,14 +76,14 @@ td:FIRST-CHILD {
 				<td>아이디</td>
 				<td><input type="text" id="id" name="id" disabled="disabled"/></td>
 			</tr>
-			<tr>
+						<tr>
 				<td>비밀번호</td>
-				<td><input type="password" id="pw" name="pw"/>&nbsp;
-					(영문, 숫자포함 6-18자 입력)</td>
+				<td id="check_pw"><input type="password" id="pw" name="pw" onchange="check_pw()"/>
+					&nbsp;&nbsp;<span>(영문, 숫자포함 6-18자 입력)</span></td>
 			</tr>
 			<tr>
 				<td>비밀번호 확인</td>
-				<td><input type="password" id="pw2" name="pw2"/>&nbsp;
+				<td id="check_pw2"><input type="password" id="pw2" name="pw2" onchange="check_pw2()"/>&nbsp;
 					<span>비밀번호를 한번 더 입력하세요</span></td>
 			</tr>
 			<tr>
@@ -94,6 +94,7 @@ td:FIRST-CHILD {
 				<td>휴대폰번호</td>
 				<td>
 					<select id="phone1" name="phone1">
+						<option value="none">&nbsp;선택&nbsp;</option>
                         <option value="010">&nbsp;010&nbsp;</option>
                         <option value="016">&nbsp;016&nbsp;</option>
                         <option value="017">&nbsp;017&nbsp;</option>
@@ -108,8 +109,8 @@ td:FIRST-CHILD {
 				<td>이메일</td>
 				<td>
 					<input type="text" id="email1" name="email1" />@<input type="text" id="email2" name="email2" />
-					<select id="email_select" name="email_select">
-						<option>직접입력</option>
+					<select id="email_select" name="email_select" onchange="email_change()">
+						<option value="">직접입력</option>
 						<option value="naver.com">naver.com</option>
 						<option value="hanmail.net">hanmail.net</option>
 						<option value="nate.com">nate.com</option>
@@ -121,10 +122,9 @@ td:FIRST-CHILD {
 			<tr>
 				<td>주소</td>
 				<td>
-					<input type="number" id="post_num1" name="post_num1" disabled="disabled"/>-
-					<input type="number" id="post_num2" name="post_num2" disabled="disabled"/>
+					<input type="number" id="post_num" name="post_num" disabled="disabled"/>
 					<!-- post_num1 + post_num2 = addr_post -->
-					<button id="find_post_num">우편번호 찾기</button><br>
+					<input type="button" value="우편번호 찾기" name="find_postnum" onclick="pop_postNum()"/><br>
 					<input type="text" id="address" name="address" disabled="disabled"/>
 				</td>
 			</tr>
@@ -143,7 +143,47 @@ td:FIRST-CHILD {
 			</tr>
 		</table>
 	</form>
-	
 
 </div>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script type="text/javascript">
+
+function check_pw() {
+	var length_pw = $('#pw').val().length;
+	
+	console.log(length_pw);
+	if( length_pw < 6){
+		$("#check_pw span").css("color", "red").text("비밀번호가 너무 짧습니다");
+	} else {
+		$("#check_pw span").text("");
+	}
+}
+
+function check_pw2() {
+	var val_pw1= $('#pw').val();
+	var var_pw2 = $('#pw2').val();
+	
+	if( ! (val_pw1 == var_pw2) ){
+		$("#check_pw2 span").css("color", "red").text("비밀번호가 일치하지 않습니다");
+	}else{
+		$("#check_pw2 span").css("color", "gray").text("비밀번호가 일치합니다");
+	}
+}
+
+	function pop_postNum() {
+		 new daum.Postcode({
+	    	    oncomplete: function(data) {
+	        	    $('#post_num').val(data.zonecode);
+	            	$('#address').val(data.address);
+  	            $('#address_detail').focus();
+		        }
+	   	 }).open();
+	}
+	
+	 function email_change() {
+		 var selectedEmail = $("#email_select").val();
+		 document.getElementById("email2").setAttribute("value", selectedEmail);
+	}
+
+</script>
 </html>

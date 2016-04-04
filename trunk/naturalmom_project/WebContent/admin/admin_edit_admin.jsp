@@ -79,14 +79,14 @@ td:FIRST-CHILD {
 				<td>아이디</td>
 				<td><input type="text" id="id" name="id" disabled="disabled"/></td>
 			</tr>
-			<tr>
+						<tr>
 				<td>비밀번호</td>
-				<td><input type="password" id="pw" name="pw"/>&nbsp;
-					(영문, 숫자포함 6-18자 입력)</td>
+				<td id="check_pw"><input type="password" id="pw" name="pw" onchange="check_pw()"/>
+					&nbsp;&nbsp;<span>(영문, 숫자포함 6-18자 입력)</span></td>
 			</tr>
 			<tr>
 				<td>비밀번호 확인</td>
-				<td><input type="password" id="pw2" name="pw2"/>&nbsp;
+				<td id="check_pw2"><input type="password" id="pw2" name="pw2" onchange="check_pw2()"/>&nbsp;
 					<span>비밀번호를 한번 더 입력하세요</span></td>
 			</tr>
 			
@@ -99,5 +99,32 @@ td:FIRST-CHILD {
 	</div>
 <!--------------------------------------------------------end container------------->
   </body>
+  
+ <script type="text/javascript">
+ 	
+ 	function check_pw() {
+		var length_pw = $('#pw').val().length;
+		
+		console.log(length_pw);
+		if( length_pw < 6){
+			$("#check_pw span").css("color", "red").text("비밀번호가 너무 짧습니다");
+		} else {
+			$("#check_pw span").text("");
+		}
+	}
+
+	function check_pw2() {
+		var val_pw1= $('#pw').val();
+		var var_pw2 = $('#pw2').val();
+		
+		if( ! (val_pw1 == var_pw2) ){
+			$("#check_pw2 span").css("color", "red").text("비밀번호가 일치하지 않습니다");
+		}else{
+			$("#check_pw2 span").css("color", "gray").text("비밀번호가 일치합니다");
+		}
+	}
+ 
+ 
+ </script>
 
 </html>
