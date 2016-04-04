@@ -18,18 +18,6 @@ WHERE deleted_state=0 AND product_no
 IN (SELECT product_no FROM tb_interest WHERE mem_id = 'soomin');
 */
 
--- 관심상품 뷰 만듦
-CREATE VIEW V_INTEREST
-AS
-SELECT i.product_no, product_name, selling_price, sale_state, represent_img, i.mem_id
-FROM tb_product p JOIN tb_interest i
-ON (p.product_no = i.product_no);
-
--- 만들어진 관심상품 뷰에 적용되어야 할 SQL
-SELECT product_no, product_name, selling_price, sale_state, represent_img
-FROM V_INTEREST
-WHERE mem_id='soomin';
-
 --------------------------------------------------------------------------------
 -- 관심상품 중복 확인
 -- (html : 상품상세페이지에서 관심상품을 추가하려고 하면 관심상품이 이미 들어있는지 아닌지 확인하는 부분)
@@ -43,5 +31,5 @@ INSERT INTO tb_interest (product_no, mem_id) VALUES (10002, 'soomin');
 --------------------------------------------------------------------------------
 
 -- 관심상품 삭제
--- 상품번호를 받아와서 해당하는 관심상품 삭제함
-DELETE FROM tb_interest WHERE product_no=10002;
+-- 상품번호와 회원아이디를 받아와서 해당하는 관심상품 삭제함
+DELETE FROM tb_interest WHERE product_no=10002 AND mem_id='soomin';
