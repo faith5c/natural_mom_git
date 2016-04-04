@@ -5,16 +5,17 @@ SELECT board_read, board_write, board_modify, board_delete
 FROM tb_mem_level_n_board 
 WHERE board_cd=2 
 AND mem_level_cd=
-(SELECT mem_level_cd 
-FROM tb_member 
+(SELECT mem_level_cd FROM tb_member 
 WHERE mem_id='soojin');
 
 
 --게시판 리스트
-SELECT event_no, evt_title,mem_id, evt_write_day, evt_hits 
-FROM tb_event WHERE evt_del_check=0 ORDER BY event_no DESC;
---게시글의 리플 갯수
-SELECT evt_no, count(event_re_no) FROM tb_event_re WHERE evt_del_check=0 GROUP BY evt_no;
+SELECT e.EVENT_NO, e.EVT_TITLE, e.MEM_ID, e.EVT_WRITE_DAY, e.EVT_HITS, COUNT(r.EVENT_RE_NO) as count_re
+FROM TB_EVENT e LEFT OUTER JOIN TB_EVENT_RE r
+ON (e.EVENT_NO = r.EVT_NO)
+WHERE e.EVT_DEL_CHECK =0
+GROUP BY e.EVENT_NO, e.EVT_TITLE, e.MEM_ID, e.EVT_WRITE_DAY, e.EVT_HITS
+ORDER BY e.EVENT_NO DESC;
 
 
 --게시글 내용
@@ -22,7 +23,7 @@ SELECT * FROM tb_event
     WHERE evt_del_check=0
     and event_no = '1';
     -- 게시글 리플 내용
-SELECT mem_id,evt_re_content,evt_re_write_day FROM tb_event_re
+SELECT mem_id, evt_re_content, evt_re_write_day, EVENT_RE_NO FROM tb_event_re
     WHERE evt_re_del_check=0
     and evt_no = '1';
     -- 조회수 +1
@@ -44,7 +45,7 @@ INSERT INTO tb_event VALUES(EVENT_NO_SEQ.NEXTVAL,
                               '오늘의 출첵 이벤트입니다! 모두 많이 참여해주세요',
                               SYSDATE, 1,
                               '자연맘에서 준비한 새로운 출석체크 이벤트<br> 오늘 출석체크를 한 선착순 30분에게 비누 1+1의 기회를 드려요',
-                              0,2,
+                              0, 2,
                               'admin01');
 --글수정
 	-- 수정할 내용 불러오기

@@ -12,14 +12,15 @@ public class Event {
 	int evt_del_check;
 	int board_id;
 	String mem_id;
+	int count_re;
 	
 	
 	// Constructor
 	public Event() {	}
 
-	// ¸ğµÎ
+	// ëª¨ë‘
 	public Event(int event_no, String evt_title, Calendar evt_write_day, int evt_hits, String evt_content,
-			int evt_del_check, int board_id, String mem_id) {
+			int evt_del_check, int board_id, String mem_id, int count_re) {
 		super();
 		this.event_no = event_no;
 		this.evt_title = evt_title;
@@ -31,9 +32,9 @@ public class Event {
 		this.mem_id = mem_id;
 	}
 	
-	// »èÁ¦¿©ºÎ 0 // °Ô½ÃÆÇ¹øÈ£ 2
+	// ì‚­ì œì—¬ë¶€ 0 // ê²Œì‹œíŒë²ˆí˜¸ 2
 	public Event(int event_no, String evt_title, Calendar evt_write_day, int evt_hits, String evt_content,
-			 String mem_id) {
+			 String mem_id, int count_re) {
 		super();
 		this.event_no = event_no;
 		this.evt_title = evt_title;
@@ -109,6 +110,14 @@ public class Event {
 
 	public void setMem_id(String mem_id) {
 		this.mem_id = mem_id;
+	}
+
+	public int getCount_re() {
+		return count_re;
+	}
+
+	public void setCount_re(int count_re) {
+		this.count_re = count_re;
 	}
 	
 	

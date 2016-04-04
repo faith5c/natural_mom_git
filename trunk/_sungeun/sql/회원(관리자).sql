@@ -7,13 +7,13 @@ FROM tb_member ;
 -- 조건부 조회
 	-- 조건문은 동적으로 할당
 SELECT mem_id, mem_name, mem_addr_detail, mem_phone, mem_email, mem_birth, mem_gender, drop_out 
-FROM tb_member WHERE ( mem_id LIKE '%soo%' 
-                  OR mem_name LIKE '%수민%'
-                  OR mem_phone='010-1111-1111'
-                  OR mem_email='soomin@natural.com'
-                  OR mem_birth='90/01/01'
-                  OR mem_gender='1'
-                  OR drop_out='0' );
+FROM tb_member WHERE (drop_out='0' 
+				  AND mem_id LIKE '%soo%' 
+                  AND mem_name LIKE '%수민%'
+                  AND mem_phone='010-1111-1111'
+                  AND mem_email='soomin@natural.com'
+                  AND mem_birth='90/01/01'
+                  AND mem_gender='1' );
                   
 -- 회원탈퇴          
 UPDATE NMDB.tb_member SET drop_out=0 WHERE mem_id='admin02';

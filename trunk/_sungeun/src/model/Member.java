@@ -17,10 +17,10 @@ public class Member {
 	int mem_level_cd;
 	
 	
-	// »ı¼ºÀÚ
+	// ìƒì„±ì
 	public Member() {  }
 
-	// ¸ğµÎ
+	// ëª¨ë‘
 	public Member(String mem_id, String mem_pw, String mem_name, String mem_phone, String mem_addr_post,
 			String mem_addr_detail, String mem_email, Calendar mem_birth, int mem_gender, int drop_out,
 			int mem_level_cd) {
@@ -38,7 +38,7 @@ public class Member {
 		this.mem_level_cd = mem_level_cd;
 	}
 	
-	// Å»Åğ¿©ºÎ 0 // È¸¿øµî±Ş 1
+	// íƒˆí‡´ì—¬ë¶€ 0 // íšŒì›ë“±ê¸‰ 1
 	public Member(String mem_id, String mem_pw, String mem_name, String mem_phone, String mem_addr_post,
 			String mem_addr_detail, String mem_email, Calendar mem_birth, int mem_gender) {
 		super();

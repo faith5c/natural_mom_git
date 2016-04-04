@@ -28,10 +28,14 @@ insert into tb_member
           '경기도 성남시 중원구 여수동 산들마을 거북홈', 'sungeun@natural.com', '90/06/06', 1, 0, 1); --성별, 탈퇴여부, 등급
           
 --회원정보 수정
+	--회원정보 불러오기
+SELECT MEM_ID, MEM_NAME, MEM_PHONE, MEM_EMAIL, MEM_ADDR_POST, MEM_ADDR_DETAIL FROM TB_MEMBER 
+    WHERE MEM_ID='soomin';
+	--수정 확인
 UPDATE NMDB.tb_member 
 SET mem_pw ='4321',
-    mem_phone = '010-5555-5555', 
-    mem_addr_post = '555-555', 
+    mem_phone = '010-5555-5555',
+    mem_addr_post = '555-555',
     mem_addr_detail = '경기도 성남시 중원구 여수동 산들마을 거북홈 언저리', 
     mem_email = 'sungjae@natural.com'
     WHERE mem_id='sungjae';
