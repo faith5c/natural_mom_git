@@ -17,8 +17,3 @@ SELECT review_no, rvw_title, rvw_write_day, rvw_hits, rvw_content,
 rvw_satisfaction, mem_id, RE_NUM
 FROM v_review_pront
 WHERE product_no = 10003;
-
--- 게시판 글 수정 시 내용 불러오기 & 수정하기 (프론트)
-SELECT rvw_title, rvw_content, mem_id
-FROM tb_review
-WHERE review_no = ?;

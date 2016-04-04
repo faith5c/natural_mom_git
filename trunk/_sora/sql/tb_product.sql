@@ -31,3 +31,5 @@ WHERE product_no = 10002;
 -- 삭제 상품 복원
 -- UPDATE
 UPDATE tb_product SET deleted_state = 0, display_state = 1, sale_state = 1 WHERE product_no = ?;
+
+

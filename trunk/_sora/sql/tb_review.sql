@@ -9,3 +9,8 @@ WHERE review_no = ?;
 -- 글 삭제하기(백&프론트)
 UPDATE tb_review SET rvw_del_check = 1
 WHERE review_no = ?;
+
+-- 게시판 글 수정 시 내용 불러오기 & 수정하기 (프론트)
+SELECT rvw_title, rvw_content, mem_id
+FROM tb_review
+WHERE review_no = ?;

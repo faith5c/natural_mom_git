@@ -2,6 +2,7 @@ package naturalmom.model;
 
 public class VProduct_Manage 
 {
+	// ¸â¹ö º¯¼ö
 	int product_no;
 	String category_nm;
 	String product_name;
