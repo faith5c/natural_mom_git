@@ -32,8 +32,6 @@ public class VReview_Front
 		this.re_num = re_num;
 	}
 	
-	
-
 	// getter and setter
 	public int getReview_no() {
 		return review_no;

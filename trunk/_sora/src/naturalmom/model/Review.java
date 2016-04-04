@@ -19,7 +19,7 @@ public class Review
 	// 생성자
 	public Review() {}
 	
-	// 모두 입력
+	// 모두 입력: 상품 후기 등록 시
 	public Review(int review_no, String rvw_title, Date rvw_write_day,
 			int rvw_hits, String rvw_content, int rvw_del_check,
 			int satisfaction, int product_no, int board_id, int mem_id) {
@@ -36,7 +36,7 @@ public class Review
 		this.mem_id = mem_id;
 	}
 	
-	// 삭제 상태, 게시판 아이디 빠짐 (기본 false, 5)
+	// 삭제 상태, 게시판 아이디 빠짐 (기본 false, 5): 상품 후기 수정 시 내용 가져오기 및 상품 수정
 	public Review(int review_no, String rvw_title, Date rvw_write_day,
 			int rvw_hits, String rvw_content, int satisfaction, 
 			int product_no, int mem_id) 

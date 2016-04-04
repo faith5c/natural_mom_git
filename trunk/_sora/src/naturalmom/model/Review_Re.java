@@ -15,7 +15,7 @@ public class Review_Re
 	// 생성자
 	public Review_Re(){}
 	
-	// 모두 입력
+	// 모두 입력: 리플 등록 시
 	public Review_Re(int review_re_no, String rvw_re_content,
 			Date rvw_re_write_day, int rvw_re_del_check, int rvw_no,
 			String mem_id) 
@@ -28,7 +28,7 @@ public class Review_Re
 		this.mem_id = mem_id;
 	}
 	
-	// 삭제 상태 빠짐 (기본 false)
+	// 삭제 상태 빠짐 (기본 false): 리플 내용 가져올 시
 	public Review_Re(int review_re_no, String rvw_re_content,
 			Date rvw_re_write_day, int rvw_no,
 			String mem_id) 

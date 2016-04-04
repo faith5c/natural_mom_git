@@ -6,25 +6,15 @@ import naturalmom.model.Review;
 
 public interface IReviewDAO 
 {
-	// 프론트용 목록 뽑기
-	List<Review> sellectAllReview(int product_no);
-	
-	// 관리자용 목록 뽑기
-	List<Review> selectAllReview();
-	
+	// 상품 후기 수정 시 내용 가져오기
 	Review selectOneReview(int review_no);
 	
-	List<Review> selectReviews_by_title(String search);
-	
-	List<Review> selectReviews_by_content(String search);
-	
-	List<Review> selectReviews_by_id(String search);
-	
-	List<Review> selectReviews_by_title_n_content(String search);
-	
+	// 상품 후기 등록하기
 	int insertReview(Review review);
 
-	int deleteReview(int review_no);
+	// 상품 후기 삭제하기
+	int deleteReview(Review review);
 	
+	// 상품 후기 수정하기
 	int updateReview(Review review);
 }
