@@ -9,9 +9,9 @@
 -- 필요컬럼 : 상품번호, 상품명, 판매가격, 판매상태, 상품대표이미지, 상품요약설명,
 
 
-SELECT "product_no", "product_name", "selling_price", "sale_state", "represent_img", "summary_ex" 
-FROM "tb_product"
-WHERE "display_state"=1 AND "deleted_state"=0;
+SELECT product_no, product_name, selling_price, sale_state, represent_img, summary_ex 
+FROM tb_product
+WHERE display_state=1 AND deleted_state=0;
 
 
 ------------------------------------------------------------
@@ -19,12 +19,12 @@ WHERE "display_state"=1 AND "deleted_state"=0;
 -- 아토피/민감성/유아 
 -- (html : 상품종류 바꿈)
 
-SELECT "category_nm" FROM "tb_category" where "category_cd"=1;
+SELECT category_nm FROM tb_category where category_cd=1;
 
 
-SELECT "product_no", "product_name", "selling_price", "sale_state", "represent_img", "summary_ex" 
-FROM "tb_product"
-WHERE "display_state"=1 AND "deleted_state"=0 AND "category_cd"=1;
+SELECT product_no, product_name, selling_price, sale_state, represent_img, summary_ex 
+FROM tb_product
+WHERE display_state=1 AND deleted_state=0 AND category_cd=1;
 
 
 
@@ -32,34 +32,34 @@ WHERE "display_state"=1 AND "deleted_state"=0 AND "category_cd"=1;
 
 -- 피부탄력/노화
 
-SELECT "category_nm" FROM "tb_category" where "category_cd"=2;
+SELECT category_nm FROM tb_category where category_cd=2;
 
 
-SELECT "product_no", "product_name", "selling_price", "sale_state", "represent_img", "summary_ex" 
-FROM "tb_product"
-WHERE "display_state"=1 AND "deleted_state"=0 AND "category_cd"=2;
+SELECT product_no, product_name, selling_price, sale_state, represent_img, summary_ex 
+FROM tb_product
+WHERE display_state=1 AND deleted_state=0 AND category_cd=2;
 
 
 ------------------------------------------------------------
 
 -- 지성/여드름/트러블
 
-SELECT "category_nm" FROM "tb_category" where "category_cd"=3;
+SELECT category_nm FROM tb_category where category_cd=3;
 
 
-SELECT "product_no", "product_name", "selling_price", "sale_state", "represent_img", "summary_ex" 
-FROM "tb_product"
-WHERE "display_state"=1 AND "deleted_state"=0 AND "category_cd"=3;
+SELECT product_no, product_name, selling_price, sale_state, represent_img, summary_ex 
+FROM tb_product
+WHERE display_state=1 AND deleted_state=0 AND category_cd=3;
 
 
 ------------------------------------------------------------
 
 -- 미백/피부톤개선
 
-SELECT "category_nm" FROM "tb_category" where "category_cd"=4;
+SELECT category_nm FROM tb_category where category_cd=4;
 
 
-SELECT "product_no", "product_name", "selling_price", "sale_state", "represent_img", "summary_ex" 
-FROM "tb_product"
-WHERE "display_state"=1 AND "deleted_state"=0 AND "category_cd"=4;
+SELECT product_no, product_name, selling_price, sale_state, represent_img, summary_ex 
+FROM tb_product
+WHERE display_state=1 AND deleted_state=0 AND category_cd=4;
 

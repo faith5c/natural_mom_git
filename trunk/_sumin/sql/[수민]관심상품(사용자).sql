@@ -9,23 +9,23 @@
 
 -- 관심상품 조회
 -- 필요컬럼 : 상품번호, 상품명, 판매가격, 판매상태, 상품대표이미지 (삭제유무가 [0삭제안함]일때 뽑음)
-SELECT "product_no", "product_name", "selling_price", "sale_state", "represent_img" 
-FROM "tb_product" 
-WHERE "deleted_state"=0 AND "product_no" 
-IN (SELECT "product_no" FROM "tb_interest" WHERE "mem_id" = 'soomin');
+SELECT product_no, product_name, selling_price, sale_state, represent_img 
+FROM tb_product 
+WHERE deleted_state=0 AND product_no 
+IN (SELECT product_no FROM tb_interest WHERE mem_id = 'soomin');
 
 --------------------------------------------------------------------------------
 -- 관심상품 중복 확인
 -- (html : 상품상세페이지에서 관심상품을 추가하려고 하면 관심상품이 이미 들어있는지 아닌지 확인하는 부분)
-SELECT "product_no" FROM "tb_interest" WHERE "product_no"=10002 AND "mem_id"='soomin';
+SELECT product_no FROM tb_interest WHERE product_no=10002 AND mem_id='soomin';
 
 --------------------------------------------------------------------------------
 -- 관심상품 추가
 -- (html : request로 상품번호, 회원아이디 가져옴)
-INSERT INTO "tb_interest" ("product_no", "mem_id") VALUES (10002, 'soomin');
+INSERT INTO tb_interest (product_no, mem_id) VALUES (10002, 'soomin');
 
 --------------------------------------------------------------------------------
 
 -- 관심상품 삭제
 -- 상품번호를 받아와서 해당하는 관심상품 삭제함
-DELETE FROM "tb_interest" WHERE "product_no"=10002;
+DELETE FROM tb_interest WHERE product_no=10002;
