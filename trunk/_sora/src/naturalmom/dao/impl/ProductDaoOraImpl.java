@@ -2,33 +2,34 @@ package naturalmom.dao.impl;
 
 import java.util.List;
 
-import naturalmom.dao.IProductDAO;
-import naturalmom.model.Product;
+import naturalmom.dao.IProductDao;
+import naturalmom.model.ProductVo;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
-public class ProductDAOOracleImpl extends JdbcDaoSupport implements IProductDAO 
+public class ProductDaoOraImpl extends JdbcDaoSupport implements IProductDao 
 {
-	// »óÇ°¹øÈ£·Î »óÇ° °¡Á®¿À±â
+	// ï¿½ï¿½Ç°ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private final String SELECT_ONE_PRODUCT = "SELECT * FROM tb_product WHERE product_no = ?";
-	// »óÇ° ¼öÁ¤ÇÏ±â
+	// ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	private final String UPDATE_ONE_PRODUCT = "UPDATE tb_product SET product_name = ?, category_cd = ?, "
 			+ "selling_price = ?, cost_price = ?, stock = ?, weight = ?, represent_img = ?, detail_img = ?, "
 			+ "summary_ex = ?, detail_ex = ?, display_state = ?, sale_state = ? "
 			+ "WHERE product_no = ?";
-	// Áø¿­ »óÅÂ ¼öÁ¤ÇÏ±â
+	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	private final String UPDATE_DISPLAY_STATE = "UPDATE tb_product SET display_state = ? WHERE product_no = ?";
-	// ÆÇ¸Å »óÅÂ ¼öÁ¤ÇÏ±â
+	// ï¿½Ç¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	private final String UPDATE_SALE_STATE = "UPDATE tb_product SET sale_state = ? WHERE product_no = ?";	
-	// »èÁ¦ »óÅÂ ¼öÁ¤ÇÏ±â
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	private final String UPDATE_DELETED_STATE = "UPDATE tb_product SET deleted_state = ?, display_state = 1, sale_state = 1 WHERE product_no = ?";
 	
 	@Override
-	public Product selectOneProduct(int product_no) throws DataAccessException
+	public ProductVo selectOneProduct(int product_no) throws DataAccessException
 	{
-		List<Product> list = getJdbcTemplate().query(SELECT_ONE_PRODUCT, 
-				new BeanPropertyRowMapper<Product>(Product.class), new Integer(product_no));
+		List<ProductVo> list = getJdbcTemplate().query(SELECT_ONE_PRODUCT, 
+				new BeanPropertyRowMapper<ProductVo>(ProductVo.class), new Integer(product_no));
 		
 		if (list != null && list.size() > 0)
 			return list.get(0);
@@ -38,35 +39,35 @@ public class ProductDAOOracleImpl extends JdbcDaoSupport implements IProductDAO
 	}
 
 	@Override
-	public int insertProduct(Product product) throws DataAccessException
+	public int insertProduct(ProductVo product) throws DataAccessException
 	{
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int updateDisplayState(Product product, int state) throws DataAccessException
+	public int updateDisplayState(ProductVo product, int state) throws DataAccessException
 	{
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int updateSaleState(Product product, int state) throws DataAccessException
+	public int updateSaleState(ProductVo product, int state) throws DataAccessException
 	{
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int updateDeletedState(Product product, int state) throws DataAccessException
+	public int updateDeletedState(ProductVo product, int state) throws DataAccessException
 	{
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int updateOneProduct(Product product) throws DataAccessException
+	public int updateOneProduct(ProductVo product) throws DataAccessException
 	{
 		// TODO Auto-generated method stub
 		return 0;
