@@ -2,9 +2,9 @@ package naturalmom.model;
 
 import java.util.Date;
 
-public class Review_Re 
+public class Review_ReVO 
 {
-	// ¸â¹ö º¯¼ö
+	// ë©¤ë²„ë³€ìˆ˜
 	int review_re_no;
 	String rvw_re_content;
 	Date rvw_re_write_day;
@@ -12,11 +12,11 @@ public class Review_Re
 	int rvw_no;
 	String mem_id;
 	
-	// »ı¼ºÀÚ
-	public Review_Re(){}
+	// ìƒì„±ì
+	public Review_ReVO(){}
 	
-	// ¸ğµÎ ÀÔ·Â: ¸®ÇÃ µî·Ï ½Ã
-	public Review_Re(int review_re_no, String rvw_re_content,
+	// ëª¨ë‘ ì…ë ¥: ë¦¬í”Œ ë“±ë¡ ì‹œ
+	public Review_ReVO(int review_re_no, String rvw_re_content,
 			Date rvw_re_write_day, int rvw_re_del_check, int rvw_no,
 			String mem_id) 
 	{
@@ -28,8 +28,8 @@ public class Review_Re
 		this.mem_id = mem_id;
 	}
 	
-	// »èÁ¦ »óÅÂ ºüÁü (±âº» false): ¸®ÇÃ ³»¿ë °¡Á®¿Ã ½Ã
-	public Review_Re(int review_re_no, String rvw_re_content,
+	// ì‚­ì œ ìƒíƒœ ë¹ ì§ (ê¸°ë³¸ false): ë¦¬í”Œ ë‚´ìš© ê°€ì ¸ì˜¬ ì‹œ
+	public Review_ReVO(int review_re_no, String rvw_re_content,
 			Date rvw_re_write_day, int rvw_no,
 			String mem_id) 
 	{

@@ -1,16 +1,16 @@
 package naturalmom.model;
 
-public class VRank_Sells 
+public class VRank_SellsVO 
 {
-	// ¸â¹ö º¯¼ö
+	// ë©¤ë²„ ë³€ìˆ˜
 	int rownum;
 	int all_sells;
 	String product_name;
 	
-	// »ı¼ºÀÚ
-	public VRank_Sells() {}
+	// ìƒì„±ì
+	public VRank_SellsVO() {}
 	
-	public VRank_Sells(int rownum, int all_sells, String product_name) 
+	public VRank_SellsVO(int rownum, int all_sells, String product_name) 
 	{
 		this.rownum = rownum;
 		this.all_sells = all_sells;

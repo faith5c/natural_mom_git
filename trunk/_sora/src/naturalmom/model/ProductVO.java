@@ -1,8 +1,8 @@
 package naturalmom.model;
 
-public class Product 
+public class ProductVO 
 {
-	// ¸â¹ö º¯¼ö
+	// ë©¤ë²„ ë³€ìˆ˜
 	int product_no;
 	String product_name;
 	int selling_price;
@@ -18,11 +18,11 @@ public class Product
 	int weight;
 	int category_cd;
 	
-	// »ı¼ºÀÚ
-	public Product() {}
+	// ìƒì„±ì
+	public ProductVO() {}
 	
-	// ¸ğµÎ ÀÔ·Â: »óÇ° µî·Ï ½Ã
-	public Product(int product_no, String product_name, int selling_price,
+	// ëª¨ë‘ ë°›ìŒ
+	public ProductVO(int product_no, String product_name, int selling_price,
 			int cost_price, int stock, int display_state, int sale_state,
 			String represent_img, String detail_img, String summary_ex,
 			String detail_ex, int deleted_state, int weight, int category_cd)
@@ -43,8 +43,8 @@ public class Product
 		this.category_cd = category_cd;
 	}
 	
-	// »èÁ¦ »óÅÂ ¾øÀ½ (»èÁ¦ »óÅÂ false·Î ¼³Á¤): »óÇ° ¼öÁ¤ ½Ã ³»¿ë °¡Á®¿À±â ¹× »óÇ° ¼öÁ¤ÇÒ ¶§
-	public Product(int product_no, String product_name, int selling_price,
+	// ì‚­ì œ ìƒíƒœ ë°›ì§€ ì•ŠìŒ (ê¸°ë³¸ false) : ìƒí’ˆ ìˆ˜ì • ì‹œ
+	public ProductVO(int product_no, String product_name, int selling_price,
 			int cost_price, int stock, int display_state, int sale_state,
 			String represent_img, String detail_img, String summary_ex,
 			String detail_ex, int weight, int category_cd)

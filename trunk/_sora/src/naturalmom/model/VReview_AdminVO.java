@@ -2,7 +2,7 @@ package naturalmom.model;
 
 import java.util.Date;
 
-public class VReview_Admin 
+public class VReview_AdminVO 
 {
 	// 멤버 변수
 	int review_no;
@@ -17,10 +17,9 @@ public class VReview_Admin
 	int re_num;
 	
 	// 생성자
-	public VReview_Admin() {}
+	public VReview_AdminVO() {}
 	
-	// 모두 입력: 게시판 내용 조회 시
-	public VReview_Admin(int review_no, int product_no, String product_name, String rvw_title, String rvw_content,
+	public VReview_AdminVO(int review_no, int product_no, String product_name, String rvw_title, String rvw_content,
 			String mem_id, Date rvw_write_day, int rvw_satisfaction, int rvw_hits, int re_num) 
 	{
 		this.review_no = review_no;
@@ -35,8 +34,8 @@ public class VReview_Admin
 		this.re_num = re_num;
 	}
 	
-	// 조회수, 내용 없음 (0, null 로 통일): 게시판 목록 조회, 검색 결과
-	public VReview_Admin(int review_no, int product_no, String product_name, String rvw_title,
+	// 조회수, 내용 없음 (0, null 로 통일)
+	public VReview_AdminVO(int review_no, int product_no, String product_name, String rvw_title,
 			String mem_id, Date rvw_write_day, int rvw_satisfaction, int re_num) 
 	{
 		this.review_no = review_no;

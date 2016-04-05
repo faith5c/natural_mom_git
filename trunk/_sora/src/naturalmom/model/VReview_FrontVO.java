@@ -2,7 +2,7 @@ package naturalmom.model;
 
 import java.util.Date;
 
-public class VReview_Front 
+public class VReview_FrontVO 
 {
 	// 멤버 변수
 	int review_no;
@@ -16,9 +16,9 @@ public class VReview_Front
 	int re_num;
 	
 	// 생성자
-	public VReview_Front() {}
+	public VReview_FrontVO() {}
 	
-	public VReview_Front(int review_no, int product_no, String rvw_title, Date rvw_write_day, int rvw_hits,
+	public VReview_FrontVO(int review_no, int product_no, String rvw_title, Date rvw_write_day, int rvw_hits,
 			String rvw_content, int rvw_satisfaction, String mem_id, int re_num) 
 	{
 		this.review_no = review_no;
@@ -32,6 +32,8 @@ public class VReview_Front
 		this.re_num = re_num;
 	}
 	
+	
+
 	// getter and setter
 	public int getReview_no() {
 		return review_no;

@@ -2,9 +2,9 @@ package naturalmom.model;
 
 import java.util.Date;
 
-public class Review 
+public class ReviewVO 
 {
-	// ¸â¹ö º¯¼ö
+	// ë©¤ë²„ ë³€ìˆ˜
 	int review_no;
 	String rvw_title;
 	Date rvw_write_day;
@@ -16,11 +16,11 @@ public class Review
 	int board_id;
 	int mem_id;
 	
-	// »ı¼ºÀÚ
-	public Review() {}
+	// ìƒì„±ì
+	public ReviewVO() {}
 	
-	// ¸ğµÎ ÀÔ·Â: »óÇ° ÈÄ±â µî·Ï ½Ã
-	public Review(int review_no, String rvw_title, Date rvw_write_day,
+	// ëª¨ë‘ ì…ë ¥: ìƒí’ˆ í›„ê¸° ë“±ë¡ ì‹œ
+	public ReviewVO(int review_no, String rvw_title, Date rvw_write_day,
 			int rvw_hits, String rvw_content, int rvw_del_check,
 			int satisfaction, int product_no, int board_id, int mem_id) {
 		super();
@@ -36,8 +36,8 @@ public class Review
 		this.mem_id = mem_id;
 	}
 	
-	// »èÁ¦ »óÅÂ, °Ô½ÃÆÇ ¾ÆÀÌµğ ºüÁü (±âº» false, 5): »óÇ° ÈÄ±â ¼öÁ¤ ½Ã ³»¿ë °¡Á®¿À±â ¹× »óÇ° ¼öÁ¤
-	public Review(int review_no, String rvw_title, Date rvw_write_day,
+	// ì‚­ì œ ìƒíƒœ, ê²Œì‹œíŒ ì•„ì´ë”” ë¹ ì§ (ê¸°ë³¸ false, 5): ìƒí’ˆ í›„ê¸° ìˆ˜ì • ì‹œ ë‚´ìš© ê°€ì ¸ì˜¤ê¸° ë° ìƒí’ˆ ìˆ˜ì •
+	public ReviewVO(int review_no, String rvw_title, Date rvw_write_day,
 			int rvw_hits, String rvw_content, int satisfaction, 
 			int product_no, int mem_id) 
 	{
