@@ -1,3 +1,9 @@
+-- 게시판 목록 보기
+-- 글번호, 제목, 작성일, 조회수, 비밀번호, 답글위치, 참조글번호, 회원아이디, 댓글갯수 (삭제안된글 가져옴)
+-- (html : qua_answer_check 가 1이면 '답변'말머리 달아줌, qna_secret이 1이면 '비밀글(자물쇠표시)' 제목뒤에 달아줌 )
+-- (html : 댓글 갯수가 0이 아니라면 표시해줌)
+
+
 -- 뷰 만듦
 CREATE VIEW v_qna_qnare 
 AS
@@ -22,6 +28,8 @@ SELECT qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem
 FROM v_qna_qnare
 GROUP BY qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count  
 ORDER BY qna_ref DESC, qna_pos DESC;
+
+--------------------------------------------------------------
 
 -- 검색(제목)
 SELECT qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count  
