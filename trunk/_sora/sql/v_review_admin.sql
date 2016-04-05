@@ -3,9 +3,9 @@
 CREATE VIEW v_review_admin AS
 SELECT r.review_no, r.product_no, p.product_name, r.rvw_title,
 r.rvw_content, r.mem_id, r.rvw_write_day, r.rvw_satisfaction, r.rvw_hits,
-COUNT(re.review_re_no) as re_num
-FROM tb_product p, tb_review r LEFT OUTER JOIN tb_review_re re
-ON r.review_no = re.rvw_no
+NVL((SELECT COUNT(review_re_no) FROM tb_review_re re WHERE re.rvw_no = 
+r.review_no AND re.rvw_re_del_check = 0), 0) as re_num
+FROM tb_product p, tb_review r 
 WHERE r.product_no = p.product_no
 AND r.rvw_del_check = 0 
 group by r.review_no, r.product_no, p.product_name, r.rvw_title, r.mem_id, 

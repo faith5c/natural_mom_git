@@ -3,10 +3,10 @@
 CREATE VIEW v_review_pront AS
 SELECT r.review_no, r.product_no, r.rvw_title, r.rvw_write_day, 
 r.rvw_hits, r.rvw_content, r.rvw_satisfaction, r.mem_id,
-COUNT(re.review_re_no) as re_num
-FROM tb_review r LEFT OUTER JOIN tb_review_re re
-ON r.review_no = re.rvw_no
-WHERE rvw_del_check = 0
+NVL((SELECT COUNT(review_re_no) FROM tb_review_re re WHERE re.rvw_no = 
+r.review_no AND re.rvw_re_del_check = 0), 0) as re_num
+FROM tb_review r 
+WHERE r.rvw_del_check = 0
 group by r.review_no, r.product_no, r.rvw_title, r.rvw_write_day, 
 r.rvw_hits, r.rvw_content, r.rvw_satisfaction, r.mem_id
 order by r.review_no;
