@@ -17,7 +17,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import naturalmom.data.dao.IMemberDao;
 import naturalmom.data.model.MemberVo;
 
-public class MemberDaoOraImple extends NamedParameterJdbcDaoSupport implements IMemberDao {
+public class MemberDaoOraImpl extends NamedParameterJdbcDaoSupport implements IMemberDao {
 	
 	NamedParameterJdbcTemplate nameTemplate;
 	JdbcTemplate jtem;
@@ -38,7 +38,7 @@ public class MemberDaoOraImple extends NamedParameterJdbcDaoSupport implements I
 				+ "WHERE mem_id=:mem_id";
 	private final String SQL_MEMBER_SELECT_ALL ="SELECT * FROM TB_MEMBER";
 	// Constructor
-	public MemberDaoOraImple() {
+	public MemberDaoOraImpl() {
 
 	}
 	

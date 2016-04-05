@@ -5,7 +5,7 @@ import java.util.List;
 import naturalmom.data.dao.IEventDao;
 import naturalmom.data.model.EventVo;
 
-public class EventDaoOraImple implements IEventDao {
+public class EventDaoOraImpl implements IEventDao {
 
 	@Override
 	public List<EventVo> getAllEvents() {

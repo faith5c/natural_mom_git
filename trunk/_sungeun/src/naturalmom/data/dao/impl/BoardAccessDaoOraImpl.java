@@ -3,7 +3,7 @@ package naturalmom.data.dao.impl;
 import naturalmom.data.dao.IBoardAccessDao;
 import naturalmom.data.model.BoardAccessVo;
 
-public class BoardAccessDaoOraImple implements IBoardAccessDao {
+public class BoardAccessDaoOraImpl implements IBoardAccessDao {
 
 	@Override
 	public BoardAccessVo getAdminAccess(int board_no) {
