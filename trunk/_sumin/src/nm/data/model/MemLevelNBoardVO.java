@@ -60,9 +60,4 @@ public class MemLevelNBoardVO {
 				+ ", board_write=" + board_write + ", board_modify=" + board_modify + ", board_delete=" + board_delete
 				+ "]";
 	}
-	
-	
-	
-	
-	
 }

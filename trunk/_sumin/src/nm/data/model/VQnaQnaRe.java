@@ -2,35 +2,34 @@ package nm.data.model;
 
 import java.util.Date;
 
-public class QnaVO {
+public class VQnaQnaRe {
 	private int qna_no;
 	private String qna_title;
 	private Date qna_write_day;
 	private int qna_hits;
 	private String qna_content;
-	private int qna_del_check;
 	private String qna_pw;
 	private int qna_pos;
 	private int qna_ref;
-	private int board_id;
 	private String mem_id;
+	private int qna_re_count;
 	
-	public QnaVO(){}
-	public QnaVO(int qna_no, String qna_title, Date qna_write_day, int qna_hits, String qna_content, int qna_del_check,
-			String qna_pw, int qna_pos, int qna_ref, int board_id, String mem_id) {
+	public VQnaQnaRe(){}
+	public VQnaQnaRe(int qna_no, String qna_title, Date qna_write_day, int qna_hits, String qna_content,
+			String qna_pw, int qna_pos, int qna_ref, String mem_id, int qna_re_count) {
 		super();
 		this.qna_no = qna_no;
 		this.qna_title = qna_title;
 		this.qna_write_day = qna_write_day;
 		this.qna_hits = qna_hits;
 		this.qna_content = qna_content;
-		this.qna_del_check = qna_del_check;
 		this.qna_pw = qna_pw;
 		this.qna_pos = qna_pos;
 		this.qna_ref = qna_ref;
-		this.board_id = board_id;
 		this.mem_id = mem_id;
+		this.qna_re_count = qna_re_count;
 	}
+	
 	public int getQna_no() {
 		return qna_no;
 	}
@@ -61,12 +60,6 @@ public class QnaVO {
 	public void setQna_content(String qna_content) {
 		this.qna_content = qna_content;
 	}
-	public int getQna_del_check() {
-		return qna_del_check;
-	}
-	public void setQna_del_check(int qna_del_check) {
-		this.qna_del_check = qna_del_check;
-	}
 	public String getQna_pw() {
 		return qna_pw;
 	}
@@ -85,23 +78,24 @@ public class QnaVO {
 	public void setQna_ref(int qna_ref) {
 		this.qna_ref = qna_ref;
 	}
-	public int getBoard_id() {
-		return board_id;
-	}
-	public void setBoard_id(int board_id) {
-		this.board_id = board_id;
-	}
 	public String getMem_id() {
 		return mem_id;
 	}
 	public void setMem_id(String mem_id) {
 		this.mem_id = mem_id;
 	}
+	public int getQna_re_count() {
+		return qna_re_count;
+	}
+	public void setQna_re_count(int qna_re_count) {
+		this.qna_re_count = qna_re_count;
+	}
+	
 	@Override
 	public String toString() {
-		return "QnaVO [qna_no=" + qna_no + ", qna_title=" + qna_title + ", qna_write_day=" + qna_write_day
-				+ ", qna_hits=" + qna_hits + ", qna_content=" + qna_content + ", qna_del_check=" + qna_del_check
-				+ ", qna_pw=" + qna_pw + ", qna_pos=" + qna_pos + ", qna_ref=" + qna_ref + ", board_id=" + board_id
-				+ ", mem_id=" + mem_id + "]";
+		return "VQnaQnaRe [qna_no=" + qna_no + ", qna_title=" + qna_title + ", qna_write_day=" + qna_write_day
+				+ ", qna_hits=" + qna_hits + ", qna_content=" + qna_content
+				+ ", qna_pw=" + qna_pw + ", qna_pos=" + qna_pos + ", qna_ref=" + qna_ref + ", mem_id=" + mem_id
+				+ ", qna_re_count=" + qna_re_count + "]";
 	}
 }

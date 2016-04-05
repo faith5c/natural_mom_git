@@ -159,6 +159,4 @@ public class ProductVO
 				+ ", summary_ex=" + summary_ex + ", detail_ex=" + detail_ex + ", deleted_state=" + deleted_state
 				+ ", weight=" + weight + ", category_cd=" + category_cd + "]";
 	}
-	
-	
 }

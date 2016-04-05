@@ -22,7 +22,7 @@ WHERE mem_id='soomin');
 SELECT q.qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, q.mem_id, COUNT(qna_re_no)  
 FROM tb_qna q LEFT OUTER JOIN tb_qna_re r
 ON (q.qna_no = r.qna_no)
-WHERE qna_del_check=0
+WHERE qna_del_check=0 AND qna_del_re_check=0
 GROUP BY q.qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, q.mem_id
 ORDER BY qna_ref DESC, qna_pos DESC;
 

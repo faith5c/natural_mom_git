@@ -28,5 +28,4 @@ public class InterestVo {
 	public String toString() {
 		return "InterestVo [product_no=" + product_no + ", mem_id=" + mem_id + "]";
 	}
-	
 }

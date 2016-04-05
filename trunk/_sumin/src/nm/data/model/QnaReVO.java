@@ -64,6 +64,4 @@ public class QnaReVO {
 				+ qna_re_write_day + ", qna_re_del_check=" + qna_re_del_check + ", qna_no=" + qna_no + ", mem_id="
 				+ mem_id + "]";
 	}
-	
-	
 }

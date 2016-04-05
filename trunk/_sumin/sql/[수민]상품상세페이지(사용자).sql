@@ -14,3 +14,6 @@
 SELECT product_no, product_name, selling_price, sale_state, represent_img, detail_img, summary_ex, detail_ex, weight 
 FROM tb_product
 WHERE product_no=10000;
+
+
+

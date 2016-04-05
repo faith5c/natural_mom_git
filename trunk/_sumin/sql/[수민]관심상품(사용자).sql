@@ -10,14 +10,6 @@
 -- 관심상품 조회
 -- 필요컬럼 : 상품번호, 상품명, 판매가격, 판매상태, 상품대표이미지 (삭제유무가 [0삭제안함]일때 뽑음)
 
-/*
- * 아래꺼 대신 뷰 만들었음
-SELECT product_no, product_name, selling_price, sale_state, represent_img 
-FROM tb_product 
-WHERE deleted_state=0 AND product_no 
-IN (SELECT product_no FROM tb_interest WHERE mem_id = 'soomin');
-*/
-
 --------------------------------------------------------------------------------
 -- 관심상품 중복 확인
 -- (html : 상품상세페이지에서 관심상품을 추가하려고 하면 관심상품이 이미 들어있는지 아닌지 확인하는 부분)
