@@ -2,7 +2,7 @@ package naturalmom.data.model;
 
 import java.util.Date;
 
-public class VQnaQnaRe {
+public class VQnaQnaReVo {
 	private int qna_no;
 	private String qna_title;
 	private Date qna_write_day;
@@ -14,8 +14,8 @@ public class VQnaQnaRe {
 	private String mem_id;
 	private int qna_re_count;
 	
-	public VQnaQnaRe(){}
-	public VQnaQnaRe(int qna_no, String qna_title, Date qna_write_day, int qna_hits, String qna_content,
+	public VQnaQnaReVo(){}
+	public VQnaQnaReVo(int qna_no, String qna_title, Date qna_write_day, int qna_hits, String qna_content,
 			String qna_pw, int qna_pos, int qna_ref, String mem_id, int qna_re_count) {
 		super();
 		this.qna_no = qna_no;

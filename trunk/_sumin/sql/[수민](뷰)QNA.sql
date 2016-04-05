@@ -19,9 +19,6 @@ ORDER BY qna_ref DESC, qna_pos DESC;
 SELECT qna_no, qna_title, qna_write_day, qna_hits, qna_content, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count
 FROM v_qna_qnare WHERE qna_no=1;
 
--- 비밀글하나 확인하는 문장 (qna_no, qna_pw로 찾음)
-SELECT qna_no FROM v_qna_qnare WHERE qna_no=4 AND qna_pw='1234';
-
 
 -- 모든 글 조회
 SELECT qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count  

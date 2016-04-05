@@ -1,6 +1,5 @@
 package naturalmom.data.model;
 
-//관심상품테이블
 public class InterestVo {
 	
 	private int product_no;
