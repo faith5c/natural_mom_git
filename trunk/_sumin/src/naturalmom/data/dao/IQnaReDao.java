@@ -1,3 +1,6 @@
+
+
+
 package naturalmom.data.dao;
 
 import java.util.List;
@@ -6,45 +9,46 @@ import nm.data.model.QnaReVo;
 
 public interface IQnaReDao {
 	
-	//´ñ±Û Á¶È¸
+	//ëŒ“ê¸€ ì¡°íšŒ
 	List<QnaReVo> getQnaReByQnaNo(int qna_no);
 	
-	//´ñ±Û ÀÛ¼º
+	//ëŒ“ê¸€ ì‘ì„±
 	int addQnaRe(QnaReVo qnare);
 	int addQnaRe(String qna_re_content, int qna_no, String mem_id);
 	
-	//´ñ±Û ¼öÁ¤
+	//ëŒ“ê¸€ ìˆ˜ì •
 	int updateQnaRe(int qna_re_no, String qna_re_content);
 	
-	//´ñ±Û »èÁ¦
+	//ëŒ“ê¸€ ì‚­ì œ
 	int deleteQnaRe(int qna_re_no);
 }
 /*
--- ´ñ±ÛÁ¶È¸
--- ´ñ±Û¹øÈ£, ³»¿ë, ÀÛ¼ºÀÏ, ´ñ±Û»èÁ¦¿©ºÎ, È¸¿ø¾ÆÀÌµğ(»èÁ¦ ¾ÈµÈ°É·Î, °Ô½Ã±Û¹øÈ£¿¡ ¸Â´Â°Å)
+-- ëŒ“ê¸€ì¡°íšŒ
+-- ëŒ“ê¸€ë²ˆí˜¸, ë‚´ìš©, ì‘ì„±ì¼, ëŒ“ê¸€ì‚­ì œì—¬ë¶€, íšŒì›ì•„ì´ë””(ì‚­ì œ ì•ˆëœê±¸ë¡œ, ê²Œì‹œê¸€ë²ˆí˜¸ì— ë§ëŠ”ê±°)
 SELECT qna_re_no, qna_re_content, qna_re_write_day, mem_id
 FROM tb_qna_re
 WHERE qna_re_del_check=0 AND qna_no=1;
 
 
--- ´ñ±ÛÀÛ¼º
--- ´ñ±Û¹øÈ£, ³»¿ë, ÀÛ¼ºÀÏ, ´ñ±Û»èÁ¦¿©ºÎ, °Ô½Ã±Û¹øÈ£, È¸¿ø¾ÆÀÌµğ
+-- ëŒ“ê¸€ì‘ì„±
+-- ëŒ“ê¸€ë²ˆí˜¸, ë‚´ìš©, ì‘ì„±ì¼, ëŒ“ê¸€ì‚­ì œì—¬ë¶€, ê²Œì‹œê¸€ë²ˆí˜¸, íšŒì›ì•„ì´ë””
 INSERT INTO tb_qna_re 
 (qna_re_no, qna_re_content, qna_re_write_day, qna_re_del_check, qna_no, mem_id)
-VALUES (QNA_RE_NO_SEQ.NEXTVAL, '¿©±â¼­ Áú¹®ÇÏ¸é µÇ°Ú³×¿ä', SYSDATE, 0, 1, 'soojin');
+VALUES (QNA_RE_NO_SEQ.NEXTVAL, 'ì—¬ê¸°ì„œ ì§ˆë¬¸í•˜ë©´ ë˜ê² ë„¤ìš”', SYSDATE, 0, 1, 'soojin');
 
 
--- ´ñ±Û ¼öÁ¤
--- ³»¿ë, ÀÛ¼ºÀÏ (´ñ±Û¹øÈ£¿¡ ÇØ´çÇÏ´Â°Å º¯°æ)
+-- ëŒ“ê¸€ ìˆ˜ì •
+-- ë‚´ìš©, ì‘ì„±ì¼ (ëŒ“ê¸€ë²ˆí˜¸ì— í•´ë‹¹í•˜ëŠ”ê±° ë³€ê²½)
 UPDATE tb_qna_re
 SET 
-qna_re_content='¿©±â¼­ Áú¹®ÇÏ¸é µÇ°Ú³×¿ë',
+qna_re_content='ì—¬ê¸°ì„œ ì§ˆë¬¸í•˜ë©´ ë˜ê² ë„¤ìš©',
 qna_re_write_day=SYSDATE 
 WHERE qna_re_no=7;
 
 
--- ´ñ±Û »èÁ¦
+-- ëŒ“ê¸€ ì‚­ì œ
 UPDATE tb_qna_re SET qna_re_del_check=1 WHERE qna_re_no=7;
 
 *
 */
+

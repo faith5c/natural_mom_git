@@ -1,3 +1,6 @@
+
+
+
 package naturalmom.data.dao;
 
 import java.util.Date;
@@ -5,22 +8,22 @@ import java.util.Date;
 
 public interface IQnaDao {
 
-	//±Û ÀÛ¼º
+	//ê¸€ ì‘ì„±
 	int addQna(QnaVo qna);
 	int addQna(String qna_title, int qna_hits, String qna_content,
 			String qna_pw, int qna_pos, int qna_ref,  String mem_id);
 	
-	//±Û ¼öÁ¤
+	//ê¸€ ìˆ˜ì •
 	int updateQna(int qna_no, String qna_title, String qna_content, String qna_pw);
 	
-	//±Û »èÁ¦
+	//ê¸€ ì‚­ì œ
 	int deleteQna(int qna_no);
 }
 /*
 
 
--- ±ÛÀÛ¼º
--- ±Û¹øÈ£, Á¦¸ñ, ÀÛ¼ºÀÏ, Á¶È¸¼ö, ³»¿ë, »èÁ¦¿©ºÎ, ºñ¹Ğ¹øÈ£, ´ä±ÛÀ§Ä¡, ÂüÁ¶±Û¹øÈ£, °Ô½ÃÆÇ¾ÆÀÌµğ, È¸¿ø¾ÆÀÌµğ ÀÔ·Â
+-- ê¸€ì‘ì„±
+-- ê¸€ë²ˆí˜¸, ì œëª©, ì‘ì„±ì¼, ì¡°íšŒìˆ˜, ë‚´ìš©, ì‚­ì œì—¬ë¶€, ë¹„ë°€ë²ˆí˜¸, ë‹µê¸€ìœ„ì¹˜, ì°¸ì¡°ê¸€ë²ˆí˜¸, ê²Œì‹œíŒì•„ì´ë””, íšŒì›ì•„ì´ë”” ì…ë ¥
 INSERT INTO tb_qna (qna_no,
 qna_title,qna_write_day,qna_hits,
 qna_content,
@@ -28,27 +31,30 @@ qna_del_check, qna_pw,
 qna_pos,qna_ref,
 board_id, mem_id)
 VALUES (QNA_NO_SEQ.NEXTVAL,
-'ºñ´© ¶§¹®¿¡ ¹Ì²ô·¯Á³¾î¿ä',SYSDATE,0, 
-'³Ê¹« ¹Ì²ô·¯¿ö¿ä. ¾È¹Ì²ô·¯¿î ºñ´©´Â ¾ø³ª¿ä?',
+'ë¹„ëˆ„ ë•Œë¬¸ì— ë¯¸ë„ëŸ¬ì¡Œì–´ìš”',SYSDATE,0, 
+'ë„ˆë¬´ ë¯¸ë„ëŸ¬ì›Œìš”. ì•ˆë¯¸ë„ëŸ¬ìš´ ë¹„ëˆ„ëŠ” ì—†ë‚˜ìš”?',
 0,null,
 0, QNA_NO_SEQ.CURRVAL,
 4, 'soomin');
 
--- ±Û ¼öÁ¤
--- Á¦¸ñ, ÀÛ¼ºÀÏ, ³»¿ë, ºñ¹Ğ¹øÈ£ ÀÔ·Â (±Û¹øÈ£¿¡ ÇØ´çÇÏ´Â °Å º¯°æ)
+-- ê¸€ ìˆ˜ì •
+-- ì œëª©, ì‘ì„±ì¼, ë‚´ìš©, ë¹„ë°€ë²ˆí˜¸ ì…ë ¥ (ê¸€ë²ˆí˜¸ì— í•´ë‹¹í•˜ëŠ” ê±° ë³€ê²½)
 UPDATE tb_qna 
 SET 
-qna_title='ºñ´© ¶§¹®¿¡ ¹Ì²ô·¯Á³¾î¿ä¤Ğ', 
+qna_title='ë¹„ëˆ„ ë•Œë¬¸ì— ë¯¸ë„ëŸ¬ì¡Œì–´ìš”ã… ', 
 qna_write_day=SYSDATE,
-qna_content='³Ê¹« ¹Ì²ô·¯¿ö¿ä. ¾È¹Ì²ô·¯¿î ºñ´©´Â ¾ø³ª¿ä???',
+qna_content='ë„ˆë¬´ ë¯¸ë„ëŸ¬ì›Œìš”. ì•ˆë¯¸ë„ëŸ¬ìš´ ë¹„ëˆ„ëŠ” ì—†ë‚˜ìš”???',
 qna_pw='1111'
 WHERE qna_no=10;
 
--- ±Û »èÁ¦
+-- ê¸€ ì‚­ì œ
 UPDATE tb_qna SET qna_del_check=1 WHERE qna_no=7;
--- (±ÛÀÌ »èÁ¦µÇ¸é ÀÌ¾î¼­ ÀÚµ¿À¸·Î ´äº¯ ±Ûµµ »èÁ¦ÇÏ°Ô ÇØ¾ßÇÔ)
+-- (ê¸€ì´ ì‚­ì œë˜ë©´ ì´ì–´ì„œ ìë™ìœ¼ë¡œ ë‹µë³€ ê¸€ë„ ì‚­ì œí•˜ê²Œ í•´ì•¼í•¨)
 UPDATE tb_qna SET qna_del_check=1 WHERE qna_ref=7;
--- (±ÛÀÌ »èÁ¦µÇ¸é ÀÌ¾î¼­ ´ñ±Ûµµ »èÁ¦ÇÏ°Ô ÇØ¾ßÇÔ)
+-- (ê¸€ì´ ì‚­ì œë˜ë©´ ì´ì–´ì„œ ëŒ“ê¸€ë„ ì‚­ì œí•˜ê²Œ í•´ì•¼í•¨)
 UPDATE tb_qna_re SET qna_re_del_check=1 WHERE qna_no=7;
 
 */
+
+
+

@@ -1,10 +1,10 @@
--- °Ô½ÃÆÇ ¸ñ·Ï º¸±â
--- ±Û¹øÈ£, Á¦¸ñ, ÀÛ¼ºÀÏ, Á¶È¸¼ö, ºñ¹Ğ¹øÈ£, ´ä±ÛÀ§Ä¡, ÂüÁ¶±Û¹øÈ£, È¸¿ø¾ÆÀÌµğ, ´ñ±Û°¹¼ö (»èÁ¦¾ÈµÈ±Û °¡Á®¿È)
--- (html : qua_answer_check °¡ 1ÀÌ¸é '´äº¯'¸»¸Ó¸® ´Ş¾ÆÁÜ, qna_secretÀÌ 1ÀÌ¸é 'ºñ¹Ğ±Û(ÀÚ¹°¼èÇ¥½Ã)' Á¦¸ñµÚ¿¡ ´Ş¾ÆÁÜ )
--- (html : ´ñ±Û °¹¼ö°¡ 0ÀÌ ¾Æ´Ï¶ó¸é Ç¥½ÃÇØÁÜ)
+-- ê²Œì‹œíŒ ëª©ë¡ ë³´ê¸°
+-- ê¸€ë²ˆí˜¸, ì œëª©, ì‘ì„±ì¼, ì¡°íšŒìˆ˜, ë¹„ë°€ë²ˆí˜¸, ë‹µê¸€ìœ„ì¹˜, ì°¸ì¡°ê¸€ë²ˆí˜¸, íšŒì›ì•„ì´ë””, ëŒ“ê¸€ê°¯ìˆ˜ (ì‚­ì œì•ˆëœê¸€ ê°€ì ¸ì˜´)
+-- (html : qua_answer_check ê°€ 1ì´ë©´ 'ë‹µë³€'ë§ë¨¸ë¦¬ ë‹¬ì•„ì¤Œ, qna_secretì´ 1ì´ë©´ 'ë¹„ë°€ê¸€(ìë¬¼ì‡ í‘œì‹œ)' ì œëª©ë’¤ì— ë‹¬ì•„ì¤Œ )
+-- (html : ëŒ“ê¸€ ê°¯ìˆ˜ê°€ 0ì´ ì•„ë‹ˆë¼ë©´ í‘œì‹œí•´ì¤Œ)
 
 
--- ºä ¸¸µê
+-- ë·° ë§Œë“¦
 CREATE VIEW v_qna_qnare 
 AS
 SELECT q.qna_no, qna_title, qna_write_day, qna_hits, qna_content, qna_pw, qna_pos, qna_ref, q.mem_id, 
@@ -15,15 +15,15 @@ WHERE qna_del_check=0
 GROUP BY q.qna_no, qna_title, qna_write_day, qna_hits, qna_content, qna_pw, qna_pos, qna_ref, q.mem_id
 ORDER BY qna_ref DESC, qna_pos DESC;
 
--- ÀÏ¹İ±ÛÇÏ³ª Á¶È¸ (qna_no·Î Ã£À½)
+-- ì¼ë°˜ê¸€í•˜ë‚˜ ì¡°íšŒ (qna_noë¡œ ì°¾ìŒ)
 SELECT qna_no, qna_title, qna_write_day, qna_hits, qna_content, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count
 FROM v_qna_qnare WHERE qna_no=1;
 
--- ºñ¹Ğ±ÛÇÏ³ª È®ÀÎÇÏ´Â ¹®Àå (qna_no, qna_pw·Î Ã£À½)
+-- ë¹„ë°€ê¸€í•˜ë‚˜ í™•ì¸í•˜ëŠ” ë¬¸ì¥ (qna_no, qna_pwë¡œ ì°¾ìŒ)
 SELECT qna_no FROM v_qna_qnare WHERE qna_no=4 AND qna_pw='1234';
 
 
--- ¸ğµç ±Û Á¶È¸
+-- ëª¨ë“  ê¸€ ì¡°íšŒ
 SELECT qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count  
 FROM v_qna_qnare
 GROUP BY qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count  
@@ -31,24 +31,24 @@ ORDER BY qna_ref DESC, qna_pos DESC;
 
 --------------------------------------------------------------
 
--- °Ë»ö(Á¦¸ñ)
+-- ê²€ìƒ‰(ì œëª©)
 SELECT qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count  
 FROM v_qna_qnare
-WHERE qna_title LIKE '%´äº¯%'
+WHERE qna_title LIKE '%ë‹µë³€%'
 GROUP BY qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count  
 ORDER BY qna_ref DESC, qna_pos DESC;
 
--- °Ë»ö(³»¿ë)
+-- ê²€ìƒ‰(ë‚´ìš©)
 SELECT qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count  
 FROM v_qna_qnare
-WHERE qna_content LIKE '%´äº¯%'
+WHERE qna_content LIKE '%ë‹µë³€%'
 GROUP BY qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count  
 ORDER BY qna_ref DESC, qna_pos DESC;
 
--- °Ë»ö(Á¦¸ñ+³»¿ë)
+-- ê²€ìƒ‰(ì œëª©+ë‚´ìš©)
 SELECT qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count  
 FROM v_qna_qnare
-WHERE (qna_title LIKE '%´äº¯%' OR qna_content LIKE '%´äº¯%')
+WHERE (qna_title LIKE '%ë‹µë³€%' OR qna_content LIKE '%ë‹µë³€%')
 GROUP BY qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count  
 ORDER BY qna_ref DESC, qna_pos DESC;
 

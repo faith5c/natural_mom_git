@@ -1,3 +1,4 @@
+
 package naturalmom.data.dao;
 
 
@@ -6,7 +7,7 @@ public interface IMemLevelNBoard {
 }
 
 /*
-ÀÌ¸§°¡Áö°í ±ÇÇÑ Ã£À½
+ì´ë¦„ê°€ì§€ê³  ê¶Œí•œ ì°¾ìŒ
 SELECT board_read, board_write, board_modify, board_delete 
 FROM tb_mem_level_n_board 
 WHERE board_cd=4 

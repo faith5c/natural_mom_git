@@ -1,11 +1,11 @@
--- Àå¹Ù±¸´Ï ºä ¸¸µê
+-- ì¥ë°”êµ¬ë‹ˆ ë·° ë§Œë“¦
 CREATE View V_CART_PRODUCT
 AS
 SELECT c.product_no, product_name, selling_price, sale_state, represent_img, c.buy_num, c.mem_id
 FROM tb_product p JOIN tb_cart c 
 ON (p.product_no=c.product_no);
 
--- ¸¸µé¾îÁø Àå¹Ù±¸´Ï ºä¿¡ Àû¿ëµÇ¾î¾ß ÇÒ SQL
+-- ë§Œë“¤ì–´ì§„ ì¥ë°”êµ¬ë‹ˆ ë·°ì— ì ìš©ë˜ì–´ì•¼ í•  SQL
 SELECT product_no, product_name, selling_price, sale_state, represent_img, buy_num, mem_id
 FROM V_CART_PRODUCT
 WHERE mem_id='soomin';

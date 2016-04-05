@@ -5,47 +5,47 @@ import java.util.List;
 
 public interface IProductDAO 
 {	
-	// »óÇ° ¼öÁ¤½Ã °¡Á®¿Ã »óÇ° Á¤º¸
+	// ìƒí’ˆ ìˆ˜ì •ì‹œ ê°€ì ¸ì˜¬ ìƒí’ˆ ì •ë³´
 	ProductVo selectOneProduct(int product_no);
 	
-	// »óÇ° Ãß°¡
+	// ìƒí’ˆ ì¶”ê°€
 	int insertProduct(ProductVo product);
 	
-	// Áø¿­ »óÅÂ º¯°æ
+	// ì§„ì—´ ìƒíƒœ ë³€ê²½
 	int updateDisplayState(ProductVo product, int state);
 	
-	// ÆÇ¸Å »óÅÂ º¯°æ
+	// íŒë§¤ ìƒíƒœ ë³€ê²½
 	int updateSaleState(ProductVo product, int state);
 	
-	// »èÁ¦, º¹¿ø
+	// ì‚­ì œ, ë³µì›
 	int updateDeletedState(ProductVo product, int state);
 
-	// »óÇ° ¼öÁ¤
+	// ìƒí’ˆ ìˆ˜ì •
 	int updateOneProduct(ProductVo product);
 
 	//////////////////////////////////////////////////////
 	
-	//»óÇ° »ó¼¼ ÆäÀÌÁö
+	//ìƒí’ˆ ìƒì„¸ í˜ì´ì§€
 	ProductVo getOneProduct(int product_no);
 	
-	//»óÇ° ¸ñ·Ï ÆäÀÌÁö
+	//ìƒí’ˆ ëª©ë¡ í˜ì´ì§€
 	List<ProductVo> getAllProduct(int product_no);
 	
-	//Ä«Å×°í¸®¿¡ µû¶ó »óÇ°¸ñ·Ï °¡Á®¿È
+	//ì¹´í…Œê³ ë¦¬ì— ë”°ë¼ ìƒí’ˆëª©ë¡ ê°€ì ¸ì˜´
 	List<ProductVo> getProductByCategoryCd(int category_cd);
 	
 }
 
 
 /*
-»óÇ°»ó¼¼ÆäÀÌÁö
+ìƒí’ˆìƒì„¸í˜ì´ì§€
 
 SELECT product_no, product_name, selling_price, sale_state, represent_img, detail_img, summary_ex, detail_ex, weight 
 FROM tb_product
 WHERE product_no=10000; 
 
 -------------------------------------
-»óÇ° ¸ñ·Ï ÆäÀÌÁö 
+ìƒí’ˆ ëª©ë¡ í˜ì´ì§€ 
 
 SELECT product_no, product_name, selling_price, sale_state, represent_img, summary_ex 
 FROM tb_product
@@ -53,7 +53,7 @@ WHERE display_state=1 AND deleted_state=0;
 
 
 -------------------------------------
--- ¾ÆÅäÇÇ/¹Î°¨¼º/À¯¾Æ 
+-- ì•„í† í”¼/ë¯¼ê°ì„±/ìœ ì•„ 
 
 SELECT category_nm FROM tb_category where category_cd=1;
 
@@ -62,7 +62,7 @@ SELECT product_no, product_name, selling_price, sale_state, represent_img, summa
 FROM tb_product
 WHERE display_state=1 AND deleted_state=0 AND category_cd=1;
 -------------------------------------
--- ÇÇºÎÅº·Â/³ëÈ­
+-- í”¼ë¶€íƒ„ë ¥/ë…¸í™”
 
 SELECT category_nm FROM tb_category where category_cd=2;
 
@@ -71,7 +71,7 @@ SELECT product_no, product_name, selling_price, sale_state, represent_img, summa
 FROM tb_product
 WHERE display_state=1 AND deleted_state=0 AND category_cd=2;
 -------------------------------------
--- Áö¼º/¿©µå¸§/Æ®·¯ºí
+-- ì§€ì„±/ì—¬ë“œë¦„/íŠ¸ëŸ¬ë¸”
 
 SELECT category_nm FROM tb_category where category_cd=3;
 
@@ -80,7 +80,7 @@ SELECT product_no, product_name, selling_price, sale_state, represent_img, summa
 FROM tb_product
 WHERE display_state=1 AND deleted_state=0 AND category_cd=3;
 ------------------------------------------------------------
--- ¹Ì¹é/ÇÇºÎÅæ°³¼±
+-- ë¯¸ë°±/í”¼ë¶€í†¤ê°œì„ 
 
 SELECT category_nm FROM tb_category where category_cd=4;
 

@@ -1,3 +1,7 @@
+
+
+
+
 package naturalmom.data.dao;
 
 import java.util.List;
@@ -5,17 +9,18 @@ import nm.data.model.VInterestProductVo;
 
 interface IVInterestProductDAO {
 
-	//ÀüÃ¼ °ü½É»óÇ° Á¶È¸
+	//ì „ì²´ ê´€ì‹¬ìƒí’ˆ ì¡°íšŒ
 	List<VInterestProductVo> getAllInterest();
 	
-	//È¸¿ø¾ÆÀÌµğ¿¡ ÇØ´çÇÏ´Â °ü½É»óÇ° Á¶È¸
+	//íšŒì›ì•„ì´ë””ì— í•´ë‹¹í•˜ëŠ” ê´€ì‹¬ìƒí’ˆ ì¡°íšŒ
 	List<VInterestProductVo> getInterestByMemId(String mem_id);
 	
 }
 
 /*
-È¸¿ø¾ÆÀÌµğ¿¡ ÇØ´çÇÏ´Â °ü½É»óÇ° Á¶È¸ÇÏ´Â SQL¹®
+íšŒì›ì•„ì´ë””ì— í•´ë‹¹í•˜ëŠ” ê´€ì‹¬ìƒí’ˆ ì¡°íšŒí•˜ëŠ” SQLë¬¸
 SELECT product_no, product_name, selling_price, sale_state, represent_img 
 FROM V_INTEREST_PRODUCT
 WHERE mem_id='soomin';
 */
+

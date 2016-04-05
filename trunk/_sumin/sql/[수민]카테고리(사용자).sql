@@ -1,20 +1,20 @@
 
--- ¾ÆÅäÇÇ/¹Î°¨¼º/À¯¾Æ  1
--- (html : »óÇ°Á¾·ù ¹Ù²Ş)
+-- ì•„í† í”¼/ë¯¼ê°ì„±/ìœ ì•„  1
+-- (html : ìƒí’ˆì¢…ë¥˜ ë°”ê¿ˆ)
 
 SELECT category_nm FROM tb_category where category_cd=1;
 
 
--- ÇÇºÎÅº·Â/³ëÈ­ 2
+-- í”¼ë¶€íƒ„ë ¥/ë…¸í™” 2
 
 SELECT category_nm FROM tb_category where category_cd=2;
 
 
--- Áö¼º/¿©µå¸§/Æ®·¯ºí 3
+-- ì§€ì„±/ì—¬ë“œë¦„/íŠ¸ëŸ¬ë¸” 3
 
 SELECT category_nm FROM tb_category where category_cd=3;
 
 
--- ¹Ì¹é/ÇÇºÎÅæ°³¼± 4
+-- ë¯¸ë°±/í”¼ë¶€í†¤ê°œì„  4
 
 SELECT category_nm FROM tb_category where category_cd=4;
