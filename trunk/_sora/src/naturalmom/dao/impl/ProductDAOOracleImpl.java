@@ -11,9 +11,7 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 public class ProductDAOOracleImpl extends JdbcDaoSupport implements IProductDAO 
 {
 	// 상품번호로 상품 가져오기
-	private final String SELECT_ONE_PRODUCT = "SELECT product_name, category_cd, selling_price, cost_price, stock, weight, "
-			+ "represent_img, detail_img, summary_ex, detail_ex, display_state, sale_state FROM tb_product "
-			+ "WHERE product_no = ?";
+	private final String SELECT_ONE_PRODUCT = "SELECT * FROM tb_product WHERE product_no = ?";
 	// 상품 수정하기
 	private final String UPDATE_ONE_PRODUCT = "UPDATE tb_product SET product_name = ?, category_cd = ?, "
 			+ "selling_price = ?, cost_price = ?, stock = ?, weight = ?, represent_img = ?, detail_img = ?, "

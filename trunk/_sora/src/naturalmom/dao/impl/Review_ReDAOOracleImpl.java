@@ -11,9 +11,7 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 public class Review_ReDAOOracleImpl extends JdbcDaoSupport implements IReview_ReDAO
 {
 	// 모든 리플 가져오기
-	private final String SELECT_ALL_REPLY = "SELECT review_re_no,  rvw_re_content, rvw_re_write_day, mem_id"
-			+ "FROM tb_review_re"
-			+ "WHERE rvw_re_del_check = 0 AND rvw_no = ?";
+	private final String SELECT_ALL_REPLY = "SELECT * FROM tb_review_re WHERE rvw_re_del_check = 0 AND rvw_no = ?";
 	// 댓글 등록하기
 	private final String INSERT_REPLY = "INSERT INTO tb_review_re (rvw_re_content, rvw_re_write_day, rvw_re_del_check, "
 			+ "rvw_no, mem_id, review_re_no) "

@@ -12,27 +12,17 @@ public class VReview_AdminDAOOracleImpl extends JdbcDaoSupport implements IVRevi
 {
 	// 생성자가 조회하는 컬럼과 일치해야하는지 알아볼 것(다른 클래스도 마찬가지)
 	// 게시판 목록 조회
-	private final String SELECT_ALL_LIST = "SELECT review_no, product_name, rvw_title, mem_id, rvw_write_day, "
-			+ "rvw_satisfaction, RE_NUM FROM v_review_admin";
+	private final String SELECT_ALL_LIST = "SELECT * FROM v_review_admin";
 	// 게시판 내용 조회
-	private final String SELECT_ONE_REVIEW = "SELECT review_no, product_name, rvw_title, rvw_satisfaction, mem_id, "
-			+ "rvw_write_day, rvw_hits, rvw_content FROM v_review_admin "
-			+ "WHERE review_no = ?";
+	private final String SELECT_ONE_REVIEW = "SELECT * FROM v_review_admin WHERE review_no = ?";
 	// 제목으로 검색하기
-	private final String SELECT_SEARCH_BY_TITLE = "SELECT review_no, product_name, rvw_title, mem_id, rvw_write_day, "
-			+ "rvw_satisfaction, RE_NUM FROM v_review_admin "
-			+ "WHERE rvw_title LIKE ?";
+	private final String SELECT_SEARCH_BY_TITLE = "SELECT * FROM v_review_admin WHERE rvw_title LIKE ?";
 	// 내용으로 검색하기
-	private final String SELECT_SEARCH_BY_CONTENT = "SELECT review_no, product_name, rvw_title, mem_id, rvw_write_day, "
-			+ "rvw_satisfaction, RE_NUM FROM v_review_admin "
-			+ "WHERE rvw_content LIKE ?";
+	private final String SELECT_SEARCH_BY_CONTENT = "SELECT * FROM v_review_admin WHERE rvw_content LIKE ?";
 	// 글쓴이로 검색하기
-	private final String SELECT_SEARCH_BY_ID = "SELECT review_no, product_name, rvw_title, mem_id, rvw_write_day, "
-			+ "rvw_satisfaction, RE_NUM FROM v_review_admin"
-			+ "WHERE mem_id LIKE ?";
+	private final String SELECT_SEARCH_BY_ID = "SELECT * FROM v_review_admin WHERE mem_id LIKE ?";
 	// 제목+내용으로 검색하기
-	private final String SELECT_SEARCH_BY_TITLE_CONTENT = "SELECT review_no, product_name, rvw_title, mem_id, rvw_write_day, "
-			+ "rvw_satisfaction, RE_NUM FROM v_review_admin "
+	private final String SELECT_SEARCH_BY_TITLE_CONTENT = "SELECT * FROM v_review_admin "
 			+ "WHERE (rvw_title LIKE ? OR rvw_content LIKE ?)";
 	@Override
 	public List<VReview_Admin> selectAllList() 
