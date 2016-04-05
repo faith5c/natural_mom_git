@@ -1,22 +1,22 @@
-package model;
+package naturalmom.data.model;
 
-import java.util.Calendar;
+import java.util.Date;
 
-public class Event_re {
+public class Event_reVo {
 
 	int event_re_no;
 	String evt_re_content;
-	Calendar evt_re_write_day;
+	Date evt_re_write_day;
 	int evt_re_del_check;
 	int evt_no;
 	String mem_id;
 	
 	
 	// Constructor
-	public Event_re() {	}
+	public Event_reVo() {	}
 
 	// insert All
-	public Event_re(int event_re_no, String evt_re_content, Calendar evt_re_write_day, int evt_re_del_check, int evt_no,
+	public Event_reVo(int event_re_no, String evt_re_content, Date evt_re_write_day, int evt_re_del_check, int evt_no,
 			String mem_id) {
 		super();
 		this.event_re_no = event_re_no;
@@ -28,7 +28,7 @@ public class Event_re {
 	}
 	
 	// except delete
-	public Event_re(int event_re_no, String evt_re_content, Calendar evt_re_write_day, int evt_no,
+	public Event_reVo(int event_re_no, String evt_re_content, Date evt_re_write_day, int evt_no,
 			String mem_id) {
 		super();
 		this.event_re_no = event_re_no;
@@ -51,7 +51,7 @@ public class Event_re {
 		return evt_re_content;
 	}
 
-	public Calendar getEvt_re_write_day() {
+	public Date getEvt_re_write_day() {
 		return evt_re_write_day;
 	}
 
@@ -75,7 +75,7 @@ public class Event_re {
 		this.evt_re_content = evt_re_content;
 	}
 
-	public void setEvt_re_write_day(Calendar evt_re_write_day) {
+	public void setEvt_re_write_day(Date evt_re_write_day) {
 		this.evt_re_write_day = evt_re_write_day;
 	}
 

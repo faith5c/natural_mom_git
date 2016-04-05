@@ -4,19 +4,22 @@
 -- drop_out : return 값이 0일 경우 로그인 성공/ null이거나 1일 경우 로그인 실패
 select drop_out from tb_member 
 	where mem_id ='minhee' and mem_pw='4321';
-	
 --아이디찾기
 select mem_id from tb_member 
 	where drop_out= 0
 	and mem_name='자연맘' 
 	and mem_email='sseun0402@hanmail.net';
-	
 --비밀번호 찾기
 select mem_pw from tb_member 
     where  drop_out= 0
 	  and mem_name='자연맘' 
       and mem_id='admin01' 
       and mem_email='sseun0402@hanmail.net';
+      
+ -- getOnMember
+ SELECT * FROM TB_MEMBER WHERE MEM_ID='soomin'
+ SELECT * FROM TB_MEMBER
+ 			WHERE MEM_NAME ='윤수민' and MEM_EMAIL='soomin@natural.com';
       
 --아이디 중복확인
 select mem_id from tb_member 

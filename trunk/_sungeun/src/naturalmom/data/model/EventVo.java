@@ -1,12 +1,12 @@
-package model;
+package naturalmom.data.model;
 
-import java.util.Calendar;
+import java.util.Date;
 
-public class Event {
+public class EventVo {
 	
 	int event_no;
 	String evt_title;
-	Calendar evt_write_day;
+	Date evt_write_day;
 	int evt_hits;
 	String evt_content;
 	int evt_del_check;
@@ -16,10 +16,10 @@ public class Event {
 	
 	
 	// Constructor
-	public Event() {	}
+	public EventVo() {	}
 
 	// 모두
-	public Event(int event_no, String evt_title, Calendar evt_write_day, int evt_hits, String evt_content,
+	public EventVo(int event_no, String evt_title, Date evt_write_day, int evt_hits, String evt_content,
 			int evt_del_check, int board_id, String mem_id, int count_re) {
 		super();
 		this.event_no = event_no;
@@ -33,7 +33,7 @@ public class Event {
 	}
 	
 	// 삭제여부 0 // 게시판번호 2
-	public Event(int event_no, String evt_title, Calendar evt_write_day, int evt_hits, String evt_content,
+	public EventVo(int event_no, String evt_title, Date evt_write_day, int evt_hits, String evt_content,
 			 String mem_id, int count_re) {
 		super();
 		this.event_no = event_no;
@@ -56,7 +56,7 @@ public class Event {
 		return evt_title;
 	}
 
-	public Calendar getEvt_write_day() {
+	public Date getEvt_write_day() {
 		return evt_write_day;
 	}
 
@@ -88,7 +88,7 @@ public class Event {
 		this.evt_title = evt_title;
 	}
 
-	public void setEvt_write_day(Calendar evt_write_day) {
+	public void setEvt_write_day(Date evt_write_day) {
 		this.evt_write_day = evt_write_day;
 	}
 

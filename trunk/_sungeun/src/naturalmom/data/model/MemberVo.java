@@ -1,8 +1,8 @@
-package model;
+package naturalmom.data.model;
 
-import java.util.Calendar;
+import java.util.Date;
 
-public class Member {
+public class MemberVo {
 	
 	String mem_id;
 	String mem_pw;
@@ -11,18 +11,18 @@ public class Member {
 	String mem_addr_post;
 	String mem_addr_detail;
 	String mem_email;
-	Calendar mem_birth;
+	Date mem_birth;
 	int mem_gender;
 	int drop_out;
 	int mem_level_cd;
 	
 	
 	// 생성자
-	public Member() {  }
+	public MemberVo() {  }
 
 	// 모두
-	public Member(String mem_id, String mem_pw, String mem_name, String mem_phone, String mem_addr_post,
-			String mem_addr_detail, String mem_email, Calendar mem_birth, int mem_gender, int drop_out,
+	public MemberVo(String mem_id, String mem_pw, String mem_name, String mem_phone, String mem_addr_post,
+			String mem_addr_detail, String mem_email, Date mem_birth, int mem_gender, int drop_out,
 			int mem_level_cd) {
 		super();
 		this.mem_id = mem_id;
@@ -39,8 +39,8 @@ public class Member {
 	}
 	
 	// 탈퇴여부 0 // 회원등급 1
-	public Member(String mem_id, String mem_pw, String mem_name, String mem_phone, String mem_addr_post,
-			String mem_addr_detail, String mem_email, Calendar mem_birth, int mem_gender) {
+	public MemberVo(String mem_id, String mem_pw, String mem_name, String mem_phone, String mem_addr_post,
+			String mem_addr_detail, String mem_email, Date mem_birth, int mem_gender) {
 		super();
 		this.mem_id = mem_id;
 		this.mem_pw = mem_pw;
@@ -113,11 +113,11 @@ public class Member {
 		this.mem_email = mem_email;
 	}
 
-	public Calendar getMem_birth() {
+	public Date getMem_birth() {
 		return mem_birth;
 	}
 
-	public void setMem_birth(Calendar mem_birth) {
+	public void setMem_birth(Date mem_birth) {
 		this.mem_birth = mem_birth;
 	}
 

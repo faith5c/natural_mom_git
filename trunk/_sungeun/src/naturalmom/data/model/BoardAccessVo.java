@@ -1,6 +1,6 @@
-package model;
+package naturalmom.data.model;
 
-public class BoardAccess {
+public class BoardAccessVo {
 
 	int mem_level_cd;
 	int board_cd;
@@ -11,9 +11,9 @@ public class BoardAccess {
 	
 	
 	// constructor
-	public BoardAccess() {	}
+	public BoardAccessVo() {	}
 	// all parameter
-	public BoardAccess(int mem_level_cd, int board_cd, int board_read, int board_write, int board_modify,
+	public BoardAccessVo(int mem_level_cd, int board_cd, int board_read, int board_write, int board_modify,
 			int board_delete) {
 		super();
 		this.mem_level_cd = mem_level_cd;
