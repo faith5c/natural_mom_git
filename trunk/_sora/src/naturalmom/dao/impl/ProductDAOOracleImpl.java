@@ -25,7 +25,7 @@ public class ProductDAOOracleImpl extends JdbcDaoSupport implements IProductDAO
 	private final String UPDATE_DELETED_STATE = "UPDATE tb_product SET deleted_state = ?, display_state = 1, sale_state = 1 WHERE product_no = ?";
 	
 	@Override
-	public Product selectOneProduct(int product_no) 
+	public Product selectOneProduct(int product_no) throws DataAccessException
 	{
 		List<Product> list = getJdbcTemplate().query(SELECT_ONE_PRODUCT, 
 				new BeanPropertyRowMapper<Product>(Product.class), new Integer(product_no));
@@ -38,31 +38,36 @@ public class ProductDAOOracleImpl extends JdbcDaoSupport implements IProductDAO
 	}
 
 	@Override
-	public int insertProduct(Product product) {
+	public int insertProduct(Product product) throws DataAccessException
+	{
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int updateDisplayState(Product product, int state) {
+	public int updateDisplayState(Product product, int state) throws DataAccessException
+	{
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int updateSaleState(Product product, int state) {
+	public int updateSaleState(Product product, int state) throws DataAccessException
+	{
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int updateDeletedState(Product product, int state) {
+	public int updateDeletedState(Product product, int state) throws DataAccessException
+	{
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int updateOneProduct(Product product) {
+	public int updateOneProduct(Product product) throws DataAccessException
+	{
 		// TODO Auto-generated method stub
 		return 0;
 	}

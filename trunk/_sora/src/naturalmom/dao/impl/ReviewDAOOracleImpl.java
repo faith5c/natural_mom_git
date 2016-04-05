@@ -23,7 +23,7 @@ public class ReviewDAOOracleImpl extends JdbcDaoSupport implements IReviewDAO
 	private final String SELECT_ONE_REVIEW = "SELECT * FROM tb_review WHERE review_no = ?";
 	
 	@Override
-	public Review selectOneReview(int review_no) 
+	public Review selectOneReview(int review_no) throws DataAccessException 
 	{
 		List<Review> list = getJdbcTemplate().query(SELECT_ONE_REVIEW, 
 				new BeanPropertyRowMapper<Review>(Review.class), new Integer(review_no));
@@ -35,19 +35,22 @@ public class ReviewDAOOracleImpl extends JdbcDaoSupport implements IReviewDAO
 	}
 
 	@Override
-	public int insertReview(Review review) {
+	public int insertReview(Review review) throws DataAccessException
+	{
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int deleteReview(Review review) {
+	public int deleteReview(Review review) throws DataAccessException
+	{
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int updateReview(Review review) {
+	public int updateReview(Review review) throws DataAccessException
+	{
 		// TODO Auto-generated method stub
 		return 0;
 	}

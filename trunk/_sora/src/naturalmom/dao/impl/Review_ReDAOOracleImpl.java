@@ -24,23 +24,26 @@ public class Review_ReDAOOracleImpl extends JdbcDaoSupport implements IReview_Re
 			+ "WHERE review_re_no = ?";
 	
 	@Override
-	public List<Review_Re> selectAllRe(int review_no) 
+	public List<Review_Re> selectAllRe(int review_no) throws DataAccessException
 	{
 		return getJdbcTemplate().query(SELECT_ALL_REPLY, 
 				new BeanPropertyRowMapper<Review_Re>(Review_Re.class), new Integer(review_no));
 	}
 	@Override
-	public int insertRe(Review_Re re) {
+	public int insertRe(Review_Re re) throws DataAccessException
+	{
 		// TODO Auto-generated method stub
 		return 0;
 	}
 	@Override
-	public int updateRe(Review_Re re) {
+	public int updateRe(Review_Re re) throws DataAccessException
+	{
 		// TODO Auto-generated method stub
 		return 0;
 	}
 	@Override
-	public int deleteRe(Review_Re re) {
+	public int deleteRe(Review_Re re) throws DataAccessException
+	{
 		// TODO Auto-generated method stub
 		return 0;
 	}

@@ -20,7 +20,7 @@ public class VRank_SellsDAOOracleImpl extends JdbcDaoSupport implements IVRank_S
 			+ "WHERE ROWNUM <= 3  ORDER BY ROWNUM DESC";
 	
 	@Override
-	public List<VRank_Sells> selectAllRank(boolean order) 
+	public List<VRank_Sells> selectAllRank(boolean order) throws DataAccessException 
 	{
 		if(order)
 			return getJdbcTemplate().query(SELECT_ALL_ASC, 

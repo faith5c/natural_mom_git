@@ -25,13 +25,13 @@ public class VReview_AdminDAOOracleImpl extends JdbcDaoSupport implements IVRevi
 	private final String SELECT_SEARCH_BY_TITLE_CONTENT = "SELECT * FROM v_review_admin "
 			+ "WHERE (rvw_title LIKE ? OR rvw_content LIKE ?)";
 	@Override
-	public List<VReview_Admin> selectAllList() 
+	public List<VReview_Admin> selectAllList() throws DataAccessException 
 	{
 		return getJdbcTemplate().query(SELECT_ALL_LIST, new BeanPropertyRowMapper<VReview_Admin>(VReview_Admin.class));
 	}
 
 	@Override
-	public VReview_Admin seletOneReview(int review_no) 
+	public VReview_Admin seletOneReview(int review_no) throws DataAccessException
 	{
 		List<VReview_Admin> list = getJdbcTemplate().query(SELECT_ONE_REVIEW, 
 				new BeanPropertyRowMapper<VReview_Admin>(VReview_Admin.class), new Integer(review_no));
@@ -43,7 +43,7 @@ public class VReview_AdminDAOOracleImpl extends JdbcDaoSupport implements IVRevi
 	}
 
 	@Override
-	public List<VReview_Admin> selectReviews_by_title(String search) 
+	public List<VReview_Admin> selectReviews_by_title(String search) throws DataAccessException 
 	{
 		search = "%" + search + "%";
 		return getJdbcTemplate().query(SELECT_SEARCH_BY_TITLE, 
@@ -51,7 +51,7 @@ public class VReview_AdminDAOOracleImpl extends JdbcDaoSupport implements IVRevi
 	}
 
 	@Override
-	public List<VReview_Admin> selectReviews_by_content(String search) 
+	public List<VReview_Admin> selectReviews_by_content(String search) throws DataAccessException 
 	{
 		search = "%" + search + "%";
 		return getJdbcTemplate().query(SELECT_SEARCH_BY_CONTENT, 
@@ -59,7 +59,7 @@ public class VReview_AdminDAOOracleImpl extends JdbcDaoSupport implements IVRevi
 	}
 
 	@Override
-	public List<VReview_Admin> selectReviews_by_id(String search) 
+	public List<VReview_Admin> selectReviews_by_id(String search) throws DataAccessException 
 	{
 		search = "%" + search + "%";
 		return getJdbcTemplate().query(SELECT_SEARCH_BY_ID, 
@@ -67,7 +67,7 @@ public class VReview_AdminDAOOracleImpl extends JdbcDaoSupport implements IVRevi
 	}
 
 	@Override
-	public List<VReview_Admin> selectReviews_by_title_n_content(String search) 
+	public List<VReview_Admin> selectReviews_by_title_n_content(String search) throws DataAccessException 
 	{
 		search = "%" + search + "%";
 		return getJdbcTemplate().query(SELECT_SEARCH_BY_TITLE_CONTENT, new Object[] { search, search },

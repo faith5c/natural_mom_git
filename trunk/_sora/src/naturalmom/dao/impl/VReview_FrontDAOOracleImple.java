@@ -14,7 +14,7 @@ public class VReview_FrontDAOOracleImple extends JdbcDaoSupport implements IVRev
 	private final String SELECT_ALL_LIST = "SELECT * FROM v_review_front WHERE product_no = ?";
 	
 	@Override
-	public List<VReview_Front> selectAllList()
+	public List<VReview_Front> selectAllList() throws DataAccessException
 	{
 		return getJdbcTemplate().query(SELECT_ALL_LIST, new BeanPropertyRowMapper<VReview_Front>(VReview_Front.class));
 	}

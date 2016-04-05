@@ -32,7 +32,7 @@ public class VProduct_DeletedDAOOracleImpl extends JdbcDaoSupport implements IVP
 	private final String SELECT_ALL_BY_ALL_SELLS_DESC = "SELECT * FROM V_PRODUCT_DELETED ORDER BY all_sells desc, product_no";
 	
 	@Override
-	public List<VProduct_Deleted> selectAllDeletedProduct_by_product_no(boolean order) 
+	public List<VProduct_Deleted> selectAllDeletedProduct_by_product_no(boolean order) throws DataAccessException 
 	{
 		if(order)
 			return getJdbcTemplate().query(SELECT_ALL_BY_PRODUCT_NO_ASC, 
@@ -43,7 +43,7 @@ public class VProduct_DeletedDAOOracleImpl extends JdbcDaoSupport implements IVP
 	}
 
 	@Override
-	public List<VProduct_Deleted> selectAllDeletedProduct_by_product_name(boolean order) 
+	public List<VProduct_Deleted> selectAllDeletedProduct_by_product_name(boolean order) throws DataAccessException 
 	{
 		if(order)
 			return getJdbcTemplate().query(SELECT_ALL_BY_PRODUCT_NAME_ASC, 
@@ -54,7 +54,7 @@ public class VProduct_DeletedDAOOracleImpl extends JdbcDaoSupport implements IVP
 	}
 
 	@Override
-	public List<VProduct_Deleted> selectAllDeletedProduct_by_selling_price(boolean order) 
+	public List<VProduct_Deleted> selectAllDeletedProduct_by_selling_price(boolean order) throws DataAccessException 
 	{
 		if(order)
 			return getJdbcTemplate().query(SELECT_ALL_BY_SELLING_PRICE_ASC, 
@@ -65,7 +65,7 @@ public class VProduct_DeletedDAOOracleImpl extends JdbcDaoSupport implements IVP
 	}
 
 	@Override
-	public List<VProduct_Deleted> selectAllDeletedProduct_by_stock(boolean order) 
+	public List<VProduct_Deleted> selectAllDeletedProduct_by_stock(boolean order) throws DataAccessException 
 	{
 		if(order)
 			return getJdbcTemplate().query(SELECT_ALL_BY_STOCK_ASC, 
@@ -76,7 +76,7 @@ public class VProduct_DeletedDAOOracleImpl extends JdbcDaoSupport implements IVP
 	}
 
 	@Override
-	public List<VProduct_Deleted> selectAllDeletedProduct_by_all_sells(boolean order) 
+	public List<VProduct_Deleted> selectAllDeletedProduct_by_all_sells(boolean order) throws DataAccessException 
 	{
 		if(order)
 			return getJdbcTemplate().query(SELECT_ALL_BY_ALL_SELLS_ASC, 

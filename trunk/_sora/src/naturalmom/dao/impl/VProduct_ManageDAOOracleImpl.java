@@ -44,7 +44,7 @@ public class VProduct_ManageDAOOracleImpl extends JdbcDaoSupport implements IVPr
 	private final String SELECT_ALL_BY_ALL_SELLS_DESC = "SELECT * FROM V_PRODUCT_MANAGE ORDER BY all_sells desc, product_no";
 	
 	@Override
-	public List<VProduct_Manage> selectAllProduct_by_product_no(boolean order) 
+	public List<VProduct_Manage> selectAllProduct_by_product_no(boolean order) throws DataAccessException 
 	{
 		if(order)
 			return getJdbcTemplate().query(SELECT_ALL_BY_PRODUCT_NO_ASC, 
@@ -55,7 +55,7 @@ public class VProduct_ManageDAOOracleImpl extends JdbcDaoSupport implements IVPr
 	}
 
 	@Override
-	public List<VProduct_Manage> selectAllProduct_by_category_nm(boolean order) 
+	public List<VProduct_Manage> selectAllProduct_by_category_nm(boolean order) throws DataAccessException 
 	{
 		if(order)
 			return getJdbcTemplate().query(SELECT_ALL_BY_CATEGORY_NM_ASC, 
@@ -66,7 +66,7 @@ public class VProduct_ManageDAOOracleImpl extends JdbcDaoSupport implements IVPr
 	}
 
 	@Override
-	public List<VProduct_Manage> selectAllProduct_by_product_name(boolean order) 
+	public List<VProduct_Manage> selectAllProduct_by_product_name(boolean order) throws DataAccessException 
 	{
 		if(order)
 			return getJdbcTemplate().query(SELECT_ALL_BY_PRODUCT_NAME_ASC, 
@@ -77,7 +77,7 @@ public class VProduct_ManageDAOOracleImpl extends JdbcDaoSupport implements IVPr
 	}
 
 	@Override
-	public List<VProduct_Manage> selectAllProduct_by_selling_price(boolean order) 
+	public List<VProduct_Manage> selectAllProduct_by_selling_price(boolean order) throws DataAccessException 
 	{
 		if(order)
 			return getJdbcTemplate().query(SELECT_ALL_BY_SELLING_PRICE_ASC, 
@@ -88,7 +88,7 @@ public class VProduct_ManageDAOOracleImpl extends JdbcDaoSupport implements IVPr
 	}
 
 	@Override
-	public List<VProduct_Manage> selectAllProduct_by_stock(boolean order) 
+	public List<VProduct_Manage> selectAllProduct_by_stock(boolean order) throws DataAccessException 
 	{
 		if(order)
 			return getJdbcTemplate().query(SELECT_ALL_BY_STOCK_ASC, 
@@ -99,7 +99,7 @@ public class VProduct_ManageDAOOracleImpl extends JdbcDaoSupport implements IVPr
 	}
 
 	@Override
-	public List<VProduct_Manage> selectAllProduct_by_display_state(boolean order) 
+	public List<VProduct_Manage> selectAllProduct_by_display_state(boolean order) throws DataAccessException 
 	{
 		if(order)
 			return getJdbcTemplate().query(SELECT_ALL_BY_DISPLAY_STATE_ASC, 
@@ -110,7 +110,7 @@ public class VProduct_ManageDAOOracleImpl extends JdbcDaoSupport implements IVPr
 	}
 
 	@Override
-	public List<VProduct_Manage> selectAllProduct_by_sale_state(boolean order) 
+	public List<VProduct_Manage> selectAllProduct_by_sale_state(boolean order) throws DataAccessException 
 	{
 		if(order)
 			return getJdbcTemplate().query(SELECT_ALL_BY_SALE_STATE_ASC, 
@@ -121,7 +121,7 @@ public class VProduct_ManageDAOOracleImpl extends JdbcDaoSupport implements IVPr
 	}
 
 	@Override
-	public List<VProduct_Manage> selectAllProduct_by_all_sells(boolean order)
+	public List<VProduct_Manage> selectAllProduct_by_all_sells(boolean order) throws DataAccessException
 	{
 		if(order)
 			return getJdbcTemplate().query(SELECT_ALL_BY_ALL_SELLS_ASC, 
