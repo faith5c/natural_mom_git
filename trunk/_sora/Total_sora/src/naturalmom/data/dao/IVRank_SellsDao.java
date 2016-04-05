@@ -10,5 +10,5 @@ public interface IVRank_SellsDao
 {
 	// order: false = 내림차순, true = 오름차순
 	// 순위로 정렬하기
-	List<VRank_SellsVo> selectAllRank(boolean order) throws DataAccessException;
+	List<VRank_SellsVo> getAllRank(boolean order) throws DataAccessException;
 }

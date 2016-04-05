@@ -10,17 +10,17 @@ public interface IVProduct_DeletedDao
 {
 	// order: false = 내림차순, true = 오름차순
 	// 상품 번호로 정렬하기
-	List<VProduct_DeletedVo> selectAllDeletedProduct_by_product_no(boolean order) throws DataAccessException;
+	List<VProduct_DeletedVo> getAllDeletedProduct_by_product_no(boolean order) throws DataAccessException;
 	
 	// 상품 이름으로 정렬하기
-	List<VProduct_DeletedVo> selectAllDeletedProduct_by_product_name(boolean order) throws DataAccessException;
+	List<VProduct_DeletedVo> getAllDeletedProduct_by_product_name(boolean order) throws DataAccessException;
 	
 	// 상품 가격으로 정렬하기
-	List<VProduct_DeletedVo> selectAllDeletedProduct_by_selling_price(boolean order) throws DataAccessException;
+	List<VProduct_DeletedVo> getAllDeletedProduct_by_selling_price(boolean order) throws DataAccessException;
 	
 	// 재고로 정렬하기
-	List<VProduct_DeletedVo> selectAllDeletedProduct_by_stock(boolean order) throws DataAccessException;
+	List<VProduct_DeletedVo> getAllDeletedProduct_by_stock(boolean order) throws DataAccessException;
 	
 	// 총 판매량으로 정렬하기
-	List<VProduct_DeletedVo> selectAllDeletedProduct_by_all_sells(boolean order) throws DataAccessException;
+	List<VProduct_DeletedVo> getAllDeletedProduct_by_all_sells(boolean order) throws DataAccessException;
 }
