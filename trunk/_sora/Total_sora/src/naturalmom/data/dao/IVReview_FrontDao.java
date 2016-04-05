@@ -8,6 +8,6 @@ import naturalmom.data.model.VReview_FrontVo;
 
 public interface IVReview_FrontDao 
 {
-	// �Խ��� ��� ��ȸ�ϱ�
+	// 게시판 목록 조회하기
 	List<VReview_FrontVo> selectAllList() throws DataAccessException;
 }

@@ -11,18 +11,17 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
 public class VReview_AdminDaoOraImpl extends JdbcDaoSupport implements IVReview_AdminDao 
 {
-	// ���ڰ� ��ȸ�ϴ� �÷��� ��ġ�ؾ��ϴ��� �˾ƺ� ��(�ٸ� Ŭ������ ������)
-	// �Խ��� ��� ��ȸ
+	// 게시판 목록 조회
 	private final String SELECT_ALL_LIST = "SELECT * FROM v_review_admin";
-	// �Խ��� ���� ��ȸ
+	// 게시판 내용 조회
 	private final String SELECT_ONE_REVIEW = "SELECT * FROM v_review_admin WHERE review_no = ?";
-	// �������� �˻��ϱ�
+	// 제목으로 검색하기
 	private final String SELECT_SEARCH_BY_TITLE = "SELECT * FROM v_review_admin WHERE rvw_title LIKE ?";
-	// �������� �˻��ϱ�
+	// 내용으로 검색하기
 	private final String SELECT_SEARCH_BY_CONTENT = "SELECT * FROM v_review_admin WHERE rvw_content LIKE ?";
-	// �۾��̷� �˻��ϱ�
+	// 글쓴이로 검색하기
 	private final String SELECT_SEARCH_BY_ID = "SELECT * FROM v_review_admin WHERE mem_id LIKE ?";
-	// ����+�������� �˻��ϱ�
+	// 제목+내용으로 검색하기
 	private final String SELECT_SEARCH_BY_TITLE_CONTENT = "SELECT * FROM v_review_admin "
 			+ "WHERE (rvw_title LIKE ? OR rvw_content LIKE ?)";
 	@Override

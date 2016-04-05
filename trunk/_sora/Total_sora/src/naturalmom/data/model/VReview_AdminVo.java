@@ -19,6 +19,7 @@ public class VReview_AdminVo
 	// 생성자
 	public VReview_AdminVo() {}
 	
+	// 모두 입력: 게시판 내용 조회 시
 	public VReview_AdminVo(int review_no, int product_no, String product_name, String rvw_title, String rvw_content,
 			String mem_id, Date rvw_write_day, int rvw_satisfaction, int rvw_hits, int re_num) 
 	{
@@ -34,7 +35,7 @@ public class VReview_AdminVo
 		this.re_num = re_num;
 	}
 	
-	// 조회수, 내용 없음 (0, null 로 통일)
+	// 조회수, 내용 없음 (0, null 로 통일): 게시판 목록 조회, 검색 결과
 	public VReview_AdminVo(int review_no, int product_no, String product_name, String rvw_title,
 			String mem_id, Date rvw_write_day, int rvw_satisfaction, int re_num) 
 	{

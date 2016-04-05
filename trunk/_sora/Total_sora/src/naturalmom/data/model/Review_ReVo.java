@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Review_ReVo 
 {
-	// 멤버변수
+	// 멤버 변수
 	int review_re_no;
 	String rvw_re_content;
 	Date rvw_re_write_day;

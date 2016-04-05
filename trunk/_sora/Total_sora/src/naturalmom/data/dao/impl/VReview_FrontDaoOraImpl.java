@@ -11,7 +11,7 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
 public class VReview_FrontDaoOraImpl extends JdbcDaoSupport implements IVReview_FrontDao 
 {
-	// �Խ��� ��� �̱�
+	// 게시판 목록 뽑기
 	private final String SELECT_ALL_LIST = "SELECT * FROM v_review_front WHERE product_no = ?";
 	
 	@Override

@@ -9,7 +9,7 @@ public class VRank_SellsVo
 	
 	// 생성자
 	public VRank_SellsVo() {}
-	
+	// 모두 받음
 	public VRank_SellsVo(int rownum, int all_sells, String product_name) 
 	{
 		this.rownum = rownum;

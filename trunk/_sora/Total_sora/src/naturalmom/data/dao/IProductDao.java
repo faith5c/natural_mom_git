@@ -8,21 +8,21 @@ import naturalmom.data.model.ProductVo;
 
 public interface IProductDao 
 {	
-	// ��ǰ ������ ������ ��ǰ ����
+	// 상품 수정시 가져올 상품 정보
 	ProductVo selectOneProduct(int product_no) throws DataAccessException;
 	
-	// ��ǰ �߰�
+	// 상품 추가
 	int insertProduct(ProductVo product) throws DataAccessException;
 	
-	// �� ���� ����
+	// 진열 상태 변경
 	int updateDisplayState(ProductVo product, int state) throws DataAccessException;
 	
-	// �Ǹ� ���� ����
+	// 판매 상태 변경
 	int updateSaleState(ProductVo product, int state) throws DataAccessException;
 	
-	// ����, ����
+	// 삭제, 복원
 	int updateDeletedState(ProductVo product, int state) throws DataAccessException;
 
-	// ��ǰ ����
+	// 상품 수정
 	int updateOneProduct(ProductVo product) throws DataAccessException;
 }

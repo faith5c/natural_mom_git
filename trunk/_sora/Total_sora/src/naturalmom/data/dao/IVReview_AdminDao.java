@@ -8,21 +8,21 @@ import naturalmom.data.model.VReview_AdminVo;
 
 public interface IVReview_AdminDao 
 {
-	// �Խ��� ��� �̱�
+	// 게시판 목록 뽑기
 	List<VReview_AdminVo> selectAllList() throws DataAccessException;
 	
-	// �Խ��� ���� �̱�
+	// 게시판 내용 뽑기
 	VReview_AdminVo seletOneReview(int review_no) throws DataAccessException;
 	
-	// �������� �˻��ϱ�
+	// 제목으로 검색하기
 	List<VReview_AdminVo> selectReviews_by_title(String search) throws DataAccessException;
 	
-	// �������� �˻��ϱ�
+	// 내용으로 검색하기
 	List<VReview_AdminVo> selectReviews_by_content(String search) throws DataAccessException;
 	
-	// �۾��̷� �˻��ϱ�
+	// 글쓴이로 검색하기
 	List<VReview_AdminVo> selectReviews_by_id(String search) throws DataAccessException;
 	
-	// ���� �� �������� �˻��ϱ�
+	// 제목 및 내용으로 검색하기
 	List<VReview_AdminVo> selectReviews_by_title_n_content(String search) throws DataAccessException;
 }
