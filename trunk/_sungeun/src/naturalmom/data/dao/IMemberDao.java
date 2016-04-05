@@ -8,14 +8,12 @@ import naturalmom.data.model.MemberVo;
 
 public interface IMemberDao {
 	
-
-	
 	// 아이디 찾기, 비밀번호 찾기, 로그인 체크
 	MemberVo getOneMember(String id);
 	MemberVo getOneMember(String name, String email);
 	
 	// 아이디 중복확인
-	List<String> getAllID();
+	boolean checkId(String id);
 	
 	// 회원가입
 	int addMember(MemberVo member);
