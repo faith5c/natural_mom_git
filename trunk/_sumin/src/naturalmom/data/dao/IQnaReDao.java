@@ -2,22 +2,24 @@ package naturalmom.data.dao;
 
 import java.util.List;
 
+import org.springframework.dao.DataAccessException;
+
 import naturalmom.data.model.QnaReVo;
 
 public interface IQnaReDao {
 	
 	//댓글 조회
-	List<QnaReVo> getQnaReByQnaNo(int qna_no);
+	List<QnaReVo> getQnaReByQnaNo(int qna_no) throws DataAccessException;
 	
 	//댓글 작성
-	int addQnaRe(QnaReVo qnare);
-	int addQnaRe(String qna_re_content, int qna_no, String mem_id);
+	int addQnaRe(QnaReVo qnare) throws DataAccessException;
+	int addQnaRe(String qna_re_content, int qna_no, String mem_id) throws DataAccessException;
 	
 	//댓글 수정
-	int editQnaRe(QnaReVo qnare);
-	int editQnaRe(int qna_re_no, String qna_re_content);
+	int editQnaRe(QnaReVo qnare) throws DataAccessException;
+	int editQnaRe(int qna_re_no, String qna_re_content) throws DataAccessException;
 	
 	//댓글 삭제
-	int removeQnaRe(QnaReVo qnare);
-	int removeQnaRe(int qna_re_no);
+	int removeQnaRe(QnaReVo qnare) throws DataAccessException;
+	int removeQnaRe(int qna_re_no) throws DataAccessException;
 }
