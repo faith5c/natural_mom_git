@@ -6,8 +6,10 @@ import naturalmom.data.model.EventVo;
 
 public interface IEventDao {
 
+
 	// 리스트
 	List<EventVo> getAllEvents();
+	List<EventVo> getEventList();
 	
 	// 글읽기, 수정할 글 불러오기
 	EventVo getOneEvent(int event_no);

@@ -41,7 +41,7 @@ public class MemberDaoOraImpl extends NamedParameterJdbcDaoSupport implements IM
 	private final String SQL_MEMBER_SELECT_ALL ="SELECT * FROM TB_MEMBER";
 	private final String SQL_MEMBER_SELECT_BY_CONDITION 
 		="SELECT mem_id, mem_name, mem_addr_detail, mem_phone, mem_email, "
-				+ "mem_birth, mem_gender, drop_out FROM tb_member WHERE (drop_out='0' ";
+				+ "mem_birth, mem_gender, MEM_LEVEL_CD FROM tb_member WHERE (drop_out='0' ";
 			
 			
 			
@@ -173,7 +173,7 @@ public boolean checkId(String id) {
 
 	
 	
-	@Override
+	@Override	// 회원정보 수정
 	public int editMember(MemberVo member) {
 		nameTemplate = getNamedParameterJdbcTemplate();
 		MapSqlParameterSource ps = new MapSqlParameterSource();
@@ -200,17 +200,6 @@ public boolean checkId(String id) {
 	@Override
 	public List<MemberVo> getMembersByCondition(String id, String name, String phone, 
 			String email, Date birth, int gender, int level) {
-
-//		SELECT mem_id, mem_name, mem_addr_detail, mem_phone, 
-//		mem_email, mem_birth, mem_gender, drop_out 
-//			FROM tb_member WHERE (drop_out='0' 
-		
-//						  AND mem_id LIKE '%soo%' 
-//		                  AND mem_name LIKE '%수민%'
-//		                  AND mem_phone='010-1111-1111'
-//		                  AND mem_email='soomin@natural.com'
-//		                  AND mem_birth='90/01/01'
-//		                  AND mem_gender='1' );
 		
 		nameTemplate = getNamedParameterJdbcTemplate();
 		MapSqlParameterSource ps = new MapSqlParameterSource();
@@ -244,13 +233,21 @@ public boolean checkId(String id) {
 		
 		buffer.append(")");
 		
-//		List<Map<String, Object>> mem_list = 
-//				nameTemplate.queryForList(SQL_MEMBER_SELECT_BY_CONDITION, ps);		
 		
 		return nameTemplate.query(buffer.toString(), ps, new RowMapper<MemberVo>() {
 			@Override
-			public MemberVo mapRow(ResultSet arg0, int arg1) throws SQLException {
-				return null;
+			public MemberVo mapRow(ResultSet rs, int arg1) throws SQLException {
+				MemberVo member= new MemberVo();
+				member.setMem_id(rs.getString("mem_id") );
+				member.setMem_name(rs.getString("mem_name") );
+				member.setMem_addr_detail(rs.getString("mem_addr_detail") );
+				member.setMem_phone(rs.getString("mem_phone") );
+				member.setMem_email(rs.getString("mem_email") );
+				member.setMem_birth(rs.getDate("mem_birth"));
+				member.setMem_gender(rs.getInt("mem_gender") );
+				member.setMem_level_cd(rs.getInt("mem_level_cd") );
+				
+				return member;
 			}
 		});
 	}
