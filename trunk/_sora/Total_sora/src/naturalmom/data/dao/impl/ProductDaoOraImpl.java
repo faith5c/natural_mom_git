@@ -52,70 +52,70 @@ public class ProductDaoOraImpl extends NamedParameterJdbcDaoSupport implements I
 	@Override
 	public int addProduct(ProductVo product) throws DataAccessException
 	{
-		MapSqlParameterSource msp = new MapSqlParameterSource();
-		msp.addValue("product_name", product.getProduct_name(), Types.VARCHAR);
-		msp.addValue("selling_price", product.getSelling_price(), Types.INTEGER);
-		msp.addValue("cost_price", product.getCost_price(), Types.INTEGER);
-		msp.addValue("stock", product.getStock(), Types.INTEGER);
-		msp.addValue("represent_img", product.getRepresent_img(), Types.VARCHAR);
-		msp.addValue("detail_img", product.getDetail_img(), Types.VARCHAR);
-		msp.addValue("summary_ex", product.getSummary_ex(), Types.VARCHAR);
-		msp.addValue("detail_ex", product.getDetail_ex(), Types.VARCHAR);
-		msp.addValue("weight", product.getWeight(), Types.INTEGER);
-		msp.addValue("category_cd", product.getCategory_cd(), Types.INTEGER);
+		MapSqlParameterSource msps = new MapSqlParameterSource();
+		msps.addValue("product_name", product.getProduct_name(), Types.VARCHAR);
+		msps.addValue("selling_price", product.getSelling_price(), Types.INTEGER);
+		msps.addValue("cost_price", product.getCost_price(), Types.INTEGER);
+		msps.addValue("stock", product.getStock(), Types.INTEGER);
+		msps.addValue("represent_img", product.getRepresent_img(), Types.VARCHAR);
+		msps.addValue("detail_img", product.getDetail_img(), Types.VARCHAR);
+		msps.addValue("summary_ex", product.getSummary_ex(), Types.VARCHAR);
+		msps.addValue("detail_ex", product.getDetail_ex(), Types.VARCHAR);
+		msps.addValue("weight", product.getWeight(), Types.INTEGER);
+		msps.addValue("category_cd", product.getCategory_cd(), Types.INTEGER);
 		
-		return getNamedParameterJdbcTemplate().update(ADD_ONE_PRODUCT, msp);
+		return getNamedParameterJdbcTemplate().update(ADD_ONE_PRODUCT, msps);
 	}
 
 	@Override
 	public int editDisplayState(ProductVo product, int state) throws DataAccessException
 	{
-		MapSqlParameterSource msp = new MapSqlParameterSource();
-		msp.addValue("display_state", new Integer(state), Types.INTEGER);
-		msp.addValue("product_no", product.getProduct_no(), Types.INTEGER);
+		MapSqlParameterSource msps = new MapSqlParameterSource();
+		msps.addValue("display_state", new Integer(state), Types.INTEGER);
+		msps.addValue("product_no", product.getProduct_no(), Types.INTEGER);
 		
-		return getNamedParameterJdbcTemplate().update(EDIT_DISPLAY_STATE, msp);
+		return getNamedParameterJdbcTemplate().update(EDIT_DISPLAY_STATE, msps);
 	}
 
 	@Override
 	public int editSaleState(ProductVo product, int state) throws DataAccessException
 	{
-		MapSqlParameterSource msp = new MapSqlParameterSource();
-		msp.addValue("sale_state", new Integer(state), Types.INTEGER);
-		msp.addValue("product_no", product.getProduct_no(), Types.INTEGER);
+		MapSqlParameterSource msps = new MapSqlParameterSource();
+		msps.addValue("sale_state", new Integer(state), Types.INTEGER);
+		msps.addValue("product_no", product.getProduct_no(), Types.INTEGER);
 		
-		return getNamedParameterJdbcTemplate().update(EDIT_SALE_STATE, msp);
+		return getNamedParameterJdbcTemplate().update(EDIT_SALE_STATE, msps);
 	}
 
 	@Override
 	public int editDeletedState(ProductVo product, int state) throws DataAccessException
 	{
-		MapSqlParameterSource msp = new MapSqlParameterSource();
-		msp.addValue("deleted_state", new Integer(state), Types.INTEGER);
-		msp.addValue("product_no", product.getProduct_no(), Types.INTEGER);
+		MapSqlParameterSource msps = new MapSqlParameterSource();
+		msps.addValue("deleted_state", new Integer(state), Types.INTEGER);
+		msps.addValue("product_no", product.getProduct_no(), Types.INTEGER);
 		
-		return getNamedParameterJdbcTemplate().update(EDIT_DELETED_STATE, msp);
+		return getNamedParameterJdbcTemplate().update(EDIT_DELETED_STATE, msps);
 	}
 
 	@Override
 	public int editOneProduct(ProductVo product) throws DataAccessException
 	{
-		MapSqlParameterSource msp = new MapSqlParameterSource();
-		msp.addValue("product_name", product.getProduct_name(), Types.VARCHAR);
-		msp.addValue("category_cd", product.getCategory_cd(), Types.INTEGER);
-		msp.addValue("selling_price", product.getSelling_price(), Types.INTEGER);
-		msp.addValue("cost_price", product.getCost_price(), Types.INTEGER);
-		msp.addValue("stock", product.getStock(), Types.INTEGER);
-		msp.addValue("weight", product.getWeight(), Types.INTEGER);
-		msp.addValue("represent_img", product.getRepresent_img(), Types.VARCHAR);
-		msp.addValue("detail_img", product.getDetail_img(), Types.VARCHAR);
-		msp.addValue("summary_ex", product.getSummary_ex(), Types.VARCHAR);
-		msp.addValue("detail_ex", product.getDetail_ex(), Types.VARCHAR);
-		msp.addValue("display_state", product.getDisplay_state(), Types.INTEGER);
-		msp.addValue("sale_state", product.getSale_state(), Types.INTEGER);
-		msp.addValue("product_no", product.getProduct_no(), Types.INTEGER);
+		MapSqlParameterSource msps = new MapSqlParameterSource();
+		msps.addValue("product_name", product.getProduct_name(), Types.VARCHAR);
+		msps.addValue("category_cd", product.getCategory_cd(), Types.INTEGER);
+		msps.addValue("selling_price", product.getSelling_price(), Types.INTEGER);
+		msps.addValue("cost_price", product.getCost_price(), Types.INTEGER);
+		msps.addValue("stock", product.getStock(), Types.INTEGER);
+		msps.addValue("weight", product.getWeight(), Types.INTEGER);
+		msps.addValue("represent_img", product.getRepresent_img(), Types.VARCHAR);
+		msps.addValue("detail_img", product.getDetail_img(), Types.VARCHAR);
+		msps.addValue("summary_ex", product.getSummary_ex(), Types.VARCHAR);
+		msps.addValue("detail_ex", product.getDetail_ex(), Types.VARCHAR);
+		msps.addValue("display_state", product.getDisplay_state(), Types.INTEGER);
+		msps.addValue("sale_state", product.getSale_state(), Types.INTEGER);
+		msps.addValue("product_no", product.getProduct_no(), Types.INTEGER);
 		
-		return getNamedParameterJdbcTemplate().update(EDIT_ONE_PRODUCT, msp);
+		return getNamedParameterJdbcTemplate().update(EDIT_ONE_PRODUCT, msps);
 	}
 
 }
