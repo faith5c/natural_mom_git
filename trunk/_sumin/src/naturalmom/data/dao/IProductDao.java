@@ -14,7 +14,7 @@ public interface IProductDao
 	ProductVo getOneProduct(int product_no) throws DataAccessException;
 	
 	// 상품 추가
-	int addroduct(ProductVo product) throws DataAccessException;
+	int addProduct(ProductVo product) throws DataAccessException;
 	
 	// 진열 상태 변경
 	int editDisplayState(ProductVo product, int state) throws DataAccessException;

@@ -17,20 +17,33 @@ public class QnaVo {
 	
 	public QnaVo(){}
 
-	public QnaVo(String qna_title, int qna_hits, String qna_content, String qna_pw, int qna_pos, int qna_ref,
-			String mem_id) {
-			qna_no = 0;
-			this.qna_title = qna_title;
-			qna_write_day = new Date();
-			this.qna_hits = qna_hits;
-			this.qna_content = qna_content;
-			qna_del_check = 0;
-			this.qna_pw = qna_pw;
-			this.qna_pos = qna_pos;
-			this.qna_ref = qna_ref;
-			board_id = 4;
-			this.mem_id = mem_id;
-		}
+	//일반글작성
+	public QnaVo(String qna_title, String qna_content, String qna_pw, String mem_id) {
+		qna_no = 0;
+		this.qna_title = qna_title;
+		qna_write_day = new Date();
+		this.qna_content = qna_content;
+		qna_del_check = 0;
+		this.qna_pw = qna_pw;
+		qna_pos = 0;
+		qna_ref = qna_no; //참조값이 자기번호와 같아야 일반글
+		board_id = 4;
+		this.mem_id = mem_id;
+	}
+
+	//답변글작성
+	public QnaVo(String qna_title, String qna_content, String qna_pw, int qna_pos, int qna_ref, String mem_id) {
+		qna_no = 0;
+		this.qna_title = qna_title;
+		qna_write_day = new Date();
+		this.qna_content = qna_content;
+		qna_del_check = 0;
+		this.qna_pw = qna_pw;
+		this.qna_pos = qna_pos;
+		this.qna_ref = qna_ref;
+		board_id = 4;
+		this.mem_id = mem_id;
+	}
 	
 	public QnaVo(int qna_no, String qna_title, Date qna_write_day, int qna_hits, String qna_content, int qna_del_check,
 			String qna_pw, int qna_pos, int qna_ref, int board_id, String mem_id) {

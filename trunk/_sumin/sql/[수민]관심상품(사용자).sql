@@ -13,7 +13,7 @@
 --------------------------------------------------------------------------------
 -- 관심상품 중복 확인
 -- (html : 상품상세페이지에서 관심상품을 추가하려고 하면 관심상품이 이미 들어있는지 아닌지 확인하는 부분)
-SELECT product_no FROM tb_interest WHERE product_no=10002 AND mem_id='soomin';
+SELECT COUNT(product_no) FROM tb_interest WHERE product_no=10002 AND mem_id='soomin';
 
 --------------------------------------------------------------------------------
 -- 관심상품 추가

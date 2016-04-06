@@ -1,6 +1,6 @@
 
 -- 	비밀글에 비밀번호 맞나 확인 (qna_no, qna_pw로 찾음)
-SELECT qna_no FROM tb_qna WHERE qna_no=4 AND qna_pw='1234';
+SELECT COUNT(qna_no) FROM tb_qna WHERE qna_no=4 AND qna_pw='1234';
 
 
 -- Q&A 글작성하는 SQL문

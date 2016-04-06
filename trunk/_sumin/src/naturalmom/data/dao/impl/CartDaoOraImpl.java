@@ -14,11 +14,11 @@ import naturalmom.data.model.CartVo;
 
 public class CartDaoOraImpl extends NamedParameterJdbcDaoSupport implements ICartDao{
 	
-	private final String SQL_SELECT_CART = "SELECT product_no, mem_id, buy_num FROM tb_cart WHERE product_no=:product_no and mem_id=:mem_id";
+	private final String SQL_DUPLICATION_CART_CHECK = "SELECT COUNT(product_no) FROM tb_cart WHERE product_no=:product_no and mem_id=:mem_id";
 	private final String SQL_INSERT_CART = "INSERT INTO tb_cart (product_no, mem_id, buy_num) values (:product_no, :mem_id, :buy_num)"; 
 	private final String SQL_DELETE_CART = "DELETE FROM tb_cart WHERE product_no=:product_no AND mem_id=:mem_id";
 	private final String SQL_UPDATE_CART = "UPDATE tb_cart SET buy_num=:buy_num WHERE product_no=:product_no AND mem_id=:mem_id";
-	
+
 	@Override
 	public boolean duplicationCartProductCheck(int product_no, String mem_id) throws DataAccessException {
 		NamedParameterJdbcTemplate npjtem = this.getNamedParameterJdbcTemplate();
@@ -27,9 +27,9 @@ public class CartDaoOraImpl extends NamedParameterJdbcDaoSupport implements ICar
 		ps.addValue("product_no", product_no, Types.INTEGER);
 		ps.addValue("mem_id", mem_id, Types.VARCHAR);
 		
-		List<CartVo> cart_list = npjtem.query(SQL_SELECT_CART, ps, new BeanPropertyRowMapper<CartVo>(CartVo.class));
+		int r = npjtem.queryForInt(SQL_DUPLICATION_CART_CHECK, ps);
 		
-		if(cart_list.size() == 0) return true;
+		if(r == 0) return true;
 		else return false;
 	}
 

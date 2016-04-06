@@ -14,7 +14,7 @@ import naturalmom.data.model.InterestVo;
 
 public class InterestDaoOraImpl extends NamedParameterJdbcDaoSupport implements IInterestDao{
 
-	private final String SQL_SELECT_INTEREST = "SELECT product_no FROM tb_interest WHERE product_no=:product_no AND mem_id=:mem_id";
+	private final String SQL_DUPLICATION_INTEREST_CHECK = "SELECT COUNT(product_no) FROM tb_interest WHERE product_no=:product_no AND mem_id=:mem_id";
 	private final String SQL_INSERT_INTEREST = "INSERT INTO tb_interest (product_no, mem_id) VALUES (:product_no, :mem_id)";
 	private final String SQL_DELETE_INTEREST = "DELETE FROM tb_interest WHERE product_no=:product_no AND mem_id=:mem_id";
 
@@ -26,9 +26,9 @@ public class InterestDaoOraImpl extends NamedParameterJdbcDaoSupport implements 
 		ps.addValue("product_no", product_no, Types.INTEGER);
 		ps.addValue("mem_id", mem_id, Types.VARCHAR);
 		
-		List<InterestVo> interest_list = npjtem.query(SQL_SELECT_INTEREST, ps, new BeanPropertyRowMapper<InterestVo>(InterestVo.class));
+		int r = npjtem.queryForInt(SQL_DUPLICATION_INTEREST_CHECK, ps);
 		
-		if(interest_list.size() == 0) return true;
+		if(r == 0) return true;
 		else return false;
 	}
 

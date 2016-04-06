@@ -16,7 +16,7 @@
 --------------------------------------------------------------------------------
 -- 장바구니 상품 중복 확인
 -- (html : 장바구니을 추가하려고 하면 장바구니에 이미 들어있는지 아닌지 확인하는 부분)
-SELECT product_no, mem_id, buy_num FROM tb_cart WHERE product_no=10000 and mem_id='soomin';
+SELECT COUNT(product_no) FROM tb_cart WHERE product_no=10000 and mem_id='soomin';
 
 -- (html : 같은 상품을 장바구니에 넣을 때 구매개수를 읽어와서 1증가한 수로 updateSQL 함)
 
