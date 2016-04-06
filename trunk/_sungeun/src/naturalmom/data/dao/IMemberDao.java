@@ -29,5 +29,5 @@ public interface IMemberDao {
 	
 	// 회원조회 (관리자)
 	List<MemberVo> getAllMember();
-	int getMembersByCondition(String id, String name, String phone, String email, Date birth, int gender, int level);
+	List<MemberVo> getMembersByCondition(String id, String name, String phone, String email, Date birth, int gender, int level);
 }

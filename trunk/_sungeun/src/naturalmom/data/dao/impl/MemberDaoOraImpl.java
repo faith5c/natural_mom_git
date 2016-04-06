@@ -6,7 +6,9 @@ import java.sql.Types;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -23,11 +25,11 @@ public class MemberDaoOraImpl extends NamedParameterJdbcDaoSupport implements IM
 	JdbcTemplate jtem;
 	
 	// SQL Query
-	private final String SQL_MEMBER_GET_ONE_BY_ID 
+	private final String SQL_MEMBER_SELECT_ONE_BY_ID 
 				= "SELECT * FROM TB_MEMBER WHERE MEM_ID=?";
-	private final String SQL_MEMBER_GET_ONE_BY_NAME_AND_EMAIL 
+	private final String SQL_MEMBER_SELECT_ONE_BY_NAME_AND_EMAIL 
 				= "SELECT * FROM TB_MEMBER	WHERE MEM_NAME =? and MEM_EMAIL=?";
-	private final String SQL_MEMBER_GET_ID ="select mem_id from tb_member where mem_id=?";
+	private final String SQL_MEMBER_SELECT_ID ="select mem_id from tb_member where mem_id=?";
 	private final String SQL_MEMBER_INSERT 
 		="insert into tb_member values (:mem_id, :mem_pw, :mem_name, :mem_phone, :mem_addr_post, :mem_addr_detail, :mem_email, :mem_birth, :mem_gender, 0, 1)";
 	private final String SQL_MEMBER_UPDATE_LEVEL_CD ="UPDATE NMDB.tb_member SET mem_level_cd=? WHERE mem_id=?";
@@ -37,6 +39,12 @@ public class MemberDaoOraImpl extends NamedParameterJdbcDaoSupport implements IM
 				+ "mem_pw=:mem_pw, mem_phone=:mem_phone, mem_addr_post=:mem_addr_post, mem_addr_detail=:mem_addr_detail, mem_email=:mem_email "
 				+ "WHERE mem_id=:mem_id";
 	private final String SQL_MEMBER_SELECT_ALL ="SELECT * FROM TB_MEMBER";
+	private final String SQL_MEMBER_SELECT_BY_CONDITION 
+		="SELECT mem_id, mem_name, mem_addr_detail, mem_phone, mem_email, "
+				+ "mem_birth, mem_gender, drop_out FROM tb_member WHERE (drop_out='0' ";
+			
+			
+			
 	// Constructor
 	public MemberDaoOraImpl() {
 
@@ -47,7 +55,7 @@ public class MemberDaoOraImpl extends NamedParameterJdbcDaoSupport implements IM
 	@Override		// 비밀번호 찾기, 로그인 체크, 회원정보 수정 불러오기
 	public MemberVo getOneMember(String id) {
 		jtem = getJdbcTemplate();
-		List<MemberVo> member_list = jtem.query(SQL_MEMBER_GET_ONE_BY_ID, 
+		List<MemberVo> member_list = jtem.query(SQL_MEMBER_SELECT_ONE_BY_ID, 
 						new RowMapper<MemberVo>(){
 			@Override
 			public MemberVo mapRow(ResultSet rs, int arg1) throws SQLException {
@@ -78,7 +86,7 @@ public class MemberDaoOraImpl extends NamedParameterJdbcDaoSupport implements IM
 	@Override		// 아이디 찾기,
 	public MemberVo getOneMember(String name, String email) {
 		jtem = getJdbcTemplate();
-		List<MemberVo> member_list = jtem.query(SQL_MEMBER_GET_ONE_BY_NAME_AND_EMAIL, 
+		List<MemberVo> member_list = jtem.query(SQL_MEMBER_SELECT_ONE_BY_NAME_AND_EMAIL, 
 						new RowMapper<MemberVo>(){
 			@Override
 			public MemberVo mapRow(ResultSet rs, int arg1) throws SQLException {
@@ -108,7 +116,7 @@ public class MemberDaoOraImpl extends NamedParameterJdbcDaoSupport implements IM
 @Override		// 아이디 중복 확인
 public boolean checkId(String id) {
 	jtem = getJdbcTemplate();
-	String rs_id = jtem.queryForObject(SQL_MEMBER_GET_ID, 
+	String rs_id = jtem.queryForObject(SQL_MEMBER_SELECT_ID, 
 		new RowMapper<String>() {
 			@Override
 			public String mapRow(ResultSet rs, int arg1) throws SQLException {
@@ -183,22 +191,69 @@ public boolean checkId(String id) {
 	@Override
 	public List<MemberVo> getAllMember() {
 		jtem =getJdbcTemplate();
-		List<MemberVo> member_list = null;
 		
-		
-		
-		return member_list;
-
+		return jtem.query(SQL_MEMBER_SELECT_ALL,
+				new BeanPropertyRowMapper<MemberVo>(MemberVo.class));
 	}
+	
 
 	@Override
-	public int getMembersByCondition(String id, String name, String phone, String email, Date birth, int gender,
-			int level) {
-		// TODO Auto-generated method stub
-		return 0;
+	public List<MemberVo> getMembersByCondition(String id, String name, String phone, 
+			String email, Date birth, int gender, int level) {
+
+//		SELECT mem_id, mem_name, mem_addr_detail, mem_phone, 
+//		mem_email, mem_birth, mem_gender, drop_out 
+//			FROM tb_member WHERE (drop_out='0' 
+		
+//						  AND mem_id LIKE '%soo%' 
+//		                  AND mem_name LIKE '%수민%'
+//		                  AND mem_phone='010-1111-1111'
+//		                  AND mem_email='soomin@natural.com'
+//		                  AND mem_birth='90/01/01'
+//		                  AND mem_gender='1' );
+		
+		nameTemplate = getNamedParameterJdbcTemplate();
+		MapSqlParameterSource ps = new MapSqlParameterSource();
+		StringBuffer buffer = new StringBuffer();
+		
+		buffer.append(SQL_MEMBER_SELECT_BY_CONDITION);
+		
+		if(id!=null && !(id.equals("")) && !(id.isEmpty())){
+			buffer.append("AND mem_id LIKE :mem_id ");
+			ps.addValue("mem_id", "%"+id+"%"); }
+		
+		if(name!=null && !(name.equals("")) && !(name.isEmpty())){
+			buffer.append("AND mem_name LIKE :mem_name ");
+			ps.addValue("mem_name",  "%"+name+"%"); }
+		
+		if(phone!=null && !(phone.equals("")) && !(phone.isEmpty())){
+			buffer.append("AND mem_phone=:mem_phone ");
+			ps.addValue("mem_phone", phone); }
+		
+		if(email!=null && !(email.equals("")) && !(email.isEmpty())){
+			buffer.append("AND mem_email=:mem_email ");
+			ps.addValue("mem_email", email); }
+		
+		if(birth!=null && !(birth.equals("")) ){
+			buffer.append("AND mem_birth=:mem_birth ");
+			ps.addValue("mem_birth", birth); }
+		
+		if(gender!=0 ){
+			buffer.append("AND mem_gender=:mem_gender ");
+			ps.addValue("mem_gender", gender); }
+		
+		buffer.append(")");
+		
+//		List<Map<String, Object>> mem_list = 
+//				nameTemplate.queryForList(SQL_MEMBER_SELECT_BY_CONDITION, ps);		
+		
+		return nameTemplate.query(buffer.toString(), ps, new RowMapper<MemberVo>() {
+			@Override
+			public MemberVo mapRow(ResultSet arg0, int arg1) throws SQLException {
+				return null;
+			}
+		});
 	}
-	
-	
-	
+
 
 }
