@@ -9,6 +9,16 @@ public class FaqVo {
 	private String mem_id;
 	
 	public FaqVo(){}
+	
+	public FaqVo(String faq_title, String faq_content, String mem_id) {
+		faq_no = 0;
+		this.faq_title = faq_title;
+		this.faq_content = faq_content;
+		faq_del_check = 0;
+		board_id = 3;
+		this.mem_id = mem_id;
+	}
+
 	public FaqVo(int faq_no, String faq_title, String faq_content, int faq_del_check, int board_id, String mem_id) {
 		super();
 		this.faq_no = faq_no;

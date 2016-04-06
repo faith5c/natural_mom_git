@@ -10,29 +10,25 @@ import naturalmom.data.model.ProductVo;
 public interface IProductDao 
 {	
 	// 상품 수정시 가져올 상품 정보
-	ProductVo selectOneProduct(int product_no) throws DataAccessException;
+	// 상품 상세페이지에서 가져올 정보
+	ProductVo getOneProduct(int product_no) throws DataAccessException;
 	
 	// 상품 추가
-	int insertProduct(ProductVo product) throws DataAccessException;
+	int addroduct(ProductVo product) throws DataAccessException;
 	
 	// 진열 상태 변경
-	int updateDisplayState(ProductVo product, int state) throws DataAccessException;
+	int editDisplayState(ProductVo product, int state) throws DataAccessException;
 	
 	// 판매 상태 변경
-	int updateSaleState(ProductVo product, int state) throws DataAccessException;
+	int editSaleState(ProductVo product, int state) throws DataAccessException;
 	
 	// 삭제, 복원
-	int updateDeletedState(ProductVo product, int state) throws DataAccessException;
+	int editDeletedState(ProductVo product, int state) throws DataAccessException;
 
 	// 상품 수정
-	int updateOneProduct(ProductVo product) throws DataAccessException;
+	int editOneProduct(ProductVo product) throws DataAccessException;
 
 	//////////////////////////////////////////////////////
-	////////////////////////////////////////////////////
-	//////////////////////////////////////////////////////
-	
-	//상품 상세 페이지
-	ProductVo getOneProduct(int product_no) throws DataAccessException;
 	
 	//상품 목록 페이지
 	List<ProductVo> getAllProduct(int product_no) throws DataAccessException;

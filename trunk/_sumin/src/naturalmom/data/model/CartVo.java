@@ -6,6 +6,14 @@ public class CartVo {
 	private int buy_num;
 	
 	public CartVo(){}
+	
+	public CartVo(int product_no, String mem_id) {
+		super();
+		this.product_no = product_no;
+		this.mem_id = mem_id;
+		buy_num = 1;
+	}
+
 	public CartVo(int product_no, String mem_id, int buy_num) {
 		super();
 		this.product_no = product_no;

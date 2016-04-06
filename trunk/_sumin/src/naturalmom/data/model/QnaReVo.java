@@ -11,6 +11,16 @@ public class QnaReVo {
 	private String mem_id;
 	
 	public QnaReVo(){}
+	
+	public QnaReVo(String qna_re_content, int qna_no, String mem_id) {
+		qna_re_no = 0;
+		this.qna_re_content = qna_re_content;
+		qna_re_write_day = new Date();
+		qna_re_del_check = 0;
+		this.qna_no = qna_no;
+		this.mem_id = mem_id;
+	}
+	
 	public QnaReVo(int qna_re_no, String qna_re_content, Date qna_re_write_day, int qna_re_del_check, int qna_no,
 			String mem_id) {
 		super();
@@ -21,6 +31,7 @@ public class QnaReVo {
 		this.qna_no = qna_no;
 		this.mem_id = mem_id;
 	}
+	
 	public int getQna_re_no() {
 		return qna_re_no;
 	}
