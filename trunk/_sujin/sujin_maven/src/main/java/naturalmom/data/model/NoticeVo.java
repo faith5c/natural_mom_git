@@ -1,11 +1,11 @@
 package naturalmom.data.model;
 
-import java.util.Calendar;
+import java.util.Date;
 
 public class NoticeVo {
 	private int notice_no;
 	private String ntc_title;
-	private Calendar ntc_write_day;
+	private Date ntc_write_day;
 	private int ntc_hits;
 	private String ntc_content;
 	private int ntc_del_check;
@@ -16,8 +16,23 @@ public class NoticeVo {
 	
 	public NoticeVo(){}
 
+	//게시글 수정 시 생성자
+	public NoticeVo(int notice_no, String ntc_title, String ntc_content, String ntc_attached_file1, String ntc_attached_file2,
+			String mem_id) {
+		this.notice_no = notice_no;
+		this.ntc_write_day = null;
+		this.ntc_hits = 0; // 기본 조회수 0
+		this.ntc_title = ntc_title;
+		this.ntc_content = ntc_content;
+		this.ntc_del_check = 0; // 0이면 삭제 안함
+		this.ntc_attached_file1 = ntc_attached_file1;
+		this.ntc_attached_file2 = ntc_attached_file2;
+		this.board_id = 1;
+		this.mem_id = mem_id;
+	}
 	
-	//게시글 생성/수정 시 생성자
+	
+	//게시글 생성 시 생성자
 	public NoticeVo(String ntc_title, String ntc_content, String ntc_attached_file1, String ntc_attached_file2,
 			String mem_id) {
 		this.notice_no = 0;
@@ -34,7 +49,7 @@ public class NoticeVo {
 
 
 	//게시글 불러올때 생성자
-	public NoticeVo(int notice_no, String ntc_title, Calendar ntc_write_day, int ntc_hits, String ntc_content,
+	public NoticeVo(int notice_no, String ntc_title, Date ntc_write_day, int ntc_hits, String ntc_content,
 			int ntc_del_check, String ntc_attached_file1, String ntc_attached_file2, String mem_id) {
 		super();
 		this.notice_no = notice_no;
@@ -74,11 +89,11 @@ public class NoticeVo {
 		this.ntc_title = ntc_title;
 	}
 
-	public Calendar getNtc_write_day() {
+	public Date getNtc_write_day() {
 		return ntc_write_day;
 	}
 
-	public void setNtc_write_day(Calendar ntc_write_day) {
+	public void setNtc_write_day(Date ntc_write_day) {
 		this.ntc_write_day = ntc_write_day;
 	}
 

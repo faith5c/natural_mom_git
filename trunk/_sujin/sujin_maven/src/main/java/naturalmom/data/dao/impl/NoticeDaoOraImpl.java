@@ -30,10 +30,10 @@ public class NoticeDaoOraImpl extends NamedParameterJdbcDaoSupport implements IN
 	
 	public NoticeVo getNotice(int notice_no) throws DataAccessException {
 		MapSqlParameterSource ps = new MapSqlParameterSource();
-		ps.addValue("board_id", new Integer(notice_no), Types.INTEGER);
+		ps.addValue("notice_no", new Integer(notice_no), Types.INTEGER);
 		
-		List<NoticeVo> list = getJdbcTemplate().query(GET_NOTICE, 
-				BeanPropertyRowMapper.newInstance(NoticeVo.class), ps);
+		List<NoticeVo> list = getNamedParameterJdbcTemplate().query(GET_NOTICE, ps,
+				BeanPropertyRowMapper.newInstance(NoticeVo.class));
 		if( list != null && list.get(0) != null ) return list.get(0);
 		return null;
 	}

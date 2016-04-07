@@ -29,6 +29,8 @@ public class VNoticeDaoOraImpl extends NamedParameterJdbcDaoSupport implements I
 	final String GET_SEARCH_BY_TITLE_N_CONTENT_NOTICE = 
 			"SELECT * FROM v_notice WHERE (ntc_title LIKE :search OR  ntc_content LIKE :search) AND ROWNUM >= :start AND ROWNUM <= :end";
 	
+	final String GET_ALL_COUNT = "SELECT COUNT(notice_no) FROM v_notice";
+	
 	final int LIMIT = 10; 
 	
 	public List<VNoticeVo> getAllNotice(int start, int end) throws DataAccessException {
@@ -99,6 +101,11 @@ public class VNoticeDaoOraImpl extends NamedParameterJdbcDaoSupport implements I
 		if (list != null)
 			return list;
 		return null;
+	}
+
+	public int getAllCount() throws DataAccessException {
+		// TODO Auto-generated method stub
+		return getJdbcTemplate().queryForInt(GET_ALL_COUNT);
 	}
 
 	

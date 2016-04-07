@@ -12,13 +12,15 @@ public abstract class ConUiSvc {
 	final int MAIN_MENU_ORDER_MANAGER= 4;
 	final int MAIN_MENU_SALESTATEMENT = 5;
 	final int EXIT = 6;
+	final int PREV = 0;
 	
 	final int ERROR = -1;
 	
 	public void show() {
-		while(true){
+		int num = -1;
+		while(num != 0){
 		showMenu();
-		int num = inputNumber(inputUser());
+		num = inputNumber(inputUser());
 		execFunctions(num);
 		}
 	}

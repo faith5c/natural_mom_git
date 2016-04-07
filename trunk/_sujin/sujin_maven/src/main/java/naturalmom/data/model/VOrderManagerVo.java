@@ -1,10 +1,10 @@
 package naturalmom.data.model;
 
-import java.util.Calendar;
+import java.util.Date;
 
 public class VOrderManagerVo {
 
-	private Calendar order_date;
+	private Date order_date;
 	private int order_no;
 	private String mem_name;
 	private String product_name;
@@ -16,7 +16,7 @@ public class VOrderManagerVo {
 	
 	public VOrderManagerVo(){}
 
-	public VOrderManagerVo(Calendar order_date, int order_no, String mem_name, String product_name, int buy_num, int charge,
+	public VOrderManagerVo(Date order_date, int order_no, String mem_name, String product_name, int buy_num, int charge,
 			String delivery_msg, int tracking_num, String process_nm) {
 		super();
 		this.order_date = order_date;
@@ -37,11 +37,11 @@ public class VOrderManagerVo {
 				+ delivery_msg + ", tracking_num=" + tracking_num + ", process_nm=" + process_nm + "]";
 	}
 
-	public Calendar getOrder_date() {
+	public Date getOrder_date() {
 		return order_date;
 	}
 
-	public void setOrder_date(Calendar order_date) {
+	public void setOrder_date(Date order_date) {
 		this.order_date = order_date;
 	}
 

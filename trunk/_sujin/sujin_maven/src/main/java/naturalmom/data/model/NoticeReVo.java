@@ -1,11 +1,11 @@
 package naturalmom.data.model;
 
-import java.util.Calendar;
+import java.util.Date;
 
 public class NoticeReVo {
 	private int notice_re_no;
 	private String ntc_re_content;
-	private Calendar ntc_re_write_day;
+	private Date ntc_re_write_day;
 	private int ntc_re_del_check;
 	private int notice_no;
 	private String mem_id;
@@ -33,7 +33,7 @@ public class NoticeReVo {
 		}
 	
 	//댓글 불러올때
-	public NoticeReVo(int notice_re_no, String ntc_re_content, Calendar ntc_re_write_day, int ntc_re_del_check,
+	public NoticeReVo(int notice_re_no, String ntc_re_content, Date ntc_re_write_day, int ntc_re_del_check,
 			int notice_no, String mem_id) {
 		this.notice_re_no = notice_re_no;
 		this.ntc_re_content = ntc_re_content;
@@ -66,11 +66,11 @@ public class NoticeReVo {
 		this.ntc_re_content = ntc_re_content;
 	}
 
-	public Calendar getNtc_re_write_day() {
+	public Date getNtc_re_write_day() {
 		return ntc_re_write_day;
 	}
 
-	public void setNtc_re_write_day(Calendar ntc_re_write_day) {
+	public void setNtc_re_write_day(Date ntc_re_write_day) {
 		this.ntc_re_write_day = ntc_re_write_day;
 	}
 
