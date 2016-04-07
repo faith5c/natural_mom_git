@@ -116,9 +116,8 @@ public class ProductDaoOraImpl extends NamedParameterJdbcDaoSupport implements I
 		
 		return getNamedParameterJdbcTemplate().update(UPDATE_ONE_PRODUCT, msps);
 	}
-
 	
-	public List<ProductVo> getAllProduct(int product_no) throws DataAccessException {
+	public List<ProductVo> getAllProduct() throws DataAccessException {
 		return this.getJdbcTemplate().query(SELECT_ALL_PRODUCT, new BeanPropertyRowMapper<ProductVo>(ProductVo.class));
 	}
 

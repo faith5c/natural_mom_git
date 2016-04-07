@@ -6,7 +6,7 @@ import org.springframework.dao.DataAccessException;
 
 import naturalmom.data.model.VQnaQnaReVo;
 
-public interface IVQnaQnaReDao {
+public interface IVQnaQnareDao {
 
 	//글하나 조회
 	VQnaQnaReVo getOneQna(int qna_no) throws DataAccessException;

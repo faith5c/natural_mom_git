@@ -5,7 +5,7 @@
 	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
 
-	<!-- DataSource -->
+	<!-- 데이터소스 빈 등록 : DataSource : DS -->
 	<bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
 		<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:XE"/>
@@ -13,4 +13,54 @@
 		<property name="password" value="123456"/>
 	</bean>
 
+	<!-- 데이터 액세스 빈 등록 : DataAccessObject : DAO -->
+	<bean id="cartdao" class="naturalmom.data.dao.impl.CartDaoOraImpl">
+		<property name="dataSource" ref="ds"/>
+	</bean>	
+	<bean id="categorydao" class="naturalmom.data.dao.impl.CategoryDaoOraImpl">
+		<property name="dataSource" ref="ds"/>
+	</bean>	
+	<bean id="faqdao" class="naturalmom.data.dao.impl.FaqDaoOraImpl">
+		<property name="dataSource" ref="ds"/>
+	</bean>	
+	<bean id="interestdao" class="naturalmom.data.dao.impl.InterestDaoOraImpl">
+		<property name="dataSource" ref="ds"/>
+	</bean>	
+	<bean id="productdao" class="naturalmom.data.dao.impl.ProductDaoOraImpl">
+		<property name="dataSource" ref="ds"/>
+	</bean>	
+	<bean id="qnadao" class="naturalmom.data.dao.impl.QnaDaoOraImpl">
+		<property name="dataSource" ref="ds"/>
+	</bean>	
+	<bean id="qnaredao" class="naturalmom.data.dao.impl.QnaReDaoOraImpl">
+		<property name="dataSource" ref="ds"/>
+	</bean>	
+	<bean id="vcartproductdao" class="naturalmom.data.dao.impl.VCartProductDaoOraImpl">
+		<property name="dataSource" ref="ds"/>
+	</bean>	
+	<bean id="vinterestproductdao" class="naturalmom.data.dao.impl.VInterestProductDaoOraImpl">
+		<property name="dataSource" ref="ds"/>
+	</bean>	
+	<bean id="vqnaqnaredao" class="naturalmom.data.dao.impl.VQnaQnareDaoOraImpl">
+		<property name="dataSource" ref="ds"/>
+	</bean>	
+	
+	<!-- 서비스 빈(UI) 등록 : Service : SVC -->
+	<bean id="uisvc" class="naturalmom.ui.svc.MainUISvc">
+		<property name="cartDao" ref="cartdao"/>
+		<property name="categoryDao" ref="categorydao"/>
+		<property name="faqDao" ref="faqdao"/>
+		<property name="interesetDao" ref="interestdao"/>
+		<property name="productDao" ref="productdao"/>
+		<property name="qnaDao" ref="qnadao"/>
+		<property name="qnaReDao" ref="qnaredao"/>
+		<property name="vcartProductDao" ref="vcartproductdao"/>
+		<property name="vinterestProductDao" ref="vinterestproductdao"/>
+		<property name="vqnaQnareDao" ref="vqnaqnaredao"/>
+	</bean>
+	
+	<!-- 메인 실행부 빈 등록 : main -->
+	<bean id="main" class="naturalmom.ui.NmMain">
+		<property name="ui_svc" ref="uisvc"/>
+	</bean>
 </beans>
