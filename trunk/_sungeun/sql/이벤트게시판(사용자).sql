@@ -60,17 +60,9 @@ UPDATE tb_event_re SET evt_re_del_check=1 WHERE evt_no=1;
 
 --검색
 	-- 제목으로 검색
-SELECT event_no, evt_title,mem_id, evt_write_day, evt_hits 
-FROM tb_event WHERE evt_del_check=0 
-			AND evt_title LIKE '%피부%' 
-			ORDER BY event_no DESC;
+SELECT * FROM NMDB.V_EVENT_LIST WHERE evt_title LIKE '%피부%' ORDER BY event_no DESC;
 	-- 내용으로 검색
-SELECT event_no, evt_title,mem_id, evt_write_day, evt_hits 
-FROM tb_event WHERE evt_del_check=0 
-			AND evt_content LIKE '%자연맘%' 
-			ORDER BY event_no DESC;
+SELECT * FROM NMDB.V_EVENT_LIST	WHERE evt_content LIKE '%자연맘%' ORDER BY event_no DESC;
 	-- 제목+내용으로 검색
-SELECT event_no, evt_title,mem_id, evt_write_day, evt_hits 
-FROM tb_event WHERE evt_del_check=0 
-			AND (evt_title LIKE '%수정%' OR evt_content LIKE '%자연맘%') 
+SELECT * FROM NMDB.V_EVENT_LIST	WHERE (evt_title LIKE '%자연맘%' OR evt_content LIKE '%자연맘%') 
 			ORDER BY event_no DESC;
