@@ -2,6 +2,7 @@ package naturalmom.data.dao.impl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.Date;
 import java.util.List;
 
@@ -35,8 +36,8 @@ public class EventDaoOraImpl extends NamedParameterJdbcDaoSupport implements IEv
 		="SELECT * FROM NMDB.V_EVENT_LIST WHERE (evt_title LIKE ? OR evt_content LIKE ?) ORDER BY event_no DESC;";
 	private final String SQL_EVENT_INSERT 
 		="INSERT INTO tb_event VALUES(EVENT_NO_SEQ.NEXTVAL, :evt_title, SYSDATE, 1, :evt_content, 0, 2, :mem_id)";
-	private final String SQL_EVENT_UPDATE_DEL_CD ="";
-	private final String SQL_EVENT_UPDATE_CONTENT ="";
+	private final String SQL_EVENT_UPDATE_DEL_CD ="UPDATE tb_event SET evt_del_check=1 WHERE event_no=?";
+	private final String SQL_EVENT_UPDATE_CONTENT ="UPDATE tb_event SET evt_write_day=SYSDATE, evt_title=:evt_title, evt_content=:evt_content WHERE event_no=:event_no";
 	
 	
 	
@@ -155,8 +156,6 @@ public class EventDaoOraImpl extends NamedParameterJdbcDaoSupport implements IEv
 							});
 	}
 	
-//	INSERT INTO tb_event VALUES(EVENT_NO_SEQ.NEXTVAL, :evt_title, SYSDATE, 1, :evt_content, 0, 2, :mem_id);
-	
 
 	@Override	// 글쓰기
 	public int addEvent(EventVo event) {
@@ -166,20 +165,24 @@ public class EventDaoOraImpl extends NamedParameterJdbcDaoSupport implements IEv
 		ps.addValue("evt_content", event.getEvt_content());
 		ps.addValue("mem_id", event.getMem_id());
 		
-		nameTemplate.update(SQL_EVENT_INSERT, ps);
-		return 0;
+		return nameTemplate.update(SQL_EVENT_INSERT, ps);
 	}
 
 	@Override	// 글삭제
 	public int removeEvent(int event_no) {
-		// TODO Auto-generated method stub
-		return 0;
+		jtem = getJdbcTemplate();
+		return jtem.update(SQL_EVENT_UPDATE_DEL_CD, new Integer(event_no), Types.INTEGER);
 	}
-
-	@Override
+	
+	@Override // 글 수정
 	public int editEvent(EventVo event) {
-		// TODO Auto-generated method stub
-		return 0;
+		nameTemplate = getNamedParameterJdbcTemplate();
+		MapSqlParameterSource ps = new MapSqlParameterSource();
+		ps.addValue("evt_title", event.getEvt_title());
+		ps.addValue("evt_content", event.getEvt_content());
+		ps.addValue("event_no", event.getEvent_no());
+		
+		return nameTemplate.update(SQL_EVENT_UPDATE_CONTENT, ps);
 	}
 
 }
