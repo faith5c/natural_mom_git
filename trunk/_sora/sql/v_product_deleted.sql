@@ -1,7 +1,7 @@
 -- 삭제된 상품 관리 페이지에 삭제된 상품 리스트 목록 가져오기
 상품번호, 분류, 상품명, 이미지, 가격(원가), 재고, 총 누적 판매량
 -- VIEW v_product_deleted
-CREATE VIEW v_proudct_deleted AS
+CREATE VIEW v_product_deleted AS
 SELECT p.product_no, p.product_name, p.represent_img, p.selling_price,
 p.cost_price, p.stock, 
 NVL((SELECT SUM(o.buy_num) FROM tb_product_n_order o WHERE o.product_no = 
