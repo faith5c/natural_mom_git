@@ -10,10 +10,9 @@ public class MenuConSvc extends ConUiSvc {
 	@Override
 	public void showMenu() {
 		System.out.println(" 1. MAIN_MENU_NOTICE");
-		System.out.println(" 2. MAIN_MENU_NOTICE_RE");
-		System.out.println(" 3. MAIN_MENU_ORDER");
-		System.out.println(" 4. MAIN_MENU_ORDER_MANAGER");
-		System.out.println(" 5. MAIN_MENU_SALESTATEMENT");
+		System.out.println(" 2. MAIN_MENU_ORDER");
+		System.out.println(" 3. MAIN_MENU_ORDER_MANAGER");
+		System.out.println(" 4. MAIN_MENU_SALESTATEMENT");
 		System.out.println(" 6. EXIT");
 		System.out.print(" >> ");
 	}
@@ -22,10 +21,6 @@ public class MenuConSvc extends ConUiSvc {
 		switch (num) {
 		case MAIN_MENU_NOTICE:
 			noticeSvc.show();
-			break;
-			
-		case MAIN_MENU_NOTICE_RE:
-			
 			break;
 			
 		case MAIN_MENU_ORDER:

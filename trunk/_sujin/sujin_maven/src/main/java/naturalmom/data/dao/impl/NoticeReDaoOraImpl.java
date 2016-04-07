@@ -60,7 +60,7 @@ public class NoticeReDaoOraImpl extends NamedParameterJdbcDaoSupport implements 
 		MapSqlParameterSource ps = new MapSqlParameterSource();
 		ps.addValue("notice_re_no", new Integer(notice_re_no), Types.INTEGER);
 		ps.addValue("mem_id", mem_id, Types.VARCHAR);
-		int r = this.getNamedParameterJdbcTemplate().update(EDIT_NOTICE_RE, ps);
+		int r = this.getNamedParameterJdbcTemplate().update(REMOVE_NOTICE_RE, ps);
 		return r;
 	}
 
