@@ -15,7 +15,7 @@ WHERE qna_del_check=0
 GROUP BY q.qna_no, qna_title, qna_write_day, qna_hits, qna_content, qna_pw, qna_pos, qna_ref, q.mem_id
 ORDER BY qna_ref DESC, qna_pos DESC;
 
--- 일반글하나 조회 (qna_no로 찾음)
+-- 글하나 조회 (qna_no로 찾음)
 SELECT qna_no, qna_title, qna_write_day, qna_hits, qna_content, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count
 FROM v_qna_qnare WHERE qna_no=1;
 
