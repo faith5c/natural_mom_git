@@ -11,6 +11,8 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
 public class VProduct_ManageDaoOraImpl extends JdbcDaoSupport implements IVProduct_ManageDao 
 {
+	// 상품 개수 구하기
+	private final String GET_COUNT_PRODUCT = "SELECT COUNT(product_no) FROM v_product_manage";
 	// 상품 번호 오름차순 정렬
 	private final String GET_ALL_BY_PRODUCT_NO_ASC = "SELECT * FROM V_PRODUCT_MANAGE ORDER BY product_no";
 	// 상품 번호 내림차순 정렬
@@ -45,7 +47,7 @@ public class VProduct_ManageDaoOraImpl extends JdbcDaoSupport implements IVProdu
 	private final String GET_ALL_BY_ALL_SELLS_DESC = "SELECT * FROM V_PRODUCT_MANAGE ORDER BY all_sells desc, product_no";
 	
 	@Override
-	public List<VProduct_ManageVo> getAllProduct_by_product_no(boolean order) throws DataAccessException 
+	public List<VProduct_ManageVo> getAllProduct_by_product_no(boolean order, int start, int end) throws DataAccessException 
 	{
 		if(order)
 			return getJdbcTemplate().query(GET_ALL_BY_PRODUCT_NO_ASC, 
@@ -56,7 +58,7 @@ public class VProduct_ManageDaoOraImpl extends JdbcDaoSupport implements IVProdu
 	}
 
 	@Override
-	public List<VProduct_ManageVo> getAllProduct_by_category_nm(boolean order) throws DataAccessException 
+	public List<VProduct_ManageVo> getAllProduct_by_category_nm(boolean order, int start, int end) throws DataAccessException 
 	{
 		if(order)
 			return getJdbcTemplate().query(GET_ALL_BY_CATEGORY_NM_ASC, 
@@ -67,7 +69,7 @@ public class VProduct_ManageDaoOraImpl extends JdbcDaoSupport implements IVProdu
 	}
 
 	@Override
-	public List<VProduct_ManageVo> getAllProduct_by_product_name(boolean order) throws DataAccessException 
+	public List<VProduct_ManageVo> getAllProduct_by_product_name(boolean order, int start, int end) throws DataAccessException 
 	{
 		if(order)
 			return getJdbcTemplate().query(GET_ALL_BY_PRODUCT_NAME_ASC, 
@@ -78,7 +80,7 @@ public class VProduct_ManageDaoOraImpl extends JdbcDaoSupport implements IVProdu
 	}
 
 	@Override
-	public List<VProduct_ManageVo> getAllProduct_by_selling_price(boolean order) throws DataAccessException 
+	public List<VProduct_ManageVo> getAllProduct_by_selling_price(boolean order, int start, int end) throws DataAccessException 
 	{
 		if(order)
 			return getJdbcTemplate().query(GET_ALL_BY_SELLING_PRICE_ASC, 
@@ -89,7 +91,7 @@ public class VProduct_ManageDaoOraImpl extends JdbcDaoSupport implements IVProdu
 	}
 
 	@Override
-	public List<VProduct_ManageVo> getAllProduct_by_stock(boolean order) throws DataAccessException 
+	public List<VProduct_ManageVo> getAllProduct_by_stock(boolean order, int start, int end) throws DataAccessException 
 	{
 		if(order)
 			return getJdbcTemplate().query(GET_ALL_BY_STOCK_ASC, 
@@ -100,7 +102,7 @@ public class VProduct_ManageDaoOraImpl extends JdbcDaoSupport implements IVProdu
 	}
 
 	@Override
-	public List<VProduct_ManageVo> getAllProduct_by_display_state(boolean order) throws DataAccessException 
+	public List<VProduct_ManageVo> getAllProduct_by_display_state(boolean order, int start, int end) throws DataAccessException 
 	{
 		if(order)
 			return getJdbcTemplate().query(GET_ALL_BY_DISPLAY_STATE_ASC, 
@@ -111,7 +113,7 @@ public class VProduct_ManageDaoOraImpl extends JdbcDaoSupport implements IVProdu
 	}
 
 	@Override
-	public List<VProduct_ManageVo> getAllProduct_by_sale_state(boolean order) throws DataAccessException 
+	public List<VProduct_ManageVo> getAllProduct_by_sale_state(boolean order, int start, int end) throws DataAccessException 
 	{
 		if(order)
 			return getJdbcTemplate().query(GET_ALL_BY_SALE_STATE_ASC, 
@@ -122,7 +124,7 @@ public class VProduct_ManageDaoOraImpl extends JdbcDaoSupport implements IVProdu
 	}
 
 	@Override
-	public List<VProduct_ManageVo> getAllProduct_by_all_sells(boolean order) throws DataAccessException
+	public List<VProduct_ManageVo> getAllProduct_by_all_sells(boolean order, int start, int end) throws DataAccessException
 	{
 		if(order)
 			return getJdbcTemplate().query(GET_ALL_BY_ALL_SELLS_ASC, 
@@ -130,5 +132,11 @@ public class VProduct_ManageDaoOraImpl extends JdbcDaoSupport implements IVProdu
 		else
 			return getJdbcTemplate().query(GET_ALL_BY_ALL_SELLS_DESC, 
 					new BeanPropertyRowMapper<VProduct_ManageVo>(VProduct_ManageVo.class));
+	}
+
+	@Override
+	public int getCountAllProduct() throws DataAccessException 
+	{
+		return getJdbcTemplate().queryForInt(GET_COUNT_PRODUCT);
 	}
 }

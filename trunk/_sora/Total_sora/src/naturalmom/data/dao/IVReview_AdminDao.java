@@ -15,14 +15,17 @@ public interface IVReview_AdminDao
 	VReview_AdminVo getOneReview(int review_no) throws DataAccessException;
 	
 	// 제목으로 검색하기
-	List<VReview_AdminVo> getReviews_by_title(String search) throws DataAccessException;
+	List<VReview_AdminVo> getReviews_by_title(String search, int start, int end) throws DataAccessException;
 	
 	// 내용으로 검색하기
-	List<VReview_AdminVo> getReviews_by_content(String search) throws DataAccessException;
+	List<VReview_AdminVo> getReviews_by_content(String search, int start, int end) throws DataAccessException;
 	
 	// 글쓴이로 검색하기
-	List<VReview_AdminVo> getReviews_by_id(String search) throws DataAccessException;
+	List<VReview_AdminVo> getReviews_by_id(String search, int start, int end) throws DataAccessException;
 	
 	// 제목 및 내용으로 검색하기
-	List<VReview_AdminVo> getReviews_by_title_n_content(String search) throws DataAccessException;
+	List<VReview_AdminVo> getReviews_by_title_n_content(String search, int start, int end) throws DataAccessException;
+	
+	// 총 게시글 개수 가져오기
+	int getCountReviews() throws DataAccessException;
 }

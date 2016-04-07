@@ -11,6 +11,8 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
 public class VReview_AdminDaoOraImpl extends JdbcDaoSupport implements IVReview_AdminDao 
 {
+	// 글 개수 구하기
+	private final String GET_COUNT_REVIEWS = "SELECT COUNT(review_no) FROM v_review_admin";		
 	// 게시판 목록 조회
 	private final String GET_ALL_LIST = "SELECT * FROM v_review_admin";
 	// 게시판 내용 조회
@@ -43,7 +45,7 @@ public class VReview_AdminDaoOraImpl extends JdbcDaoSupport implements IVReview_
 	}
 
 	@Override
-	public List<VReview_AdminVo> getReviews_by_title(String search) throws DataAccessException 
+	public List<VReview_AdminVo> getReviews_by_title(String search, int start, int end) throws DataAccessException 
 	{
 		search = "%" + search + "%";
 		return getJdbcTemplate().query(GET_SEARCH_BY_TITLE, 
@@ -51,7 +53,7 @@ public class VReview_AdminDaoOraImpl extends JdbcDaoSupport implements IVReview_
 	}
 
 	@Override
-	public List<VReview_AdminVo> getReviews_by_content(String search) throws DataAccessException 
+	public List<VReview_AdminVo> getReviews_by_content(String search, int start, int end) throws DataAccessException 
 	{
 		search = "%" + search + "%";
 		return getJdbcTemplate().query(GET_SEARCH_BY_CONTENT, 
@@ -59,7 +61,7 @@ public class VReview_AdminDaoOraImpl extends JdbcDaoSupport implements IVReview_
 	}
 
 	@Override
-	public List<VReview_AdminVo> getReviews_by_id(String search) throws DataAccessException 
+	public List<VReview_AdminVo> getReviews_by_id(String search, int start, int end) throws DataAccessException 
 	{
 		search = "%" + search + "%";
 		return getJdbcTemplate().query(GET_SEARCH_BY_ID, 
@@ -67,11 +69,17 @@ public class VReview_AdminDaoOraImpl extends JdbcDaoSupport implements IVReview_
 	}
 
 	@Override
-	public List<VReview_AdminVo> getReviews_by_title_n_content(String search) throws DataAccessException 
+	public List<VReview_AdminVo> getReviews_by_title_n_content(String search, int start, int end) throws DataAccessException 
 	{
 		search = "%" + search + "%";
 		return getJdbcTemplate().query(GET_SEARCH_BY_TITLE_CONTENT, new Object[] { search, search },
 				new BeanPropertyRowMapper<VReview_AdminVo>(VReview_AdminVo.class));
+	}
+
+	@Override
+	public int getCountReviews() throws DataAccessException 
+	{
+		return getJdbcTemplate().queryForInt(GET_COUNT_REVIEWS);
 	}
 
 }
