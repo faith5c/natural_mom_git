@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+<!-- DataSource -->
+	<bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:XE"/>
+		<property name="username" value="NMDB"/>
+		<property name="password" value="123456"/>
+	</bean>
+	
+<!-- DAO 
+	<bean id="noticeDaoOra" class="naturalmom.data.dao.impl.NoticeDaoOraImpl">
+		<property name="dataSource">
+			<ref local="ds"/>
+		</property>
+	</bean>	
+	
+	<bean id="noticeReDaoOra" class="naturalmom.data.dao.impl.NoticeReDaoOraImpl">
+		<property name="dataSource">
+			<ref local="ds"/>
+		</property>
+	</bean>
+	
+	<bean id="orderDaoOra" class="naturalmom.data.dao.impl.OrderDaoOraImpl">
+		<property name="dataSource">
+			<ref local="ds"/>
+		</property>
+	</bean>
+	
+	<bean id="orderListDaoOra" class="naturalmom.data.dao.impl.OrderListDaoOraImpl">
+		<property name="dataSource">
+			<ref local="ds"/>
+		</property>
+	</bean>
+	
+	<bean id="orderManagerDaoOra" class="naturalmom.data.dao.impl.OrderManagerListDaoOraImpl">
+		<property name="dataSource">
+			<ref local="ds"/>
+		</property>
+	</bean>
+	
+	<bean id="product_orderDaoOra" class="naturalmom.data.dao.impl.Product_OrderDaoOraImpl">
+		<property name="dataSource">
+			<ref local="ds"/>
+		</property>
+	</bean>
+	
+	<bean id="saleStatementDaoOra" class="naturalmom.data.dao.impl.SaleStatementOraDaoImpl">
+		<property name="dataSource">
+			<ref local="ds"/>
+		</property>
+	</bean>
+	-->
+	<bean id="vNoticeDaoOra" class="naturalmom.data.dao.impl.VNoticeDaoOraImpl">
+		<property name="dataSource">
+			<ref local="ds"/>
+		</property>
+	</bean>
+
+<!-- SVC -->
+	<bean id="menuSvc" class="naturalmom.ui.svc.MenuConSvc">
+		<property name="noticeSvc">
+			<ref local="noticeSvc" />
+		</property>
+	</bean>
+	
+	<bean id="noticeSvc" class="naturalmom.ui.svc.NoticeConSvc">
+		<property name="vNoticeDaoOra">
+			<ref local="vNoticeDaoOra" />
+		</property>
+	</bean>
+	
+<!-- Main -->
+	<bean id="main" class="naturalmom.ui.Main">
+		<property name="menuSvc">
+			<ref local="menuSvc"/>
+		</property>
+	</bean>	
+
+</beans>
