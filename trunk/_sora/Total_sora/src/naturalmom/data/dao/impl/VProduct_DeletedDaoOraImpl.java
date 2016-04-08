@@ -35,7 +35,7 @@ public class VProduct_DeletedDaoOraImpl extends JdbcDaoSupport implements IVProd
 	private final String GET_ALL_BY_ALL_SELLS_DESC = "SELECT * FROM V_PRODUCT_DELETED ORDER BY all_sells desc, product_no";
 	
 	@Override
-	public List<VProduct_DeletedVo> getAllDeletedProduct_by_product_no(boolean order, int start, int end) throws DataAccessException 
+	public List<VProduct_DeletedVo> getAllDeletedProduct_by_product_no(boolean order) throws DataAccessException 
 	{
 		if(order)
 			return getJdbcTemplate().query(GET_ALL_BY_PRODUCT_NO_ASC, 
@@ -46,7 +46,7 @@ public class VProduct_DeletedDaoOraImpl extends JdbcDaoSupport implements IVProd
 	}
 
 	@Override
-	public List<VProduct_DeletedVo> getAllDeletedProduct_by_product_name(boolean order, int start, int end) throws DataAccessException 
+	public List<VProduct_DeletedVo> getAllDeletedProduct_by_product_name(boolean order) throws DataAccessException 
 	{
 		if(order)
 			return getJdbcTemplate().query(GET_ALL_BY_PRODUCT_NAME_ASC, 
@@ -57,7 +57,7 @@ public class VProduct_DeletedDaoOraImpl extends JdbcDaoSupport implements IVProd
 	}
 
 	@Override
-	public List<VProduct_DeletedVo> getAllDeletedProduct_by_selling_price(boolean order, int start, int end) throws DataAccessException 
+	public List<VProduct_DeletedVo> getAllDeletedProduct_by_selling_price(boolean order) throws DataAccessException 
 	{
 		if(order)
 			return getJdbcTemplate().query(GET_ALL_BY_SELLING_PRICE_ASC, 
@@ -68,7 +68,7 @@ public class VProduct_DeletedDaoOraImpl extends JdbcDaoSupport implements IVProd
 	}
 
 	@Override
-	public List<VProduct_DeletedVo> getAllDeletedProduct_by_stock(boolean order, int start, int end) throws DataAccessException 
+	public List<VProduct_DeletedVo> getAllDeletedProduct_by_stock(boolean order) throws DataAccessException 
 	{
 		if(order)
 			return getJdbcTemplate().query(GET_ALL_BY_STOCK_ASC, 
@@ -79,7 +79,7 @@ public class VProduct_DeletedDaoOraImpl extends JdbcDaoSupport implements IVProd
 	}
 
 	@Override
-	public List<VProduct_DeletedVo> getAllDeletedProduct_by_all_sells(boolean order, int start, int end) throws DataAccessException 
+	public List<VProduct_DeletedVo> getAllDeletedProduct_by_all_sells(boolean order) throws DataAccessException 
 	{
 		if(order)
 			return getJdbcTemplate().query(GET_ALL_BY_ALL_SELLS_ASC, 
