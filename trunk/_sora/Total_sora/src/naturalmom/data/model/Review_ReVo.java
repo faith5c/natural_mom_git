@@ -79,4 +79,12 @@ public class Review_ReVo
 	public void setMem_id(String mem_id) {
 		this.mem_id = mem_id;
 	}
+
+	// toString
+	@Override
+	public String toString() {
+		return "Review_ReVo [review_re_no=" + review_re_no + ", rvw_re_content=" + rvw_re_content
+				+ ", rvw_re_write_day=" + rvw_re_write_day + ", rvw_re_del_check=" + rvw_re_del_check + ", rvw_no="
+				+ rvw_no + ", mem_id=" + mem_id + "]";
+	}
 }

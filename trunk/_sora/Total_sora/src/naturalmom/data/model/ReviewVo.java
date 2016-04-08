@@ -114,4 +114,15 @@ public class ReviewVo
 	public void setMem_id(int mem_id) {
 		this.mem_id = mem_id;
 	}
+
+	// toString
+	@Override
+	public String toString() {
+		return "ReviewVo [review_no=" + review_no + ", rvw_title=" + rvw_title + ", rvw_write_day=" + rvw_write_day
+				+ ", rvw_hits=" + rvw_hits + ", rvw_content=" + rvw_content + ", rvw_del_check=" + rvw_del_check
+				+ ", satisfaction=" + satisfaction + ", product_no=" + product_no + ", board_id=" + board_id
+				+ ", mem_id=" + mem_id + "]";
+	}
+	
+	
 }

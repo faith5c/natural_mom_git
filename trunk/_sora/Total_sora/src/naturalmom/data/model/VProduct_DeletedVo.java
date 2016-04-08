@@ -83,4 +83,12 @@ public class VProduct_DeletedVo
 	public void setAll_sells(int all_sells) {
 		this.all_sells = all_sells;
 	}
+
+	// toString
+	@Override
+	public String toString() {
+		return "VProduct_DeletedVo [product_no=" + product_no + ", product_name=" + product_name + ", represent_img="
+				+ represent_img + ", selling_price=" + selling_price + ", cost_price=" + cost_price + ", stock=" + stock
+				+ ", all_sells=" + all_sells + "]";
+	}
 }

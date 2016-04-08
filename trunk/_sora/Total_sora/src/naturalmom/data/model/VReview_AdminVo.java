@@ -131,4 +131,13 @@ public class VReview_AdminVo
 	public void setRe_num(int re_num) {
 		this.re_num = re_num;
 	}
+
+	// toString	
+	@Override
+	public String toString() {
+		return "VReview_AdminVo [review_no=" + review_no + ", product_no=" + product_no + ", product_name="
+				+ product_name + ", rvw_title=" + rvw_title + ", rvw_content=" + rvw_content + ", mem_id=" + mem_id
+				+ ", rvw_write_day=" + rvw_write_day + ", rvw_satisfaction=" + rvw_satisfaction + ", rvw_hits="
+				+ rvw_hits + ", re_num=" + re_num + "]";
+	}
 }

@@ -95,4 +95,13 @@ public class VProduct_ManageVo
 	public void setAll_sells(int all_sells) {
 		this.all_sells = all_sells;
 	}
+
+	// toString
+	@Override
+	public String toString() {
+		return "VProduct_ManageVo [product_no=" + product_no + ", category_nm=" + category_nm + ", product_name="
+				+ product_name + ", represent_img=" + represent_img + ", selling_price=" + selling_price
+				+ ", cost_price=" + cost_price + ", stock=" + stock + ", display_state=" + display_state
+				+ ", sale_state=" + sale_state + ", all_sells=" + all_sells + "]";
+	}
 }

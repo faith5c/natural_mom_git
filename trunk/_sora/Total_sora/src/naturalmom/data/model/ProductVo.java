@@ -69,6 +69,8 @@ public class ProductVo
 	public int getProduct_no() {
 		return product_no;
 	}
+
+
 	public void setProduct_no(int product_no) {
 		this.product_no = product_no;
 	}
@@ -149,5 +151,15 @@ public class ProductVo
 	}
 	public void setCategory_cd(int category_cd) {
 		this.category_cd = category_cd;
+	}
+	
+	// toString
+	@Override
+	public String toString() {
+		return "ProductVo [product_no=" + product_no + ", product_name=" + product_name + ", selling_price="
+				+ selling_price + ", cost_price=" + cost_price + ", stock=" + stock + ", display_state=" + display_state
+				+ ", sale_state=" + sale_state + ", represent_img=" + represent_img + ", detail_img=" + detail_img
+				+ ", summary_ex=" + summary_ex + ", detail_ex=" + detail_ex + ", deleted_state=" + deleted_state
+				+ ", weight=" + weight + ", category_cd=" + category_cd + "]";
 	}
 }

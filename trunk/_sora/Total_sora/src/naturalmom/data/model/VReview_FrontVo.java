@@ -105,5 +105,13 @@ public class VReview_FrontVo
 
 	public void setRe_num(int re_num) {
 		this.re_num = re_num;
+	}
+
+	// toString
+	@Override
+	public String toString() {
+		return "VReview_FrontVo [review_no=" + review_no + ", product_no=" + product_no + ", rvw_title=" + rvw_title
+				+ ", rvw_write_day=" + rvw_write_day + ", rvw_hits=" + rvw_hits + ", rvw_content=" + rvw_content
+				+ ", rvw_satisfaction=" + rvw_satisfaction + ", mem_id=" + mem_id + ", re_num=" + re_num + "]";
 	}	
 }
