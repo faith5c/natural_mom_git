@@ -3,6 +3,7 @@ package naturalmom.ui.svc;
 public class MenuConSvc extends ConUiSvc {
 	
 	private NoticeConSvc noticeSvc;
+	private OrderListConSvc orderListSvc;
 	
 	public MenuConSvc() {}
 
@@ -49,6 +50,11 @@ public class MenuConSvc extends ConUiSvc {
 
 	public void setNoticeSvc(NoticeConSvc noticeSvc) {
 		this.noticeSvc = noticeSvc;
+	}
+
+
+	public void setOrderListSvc(OrderListConSvc orderListSvc) {
+		this.orderListSvc = orderListSvc;
 	}
 	
 	
