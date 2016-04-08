@@ -13,7 +13,7 @@
 		<property name="password" value="123456"/>
 	</bean>
 	
-<!-- DAO -->
+<!-- DAO(noticeSvc) -->
 	<bean id="noticeDaoOra" class="naturalmom.data.dao.impl.NoticeDaoOraImpl">
 		<property name="dataSource">
 			<ref local="ds"/>
@@ -25,20 +25,16 @@
 			<ref local="ds"/>
 		</property>
 	</bean>
-<!-- 	
+	
+	<bean id="vNoticeDaoOra" class="naturalmom.data.dao.impl.VNoticeDaoOraImpl">
+		<property name="dataSource">
+			<ref local="ds"/>
+		</property>
+	</bean>
+
+<!-- DAO(orderListSvc) -->
+	
 	<bean id="orderDaoOra" class="naturalmom.data.dao.impl.OrderDaoOraImpl">
-		<property name="dataSource">
-			<ref local="ds"/>
-		</property>
-	</bean>
-	
-	<bean id="orderListDaoOra" class="naturalmom.data.dao.impl.OrderListDaoOraImpl">
-		<property name="dataSource">
-			<ref local="ds"/>
-		</property>
-	</bean>
-	
-	<bean id="orderManagerDaoOra" class="naturalmom.data.dao.impl.OrderManagerListDaoOraImpl">
 		<property name="dataSource">
 			<ref local="ds"/>
 		</property>
@@ -50,17 +46,26 @@
 		</property>
 	</bean>
 	
+	<bean id="vOrderListDaoOra" class="naturalmom.data.dao.impl.OrderListDaoOraImpl">
+		<property name="dataSource">
+			<ref local="ds"/>
+		</property>
+	</bean>
+
+	<bean id="vOrderManagerDaoOra" class="naturalmom.data.dao.impl.OrderManagerListDaoOraImpl">
+		<property name="dataSource">
+			<ref local="ds"/>
+		</property>
+	</bean>
+	
+	
+<!-- 		
 	<bean id="saleStatementDaoOra" class="naturalmom.data.dao.impl.SaleStatementOraDaoImpl">
 		<property name="dataSource">
 			<ref local="ds"/>
 		</property>
 	</bean>
 	-->
-	<bean id="vNoticeDaoOra" class="naturalmom.data.dao.impl.VNoticeDaoOraImpl">
-		<property name="dataSource">
-			<ref local="ds"/>
-		</property>
-	</bean>
 
 <!-- SVC -->
 	<bean id="menuSvc" class="naturalmom.ui.svc.MenuConSvc">
@@ -78,6 +83,21 @@
 		</property>
 		<property name="noticeReDaoOra">
 			<ref local="noticeReDaoOra"/>
+		</property>
+	</bean>
+	
+	<bean id="orderListSvc" class="naturalmom.ui.svc.OrderListConSvc">
+		<property name="orderDaoOra">
+			<ref local="orderDaoOra" />
+		</property>
+		<property name="product_orderDaoOra">
+			<ref local="product_orderDaoOra" />
+		</property>
+		<property name="vOrderListDaoOra">
+			<ref local="vOrderListDaoOra" />
+		</property>
+		<property name="vOrderManagerDaoOra">
+			<ref local="vOrderManagerDaoOra" />
 		</property>
 	</bean>
 	
