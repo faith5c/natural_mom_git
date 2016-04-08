@@ -112,6 +112,4 @@ public class VNoticeDaoOraImpl extends NamedParameterJdbcDaoSupport implements I
 		return getJdbcTemplate().queryForInt(GET_ALL_COUNT);
 	}
 
-	
-
 }
