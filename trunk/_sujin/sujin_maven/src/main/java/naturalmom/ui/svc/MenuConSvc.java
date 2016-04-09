@@ -1,5 +1,7 @@
 package naturalmom.ui.svc;
 
+import naturalmom.ui.svc.NoticeConSvc;
+
 public class MenuConSvc extends ConUiSvc {
 	
 	private NoticeConSvc noticeSvc;
@@ -62,5 +64,6 @@ public class MenuConSvc extends ConUiSvc {
 	public void setOrderManagerSvc(OrderManagerConSvc orderManagerSvc) {
 		this.orderManagerSvc = orderManagerSvc;
 	}
-	
+
+
 }
