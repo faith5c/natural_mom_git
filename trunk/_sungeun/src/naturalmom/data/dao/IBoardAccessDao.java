@@ -24,5 +24,8 @@ public interface IBoardAccessDao {
 	BoardAccessVo getAccessFaQ(int mem_level_cd);
 	
 	BoardAccessVo getAccessReview(int mem_level_cd);
+	
+	// 아이디에 따른 권한
+	BoardAccessVo getAccess(int board_no, String mem_id);
 
 }
