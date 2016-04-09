@@ -40,7 +40,9 @@ public class VNoticeDaoOraImpl extends NamedParameterJdbcDaoSupport implements I
 		MapSqlParameterSource ps = new MapSqlParameterSource();
 		ps.addValue("start", new Integer(start), Types.INTEGER);
 		ps.addValue("end", new Integer(end), Types.INTEGER);
-		List<VNoticeVo> list = getNamedParameterJdbcTemplate().query(GET_ALL_NOTICE, ps,
+		List<VNoticeVo> list = getNamedParameterJdbcTemplate().query(
+				GET_ALL_NOTICE, 
+				ps,
 				BeanPropertyRowMapper.newInstance(VNoticeVo.class));
 		if (list != null)
 			return list;

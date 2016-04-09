@@ -20,11 +20,16 @@ public class VOrderListDaoOraImpl extends NamedParameterJdbcDaoSupport implement
 	
 	public List<VOrderListVo> getAllOreder(String mem_id, int start, int end) throws DataAccessException {
 		MapSqlParameterSource ps = new MapSqlParameterSource();
-		ps.addValue("mem_id", mem_id, Types.VARCHAR);
 		ps.addValue("start", new Integer(start), Types.INTEGER);
 		ps.addValue("end", new Integer(end), Types.INTEGER);
-		return getNamedParameterJdbcTemplate().query(GET_ALL_ORDER, ps,
+		ps.addValue("mem_id", mem_id, Types.VARCHAR);
+		List<VOrderListVo> list = getNamedParameterJdbcTemplate().query(
+				GET_ALL_ORDER, 
+				ps,
 				BeanPropertyRowMapper.newInstance(VOrderListVo.class));
+		if (list != null)
+			return list;
+		return null;
 	}
 
 	public int getAllCount(String mem_id) throws DataAccessException {
