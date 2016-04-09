@@ -21,7 +21,7 @@ public class Review_ReDaoOraImpl extends NamedParameterJdbcDaoSupport implements
 			+ "VALUES (:rvw_re_content,SYSDATE,0,:rvw_no,:mem_id, REVIEW_RE_NO_SEQ.NEXTVAL)";
 	// 댓글 수정하기
 	private final String EDIT_REPLY = "UPDATE tb_review_re SET rvw_re_content = :rvw_re_content"
-			+ "WHERE review_re_no = :review_re_no";
+			+ " WHERE review_re_no = :review_re_no";
 	// 댓글 삭제하기
 	private final String REMOVE_REPLY = "UPDATE tb_review_re SET rvw_re_del_check = 1"
 			+ "WHERE review_re_no = :review_re_no";

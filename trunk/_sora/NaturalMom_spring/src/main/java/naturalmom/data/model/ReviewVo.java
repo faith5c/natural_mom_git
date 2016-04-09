@@ -14,7 +14,7 @@ public class ReviewVo
 	int satisfaction;
 	int product_no;
 	int board_id;
-	int mem_id;
+	String mem_id;
 	
 	// 생성자
 	public ReviewVo() {}
@@ -22,7 +22,7 @@ public class ReviewVo
 	// 모두 입력: 상품 후기 등록 시
 	public ReviewVo(int review_no, String rvw_title, Date rvw_write_day,
 			int rvw_hits, String rvw_content, int rvw_del_check,
-			int satisfaction, int product_no, int board_id, int mem_id) {
+			int satisfaction, int product_no, int board_id, String mem_id) {
 		super();
 		this.review_no = review_no;
 		this.rvw_title = rvw_title;
@@ -37,21 +37,21 @@ public class ReviewVo
 	}
 	
 	// 삭제 상태, 게시판 아이디 빠짐 (기본 false, 5): 상품 후기 수정 시 내용 가져오기 및 상품 수정
-	public ReviewVo(int review_no, String rvw_title, Date rvw_write_day,
-			int rvw_hits, String rvw_content, int satisfaction, 
-			int product_no, int mem_id) 
-	{
-		this.review_no = review_no;
-		this.rvw_title = rvw_title;
-		this.rvw_write_day = rvw_write_day;
-		this.rvw_hits = rvw_hits;
-		this.rvw_content = rvw_content;
-		this.rvw_del_check = 0;
-		this.satisfaction = satisfaction;
-		this.product_no = product_no;
-		this.board_id = 5;
-		this.mem_id = mem_id;
-	}
+//	public ReviewVo(int review_no, String rvw_title, Date rvw_write_day,
+//			int rvw_hits, String rvw_content, int satisfaction, 
+//			int product_no, int mem_id) 
+//	{
+//		this.review_no = review_no;
+//		this.rvw_title = rvw_title;
+//		this.rvw_write_day = rvw_write_day;
+//		this.rvw_hits = rvw_hits;
+//		this.rvw_content = rvw_content;
+//		this.rvw_del_check = 0;
+//		this.satisfaction = satisfaction;
+//		this.product_no = product_no;
+//		this.board_id = 5;
+//		this.mem_id = mem_id;
+//	}
 		
 	// getter and setter
 	public int getReview_no() {
@@ -108,10 +108,18 @@ public class ReviewVo
 	public void setBoard_id(int board_id) {
 		this.board_id = board_id;
 	}
-	public int getMem_id() {
+	public String getMem_id() {
 		return mem_id;
 	}
-	public void setMem_id(int mem_id) {
+	public void setMem_id(String mem_id) {
 		this.mem_id = mem_id;
+	}
+
+	@Override
+	public String toString() {
+		return "ReviewVo [review_no=" + review_no + ", rvw_title=" + rvw_title + ", rvw_write_day=" + rvw_write_day
+				+ ", rvw_hits=" + rvw_hits + ", rvw_content=" + rvw_content + ", rvw_del_check=" + rvw_del_check
+				+ ", satisfaction=" + satisfaction + ", product_no=" + product_no + ", board_id=" + board_id
+				+ ", mem_id=" + mem_id + "]";
 	}
 }

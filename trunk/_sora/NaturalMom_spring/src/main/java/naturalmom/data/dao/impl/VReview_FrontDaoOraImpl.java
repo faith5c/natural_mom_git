@@ -14,8 +14,8 @@ public class VReview_FrontDaoOraImpl extends JdbcDaoSupport implements IVReview_
 	// 게시판 목록 뽑기
 	private final String GET_ALL_LIST = "SELECT * FROM v_review_front WHERE product_no = ?";
 	
-	public List<VReview_FrontVo> getAllList() throws DataAccessException
+	public List<VReview_FrontVo> getAllList(int product_no) throws DataAccessException
 	{
-		return getJdbcTemplate().query(GET_ALL_LIST, new BeanPropertyRowMapper<VReview_FrontVo>(VReview_FrontVo.class));
+		return getJdbcTemplate().query(GET_ALL_LIST, new BeanPropertyRowMapper<VReview_FrontVo>(VReview_FrontVo.class), new Integer(product_no));
 	}
 }

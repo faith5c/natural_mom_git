@@ -61,6 +61,7 @@ public class ReviewDaoOraImpl extends NamedParameterJdbcDaoSupport implements IR
 	public int editReview(ReviewVo review) throws DataAccessException
 	{
 		MapSqlParameterSource msps = new MapSqlParameterSource();
+		msps.addValue("rvw_title", review.getRvw_title(), Types.VARCHAR);
 		msps.addValue("rvw_content", review.getRvw_content(), Types.VARCHAR);
 		msps.addValue("review_no", review.getReview_no(), Types.INTEGER);
 		

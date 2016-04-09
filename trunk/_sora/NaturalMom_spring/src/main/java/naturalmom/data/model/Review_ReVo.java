@@ -29,17 +29,17 @@ public class Review_ReVo
 	}
 	
 	// 삭제 상태 빠짐 (기본 false): 리플 내용 가져올 시
-	public Review_ReVo(int review_re_no, String rvw_re_content,
-			Date rvw_re_write_day, int rvw_no,
-			String mem_id) 
-	{
-		this.review_re_no = review_re_no;
-		this.rvw_re_content = rvw_re_content;
-		this.rvw_re_write_day = rvw_re_write_day;
-		this.rvw_re_del_check = 0;
-		this.rvw_no = rvw_no;
-		this.mem_id = mem_id;
-	}
+//	public Review_ReVo(int review_re_no, String rvw_re_content,
+//			Date rvw_re_write_day, int rvw_no,
+//			String mem_id) 
+//	{
+//		this.review_re_no = review_re_no;
+//		this.rvw_re_content = rvw_re_content;
+//		this.rvw_re_write_day = rvw_re_write_day;
+//		this.rvw_re_del_check = 0;
+//		this.rvw_no = rvw_no;
+//		this.mem_id = mem_id;
+//	}
 	
 	// getter and setter
 	public int getReview_re_no() {
@@ -78,5 +78,12 @@ public class Review_ReVo
 	}
 	public void setMem_id(String mem_id) {
 		this.mem_id = mem_id;
+	}
+
+	@Override
+	public String toString() {
+		return "Review_ReVo [review_re_no=" + review_re_no + ", rvw_re_content=" + rvw_re_content
+				+ ", rvw_re_write_day=" + rvw_re_write_day + ", rvw_re_del_check=" + rvw_re_del_check + ", rvw_no="
+				+ rvw_no + ", mem_id=" + mem_id + "]";
 	}
 }

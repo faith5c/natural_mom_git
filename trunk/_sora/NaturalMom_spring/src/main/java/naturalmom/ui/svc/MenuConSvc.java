@@ -1,9 +1,5 @@
 package naturalmom.ui.svc;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 public class MenuConSvc extends ConSvc
 {	
 	public static final int PRODUCT = 1;
@@ -13,7 +9,6 @@ public class MenuConSvc extends ConSvc
 	public static final int V_RANK_SELLS = 5;
 	public static final int V_REVIEW_ADMIN = 6;
 	public static final int V_REVIEW_FRONT = 7;
-	public static final int EXIT = 9;
 	
 	private ProductSvc productSvc;
 	private ReviewSvc reviewSvc;
@@ -21,7 +16,7 @@ public class MenuConSvc extends ConSvc
 	private VProduct_ManageSvc vProduct_manageSvc;
 	private VRank_SellsSvc vRank_sellsSvc;
 	private VReview_AdminSvc vReview_adminSvc;
-	private VReview_FrontSvc vReivew_frontSvc;
+	private VReview_FrontSvc vReview_frontSvc;
 	
 	public MenuConSvc() {}
 
@@ -41,26 +36,31 @@ public class MenuConSvc extends ConSvc
 	public void execFunctions(int num) {
 		switch (num) {
 		case PRODUCT:
+			productSvc.showMenu();
 			break;
 						
 		case REVIEW:
-			
+			reviewSvc.showMenu();
 			break;
 			
 		case V_PRODUCT_DELETED:
-			
+			vProduct_deletedSvc.showMenu();
 			break;
 			
 		case V_PRODUCT_NANAGE:
+			vProduct_manageSvc.showMenu();
 			break;
 			
 		case V_RANK_SELLS:
+			vRank_sellsSvc.showMenu();
 			break;
 			
 		case V_REVIEW_ADMIN:
+			vReview_adminSvc.showMenu();
 			break;
 			
 		case V_REVIEW_FRONT:
+			vReview_frontSvc.showMenu();
 			break;
 			
 		case EXIT:
@@ -81,51 +81,27 @@ public class MenuConSvc extends ConSvc
 		this.productSvc = productSvc;
 	}
 
-	public ReviewSvc getReviewSvc() {
-		return reviewSvc;
-	}
-
 	public void setReviewSvc(ReviewSvc reviewSvc) {
 		this.reviewSvc = reviewSvc;
 	}
-
-	public VProduct_DeletedSvc getvProduct_deletedSvc() {
-		return vProduct_deletedSvc;
-	}
-
-	public void setvProduct_deletedSvc(VProduct_DeletedSvc vProduct_deletedSvc) {
+	
+	public void setVProduct_deletedSvc(VProduct_DeletedSvc vProduct_deletedSvc) {
 		this.vProduct_deletedSvc = vProduct_deletedSvc;
 	}
 
-	public VProduct_ManageSvc getvProduct_manageSvc() {
-		return vProduct_manageSvc;
-	}
-
-	public void setvProduct_manageSvc(VProduct_ManageSvc vProduct_manageSvc) {
+	public void setVProduct_manageSvc(VProduct_ManageSvc vProduct_manageSvc) {
 		this.vProduct_manageSvc = vProduct_manageSvc;
 	}
 
-	public VRank_SellsSvc getvRank_sellsSvc() {
-		return vRank_sellsSvc;
-	}
-
-	public void setvRank_sellsSvc(VRank_SellsSvc vRank_sellsSvc) {
+	public void setVRank_sellsSvc(VRank_SellsSvc vRank_sellsSvc) {
 		this.vRank_sellsSvc = vRank_sellsSvc;
 	}
 
-	public VReview_AdminSvc getvReview_adminSvc() {
-		return vReview_adminSvc;
-	}
-
-	public void setvReview_adminSvc(VReview_AdminSvc vReview_adminSvc) {
+	public void setVReview_adminSvc(VReview_AdminSvc vReview_adminSvc) {
 		this.vReview_adminSvc = vReview_adminSvc;
 	}
 
-	public VReview_FrontSvc getvReivew_frontSvc() {
-		return vReivew_frontSvc;
-	}
-
-	public void setvReivew_frontSvc(VReview_FrontSvc vReivew_frontSvc) {
-		this.vReivew_frontSvc = vReivew_frontSvc;
+	public void setVReview_frontSvc(VReview_FrontSvc vReview_frontSvc) {
+		this.vReview_frontSvc = vReview_frontSvc;
 	}
 }

@@ -15,10 +15,10 @@ public class VRank_SellsDaoOraImpl extends JdbcDaoSupport implements IVRank_Sell
 	// SQL문 확인해볼것
 	// 판매 순위 오름차순 정렬
 	private final String GET_ALL_ASC = "SELECT ROWNUM, all_sells, product_name FROM V_RANK_SELLS "
-			+ "WHERE ROWNUM <= 3 ORDER BY ROWNUM";
+			+ "WHERE ROWNUM <= 3 ORDER BY ROWNUM ASC";
 	// 판매 순위 내림차순 정렬
-	private final String GET_ALL_DESC = "SELECT ROWNUM, all_sells, product_name FROM V_RANK_SELLS"
-			+ "WHERE ROWNUM <= 3  ORDER BY ROWNUM DESC";
+	private final String GET_ALL_DESC = "SELECT ROWNUM, all_sells, product_name FROM V_RANK_SELLS "
+			+ "WHERE ROWNUM <= 3 ORDER BY ROWNUM DESC";
 	
 	public List<VRank_SellsVo> getAllRank(boolean order) throws DataAccessException 
 	{

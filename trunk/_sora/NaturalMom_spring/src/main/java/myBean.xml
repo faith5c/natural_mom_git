@@ -20,43 +20,43 @@
 		</property>
 	</bean>	
 	
-	<bean id="Review_reDao" class="naturalmom.data.dao.impl.Review_ReDaoOraImpl">
+	<bean id="review_reDao" class="naturalmom.data.dao.impl.Review_ReDaoOraImpl">
 		<property name="dataSource">
 			<ref local="ds"/>
 		</property>
 	</bean>
 
-	<bean id="ReviewDao" class="naturalmom.data.dao.impl.ReviewDaoOraImpl">
+	<bean id="reviewDao" class="naturalmom.data.dao.impl.ReviewDaoOraImpl">
 		<property name="dataSource">
 			<ref local="ds"/>
 		</property>
 	</bean>
 	
-	<bean id="VProduct_DeletedDao" class="naturalmom.data.dao.impl.VProduct_DeletedDaoOraImpl">
+	<bean id="vProduct_DeletedDao" class="naturalmom.data.dao.impl.VProduct_DeletedDaoOraImpl">
 		<property name="dataSource">
 			<ref local="ds"/>
 		</property>
 	</bean>
 	
-	<bean id="VProduct_ManageDao" class="naturalmom.data.dao.impl.VProduct_ManageDaoOraImpl">
+	<bean id="vProduct_ManageDao" class="naturalmom.data.dao.impl.VProduct_ManageDaoOraImpl">
 		<property name="dataSource">
 			<ref local="ds"/>
 		</property>
 	</bean>
 	
-	<bean id="Rank_SellsDao" class="naturalmom.data.dao.impl.VRank_SellsDaoOraImpl">
+	<bean id="vRank_SellsDao" class="naturalmom.data.dao.impl.VRank_SellsDaoOraImpl">
 		<property name="dataSource">
 			<ref local="ds"/>
 		</property>
 	</bean>
 	
-	<bean id="VReview_AdminDao" class="naturalmom.data.dao.impl.VReview_AdminDaoOraImpl">
+	<bean id="vReview_AdminDao" class="naturalmom.data.dao.impl.VReview_AdminDaoOraImpl">
 		<property name="dataSource">
 			<ref local="ds"/>
 		</property>
 	</bean>
 	
-	<bean id="VReivew_FrontDao" class="naturalmom.data.dao.impl.VReview_FrontDaoOraImpl">
+	<bean id="vReivew_FrontDao" class="naturalmom.data.dao.impl.VReview_FrontDaoOraImpl">
 		<property name="dataSource">
 			<ref local="ds"/>
 		</property>
@@ -88,20 +88,53 @@
 			<ref local="vReview_adminSvc" />
 		</property>
 		
-		<property name="vReivew_frontSvc">
-			<ref local="vReivew_frontSvc" />
+		<property name="vReview_frontSvc">
+			<ref local="vReview_frontSvc" />
 		</property>		
 	</bean>
 		
-	<bean id="noticeSvc" class="naturalmom.ui.svc.NoticeConSvc">
-		<property name="vNoticeDaoOra">
-			<ref local="vNoticeDaoOra" />
+	<bean id="productSvc" class="naturalmom.ui.svc.ProductSvc">
+		<property name="productDao">
+			<ref local="productDao" />
 		</property>
-		<property name="noticeDaoOra">
-			<ref local="noticeDaoOra"/>
+	</bean>
+	
+	<bean id="reviewSvc" class="naturalmom.ui.svc.ReviewSvc">
+		<property name="reDao">
+			<ref local="reviewDao" />
 		</property>
-		<property name="noticeReDaoOra">
-			<ref local="noticeReDaoOra"/>
+		<property name="rereDao">
+			<ref local="review_reDao" />
+		</property>
+	</bean>
+	
+	<bean id="vProduct_deletedSvc" class="naturalmom.ui.svc.VProduct_DeletedSvc">
+		<property name="vProDao">
+			<ref local="vProduct_DeletedDao" />
+		</property>
+	</bean>
+	
+	<bean id="vProduct_manageSvc" class="naturalmom.ui.svc.VProduct_ManageSvc">
+		<property name="mngDao">
+			<ref local="vProduct_ManageDao" />
+		</property>
+	</bean>
+	
+	<bean id="vRank_sellsSvc" class="naturalmom.ui.svc.VRank_SellsSvc">
+		<property name="rankDao">
+			<ref local="vRank_SellsDao" />
+		</property>
+	</bean>
+	
+	<bean id="vReview_adminSvc" class="naturalmom.ui.svc.VReview_AdminSvc">
+		<property name="admDao">
+			<ref local="vReview_AdminDao" />
+		</property>
+	</bean>
+	
+	<bean id="vReview_frontSvc" class="naturalmom.ui.svc.VReview_FrontSvc">
+		<property name="froDao">
+			<ref local="vReivew_FrontDao" />
 		</property>
 	</bean>
 	

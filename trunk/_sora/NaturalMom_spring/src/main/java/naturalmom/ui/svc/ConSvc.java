@@ -7,8 +7,17 @@ import java.io.InputStreamReader;
 public abstract class ConSvc 
 {
 	public static final int ERROR = -1;
+	public static final int EXIT = 9;
+	
+	public static final int TRUE = 1;
+	public static final int FALSE = 0;
+	
+	public static final boolean ASC = true;
+	public static final boolean DESC = false;
 	
 	public abstract void execFunctions(int num);
+	
+	public abstract void showMenu();
 	
 	public String inputUser()
 	{
@@ -32,5 +41,13 @@ public abstract class ConSvc
 			e.printStackTrace();
 		}
 		return ERROR;
+	}
+	
+	public void showResult(int result)
+	{
+		if(result > 0)
+			System.out.println("성공");
+		else
+			System.out.println("실패");
 	}
 }

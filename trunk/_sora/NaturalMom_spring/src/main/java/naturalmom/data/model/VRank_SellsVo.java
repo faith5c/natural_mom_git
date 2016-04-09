@@ -37,4 +37,9 @@ public class VRank_SellsVo
 	public void setProduct_name(String product_name) {
 		this.product_name = product_name;
 	}
+	
+	@Override
+	public String toString() {
+		return "VRank_SellsVo [rownum=" + rownum + ", all_sells=" + all_sells + ", product_name=" + product_name + "]";
+	}
 }
