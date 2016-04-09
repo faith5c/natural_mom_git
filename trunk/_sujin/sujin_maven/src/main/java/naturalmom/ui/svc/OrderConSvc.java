@@ -45,7 +45,7 @@ public class OrderConSvc extends ConUiSvc {
 	public void execFunctions(int num) {
 		switch (num) {
 		case ORDER_LIST: //1
-			getAllOreder(vOrderListDaoOra.getAllOreder("sora", 1, 5));
+			getAllOreder(vOrderListDaoOra.getAllOreder(1, 6, "sora"));
 			break;
 		case ORDER: //2
 			int order_no = orderDaoOra.addOrder(
@@ -53,9 +53,10 @@ public class OrderConSvc extends ConUiSvc {
 							"아차산", "아차", null, 0, "sora"),
 							"비씨", 
 							"현대택배");
+			System.out.println(order_no);
 			addOrder(productOrderDaoOra.addOrder(new ProductOrderVo(10006, order_no, 1, 11)));
 			
-			getAllOreder(vOrderListDaoOra.getAllOreder("sora", 1, 5));
+			getAllOreder(vOrderListDaoOra.getAllOreder(1, 5, "sora"));
 			break;
 		case ORDER_UPDATE: //3
 			updateOrder(productOrderDaoOra.editOrder(1005, 21));
