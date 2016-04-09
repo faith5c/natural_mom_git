@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
-import naturalmom.data.model.VOrderListVo;
+import naturalmom.data.model.VOrderManagerVo;
 
 
 public interface IVOrderManagerDao {
 
-	public List<VOrderListVo> getAllOreder(int start, int end, int orderByNum)  throws DataAccessException;
+	public List<VOrderManagerVo> getAllOreder(int start, int end, int orderByNum)  throws DataAccessException;
 	
 }

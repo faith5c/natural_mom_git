@@ -27,16 +27,16 @@ public class OrderDaoOraImpl extends NamedParameterJdbcDaoSupport implements IOr
 			+ "(SELECT d.delivery_com_cd FROM tb_delivery_com d WHERE d.delivery_com_nm = :delivery_com_nm),"
 			+ " :mem_id, ORDER_NO_SEQ.NEXTVAL)";
 	
-	final String EDIT_ORDER = 
+	final String EDIT_TRACKING_NUM_ORDER = 
 			"UPDATE NMDB.tb_order SET tracking_num = :tracking_num WHERE order_no = :order_no";
 	
 	
-	protected void initDao() throws Exception {
+/*	protected void initDao() throws Exception {
 		this.sji = new SimpleJdbcInsert(this.getDataSource());
 		this.sji.withTableName("tb_order");
 		this.sji.usingGeneratedKeyColumns("order_no"); //id <<PK, AI>> 
 		//스트링 배열로 여러개 받아오기 가능.. 정수 외에 문자도 유니크하면 받아오기 가능
-	}
+	}*/
 	
 	
 	public int addOrder(OrderVo order, String credit_nm, String delivery_com_nm) throws DataAccessException {
@@ -85,11 +85,11 @@ public class OrderDaoOraImpl extends NamedParameterJdbcDaoSupport implements IOr
 				//( r > 0 && gkh != null) ? gkh.getKey().intValue() : -1;
 	}*/
 	
-	public int editOrder(int order_no, int tracking_num) throws DataAccessException {
+	public int editTrackingNumOrder(int order_no, int tracking_num) throws DataAccessException {
 		MapSqlParameterSource ps = new MapSqlParameterSource();
 		ps.addValue("order_no", new Integer(order_no), Types.INTEGER);
 		ps.addValue("tracking_num", new Integer(tracking_num), Types.INTEGER);
-		int r = this.getNamedParameterJdbcTemplate().update(ADD_ORDER, ps);
+		int r = this.getNamedParameterJdbcTemplate().update(EDIT_TRACKING_NUM_ORDER, ps);
 		return r;
 	}
 

@@ -51,15 +51,15 @@
 			<ref local="ds"/>
 		</property>
 	</bean>
-<!-- 
-	<bean id="vOrderManagerDaoOra" class="naturalmom.data.dao.impl.OrderManagerListDaoOraImpl">
+
+	<bean id="vOrderManagerDaoOra" class="naturalmom.data.dao.impl.VOrderManagerDaoOraImpl">
 		<property name="dataSource">
 			<ref local="ds"/>
 		</property>
 	</bean>
 	
 	
-		
+<!-- 		
 	<bean id="saleStatementDaoOra" class="naturalmom.data.dao.impl.SaleStatementOraDaoImpl">
 		<property name="dataSource">
 			<ref local="ds"/>
@@ -74,6 +74,9 @@
 		</property>
 		<property name="orderSvc">
 			<ref local="orderSvc" />
+		</property>
+		<property name="orderManagerSvc">
+			<ref local="orderManagerSvc" />
 		</property>
 	</bean>
 
@@ -99,6 +102,18 @@
 		</property>
 		<property name="vOrderListDaoOra">
 			<ref local="vOrderListDaoOra" />
+		</property>
+	</bean>
+	
+	<bean id="orderManagerSvc" class="naturalmom.ui.svc.OrderManagerConSvc">
+		<property name="orderDaoOra">
+			<ref local="orderDaoOra" />
+		</property>
+		<property name="productOrderDaoOra">
+			<ref local="productOrderDaoOra" />
+		</property>
+		<property name="vOrderManagerDaoOra">
+			<ref local="vOrderManagerDaoOra" />
 		</property>
 	</bean>
 	
