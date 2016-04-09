@@ -1,14 +1,14 @@
 package naturalmom.data.model;
 
-public class Product_OrderVo {
+public class ProductOrderVo {
 	private int product_no;
 	private int order_no;
 	private int buy_num;
 	private int process_cd;
 	
-	public Product_OrderVo(){}
+	public ProductOrderVo(){}
 
-	public Product_OrderVo(int product_no, int order_no, int buy_num, int process_cd) {
+	public ProductOrderVo(int product_no, int order_no, int buy_num, int process_cd) {
 		super();
 		this.product_no = product_no;
 		this.order_no = order_no;

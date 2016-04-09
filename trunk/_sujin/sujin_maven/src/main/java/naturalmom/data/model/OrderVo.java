@@ -15,7 +15,9 @@ public class OrderVo {
 	private String mem_id;
 
 	public OrderVo(){}
-
+	
+	
+	
 	public OrderVo(int charge, String credit_num, String credit_exp, String rcv_name, String rcv_phone,
 			String rcv_addr_post, String rcv_addr_detail, String delivery_msg, int tracking_num, String mem_id) {
 		super();
