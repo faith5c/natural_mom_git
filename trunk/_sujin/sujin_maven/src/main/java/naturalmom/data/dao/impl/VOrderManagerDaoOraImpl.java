@@ -18,7 +18,7 @@ public class VOrderManagerDaoOraImpl extends NamedParameterJdbcDaoSupport implem
 	
 	final String GET_ALL_ORDER_MANAGER = 
 			"SELECT order_date, order_no, mem_name, product_name, buy_num, charge, "
-			+ "delivery_msg, tracking_num, process_nm FROM v_order_manager ";
+			+ "delivery_msg, tracking_num, process_nm FROM v_order_manager";
 //			+ "WHERE ROWNUM >= :start AND ROWNUM <= :end ";
 	
 	final String ORDER_BY_ORDER_DATE = GET_ALL_ORDER_MANAGER+"ORDER BY order_date DESC";
