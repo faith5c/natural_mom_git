@@ -20,7 +20,7 @@ public class ProductOrderDaoOraImpl extends NamedParameterJdbcDaoSupport impleme
 	final String EDIT_ONT_ORDER = 
 			"UPDATE tb_product_n_order po SET po.process_cd = :process_cd "
 			+ "WHERE EXISTS(SELECT p.product_no FROM tb_product p "
-			+ "WHERE p.product_no = po.product_no AND p.product_name = :product_nam) AND order_no = :order_no";
+			+ "WHERE p.product_no = po.product_no AND p.product_name = :product_name) AND order_no = :order_no";
 	
 	
 	public int addOrder(ProductOrderVo po) throws DataAccessException {
@@ -38,7 +38,7 @@ public class ProductOrderDaoOraImpl extends NamedParameterJdbcDaoSupport impleme
 		MapSqlParameterSource ps = new MapSqlParameterSource();
 		ps.addValue("order_no", new Integer(order_no), Types.INTEGER);
 		ps.addValue("process_cd", new Integer(process_cd), Types.INTEGER);
-		int r = this.getNamedParameterJdbcTemplate().update(ADD_ORDER, ps);
+		int r = this.getNamedParameterJdbcTemplate().update(EDIT_ALL_ORDER, ps);
 		return r;
 	}
 
@@ -49,7 +49,7 @@ public class ProductOrderDaoOraImpl extends NamedParameterJdbcDaoSupport impleme
 		ps.addValue("order_no", new Integer(order_no), Types.INTEGER);
 		ps.addValue("product_name", product_name, Types.VARCHAR);
 		ps.addValue("process_cd", new Integer(process_cd), Types.INTEGER);
-		int r = this.getNamedParameterJdbcTemplate().update(ADD_ORDER, ps);
+		int r = this.getNamedParameterJdbcTemplate().update(EDIT_ONT_ORDER, ps);
 		return r;
 	}
 
