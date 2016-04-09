@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd">
+
+
+<!-- Driver setting -->
+	<bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+      <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+      <property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:XE"/>
+      <property name="username" value="NMDB"/>
+      <property name="password" value="123456"/>
+   	</bean>
+	
+	
+	<!-- DI setting -->
+	<bean id="eventSvc" class="com.nmom.soap.ui.svc.EventSvc">
+		<property name="eventDao">
+			<ref local="eventDao"/>
+		</property>
+	</bean>
+	
+	<bean id="eventDao" class="com.nmom.soap.data.dao.impl.EventDaoOraImpl">
+		<property name="dataSource">
+			<ref local="ds"/>
+		</property>
+	</bean>
+
+</beans>
