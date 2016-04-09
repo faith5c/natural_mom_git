@@ -10,7 +10,7 @@
 	
 	<link rel="apple-touch-icon" href="images/logo.ico" /> <!--애플아이콘등록-->
 	<link rel="shortcut icon" href="images/logo.ico" /> <!--단축키아이콘등록-->
-	<link rel="stylesheet" href="admin/css/index.css"/>
+	<link rel="stylesheet" href="css/index.css"/>
 		
 	<title>자연맘</title>
 	
@@ -115,8 +115,8 @@
 		<!--기타배너 : 주문/회원/배송/계좌번호)-->
 		<aside>
 			<img src="images/banner_order.jpg">
-			<a href="membership.jsp"><img src="images/banner_membership.jpg"></a>
-			<a href="banner_delivery.jsp"><img src="images/banner_delivery.jpg"></a>
+			<a href="join/membership.jsp"><img src="images/banner_membership.jpg"></a>
+			<a href="company/banner_delivery.jsp"><img src="images/banner_delivery.jpg"></a>
 			<img src="images/banner_account.jpg">
 		</aside>
 	</div>

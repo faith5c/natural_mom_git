@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <!--회사메뉴-->
 		<nav id="company_menu">
 			<ul>
-				<a href="company_menu_1.jsp">회사소개</a>
-				<a href="company_menu_2.jsp">Natural 시스템</a>
-				<a href="company_menu_3.jsp">Natural 파머스</a>
+				<a href="<c:url value = '/company/company_menu_1.jsp' />">회사소개</a>
+				<a href="<c:url value = '/company/company_menu_2.jsp' />">Natural 시스템</a>
+				<a href="<c:url value = '/company/company_menu_3.jsp' />">Natural 파머스</a>
 			</ul>
 		</nav>
 
