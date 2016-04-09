@@ -5,6 +5,7 @@
 <!--유저메뉴-->
 		<nav id = "user_menu_pc">
 			<ul>
+				<li><a href="admin/admin_default.jsp">관리자모드</a></li>
 				<li><a href="customer_center.jsp">고객센터</a></li>
 				<li><a href="mypage.jsp">마이페이지</a></li>
 				<li><a href="orderlist.jsp">주문조회</a></li>
