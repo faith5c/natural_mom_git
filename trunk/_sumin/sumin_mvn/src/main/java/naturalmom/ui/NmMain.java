@@ -5,21 +5,21 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import naturalmom.ui.svc.IMainUI;
-import naturalmom.ui.svc.MainUISvc;
+import naturalmom.ui.svc.MainUIConSvc;
 
 public class NmMain {
 
-	private IMainUI ui_svc;
+	private IMainUI mainUi;
 	
-	public void setUi_svc(MainUISvc svc){
-		this.ui_svc = svc;
+	public void setMainUi(MainUIConSvc mainUi){
+		this.mainUi = mainUi;
 	}
 	
 	public static void main(String[] args) {
 //		ApplicationContext ctx = new FileSystemXmlApplicationContext("nm_beans.xml");
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("nm_beans.xml");
 		NmMain main = (NmMain)ctx.getBean("main");
-		main.ui_svc.showMenu();
+		main.mainUi.show();
 	}
 
 }
