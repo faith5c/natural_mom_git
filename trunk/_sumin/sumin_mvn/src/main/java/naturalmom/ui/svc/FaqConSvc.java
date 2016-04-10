@@ -3,6 +3,7 @@ package naturalmom.ui.svc;
 import naturalmom.data.dao.IFaqDao;
 
 public class FaqConSvc extends ConSvc{
+	
 	private final int CHOICE_GET_ONE_FAQ = 1;
 	private final int CHOICE_GET_ALL_FAQ = 2;
 	private final int CHOICE_SEARCH_FAQ_TITLE = 3;
@@ -27,19 +28,19 @@ public class FaqConSvc extends ConSvc{
 
 	public void showMenu(){
 		System.out.println(line1);
-		System.out.println("choice CART menu");
+		System.out.println("choice FAQ menu");
 		System.out.println(line1);
-		System.out.println("1. getOneFaq");
-		System.out.println("2. getAllFaq");
-		System.out.println("3. searchFaqTitle");
-		System.out.println("4. searchFaqContent");
-		System.out.println("5. searchFaqTitleNContent");
-		System.out.println("6. addFaq By Faq");
-		System.out.println("7. addFaq");
-		System.out.println("8. editFaq By Faq");
-		System.out.println("9. editFaq");
-		System.out.println("10. removeFaq By Faq");
-		System.out.println("11. removeFaq");
+		System.out.println("1. get One Faq");
+		System.out.println("2. get All Faq");
+		System.out.println("3. search Faq Title");
+		System.out.println("4. search Faq Content");
+		System.out.println("5. search Faq Title and Content");
+		System.out.println("6. add Faq By Faq");
+		System.out.println("7. add Faq");
+		System.out.println("8. edit Faq By Faq");
+		System.out.println("9. edit Faq");
+		System.out.println("10. remove Faq By Faq");
+		System.out.println("11. remove Faq");
 		System.out.println("12. Exit");
 		System.out.println(line2);
 	}

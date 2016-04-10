@@ -38,8 +38,16 @@ public class ProductDaoOraImpl extends NamedParameterJdbcDaoSupport implements I
 			+ ":detail_img, :summary_ex, :detail_ex, 0, :weight, :category_cd, PRODUCT_NO_SEQ.NEXTVAL)";
 	
 	
+	//************************************************************//
+	
+	//상품 목록 페이지
 	private final String SELECT_ALL_PRODUCT = "SELECT product_no, product_name, selling_price, sale_state, represent_img, summary_ex FROM tb_product WHERE display_state=1 AND deleted_state=0";
+	
+	//카테고리에 따라 상품목록 가져옴
 	private final String SELECT_PRODUCT_BY_CATEGORY_CD="SELECT product_no, product_name, selling_price, sale_state, represent_img, summary_ex FROM tb_product WHERE display_state=1 AND deleted_state=0 AND category_cd=:category_cd";
+
+	//************************************************************//
+
 	
 	public ProductVo getOneProduct(int product_no) throws DataAccessException
 	{
@@ -117,6 +125,8 @@ public class ProductDaoOraImpl extends NamedParameterJdbcDaoSupport implements I
 		return getNamedParameterJdbcTemplate().update(UPDATE_ONE_PRODUCT, msps);
 	}
 	
+	//************************************************************//
+	
 	public List<ProductVo> getAllProduct() throws DataAccessException {
 		return this.getJdbcTemplate().query(SELECT_ALL_PRODUCT, new BeanPropertyRowMapper<ProductVo>(ProductVo.class));
 	}
@@ -127,5 +137,6 @@ public class ProductDaoOraImpl extends NamedParameterJdbcDaoSupport implements I
 		ps.addValue("category_cd", category_cd, Types.INTEGER);
 		return npjtem.query(SELECT_PRODUCT_BY_CATEGORY_CD, ps, new BeanPropertyRowMapper<ProductVo>(ProductVo.class));
 	}
-
+	
+	//************************************************************//
 }

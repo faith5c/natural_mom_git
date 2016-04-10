@@ -15,17 +15,17 @@ import naturalmom.data.model.VInterestProductVo;
 
 public class VInterestProductDaoOraImpl extends NamedParameterJdbcDaoSupport implements IVInterestProductDao {
 
-	private final String SELECT_ALL_CART_PRODUCT = "SELECT product_no, product_name, selling_price, sale_state, represent_img, mem_id FROM V_INTEREST_PRODUCT";
-	private final String SELECT_CART_PRODUCT_BY_MEM_ID = "SELECT product_no, product_name, selling_price, sale_state, represent_img, mem_id FROM V_INTEREST_PRODUCT WHERE mem_id=:mem_id";
+	private final String SELECT_ALL_INTEREST_PRODUCT = "SELECT product_no, product_name, selling_price, sale_state, represent_img, mem_id FROM V_INTEREST_PRODUCT";
+	private final String SELECT_INTEREST_PRODUCT_BY_MEM_ID = "SELECT product_no, product_name, selling_price, sale_state, represent_img, mem_id FROM V_INTEREST_PRODUCT WHERE mem_id=:mem_id";
 	
-	public List<VInterestProductVo> getAllCart() throws DataAccessException {
-		return this.getJdbcTemplate().query(SELECT_ALL_CART_PRODUCT, new BeanPropertyRowMapper<VInterestProductVo>(VInterestProductVo.class));
+	public List<VInterestProductVo> getAllInterest() throws DataAccessException {
+		return this.getJdbcTemplate().query(SELECT_ALL_INTEREST_PRODUCT, new BeanPropertyRowMapper<VInterestProductVo>(VInterestProductVo.class));
 	}
 
-	public List<VInterestProductVo> getCartByMemId(String mem_id) throws DataAccessException {
+	public List<VInterestProductVo> getInterestByMemId(String mem_id) throws DataAccessException {
 		NamedParameterJdbcTemplate npjtem = this.getNamedParameterJdbcTemplate();
 		MapSqlParameterSource ps = new MapSqlParameterSource();
 		ps.addValue("mem_id", mem_id, Types.VARCHAR);
-		return npjtem.query(SELECT_ALL_CART_PRODUCT, ps, new BeanPropertyRowMapper<VInterestProductVo>(VInterestProductVo.class));
+		return npjtem.query(SELECT_INTEREST_PRODUCT_BY_MEM_ID, ps, new BeanPropertyRowMapper<VInterestProductVo>(VInterestProductVo.class));
 	}
 }

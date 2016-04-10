@@ -8,6 +8,7 @@ public class CartConSvc extends ConSvc{
 	
 	private final int CHOICE_GET_ALL_CART = 1;
 	private final int CHOICE_GET_CART_BY_MEM_ID = 2;
+	
 	private final int CHOICE_DUPLICATION_CARTPRODUCT_CHECK = 3;
 	private final int CHOICE_ADD_CARTPRODUCT_BY_CART = 4;
 	private final int CHOICE_ADD_CARTPRODUCT = 5;
@@ -37,6 +38,7 @@ public class CartConSvc extends ConSvc{
 		System.out.println(line1);
 		System.out.println("1. get All Cart");
 		System.out.println("2. get Cart ByMemId");
+		System.out.println(line2);
 		System.out.println("3. duplication CartProduct Check");
 		System.out.println("4. add CartProduct By Cart");
 		System.out.println("5. add CartProduct");
