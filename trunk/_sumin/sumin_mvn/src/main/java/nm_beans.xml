@@ -53,14 +53,11 @@
 		<property name="interestSvc" ref="interest_svc"/>
 		<property name="productSvc" ref="product_svc"/>
 		<property name="qnaSvc" ref="qna_svc"/>
-		<property name="qnaReSvc" ref="qnare_svc"/>
-		<property name="vCartProductSvc" ref="v_cart_product_svc"/>
-		<property name="vInterestProductSvc" ref="v_interest_product_svc"/>
-		<property name="vQnaQnareSvc" ref="v_qna_qnare_svc"/>
 	</bean>
 	
 	<bean id="cart_svc" class="naturalmom.ui.svc.CartConSvc">
 		<property name="cartDao" ref="cart_dao"></property>
+		<property name="vCartProductDao" ref="v_cart_product_dao"></property>
 	</bean>
 	<bean id="category_svc" class="naturalmom.ui.svc.CategoryConSvc">
 		<property name="categoryDao" ref="category_dao"></property>
@@ -70,23 +67,14 @@
 	</bean>
 	<bean id="interest_svc" class="naturalmom.ui.svc.InterestConSvc">
 		<property name="interestDao" ref="interest_dao"></property>
+		<property name="vInterestDao" ref="v_interest_product_dao"></property>
 	</bean>
 	<bean id="product_svc" class="naturalmom.ui.svc.ProductConSvc">
 		<property name="productDao" ref="product_dao"></property>
 	</bean>
 	<bean id="qna_svc" class="naturalmom.ui.svc.QnaConSvc">
 		<property name="qnaDao" ref="qna_dao"></property>
-	</bean>
-	<bean id="qnare_svc" class="naturalmom.ui.svc.QnaReConSvc">
 		<property name="qnaReDao" ref="qnare_dao"></property>
-	</bean>
-	<bean id="v_cart_product_svc" class="naturalmom.ui.svc.VCartProductConSvc">
-		<property name="vCartProductDao" ref="v_cart_product_dao"></property>
-	</bean>
-	<bean id="v_interest_product_svc" class="naturalmom.ui.svc.VInterestProductConSvc">
-		<property name="vInterestDao" ref="v_interest_product_dao"></property>
-	</bean>
-	<bean id="v_qna_qnare_svc" class="naturalmom.ui.svc.VQnaQnareConSvc">
 		<property name="vQnaQnareDao" ref="v_qna_qnare_dao"></property>
 	</bean>
 	

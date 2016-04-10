@@ -2,7 +2,7 @@ package naturalmom.ui.svc;
 
 import naturalmom.data.dao.IProductDao;
 
-public class ProductConSvc {
+public class ProductConSvc extends ConSvc{
 	IProductDao productDao;
 
 	public void setProductDao(IProductDao productDao) {
