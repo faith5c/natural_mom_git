@@ -36,12 +36,11 @@ public class BoardAccessDaoOraImpl extends NamedParameterJdbcDaoSupport implemen
 	@Override
 	public BoardAccessVo getAccess(int board_no, String mem_id) {
 		jtem = getJdbcTemplate();
-		List<BoardAccessVo> board = jtem.query(SQL_ACCESS_SELECT_BY_ID, 
-									new Object[]{new Integer(board_no), mem_id}, 
+		List<BoardAccessVo> board =	jtem.query(SQL_ACCESS_SELECT_BY_ID,  
 									new RowMapper<BoardAccessVo>() {
 			@Override
 			public BoardAccessVo mapRow(ResultSet rs, int arg1) throws SQLException {
-				BoardAccessVo access = null;
+				BoardAccessVo access = new BoardAccessVo();
 				access.setBoard_cd(rs.getInt("board_no"));
 				access.setBoard_read(rs.getInt("board_read"));
 				access.setBoard_write(rs.getInt("board_write"));
@@ -50,7 +49,7 @@ public class BoardAccessDaoOraImpl extends NamedParameterJdbcDaoSupport implemen
 				access.setMem_level_cd(rs.getInt("mem_level_cd"));
 				return access;
 			}
-		});
+		}, new Object[]{new Integer(board_no), mem_id});
 		return board.get(0);
 	}
 
@@ -59,12 +58,11 @@ public class BoardAccessDaoOraImpl extends NamedParameterJdbcDaoSupport implemen
 	@Override
 	public BoardAccessVo getAdminAccess(int board_no) {
 		jtem = getJdbcTemplate();
-		List<BoardAccessVo> board = jtem.query(SQL_ACCESS_SELECT_ADMIN, 
-									new Object[]{new Integer(board_no)}, 
+		List<BoardAccessVo> board = jtem.query(SQL_ACCESS_SELECT_ADMIN,  
 									new RowMapper<BoardAccessVo>() {
 			@Override
 			public BoardAccessVo mapRow(ResultSet rs, int arg1) throws SQLException {
-				BoardAccessVo access = null;
+				BoardAccessVo access = new BoardAccessVo();
 				access.setBoard_cd(rs.getInt("board_no"));
 				access.setBoard_read(rs.getInt("board_read"));
 				access.setBoard_write(rs.getInt("board_write"));
@@ -73,7 +71,7 @@ public class BoardAccessDaoOraImpl extends NamedParameterJdbcDaoSupport implemen
 				access.setMem_level_cd(rs.getInt("mem_level_cd"));
 				return access;
 			}
-		});
+		}, new Integer(board_no));
 		return board.get(0);
 	}
 
@@ -85,7 +83,7 @@ public class BoardAccessDaoOraImpl extends NamedParameterJdbcDaoSupport implemen
 									new RowMapper<BoardAccessVo>() {
 			@Override
 			public BoardAccessVo mapRow(ResultSet rs, int arg1) throws SQLException {
-				BoardAccessVo access = null;
+				BoardAccessVo access = new BoardAccessVo();
 				access.setBoard_cd(rs.getInt("board_no"));
 				access.setBoard_read(rs.getInt("board_read"));
 				access.setBoard_write(rs.getInt("board_write"));
@@ -106,7 +104,7 @@ public class BoardAccessDaoOraImpl extends NamedParameterJdbcDaoSupport implemen
 									new RowMapper<BoardAccessVo>() {
 			@Override
 			public BoardAccessVo mapRow(ResultSet rs, int arg1) throws SQLException {
-				BoardAccessVo access = null;
+				BoardAccessVo access = new BoardAccessVo();
 				access.setBoard_cd(rs.getInt("board_no"));
 				access.setBoard_read(rs.getInt("board_read"));
 				access.setBoard_write(rs.getInt("board_write"));
@@ -127,7 +125,7 @@ public class BoardAccessDaoOraImpl extends NamedParameterJdbcDaoSupport implemen
 									new RowMapper<BoardAccessVo>() {
 			@Override
 			public BoardAccessVo mapRow(ResultSet rs, int arg1) throws SQLException {
-				BoardAccessVo access = null;
+				BoardAccessVo access = new BoardAccessVo();
 				access.setBoard_cd(rs.getInt("board_no"));
 				access.setBoard_read(rs.getInt("board_read"));
 				access.setBoard_write(rs.getInt("board_write"));
@@ -150,7 +148,7 @@ public class BoardAccessDaoOraImpl extends NamedParameterJdbcDaoSupport implemen
 									new RowMapper<BoardAccessVo>() {
 			@Override
 			public BoardAccessVo mapRow(ResultSet rs, int arg1) throws SQLException {
-				BoardAccessVo access = null;
+				BoardAccessVo access = new BoardAccessVo();
 				access.setBoard_cd(rs.getInt("board_no"));
 				access.setBoard_read(rs.getInt("board_read"));
 				access.setBoard_write(rs.getInt("board_write"));
@@ -171,7 +169,7 @@ public class BoardAccessDaoOraImpl extends NamedParameterJdbcDaoSupport implemen
 									new RowMapper<BoardAccessVo>() {
 			@Override
 			public BoardAccessVo mapRow(ResultSet rs, int arg1) throws SQLException {
-				BoardAccessVo access = null;
+				BoardAccessVo access = new BoardAccessVo();
 				access.setBoard_cd(rs.getInt("board_no"));
 				access.setBoard_read(rs.getInt("board_read"));
 				access.setBoard_write(rs.getInt("board_write"));
@@ -192,7 +190,7 @@ public class BoardAccessDaoOraImpl extends NamedParameterJdbcDaoSupport implemen
 									new RowMapper<BoardAccessVo>() {
 			@Override
 			public BoardAccessVo mapRow(ResultSet rs, int arg1) throws SQLException {
-				BoardAccessVo access = null;
+				BoardAccessVo access = new BoardAccessVo();
 				access.setBoard_cd(rs.getInt("board_no"));
 				access.setBoard_read(rs.getInt("board_read"));
 				access.setBoard_write(rs.getInt("board_write"));
@@ -213,7 +211,7 @@ public class BoardAccessDaoOraImpl extends NamedParameterJdbcDaoSupport implemen
 									new RowMapper<BoardAccessVo>() {
 			@Override
 			public BoardAccessVo mapRow(ResultSet rs, int arg1) throws SQLException {
-				BoardAccessVo access = null;
+				BoardAccessVo access = new BoardAccessVo();
 				access.setBoard_cd(rs.getInt("board_no"));
 				access.setBoard_read(rs.getInt("board_read"));
 				access.setBoard_write(rs.getInt("board_write"));
@@ -234,7 +232,7 @@ public class BoardAccessDaoOraImpl extends NamedParameterJdbcDaoSupport implemen
 									new RowMapper<BoardAccessVo>() {
 			@Override
 			public BoardAccessVo mapRow(ResultSet rs, int arg1) throws SQLException {
-				BoardAccessVo access = null;
+				BoardAccessVo access = new BoardAccessVo();
 				access.setBoard_cd(rs.getInt("board_no"));
 				access.setBoard_read(rs.getInt("board_read"));
 				access.setBoard_write(rs.getInt("board_write"));

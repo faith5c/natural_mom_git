@@ -59,7 +59,7 @@ public class Event_reDaoOraImpl extends NamedParameterJdbcDaoSupport implements 
 	@Override	// 댓글 삭제
 	public int removeRe(int event_re_no) {
 		jtem = getJdbcTemplate();
-		return jtem.update(SQL_EVENT_RE_UPDATE_DEL_CD, new Integer(event_re_no), Types.INTEGER);
+		return jtem.update(SQL_EVENT_RE_UPDATE_DEL_CD, new Object[]{new Integer(event_re_no)});
 	}
 
 

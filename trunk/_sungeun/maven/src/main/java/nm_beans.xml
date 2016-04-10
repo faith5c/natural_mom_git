@@ -30,6 +30,16 @@
 			<ref local="eventReDao"/>
 		</property>
 	</bean>
+	<bean id="memberSvc" class="com.nmom.soap.ui.svc.MemberConsoleSvc">
+		<property name="memberDao">
+			<ref local="memberDao"/>
+		</property>
+	</bean>
+	<bean id="boardAccessSvc" class="com.nmom.soap.ui.svc.BoardAccessConsoleSvc">
+		<property name="boardAccessDao">
+			<ref local="boardAccessDao"/>
+		</property>
+	</bean>
 	
 	
 	
@@ -44,7 +54,16 @@
 			<ref local="ds"/>
 		</property>
 	</bean>
-	
+	<bean id="memberDao" class="com.nmom.soap.data.dao.impl.MemberDaoOraImpl">
+		<property name="dataSource">
+			<ref local="ds"/>
+		</property>		
+	</bean>
+	<bean id="boardAccessDao" class="com.nmom.soap.data.dao.impl.BoardAccessDaoOraImpl">
+		<property name="dataSource">
+			<ref local="ds"/>
+		</property>
+	</bean>
 	
 	
 <!-- Main -->
@@ -54,6 +73,12 @@
 		</property>
 		<property name="eventReSvc">
 			<ref local="eventReSvc"/>
+		</property>
+		<property name="memberSvc">
+			<ref local="memberSvc"/>
+		</property>
+		<property name="boardAccessSvc">
+			<ref local="boardAccessSvc"/>
 		</property>
 	</bean>
 

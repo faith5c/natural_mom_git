@@ -28,7 +28,7 @@ public class MemberDaoOraImpl extends NamedParameterJdbcDaoSupport implements IM
 				= "SELECT * FROM TB_MEMBER WHERE MEM_ID=?";
 	private final String SQL_MEMBER_SELECT_ONE_BY_NAME_AND_EMAIL 
 				= "SELECT * FROM TB_MEMBER	WHERE MEM_NAME =? and MEM_EMAIL=?";
-	private final String SQL_MEMBER_SELECT_ID ="select mem_id from tb_member where mem_id=?";
+	private final String SQL_MEMBER_SELECT_ID ="select mem_id from tb_member";
 	private final String SQL_MEMBER_INSERT 
 		="insert into tb_member values (:mem_id, :mem_pw, :mem_name, :mem_phone, :mem_addr_post, :mem_addr_detail, :mem_email, :mem_birth, :mem_gender, 0, 1)";
 	private final String SQL_MEMBER_UPDATE_LEVEL_CD ="UPDATE NMDB.tb_member SET mem_level_cd=? WHERE mem_id=?";
@@ -72,7 +72,7 @@ public class MemberDaoOraImpl extends NamedParameterJdbcDaoSupport implements IM
 													rs.getInt("mem_level_cd"));
 				return member;
 				}
-			}, new Integer(id) );
+			}, id );
 		
 		if( member_list != null && member_list.size() == 1 )
 			return member_list.get(0);
@@ -103,7 +103,7 @@ public class MemberDaoOraImpl extends NamedParameterJdbcDaoSupport implements IM
 													rs.getInt("mem_level_cd"));
 				return member;
 				}
-			}, new Object[]{ name, email } );
+			}, new Object[]{ new Integer(name), email } );
 		
 		if( member_list != null && member_list.size() == 1 )
 			return member_list.get(0);
@@ -115,19 +115,21 @@ public class MemberDaoOraImpl extends NamedParameterJdbcDaoSupport implements IM
 @Override		// 아이디 중복 확인
 public boolean checkId(String id) {
 	jtem = getJdbcTemplate();
-	String rs_id = jtem.queryForObject(SQL_MEMBER_SELECT_ID, 
-		new RowMapper<String>() {
-			@Override
-			public String mapRow(ResultSet rs, int arg1) throws SQLException {
-				return rs.getString("mem_id");
-			}
-		}, id);
+	List<MemberVo> mem_list = jtem.query(SQL_MEMBER_SELECT_ID, new RowMapper<MemberVo>() {
+		@Override
+		public MemberVo mapRow(ResultSet rs, int arg1) throws SQLException {
+			MemberVo mem = new MemberVo();
+			mem.setMem_id(rs.getString("mem_id"));
+			return mem;
+		}
+	});
 	
-	if(rs_id.equals(id)){
-		return false;
-	}else{
-		return true;
+	for(MemberVo m:mem_list){
+		if(m.getMem_id().equals(id)){
+			return false;
+		}
 	}
+	return true;
 }
 
 
@@ -166,8 +168,7 @@ public boolean checkId(String id) {
 	public int removeMember(String id) {
 		jtem = getJdbcTemplate();
 		
-		return jtem.update(SQL_MEMBER_UPDATE_DROP_OUT, 
-				id, 	Types.VARCHAR );
+		return jtem.update(SQL_MEMBER_UPDATE_DROP_OUT, id);
 	}
 
 	
@@ -230,6 +231,9 @@ public boolean checkId(String id) {
 			buffer.append("AND mem_gender=:mem_gender ");
 			ps.addValue("mem_gender", gender); }
 		
+		if(level!=0){
+			buffer.append("AND mem_level_cd=:mem_level_cd ");
+			ps.addValue("mem_level_cd", level); }
 		buffer.append(")");
 		
 		
