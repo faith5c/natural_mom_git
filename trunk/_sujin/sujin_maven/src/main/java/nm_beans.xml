@@ -68,7 +68,7 @@
 	-->
 
 <!-- SVC -->
-	<bean id="menuSvc" class="naturalmom.ui.svc.MenuConSvc">
+	<bean id="menuSvc" class="naturalmom.ui.svc.MenuConUiSvc">
 		<property name="noticeSvc">
 			<ref local="noticeSvc" />
 		</property>
@@ -81,7 +81,7 @@
 	</bean>
 
 
-	<bean id="noticeSvc" class="naturalmom.ui.svc.NoticeConSvc">
+	<bean id="noticeSvc" class="naturalmom.ui.svc.NoticeConUiSvc">
 		<property name="vNoticeDaoOra">
 			<ref local="vNoticeDaoOra" />
 		</property>
@@ -93,7 +93,7 @@
 		</property>
 	</bean>
 	
-	<bean id="orderSvc" class="naturalmom.ui.svc.OrderConSvc">
+	<bean id="orderSvc" class="naturalmom.ui.svc.OrderConUiSvc">
 		<property name="orderDaoOra">
 			<ref local="orderDaoOra" />
 		</property>
@@ -105,7 +105,7 @@
 		</property>
 	</bean>
 	
-	<bean id="orderManagerSvc" class="naturalmom.ui.svc.OrderManagerConSvc">
+	<bean id="orderManagerSvc" class="naturalmom.ui.svc.OrderManagerConUiSvc">
 		<property name="orderDaoOra">
 			<ref local="orderDaoOra" />
 		</property>
