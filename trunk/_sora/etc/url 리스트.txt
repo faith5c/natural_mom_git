@@ -1,0 +1,203 @@
+'http://localhost:8082/naturalmom_section' 생략
+
+- 리뷰 게시판 파라미터 약자 정리
+r : read
+w : write
+p : process
+t : title
+c : content
+a : all (title + content)
+r_ : 리플
+
+
+리뷰 게시판 리스트: a_board.jsp
+/admin/board/a_board.jsp?page=review
+
+리뷰 게시판 읽기: a_board_review_read.jsp
+/admin/board/a_board.jsp?page=review&r=1
+
+리뷰 게시판 쓰기: a_board.jsp
+/admin/board/a_board.jsp?page=review&w=true
+
+리뷰 게시판 수정: a_board_review_write.jsp
+/admin/board/a_board.jsp?page=review&w=true&no=1
+
+게시글 등록: a_board_review_process.jsp
+/admin/board/a_board.jsp?page=review&p=add
+
+게시글 수정: a_board_review_process.jsp
+/admin/board/a_board.jsp?page=review&p=edit&no=1
+
+게시글 삭제: a_board_review_process.jsp
+/admin/board/a_board.jsp?page=review&p=remove&no=1
+
+댓글 등록: a_board_review_process.jsp
+/admin/board/a_board.jsp?page=review&p=r_add&no=1
+
+댓글 수정: a_board_review_process.jsp
+/admin/board/a_board.jsp?page=review&p=r_edit&r_no=1
+
+댓글 삭제: a_board_review_process.jsp
+/admin/board/a_board.jsp?page=review&p=r_remove&r_no=1
+
+제목 검색: a_board_review.jsp
+/admin/board/a_board.jsp?page=review&t=짱좋
+
+내용 검색: a_board_review.jsp
+/admin/board/a_board.jsp?page=review&c=짱좋
+
+아이디 검색: a_board_review.jsp
+/admin/board/a_board.jsp?page=review&id=sora
+
+제목+내용 검색: a_board_review.jsp
+/admin/board/a_board.jsp?page=review&a=짱좋
+
+----------------------------------------------------------------------------------------
+
+- 상품 페이지 약자 정리
+no : product_no
+ct : category_name
+nm : product_name
+pr : price
+st : stock
+dis : display_state
+sal : sale_state
+all : all_sells
+del : delete_state
+
+
+상품 관리 페이지
+/admin/product/a_product.jsp?page=manage
+
+상품 관리 페이지 - 상품 번호 오름차순
+/admin/product/a_product.jsp?page=manage&by=no&order=true
+
+상품 관리 페이지 - 상품 번호 내림차순
+/admin/product/a_product.jsp?page=manage&by=no&order=false
+
+상품 관리 페이지 - 분류 오름차순
+/admin/product/a_product.jsp?page=manage&by=ct&order=true
+
+상품 관리 페이지 - 분류 내림차순
+/admin/product/a_product.jsp?page=manage&by=ct&order=false
+
+상품 관리 페이지 - 이름 오름차순
+/admin/product/a_product.jsp?page=manage&by=nm&order=true
+
+상품 관리 페이지 - 이름 내림차순
+/admin/product/a_product.jsp?page=manage&by=nm&order=false
+
+상품 관리 페이지 - 가격 오름차순
+/admin/product/a_product.jsp?page=manage&by=pr&order=true
+
+상품 관리 페이지 - 가격 내림차순
+/admin/product/a_product.jsp?page=manage&by=pr&order=false
+
+상품 관리 페이지 - 재고 오름차순
+/admin/product/a_product.jsp?page=manage&by=st&order=true
+
+상품 관리 페이지 - 재고 내림차순
+/admin/product/a_product.jsp?page=manage&by=st&order=false
+
+상품 관리 페이지 - 진열상태 오름차순
+/admin/product/a_product.jsp?page=manage&by=dis&order=true
+
+상품 관리 페이지 - 진열상태 내림차순
+/admin/product/a_product.jsp?page=manage&by=dis&order=false
+
+상품 관리 페이지 - 판매상태 오름차순
+/admin/product/a_product.jsp?page=manage&by=sal&order=true
+
+상품 관리 페이지 - 판매상태 내림차순
+/admin/product/a_product.jsp?page=manage&by=sal&order=false
+
+상품 관리 페이지 - 총 누적판매량 오름차순
+/admin/product/a_product.jsp?page=manage&by=all&order=true
+
+상품 관리 페이지 - 총 누적판매량 내림차순
+/admin/product/a_product.jsp?page=manage&by=all&order=false
+
+상품 관리 페이지 - 진열함
+/admin/product/a_product.jsp?page=process&dis=true&no=10000
+
+상품 관리 페이지 - 진열 안함
+/admin/product/a_product.jsp?page=process&dis=false&no=10000
+
+상품 관리 페이지 - 판매함
+/admin/product/a_product.jsp?page=process&sal=true&no=10000
+
+상품 관리 페이지 - 판매 안함
+/admin/product/a_product.jsp?page=process&sal=false&no=10000
+
+상품 관리 페이지 - 삭제
+/admin/product/a_product.jsp?page=process&del=true&no=10000
+
+상품 관리 페이지 - 수정하기
+/admin/product/a_product.jsp?page=modify&no=10000
+
+
+상품 등록 페이지
+/admin/product/a_product.jsp?page=register
+
+상품 등록 하기
+/admin/product/a_product.jsp?page=process
+
+상품 수정 페이지
+/admin/product/a_product.jsp?page=modify
+
+상품 수정 하기
+/admin/product/a_product.jsp?page=process&no=10000
+
+
+삭제된 상품 관리 페이지
+/admin/product/a_product.jsp?page=deleted
+
+삭제된 상품 관리 페이지 - 상품번호 오름차순
+/admin/product/a_product.jsp?page=deleted&by=no&order=true
+
+삭제된 상품 관리 페이지 - 상품번호 내림차순
+/admin/product/a_product.jsp?page=deleted&by=no&order=false
+
+삭제된 상품 관리 페이지 - 분류 오름차순
+/admin/product/a_product.jsp?page=deleted&by=ct&order=true
+
+삭제된 상품 관리 페이지 - 분류 내림차순
+/admin/product/a_product.jsp?page=deleted&by=ct&order=false
+
+삭제된 상품 관리 페이지 - 상품명 오름차순
+/admin/product/a_product.jsp?page=deleted&by=nm&order=true
+
+삭제된 상품 관리 페이지 - 상품명 내림차순
+/admin/product/a_product.jsp?page=deleted&by=nm&order=false
+
+삭제된 상품 관리 페이지 - 가격 오름차순
+/admin/product/a_product.jsp?page=deleted&by=pr&order=true
+
+삭제된 상품 관리 페이지 - 가격 내림차순
+/admin/product/a_product.jsp?page=deleted&by=pr&order=false
+
+삭제된 상품 관리 페이지 - 재고 오름차순
+/admin/product/a_product.jsp?page=deleted&by=st&order=true
+
+삭제된 상품 관리 페이지 - 재고 내림차순
+/admin/product/a_product.jsp?page=deleted&by=st&order=false
+
+삭제된 상품 관리 페이지 - 총 누적판매량 오름차순
+/admin/product/a_product.jsp?page=deleted&by=all&order=true
+
+삭제된 상품 관리 페이지 - 총 누적판매량 내림차순
+/admin/product/a_product.jsp?page=deleted&by=all&order=false
+
+삭제된 상품 관리 페이지 - 삭제된 상품 복원하기
+/admin/product/a_product.jsp?page=process&del=false&no=10000
+
+---------------------------------------------------------------------------------------
+
+매출 분석
+/admin/sales/a_sales.jsp?page=analysis
+
+매출 분석 - 순위 오름차순
+/admin/sales/a_sales.jsp?page=analysis&order=true
+
+매출 분석 - 순위 내림차순
+/admin/sales/a_sales.jsp?page=analysis&order=false
