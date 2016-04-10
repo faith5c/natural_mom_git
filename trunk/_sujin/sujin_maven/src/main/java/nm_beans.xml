@@ -14,19 +14,19 @@
 	</bean>
 	
 <!-- DAO(noticeSvc) -->
-	<bean id="noticeDaoOra" class="naturalmom.data.dao.impl.NoticeDaoOraImpl">
+	<bean id="noticeDaoOra" class="com.nmom.soap.data.impl.board.notice.NoticeDaoOraImpl">
 		<property name="dataSource">
 			<ref local="ds"/>
 		</property>
 	</bean>	
 	
-	<bean id="noticeReDaoOra" class="naturalmom.data.dao.impl.NoticeReDaoOraImpl">
+	<bean id="noticeReDaoOra" class="com.nmom.soap.data.impl.board.notice.NoticeReDaoOraImpl">
 		<property name="dataSource">
 			<ref local="ds"/>
 		</property>
 	</bean>
 	
-	<bean id="vNoticeDaoOra" class="naturalmom.data.dao.impl.VNoticeDaoOraImpl">
+	<bean id="vNoticeDaoOra" class="com.nmom.soap.data.impl.board.notice.VNoticeDaoOraImpl">
 		<property name="dataSource">
 			<ref local="ds"/>
 		</property>
@@ -34,25 +34,25 @@
 
 <!-- DAO(orderListSvc) -->
 	
-	<bean id="orderDaoOra" class="naturalmom.data.dao.impl.OrderDaoOraImpl">
+	<bean id="orderDaoOra" class="com.nmom.soap.data.impl.order.OrderDaoOraImpl">
 		<property name="dataSource">
 			<ref local="ds"/>
 		</property>
 	</bean>
 	
-	<bean id="productOrderDaoOra" class="naturalmom.data.dao.impl.ProductOrderDaoOraImpl">
+	<bean id="productOrderDaoOra" class="com.nmom.soap.data.impl.order.ProductOrderDaoOraImpl">
 		<property name="dataSource">
 			<ref local="ds"/>
 		</property>
 	</bean>
 	
-	<bean id="vOrderListDaoOra" class="naturalmom.data.dao.impl.VOrderListDaoOraImpl">
+	<bean id="vOrderListDaoOra" class="com.nmom.soap.data.impl.order.VOrderListDaoOraImpl">
 		<property name="dataSource">
 			<ref local="ds"/>
 		</property>
 	</bean>
 
-	<bean id="vOrderManagerDaoOra" class="naturalmom.data.dao.impl.VOrderManagerDaoOraImpl">
+	<bean id="vOrderManagerDaoOra" class="com.nmom.soap.data.impl.order.VOrderManagerDaoOraImpl">
 		<property name="dataSource">
 			<ref local="ds"/>
 		</property>
@@ -60,7 +60,7 @@
 	
 	
 		
-	<bean id="saleStatementOraDao" class="naturalmom.data.dao.impl.SaleStatementOraDaoImpl">
+	<bean id="saleStatementOraDao" class="com.nmom.soap.data.impl.sales.SaleStatementOraDaoImpl">
 		<property name="dataSource">
 			<ref local="ds"/>
 		</property>
@@ -68,7 +68,7 @@
 	
 
 <!-- SVC -->
-	<bean id="menuSvc" class="naturalmom.ui.svc.MenuConUiSvc">
+	<bean id="menuSvc" class="com.nmom.soap.ui.svc.MenuConUiSvc">
 		<property name="noticeSvc">
 			<ref local="noticeSvc" />
 		</property>
@@ -84,7 +84,7 @@
 	</bean>
 
 
-	<bean id="noticeSvc" class="naturalmom.ui.svc.NoticeConUiSvc">
+	<bean id="noticeSvc" class="com.nmom.soap.ui.svc.NoticeConUiSvc">
 		<property name="vNoticeDaoOra">
 			<ref local="vNoticeDaoOra" />
 		</property>
@@ -96,7 +96,7 @@
 		</property>
 	</bean>
 	
-	<bean id="orderSvc" class="naturalmom.ui.svc.OrderConUiSvc">
+	<bean id="orderSvc" class="com.nmom.soap.ui.svc.OrderConUiSvc">
 		<property name="orderDaoOra">
 			<ref local="orderDaoOra" />
 		</property>
@@ -108,7 +108,7 @@
 		</property>
 	</bean>
 	
-	<bean id="orderManagerSvc" class="naturalmom.ui.svc.OrderManagerConUiSvc">
+	<bean id="orderManagerSvc" class="com.nmom.soap.ui.svc.OrderManagerConUiSvc">
 		<property name="orderDaoOra">
 			<ref local="orderDaoOra" />
 		</property>
@@ -120,14 +120,14 @@
 		</property>
 	</bean>
 	
-	<bean id="saleStatementSvc" class="naturalmom.ui.svc.SaleStatementConUiSvc">
+	<bean id="saleStatementSvc" class="com.nmom.soap.ui.svc.SaleStatementConUiSvc">
 		<property name="saleStatementOraDao">
 			<ref local="saleStatementOraDao" />
 		</property>
 	</bean>
 	
 <!-- Main -->
-	<bean id="main" class="naturalmom.ui.Main">
+	<bean id="main" class="com.nmom.soap.ui.Main">
 		<property name="menuSvc">
 			<ref local="menuSvc"/>
 		</property>
