@@ -10,7 +10,7 @@ import naturalmom.data.model.NoticeReVo;
 import naturalmom.data.model.NoticeVo;
 import naturalmom.data.model.VNoticeVo;
 
-public class NoticeConSvc extends ConUiSvc {
+public class NoticeConUiSvc extends ConUiSvc {
 	
 	private IVNoticeDao vNoticeDaoOra;
 	private NoticeDaoOraImpl noticeDaoOra;

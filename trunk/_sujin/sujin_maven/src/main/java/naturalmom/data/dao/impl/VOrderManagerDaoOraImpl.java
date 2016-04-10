@@ -18,8 +18,8 @@ public class VOrderManagerDaoOraImpl extends NamedParameterJdbcDaoSupport implem
 	
 	final String GET_ALL_ORDER_MANAGER = 
 			"SELECT order_date, order_no, mem_name, product_name, buy_num, charge, "
-			+ "delivery_msg, tracking_num, process_nm FROM v_order_manager";
-//			+ "WHERE ROWNUM >= :start AND ROWNUM <= :end ";
+			+ "delivery_msg, tracking_num, process_nm FROM v_order_manager "
+			+ "WHERE ROWNUM >= :start AND ROWNUM <= :end ";
 	
 	final String ORDER_BY_ORDER_DATE = GET_ALL_ORDER_MANAGER+"ORDER BY order_date DESC";
 	
@@ -55,50 +55,50 @@ public class VOrderManagerDaoOraImpl extends NamedParameterJdbcDaoSupport implem
 		MapSqlParameterSource ps = new MapSqlParameterSource();
 		ps.addValue("start", new Integer(start), Types.INTEGER);
 		ps.addValue("end", new Integer(end), Types.INTEGER);
-/*		
+		
 		switch(orderByNum){
 		case ORDER_DATE : //1
-			return getNamedParameterJdbcTemplate().query("ORDER_BY_ORDER_DATE", 
+			return getNamedParameterJdbcTemplate().query(ORDER_BY_ORDER_DATE, 
 					ps,
 					BeanPropertyRowMapper.newInstance(VOrderManagerVo.class));
 			
 		case ORDER_NO : //2
-			return getNamedParameterJdbcTemplate().query("ORDER_BY_ORDER_NO", 
+			return getNamedParameterJdbcTemplate().query(ORDER_BY_ORDER_NO, 
 					ps,
 					BeanPropertyRowMapper.newInstance(VOrderManagerVo.class));
 		
 		case MEM_NAME : //3
-			return getNamedParameterJdbcTemplate().query("ORDER_BY_MEM_NAME", 
+			return getNamedParameterJdbcTemplate().query(ORDER_BY_MEM_NAME, 
 					ps,
 					BeanPropertyRowMapper.newInstance(VOrderManagerVo.class));
 
 			
 		case PRODUCT_NAME : //4
-			return getNamedParameterJdbcTemplate().query("ORDER_BY_PRODUCT_NAME", 
+			return getNamedParameterJdbcTemplate().query(ORDER_BY_PRODUCT_NAME, 
 					ps,
 					BeanPropertyRowMapper.newInstance(VOrderManagerVo.class));
 			
 		case BUY_NUM : //5
-			return getNamedParameterJdbcTemplate().query("ORDER_BY_BUY_NUM", 
+			return getNamedParameterJdbcTemplate().query(ORDER_BY_BUY_NUM, 
 					ps,
 					BeanPropertyRowMapper.newInstance(VOrderManagerVo.class));
 
 	
 		case CHARGE : //6
-			return getNamedParameterJdbcTemplate().query("ORDER_BY_CHARGE", 
+			return getNamedParameterJdbcTemplate().query(ORDER_BY_CHARGE, 
 					ps,
 					BeanPropertyRowMapper.newInstance(VOrderManagerVo.class));
 
 	
 		case PROCESS_NM : //7
-			return getNamedParameterJdbcTemplate().query("ORDER_BY_PROCESS_NM", 
+			return getNamedParameterJdbcTemplate().query(ORDER_BY_PROCESS_NM, 
 					ps,
 					BeanPropertyRowMapper.newInstance(VOrderManagerVo.class));
 	
-		}*/
+		}
 		
-		return getNamedParameterJdbcTemplate().query("GET_ALL_ORDER_MANAGER", 
-//				ps,
+		return getNamedParameterJdbcTemplate().query(GET_ALL_ORDER_MANAGER, 
+				ps,
 				BeanPropertyRowMapper.newInstance(VOrderManagerVo.class));
 	}
 

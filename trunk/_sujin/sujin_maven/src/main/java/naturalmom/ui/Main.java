@@ -3,13 +3,13 @@ package naturalmom.ui;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import naturalmom.ui.svc.MenuConSvc;
+import naturalmom.ui.svc.MenuConUiSvc;
 
 public class Main {
 
-	MenuConSvc menuSvc;
+	MenuConUiSvc menuSvc;
 	
-	public void setMenuSvc(MenuConSvc menuSvc) {
+	public void setMenuSvc(MenuConUiSvc menuSvc) {
 		this.menuSvc = menuSvc;
 	}
 

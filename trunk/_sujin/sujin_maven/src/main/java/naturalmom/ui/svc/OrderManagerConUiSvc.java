@@ -10,7 +10,7 @@ import naturalmom.data.model.ProductOrderVo;
 import naturalmom.data.model.VOrderListVo;
 import naturalmom.data.model.VOrderManagerVo;
 
-public class OrderManagerConSvc extends ConUiSvc {
+public class OrderManagerConUiSvc extends ConUiSvc {
 
 	private OrderDaoOraImpl orderDaoOra;
 	private ProductOrderDaoOraImpl productOrderDaoOra;
@@ -35,20 +35,20 @@ public class OrderManagerConSvc extends ConUiSvc {
 	public void execFunctions(int num) {
 		switch (num) {
 		case ORDER_LIST: //1
-			System.out.println(1);
+			System.out.println("ORDER_BY_ORDER_DATE");
 			getAllOreder(vOrderManagerDaoOra.getAllOreder(1, 10, 1));
-//			System.out.println(2);
-//			getAllOreder(vOrderManagerDaoOra.getAllOreder(1, 10, 2));
-//			System.out.println(3);
-//			getAllOreder(vOrderManagerDaoOra.getAllOreder(1, 10, 3));
-//			System.out.println(4);
-//			getAllOreder(vOrderManagerDaoOra.getAllOreder(1, 10, 4));
-//			System.out.println(5);
-//			getAllOreder(vOrderManagerDaoOra.getAllOreder(1, 10, 5));
-//			System.out.println(6);
-//			getAllOreder(vOrderManagerDaoOra.getAllOreder(1, 10, 6));
-//			System.out.println(7);
-//			getAllOreder(vOrderManagerDaoOra.getAllOreder(1, 10, 7));
+			System.out.println("ORDER_BY_ORDER_NO");
+			getAllOreder(vOrderManagerDaoOra.getAllOreder(1, 10, 2));
+			System.out.println("ORDER_BY_MEM_NAME");
+			getAllOreder(vOrderManagerDaoOra.getAllOreder(1, 10, 3));
+			System.out.println("ORDER_BY_PRODUCT_NAME");
+			getAllOreder(vOrderManagerDaoOra.getAllOreder(1, 10, 4));
+			System.out.println("ORDER_BY_BUY_NUM");
+			getAllOreder(vOrderManagerDaoOra.getAllOreder(1, 10, 5));
+			System.out.println("ORDER_BY_CHARGE");
+			getAllOreder(vOrderManagerDaoOra.getAllOreder(1, 10, 6));
+			System.out.println("ORDER_BY_PROCESS_NM");
+			getAllOreder(vOrderManagerDaoOra.getAllOreder(1, 10, 7));
 			break;
 		case ORDER_TRACKING_NUM_INSERT: //2
 			editTrackingNum(orderDaoOra.editTrackingNumOrder(10010, 1010111111));

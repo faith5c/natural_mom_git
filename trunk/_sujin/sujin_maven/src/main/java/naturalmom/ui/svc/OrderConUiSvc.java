@@ -16,7 +16,7 @@ import naturalmom.data.model.ProductOrderVo;
 import naturalmom.data.model.VNoticeVo;
 import naturalmom.data.model.VOrderListVo;
 
-public class OrderConSvc extends ConUiSvc {
+public class OrderConUiSvc extends ConUiSvc {
 
 	private OrderDaoOraImpl orderDaoOra;
 	private ProductOrderDaoOraImpl productOrderDaoOra;

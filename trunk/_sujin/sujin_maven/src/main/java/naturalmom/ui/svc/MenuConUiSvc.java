@@ -1,14 +1,14 @@
 package naturalmom.ui.svc;
 
-import naturalmom.ui.svc.NoticeConSvc;
 
-public class MenuConSvc extends ConUiSvc {
+
+public class MenuConUiSvc extends ConUiSvc {
 	
-	private NoticeConSvc noticeSvc;
-	private OrderConSvc orderSvc;
-	private OrderManagerConSvc orderManagerSvc;
+	private NoticeConUiSvc noticeSvc;
+	private OrderConUiSvc orderSvc;
+	private OrderManagerConUiSvc orderManagerSvc;
 	
-	public MenuConSvc() {}
+	public MenuConUiSvc() {}
 
 	
 	@Override
@@ -50,18 +50,20 @@ public class MenuConSvc extends ConUiSvc {
 		
 	}
 
+	
 
-	public void setNoticeSvc(NoticeConSvc noticeSvc) {
+
+	public void setNoticeSvc(NoticeConUiSvc noticeSvc) {
 		this.noticeSvc = noticeSvc;
 	}
 
 
-	public void setOrderSvc(OrderConSvc orderSvc) {
+	public void setOrderSvc(OrderConUiSvc orderSvc) {
 		this.orderSvc = orderSvc;
 	}
 
 
-	public void setOrderManagerSvc(OrderManagerConSvc orderManagerSvc) {
+	public void setOrderManagerSvc(OrderManagerConUiSvc orderManagerSvc) {
 		this.orderManagerSvc = orderManagerSvc;
 	}
 
