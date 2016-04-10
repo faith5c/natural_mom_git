@@ -18,88 +18,102 @@ public class VOrderManagerDaoOraImpl extends NamedParameterJdbcDaoSupport implem
 	
 	final String GET_ALL_ORDER_MANAGER = 
 			"SELECT order_date, order_no, mem_name, product_name, buy_num, charge, "
-			+ "delivery_msg, tracking_num, process_nm FROM v_order_manager "
-			+ "WHERE ROWNUM >= :start AND ROWNUM <= :end ";
+			+ "delivery_msg, tracking_num, process_nm FROM v_order_manager ";
 	
-	final String ORDER_BY_ORDER_DATE = GET_ALL_ORDER_MANAGER+"ORDER BY order_date DESC";
+	final String ORDER_BY_ORDER_DATE = 
+			GET_ALL_ORDER_MANAGER+"ORDER BY order_date ";
 	
-	final int ORDER_DATE = 1;
+	final String ORDER_BY_ORDER_NO = 
+			GET_ALL_ORDER_MANAGER+"ORDER BY order_no ";
 	
-	final String ORDER_BY_ORDER_NO = GET_ALL_ORDER_MANAGER+"ORDER BY order_no DESC";
+	final String ORDER_BY_MEM_NAME = 
+			GET_ALL_ORDER_MANAGER+"ORDER BY mem_name ";
 	
-	final int ORDER_NO = 2;
+	final String ORDER_BY_PRODUCT_NAME = 
+			GET_ALL_ORDER_MANAGER+"ORDER BY product_name ";
 	
-	final String ORDER_BY_MEM_NAME = GET_ALL_ORDER_MANAGER+"ORDER BY mem_name DESC";
+	final String ORDER_BY_BUY_NUM = 
+			GET_ALL_ORDER_MANAGER+"ORDER BY buy_num ";
+
 	
-	final int MEM_NAME = 3;
+	final String ORDER_BY_CHARGE = 
+			GET_ALL_ORDER_MANAGER+"ORDER BY charge ";
 	
-	final String ORDER_BY_PRODUCT_NAME = GET_ALL_ORDER_MANAGER+"ORDER BY product_name DESC";
+	final String ORDER_BY_PROCESS_NM = 
+			GET_ALL_ORDER_MANAGER+"ORDER BY process_cd ";
+
+	final boolean ASC = true;
+	final boolean DESC = false;
 	
-	final int PRODUCT_NAME = 4;
-	
-	final String ORDER_BY_BUY_NUM = GET_ALL_ORDER_MANAGER+"ORDER BY buy_num DESC";
-	
-	final int BUY_NUM = 5;
-	
-	final String ORDER_BY_CHARGE = GET_ALL_ORDER_MANAGER+"ORDER BY charge DESC";
-	
-	final int CHARGE = 6;
-	
-	final String ORDER_BY_PROCESS_NM = GET_ALL_ORDER_MANAGER+"ORDER BY process_cd ASC";
-	
-	final int PROCESS_NM = 7;
-	
-	public List<VOrderManagerVo> getAllOreder(int start, int end, int orderByNum) 
-			throws DataAccessException {
-		
-		MapSqlParameterSource ps = new MapSqlParameterSource();
-		ps.addValue("start", new Integer(start), Types.INTEGER);
-		ps.addValue("end", new Integer(end), Types.INTEGER);
-		
-		switch(orderByNum){
-		case ORDER_DATE : //1
+
+	public List<VOrderManagerVo> getAllOrederByDate(boolean orderBy) throws DataAccessException {
+		if(orderBy == ASC){
 			return getNamedParameterJdbcTemplate().query(ORDER_BY_ORDER_DATE, 
-					ps,
 					BeanPropertyRowMapper.newInstance(VOrderManagerVo.class));
-			
-		case ORDER_NO : //2
-			return getNamedParameterJdbcTemplate().query(ORDER_BY_ORDER_NO, 
-					ps,
+		}else{
+			return getNamedParameterJdbcTemplate().query(ORDER_BY_ORDER_DATE+"DESC", 
 					BeanPropertyRowMapper.newInstance(VOrderManagerVo.class));
-		
-		case MEM_NAME : //3
-			return getNamedParameterJdbcTemplate().query(ORDER_BY_MEM_NAME, 
-					ps,
-					BeanPropertyRowMapper.newInstance(VOrderManagerVo.class));
-
-			
-		case PRODUCT_NAME : //4
-			return getNamedParameterJdbcTemplate().query(ORDER_BY_PRODUCT_NAME, 
-					ps,
-					BeanPropertyRowMapper.newInstance(VOrderManagerVo.class));
-			
-		case BUY_NUM : //5
-			return getNamedParameterJdbcTemplate().query(ORDER_BY_BUY_NUM, 
-					ps,
-					BeanPropertyRowMapper.newInstance(VOrderManagerVo.class));
-
-	
-		case CHARGE : //6
-			return getNamedParameterJdbcTemplate().query(ORDER_BY_CHARGE, 
-					ps,
-					BeanPropertyRowMapper.newInstance(VOrderManagerVo.class));
-
-	
-		case PROCESS_NM : //7
-			return getNamedParameterJdbcTemplate().query(ORDER_BY_PROCESS_NM, 
-					ps,
-					BeanPropertyRowMapper.newInstance(VOrderManagerVo.class));
-	
 		}
-		
-		return getNamedParameterJdbcTemplate().query(GET_ALL_ORDER_MANAGER, 
-				ps,
-				BeanPropertyRowMapper.newInstance(VOrderManagerVo.class));
+	}
+
+	public List<VOrderManagerVo> getAllOrederByNo(boolean orderBy) throws DataAccessException {
+		if(orderBy == ASC){
+			return getNamedParameterJdbcTemplate().query(ORDER_BY_ORDER_NO, 
+					BeanPropertyRowMapper.newInstance(VOrderManagerVo.class));
+		}else{
+			return getNamedParameterJdbcTemplate().query(ORDER_BY_ORDER_NO+"DESC", 
+					BeanPropertyRowMapper.newInstance(VOrderManagerVo.class));
+		}
+	}
+
+	public List<VOrderManagerVo> getAllOrederByName(boolean orderBy) throws DataAccessException {
+		if(orderBy == ASC){
+			return getNamedParameterJdbcTemplate().query(ORDER_BY_MEM_NAME, 
+					BeanPropertyRowMapper.newInstance(VOrderManagerVo.class));
+		}else{
+			return getNamedParameterJdbcTemplate().query(ORDER_BY_MEM_NAME+"DESC", 
+					BeanPropertyRowMapper.newInstance(VOrderManagerVo.class));
+		}
+	}
+
+	public List<VOrderManagerVo> getAllOrederByProduct(boolean orderBy) throws DataAccessException {
+		if(orderBy == ASC){
+			return getNamedParameterJdbcTemplate().query(ORDER_BY_PRODUCT_NAME, 
+					BeanPropertyRowMapper.newInstance(VOrderManagerVo.class));
+		}else{
+			return getNamedParameterJdbcTemplate().query(ORDER_BY_PRODUCT_NAME+"DESC", 
+					BeanPropertyRowMapper.newInstance(VOrderManagerVo.class));
+		}
+	}
+
+	public List<VOrderManagerVo> getAllOrederByNum(boolean orderBy) throws DataAccessException {
+		if(orderBy == ASC){
+			return getNamedParameterJdbcTemplate().query(ORDER_BY_BUY_NUM, 
+					BeanPropertyRowMapper.newInstance(VOrderManagerVo.class));
+		}else{
+			return getNamedParameterJdbcTemplate().query(ORDER_BY_BUY_NUM+"DESC", 
+					BeanPropertyRowMapper.newInstance(VOrderManagerVo.class));
+		}
+	}
+
+	public List<VOrderManagerVo> getAllOrederByCharge(boolean orderBy) throws DataAccessException {
+		if(orderBy == ASC){
+			return getNamedParameterJdbcTemplate().query(ORDER_BY_CHARGE, 
+					BeanPropertyRowMapper.newInstance(VOrderManagerVo.class));
+		}else{
+			return getNamedParameterJdbcTemplate().query(ORDER_BY_CHARGE+"DESC", 
+					BeanPropertyRowMapper.newInstance(VOrderManagerVo.class));
+		}
+	}
+
+	public List<VOrderManagerVo> getAllOrederByProcess(boolean orderBy) throws DataAccessException {
+		if(orderBy == ASC){
+			return getNamedParameterJdbcTemplate().query(ORDER_BY_PROCESS_NM, 
+					BeanPropertyRowMapper.newInstance(VOrderManagerVo.class));
+		}else{
+			return getNamedParameterJdbcTemplate().query(ORDER_BY_PROCESS_NM+"DESC", 
+					BeanPropertyRowMapper.newInstance(VOrderManagerVo.class));
+		}
 	}
 
 
