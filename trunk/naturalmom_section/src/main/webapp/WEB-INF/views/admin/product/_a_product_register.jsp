@@ -4,6 +4,26 @@
 	<script type="text/javascript" src="../js/nicEdit.js"></script>
 	<script type="text/javascript">
 		bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+		
+		function form_check()
+		{
+			var name = $('#name').val();
+			var cate = $('#category').val();
+			var price = $('#price').val();
+			var cost = $('#cost').val();
+			var stock = $('#stock').val();
+			var weight = $('#weight').val();
+			var img_re = $('#img_represent').val();
+			var img_de = $('#img_detail').val();
+			var ex_su = $('#ex_summary').val();
+			var ex_de = $('#ex_detail').val();
+			var dis_y = $('#display_state_y:checked').val();
+			var dis_n = $('#display_state_n:checked').val();
+			var sal_y = $('#sale_state_y:checked').val();
+			var sal_n = $('#sale_state_n:checked').val();
+			
+			alert(ex_su + ", " + ex_de + ", " + dis_y + ", " + dis_n + ", " + sal_y + ", " + sal_n);
+		}
 	</script>
 	
 	<style type = "text/css">
