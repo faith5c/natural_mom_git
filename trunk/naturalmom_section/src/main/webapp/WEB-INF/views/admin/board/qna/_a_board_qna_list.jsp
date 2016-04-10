@@ -73,14 +73,14 @@
 	</tr>
 	<tr>
 		<td>3</td>
-		<td><a href="admin_board.jsp?page=qna&r=3">재입고 언제 되나요</a></td>
+		<td><a href="a_board.jsp?page=qna&r=3">재입고 언제 되나요</a></td>
 		<td>hook4u</td>
 		<td>2015/06/17</td>
 		<td>49</td>
 	</tr>
 	<tr>
 		<td>2</td>
-		<td><a href="admin_board.jsp?page=qna&r=2">배송일 문의 [1]<span>&nbsp;<i class="fa fa-lock"></i></span></a></td>
+		<td><a href="a_board.jsp?page=qna&r=2">배송일 문의 [1]<span>&nbsp;<i class="fa fa-lock"></i></span></a></td>
 		<td>faith5c</td>
 		<td>2015/06/15</td>
 		<td>24</td>
@@ -93,7 +93,7 @@
 		<td>15</td>
 	</tr>
 	<tr class="qna_write">
-		<td colspan="5"><a href="admin_board.jsp?page=qna&w=true"><span>글쓰기</span></a></td>
+		<td colspan="5"><a href="a_board.jsp?page=qna&w=true"><span>글쓰기</span></a></td>
 	</tr>
 	<tr>
 		<td colspan = "5">

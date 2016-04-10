@@ -90,7 +90,7 @@
 					<td>
 						<input type = "button" value = "수정" id = "mod" name = "mod">
 						<input type = "button" value = "삭제" id = "del" name = "del">
-						<input type = "button" value = "목록" id = "list" name = "list"  onclick = "location.href='admin_board.jsp?page=event';">
+						<input type = "button" value = "목록" id = "list" name = "list"  onclick = "location.href='a_board.jsp?page=event';">
 					</td>
 				</tr>
 			</table>

@@ -76,7 +76,7 @@
 				<tr>
 					<td colspan = "2" id = "buttons">
 						<input type = "submit" value = "저장">
-						<input type = "button" value = "취소" id = "cancel" name = "cancel" onclick = "location.href='admin_board.jsp?page=faq';">
+						<input type = "button" value = "취소" id = "cancel" name = "cancel" onclick = "location.href='a_board.jsp?page=faq';">
 					</td>
 				</tr>
 			</table>

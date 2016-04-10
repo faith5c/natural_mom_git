@@ -76,9 +76,9 @@
 			</tr>
 			<tr>
 				<td>1</td>
-				<td><a href = "admin_board.jsp?page=faq&r=1">배송비가 얼마인가요?</a></td>
+				<td><a href = "a_board.jsp?page=faq&r=1">배송비가 얼마인가요?</a></td>
 			</tr>
-			<td colspan = "2"><input type = "button" value = "글쓰기" id = "write" name = "write" onclick = "location.href='admin_board.jsp?page=faq&w=true';"></td>
+			<td colspan = "2"><input type = "button" value = "글쓰기" id = "write" name = "write" onclick = "location.href='a_board.jsp?page=faq&w=true';"></td>
 		</table>
 		<div id = "pages">
 			<a href = "#">&lsaquo;</a>

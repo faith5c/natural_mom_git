@@ -96,7 +96,7 @@
 	</tr>
 	<tr>
 		<td>2</td>
-		<td><a href="admin_board.jsp?page=notice&r=2">8월 14일 임시공휴일 안내</a></td>
+		<td><a href="a_board.jsp?page=notice&r=2">8월 14일 임시공휴일 안내</a></td>
 		<td>관리자</td>
 		<td>2015/08/11</td>
 		<td>24</td>
@@ -109,7 +109,7 @@
 		<td>15</td>
 	</tr>
 	<tr class="notice_write">
-		<td colspan="5"><a href="admin_board.jsp?page=notice&w=true"><span>글쓰기</span></a></td>
+		<td colspan="5"><a href="a_board.jsp?page=notice&w=true"><span>글쓰기</span></a></td>
 	</tr>
 </table>
 	<div id="page">

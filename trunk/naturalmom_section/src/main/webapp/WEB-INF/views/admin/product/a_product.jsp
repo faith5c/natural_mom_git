@@ -14,17 +14,7 @@
 		
 	<title>자연맘</title>
 	
-	
-	<% 
-	request.setCharacterEncoding("UTF-8");
-	String submenu = (String)request.getParameter("page");
-	if(submenu==null){
-		submenu= "table";
-	}
-%>
-	
    </head>
-
   <body>
 
 	<header>
@@ -34,18 +24,20 @@
 <!---Start container----------------------------------------------------------------->
 	
 	<div id="container">
+	
+<% String page_param = request.getParameter("page"); %>
 
-<%
-		if(submenu.equals("table")){%>
-			<%@include file="_admin_sale_table.jsp" %>
-<%		}else if(submenu.equals("analysis")){%>
-			<%@include file="_admin_sale_analysis.jsp" %>
-<%		}else{
-			System.out.println("board page submenu error");
-		}
-%>
-
-
+<% if (page_param != null && page_param.equals("register")) { %>
+	<%@ include file = "_a_product_register.jsp" %>
+<% } else if (page_param != null && page_param.equals("manage")) { %>
+	<%@ include file = "_a_product_manage.jsp" %>
+<% } else if (page_param != null && page_param.equals("deleted")) {%>	
+	<%@ include file = "_a_product_deleted.jsp" %>
+<% } else if (page_param != null && page_param.equals("modify")) { %>
+	<%@ include file = "_a_product_modify.jsp" %>
+<% } else { %>
+	<%@ include file = "_a_product_manage.jsp" %>
+<% } %>
 	</div>
 <!--------------------------------------------------------end container------------->
   </body>

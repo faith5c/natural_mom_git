@@ -39,49 +39,49 @@
 <%
 			if(submenu.equals("notice")){
 				if(r.equals("") && w.equals("false")){  %>
-				<%@include file="notice/_admin_board_notice_list.jsp" %>	
+				<%@include file="notice/_a_board_notice_list.jsp" %>	
 <%			}else if(w.equals("true")){ %>
-				<%@include file="notice/_admin_board_notice_write.jsp" %>
+				<%@include file="notice/_a_board_notice_write.jsp" %>
 <%			}else if(r.equals("2")){ %>
-				<%@include file="notice/_admin_board_notice_read.jsp" %>
+				<%@include file="notice/_a_board_notice_read.jsp" %>
 <%			}%>
 <%		}else if(submenu.equals("event")){
 				if(r.equals("") && w.equals("false")){  %>
-				<%@include file="event/_admin_board_event_list.jsp" %>		
+				<%@include file="event/_a_board_event_list.jsp" %>		
 <%			}else if(w.equals("true")){ %>
-				<%@include file="event/_admin_board_event_write.jsp" %>
+				<%@include file="event/_a_board_event_write.jsp" %>
 <%			}else if(r.equals("1")){ %>
-				<%@include file="event/_admin_board_event_read.jsp" %>
+				<%@include file="event/_a_board_event_read.jsp" %>
 <%			}%>					
 <%		}else if(submenu.equals("qna")){%>
 			<% if(r.equals("") && w.equals("false")){ %>
-			<%@include file="qna/_admin_board_qna_list.jsp" %>	
+			<%@include file="qna/_a_board_qna_list.jsp" %>	
 			<% } else if(r.equals("3")){ %>
-			<%@include file="qna/_admin_board_qna_read.jsp" %>		
+			<%@include file="qna/_a_board_qna_read.jsp" %>		
 			<% } else if(r.equals("2")){ %>
-			<%@include file="qna/_admin_board_qna_read_secret.jsp" %>
+			<%@include file="qna/_a_board_qna_read_secret.jsp" %>
 			<% } else if(w.equals("true")){ %>
-			<%@include file="qna/_admin_board_qna_write.jsp" %>
+			<%@include file="qna/_a_board_qna_write.jsp" %>
 			<% } %>	
 			
 
 <%		}else if(submenu.equals("review")){
 			if(r.equals("") && w.equals("false")){ %>
-			<%@include file="review/_admin_board_review.jsp" %>	
+			<%@include file="review/_a_board_review.jsp" %>	
 			<% }else if(r.equals("1")){%>
-			<%@include file="review/_admin_board_review_read.jsp" %>		
+			<%@include file="review/_a_board_review_read.jsp" %>		
 			<% } else if(w.equals("true")){ %>
-			<%@include file="review/_admin_board_review_write.jsp" %>
+			<%@include file="review/_a_board_review_write.jsp" %>
 			<% } %>		
 		
 				
 <%		}else if(submenu.equals("faq")){%>
 			<%if (r.equals("1")) {%>
-				<%@include file = "faq/_admin_board_faq_read.jsp" %>
+				<%@include file = "faq/_a_board_faq_read.jsp" %>
 			<%} else if (w.equals("true")) { %>
-				<%@include file = "faq/_admin_board_faq_write.jsp" %>
+				<%@include file = "faq/_a_board_faq_write.jsp" %>
 			<%} else { %>
-				<%@include file="faq/_admin_board_faq_list.jsp" %>
+				<%@include file="faq/_a_board_faq_list.jsp" %>
 			<%} %>			
 <%		}else{
 			System.out.println("board page submenu error");

@@ -73,7 +73,7 @@
 	function go_page(val)
 	{
 		if (val == 'list')
-			location.href = "admin_board.jsp?page=faq";
+			location.href = "a_board.jsp?page=faq";
 	}
 </script>
 </html>
