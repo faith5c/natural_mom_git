@@ -36,19 +36,26 @@ public class OrderManagerConUiSvc extends ConUiSvc {
 		switch (num) {
 		case ORDER_LIST: //1
 			System.out.println("ORDER_BY_ORDER_DATE");
-			getAllOreder(vOrderManagerDaoOra.getAllOreder(1, 10, 1));
+			getAllOreder(vOrderManagerDaoOra.getAllOrederByDate(true));
+			getAllOreder(vOrderManagerDaoOra.getAllOrederByDate(false));
 			System.out.println("ORDER_BY_ORDER_NO");
-			getAllOreder(vOrderManagerDaoOra.getAllOreder(1, 10, 2));
+			getAllOreder(vOrderManagerDaoOra.getAllOrederByNo(true));
+			getAllOreder(vOrderManagerDaoOra.getAllOrederByNo(false));
 			System.out.println("ORDER_BY_MEM_NAME");
-			getAllOreder(vOrderManagerDaoOra.getAllOreder(1, 10, 3));
+			getAllOreder(vOrderManagerDaoOra.getAllOrederByName(true));
+			getAllOreder(vOrderManagerDaoOra.getAllOrederByName(false));
 			System.out.println("ORDER_BY_PRODUCT_NAME");
-			getAllOreder(vOrderManagerDaoOra.getAllOreder(1, 10, 4));
+			getAllOreder(vOrderManagerDaoOra.getAllOrederByProduct(true));
+			getAllOreder(vOrderManagerDaoOra.getAllOrederByProduct(false));
 			System.out.println("ORDER_BY_BUY_NUM");
-			getAllOreder(vOrderManagerDaoOra.getAllOreder(1, 10, 5));
+			getAllOreder(vOrderManagerDaoOra.getAllOrederByNum(true));
+			getAllOreder(vOrderManagerDaoOra.getAllOrederByNum(false));
 			System.out.println("ORDER_BY_CHARGE");
-			getAllOreder(vOrderManagerDaoOra.getAllOreder(1, 10, 6));
+			getAllOreder(vOrderManagerDaoOra.getAllOrederByCharge(true));
+			getAllOreder(vOrderManagerDaoOra.getAllOrederByCharge(false));
 			System.out.println("ORDER_BY_PROCESS_NM");
-			getAllOreder(vOrderManagerDaoOra.getAllOreder(1, 10, 7));
+			getAllOreder(vOrderManagerDaoOra.getAllOrederByProcess(true));
+			getAllOreder(vOrderManagerDaoOra.getAllOrederByProcess(false));
 			break;
 		case ORDER_TRACKING_NUM_INSERT: //2
 			editTrackingNum(orderDaoOra.editTrackingNumOrder(10010, 1010111111));
