@@ -7,6 +7,7 @@ public class MenuConUiSvc extends ConUiSvc {
 	private NoticeConUiSvc noticeSvc;
 	private OrderConUiSvc orderSvc;
 	private OrderManagerConUiSvc orderManagerSvc;
+	private SaleStatementConUiSvc saleStatementSvc;
 	
 	public MenuConUiSvc() {}
 
@@ -36,7 +37,7 @@ public class MenuConUiSvc extends ConUiSvc {
 			break;
 			
 		case MAIN_MENU_SALESTATEMENT:
-			
+			saleStatementSvc.show();
 			break;
 			
 		case EXIT:
@@ -67,5 +68,9 @@ public class MenuConUiSvc extends ConUiSvc {
 		this.orderManagerSvc = orderManagerSvc;
 	}
 
+
+	public void setSaleStatementSvc(SaleStatementConUiSvc saleStatementSvc) {
+		this.saleStatementSvc = saleStatementSvc;
+	}
 
 }

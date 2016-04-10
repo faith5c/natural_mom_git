@@ -10,7 +10,7 @@ public interface IVSaleStatementDao {
 	
 	public SaleStatementVo getSaleStatement()  throws DataAccessException;
 	
-	public SaleStatementVo getSaleStatement(Calendar today)  throws DataAccessException;
+	public SaleStatementVo getSaleStatement(String today)  throws DataAccessException;
 	
-	public SaleStatementVo getSaleStatement(Calendar start, Calendar end)  throws DataAccessException;
+	public SaleStatementVo getSaleStatement(String start, String end)  throws DataAccessException;
 }
