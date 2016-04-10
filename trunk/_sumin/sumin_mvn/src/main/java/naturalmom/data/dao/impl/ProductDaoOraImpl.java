@@ -15,6 +15,7 @@ import naturalmom.data.model.ProductVo;
 
 public class ProductDaoOraImpl extends NamedParameterJdbcDaoSupport implements IProductDao {
 
+	
 	// 상품번호로 상품 가져오기
 	private final String SELECT_ONE_PRODUCT = "SELECT * FROM tb_product WHERE product_no = ?";
 	// 상품 수정하기
@@ -45,7 +46,10 @@ public class ProductDaoOraImpl extends NamedParameterJdbcDaoSupport implements I
 	
 	//카테고리에 따라 상품목록 가져옴
 	private final String SELECT_PRODUCT_BY_CATEGORY_CD="SELECT product_no, product_name, selling_price, sale_state, represent_img, summary_ex FROM tb_product WHERE display_state=1 AND deleted_state=0 AND category_cd=:category_cd";
-
+	
+	//상품이름으로 상품 가져옴
+	private final String SELECT_PRODUCT_BY_PRODUCT_NAME = "SELECT product_no, product_name, selling_price, sale_state, represent_img, summary_ex FROM tb_product WHERE display_state=1 AND deleted_state=0 AND product_name LIKE :product_name";
+	
 	//************************************************************//
 
 	
@@ -136,6 +140,15 @@ public class ProductDaoOraImpl extends NamedParameterJdbcDaoSupport implements I
 		MapSqlParameterSource ps = new MapSqlParameterSource();
 		ps.addValue("category_cd", category_cd, Types.INTEGER);
 		return npjtem.query(SELECT_PRODUCT_BY_CATEGORY_CD, ps, new BeanPropertyRowMapper<ProductVo>(ProductVo.class));
+	}
+
+	public List<ProductVo> getProductByProductName(String product_name) throws DataAccessException {
+		product_name = "%"+product_name+"%";
+		
+		NamedParameterJdbcTemplate npjtem = this.getNamedParameterJdbcTemplate();
+		MapSqlParameterSource ps = new MapSqlParameterSource();
+		ps.addValue("product_name", product_name, Types.VARCHAR);
+		return npjtem.query(SELECT_PRODUCT_BY_PRODUCT_NAME, ps, new BeanPropertyRowMapper<ProductVo>(ProductVo.class));
 	}
 	
 	//************************************************************//

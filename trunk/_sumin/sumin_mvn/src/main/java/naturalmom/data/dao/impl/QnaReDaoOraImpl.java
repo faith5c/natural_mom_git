@@ -15,7 +15,7 @@ import naturalmom.data.model.QnaReVo;
 public class QnaReDaoOraImpl extends NamedParameterJdbcDaoSupport implements IQnaReDao{
 	
 	private final String SELECT_QNA_RE = 
-			"SELECT qna_re_no, qna_re_content, qna_re_write_day, mem_id FROM tb_qna_re WHERE qna_re_del_check=0 AND qna_no=:qna_no";
+			"SELECT qna_re_no, qna_re_content, qna_re_write_day, mem_id FROM tb_qna_re WHERE qna_re_del_check=0 AND qna_no=:qna_no ORDER BY qna_re_no ASC";
 
 	private final String INSERT_QNA_RE = 
 			"INSERT INTO tb_qna_re (qna_re_no, qna_re_content, qna_re_write_day, qna_re_del_check, qna_no, mem_id) "

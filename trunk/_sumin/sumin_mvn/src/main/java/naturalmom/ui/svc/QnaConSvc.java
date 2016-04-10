@@ -1,8 +1,14 @@
 package naturalmom.ui.svc;
 
+import java.util.List;
+
 import naturalmom.data.dao.IQnaDao;
 import naturalmom.data.dao.IQnaReDao;
 import naturalmom.data.dao.IVQnaQnareDao;
+import naturalmom.data.model.FaqVo;
+import naturalmom.data.model.QnaReVo;
+import naturalmom.data.model.QnaVo;
+import naturalmom.data.model.VQnaQnaReVo;
 
 public class QnaConSvc extends ConSvc{
 	
@@ -50,7 +56,7 @@ public class QnaConSvc extends ConSvc{
 	public void showMenu(){
 		System.out.println(line1);
 		System.out.println("choice QNA menu");
-		System.out.println(line1);
+		System.out.println(line2);
 		System.out.println("1. get One Qna");
 		System.out.println("2. get All Qna");
 		System.out.println("3. search Qna Title");
@@ -74,91 +80,408 @@ public class QnaConSvc extends ConSvc{
 		System.out.println("17. edit QnaRe");
 		System.out.println("18. remove QnaRe By QnaRe");
 		System.out.println("19. remove QnaRe");
-		System.out.println("20. Exit");
-		System.out.println(line2);
+		System.out.println("20. Exit\n");
 	}
 	
 	public void show() {
-		showMenu();
+
+		String str = null;
+		String strArr[] = null;
 		
-		String str = inputUser();
-		int num = checkNumberMinMax(MIN_NUM, MAX_NUM, str);
+		QnaVo qv =  null;
+		List<QnaVo> qlist = null;
+		
+		QnaReVo qrv =  null;
+		List<QnaReVo> qrvlist = null;
+		
+		VQnaQnaReVo vqqrv =  null;
+		List<VQnaQnaReVo> vqqrvlist = null;
+		
+		
+		showMenu();
+		int num = checkNumberMinMax(MIN_NUM, MAX_NUM, inputUser());
 		
 		switch(num){
 		case CHOICE_GET_ONE_QNA:
+			System.out.println("INPUT : qna_no");
+			str = inputUser();
+			
+			try{
+				vqqrv = vQnaQnareDao.getOneQna(Integer.parseInt(str));
+				System.out.println(vqqrv);
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+			
+			inputEnter();
+			this.show();
 			break;
 			
 		case CHOICE_GET_ALL_QNA:
+			System.out.println("INPUT : start, end");
+			try{
+				strArr = StrSplitTrim(inputUser());
+			
+				vqqrvlist = vQnaQnareDao.getAllQna(Integer.parseInt(strArr[0]), Integer.parseInt(strArr[1]));
+			
+				for(VQnaQnaReVo q : vqqrvlist){
+					System.out.println(q);
+				}
+
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+			
+			inputEnter();
+			this.show();
 			break;
 			
 		case CHOICE_SEARCH_QNA_TITLE:
+			System.out.println("INPUT : keyword, start, end");
+			try{
+				strArr = StrSplitTrim(inputUser());
+			
+				vqqrvlist = vQnaQnareDao.searchQnaTitle(strArr[0], Integer.parseInt(strArr[1]), Integer.parseInt(strArr[2]));
+			
+				for(VQnaQnaReVo q : vqqrvlist){
+					System.out.println(q);
+				}
+
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+			
+			inputEnter();
+			this.show();
 			break;
 			
 		case CHOICE_SEARCH_QNA_CONTENT:
+			System.out.println("INPUT : keyword, start, end");
+			try{
+				strArr = StrSplitTrim(inputUser());
+			
+				vqqrvlist = vQnaQnareDao.searchQnaContent(strArr[0], Integer.parseInt(strArr[1]), Integer.parseInt(strArr[2]));
+			
+				for(VQnaQnaReVo q : vqqrvlist){
+					System.out.println(q);
+				}
+
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+			
+			inputEnter();
+			this.show();
 			break;
 			
 		case CHOICE_SEARCH_QNA_TITLE_N_CONTENT:
+			System.out.println("INPUT : keyword, start, end");
+			try{
+				strArr = StrSplitTrim(inputUser());
+			
+				vqqrvlist = vQnaQnareDao.searchQnaTitleNContent(strArr[0], Integer.parseInt(strArr[1]), Integer.parseInt(strArr[2]));
+			
+				for(VQnaQnaReVo q : vqqrvlist){
+					System.out.println(q);
+				}
+
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+			
+			inputEnter();
+			this.show();
 			break;
 			
 		///////////////////////////////////////////////
 			
 		case CHOICE_SECRET_QNA_PW_CHECK:
+			System.out.println("INPUT : qna_no, qna_pw");
+			try{
+				strArr = StrSplitTrim(inputUser());
+				
+				if(qnaDao.secretQnaPwCheck(Integer.parseInt(strArr[0]), strArr[1])){
+					System.out.println("correct password");
+				}else {
+					System.out.println("incorrect password");
+				}
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+
+			inputEnter();
+			this.show();
 			break;
 			
 		case CHOICE_ADD_QNA:
+			try{
+				System.out.println("INPUT : qna_title, qna_content, qna_pw, mem_id");
+				strArr = StrSplitTrim(inputUser());
+				
+				if(0<qnaDao.addQna(strArr[0], strArr[1], strArr[2], strArr[3])){
+					System.out.println("add qna success");
+				} else {
+					System.out.println("add qna failure");
+				}
+				
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+			inputEnter();
+			this.show();
 			break;
 			
 			
 		case CHOICE_ADD_QNA_ANSWER:
+			try{
+				System.out.println("INPUT : qna_title, qna_content, qna_pw, mem_id, qna_pos, qna_ref");
+				strArr = StrSplitTrim(inputUser());
+				
+				if(0<qnaDao.addQnaAnswer(strArr[0], strArr[1], strArr[2], strArr[3], Integer.parseInt(strArr[4]), Integer.parseInt(strArr[5]))){
+					System.out.println("add qna answer success");
+
+				} else {
+					System.out.println("add qna answer failure");
+
+				}
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+			inputEnter();
+			this.show();
 			break;
 			
-			
 		case CHOICE_EDIT_QNA_BY_QNA:
+			try{
+				System.out.println("INPUT : qna_no, qna_title, qna_content, qna_pw");
+				strArr = StrSplitTrim(inputUser());
+				
+				qv = new QnaVo();
+				qv.setQna_no(Integer.parseInt(strArr[0]));
+				qv.setQna_title(strArr[1]);
+				qv.setQna_content(strArr[2]);
+				qv.setQna_pw(strArr[3]);
+				
+				if(0<qnaDao.editQna(qv)){
+					System.out.println("edit qna success");
+				} else {
+					System.out.println("edit qna failure");
+				}
+				
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+			inputEnter();
+			this.show();
 			break;
 			
 			
 		case CHOICE_EDIT_QNA:
+			try{
+				System.out.println("INPUT : qna_no, qna_title, qna_content, qna_pw");
+				strArr = StrSplitTrim(inputUser());
+				
+				if(0<qnaDao.editQna(Integer.parseInt(strArr[0]), strArr[1], strArr[2], strArr[3])){
+					System.out.println("edit qna success");
+				} else {
+					System.out.println("edit qna failure");
+				}
+				
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+			inputEnter();
+			this.show();
 			break;
 			
 			
 		case CHOICE_REMOVE_QNA:
+			try{
+				System.out.println("INPUT : qna_no");
+				str = inputUser();
+				
+				if(0<qnaDao.removeQna(Integer.parseInt(str))){
+					System.out.println("remove qna success");
+				} else {
+					System.out.println("remove qna failure");
+				}
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+			inputEnter();
+			this.show();
 			break;
 			
 			
 		case CHOICE_REMOVE_QNA_BY_REF:
+			try{
+				System.out.println("INPUT : qna_ref");
+				str = inputUser();
+
+				if(0<qnaDao.removeQnaByRef(Integer.parseInt(str))){
+					System.out.println("remove qna by ref success");
+				} else {
+					System.out.println("remove qna by ref failure");
+				}
+				
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+			inputEnter();
+			this.show();
 			break;
 			
 		//////////////////////////////////////////////
 			
 		case CHOICE_GET_QNARE_BY_QNANO:
+			try{
+				System.out.println("INPUT : qna_no");
+				str = inputUser();
+				qrvlist = qnaReDao.getQnaReByQnaNo(Integer.parseInt(str));
+				
+				for(QnaReVo qr : qrvlist){
+					System.out.println(qr);
+				}
+				
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+			inputEnter();
+			this.show();
 			break;
 			
 			
+			
 		case CHOICE_ADD_QNARE_BY_QNARE:
+			try{
+				System.out.println("INPUT : qna_re_content, qna_no, mem_id");
+				strArr = StrSplitTrim(inputUser());
+
+				qrv = new QnaReVo();
+				qrv.setQna_re_content(strArr[0]);
+				qrv.setQna_no(Integer.parseInt(strArr[1]));
+				qrv.setMem_id(strArr[2]);
+				
+				if(0<qnaReDao.addQnaRe(qrv)){
+					System.out.println("add qna re success");
+				} else {
+					System.out.println("add qna re failure");
+				}
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+			inputEnter();
+			this.show();
 			break;
 			
 			
 		case CHOICE_ADD_QNARE:
+			try{
+				System.out.println("INPUT : qna_re_content, qna_no, mem_id");
+				strArr = StrSplitTrim(inputUser());
+				
+				if(0<qnaReDao.addQnaRe(strArr[0], Integer.parseInt(strArr[1]), strArr[2])){
+					System.out.println("add qna re success");
+				} else {
+					System.out.println("add qna re failure");
+				}
+			
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+			inputEnter();
+			this.show();
 			break;
 			
 			
 		case CHOICE_EDIT_QNARE_BY_QNARE:
-			break;
+
+			try{
+				System.out.println("INPUT : qna_re_no, qna_re_content");
+				strArr = StrSplitTrim(inputUser());
+				
+				qrv = new QnaReVo();
+				qrv.setQna_re_no(Integer.parseInt(strArr[0]));
+				qrv.setQna_re_content(strArr[1]);
+				
+				if(0<qnaReDao.editQnaRe(qrv)){
+					System.out.println("edit qna re success");
+				} else {
+					System.out.println("edit qna re failure");
+				}
 			
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+			inputEnter();
+			this.show();
+			break;
+						
 			
 		case CHOICE_EDIT_QNARE:
+			
+			try{
+				System.out.println("INPUT : qna_re_no, qna_re_content");
+				strArr = StrSplitTrim(inputUser());
+				
+				if(0<qnaReDao.editQnaRe(Integer.parseInt(strArr[0]), strArr[1])){
+					System.out.println("edit qna re success");
+				} else {
+					System.out.println("edit qna re failure");
+				}
+			
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+			inputEnter();
+			this.show();
 			break;
 			
 			
 		case CHOICE_REMOVE_QNARE_BY_QNARE:
+			try{
+				System.out.println("INPUT : qna_re_no");
+				str = inputUser();
+				
+				qrv = new QnaReVo();
+				qrv.setQna_re_no(Integer.parseInt(str));
+				
+				if(0<qnaReDao.removeQnaRe(qrv)){
+					System.out.println("remove qna re success");
+				} else {
+					System.out.println("remove qna re failure");
+				}
+			
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+			inputEnter();
+			this.show();
 			break;
 			
 			
 		case CHOICE_REMOVE_QNARE:
+
+			try{
+				System.out.println("INPUT : qna_re_no");
+				str = inputUser();
+				
+				if(0<qnaReDao.removeQnaRe(Integer.parseInt(str))){
+					System.out.println("remove qna re success");
+				} else {
+					System.out.println("remove qna re failure");
+				}
+			
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+			inputEnter();
+			this.show();
 			break;
 			
+			
 		case CHOICE_EXIT:
-			System.out.println("exit");
+			System.out.println("exit program");
 			System.exit(0);
 			
 		default : 

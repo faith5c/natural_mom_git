@@ -127,6 +127,7 @@ public class QnaVo {
 	public void setMem_id(String mem_id) {
 		this.mem_id = mem_id;
 	}
+
 	@Override
 	public String toString() {
 		return "QnaVO [qna_no=" + qna_no + ", qna_title=" + qna_title + ", qna_write_day=" + qna_write_day

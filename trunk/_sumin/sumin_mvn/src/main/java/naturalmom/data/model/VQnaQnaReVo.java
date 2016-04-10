@@ -13,6 +13,7 @@ public class VQnaQnaReVo {
 	private int qna_ref;
 	private String mem_id;
 	private int qna_re_count;
+	private int qna_rnum;
 	
 	public VQnaQnaReVo(){}
 	public VQnaQnaReVo(int qna_no, String qna_title, Date qna_write_day, int qna_hits, String qna_content,
@@ -91,9 +92,16 @@ public class VQnaQnaReVo {
 		this.qna_re_count = qna_re_count;
 	}
 	
+	public int getQna_rnum() {
+		return qna_rnum;
+	}
+	public void setQna_rnum(int qna_rnum) {
+		this.qna_rnum = qna_rnum;
+	}
+	
 	@Override
 	public String toString() {
-		return "VQnaQnaRe [qna_no=" + qna_no + ", qna_title=" + qna_title + ", qna_write_day=" + qna_write_day
+		return "VQnaQnaRe [ qna_rnum="+ qna_rnum +", qna_no=" + qna_no + ", qna_title=" + qna_title + ", qna_write_day=" + qna_write_day
 				+ ", qna_hits=" + qna_hits + ", qna_content=" + qna_content
 				+ ", qna_pw=" + qna_pw + ", qna_pos=" + qna_pos + ", qna_ref=" + qna_ref + ", mem_id=" + mem_id
 				+ ", qna_re_count=" + qna_re_count + "]";

@@ -67,7 +67,7 @@
 	</bean>
 	<bean id="interest_svc" class="naturalmom.ui.svc.InterestConSvc">
 		<property name="interestDao" ref="interest_dao"></property>
-		<property name="vInterestDao" ref="v_interest_product_dao"></property>
+		<property name="vInterestProductDao" ref="v_interest_product_dao"></property>
 	</bean>
 	<bean id="product_svc" class="naturalmom.ui.svc.ProductConSvc">
 		<property name="productDao" ref="product_dao"></property>

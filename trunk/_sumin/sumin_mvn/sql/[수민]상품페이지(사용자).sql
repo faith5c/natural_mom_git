@@ -82,3 +82,11 @@ SELECT product_no, product_name, selling_price, sale_state, represent_img, summa
 FROM tb_product
 WHERE display_state=1 AND deleted_state=0 AND category_cd=4;
 
+------------------------------------------------------------
+
+-- 상품이름으로 상품 찾음
+
+SELECT product_no, product_name, selling_price, sale_state, represent_img, summary_ex 
+FROM tb_product
+WHERE display_state=1 AND deleted_state=0 AND product_name LIKE '%아마%';
+

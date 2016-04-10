@@ -46,15 +46,14 @@ public class MainUIConSvc extends ConSvc implements IMainUI{
 	public void showMenu(){
 		System.out.println(line1);
 		System.out.println("choice MAIN menu");
-		System.out.println(line1);
+		System.out.println(line2);
 		System.out.println("1. Cart");
 		System.out.println("2. Category");
 		System.out.println("3. Faq");
 		System.out.println("4. Interest");
 		System.out.println("5. Product");
 		System.out.println("6. Qna");
-		System.out.println("7. Exit");
-		System.out.println(line2);
+		System.out.println("7. Exit\n");
 	}
 	
 	public void show() {
@@ -89,7 +88,7 @@ public class MainUIConSvc extends ConSvc implements IMainUI{
 			break;
 			
 		case CHOICE_EXIT:
-			System.out.println("exit");
+			System.out.println("exit program");
 			System.exit(0);
 			
 		default : 

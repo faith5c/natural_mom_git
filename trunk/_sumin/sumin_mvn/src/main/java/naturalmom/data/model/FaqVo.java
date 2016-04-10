@@ -7,6 +7,7 @@ public class FaqVo {
 	private int faq_del_check;
 	private int board_id;
 	private String mem_id;
+	private int faq_rnum;
 	
 	public FaqVo(){}
 	
@@ -64,10 +65,16 @@ public class FaqVo {
 	public void setMem_id(String mem_id) {
 		this.mem_id = mem_id;
 	}
+	public void setFaq_rnum(int faq_rnum){
+		this.faq_rnum = faq_rnum;
+	}
+	public int getFaq_rnum(){
+		return this.faq_rnum;
+	}
 	
 	@Override
 	public String toString() {
-		return "FaqVo [faq_no=" + faq_no + ", faq_title=" + faq_title + ", faq_content=" + faq_content
+		return "FaqVo [faq_rnum ="+ faq_rnum + ", faq_no=" + faq_no + ", faq_title=" + faq_title + ", faq_content=" + faq_content
 				+ ", faq_del_check=" + faq_del_check + ", board_id=" + board_id + ", mem_id=" + mem_id + "]";
 	}
 }

@@ -14,21 +14,21 @@ import naturalmom.data.model.InterestVo;
 
 public class InterestDaoOraImpl extends NamedParameterJdbcDaoSupport implements IInterestDao{
 
-	private final String SQL_DUPLICATION_INTEREST_CHECK = "SELECT COUNT(product_no) FROM tb_interest WHERE product_no=:product_no AND mem_id=:mem_id";
+	private final String SQL_DUPLICATION_INTEREST = "SELECT COUNT(product_no) FROM tb_interest WHERE product_no=:product_no AND mem_id=:mem_id";
 	private final String SQL_INSERT_INTEREST = "INSERT INTO tb_interest (product_no, mem_id) VALUES (:product_no, :mem_id)";
 	private final String SQL_DELETE_INTEREST = "DELETE FROM tb_interest WHERE product_no=:product_no AND mem_id=:mem_id";
 
-	public boolean duplicationInterestProductCheck(int product_no, String mem_id) throws DataAccessException {
+	public boolean duplicationInterestProduct(int product_no, String mem_id) throws DataAccessException {
 		NamedParameterJdbcTemplate npjtem = this.getNamedParameterJdbcTemplate();
 		
 		MapSqlParameterSource ps = new MapSqlParameterSource();
 		ps.addValue("product_no", product_no, Types.INTEGER);
 		ps.addValue("mem_id", mem_id, Types.VARCHAR);
 		
-		int r = npjtem.queryForInt(SQL_DUPLICATION_INTEREST_CHECK, ps);
+		int r = npjtem.queryForInt(SQL_DUPLICATION_INTEREST, ps);
 		
-		if(r == 0) return true;
-		else return false;
+		if(r == 0) return false;
+		else return true;
 	}
 
 	public int addInterestProduct(InterestVo interest) throws DataAccessException {

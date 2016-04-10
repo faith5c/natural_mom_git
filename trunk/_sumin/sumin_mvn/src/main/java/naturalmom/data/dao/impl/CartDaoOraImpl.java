@@ -12,22 +12,22 @@ import naturalmom.data.model.CartVo;
 
 public class CartDaoOraImpl extends NamedParameterJdbcDaoSupport implements ICartDao{
 	
-	private final String SQL_DUPLICATION_CART_CHECK = "SELECT COUNT(product_no) FROM tb_cart WHERE product_no=:product_no and mem_id=:mem_id";
+	private final String SQL_DUPLICATION_CART = "SELECT COUNT(product_no) FROM tb_cart WHERE product_no=:product_no and mem_id=:mem_id";
 	private final String SQL_INSERT_CART = "INSERT INTO tb_cart (product_no, mem_id, buy_num) values (:product_no, :mem_id, :buy_num)"; 
 	private final String SQL_DELETE_CART = "DELETE FROM tb_cart WHERE product_no=:product_no AND mem_id=:mem_id";
 	private final String SQL_UPDATE_CART = "UPDATE tb_cart SET buy_num=:buy_num WHERE product_no=:product_no AND mem_id=:mem_id";
 
-	public boolean duplicationCartProductCheck(int product_no, String mem_id) throws DataAccessException {
+	public boolean duplicationCartProduct(int product_no, String mem_id) throws DataAccessException {
 		NamedParameterJdbcTemplate npjtem = this.getNamedParameterJdbcTemplate();
 		
 		MapSqlParameterSource ps = new MapSqlParameterSource();
 		ps.addValue("product_no", product_no, Types.INTEGER);
 		ps.addValue("mem_id", mem_id, Types.VARCHAR);
 		
-		int r = npjtem.queryForInt(SQL_DUPLICATION_CART_CHECK, ps);
+		int r = npjtem.queryForInt(SQL_DUPLICATION_CART, ps);
 		
-		if(r == 0) return true;
-		else return false;
+		if(r == 0) return false;
+		else return true;
 	}
 
 	public int addCartProduct(CartVo cart) throws DataAccessException {
@@ -72,7 +72,7 @@ public class CartDaoOraImpl extends NamedParameterJdbcDaoSupport implements ICar
 		return npjtem.update(SQL_DELETE_CART, ps);
 	}
 
-	public int editCartBuyNum(CartVo cart) throws DataAccessException {
+	public int editCartProduct(CartVo cart) throws DataAccessException {
 		NamedParameterJdbcTemplate npjtem = this.getNamedParameterJdbcTemplate();
 		
 		MapSqlParameterSource ps = new MapSqlParameterSource();

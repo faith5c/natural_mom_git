@@ -18,24 +18,33 @@ public class CategoryConSvc extends ConSvc{
 	public void showMenu(){
 		System.out.println(line1);
 		System.out.println("choice CATEGORY menu");
-		System.out.println(line1);
-		System.out.println("1. get CategoryName By Cd");
-		System.out.println("2. Exit");
 		System.out.println(line2);
+		System.out.println("1. get CategoryName By Cd");
+		System.out.println("2. Exit\n");
 	}
 	
 	public void show() {
+		String str = null;
 		showMenu();
-		
-		String str = inputUser();
-		int num = checkNumberMinMax(MIN_NUM, MAX_NUM, str);
+		int num = checkNumberMinMax(MIN_NUM, MAX_NUM, inputUser());
 		
 		switch(num){
 		case CHOICE_GET_CATEGORYNAME_BY_CD:
+			try{
+				System.out.println("INPUT : category_cd (1~4)");
+				str = inputUser();
+				String result = categoryDao.getCategoryNameByCd(Integer.parseInt(str));
+				System.out.println(result);
+			} catch(Exception e){
+				e.printStackTrace();
+			}
+			
+			inputEnter();
+			this.show();
 			break;
 			
 		case CHOICE_EXIT:
-			System.out.println("exit");
+			System.out.println("exit program");
 			System.exit(0);
 			
 		default : 
@@ -43,5 +52,4 @@ public class CategoryConSvc extends ConSvc{
 		
 		}
 	}
-	
 }

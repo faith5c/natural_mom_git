@@ -18,20 +18,44 @@ public class VQnaQnareDaoOraImpl extends NamedParameterJdbcDaoSupport implements
 			"SELECT qna_no, qna_title, qna_write_day, qna_hits, qna_content, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count FROM v_qna_qnare WHERE qna_no=:qna_no";
 	
 	private final String SQL_SELECT_ALL_QNA_LIST = 
-			"SELECT qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count FROM v_qna_qnare "
-			+ "WHERE ROWNUM>=:start AND ROWNUM<=:end GROUP BY qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count ORDER BY qna_ref DESC, qna_pos DESC";
+			"SELECT A.* FROM "
+			+ "(SELECT rownum as qna_rnum, X.* FROM "
+			+ "(SELECT qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count "
+			+ "FROM v_qna_qnare "
+			+ "GROUP BY qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count "
+			+ "ORDER BY qna_ref ASC, qna_pos ASC) X "
+			+ "WHERE rownum <= :end) A "
+			+ "WHERE A.qna_rnum >= :start ORDER BY A.qna_rnum DESC";
 	
 	private final String SQL_SEARCH_QNA_TITLE = 
-			"SELECT qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count FROM v_qna_qnare "
-			+ "WHERE qna_title AND ROWNUM>=:start AND ROWNUM<=:end LIKE :keyword GROUP BY qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count ORDER BY qna_ref DESC, qna_pos DESC";
+			"SELECT A.* FROM "
+			+ "(SELECT rownum as qna_rnum, X.* FROM "
+			+ "(SELECT qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count "
+			+ "FROM v_qna_qnare WHERE qna_title LIKE :keyword "
+			+ "GROUP BY qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count "
+			+ "ORDER BY qna_ref ASC, qna_pos ASC) X "
+			+ "WHERE rownum <= :end) A "
+			+ "WHERE A.qna_rnum >= :start ORDER BY A.qna_rnum DESC";
 
 	private final String SQL_SEARCH_QNA_CONTENT = 
-			"SELECT qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count FROM v_qna_qnare "
-			+ "WHERE qna_content AND ROWNUM>=:start AND ROWNUM<=:end LIKE :keyword GROUP BY qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count ORDER BY qna_ref DESC, qna_pos DESC";
+			"SELECT A.* FROM "
+			+ "(SELECT rownum as qna_rnum, X.* FROM "
+			+ "(SELECT qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count "
+			+ "FROM v_qna_qnare WHERE qna_content LIKE :keyword "
+			+ "GROUP BY qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count "
+			+ "ORDER BY qna_ref ASC, qna_pos ASC) X "
+			+ "WHERE rownum <= :end) A "
+			+ "WHERE A.qna_rnum >= :start ORDER BY A.qna_rnum DESC";
 
 	private final String SQL_SEARCH_QNA_TITLE_N_CONTENT = 
-			"SELECT qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count FROM v_qna_qnare "
-			+ "WHERE (qna_title LIKE :keyword OR qna_content LIKE :keyword) AND ROWNUM>=:start AND ROWNUM<=:end GROUP BY qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count ORDER BY qna_ref DESC, qna_pos DESC";
+			"SELECT A.* FROM "
+			+ "(SELECT rownum as qna_rnum, X.* FROM "
+			+ "(SELECT qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count "
+			+ "FROM v_qna_qnare WHERE (qna_title LIKE :keyword OR qna_content LIKE :keyword) "
+			+ "GROUP BY qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count "
+			+ "ORDER BY qna_ref ASC, qna_pos ASC) X "
+			+ "WHERE rownum <= :end) A "
+			+ "WHERE A.qna_rnum >= :start ORDER BY A.qna_rnum DESC";
 	
 	public VQnaQnaReVo getOneQna(int qna_no) throws DataAccessException {
 		NamedParameterJdbcTemplate npjtem = this.getNamedParameterJdbcTemplate();

@@ -6,8 +6,8 @@ import naturalmom.data.model.InterestVo;
 
 public interface IInterestDao {
 
-	//관심상품 상품중복 확인 (true하나 false중복)
-	boolean duplicationInterestProductCheck(int product_no, String mem_id) throws DataAccessException;
+	//관심상품 상품중복 확인 (true중복 false중복아님)
+	boolean duplicationInterestProduct(int product_no, String mem_id) throws DataAccessException;
 	
 	//관심상품 상품추가
 	int addInterestProduct(InterestVo interest) throws DataAccessException;

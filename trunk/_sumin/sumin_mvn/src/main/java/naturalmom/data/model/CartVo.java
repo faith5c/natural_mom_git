@@ -5,7 +5,9 @@ public class CartVo {
 	private String mem_id;
 	private int buy_num;
 	
-	public CartVo(){}
+	public CartVo(){
+		buy_num = 1;
+	}
 	
 	public CartVo(int product_no, String mem_id) {
 		super();
