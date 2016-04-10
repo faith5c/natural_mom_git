@@ -40,7 +40,7 @@
 		주문 : a_order.jsp?by=prod&order=true(상품명-오름)
 		주문 : a_order.jsp?by=prod&order=false(상품명-내림)
 		주문 : a_order.jsp?by=num&order=true(개수-오름)
-		주문 : a_order.jsp?by=date&order=false(개수-내림)
+		주문 : a_order.jsp?by=num&order=false(개수-내림)
 		주문 : a_order.jsp?by=charge&order=true(결제금액-오름)
 		주문 : a_order.jsp?by=charge&order=false(결제금액-내림)
 		주문 : a_order.jsp?by=pro&order=true(처리상태-오름)
