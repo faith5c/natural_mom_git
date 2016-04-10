@@ -12,7 +12,6 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
 public class VRank_SellsDaoOraImpl extends JdbcDaoSupport implements IVRank_SellsDao 
 {
-	// SQL문 확인해볼것
 	// 판매 순위 오름차순 정렬
 	private final String GET_ALL_ASC = "SELECT ROWNUM, all_sells, product_name FROM V_RANK_SELLS "
 			+ "WHERE ROWNUM <= 3 ORDER BY ROWNUM ASC";
