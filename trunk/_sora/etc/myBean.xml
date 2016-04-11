@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+<!-- DataSource -->
+	<import resource = "data_source.xml" />
+	
+<!-- DAO -->
+	<bean id="productDao" class="naturalmom.data.dao.impl.ProductDaoOraImpl">
+		<property name="dataSource">
+			<ref local="ds"/>
+		</property>
+	</bean>	
+	
+	<bean id="review_reDao" class="naturalmom.data.dao.impl.Review_ReDaoOraImpl">
+		<property name="dataSource">
+			<ref local="ds"/>
+		</property>
+	</bean>
+
+	<bean id="reviewDao" class="naturalmom.data.dao.impl.ReviewDaoOraImpl">
+		<property name="dataSource">
+			<ref local="ds"/>
+		</property>
+	</bean>
+	
+	<bean id="vProduct_DeletedDao" class="naturalmom.data.dao.impl.VProduct_DeletedDaoOraImpl">
+		<property name="dataSource">
+			<ref local="ds"/>
+		</property>
+	</bean>
+	
+	<bean id="vProduct_ManageDao" class="naturalmom.data.dao.impl.VProduct_ManageDaoOraImpl">
+		<property name="dataSource">
+			<ref local="ds"/>
+		</property>
+	</bean>
+	
+	<bean id="vRank_SellsDao" class="naturalmom.data.dao.impl.VRank_SellsDaoOraImpl">
+		<property name="dataSource">
+			<ref local="ds"/>
+		</property>
+	</bean>
+	
+	<bean id="vReview_AdminDao" class="naturalmom.data.dao.impl.VReview_AdminDaoOraImpl">
+		<property name="dataSource">
+			<ref local="ds"/>
+		</property>
+	</bean>
+	
+	<bean id="vReivew_FrontDao" class="naturalmom.data.dao.impl.VReview_FrontDaoOraImpl">
+		<property name="dataSource">
+			<ref local="ds"/>
+		</property>
+	</bean>
+
+<!-- SVC -->
+	<bean id="menuConSvc" class="naturalmom.ui.svc.MenuConSvc">
+		<property name="productSvc">
+			<ref local="productSvc" />
+		</property>
+		
+		<property name="reviewSvc">
+			<ref local="reviewSvc" />
+		</property>
+		
+		<property name="vProduct_deletedSvc">
+			<ref local="vProduct_deletedSvc" />
+		</property>
+		
+		<property name="vProduct_manageSvc">
+			<ref local="vProduct_manageSvc" />
+		</property>
+		
+		<property name="vRank_sellsSvc">
+			<ref local="vRank_sellsSvc" />
+		</property>
+		
+		<property name="vReview_adminSvc">
+			<ref local="vReview_adminSvc" />
+		</property>
+		
+		<property name="vReview_frontSvc">
+			<ref local="vReview_frontSvc" />
+		</property>		
+	</bean>
+		
+	<bean id="productSvc" class="naturalmom.ui.svc.ProductSvc">
+		<property name="productDao">
+			<ref local="productDao" />
+		</property>
+	</bean>
+	
+	<bean id="reviewSvc" class="naturalmom.ui.svc.ReviewSvc">
+		<property name="reDao">
+			<ref local="reviewDao" />
+		</property>
+		<property name="rereDao">
+			<ref local="review_reDao" />
+		</property>
+	</bean>
+	
+	<bean id="vProduct_deletedSvc" class="naturalmom.ui.svc.VProduct_DeletedSvc">
+		<property name="vProDao">
+			<ref local="vProduct_DeletedDao" />
+		</property>
+	</bean>
+	
+	<bean id="vProduct_manageSvc" class="naturalmom.ui.svc.VProduct_ManageSvc">
+		<property name="mngDao">
+			<ref local="vProduct_ManageDao" />
+		</property>
+	</bean>
+	
+	<bean id="vRank_sellsSvc" class="naturalmom.ui.svc.VRank_SellsSvc">
+		<property name="rankDao">
+			<ref local="vRank_SellsDao" />
+		</property>
+	</bean>
+	
+	<bean id="vReview_adminSvc" class="naturalmom.ui.svc.VReview_AdminSvc">
+		<property name="admDao">
+			<ref local="vReview_AdminDao" />
+		</property>
+	</bean>
+	
+	<bean id="vReview_frontSvc" class="naturalmom.ui.svc.VReview_FrontSvc">
+		<property name="froDao">
+			<ref local="vReivew_FrontDao" />
+		</property>
+	</bean>
+	
+<!-- Main -->
+	<bean id="main" class="naturalmom.ui.Main">
+		<property name="menuConSvc">
+			<ref local="menuConSvc"/>
+		</property>
+	</bean>	
+
+</beans>
