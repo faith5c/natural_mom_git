@@ -2,8 +2,8 @@ package naturalmom.ui.svc;
 
 import java.util.List;
 
-import naturalmom.data.dao.IProductDao;
-import naturalmom.data.model.ProductVo;
+import com.nmom.soap.data.dao.product.IProductDao;
+import com.nmom.soap.data.model.product.ProductVo;
 
 public class ProductConSvc extends ConSvc{
 	private final int CHOICE_GET_ALL_PRODUCT = 1;

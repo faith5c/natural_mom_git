@@ -98,4 +98,7 @@ SET
 faq_del_check=1
 WHERE faq_no=22;
 
--------------------------------------------------------
+-------------------------------------------------------------
+-- 쉽게 하는 ruwnum
+SELECT A.* FROM (SELECT rownum as re_rnum, V.* from V_REVIEW_ADMIN V) A 
+WHERE A.re_rnum >= 2 AND A.re_rnum <= 4;

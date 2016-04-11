@@ -2,13 +2,13 @@ package naturalmom.ui.svc;
 
 import java.util.List;
 
-import naturalmom.data.dao.IQnaDao;
-import naturalmom.data.dao.IQnaReDao;
-import naturalmom.data.dao.IVQnaQnareDao;
-import naturalmom.data.model.FaqVo;
-import naturalmom.data.model.QnaReVo;
-import naturalmom.data.model.QnaVo;
-import naturalmom.data.model.VQnaQnaReVo;
+import com.nmom.soap.data.dao.board.qna.IQnaDao;
+import com.nmom.soap.data.dao.board.qna.IQnaReDao;
+import com.nmom.soap.data.dao.board.qna.IVQnaQnareDao;
+import com.nmom.soap.data.model.board.faq.FaqVo;
+import com.nmom.soap.data.model.board.qna.QnaReVo;
+import com.nmom.soap.data.model.board.qna.QnaVo;
+import com.nmom.soap.data.model.board.qna.VQnaQnaReVo;
 
 public class QnaConSvc extends ConSvc{
 	

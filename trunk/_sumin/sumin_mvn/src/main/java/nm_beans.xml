@@ -14,34 +14,34 @@
 	</bean>
 
 	<!-- 데이터 액세스 빈 등록 : DataAccessObject : DAO -->
-	<bean id="cart_dao" class="naturalmom.data.dao.impl.CartDaoOraImpl">
+	<bean id="cart_dao" class="com.nmom.soap.data.impl.cart.CartDaoOraImpl">
 		<property name="dataSource" ref="ds"/>
 	</bean>	
-	<bean id="category_dao" class="naturalmom.data.dao.impl.CategoryDaoOraImpl">
+	<bean id="category_dao" class="com.nmom.soap.data.impl.category.CategoryDaoOraImpl">
 		<property name="dataSource" ref="ds"/>
 	</bean>	
-	<bean id="faq_dao" class="naturalmom.data.dao.impl.FaqDaoOraImpl">
+	<bean id="faq_dao" class="com.nmom.soap.data.impl.board.faq.FaqDaoOraImpl">
 		<property name="dataSource" ref="ds"/>
 	</bean>	
-	<bean id="interest_dao" class="naturalmom.data.dao.impl.InterestDaoOraImpl">
+	<bean id="interest_dao" class="com.nmom.soap.data.impl.interest.InterestDaoOraImpl">
 		<property name="dataSource" ref="ds"/>
 	</bean>	
-	<bean id="product_dao" class="naturalmom.data.dao.impl.ProductDaoOraImpl">
+	<bean id="product_dao" class="com.nmom.soap.data.impl.product.ProductDaoOraImpl">
 		<property name="dataSource" ref="ds"/>
 	</bean>	
-	<bean id="qna_dao" class="naturalmom.data.dao.impl.QnaDaoOraImpl">
+	<bean id="qna_dao" class="com.nmom.soap.data.impl.board.qna.QnaDaoOraImpl">
 		<property name="dataSource" ref="ds"/>
 	</bean>	
-	<bean id="qnare_dao" class="naturalmom.data.dao.impl.QnaReDaoOraImpl">
+	<bean id="qnare_dao" class="com.nmom.soap.data.impl.board.qna.QnaReDaoOraImpl">
 		<property name="dataSource" ref="ds"/>
 	</bean>	
-	<bean id="v_cart_product_dao" class="naturalmom.data.dao.impl.VCartProductDaoOraImpl">
+	<bean id="v_cart_product_dao" class="com.nmom.soap.data.impl.cart.VCartProductDaoOraImpl">
 		<property name="dataSource" ref="ds"/>
 	</bean>	
-	<bean id="v_interest_product_dao" class="naturalmom.data.dao.impl.VInterestProductDaoOraImpl">
+	<bean id="v_interest_product_dao" class="com.nmom.soap.data.impl.interest.VInterestProductDaoOraImpl">
 		<property name="dataSource" ref="ds"/>
 	</bean>	
-	<bean id="v_qna_qnare_dao" class="naturalmom.data.dao.impl.VQnaQnareDaoOraImpl">
+	<bean id="v_qna_qnare_dao" class="com.nmom.soap.data.impl.board.qna.VQnaQnareDaoOraImpl">
 		<property name="dataSource" ref="ds"/>
 	</bean>	
 	

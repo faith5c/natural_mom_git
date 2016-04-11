@@ -1,6 +1,6 @@
 package naturalmom.ui.svc;
 
-import naturalmom.data.dao.ICategoryDao;
+import com.nmom.soap.data.dao.category.ICategoryDao;
 
 public class CategoryConSvc extends ConSvc{
 	private final int CHOICE_GET_CATEGORYNAME_BY_CD = 1;

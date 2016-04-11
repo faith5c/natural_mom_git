@@ -2,8 +2,8 @@ package naturalmom.ui.svc;
 
 import java.util.List;
 
-import naturalmom.data.dao.IFaqDao;
-import naturalmom.data.model.FaqVo;
+import com.nmom.soap.data.dao.board.faq.IFaqDao;
+import com.nmom.soap.data.model.board.faq.FaqVo;
 
 public class FaqConSvc extends ConSvc{
 	

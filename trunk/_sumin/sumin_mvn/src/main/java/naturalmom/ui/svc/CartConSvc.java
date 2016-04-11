@@ -2,10 +2,10 @@ package naturalmom.ui.svc;
 
 import java.util.List;
 
-import naturalmom.data.dao.ICartDao;
-import naturalmom.data.dao.IVCartProductDao;
-import naturalmom.data.model.CartVo;
-import naturalmom.data.model.VCartProductVo;
+import com.nmom.soap.data.dao.cart.ICartDao;
+import com.nmom.soap.data.dao.cart.IVCartProductDao;
+import com.nmom.soap.data.model.cart.CartVo;
+import com.nmom.soap.data.model.cart.VCartProductVo;
 
 public class CartConSvc extends ConSvc {
 

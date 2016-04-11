@@ -101,3 +101,9 @@ SELECT A.* FROM
     ) X 
   WHERE rownum <= 5) A 
 WHERE A.qna_rnum >= 1 ORDER BY A.qna_rnum DESC;
+
+
+-------------------------------------------------------------
+-- 쉽게 하는 ruwnum
+SELECT A.* FROM (SELECT rownum as re_rnum, V.* from V_REVIEW_ADMIN V) A 
+WHERE A.re_rnum >= 2 AND A.re_rnum <= 4;

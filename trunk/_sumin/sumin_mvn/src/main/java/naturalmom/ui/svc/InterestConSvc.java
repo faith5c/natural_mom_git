@@ -2,10 +2,10 @@ package naturalmom.ui.svc;
 
 import java.util.List;
 
-import naturalmom.data.dao.IInterestDao;
-import naturalmom.data.dao.IVInterestProductDao;
-import naturalmom.data.model.InterestVo;
-import naturalmom.data.model.VInterestProductVo;
+import com.nmom.soap.data.dao.interest.IInterestDao;
+import com.nmom.soap.data.dao.interest.IVInterestProductDao;
+import com.nmom.soap.data.model.interest.InterestVo;
+import com.nmom.soap.data.model.interest.VInterestProductVo;
 
 public class InterestConSvc extends ConSvc{
 
