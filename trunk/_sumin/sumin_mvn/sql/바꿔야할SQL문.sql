@@ -13,7 +13,7 @@ SELECT c.product_no, product_name, selling_price, sale_state, represent_img, c.b
 FROM tb_product p JOIN tb_cart c 
 ON (p.product_no=c.product_no);
 
-
+DROP VIEW v_qna_qnare
 CREATE VIEW v_qna_qnare 
 AS
 SELECT q.qna_no, qna_title, qna_write_day, qna_hits, qna_content, qna_pw, qna_pos, qna_ref, q.mem_id, 
@@ -22,4 +22,4 @@ FROM tb_qna q LEFT OUTER JOIN tb_qna_re r
 ON (q.qna_no = r.qna_no)
 WHERE qna_del_check=0
 GROUP BY q.qna_no, qna_title, qna_write_day, qna_hits, qna_content, qna_pw, qna_pos, qna_ref, q.mem_id
-ORDER BY qna_ref DESC, qna_pos DESC;
+ORDER BY qna_ref ASC, qna_pos ASC;
