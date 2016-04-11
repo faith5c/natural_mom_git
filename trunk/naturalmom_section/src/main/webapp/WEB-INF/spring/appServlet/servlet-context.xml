@@ -7,8 +7,10 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+	<!-- 파일 불러오는 부분. 이렇게 해서 안되면 이어달리기 식으로 서로 import 해가면서 작성해야함 -->
 	<beans:import resource="data_source.xml"/>
 	<beans:import resource="domain-sm-context.xml"/>
+
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
