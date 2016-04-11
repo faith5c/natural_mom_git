@@ -2,7 +2,7 @@ package com.nmom.soap.data.model.product;
 
 public class ProductVo 
 {
-	// 멤버 �?��
+	// 멤버 변수
 	int product_no;
 	String product_name;
 	int selling_price;
@@ -18,10 +18,10 @@ public class ProductVo
 	int weight;
 	int category_cd;
 	
-	// ?�성??
+	// 생성자
 	public ProductVo() {}
 	
-	// 모두 ?�력: ?�품 ?�록 ??
+	// 모두 입력: 상품 등록 시
 	public ProductVo(int product_no, String product_name, int selling_price,
 			int cost_price, int stock, int display_state, int sale_state,
 			String represent_img, String detail_img, String summary_ex,
@@ -43,7 +43,7 @@ public class ProductVo
 		this.category_cd = category_cd;
 	}
 	
-	// ??�� ?�태 ?�음 (??�� ?�태 false�??�정): ?�품 ?�정 ???�용 �?��?�기 �??�품 ?�정????
+	// 삭제 상태 없음 (삭제 상태 false로 설정): 상품 수정 시 내용 가져오기 및 상품 수정할 때
 //	public ProductVo(int product_no, String product_name, int selling_price,
 //			int cost_price, int stock, int display_state, int sale_state,
 //			String represent_img, String detail_img, String summary_ex,
