@@ -2,6 +2,7 @@ package com.nmom.soap.data.model.board.event;
 
 import java.util.Date;
 
+
 public class EventVo {
 	
 	int event_no;
@@ -129,5 +130,19 @@ public class EventVo {
 		this.evt_rnum = evt_rnum;
 	}
 	
+	// 글쓰기 메소드
+	public EventVo writeform(String title, String content, String id){
+		this.evt_title=title;
+		this.evt_content=content;
+		this.mem_id=id;
+		return this;
+	}
+	public EventVo editform(int event_no, String title, String content, String id){
+		this.event_no = event_no;
+		this.evt_title=title;
+		this.evt_content=content;
+		this.mem_id=id;
+		return this;
+	}
 
 }

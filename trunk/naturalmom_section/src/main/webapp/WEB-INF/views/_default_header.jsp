@@ -17,5 +17,5 @@
 		</nav>
 
 		<!--로고-->
-		<a href="<c:url value = '/index.jsp' />"><img id="logo" src="<c:url value = '/images/logo_gray.gif' />" alt="로고"></a>
+		<a href="<c:url value = '/index.jsp' />"><img id="logo" src="<c:url value = 'resources/images/logo_gray.gif' />" alt="로고"></a>
 </html>

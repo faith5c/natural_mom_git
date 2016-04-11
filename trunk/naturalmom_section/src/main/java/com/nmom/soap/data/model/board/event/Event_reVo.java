@@ -2,6 +2,7 @@ package com.nmom.soap.data.model.board.event;
 
 import java.util.Date;
 
+
 public class Event_reVo {
 
 	int event_re_no;
@@ -91,5 +92,11 @@ public class Event_reVo {
 		this.mem_id = mem_id;
 	}
 
+	public Event_reVo writeform(int parant_no, String content, String id){
+		this.evt_no = parant_no;
+		this.evt_re_content = content;
+		this.mem_id = id;
+		return this;
+	}
 	
 }
