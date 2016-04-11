@@ -13,6 +13,7 @@ public class EventVo {
 	int board_id;
 	String mem_id;
 	int count_re;
+	int evt_rnum;
 	
 	
 	// Constructor
@@ -120,6 +121,13 @@ public class EventVo {
 		this.count_re = count_re;
 	}
 	
+	public int getEvt_rnum() {
+		return evt_rnum;
+	}
+	
+	public void setEvt_rnum(int evt_rnum) {
+		this.evt_rnum = evt_rnum;
+	}
 	
 
 }
