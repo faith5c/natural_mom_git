@@ -7,6 +7,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcDaoSupport;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import com.nmom.soap.data.dao.product.IProductDao;
 import com.nmom.soap.data.model.product.ProductVo;
@@ -34,6 +35,22 @@ public class ProductDaoOraImpl extends NamedParameterJdbcDaoSupport implements I
 			+ "detail_img, summary_ex, detail_ex, deleted_state, weight, category_cd, product_no) VALUES ("
 			+ ":product_name, :selling_price, :cost_price, :stock, 1, 1, :represent_img,"
 			+ ":detail_img, :summary_ex, :detail_ex, 0, :weight, :category_cd, PRODUCT_NO_SEQ.NEXTVAL)";
+	
+
+	//************************************************************//
+	
+	//상품 목록 페이지
+	private final String SELECT_ALL_PRODUCT = "SELECT product_no, product_name, selling_price, sale_state, represent_img, summary_ex FROM tb_product WHERE display_state=1 AND deleted_state=0";
+	
+	//카테고리에 따라 상품목록 가져옴
+	private final String SELECT_PRODUCT_BY_CATEGORY_CD="SELECT product_no, product_name, selling_price, sale_state, represent_img, summary_ex FROM tb_product WHERE display_state=1 AND deleted_state=0 AND category_cd=:category_cd";
+	
+	//상품이름으로 상품 가져옴
+	private final String SELECT_PRODUCT_BY_PRODUCT_NAME = "SELECT product_no, product_name, selling_price, sale_state, represent_img, summary_ex FROM tb_product WHERE display_state=1 AND deleted_state=0 AND product_name LIKE :product_name";
+	
+	//************************************************************//
+
+	
 	
 	public ProductVo getOneProduct(int product_no) throws DataAccessException
 	{
@@ -110,4 +127,29 @@ public class ProductDaoOraImpl extends NamedParameterJdbcDaoSupport implements I
 		
 		return getNamedParameterJdbcTemplate().update(EDIT_ONE_PRODUCT, msps);
 	}
+	
+
+	//************************************************************//
+	
+	public List<ProductVo> getAllProduct() throws DataAccessException {
+		return this.getJdbcTemplate().query(SELECT_ALL_PRODUCT, new BeanPropertyRowMapper<ProductVo>(ProductVo.class));
+	}
+
+	public List<ProductVo> getProductByCategoryCd(int category_cd) throws DataAccessException {
+		NamedParameterJdbcTemplate npjtem = this.getNamedParameterJdbcTemplate();
+		MapSqlParameterSource ps = new MapSqlParameterSource();
+		ps.addValue("category_cd", category_cd, Types.INTEGER);
+		return npjtem.query(SELECT_PRODUCT_BY_CATEGORY_CD, ps, new BeanPropertyRowMapper<ProductVo>(ProductVo.class));
+	}
+
+	public List<ProductVo> getProductByProductName(String product_name) throws DataAccessException {
+		product_name = "%"+product_name+"%";
+		
+		NamedParameterJdbcTemplate npjtem = this.getNamedParameterJdbcTemplate();
+		MapSqlParameterSource ps = new MapSqlParameterSource();
+		ps.addValue("product_name", product_name, Types.VARCHAR);
+		return npjtem.query(SELECT_PRODUCT_BY_PRODUCT_NAME, ps, new BeanPropertyRowMapper<ProductVo>(ProductVo.class));
+	}
+	
+	//************************************************************//
 }
