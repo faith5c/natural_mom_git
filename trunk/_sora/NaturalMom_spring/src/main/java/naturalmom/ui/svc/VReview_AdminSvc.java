@@ -41,7 +41,7 @@ public class VReview_AdminSvc extends ConSvc
 		switch(num)
 		{
 		case GET_ALL_LIST:
-			showAllList(admDao.getAllList());
+			showAllList(admDao.getAllList(2, 5));
 			break;
 			
 		case GET_ONE_REVIEW:
@@ -49,19 +49,19 @@ public class VReview_AdminSvc extends ConSvc
 			break;
 			
 		case GET_SEARCH_BY_TITLE:
-			showAllList(admDao.getReviews_by_title("배송"));
+			showAllList(admDao.getReviews_by_title("배송", 1, 5));
 			break;
 			
 		case GET_SEARCH_BY_CONTENT:
-			showAllList(admDao.getReviews_by_content("짱좋"));
+			showAllList(admDao.getReviews_by_content("짱좋", 1, 5));
 			break;
 			
 		case GET_SEARCH_BY_ID:
-			showAllList(admDao.getReviews_by_id("sora"));
+			showAllList(admDao.getReviews_by_id("sora", 1, 5));
 			break;
 			
 		case GET_SEARCH_BY_TITLE_CONTENT:
-			showAllList(admDao.getReviews_by_title_n_content("짱좋"));
+			showAllList(admDao.getReviews_by_title_n_content("짱좋", 1, 5));
 			break;
 			
 		case EXIT:
