@@ -66,6 +66,11 @@
 		</property>
 	</bean>
 	
+	<bean id="vOrdererDaoOra" class="com.nmom.soap.data.impl.member.VOrdererDaoOraImpl">
+		<property name="dataSource">
+			<ref local="ds"/>
+		</property>
+	</bean>
 
 <!-- SVC -->
 	<bean id="menuSvc" class="com.nmom.soap.ui.svc.MenuConUiSvc">
@@ -80,6 +85,9 @@
 		</property>
 		<property name="saleStatementSvc">
 			<ref local="saleStatementSvc" />
+		</property>
+		<property name="ordererSvc">
+			<ref local="ordererSvc" />
 		</property>
 	</bean>
 
@@ -123,6 +131,12 @@
 	<bean id="saleStatementSvc" class="com.nmom.soap.ui.svc.SaleStatementConUiSvc">
 		<property name="saleStatementOraDao">
 			<ref local="saleStatementOraDao" />
+		</property>
+	</bean>
+	
+	<bean id="ordererSvc" class="com.nmom.soap.ui.svc.OrdererConUiSvc">
+		<property name="vOrdererDaoOra">
+			<ref local="vOrdererDaoOra" />
 		</property>
 	</bean>
 	

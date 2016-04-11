@@ -10,7 +10,8 @@ public abstract class ConUiSvc {
 	final int MAIN_MENU_ORDER= 2;
 	final int MAIN_MENU_ORDER_MANAGER= 3;
 	final int MAIN_MENU_SALESTATEMENT = 4;
-	final int EXIT = 5;
+	final int MAIN_MENU_ORDERER = 5;
+	final int EXIT = 6;
 	final int PREV = 0;
 	
 	final int ERROR = -1;

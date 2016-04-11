@@ -8,6 +8,7 @@ public class MenuConUiSvc extends ConUiSvc {
 	private OrderConUiSvc orderSvc;
 	private OrderManagerConUiSvc orderManagerSvc;
 	private SaleStatementConUiSvc saleStatementSvc;
+	private OrdererConUiSvc ordererSvc;
 	
 	public MenuConUiSvc() {}
 
@@ -18,6 +19,7 @@ public class MenuConUiSvc extends ConUiSvc {
 		System.out.println(" 2. MAIN_MENU_ORDER");
 		System.out.println(" 3. MAIN_MENU_ORDER_MANAGER");
 		System.out.println(" 4. MAIN_MENU_SALESTATEMENT");
+		System.out.println(" 5. MAIN_MENU_ORDERER");
 		System.out.println(" 6. EXIT");
 		System.out.print(" >> ");
 	}
@@ -39,6 +41,10 @@ public class MenuConUiSvc extends ConUiSvc {
 		case MAIN_MENU_SALESTATEMENT:
 			saleStatementSvc.show();
 			break;
+			
+		case MAIN_MENU_ORDERER:
+			ordererSvc.show();
+			break;	
 			
 		case EXIT:
 			System.exit(0);
@@ -73,4 +79,10 @@ public class MenuConUiSvc extends ConUiSvc {
 		this.saleStatementSvc = saleStatementSvc;
 	}
 
+
+	public void setOrdererSvc(OrdererConUiSvc ordererSvc) {
+		this.ordererSvc = ordererSvc;
+	}
+
+	
 }
