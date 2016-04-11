@@ -1,8 +1,6 @@
 package com.nmom.soap.ui.svc;
 
 
-import java.sql.Types;
-import java.util.Date;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -74,7 +72,15 @@ public class MainConsole {
 		
 		// BoardAccessSvc
 //		main.boardAccessSvc.getAccess(1, "soomin");
-		main.boardAccessSvc.getAdminAccess(1);
+//		main.boardAccessSvc.getAdminAccess(1);
+//		main.boardAccessSvc.getMemberAccess(1);
+//		main.boardAccessSvc.getBlacklistAccess(2);
+//		main.boardAccessSvc.getNonmemberAccess(1);
+//		main.boardAccessSvc.getAccessNotice(1);
+//		main.boardAccessSvc.getAccessEvent(1);
+//		main.boardAccessSvc.getAccessFaQ(1);
+//		main.boardAccessSvc.getAccessQnA(1);
+//		main.boardAccessSvc.getAccessReview(3);
 	}
 }
 
