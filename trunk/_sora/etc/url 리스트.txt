@@ -1,60 +1,60 @@
-'http://localhost:8082/naturalmom_section' »ı·«
+'http://localhost:8082/naturalmom_section' ìƒëµ
 
-- ¸®ºä °Ô½ÃÆÇ ÆÄ¶ó¹ÌÅÍ ¾àÀÚ Á¤¸®
+- ë¦¬ë·° ê²Œì‹œíŒ íŒŒë¼ë¯¸í„° ì•½ì ì •ë¦¬
 r : read
 w : write
 p : process
 t : title
 c : content
 a : all (title + content)
-r_ : ¸®ÇÃ
+r_ : ë¦¬í”Œ
 
 
-¸®ºä °Ô½ÃÆÇ ¸®½ºÆ®: a_board.jsp
-/admin/board/a_board.jsp?page=review
+ë¦¬ë·° ê²Œì‹œíŒ ë¦¬ìŠ¤íŠ¸: a_board.jsp
+/admin/board/a_board.nm?page=review
 
-¸®ºä °Ô½ÃÆÇ ÀĞ±â: a_board_review_read.jsp
-/admin/board/a_board.jsp?page=review&r=1
+ë¦¬ë·° ê²Œì‹œíŒ ì½ê¸°: a_board_review_read.jsp
+/admin/board/a_board.nm?page=review&r=1
 
-¸®ºä °Ô½ÃÆÇ ¾²±â: a_board.jsp
-/admin/board/a_board.jsp?page=review&w=true
+ë¦¬ë·° ê²Œì‹œíŒ ì“°ê¸°: a_board.jsp
+/admin/board/a_board.nm?page=review&w=true
 
-¸®ºä °Ô½ÃÆÇ ¼öÁ¤: a_board_review_write.jsp
-/admin/board/a_board.jsp?page=review&w=true&no=1
+ë¦¬ë·° ê²Œì‹œíŒ ìˆ˜ì •: a_board_review_write.jsp
+/admin/board/a_board.nm?page=review&w=true&no=1
 
-°Ô½Ã±Û µî·Ï: a_board_review_process.jsp
-/admin/board/a_board.jsp?page=review&p=add
+ê²Œì‹œê¸€ ë“±ë¡: a_board_review_process.jsp
+/admin/board/a_board.nm?page=review&p=add
 
-°Ô½Ã±Û ¼öÁ¤: a_board_review_process.jsp
-/admin/board/a_board.jsp?page=review&p=edit&no=1
+ê²Œì‹œê¸€ ìˆ˜ì •: a_board_review_process.jsp
+/admin/board/a_board.nm?page=review&p=edit&no=1
 
-°Ô½Ã±Û »èÁ¦: a_board_review_process.jsp
-/admin/board/a_board.jsp?page=review&p=remove&no=1
+ê²Œì‹œê¸€ ì‚­ì œ: a_board_review_process.jsp
+/admin/board/a_board.nm?page=review&p=remove&no=1
 
-´ñ±Û µî·Ï: a_board_review_process.jsp
-/admin/board/a_board.jsp?page=review&p=r_add&no=1
+ëŒ“ê¸€ ë“±ë¡: a_board_review_process.jsp
+/admin/board/a_board.nm?page=review&p=r_add&no=1
 
-´ñ±Û ¼öÁ¤: a_board_review_process.jsp
-/admin/board/a_board.jsp?page=review&p=r_edit&r_no=1
+ëŒ“ê¸€ ìˆ˜ì •: a_board_review_process.jsp
+/admin/board/a_board.nm?page=review&p=r_edit&r_no=1
 
-´ñ±Û »èÁ¦: a_board_review_process.jsp
-/admin/board/a_board.jsp?page=review&p=r_remove&r_no=1
+ëŒ“ê¸€ ì‚­ì œ: a_board_review_process.jsp
+/admin/board/a_board.nm?page=review&p=r_remove&r_no=1
 
-Á¦¸ñ °Ë»ö: a_board_review.jsp
-/admin/board/a_board.jsp?page=review&t=Â¯ÁÁ
+ì œëª© ê²€ìƒ‰: a_board_review.jsp
+/admin/board/a_board.nm?page=review&t=ì§±ì¢‹
 
-³»¿ë °Ë»ö: a_board_review.jsp
-/admin/board/a_board.jsp?page=review&c=Â¯ÁÁ
+ë‚´ìš© ê²€ìƒ‰: a_board_review.jsp
+/admin/board/a_board.nm?page=review&c=ì§±ì¢‹
 
-¾ÆÀÌµğ °Ë»ö: a_board_review.jsp
-/admin/board/a_board.jsp?page=review&id=sora
+ì•„ì´ë”” ê²€ìƒ‰: a_board_review.jsp
+/admin/board/a_board.nm?page=review&id=sora
 
-Á¦¸ñ+³»¿ë °Ë»ö: a_board_review.jsp
-/admin/board/a_board.jsp?page=review&a=Â¯ÁÁ
+ì œëª©+ë‚´ìš© ê²€ìƒ‰: a_board_review.jsp
+/admin/board/a_board.nm?page=review&a=ì§±ì¢‹
 
 ----------------------------------------------------------------------------------------
 
-- »óÇ° ÆäÀÌÁö ¾àÀÚ Á¤¸®
+- ìƒí’ˆ í˜ì´ì§€ ì•½ì ì •ë¦¬
 no : product_no
 ct : category_name
 nm : product_name
@@ -66,138 +66,138 @@ all : all_sells
 del : delete_state
 
 
-»óÇ° °ü¸® ÆäÀÌÁö
-/admin/product/a_product.jsp?page=manage
+ìƒí’ˆ ê´€ë¦¬ í˜ì´ì§€
+/admin/product/a_product.nm?page=manage
 
-»óÇ° °ü¸® ÆäÀÌÁö - »óÇ° ¹øÈ£ ¿À¸§Â÷¼ø
-/admin/product/a_product.jsp?page=manage&by=no&order=true
+ìƒí’ˆ ê´€ë¦¬ í˜ì´ì§€ - ìƒí’ˆ ë²ˆí˜¸ ì˜¤ë¦„ì°¨ìˆœ
+/admin/product/a_product.nm?page=manage&by=no&order=true
 
-»óÇ° °ü¸® ÆäÀÌÁö - »óÇ° ¹øÈ£ ³»¸²Â÷¼ø
-/admin/product/a_product.jsp?page=manage&by=no&order=false
+ìƒí’ˆ ê´€ë¦¬ í˜ì´ì§€ - ìƒí’ˆ ë²ˆí˜¸ ë‚´ë¦¼ì°¨ìˆœ
+/admin/product/a_product.nm?page=manage&by=no&order=false
 
-»óÇ° °ü¸® ÆäÀÌÁö - ºĞ·ù ¿À¸§Â÷¼ø
-/admin/product/a_product.jsp?page=manage&by=ct&order=true
+ìƒí’ˆ ê´€ë¦¬ í˜ì´ì§€ - ë¶„ë¥˜ ì˜¤ë¦„ì°¨ìˆœ
+/admin/product/a_product.nm?page=manage&by=ct&order=true
 
-»óÇ° °ü¸® ÆäÀÌÁö - ºĞ·ù ³»¸²Â÷¼ø
-/admin/product/a_product.jsp?page=manage&by=ct&order=false
+ìƒí’ˆ ê´€ë¦¬ í˜ì´ì§€ - ë¶„ë¥˜ ë‚´ë¦¼ì°¨ìˆœ
+/admin/product/a_product.nm?page=manage&by=ct&order=false
 
-»óÇ° °ü¸® ÆäÀÌÁö - ÀÌ¸§ ¿À¸§Â÷¼ø
-/admin/product/a_product.jsp?page=manage&by=nm&order=true
+ìƒí’ˆ ê´€ë¦¬ í˜ì´ì§€ - ì´ë¦„ ì˜¤ë¦„ì°¨ìˆœ
+/admin/product/a_product.nm?page=manage&by=nm&order=true
 
-»óÇ° °ü¸® ÆäÀÌÁö - ÀÌ¸§ ³»¸²Â÷¼ø
-/admin/product/a_product.jsp?page=manage&by=nm&order=false
+ìƒí’ˆ ê´€ë¦¬ í˜ì´ì§€ - ì´ë¦„ ë‚´ë¦¼ì°¨ìˆœ
+/admin/product/a_product.nm?page=manage&by=nm&order=false
 
-»óÇ° °ü¸® ÆäÀÌÁö - °¡°İ ¿À¸§Â÷¼ø
-/admin/product/a_product.jsp?page=manage&by=pr&order=true
+ìƒí’ˆ ê´€ë¦¬ í˜ì´ì§€ - ê°€ê²© ì˜¤ë¦„ì°¨ìˆœ
+/admin/product/a_product.nm?page=manage&by=pr&order=true
 
-»óÇ° °ü¸® ÆäÀÌÁö - °¡°İ ³»¸²Â÷¼ø
-/admin/product/a_product.jsp?page=manage&by=pr&order=false
+ìƒí’ˆ ê´€ë¦¬ í˜ì´ì§€ - ê°€ê²© ë‚´ë¦¼ì°¨ìˆœ
+/admin/product/a_product.nm?page=manage&by=pr&order=false
 
-»óÇ° °ü¸® ÆäÀÌÁö - Àç°í ¿À¸§Â÷¼ø
-/admin/product/a_product.jsp?page=manage&by=st&order=true
+ìƒí’ˆ ê´€ë¦¬ í˜ì´ì§€ - ì¬ê³  ì˜¤ë¦„ì°¨ìˆœ
+/admin/product/a_product.nm?page=manage&by=st&order=true
 
-»óÇ° °ü¸® ÆäÀÌÁö - Àç°í ³»¸²Â÷¼ø
-/admin/product/a_product.jsp?page=manage&by=st&order=false
+ìƒí’ˆ ê´€ë¦¬ í˜ì´ì§€ - ì¬ê³  ë‚´ë¦¼ì°¨ìˆœ
+/admin/product/a_product.nm?page=manage&by=st&order=false
 
-»óÇ° °ü¸® ÆäÀÌÁö - Áø¿­»óÅÂ ¿À¸§Â÷¼ø
-/admin/product/a_product.jsp?page=manage&by=dis&order=true
+ìƒí’ˆ ê´€ë¦¬ í˜ì´ì§€ - ì§„ì—´ìƒíƒœ ì˜¤ë¦„ì°¨ìˆœ
+/admin/product/a_product.nm?page=manage&by=dis&order=true
 
-»óÇ° °ü¸® ÆäÀÌÁö - Áø¿­»óÅÂ ³»¸²Â÷¼ø
-/admin/product/a_product.jsp?page=manage&by=dis&order=false
+ìƒí’ˆ ê´€ë¦¬ í˜ì´ì§€ - ì§„ì—´ìƒíƒœ ë‚´ë¦¼ì°¨ìˆœ
+/admin/product/a_product.nm?page=manage&by=dis&order=false
 
-»óÇ° °ü¸® ÆäÀÌÁö - ÆÇ¸Å»óÅÂ ¿À¸§Â÷¼ø
-/admin/product/a_product.jsp?page=manage&by=sal&order=true
+ìƒí’ˆ ê´€ë¦¬ í˜ì´ì§€ - íŒë§¤ìƒíƒœ ì˜¤ë¦„ì°¨ìˆœ
+/admin/product/a_product.nm?page=manage&by=sal&order=true
 
-»óÇ° °ü¸® ÆäÀÌÁö - ÆÇ¸Å»óÅÂ ³»¸²Â÷¼ø
-/admin/product/a_product.jsp?page=manage&by=sal&order=false
+ìƒí’ˆ ê´€ë¦¬ í˜ì´ì§€ - íŒë§¤ìƒíƒœ ë‚´ë¦¼ì°¨ìˆœ
+/admin/product/a_product.nm?page=manage&by=sal&order=false
 
-»óÇ° °ü¸® ÆäÀÌÁö - ÃÑ ´©ÀûÆÇ¸Å·® ¿À¸§Â÷¼ø
-/admin/product/a_product.jsp?page=manage&by=all&order=true
+ìƒí’ˆ ê´€ë¦¬ í˜ì´ì§€ - ì´ ëˆ„ì íŒë§¤ëŸ‰ ì˜¤ë¦„ì°¨ìˆœ
+/admin/product/a_product.nm?page=manage&by=all&order=true
 
-»óÇ° °ü¸® ÆäÀÌÁö - ÃÑ ´©ÀûÆÇ¸Å·® ³»¸²Â÷¼ø
-/admin/product/a_product.jsp?page=manage&by=all&order=false
+ìƒí’ˆ ê´€ë¦¬ í˜ì´ì§€ - ì´ ëˆ„ì íŒë§¤ëŸ‰ ë‚´ë¦¼ì°¨ìˆœ
+/admin/product/a_product.nm?page=manage&by=all&order=false
 
-»óÇ° °ü¸® ÆäÀÌÁö - Áø¿­ÇÔ
-/admin/product/a_product.jsp?page=process&dis=true&no=10000
+ìƒí’ˆ ê´€ë¦¬ í˜ì´ì§€ - ì§„ì—´í•¨
+/admin/product/a_product.nm?page=process&dis=true&no=10000
 
-»óÇ° °ü¸® ÆäÀÌÁö - Áø¿­ ¾ÈÇÔ
-/admin/product/a_product.jsp?page=process&dis=false&no=10000
+ìƒí’ˆ ê´€ë¦¬ í˜ì´ì§€ - ì§„ì—´ ì•ˆí•¨
+/admin/product/a_product.nm?page=process&dis=false&no=10000
 
-»óÇ° °ü¸® ÆäÀÌÁö - ÆÇ¸ÅÇÔ
-/admin/product/a_product.jsp?page=process&sal=true&no=10000
+ìƒí’ˆ ê´€ë¦¬ í˜ì´ì§€ - íŒë§¤í•¨
+/admin/product/a_product.nm?page=process&sal=true&no=10000
 
-»óÇ° °ü¸® ÆäÀÌÁö - ÆÇ¸Å ¾ÈÇÔ
-/admin/product/a_product.jsp?page=process&sal=false&no=10000
+ìƒí’ˆ ê´€ë¦¬ í˜ì´ì§€ - íŒë§¤ ì•ˆí•¨
+/admin/product/a_product.nm?page=process&sal=false&no=10000
 
-»óÇ° °ü¸® ÆäÀÌÁö - »èÁ¦
-/admin/product/a_product.jsp?page=process&del=true&no=10000
+ìƒí’ˆ ê´€ë¦¬ í˜ì´ì§€ - ì‚­ì œ
+/admin/product/a_product.nm?page=process&del=true&no=10000
 
-»óÇ° °ü¸® ÆäÀÌÁö - ¼öÁ¤ÇÏ±â
-/admin/product/a_product.jsp?page=modify&no=10000
-
-
-»óÇ° µî·Ï ÆäÀÌÁö
-/admin/product/a_product.jsp?page=register
-
-»óÇ° µî·Ï ÇÏ±â
-/admin/product/a_product.jsp?page=process
-
-»óÇ° ¼öÁ¤ ÆäÀÌÁö
-/admin/product/a_product.jsp?page=modify
-
-»óÇ° ¼öÁ¤ ÇÏ±â
-/admin/product/a_product.jsp?page=process&no=10000
+ìƒí’ˆ ê´€ë¦¬ í˜ì´ì§€ - ìˆ˜ì •í•˜ê¸°
+/admin/product/a_product.nm?page=modify&no=10000
 
 
-»èÁ¦µÈ »óÇ° °ü¸® ÆäÀÌÁö
-/admin/product/a_product.jsp?page=deleted
+ìƒí’ˆ ë“±ë¡ í˜ì´ì§€
+/admin/product/a_product.nm?page=register
 
-»èÁ¦µÈ »óÇ° °ü¸® ÆäÀÌÁö - »óÇ°¹øÈ£ ¿À¸§Â÷¼ø
-/admin/product/a_product.jsp?page=deleted&by=no&order=true
+ìƒí’ˆ ë“±ë¡ í•˜ê¸°
+/admin/product/a_product.nm?page=process
 
-»èÁ¦µÈ »óÇ° °ü¸® ÆäÀÌÁö - »óÇ°¹øÈ£ ³»¸²Â÷¼ø
-/admin/product/a_product.jsp?page=deleted&by=no&order=false
+ìƒí’ˆ ìˆ˜ì • í˜ì´ì§€
+/admin/product/a_product.nm?page=modify
 
-»èÁ¦µÈ »óÇ° °ü¸® ÆäÀÌÁö - ºĞ·ù ¿À¸§Â÷¼ø
-/admin/product/a_product.jsp?page=deleted&by=ct&order=true
+ìƒí’ˆ ìˆ˜ì • í•˜ê¸°
+/admin/product/a_product.nm?page=process&no=10000
 
-»èÁ¦µÈ »óÇ° °ü¸® ÆäÀÌÁö - ºĞ·ù ³»¸²Â÷¼ø
-/admin/product/a_product.jsp?page=deleted&by=ct&order=false
 
-»èÁ¦µÈ »óÇ° °ü¸® ÆäÀÌÁö - »óÇ°¸í ¿À¸§Â÷¼ø
-/admin/product/a_product.jsp?page=deleted&by=nm&order=true
+ì‚­ì œëœ ìƒí’ˆ ê´€ë¦¬ í˜ì´ì§€
+/admin/product/a_product.nm?page=deleted
 
-»èÁ¦µÈ »óÇ° °ü¸® ÆäÀÌÁö - »óÇ°¸í ³»¸²Â÷¼ø
-/admin/product/a_product.jsp?page=deleted&by=nm&order=false
+ì‚­ì œëœ ìƒí’ˆ ê´€ë¦¬ í˜ì´ì§€ - ìƒí’ˆë²ˆí˜¸ ì˜¤ë¦„ì°¨ìˆœ
+/admin/product/a_product.nm?page=deleted&by=no&order=true
 
-»èÁ¦µÈ »óÇ° °ü¸® ÆäÀÌÁö - °¡°İ ¿À¸§Â÷¼ø
-/admin/product/a_product.jsp?page=deleted&by=pr&order=true
+ì‚­ì œëœ ìƒí’ˆ ê´€ë¦¬ í˜ì´ì§€ - ìƒí’ˆë²ˆí˜¸ ë‚´ë¦¼ì°¨ìˆœ
+/admin/product/a_product.nm?page=deleted&by=no&order=false
 
-»èÁ¦µÈ »óÇ° °ü¸® ÆäÀÌÁö - °¡°İ ³»¸²Â÷¼ø
-/admin/product/a_product.jsp?page=deleted&by=pr&order=false
+ì‚­ì œëœ ìƒí’ˆ ê´€ë¦¬ í˜ì´ì§€ - ë¶„ë¥˜ ì˜¤ë¦„ì°¨ìˆœ
+/admin/product/a_product.nm?page=deleted&by=ct&order=true
 
-»èÁ¦µÈ »óÇ° °ü¸® ÆäÀÌÁö - Àç°í ¿À¸§Â÷¼ø
-/admin/product/a_product.jsp?page=deleted&by=st&order=true
+ì‚­ì œëœ ìƒí’ˆ ê´€ë¦¬ í˜ì´ì§€ - ë¶„ë¥˜ ë‚´ë¦¼ì°¨ìˆœ
+/admin/product/a_product.nm?page=deleted&by=ct&order=false
 
-»èÁ¦µÈ »óÇ° °ü¸® ÆäÀÌÁö - Àç°í ³»¸²Â÷¼ø
-/admin/product/a_product.jsp?page=deleted&by=st&order=false
+ì‚­ì œëœ ìƒí’ˆ ê´€ë¦¬ í˜ì´ì§€ - ìƒí’ˆëª… ì˜¤ë¦„ì°¨ìˆœ
+/admin/product/a_product.nm?page=deleted&by=nm&order=true
 
-»èÁ¦µÈ »óÇ° °ü¸® ÆäÀÌÁö - ÃÑ ´©ÀûÆÇ¸Å·® ¿À¸§Â÷¼ø
-/admin/product/a_product.jsp?page=deleted&by=all&order=true
+ì‚­ì œëœ ìƒí’ˆ ê´€ë¦¬ í˜ì´ì§€ - ìƒí’ˆëª… ë‚´ë¦¼ì°¨ìˆœ
+/admin/product/a_product.nm?page=deleted&by=nm&order=false
 
-»èÁ¦µÈ »óÇ° °ü¸® ÆäÀÌÁö - ÃÑ ´©ÀûÆÇ¸Å·® ³»¸²Â÷¼ø
-/admin/product/a_product.jsp?page=deleted&by=all&order=false
+ì‚­ì œëœ ìƒí’ˆ ê´€ë¦¬ í˜ì´ì§€ - ê°€ê²© ì˜¤ë¦„ì°¨ìˆœ
+/admin/product/a_product.nm?page=deleted&by=pr&order=true
 
-»èÁ¦µÈ »óÇ° °ü¸® ÆäÀÌÁö - »èÁ¦µÈ »óÇ° º¹¿øÇÏ±â
-/admin/product/a_product.jsp?page=process&del=false&no=10000
+ì‚­ì œëœ ìƒí’ˆ ê´€ë¦¬ í˜ì´ì§€ - ê°€ê²© ë‚´ë¦¼ì°¨ìˆœ
+/admin/product/a_product.nm?page=deleted&by=pr&order=false
+
+ì‚­ì œëœ ìƒí’ˆ ê´€ë¦¬ í˜ì´ì§€ - ì¬ê³  ì˜¤ë¦„ì°¨ìˆœ
+/admin/product/a_product.nm?page=deleted&by=st&order=true
+
+ì‚­ì œëœ ìƒí’ˆ ê´€ë¦¬ í˜ì´ì§€ - ì¬ê³  ë‚´ë¦¼ì°¨ìˆœ
+/admin/product/a_product.nm?page=deleted&by=st&order=false
+
+ì‚­ì œëœ ìƒí’ˆ ê´€ë¦¬ í˜ì´ì§€ - ì´ ëˆ„ì íŒë§¤ëŸ‰ ì˜¤ë¦„ì°¨ìˆœ
+/admin/product/a_product.nm?page=deleted&by=all&order=true
+
+ì‚­ì œëœ ìƒí’ˆ ê´€ë¦¬ í˜ì´ì§€ - ì´ ëˆ„ì íŒë§¤ëŸ‰ ë‚´ë¦¼ì°¨ìˆœ
+/admin/product/a_product.nm?page=deleted&by=all&order=false
+
+ì‚­ì œëœ ìƒí’ˆ ê´€ë¦¬ í˜ì´ì§€ - ì‚­ì œëœ ìƒí’ˆ ë³µì›í•˜ê¸°
+/admin/product/a_product.nm?page=process&del=false&no=10000
 
 ---------------------------------------------------------------------------------------
 
-¸ÅÃâ ºĞ¼®
-/admin/sales/a_sales.jsp?page=analysis
+ë§¤ì¶œ ë¶„ì„
+/admin/sales/a_sales.nm?page=analysis
 
-¸ÅÃâ ºĞ¼® - ¼øÀ§ ¿À¸§Â÷¼ø
-/admin/sales/a_sales.jsp?page=analysis&order=true
+ë§¤ì¶œ ë¶„ì„ - ìˆœìœ„ ì˜¤ë¦„ì°¨ìˆœ
+/admin/sales/a_sales.nm?page=analysis&order=true
 
-¸ÅÃâ ºĞ¼® - ¼øÀ§ ³»¸²Â÷¼ø
-/admin/sales/a_sales.jsp?page=analysis&order=false
+ë§¤ì¶œ ë¶„ì„ - ìˆœìœ„ ë‚´ë¦¼ì°¨ìˆœ
+/admin/sales/a_sales.nm?page=analysis&order=false
