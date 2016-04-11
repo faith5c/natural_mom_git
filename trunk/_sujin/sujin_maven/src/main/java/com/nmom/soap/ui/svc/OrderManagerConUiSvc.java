@@ -15,13 +15,15 @@ public class OrderManagerConUiSvc extends ConUiSvc {
 	
 	final int ORDER_LIST = 1;
 	final int ORDER_TRACKING_NUM_INSERT = 2;
-	final int EXIT = 3;
+	final int ORDER_PROCESS_CD_CHANGE_MANY = 3;
+	final int EXIT = 4;
 	final int PREV = 0;
 	
 	@Override
 	public void showMenu() {
 		System.out.println(" 1. ORDER_LIST");
 		System.out.println(" 2. ORDER_TRACKING_NUM_INSERT");
+		System.out.println(" 3. ORDER_PROCESS_CD_CHANGE_MANY");
 		System.out.println(" 3. EXIT");
 		System.out.println(" 0. PREV");
 		System.out.print(" >> ");
@@ -58,6 +60,9 @@ public class OrderManagerConUiSvc extends ConUiSvc {
 			editTrackingNum(orderDaoOra.editTrackingNumOrder(10010, 1010111111));
 			break;
 			
+		case ORDER_PROCESS_CD_CHANGE_MANY :
+			editTrackingNum(productOrderDaoOra.editOrder(new int[]{10001,10002,10003,10006}, 11));
+			break;
 		case EXIT: //3
 			System.exit(0);
 			break;
@@ -73,7 +78,7 @@ public class OrderManagerConUiSvc extends ConUiSvc {
 	}
 
 	private void editTrackingNum(int editTrackingNumOrder) {
-		if(editTrackingNumOrder > 0) System.out.println("운송장 정보 등록 완료");
+		if(editTrackingNumOrder > 0) System.out.println(editTrackingNumOrder+"개 운송장 정보 등록 완료");
 		else System.out.println("운송장 정보 등록 실패");
 	}
 

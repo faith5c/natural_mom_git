@@ -14,8 +14,11 @@ public class ProductOrderDaoOraImpl extends NamedParameterJdbcDaoSupport impleme
 	final String ADD_ORDER = "INSERT INTO tb_product_n_order (product_no, order_no, buy_num, process_cd) "
 			+ "VALUES (:product_no, :order_no, :buy_num, :process_cd)";
 	
-	final String EDIT_ALL_ORDER = 
+	final String EDIT_ORDER = 
 			"UPDATE NMDB.tb_product_n_order SET process_cd = :process_cd WHERE order_no = :order_no";
+	
+	String EDIT_MANY_ORDER = 
+			"UPDATE NMDB.tb_product_n_order SET process_cd = :process_cd WHERE ";
 	
 	final String EDIT_ONT_ORDER = 
 			"UPDATE tb_product_n_order po SET po.process_cd = :process_cd "
@@ -38,10 +41,32 @@ public class ProductOrderDaoOraImpl extends NamedParameterJdbcDaoSupport impleme
 		MapSqlParameterSource ps = new MapSqlParameterSource();
 		ps.addValue("order_no", new Integer(order_no), Types.INTEGER);
 		ps.addValue("process_cd", new Integer(process_cd), Types.INTEGER);
-		int r = this.getNamedParameterJdbcTemplate().update(EDIT_ALL_ORDER, ps);
+		int r = this.getNamedParameterJdbcTemplate().update(EDIT_ORDER, ps);
 		return r;
 	}
 
+	
+	public int editOrder(int[] order_no, int process_cd) throws DataAccessException {
+		MapSqlParameterSource ps = new MapSqlParameterSource();
+		ps.addValue("process_cd", process_cd);
+		if (order_no.length > 0) {
+			for (int i = 0; i < order_no.length; i++) {
+				if (i == 0)
+					EDIT_MANY_ORDER += "order_no = :order_no" + i;
+				else
+					EDIT_MANY_ORDER += " OR order_no = :order_no" + i;
+
+				ps.addValue("order_no" + i, new Integer(order_no[i]));
+			}
+			
+			int r = this.getNamedParameterJdbcTemplate().update(EDIT_MANY_ORDER, ps);
+			return r;
+		}
+		else{
+			return 0;
+		}
+	}
+	
 	
 	public int editPartOrder(int order_no, String product_name, int process_cd) throws DataAccessException {
 		// TODO Auto-generated method stub
@@ -52,5 +77,8 @@ public class ProductOrderDaoOraImpl extends NamedParameterJdbcDaoSupport impleme
 		int r = this.getNamedParameterJdbcTemplate().update(EDIT_ONT_ORDER, ps);
 		return r;
 	}
+
+
+	
 
 }

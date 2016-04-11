@@ -15,6 +15,9 @@ public interface IProductOrderDao {
 	//	2. 처리상태 변경(전체)
 	public int editOrder(int order_no, int process_cd) throws DataAccessException;	
 	
+	//	2. 처리상태 변경(전체)
+	public int editOrder(int[] order_no, int process_cd) throws DataAccessException;	
+	
 	// 3. 처리상태 변경(일부)
 	public int editPartOrder(int order_no, String product_name, int process_cd) throws DataAccessException;
 	
