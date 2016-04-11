@@ -36,6 +36,17 @@ public class EventConsoleSvc implements IEventSvc{
 					+e.getBoard_id()+", "+e.getEvt_write_day()+", "+e.getEvt_hits()+", "+e.getCount_re());
 		}
 	}
+	
+	@Override
+	public List<EventVo> getEventList(int start, int end) {
+		List<EventVo> e_list = eventDao.getEventList(start, end);
+		System.out.println("#번호, 제목, 아이디, 작성일, 조회, 리플");
+		for(EventVo e : e_list){
+			System.out.println("#" +e.getEvt_rnum() +", "+ e.getEvt_title()+", "
+					+e.getBoard_id()+", "+e.getEvt_write_day()+", "+e.getEvt_hits()+", "+e.getCount_re());
+		}
+		return null;
+	}
 
 	
 	@Override

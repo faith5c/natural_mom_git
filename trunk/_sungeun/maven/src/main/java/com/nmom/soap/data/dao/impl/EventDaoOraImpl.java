@@ -26,6 +26,10 @@ public class EventDaoOraImpl extends NamedParameterJdbcDaoSupport implements IEv
 	// SQL
 	private final String SQL_EVENT_SELECT_ALL ="SELECT * FROM TB_EVENT";
 	private final String SQL_EVENT_SELECT_LIST ="SELECT * FROM NMDB.V_EVENT_LIST";
+	private final String SQL_EVNET_SELECT_LIST_START_END 
+		="SELECT A.* FROM (SELECT rownum as evt_rnum, V.* from V_EVENT_LIST V ORDER BY V.EVENT_NO DESC) A "
+				+ "WHERE A.evt_rnum >= ? AND A.evt_rnum <= ?";
+	
 	private final String SQL_EVENT_SELECT_ONE 
 		= "SELECT * FROM tb_event WHERE evt_del_check=0 and event_no=?";
 	private final String SQL_EVENT_SELECT_BY_TITLE 
@@ -65,6 +69,25 @@ public class EventDaoOraImpl extends NamedParameterJdbcDaoSupport implements IEv
 								event_list.setEvt_write_day(rs.getDate("evt_write_day") );
 								event_list.setEvt_hits(rs.getInt("evt_hits") );
 								event_list.setCount_re(rs.getInt("count_re") );
+								
+								return event_list;	}
+							});
+	}
+	@Override
+	public List<EventVo> getEventList(int start, int end) {
+		jtem = getJdbcTemplate();
+		return jtem.query(SQL_EVNET_SELECT_LIST_START_END,
+						new Object[]{new Integer(start), new Integer(end)}, new RowMapper<EventVo>() {
+							@Override
+							public EventVo mapRow(ResultSet rs, int arg1) throws SQLException {
+								EventVo event_list = new EventVo();
+								event_list.setEvent_no(rs.getInt("event_no") );
+								event_list.setEvt_title(rs.getString("evt_title") );
+								event_list.setMem_id(rs.getString("mem_id") );
+								event_list.setEvt_write_day(rs.getDate("evt_write_day") );
+								event_list.setEvt_hits(rs.getInt("evt_hits") );
+								event_list.setCount_re(rs.getInt("count_re") );
+								event_list.setEvt_rnum(rs.getInt("evt_rnum"));
 								
 								return event_list;	}
 							});

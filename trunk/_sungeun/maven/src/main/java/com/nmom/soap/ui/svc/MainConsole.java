@@ -41,6 +41,7 @@ public class MainConsole {
 		
 		// EventSvc
 //		main.eventSvc.getEventList();
+//		main.eventSvc.getEventList(1, 3);
 //		main.eventSvc.getAllEvents();
 //		main.eventSvc.getOneEvent(1);
 //		main.eventSvc.getEvents_by_title("자연");
