@@ -56,21 +56,21 @@ public class NoticeConUiSvc extends ConUiSvc {
 	public void execFunctions(int num) {
 		switch (num) {
 		case NOTICE_LIST:
-			getNoticeList(vNoticeDaoOra.getAllNotice(1, 5));
+			getNoticeList(vNoticeDaoOra.getAllNotice(2, 5));
 			break;
 		case NOTICE_SEARCH_BY_TITLE:
-			getNoticeList(vNoticeDaoOra.getSearchByTitleNotice("휴무", 1, 5));
+			getNoticeList(vNoticeDaoOra.getSearchByTitleNotice("휴무", 2, 5));
 			break;
 		case NOTICE_SEARCH_BY_CONTENT:
-			getNoticeList(vNoticeDaoOra.getSearchByContentNotice("자연맘", 1, 5));
+			getNoticeList(vNoticeDaoOra.getSearchByContentNotice("자연맘", 2, 5));
 			break;
 			
 		case NOTICE_SEARCH_BY_ID:
-			getNoticeList(vNoticeDaoOra.getSearchByIdNotice("admin", 1, 5));
+			getNoticeList(vNoticeDaoOra.getSearchByIdNotice("admin", 2, 5));
 			break;
 			
 		case NOTICE_SEARCH_BY_TITLE_N_CONTENT:
-			getNoticeList(vNoticeDaoOra.getSearchByTitleNContentNotice("휴무",1, 5));
+			getNoticeList(vNoticeDaoOra.getSearchByTitleNContentNotice("휴무",2, 5));
 			break;
 		
 		case NOTICE_READ:
@@ -86,7 +86,7 @@ public class NoticeConUiSvc extends ConUiSvc {
 							null, 
 							"admin01")));
 			
-			getNoticeList(vNoticeDaoOra.getAllNotice(1, 5));
+			getNoticeList(vNoticeDaoOra.getAllNotice(2, 5));
 			break;
 			
 		case NOTICE_UPDATE:
@@ -97,12 +97,12 @@ public class NoticeConUiSvc extends ConUiSvc {
 							null, 
 							null, 
 							"admin01")));
-			getNoticeList(vNoticeDaoOra.getAllNotice(1, 5));
+			getNoticeList(vNoticeDaoOra.getAllNotice(2, 5));
 			break;
 			
 		case NOTICE_DELELT:
 			deleteNotice(noticeDaoOra.removeNotice(5, "admin01"));
-			getNoticeList(vNoticeDaoOra.getAllNotice(1, 5));
+			getNoticeList(vNoticeDaoOra.getAllNotice(2, 5));
 			break;
 			
 		case NOTICE_RE_WITRE:
