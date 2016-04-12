@@ -9,28 +9,56 @@
 	
 	
 <!-- DAO -->
-	<bean id="eventDao" class="com.nmom.soap.data.dao.impl.EventDaoOraImpl">
+	<bean id="eventDao" class="com.nmom.soap.data.impl.board.event.EventDaoOraImpl">
 		<property name="dataSource">
 			<ref local="ds"/>
 		</property>
 	</bean>
 	
-	<bean id="eventReDao" class="com.nmom.soap.data.dao.impl.Event_reDaoOraImpl">
+	<bean id="eventReDao" class="com.nmom.soap.data.impl.board.event.Event_reDaoOraImpl">
 		<property name="dataSource">
 			<ref local="ds"/>
 		</property>
 	</bean>
 	
-	<bean id="memberDao" class="com.nmom.soap.data.dao.impl.MemberDaoOraImpl">
+	<bean id="memberDao" class="com.nmom.soap.data.impl.member.MemberDaoOraImpl">
 		<property name="dataSource">
 			<ref local="ds"/>
 		</property>	
 	</bean>
 	
-	<bean id="boardAccessDao" class="com.nmom.soap.data.dao.impl.BoardAccessDaoOraImpl">
+	<bean id="boardAccessDao" class="com.nmom.soap.data.impl.member.BoardAccessDaoOraImpl">
 		<property name="dataSource">
 			<ref local="ds"/>
 		</property>
 	</bean>
+	
+	
+<!-- SVC -->
 
+	<bean id="eventSvc" class="com.nmom.soap.svc.board.event.EventSvcImpl">
+		<property name="eventDao">
+			<ref local="eventDao"/>
+		</property>
+	</bean>
+	
+	<bean id="eventReSvc" class="com.nmom.soap.svc.board.event.Event_reSvcImpl">
+		<property name="eventReDao">
+			<ref local="eventReDao"/>
+		</property>
+	</bean>
+
+	<bean id="memberSvc" class="com.nmom.soap.svc.impl.member.MemberSvcImpl">
+		<property name="memberDao">
+			<ref local="memberDao"/>
+		</property>
+	</bean>
+	
+	<bean id="boardAccessSvc" class="com.nmom.soap.svc.impl.member.BoardAccessSvcImpl">
+		<property name="boardAccessDao">
+			<ref local="boardAccessDao"/>
+		</property>
+	</bean>
+	
+	
 </beans>

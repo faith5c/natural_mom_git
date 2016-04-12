@@ -10,6 +10,29 @@
 	<!-- 파일 불러오는 부분. -->
 	<beans:import resource="domain-sm-context.xml"/>
 	<beans:import resource="domain-sr-context.xml"/>
+	<beans:import resource="domain-se-context.xml"/>
+	
+	
+	<!-- Controller -->
+	<beans:bean id="indexCtl" class="com.nmom.soap.controller.IndexController">
+	</beans:bean>
+<!-- 	<beans:bean id="memberCtl" class="com.nmom.soap.controller.MemberController">
+		<beans:property name="memberSvc">
+			<beans:ref local="memberSvc"/>
+		</beans:property> 
+	</beans:bean>-->
+	<beans:bean id="eventCtl" class="com.nmom.soap.controller.EventController">
+		<beans:property name="eventSvc">
+			<beans:ref local="eventSvc"/>
+		</beans:property>
+		<beans:property name="eventReSvc">
+			<beans:ref local="eventReSvc"/>
+		</beans:property>
+		<beans:property name="boardAccessSvc">
+			<beans:ref local="boardAccessSvc"/>
+		</beans:property>
+	</beans:bean>
+	
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
@@ -25,6 +48,6 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.nmom.soap" />
+ <!-- 	<context:component-scan base-package="com.nmom.soap" />  -->
 		
 </beans:beans>
