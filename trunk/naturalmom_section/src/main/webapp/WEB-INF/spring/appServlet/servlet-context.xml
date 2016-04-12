@@ -7,9 +7,9 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<!-- 파일 불러오는 부분. 이어달리기 식으로 안하면 노란색 경고같이 씀 -->
+	<!-- 파일 불러오는 부분. -->
 	<beans:import resource="domain-sm-context.xml"/>
-
+	<beans:import resource="domain-sr-context.xml"/>
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
@@ -26,7 +26,5 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.nmom.soap" />
-	
-	
-	
+		
 </beans:beans>
