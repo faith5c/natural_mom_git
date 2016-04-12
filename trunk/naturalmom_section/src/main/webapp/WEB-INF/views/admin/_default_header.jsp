@@ -7,8 +7,8 @@
 		<nav id = "admin_info_menu">
 			<ul>
 				<li><a href="<c:url value = '/index.nm' />">프론트페이지</a></li>
-				<li><a href="<c:url value = '/admin/a_edit_admin.jsp' />">정보 수정</a></li>
-				<li><a href="<c:url value = '/admin/a_logout.jsp' />">로그아웃</a></li>
+				<li><a href="<c:url value = '/admin/edit.nm' />">정보 수정</a></li>
+				<li><a href="<c:url value = '/index.nm' />" onclick="logout()">로그아웃</a></li>
 			</ul>
 			<h3>관리자 모드입니다.</h3>
 		</nav>
@@ -17,40 +17,49 @@
 		<nav id = "admin_menu">
 		<ul>
 			<li>
-				<a href="<c:url value = '/admin/product/a_product.jsp' />">상품</a>
+				<a href="<c:url value = '/admin/product.nm' />">상품</a>
 				<div id="sub">
 					<ul>
-						<li><a href="<c:url value = '/admin/product/a_product.jsp?page=register' />">상품등록</a></li>
-						<li><a href="<c:url value = '/admin/product/a_product.jsp?page=manage' />">상품관리</a></li>
-						<li><a href="<c:url value = '/admin/product/a_product.jsp?page=deleted' />">삭제상품</a></li>
+						<li><a href="<c:url value = '/admin/product.nm?page=register' />">상품등록</a></li>
+						<li><a href="<c:url value = '/admin/product.nm?page=manage' />">상품관리</a></li>
+						<li><a href="<c:url value = '/admin/product.nm?page=deleted' />">삭제상품</a></li>
 					</ul>
 				</div>
 			</li>
-			<li><a href="<c:url value = '/admin/order/a_order.jsp' />">주문</a></li>
-			<li><a href="<c:url value = '/admin/member/a_member.jsp' />">회원</a></li>
+			<li><a href="<c:url value = '/admin/order.nm' />">주문</a></li>
+			<li><a href="<c:url value = '/admin/member.nm' />">회원</a></li>
 			<li>
-				<a href="<c:url value = '/admin/board/a_board.jsp' />">게시판</a>
+				<a href="<c:url value = '/admin/board.nm' />">게시판</a>
 				<div id="sub">
 					<ul>
-						<li><a href="<c:url value = '/admin/board/a_board.jsp?page=notice' />">공지사항</a></li>
-						<li><a href="<c:url value = '/admin/board/a_board.jsp?page=event' />">이벤트</a></li>
-						<li><a href="<c:url value = '/admin/board/a_board.jsp?page=qna' />">Q&A</a></li>
-						<li><a href="<c:url value = '/admin/board/a_board.jsp?page=review' />">상품후기</a></li>
-						<li><a href="<c:url value = '/admin/board/a_board.jsp?page=faq' />">자주하는 질문</a></li>
+						<li><a href="<c:url value = '/admin/board.nm?page=notice' />">공지사항</a></li>
+						<li><a href="<c:url value = '/admin/board.nm?page=event' />">이벤트</a></li>
+						<li><a href="<c:url value = '/admin/board.nm?page=qna' />">Q&A</a></li>
+						<li><a href="<c:url value = '/admin/board.nm?page=review' />">상품후기</a></li>
+						<li><a href="<c:url value = '/admin/board.nm?page=faq' />">자주하는 질문</a></li>
 					</ul>
 				</div>
 			</li>
 			<li>
-				<a href="<c:url value = '/admin/sales/a_sales.jsp' />">매출</a>
+				<a href="<c:url value = '/admin/sales.nm' />">매출</a>
 				<div id="sub">
 					<ul>
-						<li><a href="<c:url value = '/admin/sales/a_sales.jsp?page=table' />">매출 조회</a></li>
-						<li><a href="<c:url value = '/admin/sales/a_sales.jsp?page=analysis' />">매출 분석</a></li>
+						<li><a href="<c:url value = '/admin/sales.nm?page=table' />">매출 조회</a></li>
+						<li><a href="<c:url value = '/admin/sales.nm?page=analysis' />">매출 분석</a></li>
 					</ul>
 				</div>
 			</li>
 		</ul>
 		</nav>
+<!------------------------------------------------------------------------Script -->
+<script type="text/javascript">
+	function logout() {
+		
+	}
+</script>		
+		
 </html>
 
-<!------------------------------------------------------------------------Script -->
+
+
+

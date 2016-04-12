@@ -1,10 +1,12 @@
 package com.nmom.soap.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class IndexController {
@@ -43,7 +45,6 @@ public class IndexController {
 		return "mypage/mypage";
 	}
 	
-	
 	@RequestMapping(value ="/customer_center.nm", method=RequestMethod.GET)
 	public String menu_customer_center(HttpServletRequest req){
 		return "board/customer_center";
@@ -53,6 +54,9 @@ public class IndexController {
 	public String menu_admin(HttpServletRequest req){
 		return "admin/a_default";
 	}
+	
+	
+	
 	
 	@RequestMapping(value ="/product1.nm", method=RequestMethod.GET)
 	public String product_menu_1(HttpServletRequest req){
@@ -73,6 +77,9 @@ public class IndexController {
 	public String product_menu_4(HttpServletRequest req){
 		return "product/product_menu";
 	}
+	
+	
+	
 	
 	@RequestMapping(value ="/delivery.nm", method=RequestMethod.GET)
 	public String delivery(HttpServletRequest req){
@@ -97,5 +104,38 @@ public class IndexController {
 	
 ///////////////////////////////////////////////////////////////////////////////////////////
 	// 관리자 페이지 인덱스 메뉴
+	
+	@RequestMapping(value ="/admin/edit.nm", method=RequestMethod.GET)
+	public String admin_edit(HttpServletRequest req){
+		return "admin/a_edit_admin";
+	}
+	
+	
+	
+	
+	@RequestMapping(value ="/admin/product.nm", method=RequestMethod.GET)
+	public String admin_product(HttpServletRequest req){
+		return "admin/product/a_product";
+	}
+	
+	@RequestMapping(value ="/admin/order.nm", method=RequestMethod.GET)
+	public String admin_order(HttpServletRequest req){
+		return "admin/order/a_order";
+	}
+	
+	@RequestMapping(value ="/admin/member.nm", method=RequestMethod.GET)
+	public String admin_member(HttpServletRequest req){
+		return "admin/member/a_member";
+	}
+	
+	@RequestMapping(value ="/admin/board.nm", method=RequestMethod.GET)
+	public String admin_board(HttpServletRequest req){
+		return "admin/board/a_board";
+	}
+	
+	@RequestMapping(value ="/admin/sales.nm", method=RequestMethod.GET)
+	public String admin_sales(HttpServletRequest req){
+		return "admin/sales/a_sales";
+	}
 
 }
