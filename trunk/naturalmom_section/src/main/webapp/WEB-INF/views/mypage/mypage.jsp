@@ -42,7 +42,7 @@
 			<div id="content_body">
 <%
 				if(submenu.equals("wishlist")){%>
-					<%@include file="_wishlist.jsp" %>
+					<%@include file="_interest.jsp" %>
 <%				}else if(submenu.equals("edit")){%>
 					<%@include file="_edit_member.jsp" %>
 <%				}else{
