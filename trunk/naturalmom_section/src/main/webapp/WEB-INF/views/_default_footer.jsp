@@ -6,9 +6,9 @@
 <!--회사메뉴-->
 		<nav id="company_menu">
 			<ul>
-				<a href="<c:url value = '/company/company_menu_1.jsp' />">회사소개</a>
-				<a href="<c:url value = '/company/company_menu_2.jsp' />">Natural 시스템</a>
-				<a href="<c:url value = '/company/company_menu_3.jsp' />">Natural 파머스</a>
+				<a href="<c:url value = '/company/company_menu_1.nm' />">회사소개</a>
+				<a href="<c:url value = '/company/company_menu_2.nm' />">Natural 시스템</a>
+				<a href="<c:url value = '/company/company_menu_3.nm' />">Natural 파머스</a>
 			</ul>
 		</nav>
 

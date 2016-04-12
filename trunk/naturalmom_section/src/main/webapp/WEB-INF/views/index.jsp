@@ -115,8 +115,8 @@
 		<!--기타배너 : 주문/회원/배송/계좌번호)-->
 		<aside>
 			<img src="resources/images/banner_order.jpg">
-			<a href="join/membership.jsp"><img src="resources/images/banner_membership.jpg"></a>
-			<a href="company/banner_delivery.jsp"><img src="resources/images/banner_delivery.jpg"></a>
+			<a href="<c:url value='join.nm'/>"><img src="resources/images/banner_membership.jpg"></a>
+			<a href="<c:url value='delivery.nm'/>"><img src="resources/images/banner_delivery.jpg"></a>
 			<img src="resources/images/banner_account.jpg">
 		</aside>
 	</div>

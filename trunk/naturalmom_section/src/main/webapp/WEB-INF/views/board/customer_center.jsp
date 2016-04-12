@@ -5,12 +5,12 @@
   <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="resources/js/jquery-1.11.3.min.js"></script>
 	<!-- [if lt IE 9]><script src="js/html5shiv.js"></script><![endif] -->
 	
-	<link rel="apple-touch-icon" href="../images/logo.ico" /> <!--애플아이콘등록-->
-	<link rel="shortcut icon" href="../images/logo.ico" /> <!--단축키아이콘등록-->
-	<link rel="stylesheet" href="../css/mypage.css" />
+	<link rel="apple-touch-icon" href="resources/images/logo.ico" /> <!--애플아이콘등록-->
+	<link rel="shortcut icon" href="resources/images/logo.ico" /> <!--단축키아이콘등록-->
+	<link rel="stylesheet" href="resources/css/mypage.css" />
 
 	<title>자연맘</title>  
 <%
@@ -42,10 +42,10 @@
 		<div id="content">
 			<div id="sidebar">
 				<ul>
-					<li><a href="customer_center.jsp?page=notice">공지사항</a></li>
-					<li><a href="customer_center.jsp?page=event">이벤트</a></li>
-					<li><a href="customer_center.jsp?page=qna">Q&A</a></li>
-					<li><a href="customer_center.jsp?page=faq">자주하는 질문</a></li>
+					<li><a href="<c:url value = '/customer_center.nm?page=notice'/>">공지사항</a></li>
+					<li><a href="<c:url value = '/customer_center.nm?page=event'/>">이벤트</a></li>
+					<li><a href="<c:url value = '/customer_center.nm?page=qna'/>">Q&A</a></li>
+					<li><a href="<c:url value = '/customer_center.nm?page=faq'/>">자주하는 질문</a></li>
 				</ul>
 			</div>
 			<div id="content_body">

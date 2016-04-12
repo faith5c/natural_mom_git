@@ -6,7 +6,7 @@
 <!--관리자 정보메뉴-->
 		<nav id = "admin_info_menu">
 			<ul>
-				<li><a href="<c:url value = '/index.jsp' />">프론트페이지</a></li>
+				<li><a href="<c:url value = '/index.nm' />">프론트페이지</a></li>
 				<li><a href="<c:url value = '/admin/a_edit_admin.jsp' />">정보 수정</a></li>
 				<li><a href="<c:url value = '/admin/a_logout.jsp' />">로그아웃</a></li>
 			</ul>

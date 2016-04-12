@@ -5,19 +5,19 @@
   <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script src="../js/jquery-1.11.3.min.js"></script>
+	<script src="resources/js/jquery-1.11.3.min.js"></script>
 	<!-- [if lt IE 9]><script src="js/html5shiv.js"></script><![endif] -->
 	
-	<link rel="apple-touch-icon" href="../images/logo.ico" /> <!--애플아이콘등록-->
-	<link rel="shortcut icon" href="../images/logo.ico" /> <!--단축키아이콘등록-->
-	<link rel="stylesheet" href="../css/mypage.css" />
+	<link rel="apple-touch-icon" href="resources/images/logo.ico" /> <!--애플아이콘등록-->
+	<link rel="shortcut icon" href="resources/images/logo.ico" /> <!--단축키아이콘등록-->
+	<link rel="stylesheet" href="resources/css/mypage.css" />
 
 	<title>자연맘</title>  
 <%
 	request.setCharacterEncoding("UTF-8");
 	String submenu = request.getParameter("page");
 	if(submenu==null){
-		submenu = "wishlist";
+		submenu = "interest";
 	}
 %>
   </head>
@@ -35,18 +35,18 @@
 		<div id="content">
 			<div id="sidebar">
 				<ul>
-					<li><a href="mypage.jsp?page=wishlist" onclick="to_wishlist()">관심상품</a></li>
-					<li><a href="mypage.jsp?page=edit" onclick="to_edit_member()">회원정보 수정</a></li>
+					<li><a href="<c:url value = '/mypage.nm?page=interest' />" onclick="to_wishlist()">관심상품</a></li>
+					<li><a href="<c:url value = '/mypage.nm?page=edit' />" onclick="to_edit_member()">회원정보 수정</a></li>
 				</ul>
 			</div>
 			<div id="content_body">
 <%
-				if(submenu.equals("wishlist")){%>
+				if(submenu.equals("interest")){%>
 					<%@include file="_interest.jsp" %>
 <%				}else if(submenu.equals("edit")){%>
 					<%@include file="_edit_member.jsp" %>
 <%				}else{
-					System.out.println("mypage submenu error");
+					System.out.println(submenu);
 				}
 %>
 				
