@@ -11,8 +11,8 @@
 				<li><a href="<c:url value = '/mypage/mypage.jsp' />">마이페이지</a></li>
 				<li><a href="<c:url value = '/order/orderlist.jsp' />">주문조회</a></li>
 				<li><a href="<c:url value = '/order/basket.jsp' />">장바구니</a></li>
-				<li><a href="<c:url value = '/join/membership.jsp' />">회원가입</a></li>
-				<li><a href="<c:url value = '/login/login.jsp' />">로그인</a></li>
+				<li><a href="<c:url value = '/join.nm' />">회원가입</a></li>
+				<li><a href="<c:url value = '/login.nm' />">로그인</a></li>
 			</ul>
 		</nav>
 
