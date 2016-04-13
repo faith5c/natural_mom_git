@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <style type = "text/css">
 		* { margin: 0px; padding: 0px; }
@@ -79,16 +80,22 @@
 				<td width="15%">작성일</td>
 				<td width="10%">조회</td>
 			</tr>
+		
+		<c:forEach var="e" items="${e_list}">
 			<tr>
-				<td id = "no">1</td>
-				<td><a href = "a_board.jsp?page=event&r=1">3만원 이상 구매 시 무료배송</a></td>
-				<td id = "id" >자연맘</td>
-				<td id = "write_day" >2016-03-16</td>
-				<td id = "hits" >5</td>
-				
+				<td id = "no">${e.evt_rnum}</td>
+				<td><a href = "a_board.jsp?page=event&r=1">${e.evt_title}</a></td>
+				<td id = "id" >${e.mem_id}</td>
+				<td id = "write_day" >${e.evt_write_day}</td>
+				<td id = "hits" >${e.evt_hits}</td>
+				<td id = "realno" style="display: none">${e.event_no}</td>
 			</tr>
-			<td colspan="5" style="text-align: right"><a id = "write" name = "write" 
+		</c:forEach>	
+			
+			<tr>
+				<td colspan="5" style="text-align: right"><a id = "write" name = "write" 
 					href="a_board.jsp?page=event&w=true">글쓰기</a></td>
+			</tr>
 		</table>
 		<div id = "pages">
 			<a href = "#">&lsaquo;</a>

@@ -22,8 +22,8 @@
 	// 게시글 내용 보기인지 글쓰기인지 확인하는 부분
 	String w = request.getParameter("w");
 	if (w == null || w.isEmpty()) w = "false"; //여기도 boolean형으로 처리 안해놨음
-	String r = request.getParameter("r");	// 일단 int형 처리 안함
-	if (r == null) r = "";
+	int r = request.getParameter("r")!=null? Integer.parseInt(request.getParameter("r")) : 0 ;	
+	
 %>
   </head>
 
@@ -50,11 +50,11 @@
 			<div id="content_body">
 
 
-<%					if(r.equals("")&& w.equals("false")){%>
+<%					if(r==0&& w.equals("false")){%>
 					<%@include file="_event_list.jsp" %>
 <% 					}else if(w.equals("true")){%>
 					<%@include file="_event_write.jsp" %>
-<%					}else if(r.equals("1")){%>
+<%					}else if(r>0){%>
 					<%@include file="_event_read.jsp" %>					
 <%					} %>					
 	
