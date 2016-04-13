@@ -29,14 +29,12 @@ public class EventSvcImpl implements IEventSvc {
 
 	@Override
 	public List<EventVo> getEventList(int start, int end) {
-		// TODO Auto-generated method stub
-		return null;
+		return eventDao.getEventList(start, end);
 	}
 
 	@Override
 	public EventVo getOneEvent(int event_no) {
-		// TODO Auto-generated method stub
-		return null;
+		return eventDao.getOneEvent(event_no);
 	}
 
 	@Override
