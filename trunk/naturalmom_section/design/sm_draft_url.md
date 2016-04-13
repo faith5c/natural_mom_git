@@ -42,7 +42,7 @@ _____________________________________________________________
 * 상품
 
 	- 전체 비누 보기
-	/index.rm
+	/index.nm
 	
 	- 카테고리별 목록보기	
 	/product/list?cate=xx
@@ -56,87 +56,87 @@ _____________________________________________________________
 * 장바구니
 
 	- 장바구니 보기
-	/cart.rm
+	/cart.nm
 	
 	- 장바구니 상품 개수 수정
-	/cart/edit_proc.rm
+	/cart/edit_proc.nm
 	
 	- 장바구니 상품 삭제
-	/cart/del_proc.rm
+	/cart/del_proc.nm
 	
 	- 장바구니를 관심상품에 등록
-	/cart/to_interest.rm
+	/cart/to_interest.nm
 	
 * 관심상품
 	
 	- 관심상품 보기
-	/interest.rm
+	/interest.nm
 	
 	- 관심상품 삭제
-	/interest/del_proc.rm
+	/interest/del_proc.nm
 	
 	- 관심상품을 장바구니에 등록
-	/interest/to_cart.rm
+	/interest/to_cart.nm
 
 * 자주하는 질문 (FAQ)
 
 	/board/faq
 	
 	- 글 리스트(페이지네이션)
-	/board/faq/list.rm
+	/board/faq/list.nm
 	
 	- 글보기
-	/board/faq/read.rm
+	/board/faq/read.nm
 	
 	- 글쓰기
-	/board/faq/add_form.rm
-	/board/faq/add_proc.rm
+	/board/faq/add_form.nm
+	/board/faq/add_proc.nm
 	
 	- 글 편집
-	/board/faq/edit_form.rm
-	/board/faq/edit_proc.rm
+	/board/faq/edit_form.nm
+	/board/faq/edit_proc.nm
 	
 	- 글 삭제
-	/board/faq/del_proc.rm
+	/board/faq/del_proc.nm
 	
 	- 글 검색
-	/board/faq/search_proc.rm
+	/board/faq/search_proc.nm
 	
 * 질문과 답변 (QNA)
 
 	/board/qna
 	
 	- 글 리스트(페이지네이션)
-	/board/qna/list.rm
+	/board/qna/list.nm
 	
 	- 글보기
-	/board/qna/read.rm
+	/board/qna/read.nm
 	
 	- 글쓰기
-	/board/qna/add_form.rm
-	/board/qna/add_proc.rm
+	/board/qna/add_form.nm
+	/board/qna/add_proc.nm
 	
 	- 글 편집
-	/board/qna/edit_form.rm
-	/board/qna/edit_proc.rm
+	/board/qna/edit_form.nm
+	/board/qna/edit_proc.nm
 	
 	- 글 삭제
-	/board/qna/del_proc.rm
+	/board/qna/del_proc.nm
 	
 	- 글 검색
-	/board/qna/search_proc.rm
+	/board/qna/search_proc.nm
 
 	- 비밀글확인
-	/board/qna/secret.rm
-	/board/qna/secret_proc.rm
-	/board/qna/secret_read.rm
+	/board/qna/secret.nm
+	/board/qna/secret_proc.nm
+	/board/qna/secret_read.nm
 	
 	- 답변 등록
-	/board/qna/add_answer.rm
+	/board/qna/add_answer.nm
 		
 	- 댓글 등록
-	/board/qna/read/add_form.rm
+	/board/qna/read/add_form.nm
 	
 	- 댓글 삭제
-	/board/qna/read/del_form.rm
+	/board/qna/read/del_form.nm
 
