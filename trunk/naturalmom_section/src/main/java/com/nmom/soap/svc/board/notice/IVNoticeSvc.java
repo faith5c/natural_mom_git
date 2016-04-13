@@ -18,4 +18,13 @@ public interface IVNoticeSvc {
 	
 	public List<VNoticeVo> getSearchByTitleNContentNotice(String search, int page);
 
+	public int getAllCount();
+	
+	public int getAllCountByTitle(String search);
+	
+	public int getAllCountByContent(String search);
+	
+	public int getAllCountById(String search);
+	
+	public int getAllCountByTitleNContent(String search);
 }

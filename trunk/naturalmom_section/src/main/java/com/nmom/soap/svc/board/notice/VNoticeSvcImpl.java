@@ -46,5 +46,33 @@ public class VNoticeSvcImpl implements IVNoticeSvc {
 		this.vNoticeDao = vNoticeDao;
 	}
 
-	
+	@Override
+	public int getAllCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getAllCountByTitle(String search) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getAllCountByContent(String search) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getAllCountById(String search) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getAllCountByTitleNContent(String search) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
