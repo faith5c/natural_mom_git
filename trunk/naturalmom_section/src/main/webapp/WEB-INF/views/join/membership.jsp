@@ -20,7 +20,7 @@
   
 	String flag ="";
   	if(request.getParameter("agree1") != null) 
-  		flag = request.getParameter("agree1").equals("agree") ? "join" : "";
+  		flag = request.getParameter("agree1").equals("true") ? "join" : "";
   	if(request.getParameter("page")!=null)
   		flag =request.getParameter("page").equals("complete")? "complete" : "";
   	%>

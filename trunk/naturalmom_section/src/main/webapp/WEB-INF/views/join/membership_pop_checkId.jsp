@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -46,7 +47,7 @@
 		#close { text-align: center; }
 
 
-		#btn_close
+		#btn_close, #btn_submit
 		{	
 			margin-top : 20px;
 			padding : 7px 30px;
@@ -92,18 +93,17 @@
 	</div>
 	
 	
-	<form action="">
 		<div>
 			<table>
 				<tr>
 					<td style="text-align: right"><label for="id">아이디</label> </td>
-					<td><input type="text" id="id"><input type="submit" id ="btn_id" value = "아이디 찾기" /></td>
+					<td><input type="text" id="checkedid" name="checkedid" value="${checking_id}">
+						<input type="button" id ="btn_id" value = "아이디 찾기" onclick="check_again()"/></td>
 				</tr>
-				<tr><td colspan="2" style="text-align: center;"><br><br><span>임시 결과 값 입니다.</span></td></tr>
+				<tr><td colspan="2" style="text-align: center;"><br><br><span>${flash_msg}</span></td></tr>
 			</table>
 		</div>
 
-	</form>
 	
 	<br><hr>
 	
@@ -111,4 +111,13 @@
 		<input type = "button" id = "btn_close" onclick = "window.close();" value = "닫기" />
 	</div>
   </body>
+  
+<script type="text/javascript">
+	function check_again() {
+		var id = $('#checkedid').val();
+		document.location.href = '/soap/checkId.nm?check='+id;
+	}
+	
+
+</script>
 </html>

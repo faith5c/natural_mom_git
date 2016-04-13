@@ -50,7 +50,7 @@ td:FIRST-CHILD {
 <div id="inside">
 	<h2>&nbsp;&nbsp;회원가입</h2>
 	<br><hr>
-	<form action="membership.jsp?page=complete" method="post">
+	<form name="join" method="post">
 		<table>
 			<tr>
 				<td>아이디</td>
@@ -73,8 +73,8 @@ td:FIRST-CHILD {
 			</tr>
 			<tr>
 				<td>성별</td>
-				<td><input type="radio" name="gender" id="male" value="male" checked="checked"/><label for="male">&nbsp;남</label>&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="radio" name="gender" id="female" value="female"/><label for="female">&nbsp;여</label></td>
+				<td><input type="radio" name="gender" id="male" value="1" checked="checked"/><label for="male">&nbsp;남</label>&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="radio" name="gender" id="female" value="2"/><label for="female">&nbsp;여</label></td>
 			</tr>
 			<tr>
 				<td>생년월일</td>
@@ -140,7 +140,7 @@ td:FIRST-CHILD {
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2" style="text-align: center"><input type="submit" id="submit" value="확인" /></td>
+				<td colspan="2" style="text-align: center"><input type="submit" id="submit" value="확인" onclick="allSubmit()"/></td>
 			</tr>
 		</table>
 	</form>
@@ -185,7 +185,9 @@ td:FIRST-CHILD {
 	}
 	 
 	 function pop_id() {
-		window.open("membership_pop_checkId.jsp", "CheckID", "width=402px, height=270px, left=600px, top=200px, scrollbars=no, toolbar=no, location=no");
+		 var id = $('#id').val();
+		window.open("pop_checkId.nm?check="+id, "CheckID", "width=402px, height=270px, left=600px, top=200px, scrollbars=no, toolbar=no, location=no");
+		
 	 }
 	 
 	 function pop_postNum() {
@@ -203,6 +205,14 @@ td:FIRST-CHILD {
 	 function email_change() {
 		 var selectedEmail = $("#email_select").val();
 		 document.getElementById("email2").setAttribute("value", selectedEmail);
+	}
+	 
+	function allSubmit() {
+		alert($('#id').val());
+		return false;
+		
+		document.join.action ="membership.jsp?page=complete";
+		document.join.submit();
 	}
 	 
 	
