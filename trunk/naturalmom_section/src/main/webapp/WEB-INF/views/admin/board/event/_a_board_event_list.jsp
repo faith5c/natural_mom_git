@@ -84,7 +84,7 @@
 		<c:forEach var="e" items="${e_list}">
 			<tr>
 				<td id = "no">${e.evt_rnum}</td>
-				<td><a href = "a_board.jsp?page=event&r=1">${e.evt_title}</a></td>
+				<td><a href = "event_read.nm?r=${e.event_no}&rr=${e.evt_rnum}">${e.evt_title}</a></td>
 				<td id = "id" >${e.mem_id}</td>
 				<td id = "write_day" >${e.evt_write_day}</td>
 				<td id = "hits" >${e.evt_hits}</td>

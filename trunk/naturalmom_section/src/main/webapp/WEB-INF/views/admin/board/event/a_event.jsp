@@ -16,11 +16,8 @@
 <% 
 	request.setCharacterEncoding("UTF-8");
 	String submenu = (String)request.getParameter("page");
-	if(submenu==null){
-		submenu= "notice";
-	}
-	String r = (String)request.getParameter("r");
-	if (r == null) r = "";
+
+	int r = request.getParameter("r")!=null? Integer.parseInt(request.getParameter("r")) : 0 ;	
 	String w = (String)request.getParameter("w");
 	if (w == null || w.isEmpty()) w = "false";
 %>
@@ -37,11 +34,11 @@
 	
 	<div id="container">
 
-<%			if(r.equals("") && w.equals("false")){  %>
+<%			if(r==0&& w.equals("false")){%>
 				<%@include file="_a_board_event_list.jsp" %>		
 <%			}else if(w.equals("true")){ %>
 				<%@include file="_a_board_event_write.jsp" %>
-<%			}else if(r.equals("1")){ %>
+<%			}else if(r>0){%>
 				<%@include file="_a_board_event_read.jsp" %>
 <%			}%>					
 

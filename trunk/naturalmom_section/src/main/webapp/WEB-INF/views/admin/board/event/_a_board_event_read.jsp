@@ -62,14 +62,18 @@
 	<div id="inside">
 		<h2 id = "reg_title">이벤트</h2>
 			<table cellspacing = "0" id = "board">
+			
 				<tr>
-					<td id = "no" width="15%">1</td>
-					<td id = "title" width="55%" colspan="2" >임시 타이틀</td>
-					<td id = "id" width="13%">작성자</td>
-					<td id = "write_day" width="15%">2016-03-20</td>
-					<td id = "hits" width="5%">조회</td>
+					<td id = "no" width="15%">${con.evt_rnum}</td>
+					<td id = "title" width="55%" colspan="2" >${con.evt_title}</td>
+					<td id = "id" width="13%">${con.mem_id}</td>
+					<td id = "write_day" width="20%">${con.evt_write_day}</td>
+					<td id = "hits" width="5%">${con.evt_hits}</td>
 				</tr>
-				<tr><td colspan="6" id="event_content">임시 이벤트 내용입니다.</td></tr>
+				<tr><td colspan="6" id="event_content">${con.evt_content}</td></tr>
+				
+				
+				
 				<tr>
 					<td id = "re_id" class="re_title">댓글작성자</td>
 					<td id = "re_content" colspan="3" width="55%">댓글 내용입니다.</td>
