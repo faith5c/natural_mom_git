@@ -1,5 +1,6 @@
 package com.nmom.soap.svc.board.review;
 
+import com.nmom.soap.S;
 import com.nmom.soap.data.dao.board.review.IReviewDao;
 import com.nmom.soap.data.model.board.review.ReviewVo;
 
@@ -22,21 +23,39 @@ public class ReviewSvcImpl implements IReviewSvc
 	public int addReview(ReviewVo review)
 	{
 		int result = reviewDao.addReview(review);
-		return 0;
+
+		if (result == 1)
+			return S.PROCESS_SUCCESS;
+		if (result == 0)
+			return S.PROCESS_NO_RESULT;
+		else
+			return S.PROCESS_ERROR;
 	}
 
 	@Override
 	public int editReview(ReviewVo review) 
 	{
 		int result = reviewDao.editReview(review);
-		return 0;
+
+		if (result == 1)
+			return S.PROCESS_SUCCESS;
+		if (result == 0)
+			return S.PROCESS_NO_RESULT;
+		else
+			return S.PROCESS_ERROR;
 	}
 
 	@Override
 	public int removeReview(ReviewVo review) 
 	{
 		int result = reviewDao.removeReview(review);
-		return 0;
+
+		if (result == 1)
+			return S.PROCESS_SUCCESS;
+		if (result == 0)
+			return S.PROCESS_NO_RESULT;
+		else
+			return S.PROCESS_ERROR;
 	}
 
 }

@@ -2,6 +2,7 @@ package com.nmom.soap.svc.product;
 
 import java.util.List;
 
+import com.nmom.soap.S;
 import com.nmom.soap.data.dao.product.IProductDao;
 import com.nmom.soap.data.model.product.ProductVo;
 
@@ -25,8 +26,13 @@ public class ProductSvcImpl implements IProductSvc
 	public int addProduct(ProductVo product) 
 	{
 		int result = productDao.addProduct(product);
-		
-		return 0;
+
+		if (result == 1)
+			return S.PROCESS_SUCCESS;
+		if (result == 0)
+			return S.PROCESS_NO_RESULT;
+		else
+			return S.PROCESS_ERROR;
 	}
 
 	@Override
