@@ -8,9 +8,9 @@
 	<script src="resources/js/jquery-1.11.3.min.js"></script>
 	<!-- [if lt IE 9]><script src="js/html5shiv.js"></script><![endif] -->
 	
-	<link rel="apple-touch-icon" href="resources/images/logo.ico" /> <!--애플아이콘등록-->
-	<link rel="shortcut icon" href="resources/images/logo.ico" /> <!--단축키아이콘등록-->
-	<link rel = "stylesheet" href="resources/css/etc_menu.css"/>
+	<link rel="apple-touch-icon" href="../resources/images/logo.ico" /> <!--애플아이콘등록-->
+	<link rel="shortcut icon" href="../resources/images/logo.ico" /> <!--단축키아이콘등록-->
+	<link rel = "stylesheet" href="../resources/css/etc_menu.css"/>
 
 	<title>자연맘</title>  
 
@@ -28,7 +28,7 @@
 		<!-------------Start content--------------------------------------------------->
 		<div id="content">
 		
-		<img class="company_img2" src="../images/info_system.jpg" alt="제조시스템">
+		<img class="company_img2" src="../resources/images/info_system.jpg" alt="제조시스템">
 
 		</div>
 		<!--------------------------------------------------end content--------->
