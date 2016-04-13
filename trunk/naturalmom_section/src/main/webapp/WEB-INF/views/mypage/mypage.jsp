@@ -35,7 +35,7 @@
 		<div id="content">
 			<div id="sidebar">
 				<ul>
-					<li><a href="<c:url value = '/mypage.nm?page=interest' />" onclick="to_wishlist()">관심상품</a></li>
+					<li><a href="<c:url value = '/interest.nm' />" onclick="to_wishlist()">관심상품</a></li>
 					<li><a href="<c:url value = '/mypage.nm?page=edit' />" onclick="to_edit_member()">회원정보 수정</a></li>
 				</ul>
 			</div>

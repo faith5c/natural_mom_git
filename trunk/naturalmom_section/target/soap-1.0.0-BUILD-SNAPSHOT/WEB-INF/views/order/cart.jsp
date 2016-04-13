@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -13,6 +14,8 @@
 	<link rel="stylesheet" href="resources/css/membership.css" />
 
 	<title>자연맘</title>  
+  
+  
   </head>
 
   <body>
@@ -76,6 +79,18 @@
 				<th style="width:10%">수량</th>
 				<th style="width:25%">가격</th>
 			</tr>
+			
+			<c:forEach var="cl" items="${cart_list}">
+			<tr>
+				<td><input type="checkbox" name="product_sel" value="${cl.product_no}"></td>
+				<td><img src="${cl.represent_img}" alt="${cl.product_name}"></td>
+				<td><a href="#">${cl.product_name}</a></td>
+				<td><input type="number" name="${cl.buy_num}" size="5" value="1" min = "1"></td>
+				<td>${cl.selling_price}원</td>
+			</tr>
+			</c:forEach>
+			
+			<!-- 
 			<tr>
 				<td><input type="checkbox" name="orderlist_sel" value="선택된장바구니번호 랑 상품번호"></td>
 				<td><img src="images/soap11.jpg" alt="쑥비누사진"></td>
@@ -90,6 +105,8 @@
 				<td><input type="number" name="상품번호" size="5" value="2" min = "1"></td>
 				<td>7000원</td>
 			</tr>
+			-->
+			
 			<tr style="background-color:#f0f0f0; ">
 				<td></td>
 				<td></td>
@@ -109,22 +126,8 @@
 		</table>
 	</form>
 		
-		
-		<table>
-			<c:forEach var="cl" items="${cart_list}">
-				<tr>
-					<td>${cl.product_no}</td>
-					<td>${cl.product_name}</td>
-					<td>${cl.selling_price}</td>
-					<td>${cl.sale_state}</td>
-					<td>${cl.represent_img}</td>
-					<td>${cl.buy_num}</td>
-					<td>${cl.mem_id}</td>
-				</tr>
-			</c:forEach>
-		</table>
-		
-		</div>
+	
+	</div>
 		<!--------------------------------------------------end content--------->
 	</div><!--end container-->
 
@@ -134,5 +137,12 @@
 	</footer>
 	
 	
+	<script type="text/javascript">
+		$(function(){
+		 		
+		 
+		});
+	</script>
   </body>
+  
 </html>

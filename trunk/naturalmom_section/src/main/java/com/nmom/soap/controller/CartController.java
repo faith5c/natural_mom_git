@@ -37,8 +37,6 @@ public class CartController {
 		
 		List<VCartProductVo> cart_list = this.vCartProductSvc.getCartByMemId(loggedin);
 		
-		System.out.println(cart_list.get(0));
-		
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("cart_list", cart_list);
 		

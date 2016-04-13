@@ -82,7 +82,7 @@
 			
 			<c:forEach var="cl" items="${cart_list}">
 			<tr>
-				<td><input type="checkbox" name="orderlist_sel" value="${cl.product_no}"></td>
+				<td><input type="checkbox" name="product_sel" value="${cl.product_no}"></td>
 				<td><img src="${cl.represent_img}" alt="${cl.product_name}"></td>
 				<td><a href="#">${cl.product_name}</a></td>
 				<td><input type="number" name="${cl.buy_num}" size="5" value="1" min = "1"></td>

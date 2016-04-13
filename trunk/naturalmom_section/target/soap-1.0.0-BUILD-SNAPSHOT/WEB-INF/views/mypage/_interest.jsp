@@ -41,11 +41,22 @@
 			<td colspan="4"><h2>관심상품</h2></td>
 		</tr>
 		<tr>
-			<td widtd="30px">선택</td> 
-			<td widtd="150px">상품이미지</td> 
-			<td widtd>상품명</td> 
-			<td widtd = "150px">가격</td>
+			<td>선택</td> 
+			<td>상품이미지</td> 
+			<td>상품명</td> 
+			<td>가격</td>
 		</tr>
+		
+		<c:forEach var="il" items="${interest_list}">
+			<tr>
+				<td><input type="checkbox" name="product_sel" value="${il.product_no}"></td>
+				<td><img src="${il.represent_img}" alt="${il.product_name}"></td>
+				<td><a href="#">${il.product_name}</a></td>
+				<td>${il.selling_price}원</td>
+			</tr>
+		</c:forEach>
+		
+		<!-- 
 		<tr>
 			<td><input type="checkbox" name="fav_sel" value="제품번호불러온거"></td>
 			<td><img src="images/soap11.jpg" alt="쑥비누사진"></td>
@@ -58,7 +69,7 @@
 			<td><a href="#">아마씨비누</a></td>
 			<td>3500원</td> 
 		</tr>
-		
+		-->
 		<tr>
 			<td colspan = "4">
 			
