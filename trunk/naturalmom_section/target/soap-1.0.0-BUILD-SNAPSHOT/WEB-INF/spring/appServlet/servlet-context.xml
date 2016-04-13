@@ -16,11 +16,11 @@
 	<!-- Controller -->
 	<beans:bean id="indexCtl" class="com.nmom.soap.controller.IndexController">
 	</beans:bean>
-<!-- 	<beans:bean id="memberCtl" class="com.nmom.soap.controller.MemberController">
+ 	<beans:bean id="memberCtl" class="com.nmom.soap.controller.MemberController">
 		<beans:property name="memberSvc">
 			<beans:ref local="memberSvc"/>
 		</beans:property> 
-	</beans:bean>-->
+	</beans:bean>
 	<beans:bean id="eventCtl" class="com.nmom.soap.controller.EventController">
 		<beans:property name="eventSvc">
 			<beans:ref local="eventSvc"/>

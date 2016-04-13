@@ -83,20 +83,21 @@
 				<td width="8%">조회</td>
 			</tr>
 			
+		<c:forEach var="e" items="${e_list}">
 			<tr>
-				<td id = "no">1</td>
-				<td><a href = "customer_center.nm?page=event&r=1">3만원 이상 구매 시 무료배송</a></td>
-				<td id = "id" >자연맘</td>
-				<td id = "write_day" >2016-03-16</td>
-				<td id = "hits" >5</td>
-				<td id = "realNo" style="display: none"></td>
+				<td id = "no">${e.evt_rnum}</td>
+				<td><a href = "event_read.nm?r=${e.event_no}">${e.evt_title}</a></td>
+				<td id = "id" >${e.mem_id}</td>
+				<td id = "write_day" >${e.evt_write_day}</td>
+				<td id = "hits" >${e.evt_hits}</td>
+				<td id = "realno" style="display: none">${e.event_no}</td>
 			</tr>
-			
+		</c:forEach>	
 			
 			<tr>
 				<td colspan="5" style="text-align: right">
 					<a id = "write" name = "write" 
-						href="customer_center.jsp?page=event&w=true">글쓰기</a>
+						href="event.nm?w=true">글쓰기</a>
 				</td>
 			</tr>
 		</table>
@@ -107,7 +108,7 @@
 			&nbsp;&nbsp;&nbsp;
 			<a href = "#">&rsaquo;</a>
 		</div>
-		<div id = "search">
+		<div id = "search" style="margin-bottom: 80px;">
 			<select id = "option">
 				<option>제목</option>
 				<option>내용</option>

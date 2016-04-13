@@ -80,6 +80,7 @@
 				<th style="width:25%">가격</th>
 			</tr>
 			
+			<c:set var="cart_price" scope="page">0</c:set>
 			<c:forEach var="cl" items="${cart_list}">
 			<tr>
 				<td><input type="checkbox" name="product_sel" value="${cl.product_no}"></td>
@@ -87,6 +88,7 @@
 				<td><a href="#">${cl.product_name}</a></td>
 				<td><input type="number" name="${cl.buy_num}" size="5" value="1" min = "1"></td>
 				<td>${cl.selling_price}원</td>
+				<c:set var="cart_price" scope="page">${cart_price + (cl.selling_price * cl.buy_num)}</c:set>
 			</tr>
 			</c:forEach>
 			
@@ -107,13 +109,24 @@
 			</tr>
 			-->
 			
-			<tr style="background-color:#f0f0f0; ">
-				<td></td>
-				<td></td>
-				<td>배송료  +3000</td>
-				<td>총계</td>
-				<td>7000원</td>
-			</tr>
+			<c:choose>
+				<c:when test="${cart_list != null}">
+					<tr style="background-color:#f0f0f0; ">
+						<td></td>
+						<td></td>
+						<td>배송료  +3000</td>
+						<td>총계</td>
+						<td>${cart_price+3000}</td>
+					</tr>
+				</c:when>
+	
+				<c:otherwise>
+					<tr style="background-color:#f0f0f0; ">
+						<td colspan="5"><br/>장바구니에 담겨진 상품이 없습니다.<br/>&nbsp;</td>
+					</tr>
+				</c:otherwise>
+			</c:choose>
+			
 			<tr>
 				<td colspan="3">
 				<input type="button" value="상품삭제">
@@ -136,13 +149,6 @@
 		<%@include file="../_default_footer.jsp" %>
 	</footer>
 	
-	
-	<script type="text/javascript">
-		$(function(){
-		 		
-		 
-		});
-	</script>
   </body>
   
 </html>

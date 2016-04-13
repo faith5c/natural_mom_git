@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 	<style type = "text/css">
 
@@ -40,13 +41,13 @@
 		#buttons input[type = "button"]:hover { opacity : 0.7; }
 
 	</style>
-
+<!-- 링크, 이미지 살려놓기. product.nm 상태에도 리스트 띄우기 -->
 <!-- container 부분 -->	
 	<h2 id = "reg_title">상품 관리</h2>
 		<table cellspacing = "0">
 			<tr>
 				<td>체크</td>
-				<td><a href = "#">▼ 상품번호</a></td>
+				<td><a href = "/admin/product.nm?page=manage&by=no&order=true">▼ 상품번호</a></td>
 				<td><a href = "#">▼ 분류</a></td>
 				<td><a href = "#">▼ 상품명</a></td>
 				<td>이미지</td>
@@ -56,18 +57,21 @@
 				<td><a href = "#">▼ 판매 상태</a></td>
 				<td><a href = "#">▼ 총 누적판매량</a></td>
 			</tr>
+			
+			<c:forEach var="product" items="${p_list}">
 			<tr>
 				<td><input type = "checkbox" name = "" /></td>
-				<td>10525</td>
-				<td>아토피</td>
-				<td><a href = "a_product.jsp?page=modify">어성초 비누</a></td>
+				<td>${product.product_no}</td>
+				<td>${product.category_nm}</td>
+				<td><a href = "a_product.jsp?page=modify">${product.product_name}</a></td>
 				<td>[사진]</td>
-				<td>5000(3000)</td>
-				<td>155</td>
-				<td>Y</td>
-				<td>Y</td>
-				<td>1302</td>
+				<td>${product.selling_price}(${product.cost_price})</td>
+				<td>${product.stock}</td>
+				<td>${product.display_state eq 1 ? 'Y' : 'N'}</td>
+				<td>${product.sale_state eq 1 ? 'Y' : 'N'}</td>
+				<td>${product.all_sells}</td>
 			</tr>
+			</c:forEach>
 		</table>
 		<div id = "buttons">
 			<input type = "button" id = "dis_y" value = "진열" />

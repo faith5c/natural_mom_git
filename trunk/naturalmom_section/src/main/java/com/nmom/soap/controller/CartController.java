@@ -38,7 +38,9 @@ public class CartController {
 		List<VCartProductVo> cart_list = this.vCartProductSvc.getCartByMemId(loggedin);
 		
 		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("cart_list", cart_list);
+		if(cart_list!=null && cart_list.size()!=0){
+			map.put("cart_list", cart_list);
+		}
 		
 		ModelAndView mav = new ModelAndView("order/cart", map);
 		return mav;

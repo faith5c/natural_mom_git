@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -108,7 +109,7 @@
 		<input type = "button" id = "save" value = "저장" />
 		<h2 id = "order_title">주문 관리</h2>
 		<table cellspacing = "0">
-			<tr>
+			
 				<td>체크</td>
 				<td><a href = "#">▼ 주문일</a></td>
 				<td><a href = "#">▼ 주문번호</a></td>
@@ -119,95 +120,32 @@
 				<td> 배송메세지</td>
 				<td> 운송장번호</td>
 				<td><a href = "#">▼ 처리상태</a></td>
-			</tr>
-			<tr>
-				<td><input type = "checkbox" name = "" /></td>
-				<td>2016-03-04</td>
-				<td>242424</td>
-				<td>윤수민</td>
-				<td>어성초 비누</td>
-				<td>2</td>
-				<td>11,500</td>
-				<td>부재 시 경비실에...</td>
-				<td>3455643533455</td>
-				<td>
-					<select name="process_no">
-						<option value="1">&nbsp;배송준비중&nbsp;</option>
-						<option value="2">&nbsp;배송대기&nbsp;</option>
-						<option value="3">&nbsp;배송중&nbsp;</option>
-						<option value="4">&nbsp;배송완료&nbsp;</option>
-						<option value="5">&nbsp;구매확정&nbsp;</option>
-						<option value="6">&nbsp;환불처리&nbsp;</option>
-						<option value="7">&nbsp;환불완료&nbsp;</option>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td><input type = "checkbox" name = "" /></td>
-				<td>2016-03-05</td>
-				<td>242425</td>
-				<td>최소라</td>
-				<td>숯 비누</td>
-				<td>2</td>
-				<td>12,500</td>
-				<td>부재 시 옆집에...</td>
-				<td></td>
-				<td>
-					<select name="process_no">
-						<option value="1">&nbsp;배송준비중&nbsp;</option>
-						<option value="2">&nbsp;배송대기&nbsp;</option>
-						<option value="3">&nbsp;배송중&nbsp;</option>
-						<option value="4">&nbsp;배송완료&nbsp;</option>
-						<option value="5">&nbsp;구매확정&nbsp;</option>
-						<option value="6">&nbsp;환불처리&nbsp;</option>
-						<option value="7">&nbsp;환불완료&nbsp;</option>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td><input type = "checkbox" name = "" /></td>
-				<td>2016-03-05</td>
-				<td>242426</td>
-				<td>최소라</td>
-				<td>해초 비누</td>
-				<td>1</td>
-				<td>5,500</td>
-				<td>부재 시 옆집에...</td>
-				<td></td>
-				<td>
-					<select name="process_no">
-						<option value="1">&nbsp;배송준비중&nbsp;</option>
-						<option value="2">&nbsp;배송대기&nbsp;</option>
-						<option value="3">&nbsp;배송중&nbsp;</option>
-						<option value="4">&nbsp;배송완료&nbsp;</option>
-						<option value="5">&nbsp;구매확정&nbsp;</option>
-						<option value="6">&nbsp;환불처리&nbsp;</option>
-						<option value="7">&nbsp;환불완료&nbsp;</option>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td><input type = "checkbox" name = "" /></td>
-				<td>2016-03-05</td>
-				<td>242427</td>
-				<td>정미니</td>
-				<td>숯 비누</td>
-				<td>1</td>
-				<td>7,500</td>
-				<td></td>
-				<td></td>
-				<td>
-					<select name="process_no">
-						<option value="1">&nbsp;배송준비중&nbsp;</option>
-						<option value="2">&nbsp;배송대기&nbsp;</option>
-						<option value="3">&nbsp;배송중&nbsp;</option>
-						<option value="4">&nbsp;배송완료&nbsp;</option>
-						<option value="5">&nbsp;구매확정&nbsp;</option>
-						<option value="6">&nbsp;환불처리&nbsp;</option>
-						<option value="7">&nbsp;환불완료&nbsp;</option>
-					</select>
-				</td>
-			</tr>
+			
+			
+			<c:forEach var="om" items="${orderManeger}"> 
+				<tr>
+					<td><input type = "checkbox" name = "" /></td>
+					<td>${ om.order_date }</td>
+					<td>${ om.order_no }</td>
+					<td>${ om.mem_name }</td>
+					<td>${ om.product_name }</td>
+					<td>${ om.buy_num }</td>
+					<td>${ om.charge }</td>
+					<td>${ om.delivery_msg }</td>
+					<td>${ om.tracking_num }</td>
+					<td>
+						<select name="process_no">
+							<option value="11" <c:if test="${ om.process_nm.equals('배송준비중') }">selected="selected"</c:if> >&nbsp;배송준비중&nbsp;</option>
+							<option value="12" <c:if test="${ om.process_nm.equals('배송대기') }">selected="selected"</c:if>>&nbsp;배송대기&nbsp;</option>
+							<option value="13" <c:if test="${ om.process_nm.equals('배송중') }">selected="selected"</c:if>>&nbsp;배송중&nbsp;</option>
+							<option value="14" <c:if test="${ om.process_nm.equals('배송완료') }">selected="selected"</c:if>>&nbsp;배송완료&nbsp;</option>
+							<option value="21" <c:if test="${ om.process_nm.equals('구매확정') }">selected="selected"</c:if>>&nbsp;구매확정&nbsp;</option>
+							<option value="31" <c:if test="${ om.process_nm.equals('환불처리') }">selected="selected"</c:if>>&nbsp;환불처리&nbsp;</option>
+							<option value="32" <c:if test="${ om.process_nm.equals('환불완료') }">selected="selected"</c:if>>&nbsp;환불완료&nbsp;</option>
+						</select>
+					</td>
+				</tr>
+			</c:forEach>
 		</table>
 		<br>
 		
