@@ -19,4 +19,12 @@ public interface IVNoticeDao {
 	public List<VNoticeVo> getSearchByTitleNContentNotice(String search, int start, int end) throws DataAccessException;
 	
 	public int getAllCount() throws DataAccessException;
+	
+	public int getAllCountByTitle(String search) throws DataAccessException;
+	
+	public int getAllCountByContent(String search) throws DataAccessException;
+	
+	public int getAllCountById(String search) throws DataAccessException;
+	
+	public int getAllCountByTitleNContent(String search) throws DataAccessException;
 }
