@@ -11,7 +11,6 @@
 					.impl
 					.model
 				.svc
-					.impl
 
 - 페이지 템플릿 구조 : 
 
