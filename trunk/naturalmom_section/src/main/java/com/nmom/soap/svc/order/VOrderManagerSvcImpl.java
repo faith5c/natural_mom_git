@@ -13,44 +13,51 @@ public class VOrderManagerSvcImpl implements IVOrderManagerSvc {
 	
 	@Override
 	public List<VOrderManagerVo> getAllOrederByDate(boolean orderBy) {
-		// TODO Auto-generated method stub
-		return null;
+		List<VOrderManagerVo> list = 
+				this.vOrderManagerDao.getAllOrederByDate(orderBy); 
+		return (list != null & list.size() > 0 )? list : null;
 	}
 
 	@Override
 	public List<VOrderManagerVo> getAllOrederByNo(boolean orderBy) {
-		// TODO Auto-generated method stub
-		return null;
+		List<VOrderManagerVo> list = 
+				this.vOrderManagerDao.getAllOrederByNo(orderBy); 
+		return (list != null & list.size() > 0 )? list : null;
 	}
 
 	@Override
 	public List<VOrderManagerVo> getAllOrederByName(boolean orderBy) {
-		// TODO Auto-generated method stub
-		return null;
+		List<VOrderManagerVo> list = 
+				this.vOrderManagerDao.getAllOrederByName(orderBy); 
+		return (list != null & list.size() > 0 )? list : null;
 	}
 
 	@Override
 	public List<VOrderManagerVo> getAllOrederByProduct(boolean orderBy) {
-		// TODO Auto-generated method stub
-		return null;
+		List<VOrderManagerVo> list = 
+				this.vOrderManagerDao.getAllOrederByProduct(orderBy); 
+		return (list != null & list.size() > 0 )? list : null;
 	}
 
 	@Override
 	public List<VOrderManagerVo> getAllOrederByNum(boolean orderBy) {
-		// TODO Auto-generated method stub
-		return null;
+		List<VOrderManagerVo> list = 
+				this.vOrderManagerDao.getAllOrederByNum(orderBy); 
+		return (list != null & list.size() > 0 )? list : null;
 	}
 
 	@Override
 	public List<VOrderManagerVo> getAllOrederByCharge(boolean orderBy) {
-		// TODO Auto-generated method stub
-		return null;
+		List<VOrderManagerVo> list = 
+				this.vOrderManagerDao.getAllOrederByCharge(orderBy); 
+		return (list != null & list.size() > 0 )? list : null;
 	}
 
 	@Override
 	public List<VOrderManagerVo> getAllOrederByProcess(boolean orderBy) {
-		// TODO Auto-generated method stub
-		return null;
+		List<VOrderManagerVo> list = 
+				this.vOrderManagerDao.getAllOrederByProcess(orderBy); 
+		return (list != null & list.size() > 0 )? list : null;
 	}
 
 	public void setVOrderManagerDao(IVOrderManagerDao vOrderManagerDao) {
