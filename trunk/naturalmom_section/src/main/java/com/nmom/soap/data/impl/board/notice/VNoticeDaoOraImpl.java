@@ -152,8 +152,42 @@ public class VNoticeDaoOraImpl extends NamedParameterJdbcDaoSupport implements I
 	}
 
 	public int getAllCount() throws DataAccessException {
-		// TODO Auto-generated method stub
 		return getJdbcTemplate().queryForInt(GET_ALL_COUNT);
 	}
 
+	@Override
+	public int getAllCountByTitle(String search) throws DataAccessException {
+		MapSqlParameterSource ps = new MapSqlParameterSource();
+		ps.addValue("search", "%"+search+"%", Types.VARCHAR);
+		return getNamedParameterJdbcTemplate().queryForInt(
+				GET_ALL_COUNT_SEARCH_BY_TITLE_NOTICE,
+				ps);
+	}
+
+	@Override
+	public int getAllCountByContent(String search) throws DataAccessException {
+		MapSqlParameterSource ps = new MapSqlParameterSource();
+		ps.addValue("search", "%"+search+"%", Types.VARCHAR);
+		return getNamedParameterJdbcTemplate().queryForInt(
+				GET_ALL_COUNT_SEARCH_BY_CONTENT_NOTICE,
+				ps);
+	}
+
+	@Override
+	public int getAllCountById(String search) throws DataAccessException {
+		MapSqlParameterSource ps = new MapSqlParameterSource();
+		ps.addValue("search", "%"+search+"%", Types.VARCHAR);
+		return getNamedParameterJdbcTemplate().queryForInt(
+				GET_ALL_COUNT_SEARCH_BY_ID_NOTICE,
+				ps);
+	}
+
+	@Override
+	public int getAllCountByTitleNContent(String search) throws DataAccessException {
+		MapSqlParameterSource ps = new MapSqlParameterSource();
+		ps.addValue("search", "%"+search+"%", Types.VARCHAR);
+		return getNamedParameterJdbcTemplate().queryForInt(
+				GET_ALL_COUNT_SEARCH_BY_TITLE_N_CONTENT_NOTICE,
+				ps);
+	}
 }
