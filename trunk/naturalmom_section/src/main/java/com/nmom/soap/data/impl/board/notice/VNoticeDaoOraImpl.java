@@ -14,24 +14,67 @@ import com.nmom.soap.data.model.board.notice.VNoticeVo;
 public class VNoticeDaoOraImpl extends NamedParameterJdbcDaoSupport implements IVNoticeDao {
 	
 	final String GET_ALL_NOTICE = 
-			"SELECT notice_no,  ntc_title, ntc_re_no, ntc_write_day, ntc_hits, mem_id "
-			+ "FROM v_notice WHERE ROWNUM >= :start AND ROWNUM <= :end";
+			"SELECT A.notice_no, A.ntc_title, A.ntc_re_no, A.ntc_write_day, A.ntc_hits, A.mem_id FROM "
+			+ "(SELECT rownum as no_rownum, V.notice_no, V.ntc_title, V.ntc_content, "
+			+ "V.ntc_re_no, V.ntc_write_day, V.ntc_hits, V.mem_id FROM"
+			+ " v_notice V) A "
+			+ "WHERE A.no_rownum >= :start AND A.no_rownum <= :end";
 	
 	final String GET_SEARCH_BY_TITLE_NOTICE = 
-			"SELECT notice_no,  ntc_title, ntc_re_no, ntc_write_day, ntc_hits, mem_id "
-			+ "FROM v_notice "
-			+ "WHERE ntc_title LIKE :search AND ROWNUM >= :start AND ROWNUM <= :end";
+			"SELECT A.notice_no, A.ntc_title, A.ntc_re_no, A.ntc_write_day, A.ntc_hits, A.mem_id FROM "
+			+ "(SELECT rownum as no_rownum, V.notice_no, V.ntc_title, V.ntc_content, "
+			+ "V.ntc_re_no, V.ntc_write_day, V.ntc_hits, V.mem_id FROM"
+			+ " v_notice V) A "
+			+ "WHERE ntc_title LIKE :search "
+			+ "AND A.no_rownum >= :start AND A.no_rownum <= :end";
+			
 //	"SELECT notice_no,  ntc_title, ntc_re_no, ntc_write_day, ntc_hits, mem_id FROM v_notice WHERE  ntc_title LIKE '%휴무%' AND ROWNUM >= :start AND ROWNUM <= :end";
 	final String GET_SEARCH_BY_CONTENT_NOTICE = 
-			"SELECT notice_no,  ntc_title, ntc_re_no, ntc_write_day, ntc_hits, mem_id FROM v_notice WHERE ntc_content LIKE :search AND ROWNUM >= :start AND ROWNUM <= :end";
+			"SELECT A.notice_no, A.ntc_title, A.ntc_re_no, A.ntc_write_day, A.ntc_hits, A.mem_id FROM "
+			+ "(SELECT rownum as no_rownum, V.notice_no, V.ntc_title, V.ntc_content, "
+			+ "V.ntc_re_no, V.ntc_write_day, V.ntc_hits, V.mem_id FROM"
+			+ " v_notice V) A "
+			+ "WHERE ntc_content LIKE :search "
+			+ "AND A.no_rownum >= :start AND A.no_rownum <= :end";
 	//뷰에 콘텐트 없다.
 	final String GET_SEARCH_BY_ID_NOTICE = 
-			"SELECT notice_no,  ntc_title, ntc_re_no, ntc_write_day, ntc_hits, mem_id FROM v_notice WHERE mem_id LIKE :search AND ROWNUM >= :start AND ROWNUM <= :end";
+			"SELECT A.notice_no, A.ntc_title, A.ntc_re_no, A.ntc_write_day, A.ntc_hits, A.mem_id FROM "
+			+ "(SELECT rownum as no_rownum, V.notice_no, V.ntc_title, V.ntc_content, "
+			+ "V.ntc_re_no, V.ntc_write_day, V.ntc_hits, V.mem_id FROM"
+			+ " v_notice V) A "
+			+ "WHERE mem_id LIKE :search "
+			+ "AND A.no_rownum >= :start AND A.no_rownum <= :end";
 	
 	final String GET_SEARCH_BY_TITLE_N_CONTENT_NOTICE = 
-			"SELECT notice_no,  ntc_title, ntc_re_no, ntc_write_day, ntc_hits, mem_id FROM v_notice WHERE (ntc_title LIKE :search OR  ntc_content LIKE :search) AND ROWNUM >= :start AND ROWNUM <= :end";
+			"SELECT A.notice_no, A.ntc_title, A.ntc_re_no, A.ntc_write_day, A.ntc_hits, A.mem_id FROM "
+			+ "(SELECT rownum as no_rownum, V.notice_no, V.ntc_title, V.ntc_content, "
+			+ "V.ntc_re_no, V.ntc_write_day, V.ntc_hits, V.mem_id FROM"
+			+ " v_notice V) A "
+			+ "WHERE (ntc_title LIKE :search OR ntc_content LIKE :search) "
+			+ "AND A.no_rownum >= :start AND A.no_rownum <= :end";
+			
+	final String GET_ALL_COUNT = 
+			"SELECT COUNT(notice_no) FROM v_notice";
 	
-	final String GET_ALL_COUNT = "SELECT COUNT(notice_no) FROM v_notice";
+	final String GET_ALL_COUNT_SEARCH_BY_TITLE_NOTICE = 
+			"SELECT COUNT(notice_no) "
+			+ "FROM v_notice "
+			+ "WHERE ntc_title LIKE :search";
+	
+	final String GET_ALL_COUNT_SEARCH_BY_CONTENT_NOTICE = 
+			"SELECT COUNT(notice_no) "
+			+ "FROM v_notice "
+			+ "WHERE ntc_content LIKE :search";
+	
+	final String GET_ALL_COUNT_SEARCH_BY_ID_NOTICE = 
+			"SELECT COUNT(notice_no) "
+			+ "FROM v_notice "
+			+ "WHERE mem_id LIKE :search";
+	
+	final String GET_ALL_COUNT_SEARCH_BY_TITLE_N_CONTENT_NOTICE = 
+			"SELECT COUNT(notice_no) "
+			+ "FROM v_notice "
+			+ "WHERE (ntc_title LIKE :search OR ntc_content LIKE :search)";
 	
 	final int LIMIT = 10; 
 	
