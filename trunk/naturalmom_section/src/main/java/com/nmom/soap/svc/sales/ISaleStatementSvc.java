@@ -8,9 +8,9 @@ import com.nmom.soap.data.model.sales.SaleStatementVo;
 
 public interface ISaleStatementSvc {
 	
-	public SaleStatementVo getSaleStatement()  throws DataAccessException;
+	public SaleStatementVo getSaleStatement();
 	
-	public SaleStatementVo getSaleStatement(Calendar today)  throws DataAccessException;
+	public SaleStatementVo getSaleStatement(Calendar today);
 	
-	public SaleStatementVo getSaleStatement(Calendar start, Calendar end)  throws DataAccessException;
+	public SaleStatementVo getSaleStatement(Calendar start, Calendar end);
 }

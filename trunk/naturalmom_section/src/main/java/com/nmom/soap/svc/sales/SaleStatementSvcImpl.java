@@ -12,19 +12,19 @@ public class SaleStatementSvcImpl implements ISaleStatementSvc {
 	private ISaleStatementDao saleStatementDao;
 	
 	@Override
-	public SaleStatementVo getSaleStatement() throws DataAccessException {
+	public SaleStatementVo getSaleStatement() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public SaleStatementVo getSaleStatement(Calendar today) throws DataAccessException {
+	public SaleStatementVo getSaleStatement(Calendar today) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public SaleStatementVo getSaleStatement(Calendar start, Calendar end) throws DataAccessException {
+	public SaleStatementVo getSaleStatement(Calendar start, Calendar end) {
 		// TODO Auto-generated method stub
 		return null;
 	}
