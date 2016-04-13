@@ -65,6 +65,18 @@
 			<beans:ref local="vRank_sellsSvc"/>
 		</beans:property>
 	</beans:bean>
+	
+	<beans:bean id="orderCtl" class="com.nmom.soap.controller.OrderController">
+		<beans:property name="orderDaoOra">
+			<beans:ref local="orderDaoOra" />
+		</beans:property>
+		<beans:property name="productOrderDaoOra">
+			<beans:ref local="productOrderDaoOra" />
+		</beans:property>
+		<beans:property name="vOrderListDaoOra">
+			<beans:ref local="vOrderListDaoOra" />
+		</beans:property>	
+	</beans:bean>
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
