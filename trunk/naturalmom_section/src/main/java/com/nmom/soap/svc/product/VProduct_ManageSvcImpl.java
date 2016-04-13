@@ -15,51 +15,50 @@ public class VProduct_ManageSvcImpl implements IVProduct_ManageSvc
 	}
 	
 	@Override
-	public List<VProduct_ManageVo> getAllProduct_by_product_no(boolean order) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<VProduct_ManageVo> getAllProduct_by_product_no(boolean order) 
+	{
+		return product_manageDao.getAllProduct_by_product_no(order);
 	}
 
 	@Override
-	public List<VProduct_ManageVo> getAllProduct_by_category_nm(boolean order) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<VProduct_ManageVo> getAllProduct_by_category_nm(boolean order) 
+	{
+		return product_manageDao.getAllProduct_by_category_nm(order);
 	}
 
 	@Override
-	public List<VProduct_ManageVo> getAllProduct_by_product_name(boolean order) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<VProduct_ManageVo> getAllProduct_by_product_name(boolean order) 
+	{
+		return product_manageDao.getAllProduct_by_product_name(order);
 	}
 
 	@Override
-	public List<VProduct_ManageVo> getAllProduct_by_selling_price(boolean order) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<VProduct_ManageVo> getAllProduct_by_selling_price(boolean order) 
+	{
+		return product_manageDao.getAllProduct_by_selling_price(order);
 	}
 
 	@Override
-	public List<VProduct_ManageVo> getAllProduct_by_stock(boolean order) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<VProduct_ManageVo> getAllProduct_by_stock(boolean order) 
+	{
+		return product_manageDao.getAllProduct_by_stock(order);
 	}
 
 	@Override
-	public List<VProduct_ManageVo> getAllProduct_by_display_state(boolean order) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<VProduct_ManageVo> getAllProduct_by_display_state(boolean order)
+	{
+		return product_manageDao.getAllProduct_by_display_state(order);
 	}
 
 	@Override
-	public List<VProduct_ManageVo> getAllProduct_by_sale_state(boolean order) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<VProduct_ManageVo> getAllProduct_by_sale_state(boolean order) 
+	{
+		return product_manageDao.getAllProduct_by_sale_state(order);
 	}
 
 	@Override
-	public List<VProduct_ManageVo> getAllProduct_by_all_sells(boolean order) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<VProduct_ManageVo> getAllProduct_by_all_sells(boolean order) 
+	{
+		return product_manageDao.getAllProduct_by_all_sells(order);
 	}
-
 }

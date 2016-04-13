@@ -7,7 +7,7 @@ import com.nmom.soap.data.model.product.ProductVo;
 public interface IProductSvc 
 {
 	// 상품 하나 가져오기
-	ProductVo getOneProduct(int produt_no);
+	ProductVo getOneProduct(int product_no);
 	
 	// 상품 추가
 	int addProduct(ProductVo product);

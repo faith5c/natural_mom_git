@@ -15,40 +15,42 @@ public class ProductSvcImpl implements IProductSvc
 	}
 
 	@Override
-	public ProductVo getOneProduct(int produt_no) {
-		// TODO Auto-generated method stub
-		return null;
+	public ProductVo getOneProduct(int product_no) 
+	{
+		return productDao.getOneProduct(product_no);
 	}
 
 	@Override
-	public int addProduct(ProductVo product) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int addProduct(ProductVo product) 
+	{
+		return productDao.addProduct(product);
 	}
 
 	@Override
-	public int editDisplayState(ProductVo product, int state) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int editDisplayState(ProductVo product, int state) 
+	{
+		return productDao.editDisplayState(product, state);
 	}
 
 	@Override
-	public int editSaleState(ProductVo product, int state) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int editSaleState(ProductVo product, int state) 
+	{
+		return productDao.editSaleState(product, state);
 	}
 
 	@Override
-	public int editDeletedState(ProductVo product, int state) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int editDeletedState(ProductVo product, int state) 
+	{
+		return productDao.editDeletedState(product, state);
 	}
 
 	@Override
-	public int editOneProduct(ProductVo product) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int editOneProduct(ProductVo product) 
+	{
+		return productDao.editOneProduct(product);
 	}
+	
+////////////////////////////////////////////////////////////////////////////	
 
 	@Override
 	public List<ProductVo> getAllProduct(){

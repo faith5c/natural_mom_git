@@ -15,33 +15,33 @@ public class VProduct_DeletedSvcImpl implements IVProduct_DeletedSvc
 	}
 
 	@Override
-	public List<VProduct_DeletedVo> getAllDeletedProduct_by_product_no(boolean order) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<VProduct_DeletedVo> getAllDeletedProduct_by_product_no(boolean order) 
+	{
+		return product_deletedDao.getAllDeletedProduct_by_product_no(order);
 	}
 
 	@Override
-	public List<VProduct_DeletedVo> getAllDeletedProduct_by_product_name(boolean order) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<VProduct_DeletedVo> getAllDeletedProduct_by_product_name(boolean order) 
+	{
+		return product_deletedDao.getAllDeletedProduct_by_product_name(order);
 	}
 
 	@Override
-	public List<VProduct_DeletedVo> getAllDeletedProduct_by_selling_price(boolean order) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<VProduct_DeletedVo> getAllDeletedProduct_by_selling_price(boolean order) 
+	{
+		return product_deletedDao.getAllDeletedProduct_by_selling_price(order);
 	}
 
 	@Override
-	public List<VProduct_DeletedVo> getAllDeletedProduct_by_stock(boolean order) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<VProduct_DeletedVo> getAllDeletedProduct_by_stock(boolean order) 
+	{
+		return product_deletedDao.getAllDeletedProduct_by_stock(order);
 	}
 
 	@Override
-	public List<VProduct_DeletedVo> getAllDeletedProduct_by_all_sells(boolean order) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<VProduct_DeletedVo> getAllDeletedProduct_by_all_sells(boolean order) 
+	{
+		return product_deletedDao.getAllDeletedProduct_by_all_sells(order);
 	}
 
 }
