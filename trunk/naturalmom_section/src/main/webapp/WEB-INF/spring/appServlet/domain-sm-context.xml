@@ -38,43 +38,36 @@
 		<property name="dataSource" ref="ds"/>
 	</bean>	
 	
+	
 	<!-- SVC -->
+	
 	<bean id="product_svc" class="com.nmom.soap.svc.product.ProductSvcImpl">
 		<property name="productDao" ref="product_dao"/>
 	</bean>
-	
 	<bean id="faq_svc" class="com.nmom.soap.svc.board.faq.FaqSvcImpl">
 		<property name="faqDao" ref="faq_dao"/>
 	</bean>
-	
 	<bean id="qna_svc" class="com.nmom.soap.svc.board.qna.QnaSvcImpl">
 		<property name="qnaDao" ref="qna_dao"/>
 	</bean>
-	
 	<bean id="qnare_svc" class="com.nmom.soap.svc.board.qna.QnaReSvcImpl">
 		<property name="qnaReDao" ref="qnare_dao"/>
 	</bean>
-	
 	<bean id="v_qna_qnare_svc" class="com.nmom.soap.svc.board.qna.VQnaQnareSvcImpl">
 		<property name="vQnaQnareDao" ref="v_qna_qnare_dao"/>
 	</bean>
-	
 	<bean id="cart_svc" class="com.nmom.soap.svc.cart.CartSvcImpl">
 		<property name="cartDao" ref="cart_dao"/>
 	</bean>
-	
 	<bean id="v_cart_product_svc" class="com.nmom.soap.svc.cart.VCartProductSvcImpl">
 		<property name="vCartProductDao" ref="v_cart_product_dao"/>
 	</bean>
-	
 	<bean id="category_svc" class="com.nmom.soap.svc.category.CategorySvcImpl">
 		<property name="categoryDao" ref="category_dao"/>
 	</bean>
-	
 	<bean id="interest_svc" class="com.nmom.soap.svc.interest.InterestSvcImpl">
 		<property name="interestDao" ref="interest_dao"/>
 	</bean>
-	
 	<bean id="v_interest_product_svc" class="com.nmom.soap.svc.interest.VInterestProductImpl">
 		<property name="vInterestProductDao" ref="v_interest_product_dao"/>
 	</bean>
