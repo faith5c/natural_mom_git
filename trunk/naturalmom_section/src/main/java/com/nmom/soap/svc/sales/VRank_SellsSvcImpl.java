@@ -1,10 +1,9 @@
-package com.nmom.soap.svc.impl.sales;
+package com.nmom.soap.svc.sales;
 
 import java.util.List;
 
 import com.nmom.soap.data.dao.sales.IVRank_SellsDao;
 import com.nmom.soap.data.model.sales.VRank_SellsVo;
-import com.nmom.soap.svc.sales.IVRank_SellsSvc;
 
 public class VRank_SellsSvcImpl implements IVRank_SellsSvc 
 {

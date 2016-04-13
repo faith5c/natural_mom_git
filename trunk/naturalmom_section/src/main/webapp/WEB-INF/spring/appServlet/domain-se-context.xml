@@ -48,13 +48,13 @@
 		</property>
 	</bean>
 
-	<bean id="memberSvc" class="com.nmom.soap.svc.impl.member.MemberSvcImpl">
+	<bean id="memberSvc" class="com.nmom.soap.svc.member.MemberSvcImpl">
 		<property name="memberDao">
 			<ref local="memberDao"/>
 		</property>
 	</bean>
 	
-	<bean id="boardAccessSvc" class="com.nmom.soap.svc.impl.member.BoardAccessSvcImpl">
+	<bean id="boardAccessSvc" class="com.nmom.soap.svc.member.BoardAccessSvcImpl">
 		<property name="boardAccessDao">
 			<ref local="boardAccessDao"/>
 		</property>

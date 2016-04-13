@@ -1,10 +1,9 @@
-package com.nmom.soap.svc.impl.board.review;
+package com.nmom.soap.svc.board.review;
 
 import java.util.List;
 
 import com.nmom.soap.data.dao.board.review.IVReview_FrontDao;
 import com.nmom.soap.data.model.board.review.VReview_FrontVo;
-import com.nmom.soap.svc.board.review.IVReview_FrontSvc;
 
 public class VReview_FrontSvcImpl implements IVReview_FrontSvc 
 {

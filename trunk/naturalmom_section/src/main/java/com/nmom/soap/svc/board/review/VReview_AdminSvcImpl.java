@@ -1,10 +1,9 @@
-package com.nmom.soap.svc.impl.board.review;
+package com.nmom.soap.svc.board.review;
 
 import java.util.List;
 
 import com.nmom.soap.data.dao.board.review.IVReview_AdminDao;
 import com.nmom.soap.data.model.board.review.VReview_AdminVo;
-import com.nmom.soap.svc.board.review.IVReview_AdminSvc;
 
 public class VReview_AdminSvcImpl implements IVReview_AdminSvc 
 {

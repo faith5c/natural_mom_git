@@ -39,7 +39,7 @@
 	</bean>	
 	
 	<!-- SVC -->
-	<bean id="product_svc" class="com.nmom.soap.svc.impl.product.ProductSvcImpl">
+	<bean id="product_svc" class="com.nmom.soap.svc.product.ProductSvcImpl">
 		<property name="productDao" ref="productDao"/>
 	</bean>
 	

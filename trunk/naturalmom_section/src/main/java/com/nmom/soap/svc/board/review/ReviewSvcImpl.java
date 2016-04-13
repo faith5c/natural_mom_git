@@ -1,8 +1,7 @@
-package com.nmom.soap.svc.impl.board.review;
+package com.nmom.soap.svc.board.review;
 
 import com.nmom.soap.data.dao.board.review.IReviewDao;
 import com.nmom.soap.data.model.board.review.ReviewVo;
-import com.nmom.soap.svc.board.review.IReviewSvc;
 
 public class ReviewSvcImpl implements IReviewSvc 
 {

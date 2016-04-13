@@ -55,49 +55,49 @@
 	</bean>
 
 <!-- Svc -->
-	<bean id="productSvc" class="com.nmom.soap.svc.impl.product.ProductSvcImpl">
+	<bean id="productSvc" class="com.nmom.soap.svc.product.ProductSvcImpl">
 		<property name="productDao">
 			<ref local="productDao"/>
 		</property>
 	</bean>
 	
-	<bean id="vProduct_deletedSvc" class="com.nmom.soap.svc.impl.product.VProduct_DeletedSvcImpl">
+	<bean id="vProduct_deletedSvc" class="com.nmom.soap.svc.product.VProduct_DeletedSvcImpl">
 		<property name="product_deletedDao">
 			<ref local="vProduct_DeletedDao"/>
 		</property>
 	</bean>
 	
-	<bean id="vProduct_manageSvc" class="com.nmom.soap.svc.impl.product.VProduct_ManageSvcImpl">
+	<bean id="vProduct_manageSvc" class="com.nmom.soap.svc.product.VProduct_ManageSvcImpl">
 		<property name="product_manageDao">
 			<ref local="vProduct_ManageDao"/>
 		</property>
 	</bean>
 	
-	<bean id="vRank_sellsSvc" class="com.nmom.soap.svc.impl.sales.VRank_SellsSvcImpl">
+	<bean id="vRank_sellsSvc" class="com.nmom.soap.svc.sales.VRank_SellsSvcImpl">
 		<property name="rank_sellsDao">
 			<ref local="vRank_sellsDao"/>
 		</property>
 	</bean>
 	
-	<bean id="review_reSvc" class="com.nmom.soap.svc.impl.board.review.Review_ReSvcImpl">
+	<bean id="review_reSvc" class="com.nmom.soap.svc.board.review.Review_ReSvcImpl">
 		<property name="review_reDao">
 			<ref local="review_reDao"/>
 		</property>
 	</bean>
 	
-	<bean id="reviewSvc" class="com.nmom.soap.svc.impl.board.review.ReviewSvcImpl">
+	<bean id="reviewSvc" class="com.nmom.soap.svc.board.review.ReviewSvcImpl">
 		<property name="reviewDao">
 			<ref local="reviewDao"/>
 		</property>
 	</bean>
 	
-	<bean id="vReview_adminSvc" class="com.nmom.soap.svc.impl.board.review.VReview_AdminSvcImpl">
+	<bean id="vReview_adminSvc" class="com.nmom.soap.svc.board.review.VReview_AdminSvcImpl">
 		<property name="review_adminDao">
 			<ref local="vReview_adminDao"/>
 		</property>
 	</bean>
 	
-	<bean id="vReview_frontSvc" class="com.nmom.soap.svc.impl.board.review.VReview_FrontSvcImpl">
+	<bean id="vReview_frontSvc" class="com.nmom.soap.svc.board.review.VReview_FrontSvcImpl">
 		<property name="review_frontDao">
 			<ref local="vReview_frontDao"/>
 		</property>

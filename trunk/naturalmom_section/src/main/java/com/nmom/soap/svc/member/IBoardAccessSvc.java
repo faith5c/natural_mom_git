@@ -1,4 +1,4 @@
-package com.nmom.soap.svc.impl.member;
+package com.nmom.soap.svc.member;
 
 import com.nmom.soap.data.model.member.BoardAccessVo;
 

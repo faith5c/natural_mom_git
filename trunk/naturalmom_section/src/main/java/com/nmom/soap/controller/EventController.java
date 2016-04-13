@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 
 import com.nmom.soap.svc.board.event.IEventSvc;
 import com.nmom.soap.svc.board.event.IEvent_reSvc;
-import com.nmom.soap.svc.impl.member.IBoardAccessSvc;
+import com.nmom.soap.svc.member.IBoardAccessSvc;
 
 @Controller
 public class EventController {

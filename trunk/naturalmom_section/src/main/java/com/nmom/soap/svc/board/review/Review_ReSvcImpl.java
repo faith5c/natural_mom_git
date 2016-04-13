@@ -1,10 +1,9 @@
-package com.nmom.soap.svc.impl.board.review;
+package com.nmom.soap.svc.board.review;
 
 import java.util.List;
 
 import com.nmom.soap.data.dao.board.review.IReview_ReDao;
 import com.nmom.soap.data.model.board.review.Review_ReVo;
-import com.nmom.soap.svc.board.review.IReview_ReSvc;
 
 public class Review_ReSvcImpl implements IReview_ReSvc 
 {

@@ -1,10 +1,9 @@
-package com.nmom.soap.svc.impl.product;
+package com.nmom.soap.svc.product;
 
 import java.util.List;
 
 import com.nmom.soap.data.dao.product.IVProduct_ManageDao;
 import com.nmom.soap.data.model.product.VProduct_ManageVo;
-import com.nmom.soap.svc.product.IVProduct_ManageSvc;
 
 public class VProduct_ManageSvcImpl implements IVProduct_ManageSvc 
 {

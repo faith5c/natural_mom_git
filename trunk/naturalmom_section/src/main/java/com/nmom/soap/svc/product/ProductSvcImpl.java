@@ -1,4 +1,4 @@
-package com.nmom.soap.svc.impl.product;
+package com.nmom.soap.svc.product;
 
 import java.util.List;
 
@@ -6,7 +6,6 @@ import org.springframework.dao.DataAccessException;
 
 import com.nmom.soap.data.dao.product.IProductDao;
 import com.nmom.soap.data.model.product.ProductVo;
-import com.nmom.soap.svc.product.IProductSvc;
 
 public class ProductSvcImpl implements IProductSvc
 {
