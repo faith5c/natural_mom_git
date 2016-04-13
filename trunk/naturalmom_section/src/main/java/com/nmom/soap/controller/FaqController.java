@@ -23,4 +23,9 @@ public class FaqController {
 	public String board_faq(HttpServletRequest req){
 		return "board/faq/b_faq";
 	}
+	
+	@RequestMapping(value ="admin/board/faq.nm", method=RequestMethod.GET)
+	public String a_board_faq(HttpServletRequest req){
+		return "admin/board/faq/a_faq";
+	}
 }

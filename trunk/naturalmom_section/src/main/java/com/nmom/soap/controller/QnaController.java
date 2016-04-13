@@ -31,4 +31,9 @@ public class QnaController {
 	public String board_qna(HttpServletRequest req){
 		return "board/qna/b_qna";
 	}
+	
+	@RequestMapping(value ="admin/board/qna.nm", method=RequestMethod.GET)
+	public String a_board_qna(HttpServletRequest req){
+		return "admin/board/qna/a_qna";
+	}
 }

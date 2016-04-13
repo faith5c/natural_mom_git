@@ -31,5 +31,10 @@ public class EventController {
 	public String board_event(HttpServletRequest req){
 		return "board/event/b_event";
 	}
+	
+	@RequestMapping(value ="admin/board/event.nm", method=RequestMethod.GET)
+	public String a_board_event(HttpServletRequest req){
+		return "admin/board/event/a_event";
+	}
 
 }
