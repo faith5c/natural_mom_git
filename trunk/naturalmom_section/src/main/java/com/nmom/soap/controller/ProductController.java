@@ -1,11 +1,15 @@
 package com.nmom.soap.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.nmom.soap.S;
 import com.nmom.soap.data.model.product.VProduct_ManageVo;
@@ -41,13 +45,14 @@ public class ProductController
 		this.categorySvc = categorySvc;
 	}
 	
-	@RequestMapping(value="")
-	public String product_manageList(HttpServletRequest request)
+	@RequestMapping(value ="/admin/product.nm", method=RequestMethod.GET, params="page=manage")
+	public ModelAndView product_manageList(HttpServletRequest request)
 	{
-		List<VProduct_ManageVo> list = product_manageSvc.getAllProduct_by_product_no(S.ASC);
 		System.out.println("메소드 진입");
+		List<VProduct_ManageVo> list = product_manageSvc.getAllProduct_by_product_no(S.ASC);
 		
-		return "admin/order/a_order";
-	}
+		Map<String, Object> map = new HashMap<String, Object>();
 	
+		return new ModelAndView("admin/product/a_product", map);
+	}
 }
