@@ -53,19 +53,19 @@ public class ProductSvcImpl implements IProductSvc
 	}
 
 	@Override
-	public List<ProductVo> getAllProduct() throws DataAccessException {
+	public List<ProductVo> getAllProduct(){
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<ProductVo> getProductByCategoryCd(int category_cd) throws DataAccessException {
+	public List<ProductVo> getProductByCategoryCd(int category_cd) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<ProductVo> getProductByProductName(String product_name) throws DataAccessException {
+	public List<ProductVo> getProductByProductName(String product_name) {
 		// TODO Auto-generated method stub
 		return null;
 	}

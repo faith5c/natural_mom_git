@@ -27,12 +27,12 @@ public interface IProductSvc
 	int editOneProduct(ProductVo product);
 	
 	// 상품 목록 페이지
-	List<ProductVo> getAllProduct() throws DataAccessException;
+	List<ProductVo> getAllProduct();
 	
 	// 카테고리에 따라 상품목록 가져옴
-	List<ProductVo> getProductByCategoryCd(int category_cd) throws DataAccessException;
+	List<ProductVo> getProductByCategoryCd(int category_cd);
 	
 	// 상품이름으로 상품 가져옴
-	List<ProductVo> getProductByProductName(String product_name) throws DataAccessException;
+	List<ProductVo> getProductByProductName(String product_name);
 
 }
