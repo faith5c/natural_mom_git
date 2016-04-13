@@ -29,7 +29,7 @@
 		_default_menu.jsp
 	
 	
-- context path => 'natural'  (<- 이거는 수정필요하면 변경 바람)
+- context path => 'soap'
 - URL 구분자 : '*.nm'
 
 _____________________________________________________________
