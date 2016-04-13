@@ -18,7 +18,6 @@ public class VOrderManagerVo {
 
 	public VOrderManagerVo(Date order_date, int order_no, String mem_name, String product_name, int buy_num, int charge,
 			String delivery_msg, int tracking_num, String process_nm) {
-		super();
 		this.order_date = order_date;
 		this.order_no = order_no;
 		this.mem_name = mem_name;
