@@ -10,13 +10,13 @@ public class OrderSvcImpl implements IOrderSvc {
 	private IOrderDao orderDao;
 	
 	@Override
-	public int addOrder(OrderVo order, String credit_nm, String delivery_com_nm) throws DataAccessException {
+	public int addOrder(OrderVo order, String credit_nm, String delivery_com_nm) {
 		
 		return 0;
 	}
 
 	@Override
-	public int editTrackingNumOrder(int order_no, int tracking_num) throws DataAccessException {
+	public int editTrackingNumOrder(int order_no, int tracking_num) {
 
 		return 0;
 	}

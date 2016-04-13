@@ -12,13 +12,13 @@ public class VOrderListSvcImpl implements IVOrderListSvc {
 	private IVOrderListDao vOrderListDao;
 	
 	@Override
-	public List<VOrderListVo> getAllOreder(int page, String mem_id) throws DataAccessException {
+	public List<VOrderListVo> getAllOreder(int page, String mem_id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public int getAllCount(String mem_id) throws DataAccessException {
+	public int getAllCount(String mem_id) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
