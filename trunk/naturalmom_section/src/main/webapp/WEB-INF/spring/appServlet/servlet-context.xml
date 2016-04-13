@@ -12,7 +12,6 @@
 	<beans:import resource="domain-sr-context.xml"/>
 	<beans:import resource="domain-se-context.xml"/>
 	
-	
 	<!-- Controller -->
 	<beans:bean id="indexCtl" class="com.nmom.soap.controller.IndexController">
 	</beans:bean>
@@ -33,6 +32,38 @@
 		</beans:property>
 	</beans:bean>
 	
+	<beans:bean id="reviewCtl" class="com.nmom.soap.controller.ReviewController">
+		<beans:property name="reviewSvc">
+			<beans:ref local="reviewSvc"/>
+		</beans:property>
+		<beans:property name="review_reSvc">
+			<beans:ref local="review_reSvc"/>
+		</beans:property>
+		<beans:property name="review_adminSvc">
+			<beans:ref local="vReview_adminSvc"/>
+		</beans:property>
+		<beans:property name="review_frontSvc">
+			<beans:ref local="vReview_frontSvc"/>
+		</beans:property>
+	</beans:bean>
+	
+	<beans:bean id="productCtl" class="com.nmom.soap.controller.ProductController">
+		<beans:property name="productSvc">
+			<beans:ref local="productSvc"/>
+		</beans:property>
+		<beans:property name="product_deletedSvc">
+			<beans:ref local="vProduct_deletedSvc"/>
+		</beans:property>
+		<beans:property name="product_manageSvc">
+			<beans:ref local="vProduct_manageSvc"/>
+		</beans:property>
+	</beans:bean>
+	
+	<beans:bean id="salesCtl" class="com.nmom.soap.controller.SalesController">
+		<beans:property name="rank_sellsSvc">
+			<beans:ref local="vRank_sellsSvc"/>
+		</beans:property>
+	</beans:bean>
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	

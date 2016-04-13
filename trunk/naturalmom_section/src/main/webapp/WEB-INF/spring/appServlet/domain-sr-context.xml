@@ -91,13 +91,13 @@
 		</property>
 	</bean>
 	
-	<bean id="rReview_adminSvc" class="com.nmom.soap.svc.impl.board.review.VReview_AdminSvcImpl">
+	<bean id="vReview_adminSvc" class="com.nmom.soap.svc.impl.board.review.VReview_AdminSvcImpl">
 		<property name="review_adminDao">
 			<ref local="vReview_adminDao"/>
 		</property>
 	</bean>
 	
-	<bean id="rReview_frontSvc" class="com.nmom.soap.svc.impl.board.review.VReview_FrontSvcImpl">
+	<bean id="vReview_frontSvc" class="com.nmom.soap.svc.impl.board.review.VReview_FrontSvcImpl">
 		<property name="review_frontDao">
 			<ref local="vReview_frontDao"/>
 		</property>
