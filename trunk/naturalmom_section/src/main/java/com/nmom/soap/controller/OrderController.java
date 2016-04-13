@@ -27,7 +27,7 @@ public class OrderController {
 	private IVOrderListSvc vOrderListSvc;
 	private IVOrderManagerSvc vOrderManagerSvc;
 	
-	@RequestMapping(value="/admin/order.nm", method=RequestMethod.GET)
+//	@RequestMapping(value="admin/order.nm", method=RequestMethod.GET)
 	public ModelAndView checkId(HttpServletRequest req,
 			@RequestParam(value="by") String by,
 			@RequestParam(value="order") String order){
