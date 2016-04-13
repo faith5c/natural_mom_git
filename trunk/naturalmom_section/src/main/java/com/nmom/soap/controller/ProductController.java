@@ -1,5 +1,14 @@
 package com.nmom.soap.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.nmom.soap.S;
+import com.nmom.soap.data.model.product.VProduct_ManageVo;
 import com.nmom.soap.svc.category.ICategorySvc;
 import com.nmom.soap.svc.product.IProductSvc;
 import com.nmom.soap.svc.product.IVProduct_DeletedSvc;
@@ -29,6 +38,15 @@ public class ProductController
 
 	public void setCategorySvc(ICategorySvc categorySvc) {
 		this.categorySvc = categorySvc;
+	}
+	
+	@RequestMapping(value="")
+	public String product_manageList(HttpServletRequest request)
+	{
+		List<VProduct_ManageVo> list = product_manageSvc.getAllProduct_by_product_no(S.ASC);
+		System.out.println("메소드 진입");
+		
+		return "admin/order/a_order";
 	}
 	
 }
