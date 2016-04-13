@@ -17,8 +17,7 @@ public class OrderController {
 	public void setProductOrderDaoOra(ProductOrderDaoOraImpl productOrderDaoOra) {
 		this.productOrderDaoOra = productOrderDaoOra;
 	}
-	public void setvOrderListDaoOra(VOrderListDaoOraImpl vOrderListDaoOra) {
+	public void setVOrderListDaoOra(VOrderListDaoOraImpl vOrderListDaoOra) {
 		this.vOrderListDaoOra = vOrderListDaoOra;
 	}
-	
 }
