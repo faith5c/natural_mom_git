@@ -14,8 +14,9 @@ import com.nmom.soap.data.model.board.review.VReview_FrontVo;
 public class VReview_FrontDaoOraImpl extends NamedParameterJdbcDaoSupport implements IVReview_FrontDao 
 {
 	// 게시판 목록 뽑기
-	private final String GET_ALL_LIST = "SELECT A.* FROM (SELECT rownum as re_rnum, V.* from V_REVIEW_FRONT V) A "
-			+ "WHERE A.product_no = :product_no AND A.re_rnum >= :start AND A.re_rnum <= :end ORDER BY re_rnum DESC;";
+	private final String GET_ALL_LIST = "SELECT A.* FROM (SELECT rownum as re_rnum, X.* FROM "
+			+ "(SELECT * from V_REVIEW_FRONT V WHERE V.product_no = :product_no ORDER BY review_no DESC) X) A "
+			+ "WHERE A.re_rnum >= :start AND A.re_rnum <= :end ORDER BY rownum ASC";
 	
 	public List<VReview_FrontVo> getAllList(int product_no, int start, int end) throws DataAccessException
 	{

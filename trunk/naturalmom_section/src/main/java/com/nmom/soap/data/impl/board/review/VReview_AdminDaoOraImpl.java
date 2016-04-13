@@ -16,27 +16,31 @@ public class VReview_AdminDaoOraImpl extends NamedParameterJdbcDaoSupport implem
 {
 	// 게시판 목록 조회
 //	private final String GET_ALL_LIST = "SELECT * FROM v_review_admin";
+	// rownum == review_no
+//	private final String GET_ALL_LIST = "SELECT A.* FROM (SELECT rownum as re_rnum, X.* FROM"
+//			+ " (SELECT * from V_REVIEW_ADMIN ORDER BY review_no ASC) X WHERE rownum <= :end) A WHERE A.re_rnum >= :start"
+//			+ " ORDER BY rownum DESC";
 	private final String GET_ALL_LIST = "SELECT A.* FROM (SELECT rownum as re_rnum, X.* FROM"
-			+ " (SELECT * from V_REVIEW_ADMIN ORDER BY review_no ASC) X WHERE rownum <= :end) A WHERE A.re_rnum >= :start"
-			+ " ORDER BY rownum DESC";
+	+ " (SELECT * from V_REVIEW_ADMIN ORDER BY review_no DESC) X WHERE rownum <= :end) A WHERE A.re_rnum >= :start"
+	+ " ORDER BY rownum ASC";
 	// 게시판 내용 조회
 	private final String GET_ONE_REVIEW = "SELECT * FROM v_review_admin WHERE review_no = ?";
 	// 제목으로 검색하기
 	private final String GET_SEARCH_BY_TITLE = "SELECT A.* FROM (SELECT rownum as re_rnum, X.* FROM"
-			+ " (SELECT * from V_REVIEW_ADMIN ORDER BY review_no ASC) X WHERE rownum <= :end) A"
-			+ " WHERE A.re_rnum >= :start AND rvw_title LIKE :search ORDER BY rownum DESC";
+			+ " (SELECT * from V_REVIEW_ADMIN ORDER BY review_no DESC) X WHERE rownum <= :end) A"
+			+ " WHERE A.re_rnum >= :start AND rvw_title LIKE :search ORDER BY rownum ASC";
 	// 내용으로 검색하기
 	private final String GET_SEARCH_BY_CONTENT = "SELECT A.* FROM (SELECT rownum as re_rnum, X.* FROM"
-			+ " (SELECT * from V_REVIEW_ADMIN ORDER BY review_no ASC) X WHERE rownum <= :end) A"
-			+ " WHERE A.re_rnum >= :start AND rvw_content LIKE :search ORDER BY rownum DESC";
+			+ " (SELECT * from V_REVIEW_ADMIN ORDER BY review_no DESC) X WHERE rownum <= :end) A"
+			+ " WHERE A.re_rnum >= :start AND rvw_content LIKE :search ORDER BY rownum ASC";
 	// 글쓴이로 검색하기
 	private final String GET_SEARCH_BY_ID = "SELECT A.* FROM (SELECT rownum as re_rnum, X.* FROM"
-			+ " (SELECT * from V_REVIEW_ADMIN ORDER BY review_no ASC) X WHERE rownum <= :end) A"
-			+ " WHERE A.re_rnum >= :start AND mem_id LIKE :search ORDER BY rownum DESC";
+			+ " (SELECT * from V_REVIEW_ADMIN ORDER BY review_no DESC) X WHERE rownum <= :end) A"
+			+ " WHERE A.re_rnum >= :start AND mem_id LIKE :search ORDER BY rownum ASC";
 	// 제목+내용으로 검색하기
 	private final String GET_SEARCH_BY_TITLE_CONTENT = "SELECT A.* FROM (SELECT rownum as re_rnum, X.* FROM"
-			+ " (SELECT * from V_REVIEW_ADMIN ORDER BY review_no ASC) X WHERE rownum <= :end) A"
-			+ " WHERE A.re_rnum >= :start AND rvw_title LIKE :search OR rvw_content LIKE :search ORDER BY rownum DESC";
+			+ " (SELECT * from V_REVIEW_ADMIN ORDER BY review_no DESC) X WHERE rownum <= :end) A"
+			+ " WHERE A.re_rnum >= :start AND rvw_title LIKE :search OR rvw_content LIKE :search ORDER BY rownum ASC";
 	
 	public List<VReview_AdminVo> getAllList(int start, int end) throws DataAccessException 
 	{
