@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.nmom.soap.S;
 import com.nmom.soap.data.model.product.VProduct_ManageVo;
@@ -14,6 +14,7 @@ import com.nmom.soap.svc.product.IProductSvc;
 import com.nmom.soap.svc.product.IVProduct_DeletedSvc;
 import com.nmom.soap.svc.product.IVProduct_ManageSvc;
 
+@Controller
 public class ProductController 
 {
 	IProductSvc productSvc;
