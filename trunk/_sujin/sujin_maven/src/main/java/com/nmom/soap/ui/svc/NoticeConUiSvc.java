@@ -57,20 +57,25 @@ public class NoticeConUiSvc extends ConUiSvc {
 		switch (num) {
 		case NOTICE_LIST:
 			getNoticeList(vNoticeDaoOra.getAllNotice(2, 5));
+			System.out.println(vNoticeDaoOra.getAllCount());
 			break;
 		case NOTICE_SEARCH_BY_TITLE:
 			getNoticeList(vNoticeDaoOra.getSearchByTitleNotice("휴무", 2, 5));
+			System.out.println(vNoticeDaoOra.getAllCountByTitle("휴무"));
 			break;
 		case NOTICE_SEARCH_BY_CONTENT:
 			getNoticeList(vNoticeDaoOra.getSearchByContentNotice("자연맘", 2, 5));
+			System.out.println(vNoticeDaoOra.getAllCountByContent("자연맘"));
 			break;
 			
 		case NOTICE_SEARCH_BY_ID:
 			getNoticeList(vNoticeDaoOra.getSearchByIdNotice("admin", 2, 5));
+			System.out.println(vNoticeDaoOra.getAllCountById("admin"));
 			break;
 			
 		case NOTICE_SEARCH_BY_TITLE_N_CONTENT:
 			getNoticeList(vNoticeDaoOra.getSearchByTitleNContentNotice("휴무",2, 5));
+			System.out.println(vNoticeDaoOra.getAllCountByTitleNContent("휴무"));
 			break;
 		
 		case NOTICE_READ:
