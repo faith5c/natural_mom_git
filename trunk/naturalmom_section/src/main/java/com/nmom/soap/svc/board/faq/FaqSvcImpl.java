@@ -15,68 +15,57 @@ public class FaqSvcImpl implements IFaqSvc{
 
 	@Override
 	public FaqVo getOneFaq(int faq_no) {
-		// TODO Auto-generated method stub
-		return null;
+		return faqDao.getOneFaq(faq_no);
 	}
 
 	@Override
 	public List<FaqVo> getAllFaq(int start, int end) {
-		// TODO Auto-generated method stub
-		return null;
+		return faqDao.getAllFaq(start, end);
 	}
 
 	@Override
 	public List<FaqVo> searchFaqTitle(String keyword, int start, int end) {
-		// TODO Auto-generated method stub
-		return null;
+		return faqDao.searchFaqTitle(keyword, start, end);
 	}
 
 	@Override
 	public List<FaqVo> searchFaqContent(String keyword, int start, int end) {
-		// TODO Auto-generated method stub
-		return null;
+		return faqDao.searchFaqContent(keyword, start, end);
 	}
 
 	@Override
 	public List<FaqVo> searchFaqTitleNContent(String keyword, int start, int end) {
-		// TODO Auto-generated method stub
-		return null;
+		return faqDao.searchFaqTitleNContent(keyword, start, end);
 	}
 
 	@Override
 	public int addFaq(FaqVo faq) {
-		// TODO Auto-generated method stub
-		return 0;
+		return faqDao.addFaq(faq);
 	}
 
 	@Override
 	public int addFaq(String faq_title, String faq_content, String mem_id) {
-		// TODO Auto-generated method stub
-		return 0;
+		return faqDao.addFaq(faq_title, faq_content, mem_id);
 	}
 
 	@Override
 	public int editFaq(FaqVo faq) {
-		// TODO Auto-generated method stub
-		return 0;
+		return faqDao.editFaq(faq);
 	}
 
 	@Override
 	public int editFaq(String faq_title, String faq_content, int faq_no) {
-		// TODO Auto-generated method stub
-		return 0;
+		return faqDao.editFaq(faq_title, faq_content, faq_no);
 	}
 
 	@Override
 	public int removeFaq(FaqVo faq) {
-		// TODO Auto-generated method stub
-		return 0;
+		return faqDao.removeFaq(faq);
 	}
 
 	@Override
 	public int removeFaq(int faq_no) {
-		// TODO Auto-generated method stub
-		return 0;
+		return faqDao.removeFaq(faq_no);
 	}
 
 }
