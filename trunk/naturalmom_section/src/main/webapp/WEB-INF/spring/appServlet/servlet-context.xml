@@ -67,14 +67,14 @@
 	</beans:bean>
 	
 	<beans:bean id="orderCtl" class="com.nmom.soap.controller.OrderController">
-		<beans:property name="orderDaoOra">
-			<beans:ref local="orderDaoOra" />
+		<beans:property name="orderSvc">
+			<beans:ref local="orderSvc" />
 		</beans:property>
-		<beans:property name="productOrderDaoOra">
-			<beans:ref local="productOrderDaoOra" />
+		<beans:property name="productOrderSvc">
+			<beans:ref local="productOrderSvc" />
 		</beans:property>
-		<beans:property name="vOrderListDaoOra">
-			<beans:ref local="vOrderListDaoOra" />
+		<beans:property name="vOrderListSvc">
+			<beans:ref local="vOrderListSvc" />
 		</beans:property>	
 	</beans:bean>
 
