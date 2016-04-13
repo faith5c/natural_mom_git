@@ -6,11 +6,6 @@ import com.nmom.soap.data.model.board.notice.NoticeVo;
 
 
 public interface INoticeDao {
-	
-	final int SEARCH_TITLE = 1;
-	final int SEARCH_CONTENT = 2;
-	final int SEARCH_MEM_ID = 3;
-	final int SEARCH_TITLE_AND_CONTENT = 4;
 
 	public NoticeVo getNotice(int notice_no) throws DataAccessException;
 	
