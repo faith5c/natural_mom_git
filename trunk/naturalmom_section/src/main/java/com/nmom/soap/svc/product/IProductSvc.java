@@ -2,8 +2,6 @@ package com.nmom.soap.svc.product;
 
 import java.util.List;
 
-import org.springframework.dao.DataAccessException;
-
 import com.nmom.soap.data.model.product.ProductVo;
 
 public interface IProductSvc 
