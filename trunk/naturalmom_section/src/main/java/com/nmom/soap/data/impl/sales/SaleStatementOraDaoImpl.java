@@ -7,10 +7,10 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcDaoSupport;
 
-import com.nmom.soap.data.dao.sales.IVSaleStatementDao;
+import com.nmom.soap.data.dao.sales.ISaleStatementDao;
 import com.nmom.soap.data.model.sales.SaleStatementVo;
 
-public class SaleStatementOraDaoImpl extends NamedParameterJdbcDaoSupport implements IVSaleStatementDao {
+public class SaleStatementOraDaoImpl extends NamedParameterJdbcDaoSupport implements ISaleStatementDao {
 	
 	final String SELECT_TODAY_SALESTATEMENT = 
 			"SELECT (SELECT COUNT(o.order_no) FROM tb_order o "
