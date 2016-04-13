@@ -27,7 +27,7 @@ public class OrderController {
 	private IVOrderListSvc vOrderListSvc;
 	private IVOrderManagerSvc vOrderManagerSvc;
 	
-	@RequestMapping(value="order.nm", method=RequestMethod.GET)
+	@RequestMapping(value="/admin/order.nm", method=RequestMethod.GET)
 	public ModelAndView getOrderManager(HttpServletRequest req,
 			@RequestParam(value="by") String by,
 			@RequestParam(value="order") String order){
@@ -73,7 +73,7 @@ public class OrderController {
 				list = this.vOrderManagerSvc.getAllOrederByProcess(false);		
 		}
 		map.put("orderManeger", list);
-		return new ModelAndView("/admin/order",map);
+		return new ModelAndView("admin/order/a_order",map);
 	}
 	
 	
