@@ -33,8 +33,7 @@ public class MemberSvcImpl implements IMemberSvc {
 
 	@Override
 	public boolean checkId(String id) {
-		// TODO Auto-generated method stub
-		return false;
+		return memberDao.checkId(id);
 	}
 
 	@Override
