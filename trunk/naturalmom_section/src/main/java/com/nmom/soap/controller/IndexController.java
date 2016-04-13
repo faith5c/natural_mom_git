@@ -30,12 +30,12 @@ public class IndexController {
 	public String menu_join(HttpServletRequest req){
 		return "join/membership";
 	}
-	
+	/*
 	@RequestMapping(value ="/cart.nm", method=RequestMethod.GET)
 	public String menu_cart(HttpServletRequest req){
 		return "order/cart";
 	}
-	
+	*/
 	@RequestMapping(value ="/orderlist.nm", method=RequestMethod.GET)
 	public String menu_orderlist(HttpServletRequest req){
 		return "order/orderlist";
