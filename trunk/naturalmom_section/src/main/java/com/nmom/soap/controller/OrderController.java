@@ -27,10 +27,11 @@ public class OrderController {
 	private IVOrderListSvc vOrderListSvc;
 	private IVOrderManagerSvc vOrderManagerSvc;
 	
-//	@RequestMapping(value="admin/order.nm", method=RequestMethod.GET)
-	public ModelAndView checkId(HttpServletRequest req,
+	@RequestMapping(value="order.nm", method=RequestMethod.GET)
+	public ModelAndView getOrderManager(HttpServletRequest req,
 			@RequestParam(value="by") String by,
 			@RequestParam(value="order") String order){
+		System.out.println("@RequestMapping(value=/admin/order.nm");
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<VOrderManagerVo> list = null;
 		if ( by == null || by.isEmpty() || by.equals("")){
