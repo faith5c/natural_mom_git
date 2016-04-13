@@ -50,10 +50,12 @@ public class EventController {
 	
 	@RequestMapping(value ="/board/event_read.nm", method=RequestMethod.GET)
 	public ModelAndView board_event_r(HttpServletRequest req, 
-									@RequestParam(value="r") int r){
+									@RequestParam(value="r") int r,
+									@RequestParam(value="rr") int rr){
 		Map<String, Object> map = new HashMap<>();
 			
 		EventVo event = eventSvc.getOneEvent(r);
+		event.setEvt_rnum(rr);
 		map.put("con", event);
 		
 		return new ModelAndView("board/event/b_event", map);
@@ -62,12 +64,25 @@ public class EventController {
 	
 	
 	// 관리자페이지
-	@RequestMapping(value ="admin/board/event.nm", method=RequestMethod.GET)
+	@RequestMapping(value ="/admin/board/event.nm", method=RequestMethod.GET)
 	public ModelAndView a_board_event(HttpServletRequest req){
 		List<EventVo> e_list = eventSvc.getEventList(1, 5);
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("e_list", e_list);
+		
+		return new ModelAndView("admin/board/event/a_event", map);
+	}
+	
+	@RequestMapping(value ="/admin/board/event_read.nm", method=RequestMethod.GET)
+	public ModelAndView a_board_event_r(HttpServletRequest req, 
+									@RequestParam(value="r") int r,
+									@RequestParam(value="rr") int rr){
+		Map<String, Object> map = new HashMap<>();
+			
+		EventVo event = eventSvc.getOneEvent(r);
+		event.setEvt_rnum(rr);
+		map.put("con", event);
 		
 		return new ModelAndView("admin/board/event/a_event", map);
 	}
