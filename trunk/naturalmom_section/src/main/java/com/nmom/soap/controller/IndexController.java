@@ -40,11 +40,11 @@ public class IndexController {
 	public String menu_orderlist(HttpServletRequest req){
 		return "order/orderlist";
 	}
-	
+	/*
 	@RequestMapping(value ="/mypage.nm", method=RequestMethod.GET)
 	public String menu_mypage(HttpServletRequest req){
 		return "mypage/mypage";
-	}
+	}*/
 	
 	@RequestMapping(value ="/customer_center.nm", method=RequestMethod.GET)
 	public String menu_customer_center(HttpServletRequest req, 

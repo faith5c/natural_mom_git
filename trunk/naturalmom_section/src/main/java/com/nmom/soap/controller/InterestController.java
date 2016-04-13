@@ -43,4 +43,18 @@ public class InterestController {
 		return mav;
 	}
 	
+	@RequestMapping(value ="/mypage.nm", method=RequestMethod.GET)
+	public ModelAndView menu_mypage(HttpServletRequest req){
+		//String loggedin = (String)ses.getAttribute("loggedin");
+		String loggedin = "soomin";
+		
+		List<VInterestProductVo> interest_list = this.vInterestProductSvc.getInterestByMemId(loggedin);
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("interest_list", interest_list);
+		
+		ModelAndView mav = new ModelAndView("mypage/mypage", map);
+		return mav;
+	}
+	
 }
