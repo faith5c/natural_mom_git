@@ -8,9 +8,9 @@
 	<script src="resources/admin/js/jquery-1.11.3.min.js"></script>
 	<!-- [if lt IE 9]><script src="js/html5shiv.js"></script><![endif] -->
 	
-	<link rel="apple-touch-icon" href="resources/admin/images/logo.ico" /> <!--애플아이콘등록-->
-	<link rel="shortcut icon" href="resources/admin/images/logo.ico" /> <!--단축키아이콘등록-->
-	<link rel="stylesheet" href="resources/admin/css/admin_common.css"/>
+	<link rel="apple-touch-icon" href="../resources/images/logo.ico" /> <!--애플아이콘등록-->
+	<link rel="shortcut icon" href="../resources/images/logo.ico" /> <!--단축키아이콘등록-->
+	<link rel="stylesheet" href="../resources/admin/css/admin_common.css"/>
 		
 	<title>자연맘</title>
 	
@@ -39,6 +39,8 @@
 	<%@ include file = "_a_product_manage.jsp" %>
 <% } %>
 	</div>
+	
+	
 <!--------------------------------------------------------end container------------->
   </body>
 
