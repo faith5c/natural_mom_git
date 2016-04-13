@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
+<html>
 <style type = "text/css">
 		#content_body { 
 					font-family : "나눔바른고딕", "맑은 고딕";
@@ -80,18 +82,23 @@
 				<td width="17%">작성일</td>
 				<td width="8%">조회</td>
 			</tr>
+			
 			<tr>
 				<td id = "no">1</td>
-				<td><a href = "customer_center.jsp?page=event&r=1">3만원 이상 구매 시 무료배송</a></td>
+				<td><a href = "customer_center.nm?page=event&r=1">3만원 이상 구매 시 무료배송</a></td>
 				<td id = "id" >자연맘</td>
 				<td id = "write_day" >2016-03-16</td>
 				<td id = "hits" >5</td>
-				
+				<td id = "realNo" style="display: none"></td>
 			</tr>
-			<td colspan="5" style="text-align: right">
-				<a id = "write" name = "write" 
-					href="customer_center.jsp?page=event&w=true">글쓰기</a>
-			</td>
+			
+			
+			<tr>
+				<td colspan="5" style="text-align: right">
+					<a id = "write" name = "write" 
+						href="customer_center.jsp?page=event&w=true">글쓰기</a>
+				</td>
+			</tr>
 		</table>
 		<div id = "pages">
 			<a href = "#">&lsaquo;</a>

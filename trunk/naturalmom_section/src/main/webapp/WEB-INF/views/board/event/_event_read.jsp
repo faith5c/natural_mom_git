@@ -95,7 +95,7 @@
 					<td><input type = "button" value = "등록" id = "re_submit" name = "re_submit"></td>
 				</tr>
 			</table>
-			<table cellspacing = "0" id = "buttons">
+			<table cellspacing = "0" id = "buttons" style="margin-bottom: 80px;">
 				<tr>
 					<td>
 						<input type = "button" value = "이전글" id = "prev" name = "prev">
