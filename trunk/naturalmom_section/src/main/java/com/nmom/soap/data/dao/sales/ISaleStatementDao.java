@@ -4,7 +4,7 @@ import org.springframework.dao.DataAccessException;
 
 import com.nmom.soap.data.model.sales.SaleStatementVo;
 
-public interface IVSaleStatementDao {
+public interface ISaleStatementDao {
 	
 	public SaleStatementVo getSaleStatement()  throws DataAccessException;
 	
