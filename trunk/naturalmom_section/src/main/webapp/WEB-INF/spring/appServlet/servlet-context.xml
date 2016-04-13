@@ -64,6 +64,9 @@
 		<beans:property name="rank_sellsSvc">
 			<beans:ref local="vRank_sellsSvc"/>
 		</beans:property>
+		<beans:property name="saleStatementSvc">
+			<beans:ref local="saleStatementSvc"/>
+		</beans:property>
 	</beans:bean>
 	
 	<beans:bean id="orderCtl" class="com.nmom.soap.controller.OrderController">
