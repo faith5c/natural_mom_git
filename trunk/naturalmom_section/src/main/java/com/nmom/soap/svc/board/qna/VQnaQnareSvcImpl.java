@@ -15,32 +15,27 @@ public class VQnaQnareSvcImpl implements IVQnaQnareSvc {
 
 	@Override
 	public VQnaQnaReVo getOneQna(int qna_no) {
-		// TODO Auto-generated method stub
-		return null;
+		return vQnaQnareDao.getOneQna(qna_no);
 	}
 
 	@Override
 	public List<VQnaQnaReVo> getAllQna(int start, int end) {
-		// TODO Auto-generated method stub
-		return null;
+		return vQnaQnareDao.getAllQna(start, end);
 	}
 
 	@Override
 	public List<VQnaQnaReVo> searchQnaTitle(String keyword, int start, int end) {
-		// TODO Auto-generated method stub
-		return null;
+		return vQnaQnareDao.searchQnaTitle(keyword, start, end);
 	}
 
 	@Override
 	public List<VQnaQnaReVo> searchQnaContent(String keyword, int start, int end) {
-		// TODO Auto-generated method stub
-		return null;
+		return vQnaQnareDao.searchQnaContent(keyword, start, end);
 	}
 
 	@Override
 	public List<VQnaQnaReVo> searchQnaTitleNContent(String keyword, int start, int end) {
-		// TODO Auto-generated method stub
-		return null;
+		return vQnaQnareDao.searchQnaTitleNContent(keyword, start, end);
 	}
 
 }

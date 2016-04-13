@@ -15,13 +15,11 @@ public class VInterestProductImpl implements IVInterestProductSvc {
 
 	@Override
 	public List<VInterestProductVo> getAllInterest() {
-		// TODO Auto-generated method stub
-		return null;
+		return vInterestProductDao.getAllInterest();
 	}
 
 	@Override
 	public List<VInterestProductVo> getInterestByMemId(String mem_id) {
-		// TODO Auto-generated method stub
-		return null;
+		return vInterestProductDao.getInterestByMemId(mem_id);
 	}
 }

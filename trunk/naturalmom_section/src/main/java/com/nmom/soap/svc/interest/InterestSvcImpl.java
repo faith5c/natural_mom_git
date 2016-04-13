@@ -13,32 +13,27 @@ public class InterestSvcImpl implements IInterestSvc {
 
 	@Override
 	public boolean duplicationInterestProduct(int product_no, String mem_id) {
-		// TODO Auto-generated method stub
-		return false;
+		return interestDao.duplicationInterestProduct(product_no, mem_id);
 	}
 
 	@Override
 	public int addInterestProduct(InterestVo interest) {
-		// TODO Auto-generated method stub
-		return 0;
+		return interestDao.addInterestProduct(interest);
 	}
 
 	@Override
 	public int addInterestProduct(int product_no, String mem_id) {
-		// TODO Auto-generated method stub
-		return 0;
+		return interestDao.addInterestProduct(product_no, mem_id);
 	}
 
 	@Override
 	public int removeInterestProduct(InterestVo interest) {
-		// TODO Auto-generated method stub
-		return 0;
+		return interestDao.removeInterestProduct(interest);
 	}
 
 	@Override
 	public int removeInterestProduct(int product_no, String mem_id) {
-		// TODO Auto-generated method stub
-		return 0;
+		return interestDao.removeInterestProduct(product_no, mem_id);
 	}
 
 }

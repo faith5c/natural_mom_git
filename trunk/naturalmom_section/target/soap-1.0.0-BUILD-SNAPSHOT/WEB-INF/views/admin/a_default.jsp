@@ -8,8 +8,8 @@
 	<script src="resources/admin/js/jquery-1.11.3.min.js"></script>
 	<!-- [if lt IE 9]><script src="js/html5shiv.js"></script><![endif] -->
 	
-	<link rel="apple-touch-icon" href="resources/admin/images/logo.ico" /> <!--애플아이콘등록-->
-	<link rel="shortcut icon" href="resources/admin/images/logo.ico" /> <!--단축키아이콘등록-->
+	<link rel="apple-touch-icon" href="resources/images/logo.ico" /> <!--애플아이콘등록-->
+	<link rel="shortcut icon" href="resources/images/logo.ico" /> <!--단축키아이콘등록-->
 	<link rel="stylesheet" href="resources/admin/css/admin_common.css"/>
 		
 	<title>자연맘</title>
@@ -17,15 +17,14 @@
    </head>
 
   <body>
-
+	
 	<header>
 		<%@include file="_default_header.jsp" %>
 	</header>
 
 <!---Start container----------------------------------------------------------------->
-	
 	<div id="container">
-
+	
 	</div>
 <!--------------------------------------------------------end container------------->
   </body>

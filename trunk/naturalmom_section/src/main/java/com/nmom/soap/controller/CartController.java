@@ -28,18 +28,21 @@ public class CartController {
 	public void setVCartProductSvc(IVCartProductSvc vCartProductSvc) {
 		this.vCartProductSvc = vCartProductSvc;
 	}
-	/*
+	
 	@RequestMapping(value ="/cart.nm", method=RequestMethod.GET)
 	public ModelAndView menu_cart(HttpServletRequest req, HttpSession ses)
 	{
-		String loggedin = (String)ses.getAttribute("loggedin");
+		//String loggedin = (String)ses.getAttribute("loggedin");
+		String loggedin = "soomin";
 		
 		List<VCartProductVo> cart_list = this.vCartProductSvc.getCartByMemId(loggedin);
+		
+		System.out.println(cart_list.get(0));
 		
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("cart_list", cart_list);
 		
 		ModelAndView mav = new ModelAndView("order/cart", map);
 		return mav;
-	}*/
+	}
 }

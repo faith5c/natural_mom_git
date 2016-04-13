@@ -13,44 +13,37 @@ public class CartSvcImpl implements ICartSvc {
 
 	@Override
 	public boolean duplicationCartProduct(int product_no, String mem_id) {
-		// TODO Auto-generated method stub
-		return false;
+		return cartDao.duplicationCartProduct(product_no, mem_id);
 	}
 
 	@Override
 	public int addCartProduct(CartVo cart) {
-		// TODO Auto-generated method stub
-		return 0;
+		return cartDao.addCartProduct(cart);
 	}
 
 	@Override
 	public int addCartProduct(int product_no, String mem_id) {
-		// TODO Auto-generated method stub
-		return 0;
+		return cartDao.addCartProduct(product_no, mem_id);
 	}
 
 	@Override
 	public int removeCartProduct(CartVo cart) {
-		// TODO Auto-generated method stub
-		return 0;
+		return cartDao.removeCartProduct(cart);
 	}
 
 	@Override
 	public int removeCartProduct(int product_no, String mem_id) {
-		// TODO Auto-generated method stub
-		return 0;
+		return cartDao.removeCartProduct(product_no, mem_id);
 	}
 
 	@Override
 	public int editCartProduct(CartVo cart) {
-		// TODO Auto-generated method stub
-		return 0;
+		return cartDao.editCartProduct(cart);
 	}
 
 	@Override
 	public int editCartProduct(int product_no, String mem_id, int buy_num) {
-		// TODO Auto-generated method stub
-		return 0;
+		return cartDao.editCartProduct(product_no, mem_id, buy_num);
 	}
 
 }

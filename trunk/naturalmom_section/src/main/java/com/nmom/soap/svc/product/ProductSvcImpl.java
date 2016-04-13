@@ -63,20 +63,17 @@ public class ProductSvcImpl implements IProductSvc
 
 	@Override
 	public List<ProductVo> getAllProduct(){
-		// TODO Auto-generated method stub
-		return null;
+		return productDao.getAllProduct();
 	}
 
 	@Override
 	public List<ProductVo> getProductByCategoryCd(int category_cd) {
-		// TODO Auto-generated method stub
-		return null;
+		return productDao.getProductByCategoryCd(category_cd);
 	}
 
 	@Override
 	public List<ProductVo> getProductByProductName(String product_name) {
-		// TODO Auto-generated method stub
-		return null;
+		return productDao.getProductByProductName(product_name);
 	}
 
 }

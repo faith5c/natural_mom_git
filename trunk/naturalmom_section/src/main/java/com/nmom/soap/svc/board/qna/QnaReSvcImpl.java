@@ -15,44 +15,37 @@ public class QnaReSvcImpl implements IQnaReSvc {
 
 	@Override
 	public List<QnaReVo> getQnaReByQnaNo(int qna_no) {
-		// TODO Auto-generated method stub
-		return null;
+		return qnaReDao.getQnaReByQnaNo(qna_no);
 	}
 
 	@Override
 	public int addQnaRe(QnaReVo qnare) {
-		// TODO Auto-generated method stub
-		return 0;
+		return qnaReDao.addQnaRe(qnare);
 	}
 
 	@Override
 	public int addQnaRe(String qna_re_content, int qna_no, String mem_id) {
-		// TODO Auto-generated method stub
-		return 0;
+		return qnaReDao.addQnaRe(qna_re_content, qna_no, mem_id);
 	}
 
 	@Override
 	public int editQnaRe(QnaReVo qnare) {
-		// TODO Auto-generated method stub
-		return 0;
+		return qnaReDao.editQnaRe(qnare);
 	}
 
 	@Override
 	public int editQnaRe(int qna_re_no, String qna_re_content) {
-		// TODO Auto-generated method stub
-		return 0;
+		return qnaReDao.editQnaRe(qna_re_no, qna_re_content);
 	}
 
 	@Override
 	public int removeQnaRe(QnaReVo qnare) {
-		// TODO Auto-generated method stub
-		return 0;
+		return qnaReDao.removeQnaRe(qnare);
 	}
 
 	@Override
 	public int removeQnaRe(int qna_re_no) {
-		// TODO Auto-generated method stub
-		return 0;
+		return qnaReDao.removeQnaRe(qna_re_no);
 	}
 
 }

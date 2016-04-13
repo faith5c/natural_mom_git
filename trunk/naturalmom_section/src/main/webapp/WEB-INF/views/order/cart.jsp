@@ -109,10 +109,11 @@
 		</table>
 	</form>
 		
-		
+		여기있는데 안보이나
 		<table>
 			<c:forEach var="cl" items="${cart_list}">
 				<tr>
+					tr 들어옴
 					<td>${cl.product_no}</td>
 					<td>${cl.product_name}</td>
 					<td>${cl.selling_price}</td>

@@ -26,7 +26,7 @@
 		<%@include file="../_default_menu.jsp" %>
 		<!-------------Start content--------------------------------------------------->
 		<div id="content">
-			<img class="bannner_delivery" src="../images/info_delivery.jpg" alt="파머스마켓설명">
+			<img class="bannner_delivery" src="resources/images/info_delivery.jpg" alt="파머스마켓설명">
 		</div>
 		<!--------------------------------------------------end content--------->
 	</div><!-- end container -->

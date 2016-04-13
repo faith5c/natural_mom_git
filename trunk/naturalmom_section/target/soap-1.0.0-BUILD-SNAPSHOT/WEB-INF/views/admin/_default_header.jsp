@@ -29,14 +29,14 @@
 			<li><a href="<c:url value = '/admin/order.nm' />">주문</a></li>
 			<li><a href="<c:url value = '/admin/member.nm' />">회원</a></li>
 			<li>
-				<a href="<c:url value = '/admin/board.nm' />">게시판</a>
+				<a href="<c:url value = '/admin/board/notice.nm' />">게시판</a>
 				<div id="sub">
 					<ul>
-						<li><a href="<c:url value = '/admin/board.nm?page=notice' />">공지사항</a></li>
-						<li><a href="<c:url value = '/admin/board.nm?page=event' />">이벤트</a></li>
-						<li><a href="<c:url value = '/admin/board.nm?page=qna' />">Q&A</a></li>
-						<li><a href="<c:url value = '/admin/board.nm?page=review' />">상품후기</a></li>
-						<li><a href="<c:url value = '/admin/board.nm?page=faq' />">자주하는 질문</a></li>
+						<li><a href="<c:url value = '/admin/board/notice.nm' />">공지사항</a></li>
+						<li><a href="<c:url value = '/admin/board/event.nm' />">이벤트</a></li>
+						<li><a href="<c:url value = '/admin/board/qna.nm' />">Q&A</a></li>
+						<li><a href="<c:url value = '/admin/board/review.nm' />">상품후기</a></li>
+						<li><a href="<c:url value = '/admin/board/faq.nm' />">자주하는 질문</a></li>
 					</ul>
 				</div>
 			</li>

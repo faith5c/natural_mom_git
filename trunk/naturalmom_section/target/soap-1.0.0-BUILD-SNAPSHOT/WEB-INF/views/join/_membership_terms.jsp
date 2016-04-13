@@ -46,7 +46,7 @@ p {
 	<br><br>
 	<h3>1. 이용약관</h3>
 	<br>
-	<form action="membership.jsp" method="post">
+	<form action="join.nm" method="get">
 		<textarea id="terms1" rows="8" cols="120" readonly="readonly" style="font-family: '맑은고딕'; font-size: 10; ">
 한결유통  회원약관
 당사는 공정거래위원회에서 심의한 표준약관을 사용하고 있습니다 .
@@ -235,7 +235,7 @@ p {
 소비자의 불만 또는 분쟁처리에 관한 기록 : 3년 (전자상거래등에서의 소비자보호에 관한 법률)
 신용정보의 수집/처리 및 이용 등에 관한 기록 : 3년 (신용정보의 이용 및 보호에 관한 법률)
 		</textarea>
-		<p><label for="agree1">이용약관에 동의함 </label><input id="agree1" name="agree1" type="checkbox" value="agree" ></p>
+		<p><label for="agree1">이용약관에 동의함 </label><input id="agree1" name="agree1" type="checkbox" value="true" ></p>
 	
 		<br><br>
 		<h3>2. 개인정보취급방침</h3>
@@ -310,7 +310,7 @@ p {
 3.대검찰청 인터넷범죄수사센터 (http://icic.sppo.go.kr/02-3480-3600)
 4.경찰청 사이버테러대응센터 (www.ctrc.go.kr/02-392-0330)
 		</textarea>
-		<p><label for="agree2">개인정보취급방침에 동의함 </label><input id="agree2" name="agree2" type="checkbox" value="agree"></p>
+		<p><label for="agree2">개인정보취급방침에 동의함 </label><input id="agree2" name="agree2" type="checkbox" value="true"></p>
 		<br>
 		<input id="button" type="submit" value="확인" width="100%">
 	</form>

@@ -13,45 +13,38 @@ public class QnaSvcImpl implements IQnaSvc {
 
 	@Override
 	public boolean secretQnaPwCheck(int qna_no, String qna_pw) {
-		// TODO Auto-generated method stub
-		return false;
+		return qnaDao.secretQnaPwCheck(qna_no, qna_pw); 
 	}
 
 	@Override
 	public int addQna(String qna_title, String qna_content, String qna_pw, String mem_id) {
-		// TODO Auto-generated method stub
-		return 0;
+		return qnaDao.addQna(qna_title, qna_content, qna_pw, mem_id);
 	}
 
 	@Override
 	public int addQnaAnswer(String qna_title, String qna_content, String qna_pw, String mem_id, int qna_pos,
 			int qna_ref) {
-		// TODO Auto-generated method stub
-		return 0;
+		return qnaDao.addQnaAnswer(qna_title, qna_content, qna_pw, mem_id, qna_pos, qna_ref);
 	}
 
 	@Override
 	public int editQna(QnaVo qna) {
-		// TODO Auto-generated method stub
-		return 0;
+		return qnaDao.editQna(qna);
 	}
 
 	@Override
 	public int editQna(int qna_no, String qna_title, String qna_content, String qna_pw) {
-		// TODO Auto-generated method stub
-		return 0;
+		return qnaDao.editQna(qna_no, qna_title, qna_content, qna_pw);
 	}
 
 	@Override
 	public int removeQna(int qna_no) {
-		// TODO Auto-generated method stub
-		return 0;
+		return qnaDao.removeQna(qna_no);
 	}
 
 	@Override
 	public int removeQnaByRef(int qna_ref) {
-		// TODO Auto-generated method stub
-		return 0;
+		return qnaDao.removeQnaByRef(qna_ref);
 	}
 
 }

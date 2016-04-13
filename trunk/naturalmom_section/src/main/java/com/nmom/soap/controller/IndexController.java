@@ -34,8 +34,8 @@ public class IndexController {
 	@RequestMapping(value ="/cart.nm", method=RequestMethod.GET)
 	public String menu_cart(HttpServletRequest req){
 		return "order/cart";
-	}
-	*/
+	}*/
+	
 	@RequestMapping(value ="/orderlist.nm", method=RequestMethod.GET)
 	public String menu_orderlist(HttpServletRequest req){
 		return "order/orderlist";

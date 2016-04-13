@@ -109,6 +109,21 @@
 		</table>
 	</form>
 		
+		
+		<table>
+			<c:forEach var="cl" items="${cart_list}">
+				<tr>
+					<td>${cl.product_no}</td>
+					<td>${cl.product_name}</td>
+					<td>${cl.selling_price}</td>
+					<td>${cl.sale_state}</td>
+					<td>${cl.represent_img}</td>
+					<td>${cl.buy_num}</td>
+					<td>${cl.mem_id}</td>
+				</tr>
+			</c:forEach>
+		</table>
+		
 		</div>
 		<!--------------------------------------------------end content--------->
 	</div><!--end container-->

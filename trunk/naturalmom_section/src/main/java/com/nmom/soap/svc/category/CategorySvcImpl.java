@@ -11,7 +11,7 @@ public class CategorySvcImpl implements ICategorySvc {
 
 	@Override
 	public String getCategoryNameByCd(int category_cd) {
-		return null;
+		return categoryDao.getCategoryNameByCd(category_cd);
 	}
 
 }

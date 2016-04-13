@@ -15,14 +15,12 @@ public class VCartProductSvcImpl implements IVCartProductSvc {
 
 	@Override
 	public List<VCartProductVo> getAllCart() {
-		// TODO Auto-generated method stub
-		return null;
+		return vCartProductDao.getAllCart();
 	}
 
 	@Override
 	public List<VCartProductVo> getCartByMemId(String mem_id) {
-		// TODO Auto-generated method stub
-		return null;
+		return vCartProductDao.getCartByMemId(mem_id);
 	}
 
 }
