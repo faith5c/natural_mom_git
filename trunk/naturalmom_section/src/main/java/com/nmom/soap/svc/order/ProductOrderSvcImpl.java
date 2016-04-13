@@ -2,12 +2,13 @@ package com.nmom.soap.svc.order;
 
 import org.springframework.dao.DataAccessException;
 
+import com.nmom.soap.data.dao.order.IProductOrderDao;
 import com.nmom.soap.data.dao.product.IProductDao;
 import com.nmom.soap.data.model.order.ProductOrderVo;
 
 public class ProductOrderSvcImpl implements IProductOrderSvc {
 
-	private IProductDao productOrderDao;
+	private IProductOrderDao productOrderDao;
 	
 	@Override
 	public int addOrder(ProductOrderVo po) throws DataAccessException {
@@ -34,7 +35,7 @@ public class ProductOrderSvcImpl implements IProductOrderSvc {
 	}
 
 	
-	public void setProductOrderDao(IProductDao productOrderDao) {
+	public void setProductOrderDao(IProductOrderDao productOrderDao) {
 		this.productOrderDao = productOrderDao;
 	}
 
