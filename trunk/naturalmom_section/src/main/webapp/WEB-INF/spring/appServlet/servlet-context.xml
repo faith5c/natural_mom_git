@@ -11,6 +11,7 @@
 	<beans:import resource="domain-sm-context.xml"/>
 	<beans:import resource="domain-sr-context.xml"/>
 	<beans:import resource="domain-se-context.xml"/>
+	<beans:import resource="domain-sj-context.xml"/>
 	
 	<!-- Controller -->
 	<beans:bean id="indexCtl" class="com.nmom.soap.controller.IndexController">
