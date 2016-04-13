@@ -56,6 +56,12 @@
 			</tr>
 		</c:forEach>
 		
+		<c:if test="${interest_list==null}">
+			<tr style="background-color:#f0f0f0; ">
+				<td colspan="5"><br/>관심 상품이 없습니다.<br/>&nbsp;</td>
+			</tr>
+		</c:if>		
+				
 		<!-- 
 		<tr>
 			<td><input type="checkbox" name="fav_sel" value="제품번호불러온거"></td>

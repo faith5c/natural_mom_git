@@ -37,7 +37,10 @@ public class InterestController {
 		List<VInterestProductVo> interest_list = this.vInterestProductSvc.getInterestByMemId(loggedin);
 		
 		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("interest_list", interest_list);
+		
+		if(interest_list!=null && interest_list.size()!=0){
+			map.put("interest_list", interest_list);
+		}
 		
 		ModelAndView mav = new ModelAndView("mypage/mypage", map);
 		return mav;
@@ -51,7 +54,10 @@ public class InterestController {
 		List<VInterestProductVo> interest_list = this.vInterestProductSvc.getInterestByMemId(loggedin);
 		
 		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("interest_list", interest_list);
+		
+		if(interest_list!=null && interest_list.size()!=0){
+			map.put("interest_list", interest_list);
+		}
 		
 		ModelAndView mav = new ModelAndView("mypage/mypage", map);
 		return mav;
