@@ -48,7 +48,7 @@
 		</property>
 	</bean>
 	
-	<bean id="vReivew_FrontDao" class="com.nmom.soap.data.impl.board.review.VReview_FrontDaoOraImpl">
+	<bean id="vReview_FrontDao" class="com.nmom.soap.data.impl.board.review.VReview_FrontDaoOraImpl">
 		<property name="dataSource">
 			<ref local="ds"/>
 		</property>
@@ -75,7 +75,7 @@
 	
 	<bean id="vRank_sellsSvc" class="com.nmom.soap.svc.sales.VRank_SellsSvcImpl">
 		<property name="rank_sellsDao">
-			<ref local="vRank_sellsDao"/>
+			<ref local="vRank_SellsDao"/>
 		</property>
 	</bean>
 	
@@ -93,13 +93,13 @@
 	
 	<bean id="vReview_adminSvc" class="com.nmom.soap.svc.board.review.VReview_AdminSvcImpl">
 		<property name="review_adminDao">
-			<ref local="vReview_adminDao"/>
+			<ref local="vReview_AdminDao"/>
 		</property>
 	</bean>
 	
 	<bean id="vReview_frontSvc" class="com.nmom.soap.svc.board.review.VReview_FrontSvcImpl">
 		<property name="review_frontDao">
-			<ref local="vReview_frontDao"/>
+			<ref local="vReview_FrontDao"/>
 		</property>
 	</bean>
 	
