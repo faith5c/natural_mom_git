@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,7 +47,9 @@ public class IndexController {
 	}
 	
 	@RequestMapping(value ="/customer_center.nm", method=RequestMethod.GET)
-	public String menu_customer_center(HttpServletRequest req){
+	public String menu_customer_center(HttpServletRequest req, 
+										@RequestParam(value="r") int r,
+										@RequestParam(value="w") String w){
 		return "board/customer_center";
 	}
 	
@@ -137,5 +140,18 @@ public class IndexController {
 	public String admin_sales(HttpServletRequest req){
 		return "admin/sales/a_sales";
 	}
+	
+	
+	
+	// 게시판 list
+	@RequestMapping(value ="/board/notice.nm", method=RequestMethod.GET)
+	public String board_notice(HttpServletRequest req){
+		return "board/notice/b_notice";
+	}
+	
+
+	
+
+
 
 }

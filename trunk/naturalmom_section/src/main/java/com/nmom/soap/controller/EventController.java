@@ -1,6 +1,10 @@
 package com.nmom.soap.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.nmom.soap.svc.board.event.IEventSvc;
 import com.nmom.soap.svc.board.event.IEvent_reSvc;
@@ -21,6 +25,11 @@ public class EventController {
 	}
 	public void setBoardAccessSvc(IBoardAccessSvc boardAccessSvc) {
 		this.boardAccessSvc = boardAccessSvc;
+	}
+	
+	@RequestMapping(value ="/board/event.nm", method=RequestMethod.GET)
+	public String board_event(HttpServletRequest req){
+		return "board/event/b_event";
 	}
 
 }
