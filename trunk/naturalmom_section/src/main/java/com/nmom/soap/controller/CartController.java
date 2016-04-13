@@ -1,7 +1,18 @@
 package com.nmom.soap.controller;
 
-import org.springframework.stereotype.Controller;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.nmom.soap.data.model.cart.VCartProductVo;
 import com.nmom.soap.svc.cart.ICartSvc;
 import com.nmom.soap.svc.cart.IVCartProductSvc;
 
@@ -28,7 +39,7 @@ public class CartController {
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("cart_list", cart_list);
 		
-		ModelAndView mav = new ModelAndView("order/cart");
-		return "order/cart";
+		ModelAndView mav = new ModelAndView("order/cart", map);
+		return mav;
 	}*/
 }
