@@ -58,6 +58,9 @@
 		<beans:property name="product_manageSvc">
 			<beans:ref local="vProduct_manageSvc"/>
 		</beans:property>
+		<beans:property name="categorySvc">
+			<beans:ref local="category_svc"/>
+		</beans:property>
 	</beans:bean>
 	
 	<beans:bean id="salesCtl" class="com.nmom.soap.controller.SalesController">
@@ -81,6 +84,42 @@
 		</beans:property>	
 	</beans:bean>
 
+	<beans:bean id="cartCtl" class="com.nmom.soap.controller.CartController">
+		<beans:property name="cartSvc">
+			<beans:ref local="cart_svc"/>
+		</beans:property>
+		<beans:property name="vCartProductSvc">
+			<beans:ref local="v_cart_product_svc"/>
+		</beans:property>
+	</beans:bean>
+
+	<beans:bean id="interestCtl" class="com.nmom.soap.controller.InterestController">
+		<beans:property name="interestSvc">
+			<beans:ref local="interest_svc"/>
+		</beans:property>
+		<beans:property name="vInterestProductSvc">
+			<beans:ref local="v_interest_product_svc"/>
+		</beans:property>
+	</beans:bean>
+
+	<beans:bean id="faqCtl" class="com.nmom.soap.controller.FaqController">
+		<beans:property name="faqSvc">
+			<beans:ref local="faq_svc"/>
+		</beans:property>
+	</beans:bean>
+
+	<beans:bean id="qnaCtl" class="com.nmom.soap.controller.QnaController">
+		<beans:property name="qnaSvc">
+			<beans:ref local="qna_svc"/>
+		</beans:property>
+		<beans:property name="qnaReSvc">
+			<beans:ref local="qnare_svc"/>
+		</beans:property>
+		<beans:property name="vQnaQnareSvc">
+			<beans:ref local="v_qna_qnare_svc"/>
+		</beans:property>
+	</beans:bean>
+	
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->

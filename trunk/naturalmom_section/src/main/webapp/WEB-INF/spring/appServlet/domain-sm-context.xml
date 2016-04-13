@@ -19,9 +19,11 @@
 	<bean id="interest_dao" class="com.nmom.soap.data.impl.interest.InterestDaoOraImpl">
 		<property name="dataSource" ref="ds"/>
 	</bean>	
+	<!-- 소라랑 겹침
 	<bean id="product_dao" class="com.nmom.soap.data.impl.product.ProductDaoOraImpl">
 		<property name="dataSource" ref="ds"/>
 	</bean>	
+	-->
 	<bean id="qna_dao" class="com.nmom.soap.data.impl.board.qna.QnaDaoOraImpl">
 		<property name="dataSource" ref="ds"/>
 	</bean>	
@@ -41,9 +43,11 @@
 	
 	<!-- SVC -->
 	
+	<!-- 소라랑 겹침
 	<bean id="product_svc" class="com.nmom.soap.svc.product.ProductSvcImpl">
 		<property name="productDao" ref="product_dao"/>
 	</bean>
+	-->
 	<bean id="faq_svc" class="com.nmom.soap.svc.board.faq.FaqSvcImpl">
 		<property name="faqDao" ref="faq_dao"/>
 	</bean>
