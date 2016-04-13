@@ -15,26 +15,29 @@ public class Review_ReSvcImpl implements IReview_ReSvc
 	}
 	
 	@Override
-	public List<Review_ReVo> getAllRe(int review_no) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Review_ReVo> getAllRe(int review_no) 
+	{
+		return review_reDao.getAllRe(review_no);
 	}
 
 	@Override
-	public int addRe(Review_ReVo re) {
-		// TODO Auto-generated method stub
+	public int addRe(Review_ReVo re) 
+	{
+		int result = review_reDao.addRe(re);
 		return 0;
 	}
 
 	@Override
-	public int editRe(Review_ReVo re) {
-		// TODO Auto-generated method stub
+	public int editRe(Review_ReVo re) 
+	{
+		int result = review_reDao.editRe(re);
 		return 0;
 	}
 
 	@Override
-	public int removeRe(Review_ReVo re) {
-		// TODO Auto-generated method stub
+	public int removeRe(Review_ReVo re) 
+	{
+		int result = review_reDao.removeRe(re);
 		return 0;
 	}
 	

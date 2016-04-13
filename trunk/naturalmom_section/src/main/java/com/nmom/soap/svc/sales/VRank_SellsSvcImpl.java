@@ -15,9 +15,9 @@ public class VRank_SellsSvcImpl implements IVRank_SellsSvc
 	}
 	
 	@Override
-	public List<VRank_SellsVo> getAllRank(boolean order) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<VRank_SellsVo> getAllRank(boolean order) 
+	{
+		return rank_sellsDao.getAllRank(order);
 	}
 
 }

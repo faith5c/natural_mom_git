@@ -13,26 +13,29 @@ public class ReviewSvcImpl implements IReviewSvc
 	}
 
 	@Override
-	public ReviewVo getOneReivew(int review_no) {
-		// TODO Auto-generated method stub
-		return null;
+	public ReviewVo getOneReivew(int review_no)
+	{
+		return reviewDao.getOneReview(review_no);
 	}
 
 	@Override
-	public int addReview(ReviewVo review) {
-		// TODO Auto-generated method stub
+	public int addReview(ReviewVo review)
+	{
+		int result = reviewDao.addReview(review);
 		return 0;
 	}
 
 	@Override
-	public int editReview(ReviewVo review) {
-		// TODO Auto-generated method stub
+	public int editReview(ReviewVo review) 
+	{
+		int result = reviewDao.editReview(review);
 		return 0;
 	}
 
 	@Override
-	public int removeReview(ReviewVo review) {
-		// TODO Auto-generated method stub
+	public int removeReview(ReviewVo review) 
+	{
+		int result = reviewDao.removeReview(review);
 		return 0;
 	}
 

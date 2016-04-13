@@ -20,10 +20,13 @@ public class ProductSvcImpl implements IProductSvc
 		return productDao.getOneProduct(product_no);
 	}
 
+	// static으로 수정
 	@Override
 	public int addProduct(ProductVo product) 
 	{
-		return productDao.addProduct(product);
+		int result = productDao.addProduct(product);
+		
+		return 0;
 	}
 
 	@Override

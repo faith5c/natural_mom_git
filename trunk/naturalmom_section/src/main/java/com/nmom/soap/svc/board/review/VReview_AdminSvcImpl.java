@@ -15,39 +15,39 @@ public class VReview_AdminSvcImpl implements IVReview_AdminSvc
 	}
 
 	@Override
-	public List<VReview_AdminVo> getAllList(int page) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<VReview_AdminVo> getAllList(int page)
+	{
+		return review_adminDao.getAllList(((page - 1) * 15) + 1, page * 15);
 	}
 
 	@Override
-	public VReview_AdminVo getOneReview(int review_no) {
-		// TODO Auto-generated method stub
-		return null;
+	public VReview_AdminVo getOneReview(int review_no) 
+	{
+		return review_adminDao.getOneReview(review_no);
 	}
 
 	@Override
-	public List<VReview_AdminVo> getReviews_by_title(String search, int page) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<VReview_AdminVo> getReviews_by_title(String search, int page) 
+	{
+		return review_adminDao.getReviews_by_title(search, ((page - 1) * 15) + 1, page * 15);
 	}
 
 	@Override
-	public List<VReview_AdminVo> getReviews_by_content(String search, int page) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<VReview_AdminVo> getReviews_by_content(String search, int page) 
+	{
+		return review_adminDao.getReviews_by_content(search, ((page - 1) * 15) + 1, page * 15);
 	}
 
 	@Override
-	public List<VReview_AdminVo> getReviews_by_id(String search, int page) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<VReview_AdminVo> getReviews_by_id(String search, int page) 
+	{
+		return review_adminDao.getReviews_by_id(search, ((page - 1) * 15) + 1, page * 15);
 	}
 
 	@Override
-	public List<VReview_AdminVo> getReviews_by_title_n_content(String search, int page) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<VReview_AdminVo> getReviews_by_title_n_content(String search, int page) 
+	{
+		return review_adminDao.getReviews_by_title_n_content(search, ((page - 1) * 15) + 1, page * 15);
 	}
 
 }

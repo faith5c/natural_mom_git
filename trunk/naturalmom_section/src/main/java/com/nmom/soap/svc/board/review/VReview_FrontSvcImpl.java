@@ -15,9 +15,9 @@ public class VReview_FrontSvcImpl implements IVReview_FrontSvc
 	}
 	
 	@Override
-	public List<VReview_FrontVo> getAllList(int product_no, int page) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<VReview_FrontVo> getAllList(int product_no, int page)
+	{
+		return review_frontDao.getAllList(product_no, ((page - 1) * 15) + 1, page * 15);
 	}
 
 }
