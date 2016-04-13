@@ -21,7 +21,7 @@ public class S {
 	
 	// [소라] 수정, 삭제 시 실행 결과 값
 	public final static int PROCESS_SUCCESS = 1;
-	public final static int PROCESS_FAILURE = -1;
+	public final static int PROCESS_ERROR = -1;
 	public final static int PROCESS_NO_RESULT = 0;
 	
 	// [소라] 정렬 값
