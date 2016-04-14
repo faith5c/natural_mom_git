@@ -92,22 +92,6 @@
 			</tr>
 			</c:forEach>
 			
-			<!-- 
-			<tr>
-				<td><input type="checkbox" name="orderlist_sel" value="선택된장바구니번호 랑 상품번호"></td>
-				<td><img src="images/soap11.jpg" alt="쑥비누사진"></td>
-				<td><a href="#">쑥비누</a></td>
-				<td><input type="number" name="상품번호" size="5" value="1" min = "1"></td>
-				<td>4300원</td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" name="orderlist_sel" value="선택된장바구니번호 랑 상품번호"></td>
-				<td><img src="images/soap1.jpg" alt="아마씨비누사진"></td>
-				<td><a href="#">아마씨비누</a></td>
-				<td><input type="number" name="상품번호" size="5" value="2" min = "1"></td>
-				<td>7000원</td>
-			</tr>
-			-->
 			
 			<c:choose>
 				<c:when test="${cart_list != null}">

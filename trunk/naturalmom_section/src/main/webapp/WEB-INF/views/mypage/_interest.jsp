@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -62,20 +62,6 @@
 			</tr>
 		</c:if>		
 				
-		<!-- 
-		<tr>
-			<td><input type="checkbox" name="fav_sel" value="제품번호불러온거"></td>
-			<td><img src="images/soap11.jpg" alt="쑥비누사진"></td>
-			<td><a href="#">쑥비누</a></td>
-			<td>4300원</td> 
-		</tr>
-		<tr>
-			<td><input type="checkbox" name="fav_sel" value="제품번호불러온거"></td>
-			<td><img src="images/soap1.jpg" alt="아마씨비누사진"></td>
-			<td><a href="#">아마씨비누</a></td>
-			<td>3500원</td> 
-		</tr>
-		-->
 		<tr>
 			<td colspan = "4">
 			

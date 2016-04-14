@@ -21,7 +21,7 @@ public class FaqDaoOraImpl extends NamedParameterJdbcDaoSupport implements IFaqD
 			+ "(SELECT rownum as faq_rnum, X.* FROM "
 			+ "(SELECT faq_no, faq_title from tb_faq WHERE board_id=3 AND faq_del_check=0 ORDER BY faq_no ASC) X "
 			+ "WHERE rownum <= :end) A "
-			+ "WHERE A.faq_rnum >= :start";
+			+ "WHERE A.faq_rnum >= :start ORDER BY A.faq_rnum DESC";
 	
 	private final String SQL_SEARCH_FAQ_TITLE = 
 			"SELECT A.* FROM "
@@ -29,7 +29,7 @@ public class FaqDaoOraImpl extends NamedParameterJdbcDaoSupport implements IFaqD
 			+ "(SELECT faq_no, faq_title from tb_faq WHERE board_id=3 AND faq_del_check=0 "
 			+ "AND faq_title LIKE :keyword ORDER BY faq_no ASC) X "
 			+ "WHERE rownum <= :end) A "
-			+ "WHERE A.faq_rnum >= :start";
+			+ "WHERE A.faq_rnum >= :start ORDER BY A.faq_rnum DESC";
 	
 	private final String SQL_SEARCH_FAQ_CONTENT = 
 			"SELECT A.* FROM "
@@ -37,7 +37,7 @@ public class FaqDaoOraImpl extends NamedParameterJdbcDaoSupport implements IFaqD
 			+ "(SELECT faq_no, faq_title from tb_faq WHERE board_id=3 AND faq_del_check=0 AND "
 			+ "faq_content LIKE :keyword ORDER BY faq_no ASC) X "
 			+ "WHERE rownum <= :end) A "
-			+ "WHERE A.faq_rnum >= :start";
+			+ "WHERE A.faq_rnum >= :start ORDER BY A.faq_rnum DESC";
 	
 	private final String SQL_SEARCH_FAQ_TITLE_N_CONTENT = 
 			"SELECT A.* FROM "
@@ -45,7 +45,7 @@ public class FaqDaoOraImpl extends NamedParameterJdbcDaoSupport implements IFaqD
 			+ "(SELECT faq_no, faq_title from tb_faq WHERE board_id=3 AND faq_del_check=0 "
 			+ "AND (faq_title LIKE :keyword OR faq_content LIKE :keyword) ORDER BY faq_no ASC) X "
 			+ "WHERE rownum <= :end) A "
-			+ "WHERE A.faq_rnum >= :start";
+			+ "WHERE A.faq_rnum >= :start ORDER BY A.faq_rnum DESC";
 
 	private final String SQL_INSERT_FAQ = "INSERT INTO tb_faq (faq_title, faq_content, faq_del_check, board_id, mem_id, faq_no) VALUES (:faq_title, :faq_content, 0, 3, :mem_id, FAQ_NO_SEQ.NEXTVAL)";
 	private final String SQL_UPDATE_FAQ = "UPDATE tb_faq SET faq_title=:faq_title, faq_content=:faq_content WHERE faq_no=:faq_no";

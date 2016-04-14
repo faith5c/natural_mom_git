@@ -1,19 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 	<style type = "text/css">
 
 		#content_body { color: #85858d; padding: 100px; padding-left: 225px; }
 		#content_body a { text-decoration: none; }
 		#content_body a:hover { opacity : 0.7; }
-
 		#content_body h2 { margin-bottom : 15px; color: #004523; }
+		
+		table, table input, div, div input { font-family : "나눔바른고딕", "맑은 고딕";}
+		td:not(:first-child) { font-size: 13px; color : black; }
 		
 		table { width: 720px; padding : 0px; }
 		table tr:first-child td { border-top : 1px solid grey; }
 		table tr:last-child td { border-bottom : 1px solid grey; }
 		table tr td { padding : 10px; }
-		table tr:not(:last-child) td:first-child { border-right: 1px solid lightgrey; }
+		table tr:last-child, td:first-child { border-right: 1px solid lightgrey; }
 		table tr:not(:last-child) td
 		{
 			border-bottom : 1px solid lightgrey;
@@ -73,10 +76,19 @@
 				<td id = "no">번호</td>
 				<td id = "title">제목</td>
 			</tr>
+		
+		<c:forEach items="${faq_list}" var="fl">
+			<tr>
+				<td>${fl.faq_rnum}</td>
+				<td>${fl.faq_title}</td>
+			</tr>
+		</c:forEach>
+			<!-- 
 			<tr>
 				<td>1</td>
 				<td><a href = "customer_center.jsp?page=faq&r=1">배송비가 얼마인가요?</a></td>
 			</tr>
+			-->
 		</table>
 		<div id = "pages">
 			<a href = "#">&lsaquo;</a>
@@ -96,4 +108,5 @@
 				<input type = "submit" value = "검색" />
 			</form>
 		</div>
+		
 </html>
