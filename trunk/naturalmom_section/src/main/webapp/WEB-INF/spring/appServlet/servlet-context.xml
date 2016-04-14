@@ -123,7 +123,7 @@
 		</beans:property>
 	</beans:bean>
 	
-<!--	<beans:bean id="noticeCtl" class="com.nmom.soap.controller.NoticeController">
+	<beans:bean id="noticeCtl" class="com.nmom.soap.controller.NoticeController">
 		<beans:property name="noticeSvc">
 			<beans:ref local="noticeSvc"/>
 		</beans:property>
@@ -134,7 +134,7 @@
 			<beans:ref local="vNoticeSvc"/>
 		</beans:property>
 	</beans:bean>
--->	
+
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
