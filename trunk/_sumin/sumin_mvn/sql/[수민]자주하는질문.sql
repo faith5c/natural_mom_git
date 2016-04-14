@@ -13,7 +13,7 @@ SELECT A.* FROM
   (SELECT rownum as faq_rnum, X.* FROM
     (SELECT faq_no, faq_title from tb_faq WHERE board_id=3 AND faq_del_check=0 ORDER BY faq_no ASC) X 
   WHERE rownum <= 4) A 
-WHERE A.faq_rnum >= 2;
+WHERE A.faq_rnum >= 2 ORDER BY A.faq_rnum DESC;
 
 ----------------------------------------------------------
 -- 자주하는 질문 검색하는 SQL 문
@@ -31,7 +31,7 @@ SELECT A.* FROM
     WHERE board_id=3 AND faq_del_check=0 
     AND faq_title LIKE '%배송%' ORDER BY faq_no ASC) X 
   WHERE rownum <= 4) A 
-WHERE A.faq_rnum >= 1;
+WHERE A.faq_rnum >= 1 ORDER BY A.faq_rnum DESC;
 
 
 -- 게시판 글 검색 (내용)
@@ -47,7 +47,7 @@ SELECT A.* FROM
     WHERE board_id=3 AND faq_del_check=0 
     AND faq_content LIKE '%주문%' ORDER BY faq_no ASC) X 
   WHERE rownum <= 4) A 
-WHERE A.faq_rnum >= 1;
+WHERE A.faq_rnum >= 1 ORDER BY A.faq_rnum DESC;
 
 -- 게시판 글 검색 (제목 + 내용)
 SELECT faq_no, faq_title 
@@ -64,7 +64,7 @@ SELECT A.* FROM
     AND (faq_title LIKE '%결제%' OR faq_content LIKE '%결제%') 
 	ORDER BY faq_no ASC) X 
   WHERE rownum <= 4) A 
-WHERE A.faq_rnum >= 1;
+WHERE A.faq_rnum >= 1 ORDER BY A.faq_rnum DESC;
 
 -------------------------------------------------------
 -- 게시판 글읽기
