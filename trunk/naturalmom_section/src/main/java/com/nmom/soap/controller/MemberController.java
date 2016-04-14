@@ -50,7 +50,7 @@ public class MemberController {
 			return new ModelAndView("join/membership_pop_checkId",map);
 		}else{
 			map.put("checking_id", id);
-			map.put("flash_msg", "사용할 수 없는 아이디입니다.");
+			map.put("flash_msg", "이미 사용중인 아이디입니다.");
 			return new ModelAndView("join/membership_pop_checkId",map);
 		}
 	}

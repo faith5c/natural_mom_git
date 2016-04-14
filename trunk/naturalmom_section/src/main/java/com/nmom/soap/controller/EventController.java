@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nmom.soap.data.model.board.event.EventVo;
+import com.nmom.soap.data.model.board.event.Event_reVo;
 import com.nmom.soap.svc.board.event.IEventSvc;
 import com.nmom.soap.svc.board.event.IEvent_reSvc;
 import com.nmom.soap.svc.member.IBoardAccessSvc;
@@ -51,12 +52,18 @@ public class EventController {
 	@RequestMapping(value ="/board/event_read.nm", method=RequestMethod.GET)
 	public ModelAndView board_event_r(HttpServletRequest req, 
 									@RequestParam(value="r") int r,
-									@RequestParam(value="rr") int rr){
+									@RequestParam(value="rn") int rn){
 		Map<String, Object> map = new HashMap<>();
-			
+		
+		// 조회수 증가
+		eventSvc.addReadCount(r);
+		// 이벤트 내용 불러오기
 		EventVo event = eventSvc.getOneEvent(r);
-		event.setEvt_rnum(rr);
+		event.setEvt_rnum(rn);	// RowNum
 		map.put("con", event);
+		
+		List<Event_reVo> event_re = eventReSvc.getEventRe(r);
+		map.put("re", event_re);
 		
 		return new ModelAndView("board/event/b_event", map);
 	}
