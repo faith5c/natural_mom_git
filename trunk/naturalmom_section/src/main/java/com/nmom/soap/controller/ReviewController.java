@@ -61,6 +61,43 @@ public class ReviewController
 		return new ModelAndView("admin/board/review/a_review", map);
 	}
 	
+	@RequestMapping(value ="/admin/board/review_search.nm", method=RequestMethod.GET)
+	public ModelAndView a_board_review_search(HttpServletRequest req,
+			@RequestParam(value="option", required=false) String option, @RequestParam(value="search", required=false) String search)
+	{
+		int all_reviews = -1;
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<VReview_AdminVo> review_list = null;
+		System.out.println("option - " + option);
+		System.out.println("search - " + search);
+
+		if(option.equals("title"))
+		{
+			review_list = review_adminSvc.getReviews_by_title(search, 1);
+			all_reviews = review_adminSvc.getCountReviewsByTitle(search);
+		}
+		else if(option.equals("content"))
+		{
+			review_list = review_adminSvc.getReviews_by_content(search, 1);
+			all_reviews = review_adminSvc.getCountReviewsByContent(search);
+		}
+		else if(option.equals("id"))
+		{
+			review_list = review_adminSvc.getReviews_by_id(search, 1);
+			all_reviews = review_adminSvc.getCountReviewsById(search);
+		}
+		else if(option.equals("title_n_content"))
+		{
+			review_list = review_adminSvc.getReviews_by_title_n_content(search, 1);
+			all_reviews = review_adminSvc.getCountReviewsByTitleNContent(search);
+		}
+		
+		map.put("rvw_list", review_list);
+		map.put("all_reviews", new Integer(all_reviews));
+		
+		return new ModelAndView("admin/board/review/a_review", map);
+	}
+	
 	@RequestMapping(value ="/admin/board/review_read.nm", method=RequestMethod.GET, params="r")
 	public ModelAndView a_board_review(HttpServletRequest req, @RequestParam(value="r", required=false) int review_no)
 	{

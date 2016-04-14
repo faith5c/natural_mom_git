@@ -21,7 +21,6 @@
 	}
 	String r = (String)request.getParameter("r");
 	if (r == null) r = "";
-	System.out.println(r);
 	String w = (String)request.getParameter("w");
 	if (w == null || w.isEmpty()) w = "false";
 %>

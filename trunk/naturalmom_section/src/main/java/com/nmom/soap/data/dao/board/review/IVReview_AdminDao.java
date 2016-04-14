@@ -28,4 +28,16 @@ public interface IVReview_AdminDao
 	
 	//전체 글 수 가져오기
 	int getCountAllReivews() throws DataAccessException;
+
+	// 제목으로 검색한 글 수 가져오기
+	int getCountReviewsByTitle(String search) throws DataAccessException;
+
+	// 내용으로 검색한 글 수 가져오기
+	int getCountReviewsByContent(String search) throws DataAccessException;
+
+	// 아이디로 검색한 글 수 가져오기
+	int getCountReviewsById(String search) throws DataAccessException;
+
+	// 제목+내용으로 검색한 글 수 가져오기
+	int getCountReviewsByTitleNContent(String search) throws DataAccessException;
 }

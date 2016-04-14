@@ -1,5 +1,6 @@
 package com.nmom.soap.data.impl.board.review;
 
+import java.sql.Types;
 import java.util.List;
 
 import org.springframework.dao.DataAccessException;
@@ -43,6 +44,15 @@ public class VReview_AdminDaoOraImpl extends NamedParameterJdbcDaoSupport implem
 			+ " WHERE A.re_rnum >= :start AND rvw_title LIKE :search OR rvw_content LIKE :search ORDER BY rownum ASC";
 	// 전체 글 수 가져오기
 	private final String GET_COUNT_ALL_REVIEWS = "SELECT COUNT(review_no) FROM V_REVIEW_ADMIN";
+	// 제목으로 검색한 글 수 가져오기
+	private final String GET_COUNT_REVIEWS_BY_TITLE = "SELECT COUNT(review_no) FROM V_REVIEW_ADMIN WHERE rvw_title LIKE ?";
+	// 내용으로 검색한 글 수 가져오기
+	private final String GET_COUNT_REVIEWS_BY_CONTENT = "SELECT COUNT(review_no) FROM V_REVIEW_ADMIN WHERE rvw_content LIKE ?";
+	// 아이디로 검색한 글 수 가져오기
+	private final String GET_COUNT_REVIEWS_BY_ID = "SELECT COUNT(review_no) FROM V_REVIEW_ADMIN WHERE mem_id LIKE ?";
+	// 제목+내용으로 검색한 글 수 가져오기
+	private final String GET_COUNT_REVIEWS_BY_TITLE_CONTENT = "SELECT COUNT(review_no) FROM V_REVIEW_ADMIN "
+			+ "WHERE rvw_title LIKE ? OR rvw_content LIKE ?";
 	
 	public List<VReview_AdminVo> getAllList(int start, int end) throws DataAccessException 
 	{
@@ -121,5 +131,34 @@ public class VReview_AdminDaoOraImpl extends NamedParameterJdbcDaoSupport implem
 	public int getCountAllReivews() throws DataAccessException
 	{
 		return getJdbcTemplate().queryForInt(GET_COUNT_ALL_REVIEWS);
+	}
+
+	@Override
+	public int getCountReviewsByTitle(String search) throws DataAccessException 
+	{
+		search = "%" + search + "%";
+		return getJdbcTemplate().queryForInt(GET_COUNT_REVIEWS_BY_TITLE, new Object[]{search}, new int[]{Types.VARCHAR});
+	}
+
+	@Override
+	public int getCountReviewsByContent(String search) throws DataAccessException 
+	{
+		search = "%" + search + "%";
+		return getJdbcTemplate().queryForInt(GET_COUNT_REVIEWS_BY_CONTENT, new Object[]{search}, new int[]{Types.VARCHAR});
+	}
+
+	@Override
+	public int getCountReviewsById(String search) throws DataAccessException 
+	{
+		search = "%" + search + "%";
+		return getJdbcTemplate().queryForInt(GET_COUNT_REVIEWS_BY_ID, new Object[]{search}, new int[]{Types.VARCHAR});
+	}
+
+	@Override
+	public int getCountReviewsByTitleNContent(String search) throws DataAccessException
+	{
+		search = "%" + search + "%";
+		return getJdbcTemplate().queryForInt(GET_COUNT_REVIEWS_BY_TITLE_CONTENT, 
+				new Object[]{search, search}, new int[]{Types.VARCHAR, Types.VARCHAR});
 	}
 }

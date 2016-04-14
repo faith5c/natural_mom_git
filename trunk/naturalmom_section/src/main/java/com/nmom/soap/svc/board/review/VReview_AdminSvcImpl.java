@@ -56,4 +56,28 @@ public class VReview_AdminSvcImpl implements IVReview_AdminSvc
 		return review_adminDao.getCountAllReivews();
 	}
 
+	@Override
+	public int getCountReviewsByTitle(String search) 
+	{
+		return review_adminDao.getCountReviewsByTitle(search);
+	}
+
+	@Override
+	public int getCountReviewsByContent(String search) 
+	{
+		return review_adminDao.getCountReviewsByContent(search);
+	}
+
+	@Override
+	public int getCountReviewsById(String search) 
+	{
+		return review_adminDao.getCountReviewsById(search);
+	}
+
+	@Override
+	public int getCountReviewsByTitleNContent(String search) 
+	{
+		return review_adminDao.getCountReviewsByTitleNContent(search);
+	}
+
 }

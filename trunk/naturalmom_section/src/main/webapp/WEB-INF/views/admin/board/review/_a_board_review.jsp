@@ -3,6 +3,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<script src="/resources/admin/js/jquery-1.11.3.min.js"></script>
 <!DOCTYPE>
 <html>
 <style type = "text/css">
@@ -49,7 +50,7 @@
 		font-family : "나눔바른고딕", "맑은 고딕";
 	}
 	
-	#search input[type="submit"] 
+	#search input[id="btn_search"] 
 	{
 		padding : 5px 10px;
 		margin-left : 3px;
@@ -75,7 +76,7 @@
 		margin-left : 10px;
 	}
 	
-	#review_write input[type="button"]:hover, #search input[type="submit"]:hover { opacity : 0.7; }
+	#review_write input[type="button"]:hover, #search input[id="btn_search"]:hover { opacity : 0.7; }
 </style>
  <div id ="in">
 	<h2>상품 후기</h2>
@@ -123,16 +124,25 @@
 			<a href="#">〉</a>
 		</div>
 <!-- 검색 부분 -->
+<script type="text/javascript">
+	function search()
+	{
+		var option = document.getElementById("option").value;
+		var search = document.getElementById("text_search").value;
+//		alert("review_search.nm?option=" + option + "&search=" + search);
+		location.href="review_search.nm?option=" + option + "&search=" + encodeURIComponent(search);
+	}
+</script>
 		<div id = "search" >
-			<select>
+			<select id = "option">
 				<option value="title">제목</option>
 				<option value="content">내용</option>
-				<option value="writer">글쓴이</option>
-				<option value="title+content">제목+내용</option>
+				<option value="id">글쓴이</option>
+				<option value="title_n_content">제목+내용</option>
 			</select>
-			<input type="text" placeholder="제목, 내용, 글쓴이, 제목+내용" name="search">
-			<input type="submit" value="검색">
-		</div>	
+			<input type="text" placeholder="제목, 내용, 글쓴이, 제목+내용" name="search" id = "text_search">
+			<input type="button" value="검색" onclick="search();" id ="btn_search">
+		</div>
 	</div>
 </html>
 
