@@ -14,10 +14,10 @@
 			<nav id = "product_menu">
 				<ul >
 					<li id="product_menu_li_1"><a href="<c:url value ='/board/notice.nm' />">공지사항</a></li>
-					<li id="product_menu_li_2"><a href="<c:url value ='/product1.nm' />">아토피/민감성/유아</a></li>
-					<li id="product_menu_li_3"><a href="<c:url value ='/product2.nm' />">피부탄력/노화</a></li>
-					<li id="product_menu_li_4"><a href="<c:url value ='/product3.nm' />">지성/여드름/트러블</a></li>
-					<li id="product_menu_li_5"><a href="<c:url value ='/product4.nm' />">미백/피부톤개선</a></li>	
+					<li id="product_menu_li_2"><a href="<c:url value ='/product/list.nm?cate=1' />">아토피/민감성/유아</a></li>
+					<li id="product_menu_li_3"><a href="<c:url value ='/product/list.nm?cate=2' />">피부탄력/노화</a></li>
+					<li id="product_menu_li_4"><a href="<c:url value ='/product/list.nm?cate=3' />">지성/여드름/트러블</a></li>
+					<li id="product_menu_li_5"><a href="<c:url value ='/product/list.nm?cate=4' />">미백/피부톤개선</a></li>	
 				</ul>
 			</nav>
 		</section>
