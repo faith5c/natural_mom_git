@@ -1,5 +1,6 @@
 package com.nmom.soap.data.model.order;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class VOrderListVo {
@@ -11,6 +12,8 @@ public class VOrderListVo {
 	private int charge;
 	private String process_nm;
 	private String mem_id;
+	
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	
 	public VOrderListVo(){}
 
