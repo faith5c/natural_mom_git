@@ -40,7 +40,7 @@ public class VProduct_ManageDaoOraImpl extends JdbcDaoSupport implements IVProdu
 	// 판매상태 내림차순 정렬
 	private final String GET_ALL_BY_SALE_STATE_DESC = "SELECT * FROM V_PRODUCT_MANAGE ORDER BY sale_state desc, product_no";
 	// 총 판매량 오름차순 정렬
-	private final String GET_ALL_BY_ALL_SELLS_ASC = "SELECT * FROM V_PRODUCT_MANAGE ORDER BY all_sells, product_no";
+	private final String GET_ALL_BY_ALL_SELLS_ASC = "SELECT * FROM V_PRODUCT_MANAGE ORDER BY all_sells asc, product_no";
 	// 총 판매량 내림차순 정렬
 	private final String GET_ALL_BY_ALL_SELLS_DESC = "SELECT * FROM V_PRODUCT_MANAGE ORDER BY all_sells desc, product_no";
 	
