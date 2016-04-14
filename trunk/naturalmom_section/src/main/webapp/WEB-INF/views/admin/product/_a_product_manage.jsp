@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
+<script src="resources/admin/js/jquery-1.11.3.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<style type = "text/css">
 
 		#container   { width : 1024px; margin : 50px auto; color: #85858d; }
@@ -44,7 +46,7 @@
 	</style>
 <!-- 링크, 이미지 살려놓기. product.nm 상태에도 리스트 띄우기 -->
 <!-- container 부분 -->	
-<script type="text/javascript">
+<script type = "text/javascript">
 
 	function order_product(by)
 	{
@@ -57,19 +59,17 @@
 			by_param = by_param + "no";
 			order_original();
 			
-			if(str == "▲ 상품번호")
+			if(str == "▼ 상품번호")
 			{
-				document.getElementById("no").innerHTML = "▼ 상품번호";
+				document.getElementById("no").innerHTML = "▲ 상품번호";
 				order_param = order_param + "true";
 			}
 				
 			else
 			{
-				document.getElementById("no").innerHTML = "▲ 상품번호";
+				document.getElementById("no").innerHTML = "▼ 상품번호";
 				order_param = order_param + "false";
 			}
-			
-			alert(by_param + order_param);
 		}
 		else if(by == 'ct')
 		{
@@ -77,15 +77,15 @@
 			by_param = by_param + "ct";
 			order_original();
 			
-			if(str == "▲ 분류")
+			if(str == "▼ 분류")
 			{
-				document.getElementById("ct").innerHTML = "▼ 분류";
+				document.getElementById("ct").innerHTML = "▲ 분류";
 				order_param = order_param + "true";
 			}
 				
 			else
 			{
-				document.getElementById("ct").innerHTML = "▲ 분류";
+				document.getElementById("ct").innerHTML = "▼ 분류";
 				order_param = order_param + "false";
 			}
 								
@@ -96,14 +96,14 @@
 			by_param = by_param + "nm";
 			order_original();
 			
-			if(str == "▲ 상품명")
+			if(str == "▼ 상품명")
 			{
-				document.getElementById("nm").innerHTML = "▼ 상품명";
+				document.getElementById("nm").innerHTML = "▲ 상품명";
 				order_param = order_param + "true";
 			}
 			else
 			{
-				document.getElementById("nm").innerHTML = "▲ 상품명";
+				document.getElementById("nm").innerHTML = "▼ 상품명";
 				order_param = order_param + "false";
 			}
 								
@@ -114,15 +114,15 @@
 			by_param = by_param + "pr";
 			order_original();
 			
-			if(str == "▲ 가격(원가)")
+			if(str == "▼ 가격(원가)")
 			{
-				document.getElementById("pr").innerHTML = "▼ 가격(원가)";
+				document.getElementById("pr").innerHTML = "▲ 가격(원가)";
 				order_param = order_param + "true";
 			}
 				
 			else
 			{
-				document.getElementById("pr").innerHTML = "▲ 가격(원가)";	
+				document.getElementById("pr").innerHTML = "▼ 가격(원가)";	
 				order_param = order_param + "false";
 			}
 							
@@ -133,15 +133,15 @@
 			by_param = by_param + "st";
 			order_original();
 			
-			if(str == "▲ 재고")
+			if(str == "▼ 재고")
 			{
-				document.getElementById("st").innerHTML = "▼ 재고";
+				document.getElementById("st").innerHTML = "▲ 재고";
 				order_param = order_param + "true";
 			}
 				
 			else
 			{
-				document.getElementById("st").innerHTML = "▲ 재고";
+				document.getElementById("st").innerHTML = "▼ 재고";
 				order_param = order_param + "false";
 			}
 							
@@ -152,35 +152,35 @@
 			by_param = by_param + "dis";
 			order_original();
 			
-			if(str == "▲ 진열 상태")
+			if(str == "▼ 진열 상태")
 			{
-				document.getElementById("dis").innerHTML = "▼ 진열 상태";
+				document.getElementById("dis").innerHTML = "▲ 진열 상태";
 				order_param = order_param + "true";
 			}
 			else
 			{
-				document.getElementById("dis").innerHTML = "▲ 진열 상태";	
+				document.getElementById("dis").innerHTML = "▼ 진열 상태";	
 				order_param = order_param + "false";
 			}
 							
 		}
-		else if(by == 'sel')
+		else if(by == 'sal')
 		{
-			var str = document.getElementById("sel").innerHTML;
-			by_param = by_param + "sel";
+			var str = document.getElementById("sal").innerHTML;
+			by_param = by_param + "sal";
 			order_original();
 			
-			if(str == "▲ 판매 상태")
+			if(str == "▼ 판매 상태")
 			{
-				document.getElementById("sel").innerHTML = "▼ 판매 상태";
+				document.getElementById("sal").innerHTML = "▲ 판매 상태";
 				order_param = order_param + "true";
 			}
 				
 			else
 			{
-				document.getElementById("sel").innerHTML = "▲ 판매 상태";	
+				document.getElementById("sal").innerHTML = "▼ 판매 상태";	
 				order_param = order_param + "false";
-			}					
+			}
 		}
 		else if(by == 'all')
 		{
@@ -188,53 +188,76 @@
 			by_param = by_param + "all";
 			order_original();
 			
-			if(str == "▲ 총 누적판매량")
+			if(str == "▼ 총 누적판매량")
 			{
-				document.getElementById("all").innerHTML = "▼ 총 누적판매량";
+				document.getElementById("all").innerHTML = "▲ 총 누적판매량";
 				order_param = order_param + "true";
 			}
 				
 			else
 			{
-				document.getElementById("all").innerHTML = "▲ 총 누적판매량";	
+				document.getElementById("all").innerHTML = "▼ 총 누적판매량";	
 				order_param = order_param + "false";
 			}							
 		}
 		
-		location.href= "product.nm?page=manage&" + by_param + order_param; 
-	}
+//		var url = "product.nm?page=manage&" + by_param + order_param; 
+		location.href = "product.nm?page=manage&" + by_param + order_param;
+		
+		// ajax
+/* 		var url = "product.nm";
+		var param = "?page=manage&" + by_param + order_param;
+		$.get(url + param, function(data){
+			$( ".data_part" ).html( data );
+			alert( "Load was performed." );
+		}); */
 	
+	}
+
 	function order_original()
 	{
-		document.getElementById("no").innerHTML = "▲ 상품번호";
-		document.getElementById("ct").innerHTML = "▲ 분류";
-		document.getElementById("nm").innerHTML = "▲ 상품명";
-		document.getElementById("pr").innerHTML = "▲ 가격(원가)";
-		document.getElementById("st").innerHTML = "▲ 재고";
-		document.getElementById("dis").innerHTML = "▲ 진열 상태";
-		document.getElementById("sel").innerHTML = "▲ 판매 상태";
-		document.getElementById("all").innerHTML = "▲ 총 누적판매량";
+		document.getElementById("no").innerHTML = "▼ 상품번호";
+		document.getElementById("ct").innerHTML = "▼ 분류";
+		document.getElementById("nm").innerHTML = "▼ 상품명";
+		document.getElementById("pr").innerHTML = "▼ 가격(원가)";
+		document.getElementById("st").innerHTML = "▼ 재고";
+		document.getElementById("dis").innerHTML = "▼ 진열 상태";
+		document.getElementById("sal").innerHTML = "▼ 판매 상태";
+		document.getElementById("all").innerHTML = "▼ 총 누적판매량";
+	}
+	
+	function state_change(id, state)
+	{
+		var url = "product.nm?page=process&" + id + "=" + state;
+		var checked = '';
+		$('input:checkbox[id="chk"]:checked').each(function(){
+			checked += '&no=' + $(this).val();
+		});
+		alert(url + checked);
+		// 프로세스로 주소 보내고 controller에 추가하기
 	}
 	
 </script>
 	<h2 id = "reg_title">상품 관리</h2>
-		<table cellspacing = "0">
+		<table cellspacing = "0" class = "data_part">
 			<tr>
-				<td>체크</td>
-				<td><a href = "#" onclick="order_product('no');" id = "no">▲ 상품번호</a></td>
-				<td><a href = "#" onclick="order_product('ct');" id = "ct">▲ 분류</a></td>
-				<td><a href = "#" onclick="order_product('nm');" id = "nm">▲ 상품명</a></td>
+				<td><input type = "checkbox" id = "all" onclick = "all_check();"/></td>
+				<td>
+					<a href = "#" onclick="order_product('no');" id = "no">${param.by eq 'no' && param.order eq 'true' ? '▲' : '▼'} 상품번호</a>
+				</td>
+				<td>
+				<a href = "#" onclick="order_product('ct');" id = "ct">${param.by eq 'ct' && param.order eq 'true' ? '▲' : '▼'} 분류</a></td>
+				<td><a href = "#" onclick="order_product('nm');" id = "nm">${param.by eq 'nm' && param.order eq 'true' ? '▲' : '▼'} 상품명</a></td>
 				<td>이미지</td>
-				<td><a href = "#" onclick="order_product('pr');" id = "pr">▲ 가격(원가)</a></td>
-				<td><a href = "#" onclick="order_product('st');" id = "st">▲ 재고</a></td>
-				<td><a href = "#" onclick="order_product('dis');" id = "dis">▲ 진열 상태</a></td>
-				<td><a href = "#" onclick="order_product('sel');" id = "sel">▲ 판매 상태</a></td>
-				<td><a href = "#" onclick="order_product('all');" id = "all">▲ 총 누적판매량</a></td>
+				<td><a href = "#" onclick="order_product('pr');" id = "pr">${param.by eq 'pr' && param.order eq 'true' ? '▲' : '▼'} 가격(원가)</a></td>
+				<td><a href = "#" onclick="order_product('st');" id = "st">${param.by eq 'st' && param.order eq 'true' ? '▲' : '▼'} 재고</a></td>
+				<td><a href = "#" onclick="order_product('dis');" id = "dis">${param.by eq 'dis' && param.order eq 'true' ? '▲' : '▼'} 진열 상태</a></td>
+				<td><a href = "#" onclick="order_product('sal');" id = "sal">${param.by eq 'sal' && param.order eq 'true' ? '▲' : '▼'} 판매 상태</a></td>
+				<td><a href = "#" onclick="order_product('all');" id = "all">${param.by eq 'all' && param.order eq 'true' ? '▲' : '▼'} 총 누적판매량</a></td>
 			</tr>
-			
 			<c:forEach var="product" items="${p_list}">
 			<tr>
-				<td><input type = "checkbox" name = "no_${product.product_no}" value = "${product.product_no}" /></td>
+				<td><input type = "checkbox" id = "chk" value = "${product.product_no}" /></td>
 				<td>${product.product_no}</td>
 				<td>${product.category_nm}</td>
 				<td><a href = "a_product.jsp?page=modify">${product.product_name}</a></td>
@@ -248,10 +271,10 @@
 			</c:forEach>
 		</table>
 		<div id = "buttons">
-			<input type = "button" id = "dis_y" value = "진열" />
-			<input type = "button" id = "dis_n" value = "진열 안함" />
-			<input type = "button" id = "sale_y" value = "판매" />
-			<input type = "button" id = "sale_n" value = "판매 안함" />
-			<input type = "button" id = "del" value = "삭제" />
+			<input type = "button" id = "dis_y" value = "진열" onclick = "state_change('dis', 'true');" />
+			<input type = "button" id = "dis_n" value = "진열 안함" onclick = "state_change('dis', 'false');" />
+			<input type = "button" id = "sale_y" value = "판매" onclick = "state_change('sal', 'true');" />
+			<input type = "button" id = "sale_n" value = "판매 안함" onclick = "state_change('sal', 'false');" />
+			<input type = "button" id = "del" value = "삭제" onclick = "state_change('del', 'true');" />
 		</div>
 </html>
