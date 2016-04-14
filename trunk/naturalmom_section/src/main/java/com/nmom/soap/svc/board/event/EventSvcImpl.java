@@ -59,8 +59,12 @@ public class EventSvcImpl implements IEventSvc {
 
 	@Override
 	public int addEvent(EventVo event) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return 0;
+		String con_check = event.getEvt_content();
+		if(con_check.contains("&nbsp;")){
+			con_check.replace("&nbsp;", " ");
+			System.out.println("2 " +con_check);
+		}
+		return eventDao.addEvent(event);
 	}
 
 	@Override

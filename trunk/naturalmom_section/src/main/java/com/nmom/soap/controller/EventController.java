@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.nmom.soap.S;
 import com.nmom.soap.data.model.board.event.EventVo;
 import com.nmom.soap.data.model.board.event.Event_reVo;
 import com.nmom.soap.svc.board.event.IEventSvc;
@@ -54,12 +56,11 @@ public class EventController {
 	public ModelAndView board_event_r(HttpServletRequest req, 
 									@RequestParam(value="r") int r,	// 이벤트no
 									@RequestParam(value="rn") int rn,	// 이벤트 RowNom
-									@RequestParam(value="d") int d){	// 이벤트 리플 넘버
+									@RequestParam(value="d") int d){	// 이벤트 리플 넘버 (삭제시 이용)
 		Map<String, Object> map = new HashMap<>();
 		
-		if(d != 0){
-			eventReSvc.removeRe(d);
-		}
+		// 삭제값에 리플 번호가 들어오면 삭제
+		if(d != 0){ eventReSvc.removeRe(d);}
 		
 		// 조회수 증가
 		eventSvc.addReadCount(r);
@@ -73,6 +74,50 @@ public class EventController {
 		
 		return new ModelAndView("board/event/b_event", map);
 	}
+	
+	// 게시글 쓰기 -> 리스트
+	@RequestMapping(value ="/board/event_write.nm", method=RequestMethod.POST)
+	public ModelAndView board_event_w(HttpServletRequest req,
+									HttpSession se,
+									@RequestParam(value="title")String title,
+									@RequestParam(value="event_content") String event_content){
+		//세션에 아이디 값 불러오기
+		String id = (String)se.getAttribute(S.SESSION_LOGIN);
+		// 글쓰기
+		System.out.println(eventSvc.addEvent(new EventVo().writeform(title, event_content, id)));
+		
+		// 이벤트 리스트 불러오기
+		Map<String, Object> map = new HashMap<>();
+		List<EventVo> e_list = eventSvc.getEventList(1, 15);
+		map.put("e_list", e_list);
+		
+		return new ModelAndView("board/event/b_event", map);
+	}
+	
+	// 리플 쓰기 -> 읽기페이지
+	@RequestMapping(value="/board/event_reply.nm", method=RequestMethod.POST)
+	public ModelAndView board_event_w_re(HttpServletRequest req,
+										HttpSession se,
+										@RequestParam(value="r") int r,
+										@RequestParam(value="re_content") String re_content){
+		//세션에 아이디 값 불러오기
+		String id = (String)se.getAttribute(S.SESSION_LOGIN);
+		// 글쓰기
+		System.out.println(eventReSvc.addRe(new Event_reVo().writeform(r, re_content, id)));
+		
+		// 이벤트 내용 불러오기
+		Map<String, Object> map = new HashMap<>();
+		EventVo event = eventSvc.getOneEvent(r);
+		event.setEvt_rnum(r);	// RowNum
+		map.put("con", event);
+		// 댓글 내용 불러오기
+		List<Event_reVo> event_re = eventReSvc.getEventRe(r);
+		map.put("re", event_re);
+				
+		return new ModelAndView("board/event/b_event", map);
+	}
+	
+	
 	
 	
 	

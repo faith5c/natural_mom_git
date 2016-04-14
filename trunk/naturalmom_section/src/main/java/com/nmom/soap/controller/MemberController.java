@@ -31,7 +31,6 @@ public class MemberController {
 									HttpSession se,
 									@RequestParam(value="login_id")String login_id,
 									@RequestParam(value="login_pw")String login_pw){
-		System.out.println(login_id +" "+ login_pw);
 		Map<String, Object> map = new HashMap<>();
 		MemberVo m = memberSvc.getOneMember(login_id);
 		
@@ -47,6 +46,13 @@ public class MemberController {
 			return new ModelAndView("login/login", map);
 		}
 	}
+	///////////////////////////////////////////////////////////// 아이디 패스워드 찾기
+	@RequestMapping(value="pop_findId.nm", method=RequestMethod.GET)
+	public String popup_findId(HttpServletRequest req){
+		
+		return "login/login_popup";
+	}
+	
 	///////////////////////////////////////////////////////////// 로그아웃
 	@RequestMapping(value="logout_proc.nm", method=RequestMethod.GET)
 	public String logout_proc(HttpServletRequest req,

@@ -35,4 +35,9 @@ public class S {
 	// 게시판 한 페이지에 나오는 글 개수
 	public final static int PAGE_LIMIT = 10;
 	
+	
+	// Session Attribute Name
+	public final static String SESSION_LOGIN ="loggedin";
+	public final static String SESSION_ADMIN ="admin";
+	
 }

@@ -24,8 +24,7 @@ public class Event_reSvcImpl implements IEvent_reSvc {
 
 	@Override
 	public int addRe(Event_reVo re) {
-		// TODO Auto-generated method stub
-		return 0;
+		return eventReDao.addRe(re);
 	}
 
 	@Override
