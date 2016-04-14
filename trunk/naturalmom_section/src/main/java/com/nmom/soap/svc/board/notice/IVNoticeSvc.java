@@ -8,15 +8,15 @@ import com.nmom.soap.data.model.board.notice.VNoticeVo;
 
 public interface IVNoticeSvc {
 	
-	public List<VNoticeVo> getAllNotice(int page);
+	public List<VNoticeVo> getAllNotice(int block, int allPages);
 	
-	public List<VNoticeVo> getSearchByTitleNotice(String search, int page);
+	public List<VNoticeVo> getSearchByTitleNotice(String search, int block, int allPages);
 	
-	public List<VNoticeVo> getSearchByContentNotice(String search, int page);
+	public List<VNoticeVo> getSearchByContentNotice(String search, int block, int allPages);
 	
-	public List<VNoticeVo> getSearchByIdNotice(String search, int page);
+	public List<VNoticeVo> getSearchByIdNotice(String search, int block, int allPages);
 	
-	public List<VNoticeVo> getSearchByTitleNContentNotice(String search, int page);
+	public List<VNoticeVo> getSearchByTitleNContentNotice(String search, int block, int allPages);
 
 	public int getAllCount();
 	
