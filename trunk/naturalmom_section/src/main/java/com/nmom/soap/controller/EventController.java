@@ -37,7 +37,8 @@ public class EventController {
 	
 	
 	
-	// 사용자 페이지
+	/////////////////////////////// 사용자 페이지
+	// 이벤트 리스트
 	@RequestMapping(value ="/board/event.nm", method=RequestMethod.GET)
 	public ModelAndView board_event(HttpServletRequest req){
 		Map<String, Object> map = new HashMap<>();
@@ -48,12 +49,17 @@ public class EventController {
 		return new ModelAndView("board/event/b_event", map);
 	}
 	
-	
+	// 읽기 페이지
 	@RequestMapping(value ="/board/event_read.nm", method=RequestMethod.GET)
 	public ModelAndView board_event_r(HttpServletRequest req, 
-									@RequestParam(value="r") int r,
-									@RequestParam(value="rn") int rn){
+									@RequestParam(value="r") int r,	// 이벤트no
+									@RequestParam(value="rn") int rn,	// 이벤트 RowNom
+									@RequestParam(value="d") int d){	// 이벤트 리플 넘버
 		Map<String, Object> map = new HashMap<>();
+		
+		if(d != 0){
+			eventReSvc.removeRe(d);
+		}
 		
 		// 조회수 증가
 		eventSvc.addReadCount(r);
@@ -68,18 +74,11 @@ public class EventController {
 		return new ModelAndView("board/event/b_event", map);
 	}
 	
-	@RequestMapping(value ="/board/event_re_del.nm", method=RequestMethod.GET)
-	public String board_event_r(HttpServletRequest req,
-									@RequestParam(value="reid")int reid){
-		//리플 삭제
-		eventReSvc.removeRe(reid);
-		
-		return "board/event/b_event";
-	}
 	
 	
 	
-	// 관리자페이지
+	/////////////////////////////// 관리자페이지
+	// 이벤트 리스트
 	@RequestMapping(value ="/admin/board/event.nm", method=RequestMethod.GET)
 	public ModelAndView a_board_event(HttpServletRequest req){
 		List<EventVo> e_list = eventSvc.getEventList(1, 5);
@@ -90,15 +89,27 @@ public class EventController {
 		return new ModelAndView("admin/board/event/a_event", map);
 	}
 	
+	// 읽기 페이지
 	@RequestMapping(value ="/admin/board/event_read.nm", method=RequestMethod.GET)
 	public ModelAndView a_board_event_r(HttpServletRequest req, 
-									@RequestParam(value="r") int r,
-									@RequestParam(value="rr") int rr){
+									@RequestParam(value="r") int r,	// 이벤트no
+									@RequestParam(value="rn") int rn,	// 이벤트 RowNom
+									@RequestParam(value="d") int d){	// 이벤트 리플 넘버
 		Map<String, Object> map = new HashMap<>();
-			
+
+		if(d != 0){
+			eventReSvc.removeRe(d);
+		}
+
+		// 조회수 증가
+		eventSvc.addReadCount(r);
+		// 이벤트 내용 불러오기
 		EventVo event = eventSvc.getOneEvent(r);
-		event.setEvt_rnum(rr);
+		event.setEvt_rnum(rn);	// RowNum
 		map.put("con", event);
+		// 댓글 내용 불러오기
+		List<Event_reVo> event_re = eventReSvc.getEventRe(r);
+		map.put("re", event_re);
 		
 		return new ModelAndView("admin/board/event/a_event", map);
 	}

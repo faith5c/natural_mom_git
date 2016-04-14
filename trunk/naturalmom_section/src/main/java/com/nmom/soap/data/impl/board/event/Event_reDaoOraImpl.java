@@ -22,7 +22,7 @@ public class Event_reDaoOraImpl extends NamedParameterJdbcDaoSupport implements 
 	NamedParameterJdbcTemplate nameTemplate;
 	JdbcTemplate jtem;
 	
-	private final String SQL_EVENT_RE_SELECT_ONE = "SELECT mem_id, evt_re_content, evt_re_write_day, EVENT_RE_NO FROM tb_event_re WHERE evt_re_del_check=0 AND evt_no = ?";
+	private final String SQL_EVENT_RE_SELECT_ONE = "SELECT mem_id, evt_re_content, evt_re_write_day, EVENT_RE_NO, evt_no FROM tb_event_re WHERE evt_re_del_check=0 AND evt_no = ?";
 	private final String SQL_EVENT_RE_INSERT = "INSERT INTO tb_event_re VALUES(EVENT_RE_NO_SEQ.NEXTVAL, :evt_re_content, SYSDATE, 0, :evt_no, :mem_id)";
 	private final String SQL_EVENT_RE_UPDATE_DEL_CD = "UPDATE tb_event_re SET evt_re_del_check=1 WHERE event_re_no=?";
 
@@ -39,6 +39,7 @@ public class Event_reDaoOraImpl extends NamedParameterJdbcDaoSupport implements 
 								event_re.setEvt_re_content(rs.getString("evt_re_content") );
 								event_re.setEvt_re_write_day(rs.getDate("evt_re_write_day") );
 								event_re.setEvent_re_no(rs.getInt("EVENT_RE_NO") );
+								event_re.setEvt_no(rs.getInt("evt_no"));
 								return event_re;	}
 							});
 	}
