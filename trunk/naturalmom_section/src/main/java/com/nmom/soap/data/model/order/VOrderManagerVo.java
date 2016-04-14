@@ -1,5 +1,6 @@
 package com.nmom.soap.data.model.order;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class VOrderManagerVo {
@@ -13,6 +14,8 @@ public class VOrderManagerVo {
 	private String delivery_msg;
 	private int tracking_num;
 	private String process_nm;
+	
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	
 	public VOrderManagerVo(){}
 
