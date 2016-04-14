@@ -2,31 +2,36 @@ package com.nmom.soap.svc.board.event;
 
 import java.util.List;
 
+import org.springframework.dao.DataAccessException;
+
 import com.nmom.soap.data.model.board.event.EventVo;
 
 
 public interface IEventSvc {
 	
 	// 리스트
-	void getAllEvents();
-	void getEventList();
-	List<EventVo> getEventList(int start, int end);
+	void getAllEvents() throws DataAccessException;
+	void getEventList() throws DataAccessException;
+	List<EventVo> getEventList(int start, int end) throws DataAccessException;
 	
 	// 글읽기, 수정할 글 불러오기
-	EventVo getOneEvent(int event_no);
+	EventVo getOneEvent(int event_no) throws DataAccessException;
 	
 	// 검색
-	List<EventVo> getEvents_by_title(String search);
-	List<EventVo> getEvents_by_content(String search);
-	List<EventVo> getEvents_by_title_n_content(String search);
+	List<EventVo> getEvents_by_title(String search) throws DataAccessException;
+	List<EventVo> getEvents_by_content(String search) throws DataAccessException;
+	List<EventVo> getEvents_by_title_n_content(String search) throws DataAccessException;
 	
 	// 글쓰기
-	int addEvent(EventVo event);
+	int addEvent(EventVo event) throws DataAccessException;
 
 	// 글삭제
-	int removeEvent(int event_no);
+	int removeEvent(int event_no) throws DataAccessException;
 	
 	// 글수정
-	int editEvent(EventVo event);
+	int editEvent(EventVo event) throws DataAccessException;
+	
+	// 조회수 증가
+	int addReadCount(int event_no) throws DataAccessException;
 
 }

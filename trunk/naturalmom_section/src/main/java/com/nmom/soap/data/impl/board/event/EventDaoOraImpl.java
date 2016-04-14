@@ -6,6 +6,7 @@ import java.sql.Types;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -39,9 +40,12 @@ public class EventDaoOraImpl extends NamedParameterJdbcDaoSupport implements IEv
 		="SELECT * FROM NMDB.V_EVENT_LIST WHERE (evt_title LIKE ? OR evt_content LIKE ?) ORDER BY event_no DESC";
 	private final String SQL_EVENT_INSERT 
 		="INSERT INTO tb_event VALUES(EVENT_NO_SEQ.NEXTVAL, :evt_title, SYSDATE, 1, :evt_content, 0, 2, :mem_id)";
-	private final String SQL_EVENT_UPDATE_DEL_CD ="UPDATE tb_event SET evt_del_check=1 WHERE event_no=?";
-	private final String SQL_EVENT_UPDATE_CONTENT ="UPDATE tb_event SET evt_write_day=SYSDATE, evt_title=:evt_title, evt_content=:evt_content WHERE event_no=:event_no";
-	
+	private final String SQL_EVENT_UPDATE_DEL_CD 
+		="UPDATE tb_event SET evt_del_check=1 WHERE event_no=?";
+	private final String SQL_EVENT_UPDATE_CONTENT 
+		="UPDATE tb_event SET evt_write_day=SYSDATE, evt_title=:evt_title, evt_content=:evt_content WHERE event_no=:event_no";
+	private final String SQL_EVENT_UPDATE_HITS
+		="UPDATE tb_event SET evt_hits=evt_hits+1 WHERE event_no=?";
 	
 	
 	
@@ -122,7 +126,7 @@ public class EventDaoOraImpl extends NamedParameterJdbcDaoSupport implements IEv
 
 	
 	@Override	// 제목으로 검색
-	public List<EventVo> getEvents_by_title(String search) {
+	public List<EventVo> getEvents_by_title(String search) throws DataAccessException {
 		jtem = getJdbcTemplate();
 		return jtem.query(SQL_EVENT_SELECT_BY_TITLE,
 						new Object[]{"%"+search+"%"}, new RowMapper<EventVo>() {
@@ -141,7 +145,7 @@ public class EventDaoOraImpl extends NamedParameterJdbcDaoSupport implements IEv
 	}
 
 	@Override	// 내용으로 검색
-	public List<EventVo> getEvents_by_content(String search) {
+	public List<EventVo> getEvents_by_content(String search) throws DataAccessException {
 		jtem = getJdbcTemplate();
 		return jtem.query(SQL_EVENT_SELECT_BY_CONTENT,
 						new Object[]{"%"+search+"%"}, new RowMapper<EventVo>() {
@@ -160,7 +164,7 @@ public class EventDaoOraImpl extends NamedParameterJdbcDaoSupport implements IEv
 	}
 
 	@Override	// 제목+내용으로 검색
-	public List<EventVo> getEvents_by_title_n_content(String search) {
+	public List<EventVo> getEvents_by_title_n_content(String search) throws DataAccessException {
 		jtem = getJdbcTemplate();
 		return jtem.query(SQL_EVENT_SELECT_BY_TITLE_AND_CONTENT,
 						new Object[]{"%"+search+"%", "%"+search+"%"}, new RowMapper<EventVo>() {
@@ -180,7 +184,7 @@ public class EventDaoOraImpl extends NamedParameterJdbcDaoSupport implements IEv
 	
 
 	@Override	// 글쓰기
-	public int addEvent(EventVo event) {
+	public int addEvent(EventVo event) throws DataAccessException {
 		nameTemplate = getNamedParameterJdbcTemplate();
 		MapSqlParameterSource ps = new MapSqlParameterSource();
 		ps.addValue("evt_title", event.getEvt_title());
@@ -191,13 +195,13 @@ public class EventDaoOraImpl extends NamedParameterJdbcDaoSupport implements IEv
 	}
 
 	@Override	// 글삭제
-	public int removeEvent(int event_no) {
+	public int removeEvent(int event_no) throws DataAccessException {
 		jtem = getJdbcTemplate();
 		return jtem.update(SQL_EVENT_UPDATE_DEL_CD, new Object[]{new Integer(event_no)});
 	}
 	
 	@Override // 글 수정
-	public int editEvent(EventVo event) {
+	public int editEvent(EventVo event) throws DataAccessException {
 		nameTemplate = getNamedParameterJdbcTemplate();
 		MapSqlParameterSource ps = new MapSqlParameterSource();
 		ps.addValue("evt_title", event.getEvt_title());
@@ -205,6 +209,12 @@ public class EventDaoOraImpl extends NamedParameterJdbcDaoSupport implements IEv
 		ps.addValue("event_no", event.getEvent_no());
 		
 		return nameTemplate.update(SQL_EVENT_UPDATE_CONTENT, ps);
+	}
+	
+	@Override
+	public int addReadCount(int event_no) throws DataAccessException {
+		jtem = getJdbcTemplate();
+		return jtem.update(SQL_EVENT_UPDATE_HITS, event_no);
 	}
 
 }
