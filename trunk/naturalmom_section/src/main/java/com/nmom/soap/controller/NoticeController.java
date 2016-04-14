@@ -43,11 +43,12 @@ public class NoticeController {
 			@RequestParam(value="k", required=false) String kind,
 			@RequestParam(value="s", required=false) String search){
 		
+		System.out.println("콘트롤러 공지사항 리스트 진입");
 		//블럭은 페이지 10개씩의 단위 첫페이지는 무조건 1
 		int block = 1;
 		
 		//블럭 갯수
-		int blockNums = 0;
+		int blockNums = 1;
 		
 		//전체 페이지 수
 		int allPages = 0;
@@ -64,15 +65,16 @@ public class NoticeController {
 		}
 		if( search == null || search.isEmpty() || search.equals("") ){
 			allPages = vNoticeSvc.getAllCount();
-			
+			System.out.println("콘트롤러 기본 페이지 삽입 진입");
 			List<VNoticeVo> list = this.vNoticeSvc.getAllNotice(block, allPages);
+			System.out.println(list.get(0));
 			if(allPages > 0)
 			blockNums = (int)Math.ceil((double)allPages/S.PAGE_LIMIT);
 		
 			map.put("ab", blockNums);
 			map.put("nb", block);
 			map.put("no_list", list);
-			return new ModelAndView("/board/b_notice", map);
+			return new ModelAndView("/board/notice/b_notice", map);
 		}
 		
 		return null;
