@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,7 +38,7 @@ public class NoticeController {
 	
 	//공지사항 리스트(회원)
 	@RequestMapping (value="/board/notice.nm", method=RequestMethod.GET)
-	public ModelAndView getAllNotice(HttpServletRequest req,
+	public ModelAndView getAllNoticeM(HttpServletRequest req,
 			@RequestParam(value="ab", required=false) String allBlock,
 			@RequestParam(value="nb", required=false) String nowBlock,
 			@RequestParam(value="k", required=false) String kind,
@@ -91,6 +92,56 @@ public class NoticeController {
 	//공지사항 댓글 삭제(회원)
 	
 	//공지사항 리스트(어드민)
+	@RequestMapping (value="admin/board/notice.nm", method=RequestMethod.GET)
+	public ModelAndView getAllNoticeA(HttpServletRequest req,
+			HttpSession ses,
+			@RequestParam(value="ab", required=false) String allBlock,
+			@RequestParam(value="nb", required=false) String nowBlock,
+			@RequestParam(value="k", required=false) String kind,
+			@RequestParam(value="s", required=false) String search){
+		
+		System.out.println("콘트롤러 공지사항 리스트 진입");
+		//블럭은 페이지 10개씩의 단위 첫페이지는 무조건 1
+		
+		//어드민이 투루가 아닐경우 프론트 페이지로 ㄱㄱ
+//		if(ses.getAttribute("admin") == null || !ses.getAttribute("admin").equals("true")){
+//			return new ModelAndView("/soap/index.nm");
+//		}
+		
+		int block = 1;
+		
+		//블럭 갯수
+		int blockNums = 1;
+		
+		//전체 페이지 수
+		int allPages = 0;
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		if( nowBlock != null && !nowBlock.isEmpty() && !nowBlock.equals("")){
+			try{
+				block = Integer.parseInt(nowBlock);
+			}catch(NumberFormatException ne){
+				ne.printStackTrace();
+			}
+			
+		}
+		if( search == null || search.isEmpty() || search.equals("") ){
+			allPages = vNoticeSvc.getAllCount();
+			System.out.println("콘트롤러 기본 페이지 삽입 진입");
+			List<VNoticeVo> list = this.vNoticeSvc.getAllNotice(block, allPages);
+			System.out.println(list.get(0));
+			if(allPages > 0)
+			blockNums = (int)Math.ceil((double)allPages/S.PAGE_LIMIT);
+		
+			map.put("ab", blockNums);
+			map.put("nb", block);
+			map.put("no_list", list);
+			return new ModelAndView("/admin/board/notice/a_notice", map);
+		}
+		
+		return null;
+	}
 	
 	//공지사항 글 상세보기(어드민)
 	
