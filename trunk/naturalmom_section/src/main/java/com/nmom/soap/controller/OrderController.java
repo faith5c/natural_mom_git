@@ -28,13 +28,20 @@ public class OrderController {
 	private IVOrderManagerSvc vOrderManagerSvc;
 	
 	@RequestMapping(value="/admin/order.nm", method=RequestMethod.GET)
-	public ModelAndView getOrderManager(HttpServletRequest req,
-			@RequestParam(value="by") String by,
-			@RequestParam(value="order") String order){
-		System.out.println("@RequestMapping(value=/admin/order.nm");
+	public ModelAndView getOrderManager(HttpServletRequest req){
+		System.out.println("@RequestMapping(value=/admin/order.nm)");
+		String by = null;
+		String order = null;
+		if(req != null){
+			by = (String)req.getAttribute("by");
+			order = (String)req.getAttribute("order");
+		}
+		System.out.println("by - " + by + ", order - " + order);
 		Map<String, Object> map = new HashMap<String, Object>();
-		List<VOrderManagerVo> list = null;
-		if ( by == null || by.isEmpty() || by.equals("")){
+		List<VOrderManagerVo> list = new ArrayList<VOrderManagerVo>();
+		if ( by == null || by.isEmpty() || by.equals(""))
+		{
+			System.out.println("by가 널일 때 진입");
 			list = this.vOrderManagerSvc.getAllOrederByDate(true);
 		}else if( by.equals("date") ){
 			if( order == null || order.equals("true") )
@@ -72,6 +79,7 @@ public class OrderController {
 			else
 				list = this.vOrderManagerSvc.getAllOrederByProcess(false);		
 		}
+		if(list == null)System.out.println("리스트 널");
 		map.put("orderManeger", list);
 		return new ModelAndView("admin/order/a_order",map);
 	}
