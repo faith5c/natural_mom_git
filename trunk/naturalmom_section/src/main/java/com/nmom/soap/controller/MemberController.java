@@ -41,7 +41,7 @@ public class MemberController {
 				if(m.getMem_level_cd()==10){
 					se.setAttribute("admin", true);
 				}
-			return new ModelAndView("index", map);
+			return new ModelAndView("redirect:/index.nm", map);
 		}else{
 			map.put("err_msg", "아이디와 비밀번호를 확인해주세요.");
 			return new ModelAndView("login/login", map);
@@ -54,7 +54,7 @@ public class MemberController {
 		se.removeAttribute("loggedin");
 		se.removeAttribute("admin");
 		se.invalidate();
-		return "index";
+		return "redirect:/index.nm";
 	}
 	
 	
