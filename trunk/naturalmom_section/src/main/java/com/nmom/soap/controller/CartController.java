@@ -32,8 +32,7 @@ public class CartController {
 	@RequestMapping(value ="/cart.nm", method=RequestMethod.GET)
 	public ModelAndView menu_cart(HttpServletRequest req, HttpSession ses)
 	{
-		//String loggedin = (String)ses.getAttribute("loggedin");
-		String loggedin = "soomin";
+		String loggedin = (String)ses.getAttribute("loggedin");
 		
 		List<VCartProductVo> cart_list = this.vCartProductSvc.getCartByMemId(loggedin);
 		
