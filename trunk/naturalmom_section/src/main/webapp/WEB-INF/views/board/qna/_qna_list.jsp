@@ -81,7 +81,9 @@
 					
 					<c:if test="${ql.qna_ref!=ql.qna_no}"><i class="fa fa-share" aria-hidden="true"></i>&nbsp;</c:if>
 					${ql.qna_title}
-					[${ql.qna_re_count}]
+						<c:if test="${ql.qna_re_count!=0}">
+							[${ql.qna_re_count}]
+						</c:if>
 					<c:if test="${ql.qna_pw != null}"><i class="fa fa-lock"></i></c:if>
 				</td>
 				<td>${ql.mem_id}</td>
@@ -91,32 +93,6 @@
 				<td>${ql.qna_hits}</td>
 			</tr>
 		</c:forEach>
-	
-	
-	
-	
-	
-	<!-- <tr>
-		<td>3</td>
-		<td><a href="customer_center.jsp?page=qna&r=3">재입고 언제 되나요</a></td>
-		<td>hook4u</td>
-		<td>2015/06/17</td>
-		<td>49</td>
-	</tr>
-	<tr>
-		<td>2</td>
-		<td><a href="customer_center.jsp?page=qna&r=2">배송일 문의 [1]<span>&nbsp;<i class="fa fa-lock"></i></span></a></td>
-		<td>faith5c</td>
-		<td>2015/06/15</td>
-		<td>24</td>
-	</tr>
-	<tr>
-		<td>1</td>
-		<td><a href="#">배송문의 [1]</a></td>
-		<td>xhdydlf</td>
-		<td>2015/06/15</td>
-		<td>15</td>
-	</tr> -->
 	<tr class="qna_write">
 		<td colspan="5" style="border-top: 1px solid grey"><a href="customer_center.jsp?page=qna&w=true"><span>글쓰기</span></a></td>
 	</tr>
