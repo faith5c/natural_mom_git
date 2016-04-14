@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -72,7 +73,30 @@
 		<th width="100px">작성일</th>
 		<th width="50px">조회</th>
 	</tr>
-	<tr>
+	
+	<c:forEach items="${qna_list}" var="ql">
+			<tr>
+				<td>${ql.qna_rnum}</td>
+				<td>
+					
+					<c:if test="${ql.qna_ref!=ql.qna_no}"><i class="fa fa-share" aria-hidden="true"></i>&nbsp;</c:if>
+					${ql.qna_title}
+					[${ql.qna_re_count}]
+					<c:if test="${ql.qna_pw != null}"><i class="fa fa-lock"></i></c:if>
+				</td>
+				<td>${ql.mem_id}</td>
+				<td>
+					<fmt:formatDate value="${ql.qna_write_day}" pattern="yyyy/MM/dd"></fmt:formatDate>
+				</td>
+				<td>${ql.qna_hits}</td>
+			</tr>
+		</c:forEach>
+	
+	
+	
+	
+	
+	<!-- <tr>
 		<td>3</td>
 		<td><a href="customer_center.jsp?page=qna&r=3">재입고 언제 되나요</a></td>
 		<td>hook4u</td>
@@ -92,7 +116,7 @@
 		<td>xhdydlf</td>
 		<td>2015/06/15</td>
 		<td>15</td>
-	</tr>
+	</tr> -->
 	<tr class="qna_write">
 		<td colspan="5" style="border-top: 1px solid grey"><a href="customer_center.jsp?page=qna&w=true"><span>글쓰기</span></a></td>
 	</tr>
@@ -120,35 +144,5 @@
 	
 </form>
 
-	<table>
-		<tr>
-		<th>qna_rnum</th>
-		<th>qna_no</th>
-		<th>qna_title</th>
-		<th>qna_write_day</th>
-		<th>qna_hits</th>
-		<th>qna_content</th>
-		<th>qna_pw</th>
-		<th>qna_pos</th>
-		<th>qna_ref</th>
-		<th>mem_id</th>
-		<th>qna_no</th>
-		</tr>
-		<c:forEach items="${qna_list}" var="ql">
-			<tr>
-				<td>${ql.qna_rnum}</td>
-				<td>${ql.qna_no}</td>
-				<td>${ql.qna_title}</td>
-				<td>${ql.qna_write_day}</td>
-				<td>${ql.qna_hits}</td>
-				<td>${ql.qna_content}</td>
-				<td>${ql.qna_pw}</td>
-				<td>${ql.qna_pos}</td>
-				<td>${ql.qna_ref}</td>
-				<td>${ql.mem_id}</td>
-				<td>${ql.qna_re_count}</td>
-			</tr>
-		</c:forEach>
-	</table>
 </body>
 </html>
