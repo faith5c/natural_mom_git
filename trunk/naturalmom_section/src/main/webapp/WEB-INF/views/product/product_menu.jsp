@@ -34,7 +34,7 @@
 			
 			<c:forEach var="pl" items="${product_list}">
 				<div>
-				<a href="#"><img src="${pl.represent_img}" alt="${pl.product_name}"></a>
+				<a href="/soap/product/detail.nm?pdno=${pl.product_no}"><img src="${pl.represent_img}" alt="${pl.product_name}"></a>
 				<p><span>${pl.summary_ex}</span>&nbsp;${pl.product_name}</p>
 				<p>${pl.selling_price}원</p>
 				</div>

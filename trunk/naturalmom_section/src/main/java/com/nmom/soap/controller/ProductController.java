@@ -129,13 +129,27 @@ public class ProductController
 	
 	
 	//*********************************************************************//
-	
-	
-	/*
-	@RequestMapping(value = "/index.nm", method = RequestMethod.GET)
-	public String index(HttpServletRequest req) {
-		return "index";
-	}*/
+
+	@RequestMapping(value ="/index.nm", method=RequestMethod.GET)
+	public ModelAndView product_index_menu(HttpServletRequest req){
+		
+		String category_name = "모든상품";
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		try{
+			List<ProductVo> product_list = productSvc.getAllProduct();
+			
+			if(product_list != null && product_list.size() != 0)
+				map.put("product_list", product_list);
+			
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		map.put("category_name", category_name);
+		
+		return new ModelAndView("index", map);
+	}
 	
 	@RequestMapping(value ="/product/list.nm", method=RequestMethod.GET)
 	public ModelAndView product_category_menu(HttpServletRequest req,
@@ -163,24 +177,35 @@ public class ProductController
 		return new ModelAndView("product/product_menu", map);
 	}
 	
-	@RequestMapping(value ="/index.nm", method=RequestMethod.GET)
-	public ModelAndView product_index_menu(HttpServletRequest req){
+	@RequestMapping(value="product/detail.nm", method=RequestMethod.GET)
+	public ModelAndView product_description(HttpServletRequest req, 
+			@RequestParam (value="pdno") String pdno){
 		
-		String category_name = "모든상품";
-		
+		int product_no;
+
 		Map<String,Object> map = new HashMap<String,Object>();
 		
 		try{
-			List<ProductVo> product_list = productSvc.getAllProduct();
-			
-			if(product_list != null && product_list.size() != 0)
-				map.put("product_list", product_list);
-			
+			if(pdno!=null){
+				product_no = Integer.parseInt(pdno);
+				
+				ProductVo product_vo = productSvc.getOneProduct(product_no);
+
+				if(product_vo != null)
+					map.put("pvo", product_vo);
+			}
 		} catch(Exception e){
 			e.printStackTrace();
 		}
-		map.put("category_name", category_name);
 		
-		return new ModelAndView("index", map);
+		return new ModelAndView("product/product_detail", map);
 	}
+	/*
+	//"/soap/product/detail.nm?pdno=${pl.product_no}"
+	@RequestMapping(value ="/product/detail.nm", method=RequestMethod.GET)
+	public String product_category_menu(HttpServletRequest req){
+		return "product/product_detail";
+	}*/
+	
+	
 }
