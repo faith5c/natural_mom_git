@@ -32,4 +32,7 @@ public class S {
 	public final static int STATE_TRUE = 1;
 	public final static int STATE_FALSE = 0;
 	
+	// 게시판 한 페이지에 나오는 글 개수
+	public final static int PAGE_LIMIT = 10;
+	
 }
