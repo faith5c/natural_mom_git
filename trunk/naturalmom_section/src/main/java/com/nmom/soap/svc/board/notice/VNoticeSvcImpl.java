@@ -11,34 +11,35 @@ import com.nmom.soap.data.model.board.notice.VNoticeVo;
 public class VNoticeSvcImpl implements IVNoticeSvc {
 
 	private IVNoticeDao vNoticeDao;
+	final int LIMIT_PAGE = 15;
 	
 	@Override
-	public List<VNoticeVo> getAllNotice(int page) {
+	public List<VNoticeVo> getAllNotice(int block) {
 		
 //		List<VNoticeVo> list = this.vNoticeDao.getAllNotice(start, end)
 		return null;
 	}
 
 	@Override
-	public List<VNoticeVo> getSearchByTitleNotice(String search, int page) {
+	public List<VNoticeVo> getSearchByTitleNotice(String search, int block) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<VNoticeVo> getSearchByContentNotice(String search, int page) {
+	public List<VNoticeVo> getSearchByContentNotice(String search, int block) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<VNoticeVo> getSearchByIdNotice(String search, int page) {
+	public List<VNoticeVo> getSearchByIdNotice(String search, int block) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<VNoticeVo> getSearchByTitleNContentNotice(String search, int page) {
+	public List<VNoticeVo> getSearchByTitleNContentNotice(String search, int block) {
 		// TODO Auto-generated method stub
 		return null;
 	}
