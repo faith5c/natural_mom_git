@@ -6,7 +6,7 @@
   <head>
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="css/main.css" />
-
+	<script src="resources/js/jquery-1.11.3.min.js"></script>
 	<!--[if lt IE 9]>
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
@@ -100,7 +100,7 @@
 					<td><input type="text" id="checkedid" name="checkedid" value="${checking_id}">
 						<input type="button" id ="btn_id" value = "아이디 찾기" onclick="check_again()"/></td>
 				</tr>
-				<tr><td colspan="2" style="text-align: center;"><br><br><span>${flash_msg}</span></td></tr>
+				<tr><td colspan="2" style="text-align: center;"><br><br><b>${flash_msg}</b></td></tr>
 			</table>
 		</div>
 
@@ -108,6 +108,7 @@
 	<br><hr>
 	
 	<div id = "close">
+		<input type = "button" id = "btn_submit" onclick = "sendId()" value = "확인" />
 		<input type = "button" id = "btn_close" onclick = "window.close();" value = "닫기" />
 	</div>
   </body>
@@ -118,6 +119,11 @@
 		document.location.href = '/soap/checkId.nm?check='+id;
 	}
 	
+	function sendId() {
+		var id = $('#checkedid').val();
+		opener.document.join.id.value = id;
+		self.close();
+	}
 
 </script>
 </html>

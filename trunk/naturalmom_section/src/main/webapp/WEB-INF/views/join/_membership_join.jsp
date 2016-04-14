@@ -149,11 +149,13 @@ td:FIRST-CHILD {
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
 	
-	function check_id() {
+/*	function check_id() {
 		var length_id = $('#id').val().length;
 		
 		console.log(length_id);
-		if( length_id < 6){
+		if(length_id ==0){
+			$("#check_id span").css("color", "red").text("아이디를 입력해주세요");
+		} else if( length_id < 6){
 			$("#check_id span").css("color", "red").text("아이디가 너무 짧습니다");
 		} else if( length_id > 18){
 			$("#check_id span").css("color", "red").text("아이디가 너무 깁니다");
@@ -161,7 +163,7 @@ td:FIRST-CHILD {
 			$("#check_id span").text("");
 		}
 	}
-
+*/
 	function check_pw() {
 		var length_pw = $('#pw').val().length;
 		
