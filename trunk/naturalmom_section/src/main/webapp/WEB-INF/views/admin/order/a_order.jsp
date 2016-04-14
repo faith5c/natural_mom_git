@@ -106,7 +106,6 @@
 <!---Start container---------------------------------------------------------------->
 	
 	<div id="container">
-		<input type = "button" id = "save" value = "저장" />
 		<h2 id = "order_title">주문 관리</h2>
 		<table cellspacing = "0">
 			
@@ -124,7 +123,7 @@
 			
 			<c:forEach var="om" items="${orderManeger}"> 
 				<tr>
-					<td><input type = "checkbox" name = "" /></td>
+					<td><input type = "checkbox" name = "check" value="om.order_no"/></td>
 					<td>${ om.order_date }</td>
 					<td>${ om.order_no }</td>
 					<td>${ om.mem_name }</td>
@@ -151,7 +150,7 @@
 		
 		<br>
 		<div id = "buttons">
-			<input type = "button" onclick = "order_popup();" id = "delivery_register" value = "운송장등록" />
+			<input type = "button" id = "save" value = "저장" />
 			<input type = "button" id = "delivery_stand_by" value = "배송대기" />
 			<input type = "button" id = "refund_process" value = "환불처리"/>
 			<input type = "button" id = "refund_complete" value = "환불완료" />
