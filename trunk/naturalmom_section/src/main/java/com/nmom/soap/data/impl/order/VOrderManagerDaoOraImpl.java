@@ -17,7 +17,7 @@ public class VOrderManagerDaoOraImpl extends JdbcDaoSupport implements IVOrderMa
 			+ "delivery_msg, tracking_num, process_nm FROM v_order_manager ";
 	
 	final String ORDER_BY_ORDER_DATE = 
-			GET_ALL_ORDER_MANAGER+"ORDER BY order_date ";
+			GET_ALL_ORDER_MANAGER+"ORDER BY order_date  ";
 	
 	final String ORDER_BY_ORDER_NO = 
 			GET_ALL_ORDER_MANAGER+"ORDER BY order_no ";
