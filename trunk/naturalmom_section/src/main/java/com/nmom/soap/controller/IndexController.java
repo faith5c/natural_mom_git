@@ -145,7 +145,7 @@ public class IndexController {
 	
 	
 	// 게시판 list
-	@RequestMapping(value ="/board/notice.nm", method=RequestMethod.GET)
+/*	@RequestMapping(value ="/board/notice.nm", method=RequestMethod.GET)
 	public String board_notice(HttpServletRequest req){
 		return "board/notice/b_notice";
 	}
@@ -153,7 +153,7 @@ public class IndexController {
 	@RequestMapping(value ="admin/board/notice.nm", method=RequestMethod.GET)
 	public String a_board_notice(HttpServletRequest req){
 		return "admin/board/notice/a_notice";
-	}
+	}*/
 
 
 
