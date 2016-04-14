@@ -60,7 +60,7 @@ public class IndexController {
 	
 	
 	
-	
+	/*
 	@RequestMapping(value ="/product1.nm", method=RequestMethod.GET)
 	public String product_menu_1(HttpServletRequest req){
 		return "product/product_menu";
@@ -79,7 +79,7 @@ public class IndexController {
 	@RequestMapping(value ="/product4.nm", method=RequestMethod.GET)
 	public String product_menu_4(HttpServletRequest req){
 		return "product/product_menu";
-	}
+	}*/
 	
 	
 	
