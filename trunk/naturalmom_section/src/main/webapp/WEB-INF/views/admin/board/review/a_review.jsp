@@ -17,10 +17,11 @@
 	request.setCharacterEncoding("UTF-8");
 	String submenu = (String)request.getParameter("page");
 	if(submenu==null){
-		submenu= "notice";
+		submenu= "review";
 	}
 	String r = (String)request.getParameter("r");
 	if (r == null) r = "";
+	System.out.println(r);
 	String w = (String)request.getParameter("w");
 	if (w == null || w.isEmpty()) w = "false";
 %>
@@ -39,7 +40,7 @@
 
 <%			if(r.equals("") && w.equals("false")){ %>
 			<%@include file="_a_board_review.jsp" %>	
-			<% }else if(r.equals("1")){%>
+			<% }else if(!r.equals("")){%>
 			<%@include file="_a_board_review_read.jsp" %>		
 			<% } else if(w.equals("true")){ %>
 			<%@include file="_a_board_review_write.jsp" %>
