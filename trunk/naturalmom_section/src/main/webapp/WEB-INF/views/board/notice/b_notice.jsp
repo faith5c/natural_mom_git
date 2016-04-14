@@ -22,8 +22,10 @@
 	// 게시글 내용 보기인지 글쓰기인지 확인하는 부분
 	String w = request.getParameter("w");
 	if (w == null || w.isEmpty()) w = "false"; //여기도 boolean형으로 처리 안해놨음
-	String r = request.getParameter("r");	// 일단 int형 처리 안함
-	if (r == null) r = "";
+	String stR = request.getParameter("r");
+	int r = (stR != null && !stR.isEmpty() && !stR.equals("")) 
+			? Integer.parseInt(stR) : 0;	//
+	
 %>
   </head>
 
@@ -49,11 +51,11 @@
 			</div>
 			<div id="content_body">
 
-<%				if(r.equals("")&& w.equals("false")){%>
+<%				if(r == 0 && w.equals("false")){%>
 					<%@include file="_notice_list.jsp" %>
 <% 					}else if(w.equals("true")){%>
 					<%@include file="_notice_write.jsp" %>
-<%					}else if(r.equals("2")){%>
+<%					}else if(r > 0){%>
 					<%@include file="_notice_read.jsp" %>					
 <%					} %>	
 			
