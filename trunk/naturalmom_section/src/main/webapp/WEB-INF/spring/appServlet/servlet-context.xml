@@ -82,6 +82,9 @@
 		<beans:property name="vOrderListSvc">
 			<beans:ref local="vOrderListSvc" />
 		</beans:property>	
+		<beans:property name="vOrderManagerSvc">
+			<beans:ref local="vOrderManagerSvc" />
+		</beans:property>	
 	</beans:bean>
 
 	<beans:bean id="cartCtl" class="com.nmom.soap.controller.CartController">
