@@ -1,12 +1,14 @@
 <!-- 사용자 - 게시판 - 상품후기 - 상세보기 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>	
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <style type="text/css">
 
-	#container { width : 764px; margin : 50px auto; }
+	#container { width : 800px; margin : 50px auto; }
 	#container h2 { color: #004523; margin-bottom : 15px; }
 	
 	table { width : 100%; margin : 0 auto; }
@@ -89,40 +91,43 @@
 <table cellspacing = "0">
 <!-- 제목 부분 -->
 	<tr>
-		<td>상품 번호: 52</td>
-		<td>아마씨 비누</td>
-		<td>향이 너무좋아요~</td>
-		<td>★★★★☆</td>
+		<td>${review.product_no}</td>
+		<td style="width:150px;">${review.product_name}</td>
+		<td>${review.rvw_title}</td>
+		<td>
+			<c:forEach var="i" begin="0" end="5" step="1">
+				<c:if test="${i < review.rvw_satisfaction}">
+					★
+				</c:if>
+				<c:if test="${i > review.rvw_satisfaction}">
+					☆
+				</c:if>
+			</c:forEach>
+		</td>
 	</tr>
 <!-- 글쓴이 정보 -->
 	<tr>
 		<td colspan="4">
-			<div>hook4u | 2016/06/17 | 조회수 24</div> 
+			<div>${review.mem_id} | <fmt:formatDate value="${review.rvw_write_day}" type = "date" /> | 조회수 ${review.rvw_hits}</div> 
 		</td>
 	</tr>
 <!-- 내용 -->
 	<tr>
 		<td colspan = "4">
-			향이 너무좋아요~~향이 너무좋아요~~향이 너무좋아요~~향이 너무좋아요~~향이 너무좋아요~~향이 너무좋아요~~
+			${review.rvw_content}
 		</td>
 	</tr>
 <!-- 댓글 부분 -->
+	<c:forEach var = "reply" items = "${reply}">
 	<tr class = "dat">
-		<td>자연맘</td>
-		<td colspan="2">구매해주셔서 고맙습니다. ^^ </td>
+		<td>${reply.mem_id}</td>
+		<td colspan="2">${reply.rvw_re_content}</td>
 		<td>
-			2015/03/22
+			<fmt:formatDate value="${reply.rvw_re_write_day}" type = "date" />
 			<span onclick="location.href='#'"><i class="fa fa-times-circle"></i></span>
 		</td>
 	</tr>
-	<tr class = "dat">
-		<td>hook4u</td>
-		<td colspan="2">또살게여~</td>
-		<td>
-			2015/07/19
-			<span onclick="location.href='#'"><i class="fa fa-times-circle"></i></span>
-		</td>
-	</tr>
+	</c:forEach>
 <!-- 댓글 쓰기 -->
 	<tr class = "dat_write">
 		<td>자연맘</td>
@@ -140,7 +145,7 @@
 		</td>
 		<td colspan="2">
 			<input type="button" value="삭제">
-			<input type="button" value="목록" onclick = "location.href='a_board.jsp?page=review';">
+			<input type="button" value="목록" onclick = "location.href='review.nm';">
 		</td>
 	</tr>
 </table>

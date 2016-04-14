@@ -1,6 +1,8 @@
 <!-- admin_board.jsp - 게사판 - 상품후기 - 목록 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE>
 <html>
 <style type = "text/css">
@@ -9,7 +11,7 @@
 	{ 
 		font-family : "나눔바른고딕", "맑은 고딕";
 		font-size : 16px;
-		width : 764px;
+		width : 800px;
 		margin : 50px auto;
 		color: #85858d; 
 	}
@@ -74,55 +76,50 @@
 	}
 	
 	#review_write input[type="button"]:hover, #search input[type="submit"]:hover { opacity : 0.7; }
-	
 </style>
-
  <div id ="in">
 	<h2>상품 후기</h2>
 	<table id = "review" cellspacing="0">
 		<tr>
-			<th>상품번호</th>
+			<th>번호</th>
 			<th>상품명</th>
 			<th>제목</th>
 			<th>작성자</th>
 			<th>작성일</th>
 			<th>만족도</th>
 		</tr>
-		<tr>
-			<td>52</td>
-			<td>아마씨 비누</td>
-			<td><a href="a_board.jsp?page=review&r=1">향이 너무 좋아요~</td>
-			<td>hook4u</td>
-			<td>2015/06/17</td>
-			<td>★★★★☆</td>
-		</tr></a>
-		<tr>
-			<td>25</td>
-			<td>아마씨 비누</td>
-			<td><a href="a_board.jsp?page=review&r=2">피부가 부들부들해요~~</td>
-			<td>agamom</td>
-			<td>2015/04/10</td>
-			<td>★★★★★</td></a>
-		</tr>
-		<tr>
-			<td>88</td>
-			<td>숯 비누</td>
-			<td><a href="a_board.jsp?page=review&r=3">거품이까매요...</td>
-			<td>sutzzang</td>
-			<td>2015/04/08</td>
-			<td>★★★☆☆</td></a>
-		</tr>
-		
+		<c:forEach var="review" items="${rvw_list}">
+			<tr>
+				<td>${review.review_no}</td>
+				<td>${review.product_name}</td>
+				<td><a href="review_read.nm?page=review&r=${review.review_no}">${review.rvw_title} [${review.re_num}]</a></td>
+				<td>${review.mem_id}</td>
+				<td><fmt:formatDate value="${review.rvw_write_day}" type = "date" /></td>
+				<td>
+					<c:forEach var="i" begin="0" end="5" step="1">
+						<c:if test="${i < review.rvw_satisfaction}">
+							★
+						</c:if>
+						<c:if test="${i > review.rvw_satisfaction}">
+							☆
+						</c:if>
+					</c:forEach>
+				</td>
+			</tr>
+		</c:forEach>
 		<tr id = "review_write">
 			<td colspan="6">
-				<input type = "button" value = "글쓰기" onclick = "location.href='a_board.jsp?page=review&w=true'">
+				<input type = "button" value = "글쓰기" onclick = "location.href='review.nm?w=true'">
 			</td>
 		</tr>
 	</table>
 <!-- 페이지 부분 -->
 		<div id = "page">
 			<a href="#">〈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<c:forEach var = "i" begin="1" end="${(all_reviews + 9) / 10}" step = "1">
+				${i}
+			</c:forEach>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="#">〉</a>
 		</div>
 <!-- 검색 부분 -->
