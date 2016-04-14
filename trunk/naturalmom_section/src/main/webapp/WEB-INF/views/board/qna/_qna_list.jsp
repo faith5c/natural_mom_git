@@ -134,7 +134,7 @@
 					<option value="writer">글쓴이</option>
 					<option value="title+content">제목+내용</option>
 				</select>
-				<input type="text" placeholder="제목, 내용, 글쓴이, 제목+내용" name="search">
+				<input type="text" name="search">
 				<input type="submit" value="검색">
 		</td>
 	</div>	
