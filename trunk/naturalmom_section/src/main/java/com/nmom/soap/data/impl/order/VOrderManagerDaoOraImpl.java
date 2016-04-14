@@ -44,6 +44,7 @@ public class VOrderManagerDaoOraImpl extends JdbcDaoSupport implements IVOrderMa
 
 	public List<VOrderManagerVo> getAllOrederByDate(boolean orderBy) throws DataAccessException {
 		if(orderBy == ASC){
+			System.out.println("dao 진입");
 			return getJdbcTemplate().query(ORDER_BY_ORDER_DATE, 
 					BeanPropertyRowMapper.newInstance(VOrderManagerVo.class));
 		}else{
