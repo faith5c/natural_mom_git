@@ -5,53 +5,60 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
+import com.nmom.soap.S;
 import com.nmom.soap.data.dao.board.notice.IVNoticeDao;
 import com.nmom.soap.data.model.board.notice.VNoticeVo;
 
 public class VNoticeSvcImpl implements IVNoticeSvc {
 
 	private IVNoticeDao vNoticeDao;
-	final int LIMIT_PAGE = 15;
 	
-	@Override
-	public List<VNoticeVo> getAllNotice(int block) {
-		
-//		List<VNoticeVo> list = this.vNoticeDao.getAllNotice(start, end)
-		return null;
-	}
-
-	@Override
-	public List<VNoticeVo> getSearchByTitleNotice(String search, int block) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<VNoticeVo> getSearchByContentNotice(String search, int block) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<VNoticeVo> getSearchByIdNotice(String search, int block) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<VNoticeVo> getSearchByTitleNContentNotice(String search, int block) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public void setVNoticeDao(IVNoticeDao vNoticeDao) {
 		this.vNoticeDao = vNoticeDao;
 	}
 
+	
+	@Override                         // 블록은 페이지 모음
+	public List<VNoticeVo> getAllNotice(int block, int allPages) {
+		int start = 1; // 
+		//모든 페이지는 1부터 시작
+		for(int i = 1; i > block; i++){
+			start+=S.PAGE_LIMIT;
+		}
+						//스타트에서 1 더했으므로 여기서 뺌
+		int end = start + (S.PAGE_LIMIT-1);
+		List<VNoticeVo> list = this.vNoticeDao.getAllNotice(start, end);
+		return (list != null && list.size() > 0) ? list : null;
+	}
+
+	@Override
+	public List<VNoticeVo> getSearchByTitleNotice(String search, int block, int allPages) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<VNoticeVo> getSearchByContentNotice(String search, int block, int allPages) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<VNoticeVo> getSearchByIdNotice(String search, int block, int allPages) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<VNoticeVo> getSearchByTitleNContentNotice(String search, int block, int allPages) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 	@Override
 	public int getAllCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.vNoticeDao.getAllCount();
 	}
 
 	@Override
