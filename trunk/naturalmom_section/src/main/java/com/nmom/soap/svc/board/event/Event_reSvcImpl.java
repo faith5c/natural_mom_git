@@ -19,8 +19,7 @@ public class Event_reSvcImpl implements IEvent_reSvc {
 	// Override Method
 	@Override
 	public List<Event_reVo> getEventRe(int event_no) {
-		// TODO Auto-generated method stub
-		return null;
+		return eventReDao.getEventRe(event_no);
 	}
 
 	@Override
@@ -31,8 +30,7 @@ public class Event_reSvcImpl implements IEvent_reSvc {
 
 	@Override
 	public int removeRe(int event_re_no) {
-		// TODO Auto-generated method stub
-		return 0;
+		return eventReDao.removeRe(event_re_no);
 	}
 
 }

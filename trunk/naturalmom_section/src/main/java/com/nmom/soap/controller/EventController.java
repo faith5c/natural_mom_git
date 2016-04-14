@@ -61,11 +61,20 @@ public class EventController {
 		EventVo event = eventSvc.getOneEvent(r);
 		event.setEvt_rnum(rn);	// RowNum
 		map.put("con", event);
-		
+		// 댓글 내용 불러오기
 		List<Event_reVo> event_re = eventReSvc.getEventRe(r);
 		map.put("re", event_re);
 		
 		return new ModelAndView("board/event/b_event", map);
+	}
+	
+	@RequestMapping(value ="/board/event_re_del.nm", method=RequestMethod.GET)
+	public String board_event_r(HttpServletRequest req,
+									@RequestParam(value="reid")int reid){
+		//리플 삭제
+		eventReSvc.removeRe(reid);
+		
+		return "board/event/b_event";
 	}
 	
 	
