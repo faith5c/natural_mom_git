@@ -48,7 +48,7 @@ public class VReview_AdminDaoOraImpl extends NamedParameterJdbcDaoSupport implem
 	{
 		MapSqlParameterSource msps = new MapSqlParameterSource();
 		msps.addValue("start", new Integer(start));
-		msps.addValue("edn", new Integer(end));
+		msps.addValue("end", new Integer(end));
 		
 		return getNamedParameterJdbcTemplate().query(GET_ALL_LIST, msps, 
 				new BeanPropertyRowMapper<VReview_AdminVo>(VReview_AdminVo.class));
@@ -98,7 +98,7 @@ public class VReview_AdminDaoOraImpl extends NamedParameterJdbcDaoSupport implem
 		MapSqlParameterSource msps = new MapSqlParameterSource();
 		msps.addValue("search", search);
 		msps.addValue("start", new Integer(start));
-		msps.addValue("edn", new Integer(end));
+		msps.addValue("end", new Integer(end));
 		
 		return getNamedParameterJdbcTemplate().query(GET_SEARCH_BY_ID, msps, 
 				new BeanPropertyRowMapper<VReview_AdminVo>(VReview_AdminVo.class));
@@ -111,7 +111,7 @@ public class VReview_AdminDaoOraImpl extends NamedParameterJdbcDaoSupport implem
 		MapSqlParameterSource msps = new MapSqlParameterSource();
 		msps.addValue("search", search);
 		msps.addValue("start", new Integer(start));
-		msps.addValue("edn", new Integer(end));
+		msps.addValue("end", new Integer(end));
 		
 		return getNamedParameterJdbcTemplate().query(GET_SEARCH_BY_TITLE_CONTENT, msps, 
 				new BeanPropertyRowMapper<VReview_AdminVo>(VReview_AdminVo.class));

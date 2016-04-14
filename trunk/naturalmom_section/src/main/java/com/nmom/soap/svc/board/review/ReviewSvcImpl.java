@@ -58,4 +58,20 @@ public class ReviewSvcImpl implements IReviewSvc
 			return S.PROCESS_ERROR;
 	}
 
+	@Override
+	public int updateReviewCount(ReviewVo review) 
+	{
+		int result = reviewDao.updateCountReview(review);
+		
+		if (result == 1)
+		{
+			review.setRvw_hits(review.getRvw_hits() + 1);
+			return S.PROCESS_SUCCESS;
+		}
+		if (result == 0)
+			return S.PROCESS_NO_RESULT;
+		else
+			return S.PROCESS_ERROR;
+	}
+
 }

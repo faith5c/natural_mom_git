@@ -19,4 +19,6 @@ public interface IReviewDao
 	
 	// 상품 후기 수정하기
 	int editReview(ReviewVo review) throws DataAccessException;
+
+	int updateCountReview(ReviewVo review);
 }

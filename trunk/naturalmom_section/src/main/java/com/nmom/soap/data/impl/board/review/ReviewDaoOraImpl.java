@@ -22,9 +22,10 @@ public class ReviewDaoOraImpl extends NamedParameterJdbcDaoSupport implements IR
 			+ " rvw_content = :rvw_content WHERE review_no = :review_no";
 	// 상품 후기 삭제하기
 	private final String REMOVE_REVIEW = "UPDATE tb_review SET rvw_del_check = 1 WHERE review_no = :review_no";
-	
 	// 상품 수정 시 글 내용 가져오기
 	private final String GET_ONE_REVIEW = "SELECT * FROM tb_review WHERE review_no = ?";
+	// 상품 후기 조회수 올리기
+	private final String UPDATE_REVIEW_COUNT = "UPDATE tb_review SET rvw_hits = rvw_hits + 1 WHERE review_no = ?";
 	
 	public ReviewVo getOneReview(int review_no) throws DataAccessException 
 	{
@@ -65,5 +66,12 @@ public class ReviewDaoOraImpl extends NamedParameterJdbcDaoSupport implements IR
 		msps.addValue("review_no", review.getReview_no(), Types.INTEGER);
 		
 		return getNamedParameterJdbcTemplate().update(EDIT_REVIEW, msps);
+	}
+
+	@Override
+	public int updateCountReview(ReviewVo review) 
+	{
+		return getJdbcTemplate().update(UPDATE_REVIEW_COUNT, new Object[]{new Integer(review.getReview_no())}, 
+				new int[] {Types.INTEGER});
 	}
 }
