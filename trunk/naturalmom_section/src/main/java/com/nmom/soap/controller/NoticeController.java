@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nmom.soap.S;
+import com.nmom.soap.data.model.board.notice.NoticeVo;
 import com.nmom.soap.data.model.board.notice.VNoticeVo;
 import com.nmom.soap.svc.board.notice.INoticeReSvc;
 import com.nmom.soap.svc.board.notice.INoticeSvc;
@@ -81,9 +82,33 @@ public class NoticeController {
 		return null;
 	}
 	
-	
-	
 	//공지사항 글 상세보기(회원)
+	@RequestMapping (value="/board/notice_read.nm", method=RequestMethod.GET)
+	public ModelAndView getNoticeA(HttpServletRequest req,
+			HttpSession ses,
+			@RequestParam(value="r", required=false) String notice_no){
+		
+		int no = 0;
+		
+		try{
+			no = Integer.parseInt(notice_no);
+		}catch(NumberFormatException ne){
+			ne.printStackTrace();
+		}
+		
+		NoticeVo notice = this.noticeSvc.getNotice(no);
+		if(notice != null){
+			Map<String, Object> map = new HashMap<>();
+			map.put("notice", notice);
+			return new ModelAndView("/board/notice/b_notice", map);
+		}
+		
+		if(notice_no == null || notice_no.isEmpty() || notice_no.equals("") || no == 0){	
+			return new ModelAndView("/board/notice/b_notice");
+		}
+			
+		return null;
+	}
 	
 	//공지사항 댓글 달기(회원)
 	
