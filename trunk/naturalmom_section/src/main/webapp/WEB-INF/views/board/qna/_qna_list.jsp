@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -118,5 +120,35 @@
 	
 </form>
 
+	<table>
+		<tr>
+		<th>qna_rnum</th>
+		<th>qna_no</th>
+		<th>qna_title</th>
+		<th>qna_write_day</th>
+		<th>qna_hits</th>
+		<th>qna_content</th>
+		<th>qna_pw</th>
+		<th>qna_pos</th>
+		<th>qna_ref</th>
+		<th>mem_id</th>
+		<th>qna_no</th>
+		</tr>
+		<c:forEach items="${qna_list}" var="ql">
+			<tr>
+				<td>${ql.qna_rnum}</td>
+				<td>${ql.qna_no}</td>
+				<td>${ql.qna_title}</td>
+				<td>${ql.qna_write_day}</td>
+				<td>${ql.qna_hits}</td>
+				<td>${ql.qna_content}</td>
+				<td>${ql.qna_pw}</td>
+				<td>${ql.qna_pos}</td>
+				<td>${ql.qna_ref}</td>
+				<td>${ql.mem_id}</td>
+				<td>${ql.qna_re_count}</td>
+			</tr>
+		</c:forEach>
+	</table>
 </body>
 </html>

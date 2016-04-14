@@ -53,9 +53,30 @@ public class FaqController {
 		return mav;
 	}
 	
-	@RequestMapping(value ="admin/board/faq.nm", method=RequestMethod.GET)
-	public String a_board_faq(HttpServletRequest req){
-		return "admin/board/faq/a_faq";
-	}
 	
+	@RequestMapping(value ="admin/board/faq.nm", method=RequestMethod.GET)
+	public ModelAndView a_board_faq(HttpServletRequest req, 
+			@RequestParam(value="pageindex", required=false) String pageindex){
+		int pi;
+		
+		if(pageindex == null){
+			pageindex = "0";
+		}
+		
+		try{
+			pi = Integer.parseInt(pageindex);
+			
+		} catch(Exception e){
+			e.printStackTrace();
+			pi = 0;
+		}
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		List<FaqVo> faq_list = faqSvc.getAllFaq(pi * S.PAGE_LIMIT, (pi+1) * S.PAGE_LIMIT);
+		if(faq_list != null){
+			map.put("faq_list", faq_list);
+		}
+		ModelAndView mav = new ModelAndView("admin/board/faq/a_faq", map);
+		return mav;
+	}
 }
