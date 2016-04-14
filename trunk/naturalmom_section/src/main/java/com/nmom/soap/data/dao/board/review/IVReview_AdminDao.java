@@ -25,4 +25,7 @@ public interface IVReview_AdminDao
 	
 	// 제목 및 내용으로 검색하기
 	List<VReview_AdminVo> getReviews_by_title_n_content(String search, int start, int end) throws DataAccessException;
+	
+	//전체 글 수 가져오기
+	int getCountAllReivews() throws DataAccessException;
 }

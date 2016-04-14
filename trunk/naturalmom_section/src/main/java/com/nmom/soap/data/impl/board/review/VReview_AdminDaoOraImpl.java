@@ -41,6 +41,8 @@ public class VReview_AdminDaoOraImpl extends NamedParameterJdbcDaoSupport implem
 	private final String GET_SEARCH_BY_TITLE_CONTENT = "SELECT A.* FROM (SELECT rownum as re_rnum, X.* FROM"
 			+ " (SELECT * from V_REVIEW_ADMIN ORDER BY review_no DESC) X WHERE rownum <= :end) A"
 			+ " WHERE A.re_rnum >= :start AND rvw_title LIKE :search OR rvw_content LIKE :search ORDER BY rownum ASC";
+	// 전체 글 수 가져오기
+	private final String GET_COUNT_ALL_REVIEWS = "SELECT COUNT(review_no) FROM V_REVIEW_ADMIN";
 	
 	public List<VReview_AdminVo> getAllList(int start, int end) throws DataAccessException 
 	{
@@ -113,5 +115,11 @@ public class VReview_AdminDaoOraImpl extends NamedParameterJdbcDaoSupport implem
 		
 		return getNamedParameterJdbcTemplate().query(GET_SEARCH_BY_TITLE_CONTENT, msps, 
 				new BeanPropertyRowMapper<VReview_AdminVo>(VReview_AdminVo.class));
+	}
+
+	@Override
+	public int getCountAllReivews() throws DataAccessException
+	{
+		return getJdbcTemplate().queryForInt(GET_COUNT_ALL_REVIEWS);
 	}
 }

@@ -10,4 +10,7 @@ public interface IVReview_FrontDao
 {
 	// 게시판 목록 조회하기
 	List<VReview_FrontVo> getAllList(int product_no, int start, int end) throws DataAccessException;
+	
+	// 해당 상품의 리뷰 개수 가져오기
+	int getCountReviews(int product_no) throws DataAccessException;
 }

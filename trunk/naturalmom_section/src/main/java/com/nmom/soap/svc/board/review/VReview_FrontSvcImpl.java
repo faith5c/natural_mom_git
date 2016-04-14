@@ -20,4 +20,10 @@ public class VReview_FrontSvcImpl implements IVReview_FrontSvc
 		return review_frontDao.getAllList(product_no, ((page - 1) * 15) + 1, page * 15);
 	}
 
+	@Override
+	public int getCountReviews(int product_no) 
+	{
+		return review_frontDao.getCountReviews(product_no);
+	}
+
 }

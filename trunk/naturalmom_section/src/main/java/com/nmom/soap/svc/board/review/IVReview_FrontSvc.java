@@ -8,4 +8,7 @@ public interface IVReview_FrontSvc
 {
 	// 게시판 목록 조회하기
 	List<VReview_FrontVo> getAllList(int product_no, int page);
+	
+	// 글 수 가져오기
+	int getCountReviews(int product_no);
 }

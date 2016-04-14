@@ -50,4 +50,10 @@ public class VReview_AdminSvcImpl implements IVReview_AdminSvc
 		return review_adminDao.getReviews_by_title_n_content(search, ((page - 1) * 15) + 1, page * 15);
 	}
 
+	@Override
+	public int getCountAllReviews() 
+	{
+		return review_adminDao.getCountAllReivews();
+	}
+
 }
