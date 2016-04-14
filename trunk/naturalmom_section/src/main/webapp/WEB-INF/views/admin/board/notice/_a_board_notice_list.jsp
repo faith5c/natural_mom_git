@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -87,35 +89,28 @@
 		<th width="100px">작성일</th>
 		<th width="50px">조회</th>
 	</tr>
-	<tr>
-		<td>3</td>
-		<td><a href="#">회원 특별 혜택 및 사은품 안내</a></td>
-		<td>관리자</td>
-		<td>2015/10/14</td>
-		<td>49</td>
-	</tr>
-	<tr>
-		<td>2</td>
-		<td><a href="a_board.jsp?page=notice&r=2">8월 14일 임시공휴일 안내</a></td>
-		<td>관리자</td>
-		<td>2015/08/11</td>
-		<td>24</td>
-	</tr>
-	<tr>
-		<td>1</td>
-		<td><a href="#">No.1 파머스 쇼핑몰 자연맘 리뉴얼!</a></td>
-		<td>관리자</td>
-		<td>2015/06/15</td>
-		<td>15</td>
-	</tr>
+	
+		<c:forEach var="no" items="${ no_list }">
+				<tr>
+					<td>${ no.notice_no }</td>
+					<td><a href="notice_read.nm?no=${no.notice_no}">${ no.ntc_title }<b>[${ no.ntc_re_no }]</b></a></td>
+					<td>관리자</td>
+					<td><fmt:formatDate value="${ no.ntc_write_day }" type="Date" /></td>
+					<td>${ no.ntc_hits }</td>
+				</tr>
+		</c:forEach>
+	
 	<tr class="notice_write">
-		<td colspan="5"><a href="a_board.jsp?page=notice&w=true"><span>글쓰기</span></a></td>
+		<td colspan="5"><a href="admin_board.jsp?page=notice&w=true"><span>글쓰기</span></a></td>
 	</tr>
 </table>
 	<div id="page">
 	<a href="#">〈〈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="#">〈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<c:forEach begin="1" end="${ ab }" varStatus="abN">
+						&nbsp;<a href="/soap/board/notice.nm?ab=${ ab }&nb=${ abN.index }">${ abN.index }</a>&nbsp;
+					</c:forEach>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="#">〉</a>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="#">〉〉</a>

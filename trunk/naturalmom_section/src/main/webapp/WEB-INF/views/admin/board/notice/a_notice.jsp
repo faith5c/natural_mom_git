@@ -19,10 +19,12 @@
 	if(submenu==null){
 		submenu= "notice";
 	}
-	String r = (String)request.getParameter("r");
-	if (r == null) r = "";
-	String w = (String)request.getParameter("w");
-	if (w == null || w.isEmpty()) w = "false";
+	// 게시글 내용 보기인지 글쓰기인지 확인하는 부분
+	String w = request.getParameter("w");
+	if (w == null || w.isEmpty()) w = "false"; //여기도 boolean형으로 처리 안해놨음
+	String stR = request.getParameter("r");
+	int r = (stR != null && !stR.isEmpty() && !stR.equals("")) 
+			? Integer.parseInt(stR) : 0;	//
 %>
 	
    </head>
@@ -37,11 +39,11 @@
 	
 	<div id="container">
 
-<%				if(r.equals("") && w.equals("false")){  %>
+<%				if(r == 0 && w.equals("false")){  %>
 				<%@include file="_a_board_notice_list.jsp" %>	
 <%			}else if(w.equals("true")){ %>
 				<%@include file="_a_board_notice_write.jsp" %>
-<%			}else if(r.equals("2")){ %>
+<%			}else if(r > 0){ %>
 				<%@include file="_a_board_notice_read.jsp" %>
 <%			}%>
 
