@@ -8,7 +8,7 @@
 			<ul>
 				<li><a href="<c:url value = '/index.nm' />">프론트페이지</a></li>
 				<li><a href="<c:url value = '/admin/edit.nm' />">정보 수정</a></li>
-				<li><a href="<c:url value = '/index.nm' />" onclick="logout()">로그아웃</a></li>
+				<li><a href="<c:url value = '/logout_proc.nm' />" onclick="logout()">로그아웃</a></li>
 			</ul>
 			<h3>관리자 모드입니다.</h3>
 		</nav>

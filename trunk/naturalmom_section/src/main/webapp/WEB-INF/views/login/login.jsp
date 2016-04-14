@@ -28,7 +28,7 @@
 		<div id="content">
 		
 		<!--로그인 폼-->
-		<form action="#" method="post">
+		<form action="login_proc.nm" method="post">
 				<div id = "login_input">
 				<table>
 					<tr>
@@ -38,15 +38,20 @@
 					</tr>
 					<tr>
 						<td><label for="login_id">아이디</label></td>
-						<td><input type="text" size="16" maxlength="16" id="login_id" autofocus = "true" /></td>
+						<td><input type="text" size="16" maxlength="16" id="login_id" name="login_id" autofocus = "autofocus" /></td>
 						<td rowspan=2><input type="submit" value="로그인" id="login_submit"/></td>
 					</tr>
 					<tr>
 						<td><label for="login_pw">패스워드</label></td>
-						<td><input type="password" size="16" maxlength="16" id="login_pw"/></td>
+						<td><input type="password" size="16" maxlength="16" id="login_pw" name="login_pw"/></td>
 					</tr>
 					<tr>
-						<td colspan=3><br><a href="membership.jsp">신규회원가입</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<td colspan="3" style="text-align: center;padding-top: 10px;">
+							<b style="color: black;">${err_msg}</b>
+						</td>
+					</tr>
+					<tr>
+						<td colspan=3><br><a href="join.nm">신규회원가입</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<a href="#" onclick="pop_idpw()">아이디·패스워드찾기</a></td>
 					</tr>
 				</table>
