@@ -44,13 +44,13 @@ _____________________________________________________________
 	/index.nm
 	
 	- 카테고리별 목록보기	
-	/product/list?cate=xx
+	/product/list.nm?cate=xx
 	
 	- 상품 상세보기
-	/product/detail?pdno=xx
+	/product/detail.nm?pdno=xx
 	
 	- 검색상품 목록보기
-	/product/search?keyword=xx
+	/product/search.nm?keyword=xx
 
 * 장바구니
 
