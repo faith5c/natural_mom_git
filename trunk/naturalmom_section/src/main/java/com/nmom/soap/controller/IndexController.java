@@ -15,12 +15,12 @@ public class IndexController {
 	
 ///////////////////////////////////////////////////////////////////////////////////////////
 	//사용자 페이지 인덱스 메뉴
-	
+	/*
 	@RequestMapping(value = "/index.nm", method = RequestMethod.GET)
 	public String index(HttpServletRequest req) {
 		return "index";
 	}
-	
+	*/
 	@RequestMapping(value ="/login.nm", method=RequestMethod.GET)
 	public String menu_login(HttpServletRequest req){
 		return "login/login";

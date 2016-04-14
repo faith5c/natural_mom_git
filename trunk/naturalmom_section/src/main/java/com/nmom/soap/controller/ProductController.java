@@ -13,13 +13,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nmom.soap.S;
+import com.nmom.soap.data.model.product.ProductVo;
 import com.nmom.soap.data.model.product.VProduct_ManageVo;
 import com.nmom.soap.svc.category.ICategorySvc;
 import com.nmom.soap.svc.product.IProductSvc;
 import com.nmom.soap.svc.product.IVProduct_DeletedSvc;
 import com.nmom.soap.svc.product.IVProduct_ManageSvc;
-
-import oracle.net.aso.a;
 
 @Controller
 public class ProductController 
@@ -123,5 +122,65 @@ public class ProductController
 
 		map.put("p_list", list);
 		return new ModelAndView("admin/product/a_product", map);
+	}
+	
+	
+	
+	
+	
+	//*********************************************************************//
+	
+	
+	/*
+	@RequestMapping(value = "/index.nm", method = RequestMethod.GET)
+	public String index(HttpServletRequest req) {
+		return "index";
+	}*/
+	
+	@RequestMapping(value ="/product/list.nm", method=RequestMethod.GET)
+	public ModelAndView product_category_menu(HttpServletRequest req,
+			@RequestParam (value="cate", required=false) String cate){
+
+		int category_code;
+		String category_name = "분류없음";
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		try{
+			if(cate!=null){
+				category_code = Integer.parseInt(cate);
+				category_name = categorySvc.getCategoryNameByCd(category_code);
+			
+				List<ProductVo> product_list = productSvc.getProductByCategoryCd(category_code);
+				if(product_list != null && product_list.size() != 0)
+					map.put("product_list", product_list);
+			}
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		map.put("category_name", category_name);
+		
+		return new ModelAndView("product/product_menu", map);
+	}
+	
+	@RequestMapping(value ="/index.nm", method=RequestMethod.GET)
+	public ModelAndView product_index_menu(HttpServletRequest req){
+		
+		String category_name = "모든상품";
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		try{
+			List<ProductVo> product_list = productSvc.getAllProduct();
+			
+			if(product_list != null && product_list.size() != 0)
+				map.put("product_list", product_list);
+			
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		map.put("category_name", category_name);
+		
+		return new ModelAndView("index", map);
 	}
 }
