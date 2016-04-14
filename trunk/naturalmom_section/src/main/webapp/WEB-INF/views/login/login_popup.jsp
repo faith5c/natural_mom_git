@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="css/main.css" />
-
+	<script src="resources/js/jquery-1.11.3.min.js"></script>
 	<!--[if lt IE 9]>
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
@@ -72,7 +73,7 @@
 			border-radius : 10px; 
 			border : 0px;
 		}
-		#email1, #email2 { width: 25% }
+		#email1, #email2,#email3, #email4 { width: 25% }
 		td:first-child { width: 20%; 
 					padding: 3px 8px; 
 					font-size:13px;}
@@ -96,14 +97,14 @@
 			<h3>아이디 찾기</h3>
 			<table>
 				<tr>
-					<td style="text-align: right"><label for="name">이름</label> </td>
-					<td><input type="text" id="name"></td>
+					<td style="text-align: right"><label for="name_id">이름</label> </td>
+					<td><input type="text" id="name_id"></td>
 				</tr>
 				<tr>
 					<td style="text-align: right"><label for="email1" style="text-align: right">이메일</label></td>
 					<td>
 						<input type="text" id="email1" name="email1" />@<input type="text" id="email2" name="email2" />
-						<select id="email_select" name="email_select">
+						<select id="email_select_id" name="email_select_id" onchange="email_change1()">
 							<option>직접입력</option>
 							<option value="naver.com">naver.com</option>
 							<option value="hanmail.net">hanmail.net</option>
@@ -128,14 +129,14 @@
 					<td><input type="text" id="id"></td>
 				</tr>
 				<tr>
-					<td style="text-align: right"><label for="name">이름</label> </td>
-					<td><input type="text" id="name"></td>
+					<td style="text-align: right"><label for="name_pw">이름</label> </td>
+					<td><input type="text" id="name_pw"></td>
 				</tr>
 				<tr>
 					<td style="text-align: right"><label for="email1" style="text-align: right">이메일</label></td>
 					<td>
-						<input type="text" id="email1" name="email1" />@<input type="text" id="email2" name="email2" />
-						<select id="email_select" name="email_select">
+						<input type="text" id="email3" name="email3" />@<input type="text" id="email4" name="email4" />
+						<select id="email_select_pw" name="email_select_pw" onchange="email_change2()">
 							<option>직접입력</option>
 							<option value="naver.com">naver.com</option>
 							<option value="hanmail.net">hanmail.net</option>
@@ -154,4 +155,17 @@
 		<input type = "button" id = "btn_close" onclick = "window.close();" value = "닫기" />
 	</div>
   </body>
+ <script type="text/javascript">
+ 
+ 
+ 	function email_change1() {
+		var selectedEmail = $("#email_select_id").val();
+	 	document.getElementById("email2").setAttribute("value", selectedEmail);
+	}
+ 	function email_change2() {
+		var selectedEmail = $("#email_select_pw").val();
+	 	document.getElementById("email4").setAttribute("value", selectedEmail);
+	}
+ 
+ </script>
 </html>

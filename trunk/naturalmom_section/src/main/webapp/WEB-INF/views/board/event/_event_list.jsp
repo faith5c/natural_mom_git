@@ -99,12 +99,17 @@
 			</tr>
 		</c:forEach>	
 			
+		
 			<tr>
+		<c:if test="${not empty loggedin}">
 				<td colspan="5" style="text-align: right">
 					<a id = "write" name = "write" 
 						href="event.nm?w=true">글쓰기</a>
 				</td>
+		</c:if>
 			</tr>
+		
+			
 		</table>
 		<div id = "pages">
 			<a href = "#">&lsaquo;</a>

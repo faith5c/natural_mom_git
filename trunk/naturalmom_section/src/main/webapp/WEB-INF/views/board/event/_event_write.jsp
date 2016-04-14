@@ -5,16 +5,16 @@
   <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="../resources/js/jquery-1.11.3.min.js"></script>
 	<!-- [if lt IE 9]><script src="js/html5shiv.js"></script><![endif] -->
 	
-	<link rel="apple-touch-icon" href="images/logo.ico" /> <!--애플아이콘등록-->
-	<link rel="shortcut icon" href="images/logo.ico" /> <!--단축키아이콘등록-->
-	<link rel="stylesheet" href="css/admin_common.css"/>
+	<link rel="apple-touch-icon" href="../resources/images/logo.ico" /> <!--애플아이콘등록-->
+	<link rel="shortcut icon" href="../resources/images/logo.ico" /> <!--단축키아이콘등록-->
+	<link rel="stylesheet" href="../resources/css/admin_common.css"/>
 		
 	<title>자연맘</title>
 
-	<script type="text/javascript" src="js/nicEdit.js"></script>
+	<script type="text/javascript" src="../resources/js/nicEdit.js"></script>
 	<script type="text/javascript">
 		bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
 	</script>
@@ -81,7 +81,7 @@
 	
 	<div id="inside">
 		<h2 id = "reg_title">이벤트 - 글쓰기</h2>
-		<form action = "#" method = "post">
+		<form action = "event_write.nm" method = "post">
 			<table cellspacing = "0">
 				<tr>
 					<td><label for = "title">제목</label></td>
@@ -94,7 +94,7 @@
 				<tr>
 					<td colspan = "2" id = "buttons">
 						<input type = "submit" value = "저장">
-						<input type = "button" value = "취소" id = "cancel" name = "cancel" onclick="check()">
+						<input type = "button" value = "취소" onclick="location.href='event.nm'">
 					</td>
 				</tr>
 			</table>
@@ -107,9 +107,10 @@
   
   	function check() {
   		var write = nicEditors.findEditor('event_content').getContent();
-  		
+  		var title = $('#title').val();
+  		alert(title);
+  		$.post('event_write.nm', {title: title, content:write} )
   		alert(write);
-  		
 	}
  		
   </script>

@@ -76,6 +76,7 @@
 <html>
 	<div id="inside">
 		<h2 id = "reg_title">이벤트</h2>
+		<form action="event_reply.nm" method="post">
 			<table cellspacing = "0" id = "board">
 			
 				<tr>
@@ -92,20 +93,30 @@
 				<tr>
 					<td id = "re_id" class="re_title">${re.mem_id }</td>
 					<td id = "re_content" colspan="3" width="55%">${re.evt_re_content }</td>
-					<td id = "re_write_day" colspan="2" style="text-align: right">${re.evt_re_write_day }	
-						<span onclick="location.href='event_read.nm?r=${con.event_no}&rn=${con.evt_rnum}&d=${re.event_re_no}'"><i class="fa fa-times-circle"></i></span></td>
+					<td id = "re_write_day" colspan="2" style="text-align: right">${re.evt_re_write_day }
+						<span onclick="location.href='event_read.nm?r=${con.event_no}&rn=${con.evt_rnum}&d=${re.event_re_no}'">
+							<i class="fa fa-times-circle"></i></span>
+					</td>
 						<!--  deleteRe(${re.event_re_no},${re.evt_no})-->
 				</tr>
 			</c:forEach>
 			
-				<tr>
-					<td class="re_title">댓글입력</td>
-					<td colspan="4"><textarea style="width:100%; resize : none;" cols="30" rows="3"></textarea></td>
-					<td><input type = "button" value = "등록" id = "re_submit" name = "re_submit"></td>
-				</tr>
-				
+			<c:if test="${not empty loggedin}">
 			
+				<tr>
+					<td class="re_title">댓글입력
+						<input type="text" name="r" value="${con.event_no}" style="display: none" />
+					</td>
+					<td colspan="4">
+						<textarea style="width:100%; resize : none;" cols="30" rows="3" name="re_content"></textarea>
+					</td>
+					<td>
+						<input type = "submit" value = "등록" id = "re_submit" name = "re_submit">
+					</td>
+				</tr>
+			</c:if>	
 			</table>
+		</form>
 			<table cellspacing = "0" id = "buttons" style="margin-bottom: 80px;">
 				<tr>
 					<td>
@@ -113,8 +124,10 @@
 						<input type = "button" value = "다음글" id = "next" name = "next">
 					</td>
 					<td>
+				<c:if test="${not empty loggedin and loggedin eq con.mem_id}">
 						<input type = "button" value = "수정" id = "mod" name = "mod">
 						<input type = "button" value = "삭제" id = "del" name = "del">
+				</c:if>
 						<input type = "button" value = "목록" id = "list" name = "list" onclick="location.href='event.nm';">
 					</td>
 				</tr>
@@ -125,7 +138,6 @@
 
 
 	function deleteRe(re_no,evt_no) {
-		
 		
 	}
 

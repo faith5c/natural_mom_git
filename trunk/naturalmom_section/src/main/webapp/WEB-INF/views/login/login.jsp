@@ -71,7 +71,7 @@
  <script type="text/javascript">
  
  	function pop_idpw() {
-		window.open("login_popup.jsp", "ID&PW", "width=402px, height=455px, left=200px, top=30px, scrollbars=no, toolbar=no, location=no");
+		window.open("pop_findId.nm", "ID&PW", "width=402px, height=455px, left=200px, top=30px, scrollbars=no, toolbar=no, location=no");
 	}
  
  </script>
