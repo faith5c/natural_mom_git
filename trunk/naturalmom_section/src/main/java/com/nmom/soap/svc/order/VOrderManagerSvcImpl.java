@@ -13,51 +13,59 @@ public class VOrderManagerSvcImpl implements IVOrderManagerSvc {
 	
 	@Override
 	public List<VOrderManagerVo> getAllOrederByDate(boolean orderBy) {
+		System.out.println("서비스 메소드 진입");
 		List<VOrderManagerVo> list = 
 				this.vOrderManagerDao.getAllOrederByDate(orderBy); 
-		return (list != null & list.size() > 0 )? list : null;
+		System.out.println("getAllOrederByDate");
+		return (list != null && list.size() > 0 )? list : null;
 	}
 
 	@Override
 	public List<VOrderManagerVo> getAllOrederByNo(boolean orderBy) {
 		List<VOrderManagerVo> list = 
 				this.vOrderManagerDao.getAllOrederByNo(orderBy); 
-		return (list != null & list.size() > 0 )? list : null;
+		System.out.println("getAllOrederByNo");
+		return (list != null && list.size() > 0 )? list : null;
 	}
 
 	@Override
 	public List<VOrderManagerVo> getAllOrederByName(boolean orderBy) {
 		List<VOrderManagerVo> list = 
 				this.vOrderManagerDao.getAllOrederByName(orderBy); 
-		return (list != null & list.size() > 0 )? list : null;
+		System.out.println("getAllOrederByName");
+		return (list != null && list.size() > 0 )? list : null;
 	}
 
 	@Override
 	public List<VOrderManagerVo> getAllOrederByProduct(boolean orderBy) {
 		List<VOrderManagerVo> list = 
 				this.vOrderManagerDao.getAllOrederByProduct(orderBy); 
-		return (list != null & list.size() > 0 )? list : null;
+		System.out.println("getAllOrederByProduct");
+		return (list != null && list.size() > 0 )? list : null;
 	}
 
 	@Override
 	public List<VOrderManagerVo> getAllOrederByNum(boolean orderBy) {
 		List<VOrderManagerVo> list = 
 				this.vOrderManagerDao.getAllOrederByNum(orderBy); 
-		return (list != null & list.size() > 0 )? list : null;
+		System.out.println("getAllOrederByNum");
+		return (list != null && list.size() > 0 )? list : null;
 	}
 
 	@Override
 	public List<VOrderManagerVo> getAllOrederByCharge(boolean orderBy) {
 		List<VOrderManagerVo> list = 
-				this.vOrderManagerDao.getAllOrederByCharge(orderBy); 
-		return (list != null & list.size() > 0 )? list : null;
+				this.vOrderManagerDao.getAllOrederByCharge(orderBy);
+		System.out.println("getAllOrederByCharge");
+		return (list != null && list.size() > 0 )? list : null;
 	}
 
 	@Override
 	public List<VOrderManagerVo> getAllOrederByProcess(boolean orderBy) {
 		List<VOrderManagerVo> list = 
 				this.vOrderManagerDao.getAllOrederByProcess(orderBy); 
-		return (list != null & list.size() > 0 )? list : null;
+		System.out.println("getAllOrederByProcess");
+		return (list != null && list.size() > 0 )? list : null;
 	}
 
 	public void setVOrderManagerDao(IVOrderManagerDao vOrderManagerDao) {
