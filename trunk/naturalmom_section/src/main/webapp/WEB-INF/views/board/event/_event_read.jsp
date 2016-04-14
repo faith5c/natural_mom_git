@@ -3,6 +3,7 @@
 <%@ taglib prefix = "c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<script src="resources/js/jquery-1.11.3.min.js"></script>
 <style type = "text/css">
 
 		#inside { padding-top : 70px; padding-left: 220px;
@@ -87,14 +88,13 @@
 				<tr><td colspan="6" id="event_content">${con.evt_content}</td></tr>
 				
 				
-				
 			<c:forEach var="re" items="${re}">
 				<tr>
 					<td id = "re_id" class="re_title">${re.mem_id }</td>
 					<td id = "re_content" colspan="3" width="55%">${re.evt_re_content }</td>
 					<td id = "re_write_day" colspan="2" style="text-align: right">${re.evt_re_write_day }	
-						<span onclick="deleteRe()"><i class="fa fa-times-circle"></i></span></td>
-						<!-- location.href='event_re_del.nm?reid=${re.event_re_no}' -->
+						<span onclick="location.href='event_read.nm?r=${con.event_no}&rn=${con.evt_rnum}&d=${re.event_re_no}'"><i class="fa fa-times-circle"></i></span></td>
+						<!--  deleteRe(${re.event_re_no},${re.evt_no})-->
 				</tr>
 			</c:forEach>
 			
@@ -123,10 +123,12 @@
 
 <script type="text/javascript">
 
-	function deleteRe() {
+
+	function deleteRe(re_no,evt_no) {
 		
 		
 	}
+
 </script>	
 	
 </html>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <style type = "text/css">
 		#container { width : 764px; margin : 50px auto;}
@@ -73,12 +74,16 @@
 				<tr><td colspan="6" id="event_content">${con.evt_content}</td></tr>
 				
 				
-				
+			<c:forEach var="re" items="${re}">
 				<tr>
-					<td id = "re_id" class="re_title">댓글작성자</td>
-					<td id = "re_content" colspan="3" width="55%">댓글 내용입니다.</td>
-					<td id = "re_write_day" colspan="2" style="text-align: right">댓글작성일</td>
+					<td id = "re_id" class="re_title">${re.mem_id }</td>
+					<td id = "re_content" colspan="3" width="55%">${re.evt_re_content }</td>
+					<td id = "re_write_day" colspan="2" style="text-align: right">${re.evt_re_write_day }	
+						<span onclick="location.href='event_read.nm?r=${con.event_no}&rn=${con.evt_rnum}&d=${re.event_re_no}'"><i class="fa fa-times-circle"></i></span></td>
+						<!--  deleteRe(${re.event_re_no},${re.evt_no})-->
 				</tr>
+			</c:forEach>
+			
 				<tr>
 					<td class="re_title">댓글입력</td>
 					<td colspan="4"><textarea style="width:100%; resize : none;" cols="30" rows="3"></textarea></td>

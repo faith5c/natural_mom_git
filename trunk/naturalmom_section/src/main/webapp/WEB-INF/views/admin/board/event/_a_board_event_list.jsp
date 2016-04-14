@@ -81,20 +81,26 @@
 				<td width="10%">조회</td>
 			</tr>
 		
+		
 		<c:forEach var="e" items="${e_list}">
 			<tr>
 				<td id = "no">${e.evt_rnum}</td>
-				<td><a href = "event_read.nm?r=${e.event_no}&rr=${e.evt_rnum}">${e.evt_title}</a></td>
+				<td><a href = "event_read.nm?r=${e.event_no}&rn=${e.evt_rnum}&d=0">
+						${e.evt_title} 
+						<c:if test="${e.count_re > 0}">
+							<b>[${e.count_re }]</b>
+						</c:if> 
+						</a></td>
 				<td id = "id" >${e.mem_id}</td>
 				<td id = "write_day" >${e.evt_write_day}</td>
 				<td id = "hits" >${e.evt_hits}</td>
 				<td id = "realno" style="display: none">${e.event_no}</td>
 			</tr>
-		</c:forEach>	
+		</c:forEach>		
 			
 			<tr>
 				<td colspan="5" style="text-align: right"><a id = "write" name = "write" 
-					href="a_board.jsp?page=event&w=true">글쓰기</a></td>
+					href="event.nm?w=true">글쓰기</a></td>
 			</tr>
 		</table>
 		<div id = "pages">

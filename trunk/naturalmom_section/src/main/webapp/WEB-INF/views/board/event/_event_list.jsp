@@ -86,7 +86,7 @@
 		<c:forEach var="e" items="${e_list}">
 			<tr>
 				<td id = "no">${e.evt_rnum}</td>
-				<td><a href = "event_read.nm?r=${e.event_no}&rn=${e.evt_rnum}">
+				<td><a href = "event_read.nm?r=${e.event_no}&rn=${e.evt_rnum}&d=0">
 						${e.evt_title} 
 						<c:if test="${e.count_re > 0}">
 							<b>[${e.count_re }]</b>
