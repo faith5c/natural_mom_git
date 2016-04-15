@@ -79,21 +79,21 @@
 <!---Start container----------------------------------------------------------------->
 	
 	<div id="inside">
-		<h2 id = "reg_title">글쓰기 - 이벤트</h2>
-		<form action = "#" method = "post">
+		<h2 id = "reg_title">이벤트 - 글쓰기</h2>
+		<form action = "event_write.nm" method = "post">
 			<table cellspacing = "0">
 				<tr>
 					<td><label for = "title">제목</label></td>
 					<td><input type = "text" id = "title" name = "title" /></td>
 				</tr>
 				<tr>
-					<td><label for = "content" id = "content">내용</label></td><td></td>
+					<td><label for = "event_content" >내용</label></td><td></td>
 				</tr>
-				<tr><td colspan = "2"><textarea name = "content" id = "content"></textarea></td></tr>
+				<tr><td colspan = "2"><textarea name = "event_content" id = "event_content"></textarea></td></tr>
 				<tr>
 					<td colspan = "2" id = "buttons">
 						<input type = "submit" value = "저장">
-						<input type = "button" value = "취소" id = "cancel" name = "cancel">
+						<input type = "button" value = "취소" onclick="location.href='/soap/admin/board/event.nm'">
 					</td>
 				</tr>
 			</table>

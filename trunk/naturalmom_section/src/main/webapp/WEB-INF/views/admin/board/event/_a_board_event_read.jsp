@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<script src="resources/js/jquery-1.11.3.min.js"></script>
 <style type = "text/css">
 		#container { width : 764px; margin : 50px auto;}
 		#inside { color: #85858d; font-size: 14px; }
@@ -62,6 +64,7 @@
 <html>
 	<div id="inside">
 		<h2 id = "reg_title">이벤트</h2>
+		<form action="event_reply.nm" method="post">
 			<table cellspacing = "0" id = "board">
 			
 				<tr>
@@ -78,16 +81,23 @@
 				<tr>
 					<td id = "re_id" class="re_title">${re.mem_id }</td>
 					<td id = "re_content" colspan="3" width="55%">${re.evt_re_content }</td>
-					<td id = "re_write_day" colspan="2" style="text-align: right">${re.evt_re_write_day }	
-						<span onclick="location.href='event_read.nm?r=${con.event_no}&rn=${con.evt_rnum}&d=${re.event_re_no}'"><i class="fa fa-times-circle"></i></span></td>
-						<!--  deleteRe(${re.event_re_no},${re.evt_no})-->
+					<td id = "re_write_day" colspan="2" style="text-align: right">${re.evt_re_write_day }
+						<span onclick="location.href='event_read.nm?r=${con.event_no}&rn=${con.evt_rnum}&d=${re.event_re_no}'">
+							<i class="fa fa-times-circle"></i></span>
+					</td>
 				</tr>
 			</c:forEach>
 			
 				<tr>
-					<td class="re_title">댓글입력</td>
-					<td colspan="4"><textarea style="width:100%; resize : none;" cols="30" rows="3"></textarea></td>
-					<td><input type = "button" value = "등록" id = "re_submit" name = "re_submit"></td>
+					<td class="re_title">댓글입력
+						<input type="text" name="r" value="${con.event_no}" style="display: none" />
+					</td>
+					<td colspan="4">
+						<textarea style="width:100%; resize : none;" cols="30" rows="3" name="re_content"></textarea>
+					</td>
+					<td>
+						<input type = "submit" value = "등록" id = "re_submit" name = "re_submit">
+					</td>
 				</tr>
 			</table>
 			<table cellspacing = "0" id = "buttons">
@@ -103,5 +113,6 @@
 					</td>
 				</tr>
 			</table>
+		</form>
 	</div>
 </html>
