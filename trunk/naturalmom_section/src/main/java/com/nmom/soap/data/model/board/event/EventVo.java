@@ -49,7 +49,7 @@ public class EventVo {
 	}
 
 	
-	// getter and seeter
+	// getter and setter
 	public int getEvent_no() {
 		return event_no;
 	}
@@ -137,11 +137,10 @@ public class EventVo {
 		this.mem_id=id;
 		return this;
 	}
-	public EventVo editform(int event_no, String title, String content, String id){
+	public EventVo editform(int event_no, String title, String content){
 		this.event_no = event_no;
 		this.evt_title=title;
 		this.evt_content=content;
-		this.mem_id=id;
 		return this;
 	}
 

@@ -9,6 +9,8 @@ public interface IEvent_reDao {
 	
 	// 댓글 리스트
 	List<Event_reVo> getEventRe(int event_no);
+	// 댓글 하나
+	Event_reVo getOneRe(int event_re_no);
 	
 	// 댓글 쓰기
 	int addRe(Event_reVo re);

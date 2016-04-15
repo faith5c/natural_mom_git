@@ -21,6 +21,11 @@ public class Event_reSvcImpl implements IEvent_reSvc {
 	public List<Event_reVo> getEventRe(int event_no) {
 		return eventReDao.getEventRe(event_no);
 	}
+	
+	@Override
+	public Event_reVo getOneRe(int event_re_no) {
+		return eventReDao.getOneRe(event_re_no);
+	}
 
 	@Override
 	public int addRe(Event_reVo re) {

@@ -22,15 +22,18 @@ public class Event_reDaoOraImpl extends NamedParameterJdbcDaoSupport implements 
 	NamedParameterJdbcTemplate nameTemplate;
 	JdbcTemplate jtem;
 	
-	private final String SQL_EVENT_RE_SELECT_ONE = "SELECT mem_id, evt_re_content, evt_re_write_day, EVENT_RE_NO, evt_no FROM tb_event_re WHERE evt_re_del_check=0 AND evt_no = ?";
+	private final String SQL_EVENT_RE_SELECT_LIST 
+		= "SELECT mem_id, evt_re_content, evt_re_write_day, EVENT_RE_NO, evt_no FROM tb_event_re "
+				+ "WHERE evt_re_del_check=0 AND evt_no = ? ORDER BY EVENT_RE_NO ASC";
 	private final String SQL_EVENT_RE_INSERT = "INSERT INTO tb_event_re VALUES(EVENT_RE_NO_SEQ.NEXTVAL, :evt_re_content, SYSDATE, 0, :evt_no, :mem_id)";
 	private final String SQL_EVENT_RE_UPDATE_DEL_CD = "UPDATE tb_event_re SET evt_re_del_check=1 WHERE event_re_no=?";
+	private final String SQL_EVENT_RE_SELECT_ONE = "SELECT * FROM tb_event_re WHERE event_re_no=?";
 
 
 	@Override	// 댓글 불러오기
 	public List<Event_reVo> getEventRe(int event_no) {
 		jtem = getJdbcTemplate();
-		return jtem.query(SQL_EVENT_RE_SELECT_ONE,
+		return jtem.query(SQL_EVENT_RE_SELECT_LIST,
 						new Object[]{ event_no }, new RowMapper<Event_reVo>() {
 							@Override
 							public Event_reVo mapRow(ResultSet rs, int arg1) throws SQLException {
@@ -42,6 +45,13 @@ public class Event_reDaoOraImpl extends NamedParameterJdbcDaoSupport implements 
 								event_re.setEvt_no(rs.getInt("evt_no"));
 								return event_re;	}
 							});
+	}
+	
+	@Override
+	public Event_reVo getOneRe(int event_re_no) {
+		return getJdbcTemplate().queryForObject(SQL_EVENT_RE_SELECT_ONE,
+										new BeanPropertyRowMapper<Event_reVo>(Event_reVo.class),
+										event_re_no);
 	}
 
 	

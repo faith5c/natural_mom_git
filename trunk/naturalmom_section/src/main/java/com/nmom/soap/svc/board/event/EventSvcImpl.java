@@ -41,20 +41,17 @@ public class EventSvcImpl implements IEventSvc {
 
 	@Override
 	public List<EventVo> getEvents_by_title(String search) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
+		return eventDao.getEvents_by_title(search);
 	}
 
 	@Override
 	public List<EventVo> getEvents_by_content(String search) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
+		return eventDao.getEvents_by_content(search);
 	}
 
 	@Override
 	public List<EventVo> getEvents_by_title_n_content(String search) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
+		return eventDao.getEvents_by_title_n_content(search);
 	}
 
 	@Override
@@ -69,14 +66,12 @@ public class EventSvcImpl implements IEventSvc {
 
 	@Override
 	public int removeEvent(int event_no) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return 0;
+		return eventDao.removeEvent(event_no);
 	}
 
 	@Override
 	public int editEvent(EventVo event) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return 0;
+		return eventDao.editEvent(event);
 	}
 	
 	@Override

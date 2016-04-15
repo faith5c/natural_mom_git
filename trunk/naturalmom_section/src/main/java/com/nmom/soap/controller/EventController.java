@@ -44,12 +44,34 @@ public class EventController {
 	@RequestMapping(value ="/board/event.nm", method=RequestMethod.GET)
 	public ModelAndView board_event(HttpServletRequest req){
 		Map<String, Object> map = new HashMap<>();
-			
-		List<EventVo> e_list = eventSvc.getEventList(1, S.PAGE_LIMIT);
-		map.put("e_list", e_list);
+		List<EventVo> e_list =null;
+		String search = req.getParameter("search");
+		String type = req.getParameter("by");
 		
+		if(search!=null){
+			switch (type) {
+			case "제목":
+				e_list = eventSvc.getEvents_by_title(search);
+				map.put("e_list", e_list);
+				return new ModelAndView("board/event/b_event", map);
+				
+			case "내용":
+				e_list = eventSvc.getEvents_by_content(search);
+				map.put("e_list", e_list);
+				return new ModelAndView("board/event/b_event", map);
+				
+			case "제목+내용":
+				e_list = eventSvc.getEvents_by_title_n_content(search);
+				map.put("e_list", e_list);
+				return new ModelAndView("board/event/b_event", map);
+			}
+		}
+		
+		e_list = eventSvc.getEventList(1, S.PAGE_LIMIT);
+		map.put("e_list", e_list);
 		return new ModelAndView("board/event/b_event", map);
 	}
+	
 	
 	// 읽기 페이지
 	@RequestMapping(value ="/board/event_read.nm", method=RequestMethod.GET)
@@ -60,9 +82,13 @@ public class EventController {
 									@RequestParam(value="d") int d){	// 이벤트 리플 넘버 (삭제시 이용)
 		Map<String, Object> map = new HashMap<>();
 		
-		// 삭제값에 리플 번호가 들어오면 삭제
-		if(d != 0){
-			eventReSvc.removeRe(d);
+		// 삭제값에 리플 번호 && 작성자 일치시 삭제
+
+		if(d != 0 ){
+			String re_writer = eventReSvc.getOneRe(d).getMem_id();
+			String login = (String)se.getAttribute(S.SESSION_LOGIN);
+			
+			if(re_writer.equals(login)){  eventReSvc.removeRe(d);  }
 		}
 		
 		// 조회수 증가
@@ -83,12 +109,16 @@ public class EventController {
 	public ModelAndView board_event_w(HttpServletRequest req,
 									HttpSession se,
 									@RequestParam(value="title")String title,
-									@RequestParam(value="event_content") String event_content){
-		//세션에 아이디 값 불러오기
+									@RequestParam(value="event_content") String event_content,
+									@RequestParam(value="no") int no){
+		// event_no가 0이 아니면 수정
+		if(no !=0 ){
+			System.out.println(eventSvc.editEvent(new EventVo().editform(no, title, event_content)));
+		}else{
+		// event_no가 0이면 새 글쓰기
 		String id = (String)se.getAttribute(S.SESSION_LOGIN);
-		// 글쓰기
 		System.out.println(eventSvc.addEvent(new EventVo().writeform(title, event_content, id)));
-		
+		}
 		// 이벤트 리스트 불러오기
 		Map<String, Object> map = new HashMap<>();
 		List<EventVo> e_list = eventSvc.getEventList(1, S.PAGE_LIMIT);
@@ -119,6 +149,28 @@ public class EventController {
 				
 		return new ModelAndView("board/event/b_event", map);
 	}
+	
+	// 수정페이지 불러오기 ->글쓰기 페이지
+	@RequestMapping(value="/board/event_edit.nm", method=RequestMethod.POST)
+	public ModelAndView board_event_edit_form(HttpServletRequest req,
+											@RequestParam(value="title") String title,
+											@RequestParam(value="content") String content,
+											@RequestParam(value="no") int no ){
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("e", new EventVo().editform(no, title, content));
+		
+		return new ModelAndView("board/event/b_event", map);
+	}
+	
+	@RequestMapping(value="/board/event_del.nm", method=RequestMethod.GET)
+	public String board_event_delete(HttpServletRequest req,
+									@RequestParam(value="d") int d){
+		System.out.println(d);
+		eventSvc.removeEvent(d);
+		return "redirect:/board/event.nm";
+	}
+	
 	
 	
 	

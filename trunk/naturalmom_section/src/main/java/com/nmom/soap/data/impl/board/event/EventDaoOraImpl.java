@@ -32,12 +32,14 @@ public class EventDaoOraImpl extends NamedParameterJdbcDaoSupport implements IEv
 	
 	private final String SQL_EVENT_SELECT_ONE 
 		= "SELECT * FROM tb_event WHERE evt_del_check=0 and event_no=?";
+	
 	private final String SQL_EVENT_SELECT_BY_TITLE 
-		="SELECT * FROM NMDB.V_EVENT_LIST WHERE evt_title LIKE ? ORDER BY event_no DESC";
+		="SELECT A.* FROM (SELECT rownum as evt_rnum, V.* from V_EVENT_LIST V ORDER BY V.EVENT_NO DESC) A WHERE evt_title LIKE ?";
 	private final String SQL_EVENT_SELECT_BY_CONTENT 
-		="SELECT * FROM NMDB.V_EVENT_LIST WHERE evt_content LIKE ? ORDER BY event_no DESC";
+		="SELECT A.* FROM (SELECT rownum as evt_rnum, V.* from V_EVENT_LIST V ORDER BY V.EVENT_NO DESC) A WHERE evt_content LIKE ?";
 	private final String SQL_EVENT_SELECT_BY_TITLE_AND_CONTENT 
-		="SELECT * FROM NMDB.V_EVENT_LIST WHERE (evt_title LIKE ? OR evt_content LIKE ?) ORDER BY event_no DESC";
+		="SELECT A.* FROM (SELECT rownum as evt_rnum, V.* from V_EVENT_LIST V ORDER BY V.EVENT_NO DESC) A WHERE (evt_title LIKE ? OR evt_content LIKE ?)";
+	
 	private final String SQL_EVENT_INSERT 
 		="INSERT INTO tb_event VALUES(EVENT_NO_SEQ.NEXTVAL, :evt_title, SYSDATE, 1, :evt_content, 0, 2, :mem_id)";
 	private final String SQL_EVENT_UPDATE_DEL_CD 
@@ -139,6 +141,7 @@ public class EventDaoOraImpl extends NamedParameterJdbcDaoSupport implements IEv
 								event_list.setEvt_write_day(rs.getDate("evt_write_day") );
 								event_list.setEvt_hits(rs.getInt("evt_hits") );
 								event_list.setCount_re(rs.getInt("count_re") );
+								event_list.setEvt_rnum(rs.getInt("evt_rnum"));
 								
 								return event_list;	}
 							});
@@ -158,6 +161,7 @@ public class EventDaoOraImpl extends NamedParameterJdbcDaoSupport implements IEv
 								event_list.setEvt_write_day(rs.getDate("evt_write_day") );
 								event_list.setEvt_hits(rs.getInt("evt_hits") );
 								event_list.setCount_re(rs.getInt("count_re") );
+								event_list.setEvt_rnum(rs.getInt("evt_rnum"));
 								
 								return event_list;	}
 							});
@@ -177,6 +181,7 @@ public class EventDaoOraImpl extends NamedParameterJdbcDaoSupport implements IEv
 								event_list.setEvt_write_day(rs.getDate("evt_write_day") );
 								event_list.setEvt_hits(rs.getInt("evt_hits") );
 								event_list.setCount_re(rs.getInt("count_re") );
+								event_list.setEvt_rnum(rs.getInt("evt_rnum"));
 								
 								return event_list;	}
 							});
