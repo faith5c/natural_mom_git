@@ -86,11 +86,13 @@
 			
 		</table>
 		<div id = "pages">
-			<a href = "#">&lsaquo;</a>
-			&nbsp;&nbsp;&nbsp;
-			1
-			&nbsp;&nbsp;&nbsp;
-			<a href = "#">&rsaquo;</a>
+			<a href="#">〈</a>
+			<c:forEach var="i" begin="1" end="${(fl.rnum/10)+1}" step="1">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href='<c:url value="/board/faq.nm?pgidx=${i}"/>'><c:out value="${i}"/></a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</c:forEach>
+			<a href="#">〉</a>
 		</div>
 		<div id = "search">
 			<form action = "#" method = "get">

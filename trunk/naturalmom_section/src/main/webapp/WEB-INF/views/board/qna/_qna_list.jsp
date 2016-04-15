@@ -98,10 +98,15 @@
 	</tr>
 	<tr>
 		<td colspan = "5">
-		<div class="page">
-			<a href="#">〈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<div id = "pages">
+			<a href="#">〈</a>
+			<c:forEach var="i" begin="1" end="${(ql.rnum/10)+1}" step="1">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href='<c:url value="/board/qna.nm?pgidx=${i}"/>'><c:out value="${i}"/></a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</c:forEach>
 			<a href="#">〉</a>
+			<br/>&nbsp;
 		</div>
 		<div class="search">
 				<select>
