@@ -34,4 +34,5 @@ public interface IFaqDao {
 	//글삭제
 	int removeFaq(FaqVo faq) throws DataAccessException;
 	int removeFaq(int faq_no) throws DataAccessException;
+
 }
