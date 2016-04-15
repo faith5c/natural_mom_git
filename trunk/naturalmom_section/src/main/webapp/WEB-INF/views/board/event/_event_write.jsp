@@ -85,12 +85,16 @@
 			<table cellspacing = "0">
 				<tr>
 					<td><label for = "title">제목</label></td>
-					<td><input type = "text" id = "title" name = "title" /></td>
+					<td>
+						<input type = "text" id = "title" name = "title" value="${e.evt_title}"/>
+						<input type="hidden" id= "no" name="no" value="${empty e.event_no ? 0 : e.event_no}"/>
+					</td>
+					
 				</tr>
 				<tr>
 					<td><label for = "event_content" >내용</label></td><td></td>
 				</tr>
-				<tr><td colspan = "2"><textarea name = "event_content" id = "event_content"></textarea></td></tr>
+				<tr><td colspan = "2"><textarea name = "event_content" id = "event_content">${e.evt_content}</textarea></td></tr>
 				<tr>
 					<td colspan = "2" id = "buttons">
 						<input type = "submit" value = "저장">

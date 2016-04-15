@@ -72,7 +72,7 @@
 	</style>
 
 <div id="content_body">
-	<form action="">
+	<form action="" >
 		<h2 id = "reg_title">이벤트</h2>
 		<table cellspacing = "0">
 			<tr>
@@ -98,7 +98,12 @@
 				<td id = "realno" style="display: none">${e.event_no}</td>
 			</tr>
 		</c:forEach>	
-			
+		<c:if test="${empty e_list}">
+			<tr>
+				<td colspan="5" style="text-align: center; font-size: 15px; padding: 20px">
+					해당 검색 내용이 없습니다.</td>
+			</tr>
+		</c:if>
 		
 			<tr>
 		<c:if test="${not empty loggedin}">
@@ -119,7 +124,7 @@
 			<a href = "#">&rsaquo;</a>
 		</div>
 		<div id = "search" style="margin-bottom: 80px;">
-			<select id = "option">
+			<select id = "option" name="by">
 				<option>제목</option>
 				<option>내용</option>
 				<option>제목+내용</option>

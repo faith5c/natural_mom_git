@@ -93,9 +93,15 @@
 				<tr>
 					<td id = "re_id" class="re_title">${re.mem_id }</td>
 					<td id = "re_content" colspan="3" width="55%">${re.evt_re_content }</td>
-					<td id = "re_write_day" colspan="2" style="text-align: right">${re.evt_re_write_day }
-						<span onclick="location.href='event_read.nm?r=${con.event_no}&rn=${con.evt_rnum}&d=${re.event_re_no}'">
-							<i class="fa fa-times-circle"></i></span>
+					
+					
+					
+					<td id = "re_write_day" colspan="2" style="text-align: right">
+						<c:if test="${re.mem_id eq loggedin }">
+							<span onclick="location.href='event_read.nm?r=${con.event_no}&rn=${con.evt_rnum}&d=${re.event_re_no}'">
+								<i class="fa fa-times-circle"></i></span>
+						</c:if>
+						${re.evt_re_write_day }
 					</td>
 						<!--  deleteRe(${re.event_re_no},${re.evt_no})-->
 				</tr>
@@ -105,7 +111,7 @@
 			
 				<tr>
 					<td class="re_title">댓글입력
-						<input type="text" name="r" value="${con.event_no}" style="display: none" />
+						<input type="hidden" name="r" value="${con.event_no}"/>
 					</td>
 					<td colspan="4">
 						<textarea style="width:100%; resize : none;" cols="30" rows="3" name="re_content"></textarea>
@@ -117,6 +123,7 @@
 			</c:if>	
 			</table>
 		</form>
+		<form action="event_edit.nm?w=true" method="post">
 			<table cellspacing = "0" id = "buttons" style="margin-bottom: 80px;">
 				<tr>
 					<td>
@@ -125,13 +132,21 @@
 					</td>
 					<td>
 				<c:if test="${not empty loggedin and loggedin eq con.mem_id}">
-						<input type = "button" value = "수정" id = "mod" name = "mod">
-						<input type = "button" value = "삭제" id = "del" name = "del">
+						<input type = "submit" value = "수정" id = "mod" name = "mod">
+						<input type = "button" value = "삭제" id = "del" name = "del" onclick="location.href='event_del.nm?d=${con.event_no}';">
 				</c:if>
 						<input type = "button" value = "목록" id = "list" name = "list" onclick="location.href='event.nm';">
+						
+						
+						<!-- hidden values -->
+						<input type="hidden" id="title" name="title" value="${con.evt_title}"/>
+						<input type="hidden" id="content" name="content" value="${con.evt_content}"/>
+						<input type="hidden" id="no" name="no" value="${con.event_no}"/>
+						
 					</td>
 				</tr>
 			</table>
+		</form>
 	</div>
 
 <script type="text/javascript">
