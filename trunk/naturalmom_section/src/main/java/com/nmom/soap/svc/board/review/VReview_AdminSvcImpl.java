@@ -25,6 +25,12 @@ public class VReview_AdminSvcImpl implements IVReview_AdminSvc
 	{
 		return review_adminDao.getOneReview(review_no);
 	}
+	
+	@Override
+	public VReview_AdminVo getOneReviewByR_num(int r_num) 
+	{
+		return review_adminDao.getOneReviewByR_num(r_num);
+	}
 
 	@Override
 	public List<VReview_AdminVo> getReviews_by_title(String search, int page) 
@@ -79,5 +85,4 @@ public class VReview_AdminSvcImpl implements IVReview_AdminSvc
 	{
 		return review_adminDao.getCountReviewsByTitleNContent(search);
 	}
-
 }

@@ -1,5 +1,7 @@
 package com.nmom.soap.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.nmom.soap.S;
 import com.nmom.soap.data.model.board.review.ReviewVo;
 import com.nmom.soap.data.model.board.review.Review_ReVo;
 import com.nmom.soap.data.model.board.review.VReview_AdminVo;
@@ -48,11 +51,15 @@ public class ReviewController
 		this.review_frontSvc = review_frontSvc;
 	}
 	
+	// 상품후기 목록
 	@RequestMapping(value ="/admin/board/review.nm", method=RequestMethod.GET)
-	public ModelAndView a_board_review(HttpServletRequest req)
+	public ModelAndView review_list(HttpServletRequest req, @RequestParam(value="p", required=false) String p)
 	{
+		int page = 0;
+		try { page = Integer.parseInt(p); }
+		catch(NumberFormatException e) { page = 1; }
 		int all_reviews = review_adminSvc.getCountAllReviews();
-		List<VReview_AdminVo> review_list = review_adminSvc.getAllList(1);
+		List<VReview_AdminVo> review_list = review_adminSvc.getAllList(page);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("rvw_list", review_list);
@@ -61,15 +68,19 @@ public class ReviewController
 		return new ModelAndView("admin/board/review/a_review", map);
 	}
 	
+	// 검색 결과 표시
 	@RequestMapping(value ="/admin/board/review_search.nm", method=RequestMethod.GET)
-	public ModelAndView a_board_review_search(HttpServletRequest req,
+	public ModelAndView review_list_search(HttpServletRequest req,
 			@RequestParam(value="option", required=false) String option, @RequestParam(value="search", required=false) String search)
 	{
+		// 인코딩 -> 디코딩 처리
+		try {
+			search = URLDecoder.decode(search, "UTF-8");
+		} catch (UnsupportedEncodingException e) {e.printStackTrace();}
+		
 		int all_reviews = -1;
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<VReview_AdminVo> review_list = null;
-		System.out.println("option - " + option);
-		System.out.println("search - " + search);
 
 		if(option.equals("title"))
 		{
@@ -98,15 +109,26 @@ public class ReviewController
 		return new ModelAndView("admin/board/review/a_review", map);
 	}
 	
+	// 글 읽기
 	@RequestMapping(value ="/admin/board/review_read.nm", method=RequestMethod.GET, params="r")
-	public ModelAndView a_board_review(HttpServletRequest req, @RequestParam(value="r", required=false) int review_no)
+	public ModelAndView read_review(HttpServletRequest req, @RequestParam(value="r", required=false) int review_no)
 	{
-		VReview_AdminVo review = review_adminSvc.getOneReview(review_no);
-		List<Review_ReVo> reply = review_reSvc.getAllRe(review_no);
-		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("review", review);
-		map.put("reply", reply);
+		// 해당 글의 조회수를 증가시키는 작업
+		ReviewVo rvw = reviewSvc.getOneReivew(review_no);
+		int countReviews = review_adminSvc.getCountAllReviews();
+		if (reviewSvc.updateReviewCount(rvw) == S.PROCESS_SUCCESS)
+		{
+			VReview_AdminVo review = review_adminSvc.getOneReview(review_no);
+			List<Review_ReVo> reply = review_reSvc.getAllRe(review_no);
+			map.put("count", new Integer(countReviews));
+			map.put("review", review);
+			map.put("reply", reply);
+		}
+		else
+		{
+			// 에러 페이지로 이동
+		}
 		
 		return new ModelAndView("admin/board/review/a_review", map);
 	}

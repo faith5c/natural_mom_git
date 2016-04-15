@@ -26,6 +26,10 @@ public class VReview_AdminDaoOraImpl extends NamedParameterJdbcDaoSupport implem
 	+ " ORDER BY rownum ASC";
 	// 게시판 내용 조회
 	private final String GET_ONE_REVIEW = "SELECT * FROM v_review_admin WHERE review_no = ?";
+	// rownum으로 내용 조회
+	private final String GET_ONE_REVIEW_R_NUM = "SELECT A.* FROM "
+			+ "(SELECT rownum as re_rnum, V.* from V_REVIEW_ADMIN V) A "
+			+ "WHERE A.re_rnum >= 2 AND A.re_rnum <= 4";
 	// 제목으로 검색하기
 	private final String GET_SEARCH_BY_TITLE = "SELECT A.* FROM (SELECT rownum as re_rnum, X.* FROM"
 			+ " (SELECT * from V_REVIEW_ADMIN ORDER BY review_no DESC) X WHERE rownum <= :end) A"
@@ -68,6 +72,18 @@ public class VReview_AdminDaoOraImpl extends NamedParameterJdbcDaoSupport implem
 	{
 		List<VReview_AdminVo> list = getJdbcTemplate().query(GET_ONE_REVIEW, 
 				new BeanPropertyRowMapper<VReview_AdminVo>(VReview_AdminVo.class), new Integer(review_no));
+		
+		if (list != null && list.size() > 0)
+			return list.get(0);
+		
+		return null;
+	}
+	
+	@Override
+	public VReview_AdminVo getOneReviewByR_num(int r_num) throws DataAccessException 
+	{
+		List<VReview_AdminVo> list = getJdbcTemplate().query(GET_ONE_REVIEW_R_NUM, 
+				new BeanPropertyRowMapper<VReview_AdminVo>(VReview_AdminVo.class), new Integer(r_num));
 		
 		if (list != null && list.size() > 0)
 			return list.get(0);

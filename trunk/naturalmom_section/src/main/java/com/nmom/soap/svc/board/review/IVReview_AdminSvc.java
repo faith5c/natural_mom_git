@@ -12,6 +12,9 @@ public interface IVReview_AdminSvc
 	// 게시판 내용 뽑기
 	VReview_AdminVo getOneReview(int review_no);
 	
+	// r_num으로 게시판 내용 뽑기
+	VReview_AdminVo getOneReviewByR_num(int r_num);
+	
 	// 제목으로 검색하기
 	List<VReview_AdminVo> getReviews_by_title(String search, int page);
 	

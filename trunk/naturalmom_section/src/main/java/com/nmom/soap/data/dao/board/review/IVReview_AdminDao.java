@@ -14,6 +14,9 @@ public interface IVReview_AdminDao
 	// 게시판 내용 뽑기
 	VReview_AdminVo getOneReview(int review_no) throws DataAccessException;
 	
+	// r_num으로 게시판 내용 뽑기
+	VReview_AdminVo getOneReviewByR_num(int r_num) throws DataAccessException;
+	
 	// 제목으로 검색하기
 	List<VReview_AdminVo> getReviews_by_title(String search, int start, int end) throws DataAccessException;
 	
