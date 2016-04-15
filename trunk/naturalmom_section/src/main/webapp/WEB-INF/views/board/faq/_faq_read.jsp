@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
+		
+
 	<style type = "text/css">
 
 		#content_body { color: #85858d; padding: 100px; padding-left: 225px; }
@@ -53,13 +56,20 @@
 	</style>
 
 <!-- content_body 부분 -->
+	
 	<h2 id = "reg_title">자주하는 질문</h2>
 		<table cellspacing = "0" id = "board">
 			<tr>
-				<td id = "no">1</td>
-				<td id = "title">임시 타이틀</td>
+				<td id = "no"><c:out value="${param.rn}"/></td>
+				<td id = "title"><c:out value="${fvo.faq_title}"/></td>
 			</tr>
-			<tr><td colspan = "2" id = "faq_content">임시 자주하는 질문 내용입니다.</td></tr>
+			<tr>
+			<td colspan = "2" id = "faq_content">
+			<div>
+			${fvo.faq_content}
+			</div>
+			</td>
+			</tr>
 		</table>
 		<table cellspacing = "0" id = "buttons">
 			<tr>
@@ -75,7 +85,8 @@
 		<script>
 			function go_list()
 			{
-				location.href = "customer_center.jsp?page=faq";
+				location.href = "/soap/board/faq.nm";
 			}
 		</script>
+		
 </html>

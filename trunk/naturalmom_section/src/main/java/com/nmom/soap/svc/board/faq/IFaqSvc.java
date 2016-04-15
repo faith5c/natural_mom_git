@@ -32,4 +32,5 @@ public interface IFaqSvc {
 	//글삭제
 	int removeFaq(FaqVo faq);
 	int removeFaq(int faq_no);
+
 }

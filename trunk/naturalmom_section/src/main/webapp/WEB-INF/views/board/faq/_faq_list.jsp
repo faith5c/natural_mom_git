@@ -80,15 +80,10 @@
 		<c:forEach items="${faq_list}" var="fl">
 			<tr>
 				<td>${fl.faq_rnum}</td>
-				<td>${fl.faq_title}</td>
+				<td><a href="<c:url value="/board/faq/read.nm?fr_no=${fl.faq_no}&rn=${fl.faq_rnum}"/>">${fl.faq_title}</a></td>
 			</tr>
 		</c:forEach>
-			<!-- 
-			<tr>
-				<td>1</td>
-				<td><a href = "customer_center.jsp?page=faq&r=1">배송비가 얼마인가요?</a></td>
-			</tr>
-			-->
+			
 		</table>
 		<div id = "pages">
 			<a href = "#">&lsaquo;</a>

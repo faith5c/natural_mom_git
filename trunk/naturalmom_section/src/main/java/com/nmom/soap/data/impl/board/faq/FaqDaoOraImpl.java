@@ -163,5 +163,4 @@ public class FaqDaoOraImpl extends NamedParameterJdbcDaoSupport implements IFaqD
 		
 		return npjtem.update(SQL_DELETE_FAQ, ps);
 	}
-
 }

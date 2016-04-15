@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -8,9 +9,14 @@
 	<script src="resources/js/jquery-1.11.3.min.js"></script>
 	<!-- [if lt IE 9]><script src="js/html5shiv.js"></script><![endif] -->
 	
-	<link rel="apple-touch-icon" href="../resources/images/logo.ico" /> <!--애플아이콘등록-->
-	<link rel="shortcut icon" href="../resources/images/logo.ico" /> <!--단축키아이콘등록-->
-	<link rel="stylesheet" href="../resources/css/mypage.css" />
+	<link rel="apple-touch-icon" href="/soap/resources/images/logo.ico" /> <!--애플아이콘등록-->
+	<link rel="shortcut icon" href="/soap/resources/images/logo.ico" /> <!--단축키아이콘등록-->
+	<link rel="stylesheet" href="/soap/resources/css/mypage.css" />
+	
+	<script type="text/javascript" src="/soap/resources/js/nicEdit.js"></script>
+	<script type="text/javascript">
+		bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+	</script>
 
 	<title>자연맘</title>  
 <%
@@ -48,12 +54,20 @@
 				</ul>
 			</div>
 			<div id="content_body">
-
-					<% if(r.equals("1")) { %>
+				<c:choose>
+					<c:when test="${not empty param.fr_no}">
+						<%@ include file = "_faq_read.jsp" %>
+					</c:when>
+					<c:otherwise>
+						<%@include file="_faq_list.jsp" %>
+					</c:otherwise>
+				</c:choose>
+		
+<%-- 					<% if(r.equals("1")) { %>
 					<%@ include file = "_faq_read.jsp" %>
 					<% } else { %>
 					<%@include file="_faq_list.jsp" %>
-					<% } %>			
+					<% } %>			 --%>
 			</div>	
 		</div>
 		<!--------------------------------------------------end content--------->
