@@ -46,9 +46,9 @@ public class InterestController {
 	}
 	
 	@RequestMapping(value ="/mypage.nm", method=RequestMethod.GET)
-	public ModelAndView menu_mypage(HttpServletRequest req){
-		//String loggedin = (String)ses.getAttribute("loggedin");
-		String loggedin = "soomin";
+	public ModelAndView menu_mypage(HttpServletRequest req, HttpSession ses){
+		
+		String loggedin = (String)ses.getAttribute("loggedin");
 		
 		List<VInterestProductVo> interest_list = this.vInterestProductSvc.getInterestByMemId(loggedin);
 		
