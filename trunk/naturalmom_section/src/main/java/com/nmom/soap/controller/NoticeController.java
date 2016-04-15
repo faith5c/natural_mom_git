@@ -99,6 +99,7 @@ public class NoticeController {
 		NoticeVo notice = this.noticeSvc.getNotice(no);
 		if(notice != null){
 			Map<String, Object> map = new HashMap<>();
+			map.put("r", no);
 			map.put("notice", notice);
 			return new ModelAndView("/board/notice/b_notice", map);
 		}
