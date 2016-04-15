@@ -47,15 +47,15 @@ public class QnaController {
 	
 	@RequestMapping(value="/board/qna.nm", method=RequestMethod.GET)
 	public ModelAndView board_qna(HttpServletRequest req, 
-			@RequestParam(value="pageindex", required=false) String pageindex){
+			@RequestParam(value="pgidx", required=false) String pageindex){
 		int pi;
-		
+
 		if(pageindex == null){
-			pageindex = "0";
+			pageindex = "1";
 		}
 		
 		try{
-			pi = Integer.parseInt(pageindex);
+			pi = Integer.parseInt(pageindex)-1; //실제 인덱스는 0부터 시작
 	
 		} catch(Exception e){
 			e.printStackTrace();
