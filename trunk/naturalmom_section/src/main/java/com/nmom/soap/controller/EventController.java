@@ -45,7 +45,7 @@ public class EventController {
 	public ModelAndView board_event(HttpServletRequest req){
 		Map<String, Object> map = new HashMap<>();
 			
-		List<EventVo> e_list = eventSvc.getEventList(1, 15);
+		List<EventVo> e_list = eventSvc.getEventList(1, S.PAGE_LIMIT);
 		map.put("e_list", e_list);
 		
 		return new ModelAndView("board/event/b_event", map);
@@ -54,13 +54,16 @@ public class EventController {
 	// 읽기 페이지
 	@RequestMapping(value ="/board/event_read.nm", method=RequestMethod.GET)
 	public ModelAndView board_event_r(HttpServletRequest req, 
+									HttpSession se,
 									@RequestParam(value="r") int r,	// 이벤트no
 									@RequestParam(value="rn") int rn,	// 이벤트 RowNom
 									@RequestParam(value="d") int d){	// 이벤트 리플 넘버 (삭제시 이용)
 		Map<String, Object> map = new HashMap<>();
 		
 		// 삭제값에 리플 번호가 들어오면 삭제
-		if(d != 0){ eventReSvc.removeRe(d);}
+		if(d != 0){
+			eventReSvc.removeRe(d);
+		}
 		
 		// 조회수 증가
 		eventSvc.addReadCount(r);
@@ -88,7 +91,7 @@ public class EventController {
 		
 		// 이벤트 리스트 불러오기
 		Map<String, Object> map = new HashMap<>();
-		List<EventVo> e_list = eventSvc.getEventList(1, 15);
+		List<EventVo> e_list = eventSvc.getEventList(1, S.PAGE_LIMIT);
 		map.put("e_list", e_list);
 		
 		return new ModelAndView("board/event/b_event", map);
@@ -126,7 +129,7 @@ public class EventController {
 	// 이벤트 리스트
 	@RequestMapping(value ="/admin/board/event.nm", method=RequestMethod.GET)
 	public ModelAndView a_board_event(HttpServletRequest req){
-		List<EventVo> e_list = eventSvc.getEventList(1, 5);
+		List<EventVo> e_list = eventSvc.getEventList(1, S.PAGE_LIMIT);
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("e_list", e_list);
@@ -158,5 +161,47 @@ public class EventController {
 		
 		return new ModelAndView("admin/board/event/a_event", map);
 	}
+	
+	// 게시글 쓰기 -> 리스트
+		@RequestMapping(value ="admin/board/event_write.nm", method=RequestMethod.POST)
+		public ModelAndView a_board_event_w(HttpServletRequest req,
+										HttpSession se,
+										@RequestParam(value="title")String title,
+										@RequestParam(value="event_content") String event_content){
+			//세션에 아이디 값 불러오기
+			String id = (String)se.getAttribute(S.SESSION_LOGIN);
+			// 글쓰기
+			System.out.println(eventSvc.addEvent(new EventVo().writeform(title, event_content, id)));
+			
+			// 이벤트 리스트 불러오기
+			Map<String, Object> map = new HashMap<>();
+			List<EventVo> e_list = eventSvc.getEventList(1, S.PAGE_LIMIT);
+			map.put("e_list", e_list);
+			
+			return new ModelAndView("admin/board/event/a_event", map);
+		}
+		
+		// 리플 쓰기 -> 읽기페이지
+		@RequestMapping(value="admin/board/event_reply.nm", method=RequestMethod.POST)
+		public ModelAndView a_board_event_w_re(HttpServletRequest req,
+											HttpSession se,
+											@RequestParam(value="r") int r,
+											@RequestParam(value="re_content") String re_content){
+			//세션에 아이디 값 불러오기
+			String id = (String)se.getAttribute(S.SESSION_LOGIN);
+			// 글쓰기
+			System.out.println(eventReSvc.addRe(new Event_reVo().writeform(r, re_content, id)));
+			
+			// 이벤트 내용 불러오기
+			Map<String, Object> map = new HashMap<>();
+			EventVo event = eventSvc.getOneEvent(r);
+			event.setEvt_rnum(r);	// RowNum
+			map.put("con", event);
+			// 댓글 내용 불러오기
+			List<Event_reVo> event_re = eventReSvc.getEventRe(r);
+			map.put("re", event_re);
+					
+			return new ModelAndView("admin/board/event/a_event", map);
+		}
 
 }

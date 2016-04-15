@@ -61,7 +61,7 @@ public class EventSvcImpl implements IEventSvc {
 	public int addEvent(EventVo event) throws DataAccessException {
 		String con_check = event.getEvt_content();
 		if(con_check.contains("&nbsp;")){
-			con_check.replace("&nbsp;", " ");
+			con_check = con_check.replace("&nbsp;", " ");
 			System.out.println("2 " +con_check);
 		}
 		return eventDao.addEvent(event);
