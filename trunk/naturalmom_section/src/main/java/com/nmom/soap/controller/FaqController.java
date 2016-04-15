@@ -26,7 +26,7 @@ public class FaqController {
 		this.faqSvc = faqSvc;
 	}
 	
-	
+	//사용자단에서 보는 자주하는 질문 목록
 	@RequestMapping(value ="/board/faq.nm", method=RequestMethod.GET)
 	public ModelAndView board_faq(HttpServletRequest req, 
 			@RequestParam(value="pageindex", required=false) String pageindex){
@@ -52,8 +52,8 @@ public class FaqController {
 		ModelAndView mav = new ModelAndView("board/faq/b_faq", map);
 		return mav;
 	}
-	
-	
+
+	//관리자단에서 보는 자주하는 질문 목록
 	@RequestMapping(value ="admin/board/faq.nm", method=RequestMethod.GET)
 	public ModelAndView a_board_faq(HttpServletRequest req, 
 			@RequestParam(value="pageindex", required=false) String pageindex){
@@ -79,4 +79,30 @@ public class FaqController {
 		ModelAndView mav = new ModelAndView("admin/board/faq/a_faq", map);
 		return mav;
 	}
+
+	//자주하는 지문 읽기
+	@RequestMapping(value="/board/faq/read.nm", method=RequestMethod.GET)
+	public ModelAndView faq_read(HttpServletRequest req,
+		@RequestParam(value="fr_no") String fr_no){
+		Map<String,Object> map = new HashMap<String,Object>();
+
+		int faqno;
+		
+		try{
+			if(fr_no != null){
+				faqno = Integer.parseInt(fr_no);
+				FaqVo faq_vo = faqSvc.getOneFaq(faqno);
+				
+				if(faq_vo!=null){
+					map.put("fvo", faq_vo);
+					return new ModelAndView("/board/faq/b_faq", map);
+				}
+			}
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		return new ModelAndView("redirect:/board/faq.nm", map);
+		
+	}
+	
 }
