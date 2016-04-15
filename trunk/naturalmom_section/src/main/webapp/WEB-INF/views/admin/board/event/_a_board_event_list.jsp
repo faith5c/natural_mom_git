@@ -71,6 +71,7 @@
 	</style>
 
 <div id="content_body">
+	<form action="">
 		<h2 id = "reg_title">이벤트</h2>
 		<table cellspacing = "0">
 			<tr>
@@ -111,7 +112,7 @@
 			<a href = "#">&rsaquo;</a>
 		</div>
 		<div id = "search">
-			<select id = "option">
+			<select id = "option" name="by">
 				<option>제목</option>
 				<option>내용</option>
 				<option>제목+내용</option>
@@ -119,6 +120,7 @@
 			<input type = "text" name = "search" />
 			<input type = "submit" value = "검색" />
 		</div>
-	</div>
+	</form>
+</div>
 
 </html>

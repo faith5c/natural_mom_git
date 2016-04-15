@@ -80,20 +80,24 @@
 	
 	<div id="inside">
 		<h2 id = "reg_title">이벤트 - 글쓰기</h2>
-		<form action = "event_write.nm" method = "post">
+		<form action = "event_write.nm" method = "post" name="event_form">
 			<table cellspacing = "0">
 				<tr>
 					<td><label for = "title">제목</label></td>
-					<td><input type = "text" id = "title" name = "title" /></td>
+					<td>
+						<input type = "text" id = "title" name = "title" value="${e.evt_title}"/>
+						<input type="hidden" id= "no" name="no" value="${empty e.event_no ? 0 : e.event_no}"/>
+					</td>
+					
 				</tr>
 				<tr>
 					<td><label for = "event_content" >내용</label></td><td></td>
 				</tr>
-				<tr><td colspan = "2"><textarea name = "event_content" id = "event_content"></textarea></td></tr>
+				<tr><td colspan = "2"><textarea name = "event_content" id = "event_content">${e.evt_content}</textarea></td></tr>
 				<tr>
 					<td colspan = "2" id = "buttons">
-						<input type = "submit" value = "저장">
-						<input type = "button" value = "취소" onclick="location.href='/soap/admin/board/event.nm'">
+						<input type = "button" value = "저장" onclick="checkNull()">
+						<input type = "button" value = "취소" onclick="location.href='event.nm'">
 					</td>
 				</tr>
 			</table>
@@ -101,5 +105,20 @@
 	</div>
 <!--------------------------------------------------------end container------------->
   </body>
+ <script type="text/javascript">
+
+	function checkNull() {
+		var title =$('#title').val();
+		var content = $('#event_content').val();
+		
+		if(content=="" || content==null 
+				|| title=="" || title==null ){
+			alert("제목과 내용을 빠짐없이 입력해주세요");
+		}else{
+			document.event_form.submit();
+		}
+	}
+
+</script>
 
 </html>

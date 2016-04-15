@@ -117,7 +117,7 @@
 						<textarea style="width:100%; resize : none;" cols="30" rows="3" name="re_content"></textarea>
 					</td>
 					<td>
-						<input type = "submit" value = "등록" id = "re_submit" name = "re_submit">
+						<input type = "submit" value = "등록" id = "re_submit" name = "re_submit" onclick="checkNull()">
 					</td>
 				</tr>
 			</c:if>	
@@ -152,9 +152,16 @@
 <script type="text/javascript">
 
 
-	function deleteRe(re_no,evt_no) {
-		
+function checkNull() {
+	
+	var content = $('#re_content').val();
+	
+	if(content!=null){
+		document.reply_form.submit();
+	}else{
+		alert("내용을 입력해주세요");
 	}
+}
 
 </script>	
 	
