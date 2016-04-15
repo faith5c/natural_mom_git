@@ -79,7 +79,7 @@
 				<td>${ql.qna_rnum}</td>
 				<td>
 					
-					<c:if test="${ql.qna_ref!=ql.qna_no}"><i class="fa fa-share" aria-hidden="true"></i>&nbsp;</c:if>
+					<c:if test="${ql.qna_ref!=ql.qna_no}"><i class="fa fa-reply fa-rotate-180" aria-hidden="true"></i>&nbsp;</c:if>
 					${ql.qna_title}
 						<c:if test="${ql.qna_re_count!=0}">
 							[${ql.qna_re_count}]
