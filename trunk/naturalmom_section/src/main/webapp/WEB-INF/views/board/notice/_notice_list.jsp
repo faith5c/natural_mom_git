@@ -78,7 +78,11 @@
 			<c:forEach var="no" items="${ no_list }">
 				<tr>
 					<td>${ no.notice_no }</td>
-					<td><a href="/board/notice_read.nm?r=${no.notice_no}">${ no.ntc_title }<b>[${ no.ntc_re_no }]</b></a></td>
+					<td>
+						<a href="/board/notice_read.nm?r=${no.notice_no}">${ no.ntc_title }
+						<c:if test="${ no.ntc_re_no gt 0}"><b>[${ no.ntc_re_no }]</b></c:if> 
+						</a>
+					</td>
 					<td>관리자</td>
 					<td><fmt:formatDate value="${ no.ntc_write_day }" type="Date" /></td>
 					<td>${ no.ntc_hits }</td>
