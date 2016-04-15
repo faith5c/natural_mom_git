@@ -65,7 +65,7 @@
 	
 <!-- container 부분 -->	
 	<h2 id = "reg_title">상품 수정하기</h2>
-		<form action = "#" method = "post">
+		<form action = "#" method = "post" enctype="multipart/form-data">
 			<table cellspacing = "0">
 				<tr>
 					<td><label for = "name">상품명</label></td>
