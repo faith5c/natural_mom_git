@@ -37,21 +37,21 @@ public class VReview_AdminVo
 		this.re_rnum = re_rnum;
 	}
 	
-	// 조회?? ?�용 ?�음 (0, null �??�일): 게시??목록 조회, �?�� 결과
-	public VReview_AdminVo(int review_no, int product_no, String product_name, String rvw_title,
-			String mem_id, Date rvw_write_day, int rvw_satisfaction, int re_num) 
-	{
-		this.review_no = review_no;
-		this.product_no = product_no;
-		this.product_name = product_name;
-		this.rvw_title = rvw_title;
-		this.rvw_content = null;
-		this.mem_id = mem_id;
-		this.rvw_write_day = rvw_write_day;
-		this.rvw_satisfaction = rvw_satisfaction;
-		this.rvw_hits = 0;
-		this.re_num = re_num;
-	}
+//	// 조회?? ?�용 ?�음 (0, null �??�일): 게시??목록 조회, �?�� 결과
+//	public VReview_AdminVo(int review_no, int product_no, String product_name, String rvw_title,
+//			String mem_id, Date rvw_write_day, int rvw_satisfaction, int re_num) 
+//	{
+//		this.review_no = review_no;
+//		this.product_no = product_no;
+//		this.product_name = product_name;
+//		this.rvw_title = rvw_title;
+//		this.rvw_content = null;
+//		this.mem_id = mem_id;
+//		this.rvw_write_day = rvw_write_day;
+//		this.rvw_satisfaction = rvw_satisfaction;
+//		this.rvw_hits = 0;
+//		this.re_num = re_num;
+//	}
 
 	// getter and setter
 	public int getReview_no() {
@@ -132,6 +132,14 @@ public class VReview_AdminVo
 
 	public void setRe_num(int re_num) {
 		this.re_num = re_num;
+	}
+	
+	public int getRe_rnum() {
+		return re_rnum;
+	}
+
+	public void setRe_rnum(int re_rnum) {
+		this.re_rnum = re_rnum;
 	}
 
 	@Override

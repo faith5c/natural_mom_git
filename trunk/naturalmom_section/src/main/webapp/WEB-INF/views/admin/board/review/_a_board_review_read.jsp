@@ -140,8 +140,9 @@
 	</tr>
 	<tr>
 		<td colspan="2">
-			<input type="button" value="이전글" onclick="location.href='review_read.nm?&r=${review.review_no > 1 ? review.review_no + 1 : 1}'">
-			<input type="button" value="다음글" onclick="location.href='review_read.nm?&r=${review.review_no < count ? review.review_no -1 : count}'">
+		<!-- 숫자 받아서 유효하지 않을 경우 다음, 이전 숫자로 넘어가도록 -->
+			<input type="button" value="이전글" onclick="location.href='review_read_p.nm?&r=${review.review_no - 1}'">
+			<input type="button" value="다음글" onclick="location.href='review_read_p.nm?&r=${review.review_no + 1}'">
 		</td>
 		<td colspan="2">
 			<input type="button" value="삭제">
