@@ -91,7 +91,7 @@
 <table cellspacing = "0">
 <!-- 제목 부분 -->
 	<tr>
-		<td>${review.product_no}</td>
+		<td style="width:100px;">${review.product_no}</td>
 		<td style="width:150px;">${review.product_name}</td>
 		<td>${review.rvw_title}</td>
 		<td>
@@ -140,8 +140,8 @@
 	</tr>
 	<tr>
 		<td colspan="2">
-			<input type="button" value="이전글">
-			<input type="button" value="다음글">
+			<input type="button" value="이전글" onclick="location.href='review_read.nm?&r=${review.review_no > 1 ? review.review_no + 1 : 1}'">
+			<input type="button" value="다음글" onclick="location.href='review_read.nm?&r=${review.review_no < count ? review.review_no -1 : count}'">
 		</td>
 		<td colspan="2">
 			<input type="button" value="삭제">

@@ -93,7 +93,10 @@
 			<tr>
 				<td>${review.review_no}</td>
 				<td>${review.product_name}</td>
-				<td><a href="review_read.nm?page=review&r=${review.review_no}">${review.rvw_title} [${review.re_num}]</a></td>
+				<td>
+					<a href="review_read.nm?&r=${review.review_no}">
+						${review.rvw_title} <c:if test="${review.re_num > 0}">[${review.re_num}]</c:if>
+					</a></td>
 				<td>${review.mem_id}</td>
 				<td><fmt:formatDate value="${review.rvw_write_day}" type = "date" /></td>
 				<td>
@@ -118,7 +121,7 @@
 		<div id = "page">
 			<a href="#">〈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<c:forEach var = "i" begin="1" end="${(all_reviews + 9) / 10}" step = "1">
-				${i}
+				<a href="review.nm?page=${i}">${i}</a>
 			</c:forEach>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="#">〉</a>
