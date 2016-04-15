@@ -21,40 +21,28 @@ public class VQnaQnareDaoOraImpl extends NamedParameterJdbcDaoSupport implements
 			"SELECT A.* FROM "
 			+ "(SELECT rownum as qna_rnum, X.* FROM "
 			+ "(SELECT qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count "
-			+ "FROM v_qna_qnare "
-			+ "GROUP BY qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count "
-			+ "ORDER BY qna_ref ASC, qna_pos ASC) X "
-			+ "WHERE rownum <= :end) A "
+			+ "FROM v_qna_qnare) X WHERE rownum <= :end) A "
 			+ "WHERE A.qna_rnum >= :start ORDER BY A.qna_rnum DESC";
 	
 	private final String SQL_SEARCH_QNA_TITLE = 
 			"SELECT A.* FROM "
 			+ "(SELECT rownum as qna_rnum, X.* FROM "
 			+ "(SELECT qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count "
-			+ "FROM v_qna_qnare WHERE qna_title LIKE :keyword "
-			+ "GROUP BY qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count "
-			+ "ORDER BY qna_ref ASC, qna_pos ASC) X "
-			+ "WHERE rownum <= :end) A "
+			+ "FROM v_qna_qnare WHERE qna_title LIKE '%keyword%') X WHERE rownum <= :end) A "
 			+ "WHERE A.qna_rnum >= :start ORDER BY A.qna_rnum DESC";
 
 	private final String SQL_SEARCH_QNA_CONTENT = 
 			"SELECT A.* FROM "
 			+ "(SELECT rownum as qna_rnum, X.* FROM "
 			+ "(SELECT qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count "
-			+ "FROM v_qna_qnare WHERE qna_content LIKE :keyword "
-			+ "GROUP BY qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count "
-			+ "ORDER BY qna_ref ASC, qna_pos ASC) X "
-			+ "WHERE rownum <= :end) A "
+			+ "FROM v_qna_qnare WHERE qna_content LIKE '%keyword%') X WHERE rownum <= :end) A "
 			+ "WHERE A.qna_rnum >= :start ORDER BY A.qna_rnum DESC";
-
+	
 	private final String SQL_SEARCH_QNA_TITLE_N_CONTENT = 
 			"SELECT A.* FROM "
 			+ "(SELECT rownum as qna_rnum, X.* FROM "
 			+ "(SELECT qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count "
-			+ "FROM v_qna_qnare WHERE (qna_title LIKE :keyword OR qna_content LIKE :keyword) "
-			+ "GROUP BY qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count "
-			+ "ORDER BY qna_ref ASC, qna_pos ASC) X "
-			+ "WHERE rownum <= :end) A "
+			+ "FROM v_qna_qnare WHERE (qna_title LIKE '%keyword%' OR qna_content LIKE '%답변%')) X WHERE rownum <= :end) A "
 			+ "WHERE A.qna_rnum >= :start ORDER BY A.qna_rnum DESC";
 	
 	public VQnaQnaReVo getOneQna(int qna_no) throws DataAccessException {
