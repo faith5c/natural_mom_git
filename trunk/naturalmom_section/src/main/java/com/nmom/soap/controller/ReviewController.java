@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,7 +54,8 @@ public class ReviewController
 	
 	// 상품후기 목록
 	@RequestMapping(value ="/admin/board/review.nm", method=RequestMethod.GET)
-	public ModelAndView review_list(HttpServletRequest req, @RequestParam(value="p", required=false) String p)
+	public ModelAndView review_list(HttpServletRequest req, HttpSession session, 
+			@RequestParam(value="p", required=false) String p)
 	{
 		int page = 0;
 		try { page = Integer.parseInt(p); }
@@ -70,7 +72,7 @@ public class ReviewController
 	
 	// 검색 결과 표시
 	@RequestMapping(value ="/admin/board/review_search.nm", method=RequestMethod.GET)
-	public ModelAndView review_list_search(HttpServletRequest req,
+	public ModelAndView review_list_search(HttpServletRequest req, HttpSession session,
 			@RequestParam(value="option", required=false) String option, @RequestParam(value="search", required=false) String search)
 	{
 		// 인코딩 -> 디코딩 처리
@@ -111,7 +113,8 @@ public class ReviewController
 	
 	// 글 읽기
 	@RequestMapping(value ="/admin/board/review_read.nm", method=RequestMethod.GET, params="r")
-	public ModelAndView read_review(HttpServletRequest req, @RequestParam(value="r", required=false) int review_no)
+	public ModelAndView read_review(HttpServletRequest req, HttpSession session,
+			@RequestParam(value="r", required=false) int review_no)
 	{
 		Map<String, Object> map = new HashMap<String, Object>();
 		ReviewVo rvw = reviewSvc.getOneReview(review_no);
@@ -135,7 +138,7 @@ public class ReviewController
 	}
 	
 	@RequestMapping(value="/admin/board/review_read_m.nm", method=RequestMethod.GET, params="r")
-	public ModelAndView read_review_move(HttpServletRequest request,
+	public ModelAndView read_review_move(HttpServletRequest request, HttpSession session,
 			@RequestParam(value="r") int review_no, @RequestParam(value="d") String direction)
 	{
 		Map<String, Object> map = new HashMap<String, Object>();
