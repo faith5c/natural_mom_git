@@ -34,13 +34,13 @@
 		table { margin : 0 auto; }
 		table { width : 100%; }
 	</style>
-	<form action="/soap/admin/board/notice_add.nm" method="post" enctype="multipart/form-data" name="notice_form">
+	<form action="notice_add.nm" method="post" enctype="multipart/form-data" name="notice_form">
 	<table cellspacing="2">
 		<tr><td colspan="2"><h2>공지사항</h2></td></tr>
 		<tr>
 			<th style="width:100px;"><label for="title">제목</label></th>
 			<td>
-			<input style="width:100%;" type="text" id="title" maxlength="127" placeholder="제목을 입력하세요"/>
+			<input style="width:100%;" type="text" id="title" name="title" maxlength="127" placeholder="제목을 입력하세요"/>
 			</td>
 		</tr>
 		
@@ -76,9 +76,17 @@
 
 	function checkNull() {
 		var title = $('#title').val();
-		var content = nicEditors.findEditor('notice_content').getContent();
+		var notice_content = nicEditors.findEditor('notice_content').getContent();
+	
+		var hiddenField = document.createElement("input");
+		hiddenField.setAttribute("type", "hidden");
+		hiddenField.setAttribute("name", "content");
+		hiddenField.setAttribute("value", notice_content);
+		
+		document.notice_form.appendChild(hiddenField);
+		
 		alert(title+content);
-		if(content=="" || content==null
+		if(notice_content=="" || notice_content==null
 				|| title=="" || title==null ){
 			alert("제목과 내용을 빠짐없이 입력해주세요");
 		}else{
