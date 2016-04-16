@@ -37,13 +37,13 @@ public class VNoticeDaoOraImpl extends NamedParameterJdbcDaoSupport implements I
 			+ "WHERE ntc_content LIKE :search "
 			+ "AND A.no_rownum >= :start AND A.no_rownum <= :end";
 	//뷰에 콘텐트 없다.
-	final String GET_SEARCH_BY_ID_NOTICE = 
+/*	final String GET_SEARCH_BY_ID_NOTICE = 
 			"SELECT A.notice_no, A.ntc_title, A.ntc_re_no, A.ntc_write_day, A.ntc_hits, A.mem_id FROM "
 			+ "(SELECT rownum as no_rownum, V.notice_no, V.ntc_title, V.ntc_content, "
 			+ "V.ntc_re_no, V.ntc_write_day, V.ntc_hits, V.mem_id FROM"
 			+ " v_notice V) A "
 			+ "WHERE mem_id LIKE :search "
-			+ "AND A.no_rownum >= :start AND A.no_rownum <= :end";
+			+ "AND A.no_rownum >= :start AND A.no_rownum <= :end";*/
 	
 	final String GET_SEARCH_BY_TITLE_N_CONTENT_NOTICE = 
 			"SELECT A.notice_no, A.ntc_title, A.ntc_re_no, A.ntc_write_day, A.ntc_hits, A.mem_id FROM "
@@ -119,7 +119,7 @@ public class VNoticeDaoOraImpl extends NamedParameterJdbcDaoSupport implements I
 			return list;
 		return null;
 	}
-
+/*
 	public List<VNoticeVo> getSearchByIdNotice(String search, int start, int end) throws DataAccessException {
 		// TODO Auto-generated method stub
 		MapSqlParameterSource ps = new MapSqlParameterSource();
@@ -133,7 +133,7 @@ public class VNoticeDaoOraImpl extends NamedParameterJdbcDaoSupport implements I
 		if (list != null)
 			return list;
 		return null;
-	}
+	}*/
 
 
 	public List<VNoticeVo> getSearchByTitleNContentNotice(String search, int start, int end) throws DataAccessException {

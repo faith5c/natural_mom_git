@@ -73,11 +73,11 @@ public class VNoticeSvcImpl implements IVNoticeSvc {
 		return 0;
 	}
 
-	@Override
+/*	@Override
 	public int getAllCountById(String search) {
 		// TODO Auto-generated method stub
 		return 0;
-	}
+	}*/
 
 	@Override
 	public int getAllCountByTitleNContent(String search) {

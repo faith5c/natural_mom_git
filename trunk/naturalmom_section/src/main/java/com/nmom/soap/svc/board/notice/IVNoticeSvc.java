@@ -24,7 +24,7 @@ public interface IVNoticeSvc {
 	
 	public int getAllCountByContent(String search);
 	
-	public int getAllCountById(String search);
+//	public int getAllCountById(String search);
 	
 	public int getAllCountByTitleNContent(String search);
 }

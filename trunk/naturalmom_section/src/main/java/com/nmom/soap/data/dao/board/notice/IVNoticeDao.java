@@ -14,8 +14,6 @@ public interface IVNoticeDao {
 	
 	public List<VNoticeVo> getSearchByContentNotice(String search, int start, int end) throws DataAccessException;
 	
-	public List<VNoticeVo> getSearchByIdNotice(String search, int start, int end) throws DataAccessException;
-	
 	public List<VNoticeVo> getSearchByTitleNContentNotice(String search, int start, int end) throws DataAccessException;
 	
 	public int getAllCount() throws DataAccessException;
