@@ -4,7 +4,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<script type="text/javascript" src="../js/nicEdit_inBoard.js"></script>
+<script type="text/javascript" src="../resources/js/nicEdit.js"></script>
 <script type="text/javascript">
 	bkLib.onDomLoaded(function(){
 		new nicEditor({maxHeight:300}).panelInstance('review_write')

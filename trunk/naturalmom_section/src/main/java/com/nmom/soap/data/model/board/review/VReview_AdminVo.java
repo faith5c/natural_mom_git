@@ -15,14 +15,14 @@ public class VReview_AdminVo
 	int rvw_satisfaction;
 	int rvw_hits;
 	int re_num;
-	int re_rnum;
+	int rownum;
 	
 	// ?�성??
 	public VReview_AdminVo() {}
 	
 	// 모두 ?�력: 게시???�용 조회 ??
 	public VReview_AdminVo(int review_no, int product_no, String product_name, String rvw_title, String rvw_content,
-			String mem_id, Date rvw_write_day, int rvw_satisfaction, int rvw_hits, int re_num, int re_rnum) 
+			String mem_id, Date rvw_write_day, int rvw_satisfaction, int rvw_hits, int re_num, int rownum) 
 	{
 		this.review_no = review_no;
 		this.product_no = product_no;
@@ -34,7 +34,7 @@ public class VReview_AdminVo
 		this.rvw_satisfaction = rvw_satisfaction;
 		this.rvw_hits = rvw_hits;
 		this.re_num = re_num;
-		this.re_rnum = re_rnum;
+		this.rownum = rownum;
 	}
 	
 //	// 조회?? ?�용 ?�음 (0, null �??�일): 게시??목록 조회, �?�� 결과
@@ -134,12 +134,12 @@ public class VReview_AdminVo
 		this.re_num = re_num;
 	}
 	
-	public int getRe_rnum() {
-		return re_rnum;
+	public int getRownum() {
+		return rownum;
 	}
 
-	public void setRe_rnum(int re_rnum) {
-		this.re_rnum = re_rnum;
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
 	}
 
 	@Override

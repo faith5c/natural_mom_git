@@ -5,7 +5,7 @@ import com.nmom.soap.data.model.board.review.ReviewVo;
 public interface IReviewSvc 
 {
 	// 리뷰 하나 가져오기
-	ReviewVo getOneReivew(int review_no);
+	ReviewVo getOneReview(int review_no);
 	
 	// 리뷰 등록하기
 	int addReview(ReviewVo review);

@@ -91,7 +91,7 @@
 <table cellspacing = "0">
 <!-- 제목 부분 -->
 	<tr>
-		<td style="width:100px;">${review.product_no}</td>
+		<td style="width:100px;">${review.review_no}</td>
 		<td style="width:150px;">${review.product_name}</td>
 		<td>${review.rvw_title}</td>
 		<td>
@@ -141,8 +141,12 @@
 	<tr>
 		<td colspan="2">
 		<!-- 숫자 받아서 유효하지 않을 경우 다음, 이전 숫자로 넘어가도록 -->
-			<input type="button" value="이전글" onclick="location.href='review_read_p.nm?&r=${review.review_no - 1}'">
-			<input type="button" value="다음글" onclick="location.href='review_read_p.nm?&r=${review.review_no + 1}'">
+			<c:if test="${review.rownum < count}">
+				<input type="button" value="이전글" onclick="location.href='review_read_m.nm?d=p&r=${review.review_no}'">
+			</c:if>
+			<c:if test = "${review.rownum > 1}" >
+				<input type="button" value="다음글" onclick="location.href='review_read_m.nm?d=n&r=${review.review_no}'">
+			</c:if>
 		</td>
 		<td colspan="2">
 			<input type="button" value="삭제">

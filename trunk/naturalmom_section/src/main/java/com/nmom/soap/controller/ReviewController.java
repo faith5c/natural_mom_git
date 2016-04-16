@@ -114,13 +114,53 @@ public class ReviewController
 	public ModelAndView read_review(HttpServletRequest req, @RequestParam(value="r", required=false) int review_no)
 	{
 		Map<String, Object> map = new HashMap<String, Object>();
-		// 해당 글의 조회수를 증가시키는 작업
-		ReviewVo rvw = reviewSvc.getOneReivew(review_no);
+		ReviewVo rvw = reviewSvc.getOneReview(review_no);
 		int countReviews = review_adminSvc.getCountAllReviews();
+		
+		// 해당 글의 조회수를 증가시키는 작업
 		if (reviewSvc.updateReviewCount(rvw) == S.PROCESS_SUCCESS)
 		{
 			VReview_AdminVo review = review_adminSvc.getOneReview(review_no);
 			List<Review_ReVo> reply = review_reSvc.getAllRe(review_no);
+			map.put("count", new Integer(countReviews));
+			map.put("review", review);
+			map.put("reply", reply);
+		}
+		else
+		{
+			// 에러 페이지로 이동
+		}
+		
+		return new ModelAndView("admin/board/review/a_review", map);
+	}
+	
+	@RequestMapping(value="/admin/board/review_read_m.nm", method=RequestMethod.GET, params="r")
+	public ModelAndView read_review_move(HttpServletRequest request,
+			@RequestParam(value="r") int review_no, @RequestParam(value="d") String direction)
+	{
+		Map<String, Object> map = new HashMap<String, Object>();
+		ReviewVo rvw = null;
+		int chn_no = review_no;
+		
+		do
+		{
+			// 이전글
+			if (direction.equals("p"))
+				chn_no -= 1;
+			// 다음글
+			else if (direction.equals("n"))
+				chn_no += 1;
+			
+			rvw = reviewSvc.getOneReview(chn_no);
+		} while (rvw.getRvw_del_check() > 0);
+		
+		int countReviews = review_adminSvc.getCountAllReviews();
+		
+		// 해당 글의 조회수를 증가시키는 작업
+		if (reviewSvc.updateReviewCount(rvw) == S.PROCESS_SUCCESS)
+		{
+			VReview_AdminVo review = review_adminSvc.getOneReview(chn_no);
+			List<Review_ReVo> reply = review_reSvc.getAllRe(chn_no);
 			map.put("count", new Integer(countReviews));
 			map.put("review", review);
 			map.put("reply", reply);

@@ -14,7 +14,7 @@ public class ReviewSvcImpl implements IReviewSvc
 	}
 
 	@Override
-	public ReviewVo getOneReivew(int review_no)
+	public ReviewVo getOneReview(int review_no)
 	{
 		return reviewDao.getOneReview(review_no);
 	}

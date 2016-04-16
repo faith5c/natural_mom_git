@@ -21,11 +21,12 @@ public class VReview_AdminDaoOraImpl extends NamedParameterJdbcDaoSupport implem
 //	private final String GET_ALL_LIST = "SELECT A.* FROM (SELECT rownum as re_rnum, X.* FROM"
 //			+ " (SELECT * from V_REVIEW_ADMIN ORDER BY review_no ASC) X WHERE rownum <= :end) A WHERE A.re_rnum >= :start"
 //			+ " ORDER BY rownum DESC";
-	private final String GET_ALL_LIST = "SELECT A.* FROM (SELECT rownum as re_rnum, X.* FROM"
-	+ " (SELECT * from V_REVIEW_ADMIN ORDER BY review_no DESC) X WHERE rownum <= :end) A WHERE A.re_rnum >= :start"
+	private final String GET_ALL_LIST = "SELECT A.* FROM (SELECT rownum, X.* FROM"
+	+ " (SELECT * from V_REVIEW_ADMIN ORDER BY review_no DESC) X WHERE rownum <= :end) A WHERE rownum >= :start"
 	+ " ORDER BY rownum ASC";
 	// 게시판 내용 조회
-	private final String GET_ONE_REVIEW = "SELECT * FROM v_review_admin WHERE review_no = ?";
+	private final String GET_ONE_REVIEW = "SELECT A.* FROM (SELECT rownum, X.* FROM "
+			+ "(SELECT * from V_REVIEW_ADMIN ORDER BY review_no DESC) X ) A WHERE review_no = ?";
 	// rownum으로 내용 조회
 	private final String GET_ONE_REVIEW_R_NUM = "SELECT A.* FROM "
 			+ "(SELECT rownum as re_rnum, V.* from V_REVIEW_ADMIN V) A "
