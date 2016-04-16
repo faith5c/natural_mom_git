@@ -49,6 +49,9 @@
 			</div>
 			<div id="content_body">
 				<c:choose>
+					<c:when test="${not empty qwa}">
+						<%@ include file = "_qna_write.jsp" %>
+					</c:when>
 					<c:when test="${not empty secret}">
 						<%@ include file = "_qna_read_secret.jsp" %>
 					</c:when>

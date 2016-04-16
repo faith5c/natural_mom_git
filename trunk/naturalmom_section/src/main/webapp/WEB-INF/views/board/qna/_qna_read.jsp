@@ -46,10 +46,10 @@
 		
 	}
 	table tr:last-child input, tr:nth-child(1) td input{
-		padding : 5px 30px;
+		padding : 5px 20px;
 		margin-right : 5px;
 		margin-top : 10px;
-		margin-left : 10px; 
+		margin-left : 5px; 
 		background-color : #85858D;
 		color : white;
 		font-size : 16px;
@@ -169,6 +169,7 @@
 		<input type="button" value="다음글">
 	</td>
 	<td colspan="2">
+		<input type="button" value="편집">
 		<input type="button" value="삭제">
 		<input type="button" value="목록" onclick = "location.href='/soap/board/qna.nm';">
 	</td>

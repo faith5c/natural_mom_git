@@ -30,7 +30,7 @@ public class FaqController {
 	
 	//자주하는 질문 목록
 	@RequestMapping(value ="/board/faq.nm", method=RequestMethod.GET)
-	public ModelAndView board_faq(HttpServletRequest req, 
+	public ModelAndView boardFaq(HttpServletRequest req, 
 			@RequestParam(value="pgidx", required=false) String pageindex){
 		int pi;
 		
@@ -59,7 +59,7 @@ public class FaqController {
 	
 	//자주하는 질문 검색
 	@RequestMapping(value ="/board/faq/search.nm", method=RequestMethod.GET)
-	public ModelAndView board_search_faq(HttpServletRequest req, 
+	public ModelAndView boardSearchFaq(HttpServletRequest req, 
 			@RequestParam(value="pgidx", required=false) String pageindex,
 			@RequestParam(value="sch") String sch,
 			@RequestParam(value="kw", required=false) String kw){
@@ -114,7 +114,7 @@ public class FaqController {
 
 	//자주하는 질문 하나 읽기
 	@RequestMapping(value="/board/faq/read.nm", method=RequestMethod.GET)
-	public ModelAndView faq_read(HttpServletRequest req,
+	public ModelAndView faqRead(HttpServletRequest req,
 		@RequestParam(value="fr_no") String fr_no){
 		Map<String,Object> map = new HashMap<String,Object>();
 
@@ -142,7 +142,7 @@ public class FaqController {
 
 	//관리자단에서 보는 자주하는 질문 목록
 	@RequestMapping(value ="admin/board/faq.nm", method=RequestMethod.GET)
-	public ModelAndView a_board_faq(HttpServletRequest req, 
+	public ModelAndView adminBoardFaq(HttpServletRequest req, 
 			@RequestParam(value="pgidx", required=false) String pageindex){
 		int pi;
 

@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.nmom.soap.S;
 import com.nmom.soap.data.model.board.qna.QnaReVo;
+import com.nmom.soap.data.model.board.qna.QnaVo;
 import com.nmom.soap.data.model.board.qna.VQnaQnaReVo;
 import com.nmom.soap.svc.board.qna.IQnaReSvc;
 import com.nmom.soap.svc.board.qna.IQnaSvc;
@@ -44,8 +45,8 @@ public class QnaController {
 	}
 	
 	//QNA 목록보기
-	@RequestMapping(value="/board/qna.nm", method=RequestMethod.GET)
-	public ModelAndView board_qna(HttpServletRequest req, 
+	@RequestMapping(value="/board/qna.nm", method={RequestMethod.GET})
+	public ModelAndView boardQna(HttpServletRequest req, 
 			@RequestParam(value="pgidx", required=false) String pageindex){
 		int pi;
 
@@ -75,7 +76,7 @@ public class QnaController {
 
 	//QNA 질문 검색
 	@RequestMapping(value ="/board/qna/search.nm", method=RequestMethod.GET)
-	public ModelAndView board_search_qna(HttpServletRequest req, 
+	public ModelAndView boardSearchQna(HttpServletRequest req, 
 			@RequestParam(value="pgidx", required=false) String pageindex,
 			@RequestParam(value="sch") String sch,
 			@RequestParam(value="kw", required=false) String kw){
@@ -143,7 +144,7 @@ public class QnaController {
 
 	//QNA 하나 읽기
 	@RequestMapping(value="/board/qna/read.nm", method=RequestMethod.GET)
-	public ModelAndView qna_read(HttpServletRequest req,
+	public ModelAndView qnaRead(HttpServletRequest req,
 		@RequestParam(value="qr_no") String qr_no)
 	{
 		Map<String,Object> map = new HashMap<String,Object>();
@@ -169,7 +170,7 @@ public class QnaController {
 					return new ModelAndView("/board/qna/b_qna", map);
 					
 				}else { //비밀글일때
-					map.put("secret", "비밀글");
+					map.put("secret", true);
 					return new ModelAndView("/board/qna/b_qna", map);
 				}
 			}
@@ -181,7 +182,7 @@ public class QnaController {
 	
 	//QNA 비밀글 하나 읽기
 	@RequestMapping(value="/board/qna/secret.nm", method=RequestMethod.POST)
-	public ModelAndView qna_secret_read(HttpServletRequest req,
+	public ModelAndView qnaSecretRead(HttpServletRequest req,
 		@RequestParam(value="rn", required=false) String rn,
 		@RequestParam(value="qr_no") String qr_no,
 		@RequestParam(value="q_pw") String q_pw
@@ -209,7 +210,7 @@ public class QnaController {
 					return new ModelAndView("/board/qna/b_qna", map);
 					
 				} else{ //글 비밀번호가 틀림
-					map.put("secret", "비밀글");
+					map.put("secret", true);
 					map.put("incorrect_pw", "잘못된 비밀번호 입니다");
 					return new ModelAndView("/board/qna/b_qna", map);
 				}
@@ -220,7 +221,53 @@ public class QnaController {
 		return new ModelAndView("redirect:/board/qna.nm", map);
 	}
 	
-	// QNA 글쓰기
-	//@RequestMapping(value="/board/qna/write_form.nm", method=RequstMethod.POST)
-	
+	// QNA 글쓰기 사용자가 작성하는 화면
+	@RequestMapping(value="/board/qna/add_form.nm", method=RequestMethod.GET)
+	public ModelAndView prepareAddQnaForm(HttpServletRequest req){
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("qwa", true);
+		return new ModelAndView("board/qna/b_qna", map);
+	}
+
+	// QNA 글쓰기 사용자가 작성하는 화면
+	@RequestMapping(value="/board/qna/add_proc.nm", method=RequestMethod.POST)
+	public String addQnaForm(HttpServletRequest req,
+			@RequestParam(value="title", required=false) String title,
+			@RequestParam(value="writer", required=false) String writer,
+			@RequestParam(value="password", required=false) String password,
+			@RequestParam(value="secret_check", required=false) boolean secret_check,
+			@RequestParam(value="content", required=false) String content)
+	{
+		System.out.println(title);
+		System.out.println(writer);
+		System.out.println(password);
+		System.out.println(secret_check);
+		System.out.println(content);
+		System.out.println();
+
+		if(title == null){
+			title = "(제목없음)";
+		}
+		if(content == null){
+			content = "(내용없음)";
+		}
+		
+		String qna_pw = null;
+		
+		if(secret_check){
+			qna_pw = password;
+		}
+		int r = qnaSvc.addQna(title, content, qna_pw, writer);
+		
+		if(r==1){
+			System.out.println("글 등록 성공");
+		}else {
+			System.out.println("글 등록 실패");
+		}
+		
+//		Map<String,Object> map = new HashMap<String,Object>();
+//		return new ModelAndView("redirect:/board/qna.nm", map);
+		return "redirect:/board/qna.nm";
+	}
 }

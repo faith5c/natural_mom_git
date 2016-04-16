@@ -123,7 +123,6 @@ $(function(){
 		<input type="button" value="다음글">
 	</td>
 	<td colspan="2">
-		<input type="button" value="삭제">
 		<input type="button" value="목록" onclick = "location.href='/soap/board/qna.nm';">
 	</td>
 </tr>

@@ -118,9 +118,13 @@
 		</c:forEach>
 	<tr class="qna_write">
 		<td colspan="5" style="border-top: 1px solid grey">
-		<a href="/soap/board/qna/write_form.nm">
+		
+		<c:if test="${sessionScope.loggedin!=null}">
+		<a href="/soap/board/qna/add_form.nm">
 		<span>글쓰기</span>
 		</a>
+		</c:if>
+		
 		</td>
 	</tr>
 	<tr>
@@ -190,7 +194,7 @@
 				
 				location.href=curUrl+mid+"pgidx="+$("#pgidx").html();
 			}
-		</script>
-		
+
+			</script>
 </body>
 </html>

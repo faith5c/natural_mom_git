@@ -93,8 +93,8 @@ _____________________________________________________________
 	--------------------------------
 		
 	- 글쓰기
-	/board/faq/write_form.nm
-	/board/faq/write_proc.nm
+	/board/faq/add_form.nm
+	/board/faq/add_proc.nm
 	
 	- 글 편집
 	/board/faq/edit_form.nm
