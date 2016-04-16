@@ -51,7 +51,7 @@ td:FIRST-CHILD {
 <div id="inside">
 	<h2>&nbsp;&nbsp;회원가입</h2>
 	<br><hr>
-	<form action="join_complete.nm" method="post" name="join_form" >
+	<form action="join_complete.nm" method="get" name="join_naturalmom_form" id="join_form">
 		<table>
 			<tr>
 				<td>아이디</td>
@@ -141,7 +141,7 @@ td:FIRST-CHILD {
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2" style="text-align: center"><input type="button" id="submit" value="확인" onclick="allSubmit()"/></td>
+				<td colspan="2" style="text-align: center"><input type="submit" id="submit" value="확인" onclick="allSubmit()"/></td>
 			</tr>
 		</table>
 		
@@ -244,7 +244,8 @@ td:FIRST-CHILD {
 		}else if($('#address_detail').val()==""){
 			alert("상세주소를 입력해주세요.");
 		}else{
-			document.join_form.submit();
+			$('#join_form').submit();
+			//document.join_form.submit();
 		}
 		
 	}

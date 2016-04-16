@@ -1,5 +1,6 @@
 package com.nmom.soap.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.nmom.soap.S;
 import com.nmom.soap.data.model.member.MemberVo;
 import com.nmom.soap.svc.member.IMemberSvc;
 
@@ -34,7 +36,7 @@ public class MemberController {
 		Map<String, Object> map = new HashMap<>();
 		MemberVo m = memberSvc.getOneMember(login_id);
 		
-		if(m!=null && m.getMem_pw().equals(login_pw)){
+		if(m!=null && m.getMem_pw().equals(login_pw) && m.getDrop_out() != 1){
 			se.setAttribute("loggedin", login_id);
 				
 				if(m.getMem_level_cd()==10){
@@ -71,7 +73,6 @@ public class MemberController {
 	public String menu_join(HttpServletRequest req){
 		return "join/membership";
 	}
-	
 	
 	
 	// 아이디 중복확인 팝업
@@ -115,6 +116,73 @@ public class MemberController {
 		
 		map.put("check", id);
 		return new ModelAndView("redirect:/pop_checkId.nm",map);
+	}
+	
+	// 회원가입 처리
+	@RequestMapping(value="join_complete.nm", method=RequestMethod.GET)
+	public ModelAndView join_complete_proc(HttpServletRequest req,
+										@RequestParam(value="id") String id,
+										@RequestParam(value="pw") String pw,
+										@RequestParam(value="name") String name,
+										@RequestParam(value="gender") int gender,
+										@RequestParam(value="year") int year,
+										@RequestParam(value="month") int month,
+										@RequestParam(value="day") int day,
+										@RequestParam(value="phone1") String phone1,
+										@RequestParam(value="phone2") int phone2,
+										@RequestParam(value="phone3") int phone3,
+										@RequestParam(value="email1") String email1,
+										@RequestParam(value="email2") String email2,
+										@RequestParam(value="post_num") int post_num,
+										@RequestParam(value="address") String address,
+										@RequestParam(value="address_detail") String address_detail
+											){
+		
+		System.out.println("들어옴");
+		System.out.println("#" + id + " : " + pw);
+		System.out.println(name + " " + gender +" "+ new Date(year, month, day));
+		System.out.println("phone " + phone1 +"-"+ phone2 +"-"+ phone3);
+		System.out.println("email " +email1 + "@"+email2);
+		System.out.println("address " + post_num + " " + address + "@" +address_detail);
+		
+		return new ModelAndView("join/membership");
+	}
+	
+	
+	
+	// 회원정보 수정(정보 불러오기) //////////////////////////////////////////////////////////마이페이지
+	@RequestMapping(value="myinfo_edit.nm", method=RequestMethod.GET)
+	public ModelAndView edit_member(HttpServletRequest req,
+									HttpSession se){
+		Map<String, Object> map = new HashMap<>();
+		
+		String id = (String)se.getAttribute(S.SESSION_LOGIN);
+		MemberVo member =  memberSvc.getOneMember(id);
+		String[] phone = member.getMem_phone().split("-");
+		String[] email = member.getMem_email().split("@");
+		String[] address = member.getMem_addr_detail().split("@");
+		
+		map.put("m", member);
+		map.put("phone", phone);
+		map.put("email", email);
+		map.put("address", address);
+		
+		return new ModelAndView("mypage/mypage", map);
+	}
+	
+	
+	// 회원탈퇴
+	@RequestMapping(value="dropout_proc.nm", method=RequestMethod.GET)
+	public ModelAndView dropout_proceed(HttpServletRequest req,
+								HttpSession se ){
+		Map<String, Object> map = new HashMap<>();
+		String id = (String)se.getAttribute(S.SESSION_LOGIN);
+		
+		System.out.println(memberSvc.removeMember(id));
+		map.put("flash_msg", "정상 탈퇴처리 되었습니다. <br> 지금까지 자연맘을 이용해주셔서 감사합니다.");
+		se.invalidate();
+		
+		return new ModelAndView("empty", map);
 	}
 
 

@@ -49,8 +49,7 @@ public class MemberSvcImpl implements IMemberSvc {
 
 	@Override
 	public int removeMember(String id) {
-		// TODO Auto-generated method stub
-		return 0;
+		return memberDao.removeMember(id);
 	}
 
 	@Override
