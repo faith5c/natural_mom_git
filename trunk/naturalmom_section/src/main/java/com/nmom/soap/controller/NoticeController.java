@@ -414,22 +414,20 @@ public class NoticeController {
 //			@RequestParam(value="file1", required=false) MultipartFile file1,
 //			@RequestParam(value="file2", required=false) MultipartFile file2,
 			@RequestParam(value="title", required=false) String t,
-			@RequestParam(value="notice_content", required=false) String c,
-			@RequestParam(value="content", required=false) String c2) 
+			@RequestParam(value="notice_content", required=false) String c) 
 					throws IllegalStateException, IOException {
 		System.out.println("공지사항 글 추가하기 진입 성공");
 		String id = null;
 		id = (String)ses.getAttribute(S.SESSION_LOGIN);
 		
+		String title = null;
+		String content = null;
 		if( (boolean)ses.getAttribute(S.SESSION_ADMIN) && id != null && !id.isEmpty() && !id.equals("")){
-			String title = null;
-			String content = null;
+			
 			try {
 				title = URLDecoder.decode(t, "UTF-8");
 				content = URLDecoder.decode(c, "UTF-8");
 				System.out.println(title+content);
-				if(content == null) content = URLDecoder.decode(c2, "UTF-8");
-				System.out.println(title+" "+content);
 			} catch (UnsupportedEncodingException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -447,17 +445,20 @@ public class NoticeController {
 			String ntc_attached_file1 = realFile1.getName();
 			*/
 			
-			//하나라도 빈 내용이면 업로드 안함
-			if(title != null && !title.equals("") 
-				&& content != null && !content.equals("") ){
-				int r = this.noticeSvc.addNotice(new NoticeVo(title, content, null, null, id));
+			
+		}
+		
+		//하나라도 빈 내용이면 업로드 안함
+		if(title != null && !title.equals("") 
+			&& content != null && !content.equals("") ){
+			int r = this.noticeSvc.addNotice(new NoticeVo(title, content, null, null, id));
+			
+			if(r == 1){
+				System.out.println("공지사항 등록 성공!");
 				
-				if(r == 1){
-					System.out.println("공지사항 등록 성공!");
-					
-				}
-				else System.out.println("공지사항 등록 실패!");
 			}
+			else System.out.println("공지사항 등록 실패!");
+			
 		}
 		int block = 1; 
 		int allPages = 0;
@@ -473,6 +474,82 @@ public class NoticeController {
 		map.put("nb", block);
 		map.put("no_list", list);
 		return new ModelAndView("admin/board/notice/a_notice", map);
+		
+	}
+	
+	@RequestMapping (value="/admin/board/notice_edit.nm", method={RequestMethod.POST, RequestMethod.GET})
+	public ModelAndView editNoticeA(HttpServletRequest req, 
+			HttpSession ses, 
+//			@RequestParam(value="file1", required=false) MultipartFile file1,
+//			@RequestParam(value="file2", required=false) MultipartFile file2,
+			@RequestParam(value="title", required=false) String t,
+			@RequestParam(value="notice_content", required=false) String c,
+			@RequestParam(value="r", required=false) int no) 
+					throws IllegalStateException, IOException {
+		System.out.println("공지사항 글 수정하기 진입 성공");
+		String id = null;
+		id = (String)ses.getAttribute(S.SESSION_LOGIN);
+		
+		String title = null;
+		String content = null;
+		if( (boolean)ses.getAttribute(S.SESSION_ADMIN) 
+				&& id != null && !id.isEmpty() 
+				&& !id.equals("")){
+			
+			try {
+				title = URLDecoder.decode(t, "UTF-8");
+				content = URLDecoder.decode(c, "UTF-8");
+				System.out.println(title+content);
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			//파일 업로드 상대경로 배운 후 작업.
+			/*final String UPLOAD_FOLDER 
+			= "C:\\spring-tool-suite-3.7.3\\_f5_sts\\FusionNoodle\\src\\main\\webapp\\resources\\img\\";		
+			String ori = file1.getOriginalFilename(); // 원본 파일 이름
+			System.out.println("orifile => " + ori );
+			File realFile1 = new File(UPLOAD_FOLDER, "rm_"+ori);
+			file1.transferTo(realFile1); // throws IllegalStateException, IOException 
+			
+			// 예외 없이... 정상 물리 파일 저장이 완료 되었다면?
+			String ntc_attached_file1 = realFile1.getName();
+			*/
+			
+			
+		}
+		
+		NoticeVo notice = new NoticeVo(no, title, content, null, null, (String)ses.getAttribute(S.SESSION_LOGIN));
+		int r = this.noticeSvc.editNotice(notice);
+		
+		if(r == 1) System.out.println("업데이트 성공");
+		else System.out.println("업데이트 실패");
+		
+		NoticeVo noticeView = this.noticeSvc.getNotice(no);
+		System.out.println("notice_no"+no);
+		System.out.println(notice);
+		
+		if(notice != null){
+			Map<String, Object> map = new HashMap<>();
+			List<NoticeReVo> reply = this.noticeReSvc.getAllNoticeRe(no);
+			int prev_notice = this.noticeSvc.getPrevNoticeNo(no);
+			if( prev_notice > 0 ) map.put("prev", prev_notice);
+			
+			int next_notice = this.noticeSvc.getNextNoticeNo(no);
+			if( next_notice > 0 ) map.put("next", next_notice);
+			System.out.println("이전"+prev_notice+" 다음"+next_notice);
+			
+			if(reply.size() > 0){
+				map.put("re_list", reply);
+			}
+			map.put("r", no);
+			
+			map.put("no", notice);
+			return new ModelAndView("/admin/board/notice/a_notice", map);
+		}else{	
+			return new ModelAndView("/admin/board/notice/a_notice");
+		}	
 	}
 	
 	//공지사항 글 수정하기(어드민)
