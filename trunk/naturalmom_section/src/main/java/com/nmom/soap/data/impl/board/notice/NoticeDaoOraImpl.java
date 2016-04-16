@@ -42,6 +42,7 @@ public class NoticeDaoOraImpl extends NamedParameterJdbcDaoSupport implements IN
 		
 		List<NoticeVo> list = getNamedParameterJdbcTemplate().query(GET_NOTICE, ps,
 				BeanPropertyRowMapper.newInstance(NoticeVo.class));
+		System.out.println("노티스 다오"+list.get(0));
 		if( list != null && list.get(0) != null ) return list.get(0);
 		return null;
 	}
@@ -85,9 +86,11 @@ public class NoticeDaoOraImpl extends NamedParameterJdbcDaoSupport implements IN
 
 	@Override
 	public int incrementHit(int notice_no) {
+		
 		MapSqlParameterSource ps = new MapSqlParameterSource();
 		ps.addValue("notice_no", new Integer(notice_no), Types.INTEGER);
 		int r = this.getNamedParameterJdbcTemplate().update(INCRMENT_HIT_NOTICE, ps);
+		System.out.println("게시글"+notice_no+" 히트 "+r);
 		return r;
 	}
 

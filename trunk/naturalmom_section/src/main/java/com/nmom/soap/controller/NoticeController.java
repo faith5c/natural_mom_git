@@ -101,44 +101,37 @@ public class NoticeController {
 	@RequestMapping (value="/board/notice_read.nm", method=RequestMethod.GET)
 	public ModelAndView getNoticeA(HttpServletRequest req,
 			HttpSession ses,
-			@RequestParam(value="r", required=false) String notice_no){
+			@RequestParam(value="r", required=false) int notice_no){
+		System.out.println("/board/notice_read.nm 진입");
 		
-		int no = 0;
+		int r = this.noticeSvc.incrementHit(notice_no);
+		System.out.println();
+		NoticeVo notice = this.noticeSvc.getNotice(notice_no);
+		System.out.println("notice_no"+notice_no);
+		System.out.println(notice);
 		
-		if (notice_no != null && !notice_no.isEmpty() && !notice_no.equals("")) {
-			try {
-				no = Integer.parseInt(notice_no);
-				int r = this.noticeSvc.incrementHit(no);
-			} catch (NumberFormatException ne) {
-				ne.printStackTrace();
-			}
-			System.out.println("게시글 번호"+no);
-		}
-		NoticeVo notice = this.noticeSvc.getNotice(no);
 		if(notice != null){
 			Map<String, Object> map = new HashMap<>();
-			List<NoticeReVo> reply = this.noticeReSvc.getAllNoticeRe(no);
-			int prev_notice = this.noticeSvc.getPrevNoticeNo(no);
+			List<NoticeReVo> reply = this.noticeReSvc.getAllNoticeRe(notice_no);
+			int prev_notice = this.noticeSvc.getPrevNoticeNo(notice_no);
 			if( prev_notice > 0 ) map.put("prev", prev_notice);
 			
-			int next_notice = this.noticeSvc.getNextNoticeNo(no);
+			int next_notice = this.noticeSvc.getNextNoticeNo(notice_no);
 			if( next_notice > 0 ) map.put("next", next_notice);
 			System.out.println("이전"+prev_notice+" 다음"+next_notice);
 			
 			if(reply.size() > 0){
 				map.put("re_list", reply);
 			}
-			map.put("r", no);
+			map.put("r", notice_no);
 			
 			map.put("no", notice);
 			return new ModelAndView("/board/notice/b_notice", map);
 		}
 		
-		if(notice_no == null || notice_no.isEmpty() || notice_no.equals("") || no == 0){	
+		else{	
 			return new ModelAndView("/board/notice/b_notice");
 		}
-			
-		return null;
 	}
 	
 	//공지사항 댓글 달기(회원)

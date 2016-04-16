@@ -79,9 +79,8 @@
 				<tr>
 					<td>${ no.notice_no }</td>
 					<td>
-						<a href="/soap/board/notice_read.nm?r=${no.notice_no}">${ no.ntc_title }
+						<a href="/soap/board/notice_read.nm?r=${no.notice_no}">${ no.ntc_title}</a>
 						<c:if test="${ no.ntc_re_no gt 0}"><b>[${ no.ntc_re_no }]</b></c:if> 
-						</a>
 					</td>
 					<td>관리자</td>
 					<td><fmt:formatDate value="${ no.ntc_write_day }" type="Date" /></td>

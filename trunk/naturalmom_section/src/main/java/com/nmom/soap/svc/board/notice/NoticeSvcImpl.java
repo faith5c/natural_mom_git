@@ -16,6 +16,7 @@ public class NoticeSvcImpl implements INoticeSvc {
 	
 	@Override
 	public NoticeVo getNotice(int notice_no) {
+		System.out.println("노티스 서비스 notice_no"+notice_no);
 		NoticeVo no = this.noticeDao.getNotice(notice_no);
 		return (no != null) ? no : null;
 	}
