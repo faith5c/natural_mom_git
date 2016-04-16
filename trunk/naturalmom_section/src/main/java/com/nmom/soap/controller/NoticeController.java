@@ -160,9 +160,9 @@ public class NoticeController {
 		//블럭은 페이지 10개씩의 단위 첫페이지는 무조건 1
 		
 		//어드민이 투루가 아닐경우 프론트 페이지로 ㄱㄱ
-		if(ses.getAttribute("admin") == null || !ses.getAttribute("admin").equals("true")){
-			return new ModelAndView("index");
-		}
+//		if(ses.getAttribute("admin") == null || !ses.getAttribute("admin").equals("true")){
+//			return new ModelAndView("index");
+//		}
 		
 		int block = 1;
 		
