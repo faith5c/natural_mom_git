@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     
 <!DOCTYPE html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <style type="text/css">
 
 #inside {
@@ -50,7 +51,7 @@ td:FIRST-CHILD {
 <div id="inside">
 	<h2>&nbsp;&nbsp;회원가입</h2>
 	<br><hr>
-	<form name="join" method="post">
+	<form name="join" method="post" action="">
 		<table>
 			<tr>
 				<td>아이디</td>
@@ -64,7 +65,7 @@ td:FIRST-CHILD {
 			</tr>
 			<tr>
 				<td>비밀번호 확인</td>
-				<td id="check_pw2"><input type="password" id="pw2" name="pw2" onchange="check_pw2()"/>&nbsp;
+				<td id="check_pw2"><input type="password" id="pw2" name="pw2" onchange="check_pw2()"/>&nbsp;&nbsp;
 					<span>비밀번호를 한번 더 입력하세요</span></td>
 			</tr>
 			<tr>
@@ -114,7 +115,7 @@ td:FIRST-CHILD {
 				<td>
 					<input type="text" id="email1" name="email1" />@<input type="text" id="email2" name="email2" />
 					<select id="email_select" name="email_select" onchange="email_change()">
-						<option value="">직접입력</option>
+						<option value="none">직접입력</option>
 						<option value="naver.com">naver.com</option>
 						<option value="hanmail.net">hanmail.net</option>
 						<option value="nate.com">nate.com</option>
@@ -140,11 +141,22 @@ td:FIRST-CHILD {
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2" style="text-align: center"><input type="submit" id="submit" value="확인" onclick="allSubmit()"/></td>
+				<td colspan="2" style="text-align: center"><input type="button" id="submit" value="확인" onclick="allSubmit()"/></td>
 			</tr>
 		</table>
+	
+	<!-- Null Check -->
+	<input type="hidden" id="nnId" name="nnId" value="false"/>
+	<input type="hidden" id="nnPw" name="nnPw" value="false"/>
+	<input type="hidden" id="nnPw2" name="nnPw2" value="false"/>
+	
+	<input type="hidden" id="nnName" name="nnName" value="false"/>
+	<input type="hidden" id="nnBirth" name="nnBirth" value="false"/>
+	<input type="hidden" id="nnPhone" name="nnPhone" value="false"/>
+	<input type="hidden" id="nnEmail" name="nnEmail" value="false"/>
+	<input type="hidden" id="nnAddress" name="nnAddress" value="false"/>
+	
 	</form>
-
 </div>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
@@ -170,8 +182,10 @@ td:FIRST-CHILD {
 		console.log(length_pw);
 		if( length_pw < 6){
 			$("#check_pw span").css("color", "red").text("비밀번호가 너무 짧습니다");
+			document.getElementById("nnPw").value = "false";
 		} else {
-			$("#check_pw span").text("");
+			$("#check_pw span").css("color", "gray").html("<i class='fa fa-check-circle' aria-hidden='true'></i>");
+			document.getElementById("nnPw").value = "true";
 		}
 	}
 	
@@ -181,8 +195,10 @@ td:FIRST-CHILD {
 		
 		if( ! (val_pw1 == var_pw2) ){
 			$("#check_pw2 span").css("color", "red").text("비밀번호가 일치하지 않습니다");
+			document.getElementById("nnPw2").value = "false";
 		}else{
-			$("#check_pw2 span").css("color", "gray").text("비밀번호가 일치합니다");
+			$("#check_pw2 span").css("color", "gray").html("<i class='fa fa-check-circle' aria-hidden='true'></i>");
+			document.getElementById("nnPw2").value = "true";
 		}
 	}
 	 
@@ -206,15 +222,36 @@ td:FIRST-CHILD {
 	 
 	 function email_change() {
 		 var selectedEmail = $("#email_select").val();
-		 document.getElementById("email2").setAttribute("value", selectedEmail);
+		 document.getElementById("email2").value = selectedEmail;
 	}
 	 
-	function allSubmit() {
-		alert($('#id').val());
-		return false;
+	function allSubmit(){
 		
-		document.join.action ="membership.jsp?page=complete";
-		document.join.submit();
+		if($('#nnId').val()=="false"){
+			alert("아이디 중복확인을 해주세요.");
+		}else if($('#nnPw').val()=="false"){
+			alert("비밀번호를 확인해주세요.");
+		}else if($('#nnPw2').val()=="false"){
+			alert("비밀번호가 일치하는지 확인해주세요.");
+		}else if($('#name').val()==""){
+			alert("이름을 입력해주세요.");
+		}else if($('#year').val()=="" || $('#month').val()=="none" || $('#day').val()=="none"){
+			alert("생년월일을 입력해주세요.");
+		}else if($('#phone1').val()=="none" || $('#phone2').val()=="" || $('#phone3').val()==""){
+			alert("휴대폰 번호를 입력해주세요.");
+		}else if($('#email1').val()=="" || $('#email2').val()=="" || $('#email_select').val()=="none"){
+			alert("이메일을 입력해주세요.");
+		}else if($('#email1').val()=="" || $('#email2').val()==""){
+			alert("이메일을 입력해주세요.");
+		}else if($('#post_num').val()=="" || $('#address').val()==""){
+			alert("주소를 입력해주세요.");
+		}else if($('#address_detail').val()==""){
+			alert("상세주소를 입력해주세요.");
+		}else{
+			document.join.action ="membership.jsp?page=complete";
+			document.join.submit();
+		}
+		
 	}
 	 
 	

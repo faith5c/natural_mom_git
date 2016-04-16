@@ -26,7 +26,7 @@ public class IndexController {
 		return "login/login";
 	}
 	
-	@RequestMapping(value ="/join.nm", method=RequestMethod.GET)
+	@RequestMapping(value ="/join_term.nm", method=RequestMethod.GET)
 	public String menu_join(HttpServletRequest req){
 		return "join/membership";
 	}

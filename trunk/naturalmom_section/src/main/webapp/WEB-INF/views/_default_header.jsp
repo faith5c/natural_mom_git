@@ -19,7 +19,7 @@
 				<li><a href="<c:url value = '/login.nm' />" onclick="adviceJoin()">마이페이지</a></li>
 				<li><a href="<c:url value = '/login.nm' />" onclick="adviceJoin()">주문조회</a></li>
 				<li><a href="<c:url value = '/login.nm' />" onclick="adviceJoin()">장바구니</a></li>
-				<li><a href="<c:url value = '/join.nm'/>"> 회원가입</a></li>
+				<li><a href="<c:url value = '/join_term.nm'/>"> 회원가입</a></li>
 				<li><a href="<c:url value = '/login.nm' />">로그인</a></li>
 				</c:if>
 				

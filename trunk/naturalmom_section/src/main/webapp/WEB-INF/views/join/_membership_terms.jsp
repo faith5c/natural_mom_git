@@ -46,7 +46,7 @@ p {
 	<br><br>
 	<h3>1. 이용약관</h3>
 	<br>
-	<form action="join.nm" method="get">
+	<form action="join.nm" method="post">
 		<textarea id="terms1" rows="8" cols="120" readonly="readonly" style="font-family: '맑은고딕'; font-size: 10; ">
 한결유통  회원약관
 당사는 공정거래위원회에서 심의한 표준약관을 사용하고 있습니다 .

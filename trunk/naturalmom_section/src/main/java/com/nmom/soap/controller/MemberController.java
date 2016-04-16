@@ -67,6 +67,13 @@ public class MemberController {
 	
 	//////////////////////////////////////////////////////////// 회원가입 페이지
 	
+	@RequestMapping(value ="/join.nm", method=RequestMethod.POST)
+	public String menu_join(HttpServletRequest req){
+		return "join/membership";
+	}
+	
+	
+	
 	// 아이디 중복확인 팝업
 	@RequestMapping(value="pop_checkId.nm", method=RequestMethod.GET)
 	public ModelAndView popup_checkId(HttpServletRequest req,

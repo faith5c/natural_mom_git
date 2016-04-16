@@ -80,7 +80,7 @@
 			<c:forEach var="re" items="${re}">
 				<tr>
 					<td id = "re_id" class="re_title">${re.mem_id }</td>
-					<td id = "re_content" colspan="3" width="55%">${re.evt_re_content}</td>
+					<td id = "re_con" colspan="3" width="55%">${re.evt_re_content}</td>
 					<td id = "re_write_day" colspan="2" style="text-align: right">${re.evt_re_write_day }
 						<span onclick="location.href='event_read.nm?r=${con.event_no}&rn=${con.evt_rnum}&d=${re.event_re_no}'">
 							<i class="fa fa-times-circle"></i></span>
@@ -91,7 +91,7 @@
 				<tr>
 					<td class="re_title">댓글입력</td>
 					<td colspan="4">
-						<textarea style="width:100%; resize : none;" cols="30" rows="3" name="re_content"></textarea>
+						<textarea style="width:100%; resize : none;" cols="30" rows="3" name="re_content" id="re_content"></textarea>
 					</td>
 					<td>
 						<input type = "button" value = "등록" id = "re_submit" name = "re_submit" onclick="checkNull()" >
@@ -133,10 +133,10 @@
 		
 		var content = $('#re_content').val();
 		
-		if(content!=null){
-			document.reply_form.submit();
+		if(content==null || content== ""){
+			alert("댓글을 입력해주세요");
 		}else{
-			alert("내용을 입력해주세요");
+			document.reply_form.submit();
 		}
 	}
 

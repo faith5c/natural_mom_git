@@ -2,10 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
+
 <html lang="ko">
   <head>
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="css/main.css" />
+	
 	<script src="resources/js/jquery-1.11.3.min.js"></script>
 	<!--[if lt IE 9]>
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -98,9 +100,9 @@
 				<tr>
 					<td style="text-align: right"><label for="id">아이디</label> </td>
 					<td><input type="text" id="checkedid" name="checkedid" value="${checking_id}">
-						<input type="button" id ="btn_id" value = "아이디 찾기" onclick="check_again()"/></td>
+						<input type="button" id ="btn_id" value = "아이디 확인" onclick="check_again()"/></td>
 				</tr>
-				<tr><td colspan="2" style="text-align: center;"><br><br><b>${flash_msg}</b></td></tr>
+				<tr><td colspan="2" style="text-align: center;"><br><br><b id="result">${flash_msg}</b></td></tr>
 			</table>
 		</div>
 
@@ -121,8 +123,16 @@
 	
 	function sendId() {
 		var id = $('#checkedid').val();
-		opener.document.join.id.value = id;
-		self.close();
+		var result = document.getElementById('result').innerHTML;
+		
+		if(result=="사용할 수 있는 아이디입니다."){
+			opener.document.join.id.value = id;
+			opener.document.join.nnId.value ="true";
+			self.close();
+		}else{
+			alert('다른 아이디를 입력하세요.');
+		}
+		
 	}
 
 </script>
