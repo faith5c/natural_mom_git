@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,6 +9,7 @@
 </head>
 <body>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
 <style type="text/css">
 	h2 { color: #004523; padding-top : 20px; }
 	td,th { padding : 10px; }
@@ -73,12 +75,24 @@
 	
 </style>
 
-<form>
+<script type="text/javascript">
+$(function(){
+	if($("#incorrect_pw").val()!=null){
+		alert($("#incorrect_pw").val());
+	}
+});
+</script>
+
+<c:if test="${not empty incorrect_pw}">
+	<input type="hidden" id="incorrect_pw" value="${incorrect_pw}">
+</c:if>
+
+<form action="/soap/board/qna/secret.nm" method="post">
 <table cellspacing="0">
 <tr><td colspan = "4"><h2>Q&A</h2></td></tr>
 <tr style="background: #918686; color: white;">
-	<th style="width:80px;">2</th>
-	<td colspan="3">배송일 문의 [1]<span>&nbsp;<i class="fa fa-lock"></i></span></td>
+	<th style="width:80px;">${param.rn}</th>
+	<td colspan="3">${qvo.qna_title}<span>&nbsp;<i class="fa fa-lock"></i></span></td>
 </tr>
 
 <tr>
@@ -89,8 +103,10 @@
 	<hr/>
 	이 글은 비밀글입니다. 비밀번호를 입력해주세요<br/><br/>
 	비밀번호&nbsp;&nbsp;&nbsp;
-	<input type="password" name="pw" size="8">&nbsp;&nbsp;&nbsp;
-	<input type="button" name="secret_check" value="확인">
+	<input type="password" name="q_pw" size="8">&nbsp;&nbsp;&nbsp;
+	<input type="hidden" name="qr_no" value="${qvo.qna_no}"/>
+	<input type="hidden" name="rn" value="${param.rn}"/>
+	<input type="submit" value="확인">
 	<br/>&nbsp;
 	</div>
 	</td>
@@ -108,7 +124,7 @@
 	</td>
 	<td colspan="2">
 		<input type="button" value="삭제">
-		<input type="button" value="목록" onclick = "location.href='customer_center.jsp?page=qna';">
+		<input type="button" value="목록" onclick = "location.href='/soap/board/qna.nm';">
 	</td>
 </tr>
 </table>

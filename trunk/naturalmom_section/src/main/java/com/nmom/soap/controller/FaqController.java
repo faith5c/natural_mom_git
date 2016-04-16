@@ -1,6 +1,8 @@
 package com.nmom.soap.controller;
 
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +28,7 @@ public class FaqController {
 		this.faqSvc = faqSvc;
 	}
 	
-	//사용자단에서 보는 자주하는 질문 목록
+	//자주하는 질문 목록
 	@RequestMapping(value ="/board/faq.nm", method=RequestMethod.GET)
 	public ModelAndView board_faq(HttpServletRequest req, 
 			@RequestParam(value="pgidx", required=false) String pageindex){
@@ -45,13 +47,98 @@ public class FaqController {
 		}
 		
 		Map<String,Object> map = new HashMap<String,Object>();
+		
 		List<FaqVo> faq_list = faqSvc.getAllFaq(pi * S.PAGE_LIMIT, (pi+1) * S.PAGE_LIMIT);
+		
 		if(faq_list != null){
 			map.put("faq_list", faq_list);
 		}
 		ModelAndView mav = new ModelAndView("board/faq/b_faq", map);
 		return mav;
 	}
+	
+	//자주하는 질문 검색
+	@RequestMapping(value ="/board/faq/search.nm", method=RequestMethod.GET)
+	public ModelAndView board_search_faq(HttpServletRequest req, 
+			@RequestParam(value="pgidx", required=false) String pageindex,
+			@RequestParam(value="sch") String sch,
+			@RequestParam(value="kw", required=false) String kw){
+		int pi;
+		
+		if(pageindex == null){
+			pageindex = "1";
+		}
+		
+		if(kw==null){
+			kw="";
+		}
+		
+		try {
+			kw = URLDecoder.decode(kw, "UTF-8");
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
+		
+		try{
+			pi = Integer.parseInt(pageindex)-1; //실제 인덱스는 0부터 시작
+			
+		} catch(Exception e){
+			e.printStackTrace();
+			pi = 0;
+		}
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		List<FaqVo> faq_list;
+		
+		if(sch.equals("tt")){
+			faq_list = faqSvc.searchFaqTitle(kw, pi * S.PAGE_LIMIT, (pi+1) * S.PAGE_LIMIT);
+			
+		}else if(sch.equals("con")){
+			faq_list = faqSvc.searchFaqContent(kw, pi * S.PAGE_LIMIT, (pi+1) * S.PAGE_LIMIT);
+			
+		}else if(sch.equals("ttcon")){
+			faq_list = faqSvc.searchFaqTitleNContent(kw, pi * S.PAGE_LIMIT, (pi+1) * S.PAGE_LIMIT);
+			
+		}else {
+			faq_list = faqSvc.getAllFaq(pi * S.PAGE_LIMIT, (pi+1) * S.PAGE_LIMIT);
+		}
+		
+		if(faq_list != null){
+			map.put("faq_list", faq_list);
+		}
+		
+		ModelAndView mav = new ModelAndView("board/faq/b_faq", map);
+		return mav;
+	}
+
+
+	//자주하는 질문 하나 읽기
+	@RequestMapping(value="/board/faq/read.nm", method=RequestMethod.GET)
+	public ModelAndView faq_read(HttpServletRequest req,
+		@RequestParam(value="fr_no") String fr_no){
+		Map<String,Object> map = new HashMap<String,Object>();
+
+		int faqno;
+		
+		try{
+			if(fr_no != null){
+				faqno = Integer.parseInt(fr_no);
+				FaqVo faq_vo = faqSvc.getOneFaq(faqno);
+				
+				if(faq_vo!=null){
+					map.put("fvo", faq_vo);
+					return new ModelAndView("/board/faq/b_faq", map);
+				}
+			}
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		return new ModelAndView("redirect:/board/faq.nm", map);
+		
+	}
+	
+	
+	//////////////////////////////////////////////////////////////////////////
 
 	//관리자단에서 보는 자주하는 질문 목록
 	@RequestMapping(value ="admin/board/faq.nm", method=RequestMethod.GET)
@@ -78,31 +165,6 @@ public class FaqController {
 		}
 		ModelAndView mav = new ModelAndView("admin/board/faq/a_faq", map);
 		return mav;
-	}
-
-	//자주하는 지문 읽기
-	@RequestMapping(value="/board/faq/read.nm", method=RequestMethod.GET)
-	public ModelAndView faq_read(HttpServletRequest req,
-		@RequestParam(value="fr_no") String fr_no){
-		Map<String,Object> map = new HashMap<String,Object>();
-
-		int faqno;
-		
-		try{
-			if(fr_no != null){
-				faqno = Integer.parseInt(fr_no);
-				FaqVo faq_vo = faqSvc.getOneFaq(faqno);
-				
-				if(faq_vo!=null){
-					map.put("fvo", faq_vo);
-					return new ModelAndView("/board/faq/b_faq", map);
-				}
-			}
-		} catch(Exception e){
-			e.printStackTrace();
-		}
-		return new ModelAndView("redirect:/board/faq.nm", map);
-		
 	}
 	
 }

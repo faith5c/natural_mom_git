@@ -1,8 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-		
+<!DOCTYPE html>
 
 	<style type = "text/css">
 
@@ -12,10 +11,10 @@
 		#content_body h2 { margin-bottom : 15px;  color: #004523; }
 		
 		table { width: 720px; padding : 0px; }
-		#board tr:first-child td { border-top : 1px solid grey; }
-		#board tr:last-child td { border-bottom : 1px solid grey; }
+		/* #board tr:first-child td { border-top : 1px solid grey; }
 		#board tr td:first-child { border-left : 1px solid grey; }
-		#board tr td:last-child { border-right : 1px solid grey; }
+		#board tr td:last-child { border-right : 1px solid grey; } */
+		#board tr:last-child td { border-bottom : 1px solid lightgray; }
 		#board tr td { padding : 10px; }
 		#board tr:first-child td:first-child { border-right: 1px solid lightgrey; }
 		#board tr:not(:last-child) td
@@ -45,7 +44,7 @@
 			color : white;
 			font-family : "나눔바른고딕", "맑은 고딕";
 			font-size : 16px;
-			border-radius : 10px; 
+			border-radius : 20px; 
 			border : 0px;
 		}
 		#buttons input:hover { opacity : 0.7; }
@@ -74,6 +73,7 @@
 		<table cellspacing = "0" id = "buttons">
 			<tr>
 				<td>
+					
 					<input type = "button" value = "이전글" id = "prev" name = "prev">
 					<input type = "button" value = "다음글" id = "next" name = "next">
 				</td>

@@ -87,9 +87,14 @@ _____________________________________________________________
 	- 글보기
 	/board/faq/read.nm
 	
+	- 글 검색
+	/board/faq/search.nm
+
+	--------------------------------
+		
 	- 글쓰기
-	/board/faq/add_form.nm
-	/board/faq/add_proc.nm
+	/board/faq/write_form.nm
+	/board/faq/write_proc.nm
 	
 	- 글 편집
 	/board/faq/edit_form.nm
@@ -98,8 +103,6 @@ _____________________________________________________________
 	- 글 삭제
 	/board/faq/del_proc.nm
 	
-	- 글 검색
-	/board/faq/search_proc.nm
 	
 * 질문과 답변 (QNA)
 
@@ -110,10 +113,18 @@ _____________________________________________________________
 	
 	- 글보기
 	/board/qna/read.nm
+
+	- 글 검색
+	/board/qna/search.nm
+
+	- 비밀글확인
+	/board/qna/secret.nm
+
+	----------------------------	
 	
 	- 글쓰기
-	/board/qna/add_form.nm
-	/board/qna/add_proc.nm
+	/board/qna/write_form.nm
+	/board/qna/write_proc.nm
 	
 	- 글 편집
 	/board/qna/edit_form.nm
@@ -121,15 +132,7 @@ _____________________________________________________________
 	
 	- 글 삭제
 	/board/qna/del_proc.nm
-	
-	- 글 검색
-	/board/qna/search_proc.nm
-
-	- 비밀글확인
-	/board/qna/secret.nm
-	/board/qna/secret_proc.nm
-	/board/qna/secret_read.nm
-	
+		
 	- 답변 등록
 	/board/qna/add_answer.nm
 		

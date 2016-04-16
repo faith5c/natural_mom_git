@@ -1,6 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -83,7 +85,6 @@
 	
 </style>
 
-<form>
 <table cellspacing="0">
 <tr>
 	<td colspan = "1"><h2>Q&A</h2></td>
@@ -91,41 +92,77 @@
 </tr>
 
 <tr style="background: #918686; color: white;">
-	<th style="width:80px;">3</th>
-	<td colspan="3">재입고 언제 되나요</td>
+	<th style="width:80px;"><c:out value="${param.rn}"/></th>
+	<td colspan="3">${qvo.qna_title}</td>
 </tr>
 <tr>
 	<td colspan="4">
-	<div>hook4u | 2016/06/17 | 조회수 24</div> 
+	<div>
+	<c:choose>
+		<c:when test='${fn:containsIgnoreCase(qvo.mem_id, "admin")}'>
+			관리자
+		</c:when>
+		<c:otherwise>
+			${qvo.mem_id}
+		</c:otherwise>
+	</c:choose> | <fmt:formatDate value="${qvo.qna_write_day}" pattern="yyyy/MM/dd"/> | 조회수 ${qvo.qna_hits}
+	</div> 
 	</td>
 </tr>
 <tr>
-	<td colspan = "4">라벤더 비누 언제 재입고 되나요</td>
+	<td colspan = "4">${qvo.qna_content}</td>
 </tr>
-<tr class="dat">
-	<td>관리자</td>
-	<td colspan="2">안녕하세요 hook4u님! 라벤더 비누는 6월 말 재입고 예정입니다.^^</td>
-	<td style="width:120px;">
-	2015/06/27
-	<span onclick="location.href='#'"><i class="fa fa-times-circle"></i></span>
-	</td>
-</tr>
-<tr class="dat">
-	<td>gag2</td>
-	<td colspan="2">빨리 재입고 해주세요</td>
-	<td>2015/06/27
-	<span onclick="location.href='#'"><i class="fa fa-times-circle"></i></span>
-	</td>
-</tr>
-<tr class="dat_write">
-	<td>faith5c</td>
-	<td colspan="2">
-		<textarea style="width:100%; resize : none;" cols="30"></textarea>
-	</td>
-	<td>
-		<input type="submit" style="padding : 2px 10px;" value="댓글등록">
-	</td>
-</tr>
+
+<c:if test="${qnare_list !=null}">
+	<c:forEach items="${qnare_list}" var="qrl" >
+		<tr class="dat">
+		
+			<td>
+			<c:choose>
+				<c:when test='${fn:containsIgnoreCase(qrl.mem_id, "admin")}'>
+					관리자
+				</c:when>
+				<c:otherwise>
+					${qrl.mem_id}
+				</c:otherwise>
+			</c:choose>
+			</td>
+			
+			<td colspan="2">${qrl.qna_re_content}</td>
+			
+			<td style="width:120px;">
+			<fmt:formatDate value="${qrl.qna_re_write_day}" pattern="yyyy/MM/dd"/>
+			<span onclick="location.href='#'"><i class="fa fa-times-circle"></i></span>
+			</td>
+			
+		</tr>
+	</c:forEach>
+</c:if>
+
+<c:if test="${sessionScope.loggedin !=null}">
+	<tr class="dat_write">
+		<td>${sessionScope.loggedin}</td>
+		
+		<td colspan="2">
+			<textarea style="width:100%; resize : none;" cols="30"></textarea>
+		</td>
+		
+		<td style="width:120px;">
+			<input type="submit" style="padding : 2px 10px;" value="댓글등록">
+		</td>
+	</tr>
+</c:if>
+
+	<tr>
+		<td></td>
+		
+		<td colspan="2">
+		</td>
+		
+		<td style="width:120px;">
+		</td>
+	</tr>
+
 <tr>
 	<td colspan="2">
 		<input type="button" value="이전글">
@@ -133,11 +170,10 @@
 	</td>
 	<td colspan="2">
 		<input type="button" value="삭제">
-		<input type="button" value="목록" onclick = "location.href='customer_center.jsp?page=qna';">
+		<input type="button" value="목록" onclick = "location.href='/soap/board/qna.nm';">
 	</td>
 </tr>
 </table>
-</form>
 
 </body>
 </html>
