@@ -255,7 +255,7 @@ public class NoticeController {
 	}
 	
 	//공지사항 글 상세보기(어드민)
-		@RequestMapping (value="/admin/board/notice_read.nm", method=RequestMethod.GET)
+		@RequestMapping (value="/admin/board/notice_read.nm", method={RequestMethod.GET,RequestMethod.POST})
 		public ModelAndView getNoticeM(
 				HttpServletRequest req,
 				HttpSession ses,
