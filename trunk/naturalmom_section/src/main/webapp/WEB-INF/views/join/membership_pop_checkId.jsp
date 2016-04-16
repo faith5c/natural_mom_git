@@ -126,8 +126,8 @@
 		var result = document.getElementById('result').innerHTML;
 		
 		if(result=="사용할 수 있는 아이디입니다."){
-			opener.document.join.id.value = id;
-			opener.document.join.nnId.value ="true";
+			opener.document.join_form.id.value = id;
+			opener.document.join_form.nnId.value ="true";
 			self.close();
 		}else{
 			alert('다른 아이디를 입력하세요.');

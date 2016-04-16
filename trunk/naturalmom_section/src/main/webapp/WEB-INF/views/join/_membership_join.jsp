@@ -51,7 +51,7 @@ td:FIRST-CHILD {
 <div id="inside">
 	<h2>&nbsp;&nbsp;회원가입</h2>
 	<br><hr>
-	<form name="join" method="post" action="">
+	<form action="join_complete.nm" method="post" name="join_form" >
 		<table>
 			<tr>
 				<td>아이디</td>
@@ -115,7 +115,7 @@ td:FIRST-CHILD {
 				<td>
 					<input type="text" id="email1" name="email1" />@<input type="text" id="email2" name="email2" />
 					<select id="email_select" name="email_select" onchange="email_change()">
-						<option value="none">직접입력</option>
+						<option value="e">직접입력</option>
 						<option value="naver.com">naver.com</option>
 						<option value="hanmail.net">hanmail.net</option>
 						<option value="nate.com">nate.com</option>
@@ -144,19 +144,15 @@ td:FIRST-CHILD {
 				<td colspan="2" style="text-align: center"><input type="button" id="submit" value="확인" onclick="allSubmit()"/></td>
 			</tr>
 		</table>
-	
+		
 	<!-- Null Check -->
 	<input type="hidden" id="nnId" name="nnId" value="false"/>
 	<input type="hidden" id="nnPw" name="nnPw" value="false"/>
 	<input type="hidden" id="nnPw2" name="nnPw2" value="false"/>
-	
-	<input type="hidden" id="nnName" name="nnName" value="false"/>
-	<input type="hidden" id="nnBirth" name="nnBirth" value="false"/>
-	<input type="hidden" id="nnPhone" name="nnPhone" value="false"/>
-	<input type="hidden" id="nnEmail" name="nnEmail" value="false"/>
-	<input type="hidden" id="nnAddress" name="nnAddress" value="false"/>
-	
+	<input type="hidden" id="page" name="page" value="complete"/>
 	</form>
+	
+	
 </div>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
@@ -248,8 +244,7 @@ td:FIRST-CHILD {
 		}else if($('#address_detail').val()==""){
 			alert("상세주소를 입력해주세요.");
 		}else{
-			document.join.action ="membership.jsp?page=complete";
-			document.join.submit();
+			document.join_form.submit();
 		}
 		
 	}
