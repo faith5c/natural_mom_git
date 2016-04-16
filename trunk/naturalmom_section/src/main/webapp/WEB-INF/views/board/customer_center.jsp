@@ -53,9 +53,7 @@
 				if(submenu.equals("notice")){%>
 <%				if(r.equals("")&& w.equals("false")){%>
 					<%@include file="notice/_notice_list.jsp" %>
-<% 					}else if(w.equals("true")){%>
-					<%@include file="notice/_notice_write.jsp" %>
-<%					}else if(r.equals("2")){%>
+<% 					}else if(r.equals("2")){%>
 					<%@include file="notice/_notice_read.jsp" %>					
 <%					} %>	
 <%				}else if(submenu.equals("event")){
