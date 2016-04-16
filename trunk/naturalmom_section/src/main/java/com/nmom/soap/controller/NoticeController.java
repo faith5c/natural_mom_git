@@ -411,10 +411,11 @@ public class NoticeController {
 	@RequestMapping (value="/admin/board/notice_add.nm", method=RequestMethod.POST)
 	public ModelAndView addNoticeA(HttpServletRequest req, 
 			HttpSession ses, 
-			@RequestParam(value="file1", required=false) MultipartFile file1,
-			@RequestParam(value="file2", required=false) MultipartFile file2,
+//			@RequestParam(value="file1", required=false) MultipartFile file1,
+//			@RequestParam(value="file2", required=false) MultipartFile file2,
 			@RequestParam(value="title", required=false) String t,
-			@RequestParam(value="content", required=false) String c) 
+			@RequestParam(value="notice_content", required=false) String c,
+			@RequestParam(value="content", required=false) String c2) 
 					throws IllegalStateException, IOException {
 		System.out.println("공지사항 글 추가하기 진입 성공");
 		String id = null;
@@ -426,6 +427,9 @@ public class NoticeController {
 			try {
 				title = URLDecoder.decode(t, "UTF-8");
 				content = URLDecoder.decode(c, "UTF-8");
+				System.out.println(title+content);
+				if(content == null) content = URLDecoder.decode(c2, "UTF-8");
+				System.out.println(title+" "+content);
 			} catch (UnsupportedEncodingException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -444,30 +448,31 @@ public class NoticeController {
 			*/
 			
 			//하나라도 빈 내용이면 업로드 안함
-			if(title != null && !title.equals("") && !title.replace(" ", "").equals("")
-				&& content != null && !content.equals("") && !content.replace(" ", "").equals("")){
+			if(title != null && !title.equals("") 
+				&& content != null && !content.equals("") ){
 				int r = this.noticeSvc.addNotice(new NoticeVo(title, content, null, null, id));
 				
 				if(r == 1){
-					int block = 1; 
-					int allPages = 0;
-					int blockNums = 0;
 					System.out.println("공지사항 등록 성공!");
-					allPages = vNoticeSvc.getAllCount();
-					List<VNoticeVo> list = this.vNoticeSvc.getAllNotice(block, allPages);
 					
-					if(allPages > 0)
-					blockNums = (int)Math.ceil((double)allPages/S.PAGE_LIMIT);
-					Map<String, Object> map = new HashMap<String, Object>() ;
-					map.put("ab", blockNums);
-					map.put("nb", block);
-					map.put("no_list", list);
-					return new ModelAndView("admin/board/notice/a_notice", map);
 				}
 				else System.out.println("공지사항 등록 실패!");
 			}
 		}
-		return new ModelAndView("/admin/board/notice/_a_board_notice_write");
+		int block = 1; 
+		int allPages = 0;
+		int blockNums = 0;
+		
+		allPages = vNoticeSvc.getAllCount();
+		List<VNoticeVo> list = this.vNoticeSvc.getAllNotice(block, allPages);
+		
+		if(allPages > 0)
+		blockNums = (int)Math.ceil((double)allPages/S.PAGE_LIMIT);
+		Map<String, Object> map = new HashMap<String, Object>() ;
+		map.put("ab", blockNums);
+		map.put("nb", block);
+		map.put("no_list", list);
+		return new ModelAndView("admin/board/notice/a_notice", map);
 	}
 	
 	//공지사항 글 수정하기(어드민)
