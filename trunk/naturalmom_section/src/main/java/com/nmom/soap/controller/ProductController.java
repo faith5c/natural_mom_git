@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nmom.soap.S;
+import com.nmom.soap.data.model.category.CategoryVo;
 import com.nmom.soap.data.model.product.ProductVo;
 import com.nmom.soap.data.model.product.VProduct_DeletedVo;
 import com.nmom.soap.data.model.product.VProduct_ManageVo;
@@ -187,7 +188,7 @@ public class ProductController
 	
 	// 상품관리 & 상품삭제 페이지에서 상태 변경
 	@RequestMapping(value ="/admin/product.nm", method=RequestMethod.GET, params="page=process")
-	public String product_manageChangeState(HttpServletRequest request,
+	public String product_changeState(HttpServletRequest request,
 			@RequestParam(value="item", required=false) String item, @RequestParam(value="order", required=false) int order,
 			@RequestParam(value="no", required=false) int[] no)
 	{
@@ -236,6 +237,16 @@ public class ProductController
 			return "redirect:/admin/product.nm";	
 	}
 
+	// 상품 등록 페이지
+	@RequestMapping(value ="/admin/product.nm", method=RequestMethod.GET, params="page=register")
+	public ModelAndView product_register (HttpServletRequest request)
+	{
+		List<CategoryVo> c_list = categorySvc.getAllCategory();
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("c_list", c_list);
+		return new ModelAndView("admin/product/a_product", map);
+	}
 	
 	//*********************************************************************//
 

@@ -1,31 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 	<script type="text/javascript" src="/soap/resources/admin/js/nicEdit.js"></script>
-	<script type="text/javascript">
-		bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
-		
-		function form_check()
-		{
-			var name = $('#name').val();
-			var cate = $('#category').val();
-			var price = $('#price').val();
-			var cost = $('#cost').val();
-			var stock = $('#stock').val();
-			var weight = $('#weight').val();
-			var img_re = $('#img_represent').val();
-			var img_de = $('#img_detail').val();
-			var ex_su = $('#ex_summary').val();
-			var ex_de = $('#ex_detail').val();
-			var dis_y = $('#display_state_y:checked').val();
-			var dis_n = $('#display_state_n:checked').val();
-			var sal_y = $('#sale_state_y:checked').val();
-			var sal_n = $('#sale_state_n:checked').val();
-			
-			alert(ex_su + ", " + ex_de + ", " + dis_y + ", " + dis_n + ", " + sal_y + ", " + sal_n);
-		}
-	</script>
-	
 	<style type = "text/css">
 		#container { width : 1024px; margin : 50px auto; color: #85858d; }
 		
@@ -55,6 +32,7 @@
 		}
 		table tr td select 
 		{ 
+			width : 250px;
 			border : 1px solid lightgrey; font-size : 1em; 
 			font : 16px "나눔바른고딕", "맑은 고딕", Arial;
 		}
@@ -83,54 +61,196 @@
 	</style>
 	
 <!-- container 부분 -->	
+<script type="text/javascript">
+		bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+		
+		function form_check()
+		{
+			var name = $('#product_name').val();
+			var cate = $('#category_cd').val();
+			var price = $('#selling_price').val();
+			var cost = $('#cost_price').val();
+			var stock = $('#stock').val();
+			var weight = $('#weight').val();
+			var img_re = $('#represent_img').val();
+			var img_de = $('#detail_img').val();
+			var ex_su = $('#summary_ex').val();
+			var ex_de = nicEditors.findEditor('detail_ex').getContent();
+			var dis_y = $('#display_state_y:checked').val();
+			var dis_n = $('#display_state_n:checked').val();
+			var sal_y = $('#sale_state_y:checked').val();
+			var sal_n = $('#sale_state_n:checked').val();
+			
+			// 이미지 파일 확장자 확인
+			var img_suffix = ['.png', '.jpg', '.jpeg', '.gif'];
+			var isImage = -1;
+ 			
+			if (weight == '')
+			{
+				weight = 0;
+			}
+			if (name == '')
+			{
+				alert('상품명을 입력해주세요.');
+				$('#product_name').focus();
+			}
+			else if (cate == '' || cate == '-1')
+			{
+				alert('상품 분류를 지정해주세요.');
+				$('#category_cd').focus();
+			}
+			else if (price == '')
+			{
+				alert('상품 가격을 입력해주세요.');
+				$('#selling_price').focus();
+			}
+			else if (isNaN(price) || price < 0)
+			{
+				alert('상품 가격을 정확히 입력해주세요.');
+				$('#selling_price').focus();
+			}
+			else if (cost == '')
+			{
+				alert('공급 원가를 입력해주세요.');
+				$('#cost_price').focus();
+			}
+			else if (isNaN(cost) || cost < 0)
+			{
+				alert('공급 원가를 정확히 입력해주세요.');
+				$('#cost_price').focus();
+			}
+			else if (stock == '')
+			{
+				alert('재고를 입력해주세요.');
+				$('#stock').focus();
+			}
+			else if (isNaN(stock) || stock < 0)
+			{
+				alert('재고를 정확히 입력해주세요.');
+				$('#stock').focus();
+			}
+			else if (isNaN(weight) || weight < 0)
+			{
+				alert('무게를 정확히 입력해주세요.');
+				$('#weight').focus();
+			}
+			else if (img_re == '')
+			{
+				alert('상품 대표 이미지를 첨부해주세요.');
+				$('#represent_img').focus();
+			}
+			else if (img_de == '')
+			{
+				alert('상품 상세 이미지를 첨부해주세요.');
+				$('#detail_img').focus();
+			}
+			else if (ex_su == '')
+			{
+				alert('상품 요약 설명을 입력해주세요.');
+				$('#summary_ex').focus();
+			}
+			else if (dis_y == undefined && dis_n == undefined)
+			{
+				alert('상품 진열 상태를 선택해주세요');
+				$('#display_state_y').focus();
+			}
+			else if (sal_y == undefined && sal_n == undefined)
+			{
+				alert('상품 판매 상태를 선택해주세요');
+				$('#sale_state_y').focus();
+			}
+			else
+			{
+				// 상품 대표 이미지
+				for (var i in img_suffix)
+				{
+					isImage = img_re.indexOf(img_suffix[i]);
+					if (isImage > -1)
+						break;
+				}
+				if (isImage == -1)
+				{
+					alert('이미지는 .png, .jpg, .jpeg, .gif 만 가능합니다.');
+					$('#represent_img').focus();
+					return;
+				}
+				
+				isImage = -1;
+				// 상품 상세 이미지
+				for (var i in img_suffix)
+				{
+					isImage = img_de.indexOf(img_suffix[i]);
+					if (isImage > -1)
+						break;
+				}
+				if (isImage == -1)
+				{
+					alert('이미지는 .png, .jpg, .jpeg, .gif 만 가능합니다.');
+					$('#detail_img').focus();
+					return;
+				}
+				
+				// 완벽하게 다 입력됨
+				document.reg_form.submit();
+			}
+							
+//			alert(img_re + ", " + img_de + ", " + price + ", " + cost + ", " + stock + ", " + weight);
+		}
+</script>
+
 	<h2 id = "reg_title">상품 등록하기</h2>
-		<form action = "#" method = "post" enctype="multipart/form-data">
+		<form action = "product_reg_proc.nm" method = "post" enctype="multipart/form-data" name = "reg_form">
 			<table cellspacing = "0">
 				<tr>
-					<td><label for = "name">상품명</label></td>
-					<td><input type = "text" id = "name" name = "name" size = "30"></td>
+					<td><label for = "product_name">상품명</label></td>
+					<td><input type = "text" id = "product_name" name = "product_name" size = "30"></td>
 				</tr>
 				<tr>
-					<td><label for = "category">상품분류</label></td>
+					<td><label for = "category_cd">상품분류</label></td>
 					<td>
-						<select name = "cartegory" id = "category">
-							<option>분류를 선택하세요.</option>
+						<select name = "cartegory_cd" id = "category_cd">
+							<option value = "-1" >분류를 선택하세요.</option>
+							<c:forEach var = "category" items = "${c_list}">
+								<option value = "${category.category_cd}">${category.category_nm}</option>
+							</c:forEach>
 						</select>
 					</td>
 				</tr>
 				<tr>
-					<td><label for = "price">상품가격</label></td>
-					<td><input type = "number" id = "price" name = "price" size = "20"></td>
+					<td><label for = "selling_price">상품가격</label></td>
+					<td><input type = "number" id = "selling_price" name = "selling_price" size = "20"></td>
 				</tr>
 				<tr>
-					<td><label for = "cost">공급원가</label></td>
-					<td><input type = "number" id = "cost" name = "cost" size = "20"></td>
+					<td><label for = "cost_price">공급원가</label></td>
+					<td><input type = "number" id = "cost_price" name = "cost_price" size = "20"></td>
 				</tr>
 				<tr>
 					<td><label for = "stock">재고</label></td>
 					<td><input type = "number" id = "stock" name = "stock" size = "20"></td>
 				</tr>
 				<tr>
-					<td><label for = "stock">무게</label></td>
+					<td><label for = "weight">무게</label></td>
 					<td><input type = "number" id = "weight" name = "weight" size = "20"></td>
 				</tr>
 				<tr>
-					<td><label for = "img">상품 대표 이미지</label></td>
-					<td><input type = "file" id = "img" name = "img"></td>
+					<td><label for = "represent_img">상품 대표 이미지</label></td>
+					<td><input type = "file" id = "represent_img" name = "represent_img"></td>
 				</tr>
 				<tr>
-					<td><label for = "img">상품 상세 이미지</label></td>
-					<td><input type = "file" id = "img_detail" name = "img_detail"></td>
+					<td><label for = "detail_img">상품 상세 이미지</label></td>
+					<td><input type = "file" id = "detail_img" name = "detail_img"></td>
 				</tr>
-				<tr><td colspan = "2"><label for = "ex_summary">상품 요약 설명</label></tr>
+				<tr><td colspan = "2"><label for = "summary_ex">상품 요약 설명</label></tr>
 				<tr>
 					<td colspan = "2" class = "explain" >
-						<input type = "text" name = "ex_summary" id = "ex_summary" size = "60">
+						<input type = "text" name = "summary_ex" id = "summary_ex" size = "60">
 					</td>
 				</tr>
-				<tr><td colspan = "2"><label for = "ex_detail">상품 상세 설명</label></tr>
+				<tr><td colspan = "2"><label for = "detail_ex">상품 상세 설명</label></tr>
 				<tr>
-					<td colspan = "2" class = "explain" ><textarea rows = "20" cols = "100" ></textarea></td>
+					<td colspan = "2" class = "explain" >
+						<textarea rows = "20" cols = "100" id = "detail_ex" name = "detail_ex"></textarea>
+					</td>
 				</tr>
 				<tr>
 					<td><label for = "display_state">진열 상태</label></td>
@@ -152,7 +272,7 @@
 				</tr>
 				<tr>
 					<td colspan = "2" id = "buttons">
-						<input type = "submit" value = "등록">
+						<input type = "button" value = "등록" onclick = "form_check();">
 						<input type = "button" value = "취소">
 					</td>
 				</tr>
