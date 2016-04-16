@@ -171,7 +171,7 @@ input[disabled="disabled"] {
 						<textarea rows="2" cols="30" style="width: 100%" resize : none;" name="re_content"></textarea>
 					</td>
 					<td>
-						<input type="submit" value="댓글등록" onclick="checkNull()">
+						<input type="submit" value="댓글등록">
 					</td>
 					<input type="hidden" name="r" value="${ no.notice_no }">
 				</tr>
@@ -199,18 +199,6 @@ input[disabled="disabled"] {
 		</table>
 </div>
 <script type="text/javascript">
-
-
-function checkNull() {
-	
-	var content = $('#re_content').innerHTML
-	
-	if(content!=null){
-		document.reply_form.submit();
-	}else{
-		alert("내용을 입력해주세요");
-	}
-}
 
 </script>
 
