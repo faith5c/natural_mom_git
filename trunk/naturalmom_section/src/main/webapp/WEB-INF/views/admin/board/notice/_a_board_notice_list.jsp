@@ -46,7 +46,7 @@
 		
 		body .search { text-align: center; }
 		
-		.search input[type="submit"]{
+		.search input[type="button"]{
 			padding : 2px 10px;
 			margin-left : 3px;
 			margin-right : 3px; 
@@ -70,7 +70,7 @@
 			margin-top : 10px;
 			margin-left : 10px;
 		}
-		.notice_write input[type="submit"]:hover {
+		.notice_write:hover {
 			opacity : 0.7;
 		}
 		.notice_write td {
@@ -95,7 +95,7 @@
 				<tr>
 					<td>${ no.notice_no }</td>
 					<td>
-						<a href="/soap/board/add_notice_read.nm?r=${no.notice_no}&d=0">${ no.ntc_title}</a>
+						<a href="/soap/admin/board/notice_read.nm?r=${no.notice_no}&d=0">${ no.ntc_title}</a>
 						<c:if test="${ no.ntc_re_no gt 0}"><b>[${ no.ntc_re_no }]</b></c:if> 
 					</td>
 					<td>관리자</td>
@@ -132,7 +132,7 @@
 				<option value="내용">내용</option>
 				<option value="제목+내용">제목+내용</option>
 			</select> <input type="text" placeholder="제목, 내용, 제목+내용" name="s" id="text_search">
-			<input type="submit" value="검색" onclick="search()">
+			<input type="button" value="검색" onclick="search()">
 		</div>
 	
 <script type="text/javascript">

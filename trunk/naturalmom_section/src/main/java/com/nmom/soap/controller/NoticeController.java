@@ -1,5 +1,7 @@
 package com.nmom.soap.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.HashMap;
@@ -141,7 +143,7 @@ public class NoticeController {
 		return new ModelAndView("/board/notice/b_notice");
 	}
 	
-	//공지사항 글 상세보기(회원)
+	//공지사항 글 상세보기/댓글 삭제(회원)
 	@RequestMapping (value="/board/notice_read.nm", method=RequestMethod.GET)
 	public ModelAndView getNoticeM(
 			HttpServletRequest req,
@@ -195,23 +197,25 @@ public class NoticeController {
 			@RequestParam(value="re_content", required=false) String re_content){
 		
 		String content = null;
-		try {
-			content = URLDecoder.decode(re_content, "UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		int r = 0;
-		
-		if( ses.getAttribute(S.SESSION_LOGIN) != null && content != null)
-		r = this.noticeReSvc.addNoticeRe(
+		if(re_content != null && !re_content.isEmpty() && !re_content.equals(""))
+			try {
+				content = URLDecoder.decode(re_content, "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			int r = 0;
+			
+			if( ses.getAttribute(S.SESSION_LOGIN) != null && content != null)
+		{
+			r = this.noticeReSvc.addNoticeRe(
 				new NoticeReVo(content, 
 						notice_no, 
 						(String)ses.getAttribute(S.SESSION_LOGIN)));
 		
-		System.out.println((r == 1) ? "리플 달기 성공" : "리플달기 실패");
-		
+			System.out.println((r == 1) ? "리플 달기 성공" : "리플달기 실패");
+		}
 		//게시글 다시 가져오는 부분
 		NoticeVo notice = this.noticeSvc.getNotice(notice_no);
 		System.out.println("notice_no"+notice_no);
@@ -357,7 +361,7 @@ public class NoticeController {
 		return new ModelAndView("admin/board/notice/a_notice");
 	}
 	
-	//공지사항 글 상세보기(어드민)
+	//공지사항 글 상세보기/댓글 삭제(어드민)
 		@RequestMapping (value="/admin/board/notice_read.nm", method={RequestMethod.GET,RequestMethod.POST})
 		public ModelAndView getNoticeA(
 				HttpServletRequest req,
@@ -408,17 +412,118 @@ public class NoticeController {
 	public ModelAndView addNoticeA(HttpServletRequest req, 
 			HttpSession ses, 
 			@RequestParam(value="file1", required=false) MultipartFile file1,
-			@RequestParam(value="file2", required=false) MultipartFile file2){
+			@RequestParam(value="file2", required=false) MultipartFile file2,
+			@RequestParam(value="title", required=false) String t,
+			@RequestParam(value="content", required=false) String c) 
+					throws IllegalStateException, IOException {
+		System.out.println("공지사항 글 추가하기 진입 성공");
+		String id = null;
+		id = (String)ses.getAttribute(S.SESSION_LOGIN);
 		
-		return null;
+		if( (boolean)ses.getAttribute(S.SESSION_ADMIN) && id != null && !id.isEmpty() && !id.equals("")){
+			String title = null;
+			String content = null;
+			try {
+				title = URLDecoder.decode(t, "UTF-8");
+				content = URLDecoder.decode(c, "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			//파일 업로드 상대경로 배운 후 작업.
+			/*final String UPLOAD_FOLDER 
+			= "C:\\spring-tool-suite-3.7.3\\_f5_sts\\FusionNoodle\\src\\main\\webapp\\resources\\img\\";		
+			String ori = file1.getOriginalFilename(); // 원본 파일 이름
+			System.out.println("orifile => " + ori );
+			File realFile1 = new File(UPLOAD_FOLDER, "rm_"+ori);
+			file1.transferTo(realFile1); // throws IllegalStateException, IOException 
+			
+			// 예외 없이... 정상 물리 파일 저장이 완료 되었다면?
+			String ntc_attached_file1 = realFile1.getName();
+			*/
+			
+			//하나라도 빈 내용이면 업로드 안함
+			if(title != null && !title.equals("") && !title.replace(" ", "").equals("")
+				&& content != null && !content.equals("") && !content.replace(" ", "").equals("")){
+				int r = this.noticeSvc.addNotice(new NoticeVo(title, content, null, null, id));
+				
+				if(r == 1){
+					int block = 1; 
+					int allPages = 0;
+					int blockNums = 0;
+					System.out.println("공지사항 등록 성공!");
+					allPages = vNoticeSvc.getAllCount();
+					List<VNoticeVo> list = this.vNoticeSvc.getAllNotice(block, allPages);
+					
+					if(allPages > 0)
+					blockNums = (int)Math.ceil((double)allPages/S.PAGE_LIMIT);
+					Map<String, Object> map = new HashMap<String, Object>() ;
+					map.put("ab", blockNums);
+					map.put("nb", block);
+					map.put("no_list", list);
+					return new ModelAndView("admin/board/notice/a_notice", map);
+				}
+				else System.out.println("공지사항 등록 실패!");
+			}
+		}
+		return new ModelAndView("/admin/board/notice/_a_board_notice_write");
 	}
 	
 	//공지사항 글 수정하기(어드민)
 	
 	//공지사항 댓글 달기(어드민)
-	
-	//공지사항 댓글 수정(어드민)
-	
-	//공지사항 댓글 삭제(어드민)
+	@RequestMapping (value="admin/board/add_notice_reply_proc.nm", method=RequestMethod.POST)
+	public ModelAndView addNoticeReplyA(HttpServletRequest req,
+			HttpSession ses,
+			@RequestParam(value="r", required=false) int notice_no,
+			@RequestParam(value="re_content", required=false) String re_content){
+		
+		String content = null;
+		if(re_content != null && !re_content.isEmpty() && !re_content.equals(""))
+		try {
+			content = URLDecoder.decode(re_content, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		int r = 0;
+		
+		if( ses.getAttribute(S.SESSION_LOGIN) != null && content != null)
+		{
+			r = this.noticeReSvc.addNoticeRe(
+				new NoticeReVo(content, 
+						notice_no, 
+						(String)ses.getAttribute(S.SESSION_LOGIN)));
+		
+			System.out.println((r == 1) ? "리플 달기 성공" : "리플달기 실패");
+		}
+		//게시글 다시 가져오는 부분
+		NoticeVo notice = this.noticeSvc.getNotice(notice_no);
+		System.out.println("notice_no"+notice_no);
+		System.out.println("notice_no"+notice);
+		if(notice != null){
+			Map<String, Object> map = new HashMap<>();
+			List<NoticeReVo> reply = this.noticeReSvc.getAllNoticeRe(notice_no);
+			int prev_notice = this.noticeSvc.getPrevNoticeNo(notice_no);
+			if( prev_notice > 0 ) map.put("prev", prev_notice);
+			
+			int next_notice = this.noticeSvc.getNextNoticeNo(notice_no);
+			if( next_notice > 0 ) map.put("next", next_notice);
+			System.out.println("이전"+prev_notice+" 다음"+next_notice);
+			
+			if(reply.size() > 0){
+				map.put("re_list", reply);
+			}
+			map.put("r", notice_no);
+			map.put("no", notice);
+			return new ModelAndView("admin/board/notice/a_notice", map);
+		}
+		
+		else{	
+			return new ModelAndView("admin/board/notice/a_notice");
+		}
+	}
 	
 }

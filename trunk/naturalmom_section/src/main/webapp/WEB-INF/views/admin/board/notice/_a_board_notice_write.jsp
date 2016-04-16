@@ -34,7 +34,7 @@
 		table { margin : 0 auto; }
 		table { width : 100%; }
 	</style>
-	<form action="#" method="post" enctype="multipart/form-data" >
+	<form action="/soap/admin/board/notice_add.nm" method="post" enctype="multipart/form-data" name="notice_form">
 	<table cellspacing="2">
 		<tr><td colspan="2"><h2>공지사항</h2></td></tr>
 		<tr>
@@ -58,17 +58,33 @@
 			</td>
 		</tr>
 		<tr>
-			<th>내용</th>
+			<th><label for="content">내용</label></th>
 			<td>
-			<textarea id="qna_area" name="content" style="width:100%; cols="74" rows="14"></textarea>
+			<textarea id="notice_content" name="notice_content" style="width:100%; cols="74" rows="14"></textarea>
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2">
-				<input type=submit value="확인">
+				<input type=button value="확인" onclick="checkNull()">
 				<input type=button value="취소">
 			</td>
 		</tr>
 	</table>
 	</form>
+	
+<script type="text/javascript">
+
+	function checkNull() {
+		var title = $('#title').val();
+		var content = nicEditors.findEditor('notice_content').getContent();
+		alert(title+content);
+		if(content=="" || content==null
+				|| title=="" || title==null ){
+			alert("제목과 내용을 빠짐없이 입력해주세요");
+		}else{
+			document.notice_form.submit();
+		}
+	}
+
+</script>
 </html><!-- 이상이상 -->

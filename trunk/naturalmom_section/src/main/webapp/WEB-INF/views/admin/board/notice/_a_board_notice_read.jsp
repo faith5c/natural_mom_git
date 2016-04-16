@@ -85,7 +85,7 @@
 </style>
 
 <body>
-	<form action="notice_reply.nm" method="post">
+	<form action="/soap/admin/board/add_notice_reply_proc.nm" method="post">
 		<table cellspacing="0">
 			<tr>
 				<td colspan="4"><h2>공지사항</h2></td>
@@ -123,9 +123,12 @@
 			<c:if test="${not empty loggedin}">
 				<tr class="dat_write">
 					<td>${loggedin}</td>
-					<td colspan="2"><textarea rows="2" cols="30"
-							style="width: 100%"></textarea></td>
-					<td><input type="submit" value="댓글등록" onclick=></td>
+					<td colspan="2">
+						<textarea rows="2" cols="30" style="width: 100%" name="re_content"></textarea>
+					</td>
+					<td>
+						<input type="submit" value="댓글등록">
+					</td>
 					<input type="hidden"  name="r" value="${ no.notice_no }">
 				</tr>
 			</c:if>
