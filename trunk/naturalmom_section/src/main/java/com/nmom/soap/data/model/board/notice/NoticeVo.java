@@ -105,8 +105,8 @@ public class NoticeVo {
 		this.ntc_hits = ntc_hits;
 	}
 
-	public String getNtc_content() {
-		return ntc_content;
+	public String getNtc_content() {		
+		return ntc_content.replaceAll("null;", " ");
 	}
 
 	public void setNtc_content(String ntc_content) {

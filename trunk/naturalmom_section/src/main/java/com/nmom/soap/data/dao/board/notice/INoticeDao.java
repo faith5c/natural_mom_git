@@ -14,4 +14,10 @@ public interface INoticeDao {
 	public int editNotice(NoticeVo notice) throws DataAccessException;
 	
 	public int removeNotice(int notice_no, String mem_id) throws DataAccessException;
+
+	public int incrementHit(int notice_no);
+
+	public int getPrevNoticeNo(int notice_no);
+
+	public int getNextNoticeNo(int notice_no);
 }

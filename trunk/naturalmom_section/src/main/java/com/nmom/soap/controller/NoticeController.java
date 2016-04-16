@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nmom.soap.S;
+import com.nmom.soap.data.model.board.notice.NoticeReVo;
 import com.nmom.soap.data.model.board.notice.NoticeVo;
 import com.nmom.soap.data.model.board.notice.VNoticeVo;
 import com.nmom.soap.svc.board.notice.INoticeReSvc;
@@ -78,8 +79,22 @@ public class NoticeController {
 			map.put("no_list", list);
 			return new ModelAndView("/board/notice/b_notice", map);
 		}
-		
-		return null;
+		if( search != null && !search.isEmpty() && !!search.equals("") ){
+			switch(kind){
+			case "제목":
+				
+				break;
+				
+			case "내용" :
+				
+				break;
+				
+			case "제목+내용" :
+				
+				break;
+			}
+		}
+		return new ModelAndView("/board/notice/b_notice");
 	}
 	
 	//공지사항 글 상세보기(회원)
@@ -90,17 +105,32 @@ public class NoticeController {
 		
 		int no = 0;
 		
-		try{
-			no = Integer.parseInt(notice_no);
-		}catch(NumberFormatException ne){
-			ne.printStackTrace();
+		if (notice_no != null && !notice_no.isEmpty() && !notice_no.equals("")) {
+			try {
+				no = Integer.parseInt(notice_no);
+				int r = this.noticeSvc.incrementHit(no);
+			} catch (NumberFormatException ne) {
+				ne.printStackTrace();
+			}
+			System.out.println("게시글 번호"+no);
 		}
-		
 		NoticeVo notice = this.noticeSvc.getNotice(no);
 		if(notice != null){
 			Map<String, Object> map = new HashMap<>();
+			List<NoticeReVo> reply = this.noticeReSvc.getAllNoticeRe(no);
+			int prev_notice = this.noticeSvc.getPrevNoticeNo(no);
+			if( prev_notice > 0 ) map.put("prev", prev_notice);
+			
+			int next_notice = this.noticeSvc.getNextNoticeNo(no);
+			if( next_notice > 0 ) map.put("next", next_notice);
+			System.out.println("이전"+prev_notice+" 다음"+next_notice);
+			
+			if(reply.size() > 0){
+				map.put("re_list", reply);
+			}
 			map.put("r", no);
-			map.put("notice", notice);
+			
+			map.put("no", notice);
 			return new ModelAndView("/board/notice/b_notice", map);
 		}
 		
@@ -130,9 +160,9 @@ public class NoticeController {
 		//블럭은 페이지 10개씩의 단위 첫페이지는 무조건 1
 		
 		//어드민이 투루가 아닐경우 프론트 페이지로 ㄱㄱ
-//		if(ses.getAttribute("admin") == null || !ses.getAttribute("admin").equals("true")){
-//			return new ModelAndView("/soap/index.nm");
-//		}
+		if(ses.getAttribute("admin") == null || !ses.getAttribute("admin").equals("true")){
+			return new ModelAndView("index");
+		}
 		
 		int block = 1;
 		

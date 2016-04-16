@@ -98,7 +98,7 @@ public class OrderVo {
 	}
 
 	public String getDelivery_msg() {
-		return delivery_msg;
+		return delivery_msg.replaceAll("null;", " ");
 	}
 
 	public void setDelivery_msg(String delivery_msg) {

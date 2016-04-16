@@ -18,4 +18,10 @@ public interface INoticeSvc {
 	
 	// 4. 공지사항 삭제
 	public int removeNotice(int notice_no, String mem_id);
+
+	public int incrementHit(int notice_no);
+
+	public int getPrevNoticeNo(int notice_no);
+
+	public int getNextNoticeNo(int notice_no);
 }

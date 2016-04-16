@@ -9,6 +9,11 @@ public class NoticeSvcImpl implements INoticeSvc {
 
 	private INoticeDao noticeDao;
 	
+
+	public void setNoticeDao(INoticeDao noticeDao) {
+		this.noticeDao = noticeDao;
+	}
+	
 	@Override
 	public NoticeVo getNotice(int notice_no) {
 		NoticeVo no = this.noticeDao.getNotice(notice_no);
@@ -33,8 +38,22 @@ public class NoticeSvcImpl implements INoticeSvc {
 		return (r == 1)? r : -1;
 	}
 
-	public void setNoticeDao(INoticeDao noticeDao) {
-		this.noticeDao = noticeDao;
+	@Override
+	public int incrementHit(int notice_no) {
+		return this.noticeDao.incrementHit(notice_no);
 	}
+
+	@Override
+	public int getPrevNoticeNo(int notice_no) {
+		return this.noticeDao.getPrevNoticeNo(notice_no);
+	}
+
+	@Override
+	public int getNextNoticeNo(int notice_no) {
+		// TODO Auto-generated method stub
+		return this.noticeDao.getNextNoticeNo(notice_no);
+	}
+
+
 
 }

@@ -13,20 +13,28 @@ import com.nmom.soap.data.model.board.notice.NoticeVo;
 
 public class NoticeDaoOraImpl extends NamedParameterJdbcDaoSupport implements INoticeDao {
 	
-	final String GET_NOTICE = "SELECT * FROM tb_notice WHERE notice_no = :notice_no";
+	private final String GET_NOTICE = "SELECT * FROM tb_notice WHERE notice_no = :notice_no";
 
-	final String ADD_NOTICE = "INSERT INTO tb_notice "
+	private final String ADD_NOTICE = "INSERT INTO tb_notice "
 			+ "(ntc_title, ntc_hits, ntc_content, ntc_attached_file1, ntc_attached_file2, board_id, "
 			+ "mem_id, notice_no) VALUES (:ntc_title, 0, :ntc_content, :ntc_attached_file1, "
 			+ ":ntc_attached_file2, :board_id, :mem_id, NOTICE_NO_SEQ.NEXTVAL)";
 	
-	final String EDIT_NOTICE = "UPDATE NMDB.tb_notice SET ntc_title = :ntc_title, ntc_content = :ntc_content, "
+	private final String EDIT_NOTICE = "UPDATE NMDB.tb_notice SET ntc_title = :ntc_title, ntc_content = :ntc_content, "
 			+ "ntc_attached_file1 = :ntc_attached_file1, ntc_attached_file2 = :ntc_attached_file2, ntc_write_day = SYSDATE  "
 			+ "WHERE notice_no = :notice_no AND mem_id = :mem_id";
 	
-	final String REMOVE_NOTICE = "UPDATE NMDB.tb_notice SET ntc_del_check = 1 "
+	private final String REMOVE_NOTICE = "UPDATE NMDB.tb_notice SET ntc_del_check = 1 "
 			+ "WHERE mem_id = :mem_id AND notice_no = :notice_no";
 
+	private final String INCRMENT_HIT_NOTICE = 
+			"UPDATE NMDB.tb_notice SET ntc_hits = ntc_hits+1 WHERE notice_no = :notice_no";
+	
+	private final String PREV_NOTICE_NO = 
+			"SELECT (MAX(notice_no)) as no FROM v_notice WHERE notice_no < :notice_no";
+	
+	private final String NEXT_NOTICE_NO = 
+			"SELECT (MIN(notice_no)) as no  FROM v_notice WHERE notice_no > :notice_no";
 	
 	public NoticeVo getNotice(int notice_no) throws DataAccessException {
 		MapSqlParameterSource ps = new MapSqlParameterSource();
@@ -71,6 +79,34 @@ public class NoticeDaoOraImpl extends NamedParameterJdbcDaoSupport implements IN
 		ps.addValue("notice_no", new Integer(notice_no), Types.INTEGER);
 		ps.addValue("mem_id", mem_id, Types.VARCHAR);
 		int r = this.getNamedParameterJdbcTemplate().update(REMOVE_NOTICE, ps);
+		return r;
+	}
+
+
+	@Override
+	public int incrementHit(int notice_no) {
+		MapSqlParameterSource ps = new MapSqlParameterSource();
+		ps.addValue("notice_no", new Integer(notice_no), Types.INTEGER);
+		int r = this.getNamedParameterJdbcTemplate().update(INCRMENT_HIT_NOTICE, ps);
+		return r;
+	}
+
+
+	@Override
+	public int getPrevNoticeNo(int notice_no) {
+		MapSqlParameterSource ps = new MapSqlParameterSource();
+		ps.addValue("notice_no", new Integer(notice_no), Types.INTEGER);
+		int r = this.getNamedParameterJdbcTemplate().
+				queryForInt(PREV_NOTICE_NO, ps);
+		return r;
+	}
+
+	@Override
+	public int getNextNoticeNo(int notice_no) {
+		MapSqlParameterSource ps = new MapSqlParameterSource();
+		ps.addValue("notice_no", new Integer(notice_no), Types.INTEGER);
+		int r = this.getNamedParameterJdbcTemplate().
+				queryForInt(NEXT_NOTICE_NO, ps);
 		return r;
 	}
 	
