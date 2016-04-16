@@ -123,10 +123,9 @@
 			<select>
 				<option value="title">제목</option>
 				<option value="content">내용</option>
-				<option value="writer">글쓴이</option>
 				<option value="title+content">제목+내용</option>
 			</select>
-			<input type="text" placeholder="제목, 내용, 글쓴이, 제목+내용" name="search">
+			<input type="text" placeholder="제목, 내용, 제목+내용" name="search">
 			<input type="submit" value="검색">
 	</div>
 </form>
