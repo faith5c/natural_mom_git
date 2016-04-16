@@ -275,7 +275,7 @@
 				<td><input type = "checkbox" name = "chk" id = "chk" value = "${product.product_no}" /></td>
 				<td>${product.product_no}</td>
 				<td>${product.category_nm}</td>
-				<td><a href = "a_product.jsp?page=modify">${product.product_name}</a></td>
+				<td><a href = "product.nm?page=modify&no=${product.product_no}">${product.product_name}</a></td>
 				<td><img src = "${product.represent_img}" alt = "${product.product_name}" width = "50" /></td>
 				<td>${product.selling_price}(${product.cost_price})</td>
 				<td>${product.stock}</td>
