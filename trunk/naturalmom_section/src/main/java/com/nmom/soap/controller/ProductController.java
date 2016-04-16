@@ -241,7 +241,7 @@ public class ProductController
 			return "redirect:/admin/product.nm";	
 	}
 
-	// 상품 등록 페이지
+	// 상품 등록 페이지 준비
 	@RequestMapping(value ="/admin/product.nm", method=RequestMethod.GET, params="page=register")
 	public ModelAndView product_prepareRegister (HttpServletRequest request, HttpSession session)
 	{
@@ -252,8 +252,9 @@ public class ProductController
 		return new ModelAndView("admin/product/a_product", map);
 	}
 	
+	// 상품 등록하는 페이지
 	@RequestMapping(value ="/admin/product_reg_proc.nm", method=RequestMethod.POST)
-	public ModelAndView product_register(HttpServletRequest request, HttpSession session,
+	public String product_register(HttpServletRequest request, HttpSession session,
 			@RequestParam (value="represent_img") MultipartFile represent_img,
 			@RequestParam (value="detail_img") MultipartFile detail_img,
 			@RequestParam Map<String, String> pro_param) throws IllegalStateException, IOException
@@ -289,20 +290,71 @@ public class ProductController
 	  //***************************************** ******************************* 업로드 파일 처리 부분
 	    // 파일 등록 부분
 	    int category_cd = 0;
+	    int selling_price = 0;
+	    int cost_price = 0;
+	    int stock = 0;
+	    int display_state = 0;
+	    int sale_state = 0;
+	    int weight = 0;
 
 	    try
 	    { 
-	    	category_cd = Integer.parseInt(pro_param.get("category_cd"));
+	    	category_cd = Integer.parseInt((String)pro_param.get("category_cd"));
+	    	selling_price = Integer.parseInt((String)pro_param.get("selling_price"));
+	    	cost_price = Integer.parseInt((String)pro_param.get("cost_price"));
+	    	stock = Integer.parseInt((String)pro_param.get("stock"));
+	    	display_state = Integer.parseInt((String)pro_param.get("display_state"));
+	    	sale_state = Integer.parseInt((String)pro_param.get("sale_state"));
+	    	weight = Integer.parseInt((String)pro_param.get("weight"));
 	    }
 	    catch(NumberFormatException e)
 	    {
 	    	// 에러 페이지 이동
+//	    	e.printStackTrace();
 	    }
 	    
+	    // 등록할 상품 만들기
 	    ProductVo new_product = new ProductVo();
-//	    new_product.setCategory_cd());
+	    new_product.setProduct_name((String)pro_param.get("product_name"));
+	    new_product.setSelling_price(selling_price);
+	    new_product.setCost_price(cost_price);
+	    new_product.setStock(stock);
+	    new_product.setDisplay_state(display_state);
+	    new_product.setSale_state(sale_state);
+	    new_product.setRepresent_img(re_img.getName());
+	    new_product.setDetail_img(de_img.getName());
+	    new_product.setSummary_ex((String)pro_param.get("summary_ex"));
+	    new_product.setDetail_ex((String)pro_param.get("detail_ex"));
+	    new_product.setWeight(weight);
+	    new_product.setCategory_cd(category_cd);
+	    
+	    int result = productSvc.addProduct(new_product);
+	    
+	    // 상품 등록 성공
+	    if (result == S.PROCESS_SUCCESS)
+	    {
+	    	// 상품 등록 성공 페이지로 이동
+	    	return "redirect:/admin/product.nm?page=manage&rslt=true";
+	    }
+	    else	// 실패
+	    {
+	    	// 에러 메세지
+	    	return "redirect:/admin/product.nm?page=register&rslt=false";
+	    }
+	}
+	
+	// 상품 수정 페이지 준비
+	@RequestMapping(value ="/admin/product.nm", method=RequestMethod.GET, params="page=modify")
+	public ModelAndView product_prepareModify (HttpServletRequest request, HttpSession session,
+			@RequestParam(value="no", required=false) int product_no)
+	{
+		List<CategoryVo> c_list = categorySvc.getAllCategory();
+		ProductVo old_product = productSvc.getOneProduct(product_no);
+		Map<String, Object> map = new HashMap<String, Object>();
 		
-	    return new ModelAndView("admin/product/a_product", null);
+		map.put("c_list", c_list);
+		map.put("product", old_product);
+		return new ModelAndView("admin/product/a_product", map);
 	}
 	
 	//*********************************************************************//

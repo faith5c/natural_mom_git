@@ -64,6 +64,11 @@
 <script type="text/javascript">
 		bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
 		
+		<% if(request.getParameter("rslt") != null 
+				&& request.getParameter("rslt").equals("false")){ %>		
+				alert('상품 등록에 실패했습니다.');				
+		<% } %>		
+		
 		function form_check()
 		{
 			var name = $('#product_name').val();
@@ -191,9 +196,9 @@
 				}
 				
 				// 완벽하게 다 입력됨
+				$('#detail_ex').val(ex_de);
 				document.reg_form.submit();
-			}
-							
+			}				
 //			alert(img_re + ", " + img_de + ", " + price + ", " + cost + ", " + stock + ", " + weight);
 		}
 </script>
@@ -208,7 +213,7 @@
 				<tr>
 					<td><label for = "category_cd">상품분류</label></td>
 					<td>
-						<select name = "cartegory_cd" id = "category_cd">
+						<select name = "category_cd" id = "category_cd">
 							<option value = "-1" >분류를 선택하세요.</option>
 							<c:forEach var = "category" items = "${c_list}">
 								<option value = "${category.category_cd}">${category.category_nm}</option>
@@ -255,18 +260,18 @@
 				<tr>
 					<td><label for = "display_state">진열 상태</label></td>
 					<td>
-						<input type = "radio" name = "display_state" id = "display_state_y" value = "y">
+						<input type = "radio" name = "display_state" id = "display_state_y" value = "1">
 						<label for = "display_state_y">YES</label>
-						<input type = "radio" name = "display_state" id = "display_state_n" value = "n">
+						<input type = "radio" name = "display_state" id = "display_state_n" value = "0">
 						<label for = "display_state_n">NO</label>
 					</td>
 				</tr>
 				<tr>
 					<td><label for = "sale_state">판매 상태</label></td>
 					<td>
-						<input type = "radio" name = "sale_state" id = "sale_state_y" value = "y">
+						<input type = "radio" name = "sale_state" id = "sale_state_y" value = "1">
 						<label for = "sale_state_y">YES</label>
-						<input type = "radio" name = "sale_state" id = "sale_state_n" value = "n">
+						<input type = "radio" name = "sale_state" id = "sale_state_n" value = "0">
 						<label for = "sale_state_n">NO</label>
 					</td>
 				</tr>

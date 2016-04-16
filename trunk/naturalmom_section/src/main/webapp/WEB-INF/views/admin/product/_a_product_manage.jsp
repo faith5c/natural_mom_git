@@ -48,6 +48,11 @@
 <!-- container 부분 -->	
 <script type = "text/javascript">
 
+	<% if(request.getParameter("rslt") != null 
+			&& request.getParameter("rslt").equals("true")){ %>		
+			alert('상품 등록에 성공했습니다.');				
+	<% } %>	
+
 	function order_product(by)
 	{
 		var by_param = "by=";

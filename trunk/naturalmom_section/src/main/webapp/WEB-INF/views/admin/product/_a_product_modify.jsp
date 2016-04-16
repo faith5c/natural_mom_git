@@ -69,7 +69,7 @@
 			<table cellspacing = "0">
 				<tr>
 					<td><label for = "name">상품명</label></td>
-					<td><input type = "text" id = "name" name = "name" size = "30"></td>
+					<td><input type = "text" id = "name" name = "name" size = "30" value ="${product.product_name}"></td>
 				</tr>
 				<tr>
 					<td><label for = "category">상품분류</label></td>
