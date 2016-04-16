@@ -13,7 +13,7 @@ public class NoticeReVo {
 	public NoticeReVo() {}
 
 	//댓글 추가
-	public NoticeReVo(String ntc_re_content, int notice_no, String mem_id, int ntc_re_del_check) {
+	public NoticeReVo(String ntc_re_content, int notice_no, String mem_id) {
 		this.notice_re_no = 0;
 		this.ntc_re_content = ntc_re_content;
 		this.ntc_re_write_day = null;
@@ -21,16 +21,6 @@ public class NoticeReVo {
 		this.notice_no = notice_no;
 		this.mem_id = mem_id;
 	}
-	
-	//댓글 수정
-		public NoticeReVo(String ntc_re_content, int notice_re_no, String mem_id) {
-			this.notice_re_no = notice_re_no;
-			this.ntc_re_content = ntc_re_content;
-			this.ntc_re_write_day = null;
-			this.ntc_re_del_check = 0;
-			this.notice_no = notice_no;
-			this.mem_id = mem_id;
-		}
 	
 	//댓글 불러올때
 	public NoticeReVo(int notice_re_no, String ntc_re_content, Date ntc_re_write_day, int ntc_re_del_check,
@@ -59,7 +49,7 @@ public class NoticeReVo {
 	}
 
 	public String getNtc_re_content() {
-		return ntc_re_content;
+		return ntc_re_content.replaceAll("null;", " ");
 	}
 
 	public void setNtc_re_content(String ntc_re_content) {

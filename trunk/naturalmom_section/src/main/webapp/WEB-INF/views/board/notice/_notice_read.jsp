@@ -6,90 +6,131 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <title>Insert title here</title>
 </head>
 <body>
 
-<style type="text/css">
-	h2 { color: #004523; padding-top : 20px; }
-	td, th { padding : 10px; }
-	td:first-child {padding-left: 0px;}
-	tr:nth-child(2) th s{ background-color : blue; }
+	<style type="text/css">
+h2 {
+	color: #004523;
+	padding-top: 20px;
+}
+
+td, th {
+	padding: 10px;
+}
+
+td:first-child {
+	padding-left: 0px;
+}
+
+tr:nth-child(2) th s {
+	background-color: blue;
+}
+
+table {
+	width: 720px;
+	margin: 0 auto;
+}
+
+tr:nth-child(2) th {
+	text-align: center;
+	color: white;
+	font-weight: normal;
+	border-right: solid 1px #cccccc;
+}
+
+tr:nth-child(2) th, tr:nth-child(2) td {
+	border-top: solid 1px #cccccc;
+	border-bottom: solid 1px #cccccc;
+}
+
+tr:nth-child(3) td div {
+	text-align: right;
+	color: gray;
+	font-size: 0.8em;
+}
+
+tr:nth-child(4) td {
+	border-bottom: solid 1px #CCCCCC;
+	padding: 10px 20px 30px 20px;
+}
+
+.dat td {
+	background-color: #F0F0F0;
+}
+
+.dat td:first-child {
+	text-align: center;
+	border-bottom: dotted 1px #cccccc;
+}
+
+.dat td {
+	font-size: 0.9em;
+	border-bottom: dotted 1px #cccccc;
+}
+
+.dat_write td:first-child {
+	text-align: center;
+}
+
+.dat_write td {
+	font-size: 0.9em;
+	background-color: #F0F0F0;
+	padding: 10px;
+}
+
+table tr:last-child input {
+	width: 100%;
+	padding: 5px 30px;
+	background-color: #85858D;
+	color: white;
+	font-size: 16px;
+	border-radius: 10px;
+	border: 0px;
+}
+
+table tr:last-child td:last-child {
+	text-align: right;
+}
+
+table tr:last-child input:hover {
+	opacity: 0.7;
+}
+
+.dat span {
+	display: inline-block;
+	width: 20px;
+	text-align: right;
+}
+
+.dat span:hover {
+	opacity: 0.7;
+}
+
+.dat_write input[type="submit"] {
+	background: #cec5ce;
+	border-radius: 5px;
+	color: #635353;
+	border: none;
+	border: 1px solid #85858d;
+	padding: 5px;
+}
+
+#buttonT {
+	margin-left: 130px;
+}
+
+input[disabled="disabled"] {
 	
-	table { width : 720px; 
-		margin : 0 auto; 
-	}
-	
-	tr:nth-child(2) th{ 
-		text-align : center; 
-		color : white; 
-		font-weight : normal; 
-		border-right : solid 1px #cccccc;
-	}	
-	tr:nth-child(2) th, tr:nth-child(2) td{ 
-		border-top : solid 1px #cccccc; 
-		border-bottom : solid 1px #cccccc;	
-	}
-	tr:nth-child(3) td div{ 
-		text-align : right; color : gray; font-size : 0.8em;
-	}
-	tr:nth-child(4) td{ 
-		border-bottom : solid 1px #CCCCCC; 
-		padding : 10px 20px 30px 20px; 
-	}
-	.dat td{ background-color : #F0F0F0; }
-	.dat td:first-child{ text-align : center; border-bottom : dotted 1px #cccccc; }
-	.dat td{ font-size : 0.9em; border-bottom : dotted 1px #cccccc; }
-	.dat_write td:first-child{ text-align : center;}
-	.dat_write td{
-		font-size : 0.9em;
-		background-color : #F0F0F0;
-		padding : 10px;
-		
-	}
-	table tr:last-child input {
-		width: 100%;
-		padding : 5px 30px; 
-		background-color : #85858D;
-		color : white;
-		font-size : 16px;
-		border-radius : 10px;
-		border : 0px;
-	}
-	table tr:last-child td:last-child {
-		text-align : right;
-	}
-	table tr:last-child input:hover{
-		opacity : 0.7;
-	}
-	.dat span {
-		display : inline-block; 
-		width:20px; 
-		text-align : right;
-	}
-	.dat span:hover {
-		opacity : 0.7;
-	}
-	
-	.dat_write input[type="submit"] {
-		background : #cec5ce;
-		border-radius : 5px;
-		color : #635353;
-		border : none;
-		border : 1px solid #85858d;
-		padding : 5px; 
-	}
-	#buttonT {
-		margin-left: 130px;
-	}
-	
-	input[disabled="disabled"] {
-	}
-	
+}
 </style>
 
-	<form>
+
+<body>
+	<form action="/soap/board/add_notice_reply_proc.nm" method="post">
 		<table cellspacing="0">
 			<tr>
 				<td colspan="4"><h2>공지사항</h2></td>
@@ -123,34 +164,54 @@
 
 			</c:forEach>
 			<c:if test="${not empty loggedin}">
-			<tr class="dat_write">
-				<td>faith5c</td>
-				<td colspan="2"><textarea rows="2" cols="30"
-						style="width: 100%"></textarea></td>
-				<td><input type="submit" value="댓글등록"></td>
-			</tr>
+				<tr class="dat_write">
+					<td>${loggedin}</td>
+					<td colspan="2">
+						<textarea rows="2" cols="30" style="width: 100%" resize : none;" name="re_content"></textarea>
+					</td>
+					<td>
+						<input type="submit" value="댓글등록" onclick="checkNull()">
+					</td>
+					<input type="hidden" name="notice_no" value="${ no.notice_no }">
+				</tr>
 			</c:if>
+
 		</table>
-		<div id="buttonT">
+	</form>
+	<div id="buttonT">
 		<table>
-			<td width="10%"> 
-				<input type="button" value="이전글"
-				<c:if test="${empty prev}">disabled="disabled"</c:if>
-				onclick="location.href='/soap/board/notice_read.nm?r=${prev}'">
-			</td width="10%">
-			<td>
-				<input type="button" value="다음글" 
-				<c:if test="${empty next}">disabled="disabled"</c:if>
-				onclick="location.href='/soap/board/notice_read.nm?r=${next}'">
+			<td width="10%">
+				<c:if test="${not empty prev}">
+					<input type="button" value="이전글"
+					onclick="location.href='/soap/board/notice_read.nm?r=${prev}'">
+				</c:if>
+			</td >
+			<td  width="10%">
+				<c:if test="${not empty next}">
+					<input type="button" value="다음글"
+					onclick="location.href='/soap/board/notice_read.nm?r=${next}'">
+				</c:if>
 			</td>
 			<td width="70%"></td>
-			<td width="10%">
-				<input type="button" value="목록"
-					onclick="location.href='/soap/board/notice.nm';">
-			</td>
+			<td width="10%"><input type="button" value="목록"
+				onclick="location.href='/soap/board/notice.nm';"></td>
 		</table>
-		</div>
-	</form>
+</div>
+<script type="text/javascript">
+
+
+function checkNull() {
+	
+	var content = $('#re_content').val();
+	
+	if(content!=null){
+		document.reply_form.submit();
+	}else{
+		alert("내용을 입력해주세요");
+	}
+}
+
+</script>
 
 </body>
 </html>

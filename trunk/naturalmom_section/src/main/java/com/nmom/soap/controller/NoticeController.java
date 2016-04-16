@@ -1,5 +1,7 @@
 package com.nmom.soap.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -99,16 +101,16 @@ public class NoticeController {
 	
 	//공지사항 글 상세보기(회원)
 	@RequestMapping (value="/board/notice_read.nm", method=RequestMethod.GET)
-	public ModelAndView getNoticeA(HttpServletRequest req,
+	public ModelAndView getNoticeA(
+			HttpServletRequest req,
 			HttpSession ses,
 			@RequestParam(value="r", required=false) int notice_no){
 		System.out.println("/board/notice_read.nm 진입");
-		
+		System.out.println(notice_no);
 		int r = this.noticeSvc.incrementHit(notice_no);
 		System.out.println();
 		NoticeVo notice = this.noticeSvc.getNotice(notice_no);
 		System.out.println("notice_no"+notice_no);
-		System.out.println(notice);
 		
 		if(notice != null){
 			Map<String, Object> map = new HashMap<>();
@@ -135,11 +137,71 @@ public class NoticeController {
 	}
 	
 	//공지사항 댓글 달기(회원)
+	@RequestMapping (value="/board/add_notice_reply_proc.nm", method=RequestMethod.POST)
+	public ModelAndView addNoticeReplyM(HttpServletRequest req,
+			HttpSession ses,
+			@RequestParam(value="notice_no", required=false) int notice_no,
+			@RequestParam(value="re_content", required=false) String re_content){
+		
+		String content = null;
+		try {
+			content = URLDecoder.decode(re_content, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		int r = 0;
+		
+		if( ses.getAttribute(S.SESSION_LOGIN) != null && content != null)
+		r = this.noticeReSvc.addNoticeRe(
+				new NoticeReVo(content, 
+						notice_no, 
+						(String)ses.getAttribute(S.SESSION_LOGIN)));
+		
+		System.out.println((r == 1) ? "리플 달기 성공" : "리플달기 실패");
+		
+		//게시글 다시 가져오는 부분
+		NoticeVo notice = this.noticeSvc.getNotice(notice_no);
+		System.out.println("notice_no"+notice_no);
+		System.out.println("notice_no"+notice);
+		if(notice != null){
+			Map<String, Object> map = new HashMap<>();
+			List<NoticeReVo> reply = this.noticeReSvc.getAllNoticeRe(notice_no);
+			int prev_notice = this.noticeSvc.getPrevNoticeNo(notice_no);
+			if( prev_notice > 0 ) map.put("prev", prev_notice);
+			
+			int next_notice = this.noticeSvc.getNextNoticeNo(notice_no);
+			if( next_notice > 0 ) map.put("next", next_notice);
+			System.out.println("이전"+prev_notice+" 다음"+next_notice);
+			
+			if(reply.size() > 0){
+				map.put("re_list", reply);
+			}
+			map.put("r", notice_no);
+			
+			map.put("no", notice);
+			return new ModelAndView("/board/notice/b_notice", map);
+		}
+		
+		else{	
+			return new ModelAndView("/board/notice/b_notice");
+		}
+	}
+	
 	
 	//공지사항 댓글 수정(회원)
 	
 	//공지사항 댓글 삭제(회원)
+
 	
+	
+//---------------------------------------------------------------------------
+//---------------------------------------------------------------------------	
+//--------------------------------ADMIN--------------------------------------
+//---------------------------------------------------------------------------
+//---------------------------------------------------------------------------	
+
 	//공지사항 리스트(어드민)
 	@RequestMapping (value="admin/board/notice.nm", method=RequestMethod.GET)
 	public ModelAndView getAllNoticeA(HttpServletRequest req,
@@ -193,6 +255,42 @@ public class NoticeController {
 	}
 	
 	//공지사항 글 상세보기(어드민)
+		@RequestMapping (value="/admin/board/notice_read.nm", method=RequestMethod.GET)
+		public ModelAndView getNoticeM(
+				HttpServletRequest req,
+				HttpSession ses,
+				@RequestParam(value="r", required=false) int notice_no){
+			System.out.println("/board/notice_read.nm 진입");
+			System.out.println(notice_no);
+			int r = this.noticeSvc.incrementHit(notice_no);
+			System.out.println();
+			NoticeVo notice = this.noticeSvc.getNotice(notice_no);
+			System.out.println("notice_no"+notice_no);
+			System.out.println(notice);
+			
+			if(notice != null){
+				Map<String, Object> map = new HashMap<>();
+				List<NoticeReVo> reply = this.noticeReSvc.getAllNoticeRe(notice_no);
+				int prev_notice = this.noticeSvc.getPrevNoticeNo(notice_no);
+				if( prev_notice > 0 ) map.put("prev", prev_notice);
+				
+				int next_notice = this.noticeSvc.getNextNoticeNo(notice_no);
+				if( next_notice > 0 ) map.put("next", next_notice);
+				System.out.println("이전"+prev_notice+" 다음"+next_notice);
+				
+				if(reply.size() > 0){
+					map.put("re_list", reply);
+				}
+				map.put("r", notice_no);
+				
+				map.put("no", notice);
+				return new ModelAndView("/admin/board/notice/a_notice", map);
+			}
+			
+			else{	
+				return new ModelAndView("/admin/board/notice/a_notice");
+			}
+		}
 	
 	//공지사항 글 추가하기(어드민)
 	

@@ -94,7 +94,7 @@
 				<tr>
 					<td>${ no.notice_no }</td>
 					<td>
-						<a href="/board/notice_read.nm?r=${no.notice_no}">${ no.ntc_title }
+						<a href="/soap/admin/board/notice_read.nm?r=${no.notice_no}">${ no.ntc_title }
 						<c:if test="${ no.ntc_re_no gt 0}"><b>[${ no.ntc_re_no }]</b></c:if> 
 						</a>
 					</td>

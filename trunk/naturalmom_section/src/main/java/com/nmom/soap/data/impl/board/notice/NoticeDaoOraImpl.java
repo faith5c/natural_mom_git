@@ -88,7 +88,7 @@ public class NoticeDaoOraImpl extends NamedParameterJdbcDaoSupport implements IN
 	public int incrementHit(int notice_no) {
 		
 		MapSqlParameterSource ps = new MapSqlParameterSource();
-		ps.addValue("notice_no", new Integer(notice_no), Types.INTEGER);
+		ps.addValue("notice_no", String.valueOf(notice_no) );
 		int r = this.getNamedParameterJdbcTemplate().update(INCRMENT_HIT_NOTICE, ps);
 		System.out.println("게시글"+notice_no+" 히트 "+r);
 		return r;

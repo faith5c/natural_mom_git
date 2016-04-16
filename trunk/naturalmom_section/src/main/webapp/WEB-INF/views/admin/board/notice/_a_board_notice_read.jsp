@@ -86,49 +86,84 @@
 	}
 </style>
 
-<form>
-<table cellspacing="0">
-<tr><td colspan = "4"><h2>공지사항</h2></td></tr>
-<tr style="background: #918686; color: white;">
-	<th style="width:80px;">2</th>
-	<td colspan="3">8월 14일 임시공휴일 안내</td>
-</tr>
-<tr>
-	<td colspan="4">
-	<div>관리자 | 2015/08/11 | 조회수 24</div> 
-	</td>
-</tr>
-<tr>
-	<td colspan = "4">임시공휴일인 8월 14일 금요일은 택배회사 휴무로 인하여 택배발송이 불가합니다.고객센터는 정상업무를 진행하오니 양해 부탁드립니다.(13일 오전 11시 이후 주문건은 17일에 발송됩니다)</td>
-</tr>
-<tr class="dat">
-	<td>nata1116</td>
-	<td colspan="2">주문순서대로 발송되나염??</td>
-	<td style="width:120px;">2015/06/27
-	<span onclick="location.href='#'"><i class="fa fa-times-circle"></i></span>
-	</td>
-</tr>
-<tr class="dat_write">
-	<td>faith5c</td>
-	<td colspan="2">
-		<textarea rows="2" cols="30" style="width: 100%"></textarea>
-	</td>
-	<td>
-		<input type="submit" value="댓글등록">
-	</td>
-</tr>
-<tr>
-	<td colspan="2">
-		<input type="button" value="이전글">
-		<input type="button" value="다음글">
-	</td>
-	<td colspan="2">
-		<input type="button" value="삭제">
-		<input type="button" value="목록" onclick = "location.href='a_board.jsp?page=notice';">
-	</td>
-</tr>
-</table>
-</form>
+<body>
+	<form action="notice_reply.nm" method="post">
+		<table cellspacing="0">
+			<tr>
+				<td colspan="4"><h2>공지사항</h2></td>
+			</tr>
+			<tr style="background: #918686; color: white;">
+				<th style="width: 80px;"><c:out value="${ no.notice_no }" /></th>
+				<td colspan="3"><c:out value="${ no.ntc_title }" /></td>
+			</tr>
+			<tr>
+				<td colspan="4">
+					<div>
+						관리자 |
+						<fmt:formatDate value="${ no.ntc_write_day }" type="Date" />
+						|
+						<c:out value="${ no.ntc_hits }" />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="4">${ no.ntc_content }</td>
+			</tr>
+			<c:forEach var="re" items="${re_list}">
+				<tr class="dat">
+					<td><c:out value="${ re.mem_id }" /></td>
+					<td colspan="2"><c:out value="${ re.ntc_re_content }" /></td>
+					<td style="width: 120px;"><fmt:formatDate
+							value="${ re.ntc_re_write_day }" type="Date" /> <span
+						onclick="location.href='#'"><i class="fa fa-times-circle"></i></span>
+					</td>
+				</tr>
+
+			</c:forEach>
+			<c:if test="${not empty loggedin}">
+				<tr class="dat_write">
+					<td>${loggedin}</td>
+					<td colspan="2"><textarea rows="2" cols="30"
+							style="width: 100%"></textarea></td>
+					<td><input type="submit" value="댓글등록" onclick=></td>
+					<input type="hidden" name="notice_no" value="${ no.notice_no }">
+				</tr>
+			</c:if>
+
+		</table>
+	</form>
+	<div id="buttonT">
+		<table>
+			<td width="10%">
+				<c:if test="${empty prev}">
+					<input type="button" value="이전글"
+					onclick="location.href='/soap/board/notice_read.nm?r=${prev}'">
+				</c:if>
+			</td >
+			<td  width="10%">
+				<c:if test="${empty next}">
+					<input type="button" value="다음글"
+					onclick="location.href='/soap/board/notice_read.nm?r=${next}'">
+				</c:if>
+			</td>
+			<td width="50%">
+			
+			</td>
+			<td width="10%">
+				<input type="button" value="수정"
+				onclick="location.href='/soap/board/notice_edit.nm?r=${ no.notice_no }'">
+			</td>
+			<td width="10%">
+				<input type="button" value="삭제"
+				onclick="location.href='/soap/board/notice_delete_proc.nm?r=${ no.notice_no }'">
+			</td>
+			<td width="10%">
+				<input type="button" value="목록"
+				onclick="location.href='/soap/board/notice.nm';">
+			</td>
+		</table>
+</div>
+
 
 </body>
 </html>
