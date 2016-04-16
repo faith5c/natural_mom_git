@@ -33,26 +33,47 @@ public class VNoticeSvcImpl implements IVNoticeSvc {
 
 	@Override
 	public List<VNoticeVo> getSearchByTitleNotice(String search, int block, int allPages) {
-		// TODO Auto-generated method stub
-		return null;
+		int start = 1; // 
+		//모든 페이지는 1부터 시작
+		for(int i = 1; i > block; i++){
+			start+=S.PAGE_LIMIT;
+		}
+						//스타트에서 1 더했으므로 여기서 뺌
+		int end = start + (S.PAGE_LIMIT-1);
+		List<VNoticeVo> list = this.vNoticeDao.getSearchByTitleNotice(search, start, end);
+		return (list != null && list.size() > 0) ? list : null;
 	}
 
 	@Override
 	public List<VNoticeVo> getSearchByContentNotice(String search, int block, int allPages) {
-		// TODO Auto-generated method stub
-		return null;
+		int start = 1; // 
+		//모든 페이지는 1부터 시작
+		for(int i = 1; i > block; i++){
+			start+=S.PAGE_LIMIT;
+		}
+						//스타트에서 1 더했으므로 여기서 뺌
+		int end = start + (S.PAGE_LIMIT-1);
+		List<VNoticeVo> list = this.vNoticeDao.getSearchByContentNotice(search, start, end);
+		return (list != null && list.size() > 0) ? list : null;
 	}
 
 	@Override
 	public List<VNoticeVo> getSearchByIdNotice(String search, int block, int allPages) {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 
 	@Override
 	public List<VNoticeVo> getSearchByTitleNContentNotice(String search, int block, int allPages) {
-		// TODO Auto-generated method stub
-		return null;
+		int start = 1; // 
+		//모든 페이지는 1부터 시작
+		for(int i = 1; i > block; i++){
+			start+=S.PAGE_LIMIT;
+		}
+						//스타트에서 1 더했으므로 여기서 뺌
+		int end = start + (S.PAGE_LIMIT-1);
+		List<VNoticeVo> list = this.vNoticeDao.getSearchByTitleNContentNotice(search, start, end);
+		return (list != null && list.size() > 0) ? list : null;
 	}
 
 

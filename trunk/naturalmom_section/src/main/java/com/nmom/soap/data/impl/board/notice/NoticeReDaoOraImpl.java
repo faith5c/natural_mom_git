@@ -16,6 +16,9 @@ public class NoticeReDaoOraImpl extends NamedParameterJdbcDaoSupport implements 
 	final String GET_ALL_NOTICE_RE = 
 			"SELECT * FROM tb_notice_re WHERE notice_no = ? AND ntc_re_del_check = 0";
 	
+	final String GET_ONE_NOTICE_RE = 
+			"SELECT * FROM tb_notice_re WHERE notice_re_no = ?";
+	
 	final String ADD_NOTICE_RE = "INSERT INTO "
 			+ "tb_notice_re (ntc_re_content, ntc_re_write_day, ntc_re_del_check, notice_no, mem_id, notice_re_no) "
 			+ "VALUES (:ntc_re_content, SYSDATE, 0, :notice_no, :mem_id, NOTICE_RE_NO_SEQ.NEXTVAL)";
@@ -62,6 +65,15 @@ public class NoticeReDaoOraImpl extends NamedParameterJdbcDaoSupport implements 
 		ps.addValue("mem_id", mem_id, Types.VARCHAR);
 		int r = this.getNamedParameterJdbcTemplate().update(REMOVE_NOTICE_RE, ps);
 		return r;
+	}
+
+
+	@Override
+	public NoticeReVo getOneNoticeRe(int notice_re_no) {
+		List<NoticeReVo> list = getJdbcTemplate().query(GET_ONE_NOTICE_RE, 
+				BeanPropertyRowMapper.newInstance(NoticeReVo.class), 
+				notice_re_no);
+		return (list != null && list.size() > 0) ? list.get(0) : null;
 	}
 
 	

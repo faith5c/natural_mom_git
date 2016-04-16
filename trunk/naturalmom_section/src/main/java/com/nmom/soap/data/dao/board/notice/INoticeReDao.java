@@ -16,4 +16,6 @@ public interface INoticeReDao {
 	public int editNoticeRe(NoticeReVo notice_re) throws DataAccessException;
 	
 	public int removeNoticeRe(int notice_re_no, String mem_id) throws DataAccessException;
+
+	public NoticeReVo getOneNoticeRe(int notice_re_no);
 }

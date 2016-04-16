@@ -92,9 +92,6 @@ table tr:last-child input {
 	border: 0px;
 }
 
-table tr:last-child td:last-child {
-	text-align: right;
-}
 
 table tr:last-child input:hover {
 	opacity: 0.7;
@@ -156,9 +153,13 @@ input[disabled="disabled"] {
 				<tr class="dat">
 					<td><c:out value="${ re.mem_id }" /></td>
 					<td colspan="2"><c:out value="${ re.ntc_re_content }" /></td>
-					<td style="width: 120px;"><fmt:formatDate
-							value="${ re.ntc_re_write_day }" type="Date" /> <span
-						onclick="location.href='#'"><i class="fa fa-times-circle"></i></span>
+					<td style="width: 120px;">
+						<c:if test="${ loggedin eq re.mem_id }">	
+							<span onclick="location.href='notice_read.nm?r=${no.notice_no}&d=${re.notice_re_no}'">
+								<i class="fa fa-times-circle"></i>
+							</span>
+						</c:if>
+						<fmt:formatDate value="${ re.ntc_re_write_day }" type="Date" /> 
 					</td>
 				</tr>
 
@@ -172,7 +173,7 @@ input[disabled="disabled"] {
 					<td>
 						<input type="submit" value="댓글등록" onclick="checkNull()">
 					</td>
-					<input type="hidden" name="notice_no" value="${ no.notice_no }">
+					<input type="hidden" name="r" value="${ no.notice_no }">
 				</tr>
 			</c:if>
 
@@ -183,13 +184,13 @@ input[disabled="disabled"] {
 			<td width="10%">
 				<c:if test="${not empty prev}">
 					<input type="button" value="이전글"
-					onclick="location.href='/soap/board/notice_read.nm?r=${prev}'">
+					onclick="location.href='/soap/board/notice_read.nm?r=${prev}&d=0'">
 				</c:if>
 			</td >
 			<td  width="10%">
 				<c:if test="${not empty next}">
 					<input type="button" value="다음글"
-					onclick="location.href='/soap/board/notice_read.nm?r=${next}'">
+					onclick="location.href='/soap/board/notice_read.nm?r=${next}&d=0'">
 				</c:if>
 			</td>
 			<td width="70%"></td>
@@ -202,7 +203,7 @@ input[disabled="disabled"] {
 
 function checkNull() {
 	
-	var content = $('#re_content').val();
+	var content = $('#re_content').innerHTML
 	
 	if(content!=null){
 		document.reply_form.submit();

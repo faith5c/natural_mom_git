@@ -2,8 +2,6 @@ package com.nmom.soap.svc.board.notice;
 
 import java.util.List;
 
-import org.springframework.dao.DataAccessException;
-
 import com.nmom.soap.data.model.board.notice.NoticeReVo;
  
 
@@ -19,4 +17,6 @@ public interface INoticeReSvc {
 	
 	// 4. 리플 삭제
 	public int removeNoticeRe(int notice_re_no, String mem_id);
+	
+	public NoticeReVo getOneNoticeRe(int notice_re_no);
 }

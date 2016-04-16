@@ -40,4 +40,9 @@ public class NoticeReSvcImpl implements INoticeReSvc {
 		this.noticeReDao = noticeReDao;
 	}
 
+	@Override
+	public NoticeReVo getOneNoticeRe(int notice_re_no) {
+		return this.noticeReDao.getOneNoticeRe(notice_re_no);
+	}
+
 }

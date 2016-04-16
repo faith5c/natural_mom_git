@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
-	<script type="text/javascript" src="../js/nicEdit_inBoard.js"></script>
-	<script type="text/javascript">
-	</script>	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	<script type="text/javascript" src="/soap/resources/admin/js/nicEdit.js"></script>
+	<script src="/soap/resources/admin/js/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript">
 		bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
 	</script>
@@ -35,7 +34,7 @@
 		table { margin : 0 auto; }
 		table { width : 100%; }
 	</style>
-	<form action="#" method="post">
+	<form action="#" method="post" enctype="multipart/form-data" >
 	<table cellspacing="2">
 		<tr><td colspan="2"><h2>공지사항</h2></td></tr>
 		<tr>
@@ -52,9 +51,16 @@
 			</td>
 		</tr>
 		<tr>
+			<th>첨부</th>
+			<td>
+				<input type="file" name="file1" maxlength="15" style="width:30%" />
+				<input type="file" name="file2" maxlength="15" style="width:30%" />
+			</td>
+		</tr>
+		<tr>
 			<th>내용</th>
 			<td>
-			<textarea id="qna_area" name="text" style="width:100%; cols="74" rows="14"></textarea>
+			<textarea id="qna_area" name="content" style="width:100%; cols="74" rows="14"></textarea>
 			</td>
 		</tr>
 		<tr>

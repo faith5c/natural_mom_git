@@ -16,15 +16,8 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String submenu = request.getParameter("page");
-	boolean write = request.getParameter("w")!=null? true : false;
-	
-	
-	// 게시글 내용 보기인지 글쓰기인지 확인하는 부분
-	String w = request.getParameter("w");
-	if (w == null || w.isEmpty()) w = "false"; //여기도 boolean형으로 처리 안해놨음
-	String stR = request.getParameter("r");
-	int r = (stR != null && !stR.isEmpty() && !stR.equals("")) 
-			? Integer.parseInt(stR) : 0;	//
+
+	int r = request.getParameter("r")!=null? Integer.parseInt(request.getParameter("r")) : 0;
 	
 %>
   </head>
@@ -51,11 +44,9 @@
 			</div>
 			<div id="content_body">
 
-<%				if(r == 0 && w.equals("false")){%>
+<%				if(r == 0){%>
 					<%@include file="_notice_list.jsp" %>
-<% 					}else if(w.equals("true")){%>
-					<%@include file="_notice_write.jsp" %>
-<%					}else if(r > 0){%>
+<% 					}else if(r > 0){%>
 					<%@include file="_notice_read.jsp" %>					
 <%					} %>	
 			

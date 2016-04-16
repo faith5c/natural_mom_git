@@ -58,9 +58,7 @@
 		border-radius : 20px;
 		border : 0px;
 	}
-	table tr:last-child td:last-child {
-		text-align : right;
-	}
+	
 	table tr:last-child input:hover{
 		opacity : 0.7;
 	}
@@ -113,9 +111,11 @@
 				<tr class="dat">
 					<td><c:out value="${ re.mem_id }" /></td>
 					<td colspan="2"><c:out value="${ re.ntc_re_content }" /></td>
-					<td style="width: 120px;"><fmt:formatDate
-							value="${ re.ntc_re_write_day }" type="Date" /> <span
-						onclick="location.href='#'"><i class="fa fa-times-circle"></i></span>
+					<td style="width: 120px;">
+						<fmt:formatDate value="${ re.ntc_re_write_day }" type="Date" /> 
+						<span onclick="location.href='notice_read.nm?r=${no.notice_no}&d=${re.notice_re_no}'">
+							<i class="fa fa-times-circle"></i>
+						</span>
 					</td>
 				</tr>
 
@@ -126,7 +126,7 @@
 					<td colspan="2"><textarea rows="2" cols="30"
 							style="width: 100%"></textarea></td>
 					<td><input type="submit" value="댓글등록" onclick=></td>
-					<input type="hidden" name="notice_no" value="${ no.notice_no }">
+					<input type="hidden"  name="r" value="${ no.notice_no }">
 				</tr>
 			</c:if>
 
@@ -135,15 +135,15 @@
 	<div id="buttonT">
 		<table>
 			<td width="10%">
-				<c:if test="${empty prev}">
+				<c:if test="${not empty prev}">
 					<input type="button" value="이전글"
-					onclick="location.href='/soap/board/notice_read.nm?r=${prev}'">
+					onclick="location.href='/soap/admin/board/notice_read.nm?r=${prev}&d=0'">
 				</c:if>
 			</td >
 			<td  width="10%">
-				<c:if test="${empty next}">
+				<c:if test="${not empty next}">
 					<input type="button" value="다음글"
-					onclick="location.href='/soap/board/notice_read.nm?r=${next}'">
+					onclick="location.href='/soap/admin/board/notice_read.nm?r=${next}&d=0'">
 				</c:if>
 			</td>
 			<td width="50%">
@@ -159,7 +159,7 @@
 			</td>
 			<td width="10%">
 				<input type="button" value="목록"
-				onclick="location.href='/soap/board/notice.nm';">
+				onclick="location.href='/soap/admin/board/notice.nm';">
 			</td>
 		</table>
 </div>

@@ -62,7 +62,7 @@
 </style>
 </head>
 <body>
-	<form>
+
 		<table cellspacing="0">
 			<tr>
 				<td colspan="5"><h2>공지사항</h2></td>
@@ -74,12 +74,12 @@
 				<th width="100px">작성일</th>
 				<th width="50px">조회</th>
 			</tr>
-
+			<c:if test="${ not empty no_list }">
 			<c:forEach var="no" items="${ no_list }">
 				<tr>
 					<td>${ no.notice_no }</td>
 					<td>
-						<a href="/soap/board/notice_read.nm?r=${no.notice_no}">${ no.ntc_title}</a>
+						<a href="/soap/board/notice_read.nm?r=${no.notice_no}&d=0">${ no.ntc_title}</a>
 						<c:if test="${ no.ntc_re_no gt 0}"><b>[${ no.ntc_re_no }]</b></c:if> 
 					</td>
 					<td>관리자</td>
@@ -87,6 +87,13 @@
 					<td>${ no.ntc_hits }</td>
 				</tr>
 			</c:forEach>
+			</c:if>
+			<c:if test="${ empty no_list }">
+				<tr >
+					<td colspan="5" style="text-align: center; font-size: 15px; padding: 20px">
+					해당 검색 내용이 없습니다.</td>
+				</tr>
+			</c:if>
 		</table>
 		<div id="page">
 			<a href="#">〈〈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="#">〈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -97,14 +104,23 @@
 				href="#">〉</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="#">〉〉</a>
 		</div>
 		<div class="search">
-			<select>
-				<option value="title">제목</option>
-				<option value="content">내용</option>
-				<option value="title+content">제목+내용</option>
-			</select> <input type="text" placeholder="제목, 내용, 제목+내용" name="search">
-			<input type="submit" value="검색">
+			<select name="k" id="kind">
+				<option value="제목">제목</option>
+				<option value="내용">내용</option>
+				<option value="제목+내용">제목+내용</option>
+			</select> <input type="text" placeholder="제목, 내용, 제목+내용" name="s" id="text_search">
+			<input type="submit" value="검색" onclick="search()">
 		</div>
-	</form>
-
+	
+<script type="text/javascript">
+	function search()
+	{
+		var kind = document.getElementById("kind").value;
+		var search = document.getElementById("text_search").value;
+		if(search != null){
+		location.href="notice.nm?k=" + kind + "&s=" + encodeURIComponent(search);
+		}
+	}
+</script>
 </body>
 </html>

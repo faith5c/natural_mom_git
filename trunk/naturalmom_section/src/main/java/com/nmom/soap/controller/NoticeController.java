@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nmom.soap.S;
@@ -45,8 +46,22 @@ public class NoticeController {
 	public ModelAndView getAllNoticeM(HttpServletRequest req,
 			@RequestParam(value="ab", required=false) String allBlock,
 			@RequestParam(value="nb", required=false) String nowBlock,
-			@RequestParam(value="k", required=false) String kind,
-			@RequestParam(value="s", required=false) String search){
+			@RequestParam(value="k", required=false) String k,
+			@RequestParam(value="s", required=false) String s){
+		
+		
+		String search = null;
+		String kind = null;
+		if(s != null && !s.isEmpty() && !s.equals(""))
+		try {
+			
+			kind = URLDecoder.decode(k, "UTF-8");
+			search = URLDecoder.decode(s, "UTF-8");
+			System.out.println(kind+search);
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		System.out.println("콘트롤러 공지사항 리스트 진입");
 		//블럭은 페이지 10개씩의 단위 첫페이지는 무조건 1
@@ -65,14 +80,56 @@ public class NoticeController {
 				block = Integer.parseInt(nowBlock);
 			}catch(NumberFormatException ne){
 				ne.printStackTrace();
-			}
-			
+			}	
 		}
-		if( search == null || search.isEmpty() || search.equals("") ){
+		
+		if( search != null){
+			switch(kind){
+			case "제목":
+				allPages = vNoticeSvc.getAllCountByTitle(search);
+				System.out.println("콘트롤러 검색 제목 페이지 삽입 진입");
+				List<VNoticeVo> tList = this.vNoticeSvc.getSearchByTitleNotice(search, block, allPages);
+				
+				if(allPages > 0)
+				blockNums = (int)Math.ceil((double)allPages/S.PAGE_LIMIT);
+			
+				map.put("ab", blockNums);
+				map.put("nb", block);
+				map.put("no_list", tList);
+				return new ModelAndView("/board/notice/b_notice", map);
+				
+			case "내용" :
+				allPages = vNoticeSvc.getAllCountByContent(search);
+				System.out.println("콘트롤러 검색 내용 페이지 삽입 진입");
+				List<VNoticeVo> cList = this.vNoticeSvc.getSearchByContentNotice(search, block, allPages);
+				
+				if(allPages > 0)
+				blockNums = (int)Math.ceil((double)allPages/S.PAGE_LIMIT);
+			
+				map.put("ab", blockNums);
+				map.put("nb", block);
+				map.put("no_list", cList);
+				return new ModelAndView("/board/notice/b_notice", map);
+				
+			case "제목+내용" :
+				allPages = vNoticeSvc.getAllCountByTitleNContent(search);
+				System.out.println("콘트롤러 검색 제목+내용 페이지 삽입 진입");
+				List<VNoticeVo> tcList = this.vNoticeSvc.getSearchByTitleNContentNotice(search, block, allPages);
+				
+				if(allPages > 0)
+				blockNums = (int)Math.ceil((double)allPages/S.PAGE_LIMIT);
+			
+				map.put("ab", blockNums);
+				map.put("nb", block);
+				map.put("no_list", tcList);
+				return new ModelAndView("/board/notice/b_notice", map);
+			}
+		}
+		else{
 			allPages = vNoticeSvc.getAllCount();
 			System.out.println("콘트롤러 기본 페이지 삽입 진입");
 			List<VNoticeVo> list = this.vNoticeSvc.getAllNotice(block, allPages);
-			System.out.println(list.get(0));
+			
 			if(allPages > 0)
 			blockNums = (int)Math.ceil((double)allPages/S.PAGE_LIMIT);
 		
@@ -81,30 +138,24 @@ public class NoticeController {
 			map.put("no_list", list);
 			return new ModelAndView("/board/notice/b_notice", map);
 		}
-		if( search != null && !search.isEmpty() && !!search.equals("") ){
-			switch(kind){
-			case "제목":
-				
-				break;
-				
-			case "내용" :
-				
-				break;
-				
-			case "제목+내용" :
-				
-				break;
-			}
-		}
 		return new ModelAndView("/board/notice/b_notice");
 	}
 	
 	//공지사항 글 상세보기(회원)
 	@RequestMapping (value="/board/notice_read.nm", method=RequestMethod.GET)
-	public ModelAndView getNoticeA(
+	public ModelAndView getNoticeM(
 			HttpServletRequest req,
 			HttpSession ses,
-			@RequestParam(value="r", required=false) int notice_no){
+			@RequestParam(value="r", required=false) int notice_no,
+			@RequestParam(value="d", required=false) int notice_re_no){
+		
+		int n = 0;
+		if(notice_re_no != 0 && 
+				ses.getAttribute(S.SESSION_LOGIN).equals(noticeReSvc.getOneNoticeRe(notice_re_no).getMem_id())){
+			n = this.noticeReSvc.removeNoticeRe(notice_re_no, (String)ses.getAttribute(S.SESSION_LOGIN));
+			if(n > 0) System.out.println("댓글 삭제 성공!"); 
+		}
+		
 		System.out.println("/board/notice_read.nm 진입");
 		System.out.println(notice_no);
 		int r = this.noticeSvc.incrementHit(notice_no);
@@ -126,7 +177,7 @@ public class NoticeController {
 				map.put("re_list", reply);
 			}
 			map.put("r", notice_no);
-			
+			map.put("d", notice_re_no);
 			map.put("no", notice);
 			return new ModelAndView("/board/notice/b_notice", map);
 		}
@@ -140,7 +191,7 @@ public class NoticeController {
 	@RequestMapping (value="/board/add_notice_reply_proc.nm", method=RequestMethod.POST)
 	public ModelAndView addNoticeReplyM(HttpServletRequest req,
 			HttpSession ses,
-			@RequestParam(value="notice_no", required=false) int notice_no,
+			@RequestParam(value="r", required=false) int notice_no,
 			@RequestParam(value="re_content", required=false) String re_content){
 		
 		String content = null;
@@ -179,7 +230,6 @@ public class NoticeController {
 				map.put("re_list", reply);
 			}
 			map.put("r", notice_no);
-			
 			map.put("no", notice);
 			return new ModelAndView("/board/notice/b_notice", map);
 		}
@@ -190,9 +240,7 @@ public class NoticeController {
 	}
 	
 	
-	//공지사항 댓글 수정(회원)
 	
-	//공지사항 댓글 삭제(회원)
 
 	
 	
@@ -208,8 +256,8 @@ public class NoticeController {
 			HttpSession ses,
 			@RequestParam(value="ab", required=false) String allBlock,
 			@RequestParam(value="nb", required=false) String nowBlock,
-			@RequestParam(value="k", required=false) String kind,
-			@RequestParam(value="s", required=false) String search){
+			@RequestParam(value="k", required=false) String k,
+			@RequestParam(value="s", required=false) String s){
 		
 		System.out.println("콘트롤러 공지사항 리스트 진입");
 		//블럭은 페이지 10개씩의 단위 첫페이지는 무조건 1
@@ -218,6 +266,20 @@ public class NoticeController {
 //		if(ses.getAttribute("admin") == null || !ses.getAttribute("admin").equals("true")){
 //			return new ModelAndView("index");
 //		}
+		
+		String search = null;
+		String kind = null;
+		if(s != null && !s.isEmpty() && !s.equals(""))
+		try {
+			
+			kind = URLDecoder.decode(k, "UTF-8");
+			search = URLDecoder.decode(s, "UTF-8");
+			System.out.println(kind+search);
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 		int block = 1;
 		
@@ -237,29 +299,78 @@ public class NoticeController {
 			}
 			
 		}
-		if( search == null || search.isEmpty() || search.equals("") ){
+		if( search != null){
+			switch(kind){
+			case "제목":
+				allPages = vNoticeSvc.getAllCountByTitle(search);
+				System.out.println("콘트롤러 검색 제목 페이지 삽입 진입");
+				List<VNoticeVo> tList = this.vNoticeSvc.getSearchByTitleNotice(search, block, allPages);
+				
+				if(allPages > 0)
+				blockNums = (int)Math.ceil((double)allPages/S.PAGE_LIMIT);
+			
+				map.put("ab", blockNums);
+				map.put("nb", block);
+				map.put("no_list", tList);
+				return new ModelAndView("admin/board/notice/a_notice", map);
+				
+			case "내용" :
+				allPages = vNoticeSvc.getAllCountByContent(search);
+				System.out.println("콘트롤러 검색 내용 페이지 삽입 진입");
+				List<VNoticeVo> cList = this.vNoticeSvc.getSearchByContentNotice(search, block, allPages);
+				
+				if(allPages > 0)
+				blockNums = (int)Math.ceil((double)allPages/S.PAGE_LIMIT);
+			
+				map.put("ab", blockNums);
+				map.put("nb", block);
+				map.put("no_list", cList);
+				return new ModelAndView("admin/board/notice/a_notice", map);
+				
+			case "제목+내용" :
+				allPages = vNoticeSvc.getAllCountByTitleNContent(search);
+				System.out.println("콘트롤러 검색 제목+내용 페이지 삽입 진입");
+				List<VNoticeVo> tcList = this.vNoticeSvc.getSearchByTitleNContentNotice(search, block, allPages);
+				
+				if(allPages > 0)
+				blockNums = (int)Math.ceil((double)allPages/S.PAGE_LIMIT);
+			
+				map.put("ab", blockNums);
+				map.put("nb", block);
+				map.put("no_list", tcList);
+				return new ModelAndView("admin/board/notice/a_notice", map);
+			}
+		}
+		else{
 			allPages = vNoticeSvc.getAllCount();
 			System.out.println("콘트롤러 기본 페이지 삽입 진입");
 			List<VNoticeVo> list = this.vNoticeSvc.getAllNotice(block, allPages);
-			System.out.println(list.get(0));
+			
 			if(allPages > 0)
 			blockNums = (int)Math.ceil((double)allPages/S.PAGE_LIMIT);
 		
 			map.put("ab", blockNums);
 			map.put("nb", block);
 			map.put("no_list", list);
-			return new ModelAndView("/admin/board/notice/a_notice", map);
+			return new ModelAndView("admin/board/notice/a_notice", map);
 		}
-		
-		return null;
+		return new ModelAndView("admin/board/notice/a_notice");
 	}
 	
 	//공지사항 글 상세보기(어드민)
 		@RequestMapping (value="/admin/board/notice_read.nm", method={RequestMethod.GET,RequestMethod.POST})
-		public ModelAndView getNoticeM(
+		public ModelAndView getNoticeA(
 				HttpServletRequest req,
 				HttpSession ses,
-				@RequestParam(value="r", required=false) int notice_no){
+				@RequestParam(value="r", required=false) int notice_no,	
+				@RequestParam(value="d", required=false) int notice_re_no){
+			
+			int n = 0;
+			if(notice_re_no != 0 ){
+				n = this.noticeReSvc.removeNoticeRe(notice_re_no, (String)ses.getAttribute(S.SESSION_LOGIN));
+				if(n > 0) System.out.println("댓글 삭제 성공!"); 
+			}
+			
 			System.out.println("/board/notice_read.nm 진입");
 			System.out.println(notice_no);
 			int r = this.noticeSvc.incrementHit(notice_no);
@@ -293,6 +404,14 @@ public class NoticeController {
 		}
 	
 	//공지사항 글 추가하기(어드민)
+	@RequestMapping (value="/admin/board/notice_add.nm", method=RequestMethod.POST)
+	public ModelAndView addNoticeA(HttpServletRequest req, 
+			HttpSession ses, 
+			@RequestParam(value="file1", required=false) MultipartFile file1,
+			@RequestParam(value="file2", required=false) MultipartFile file2){
+		
+		return null;
+	}
 	
 	//공지사항 글 수정하기(어드민)
 	
