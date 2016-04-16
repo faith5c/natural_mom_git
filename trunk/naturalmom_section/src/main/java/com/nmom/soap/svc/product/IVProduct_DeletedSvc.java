@@ -21,4 +21,7 @@ public interface IVProduct_DeletedSvc
 	
 	// 총 판매량으로 정렬하기
 	List<VProduct_DeletedVo> getAllDeletedProduct_by_all_sells(boolean order);
+
+	// 카테고리 이름으로 정렬하기
+	List<VProduct_DeletedVo> getAllDeletedProduct_by_category_nm(boolean order);
 }

@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.nmom.soap.S;
 import com.nmom.soap.data.model.product.ProductVo;
+import com.nmom.soap.data.model.product.VProduct_DeletedVo;
 import com.nmom.soap.data.model.product.VProduct_ManageVo;
 import com.nmom.soap.svc.category.ICategorySvc;
 import com.nmom.soap.svc.product.IProductSvc;
@@ -122,7 +123,69 @@ public class ProductController
 		return new ModelAndView("admin/product/a_product", map);
 	}
 	
-	// 상품관리 페이지에서 상태 변경
+	
+	// 삭제된 상품관리
+	@RequestMapping(value="/admin/product.nm", method=RequestMethod.GET, params="page=deleted")
+	public ModelAndView product_deletedList(HttpServletRequest request,
+			@RequestParam(value="by", required=false) String by, @RequestParam(value="order", required=false) String order)
+	{
+		List<VProduct_DeletedVo> list = null;
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		if (by == null || order == null)
+			list = product_deletedSvc.getAllDeletedProduct_by_product_no(S.ASC);
+		else if (by.equals("no"))
+		{
+			if (order.equals("true"))
+				list = product_deletedSvc.getAllDeletedProduct_by_product_no(S.ASC);
+			else
+				list = product_deletedSvc.getAllDeletedProduct_by_product_no(S.DESC);
+		}
+		else if (by.equals("ct"))
+		{
+			if (order.equals("true"))
+				list = product_deletedSvc.getAllDeletedProduct_by_category_nm(S.ASC);
+			else
+				list = product_deletedSvc.getAllDeletedProduct_by_category_nm(S.DESC);
+		}
+		else if (by.equals("nm"))
+		{
+			if (order.equals("true"))
+				list = product_deletedSvc.getAllDeletedProduct_by_product_name(S.ASC);
+			else
+				list = product_deletedSvc.getAllDeletedProduct_by_product_name(S.DESC);
+		}
+		else if (by.equals("pr"))
+		{
+			if (order.equals("true"))
+				list = product_deletedSvc.getAllDeletedProduct_by_selling_price(S.ASC);
+			else
+				list = product_deletedSvc.getAllDeletedProduct_by_selling_price(S.DESC);
+		}
+		else if (by.equals("st"))
+		{
+			if (order.equals("true"))
+				list = product_deletedSvc.getAllDeletedProduct_by_stock(S.ASC);
+			else
+				list = product_deletedSvc.getAllDeletedProduct_by_stock(S.DESC);
+		}
+		else if (by.equals("all"))
+		{
+			if (order.equals("true"))
+				list = product_deletedSvc.getAllDeletedProduct_by_all_sells(S.ASC);
+			else
+				list = product_deletedSvc.getAllDeletedProduct_by_all_sells(S.DESC);
+		}
+		else
+		{
+			list = product_deletedSvc.getAllDeletedProduct_by_product_no(S.ASC);
+		}
+		
+		map.put("p_list", list);
+		return new ModelAndView("admin/product/a_product", map);
+	}
+	
+	// 상품관리 & 상품삭제 페이지에서 상태 변경
 	@RequestMapping(value ="/admin/product.nm", method=RequestMethod.GET, params="page=process")
 	public String product_manageChangeState(HttpServletRequest request,
 			@RequestParam(value="item", required=false) String item, @RequestParam(value="order", required=false) int order,
@@ -153,6 +216,7 @@ public class ProductController
 			else if (item.equals("del"))
 			{
 				int r = productSvc.editDeletedState(no[i], order);
+					
 				if(r == S.PROCESS_ERROR)
 				{
 					// 에러 페이지 이동
@@ -166,10 +230,12 @@ public class ProductController
 			}
 		}
 		
-		return "redirect:/admin/product.nm";	
+		if(item.equals("del")&& order == S.STATE_FALSE)
+			return "redirect:/admin/product.nm?page=deleted";
+		else
+			return "redirect:/admin/product.nm";	
 	}
-	
-	
+
 	
 	//*********************************************************************//
 

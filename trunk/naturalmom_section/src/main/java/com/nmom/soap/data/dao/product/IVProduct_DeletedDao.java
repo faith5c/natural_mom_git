@@ -23,4 +23,7 @@ public interface IVProduct_DeletedDao
 	
 	// 총 판매량으로 정렬하기
 	List<VProduct_DeletedVo> getAllDeletedProduct_by_all_sells(boolean order) throws DataAccessException;
+
+	// 카테고리 이름으로 정렬하기
+	List<VProduct_DeletedVo> getAllDeletedProduct_by_category_nm(boolean order) throws DataAccessException;
 }

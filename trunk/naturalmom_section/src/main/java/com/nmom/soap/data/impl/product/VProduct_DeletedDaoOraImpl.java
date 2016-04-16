@@ -15,6 +15,10 @@ public class VProduct_DeletedDaoOraImpl extends JdbcDaoSupport implements IVProd
 	private final String GET_ALL_BY_PRODUCT_NO_ASC = "SELECT * FROM V_PRODUCT_DELETED ORDER BY product_no";
 	// 상품 번호 내림차순 정렬
 	private final String GET_ALL_BY_PRODUCT_NO_DESC = "SELECT * FROM V_PRODUCT_DELETED ORDER BY product_no desc";
+	// 카테고리 이름 오름차순 정렬
+	private final String GET_ALL_BY_CATEGORY_NM_ASC = "SELECT * FROM V_PRODUCT_DELETED ORDER BY category_nm";
+	// 카테고리 이름 오름차순 정렬
+	private final String GET_ALL_BY_CATEGORY_NM_DESC = "SELECT * FROM V_PRODUCT_DELETED ORDER BY category_nm desc";
 	// 상품 이름 오름차순 정렬
 	private final String GET_ALL_BY_PRODUCT_NAME_ASC = "SELECT * FROM V_PRODUCT_DELETED ORDER BY product_name, product_no";
 	// 상품 이름 내림차순 정렬
@@ -79,6 +83,17 @@ public class VProduct_DeletedDaoOraImpl extends JdbcDaoSupport implements IVProd
 					new BeanPropertyRowMapper<VProduct_DeletedVo>(VProduct_DeletedVo.class));
 		else
 			return getJdbcTemplate().query(GET_ALL_BY_ALL_SELLS_DESC, 
+					new BeanPropertyRowMapper<VProduct_DeletedVo>(VProduct_DeletedVo.class));
+	}
+
+	@Override
+	public List<VProduct_DeletedVo> getAllDeletedProduct_by_category_nm(boolean order) throws DataAccessException 
+	{
+		if(order)
+			return getJdbcTemplate().query(GET_ALL_BY_CATEGORY_NM_ASC, 
+					new BeanPropertyRowMapper<VProduct_DeletedVo>(VProduct_DeletedVo.class));
+		else
+			return getJdbcTemplate().query(GET_ALL_BY_CATEGORY_NM_DESC, 
 					new BeanPropertyRowMapper<VProduct_DeletedVo>(VProduct_DeletedVo.class));
 	}
 }

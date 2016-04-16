@@ -27,7 +27,7 @@
 		table tr:not(:first-child) td:nth-child(10) { text-align: right; }
 
 
-		#buttons { margin-top: 20px; text-align: right; }
+		#buttons { margin-top: 20px; margin-bottom: 20px; text-align: right; }
 		#buttons input[type = "button"]
 		{
 			padding : 7px 20px;
@@ -41,6 +41,7 @@
 			border : 0px;
 		}
 		#buttons input[type = "button"]:hover { opacity : 0.7; }
+		#buttons span { color: black; }
 
 	</style>
 <!-- 링크, 이미지 살려놓기. product.nm 상태에도 리스트 띄우기 -->
@@ -254,14 +255,19 @@
 	
 </script>
 	<h2 id = "reg_title">상품 관리</h2>
+		<div id = "buttons">
+			<span>선택한 상품을 </span>
+			<input type = "button" id = "dis_y" value = "진열" onclick = "state_change('dis', 1);" />
+			<input type = "button" id = "dis_n" value = "진열 안함" onclick = "state_change('dis', 0);" />
+			<input type = "button" id = "sale_y" value = "판매" onclick = "state_change('sal', 1);" />
+			<input type = "button" id = "sale_n" value = "판매 안함" onclick = "state_change('sal', 0);" />
+			<input type = "button" id = "del" value = "삭제" onclick = "state_change('del', 1);" />
+		</div>
 		<table cellspacing = "0" class = "data_part">
 			<tr>
 				<td><input type = "checkbox" id = "all_chk" onclick = "all_check(this);"/></td>
-				<td>
-					<a href = "#" onclick="order_product('no');" id = "no">${param.by eq 'no' && param.order eq 'true' ? '▲' : '▼'} 상품번호</a>
-				</td>
-				<td>
-				<a href = "#" onclick="order_product('ct');" id = "ct">${param.by eq 'ct' && param.order eq 'true' ? '▲' : '▼'} 분류</a></td>
+				<td><a href = "#" onclick="order_product('no');" id = "no">${param.by eq 'no' && param.order eq 'true' ? '▲' : '▼'} 상품번호</a></td>
+				<td><a href = "#" onclick="order_product('ct');" id = "ct">${param.by eq 'ct' && param.order eq 'true' ? '▲' : '▼'} 분류</a></td>
 				<td><a href = "#" onclick="order_product('nm');" id = "nm">${param.by eq 'nm' && param.order eq 'true' ? '▲' : '▼'} 상품명</a></td>
 				<td>이미지</td>
 				<td><a href = "#" onclick="order_product('pr');" id = "pr">${param.by eq 'pr' && param.order eq 'true' ? '▲' : '▼'} 가격(원가)</a></td>
@@ -286,6 +292,7 @@
 			</c:forEach>
 		</table>
 		<div id = "buttons">
+			<span>선택한 상품을 </span>
 			<input type = "button" id = "dis_y" value = "진열" onclick = "state_change('dis', 1);" />
 			<input type = "button" id = "dis_n" value = "진열 안함" onclick = "state_change('dis', 0);" />
 			<input type = "button" id = "sale_y" value = "판매" onclick = "state_change('sal', 1);" />

@@ -2,8 +2,9 @@ package com.nmom.soap.data.model.product;
 
 public class VProduct_DeletedVo 
 {
-	// Î©§Î≤Ñ Î≥?àò
+	// Î©§Î≤Ñ ÔøΩ?ÔøΩÔøΩ
 	int product_no;
+	String category_nm;
 	String product_name;
 	String represent_img;
 	int selling_price;
@@ -11,14 +12,15 @@ public class VProduct_DeletedVo
 	int stock;
 	int all_sells;
 	
-	// ?ùÏÑ±??
+	// ?ÔøΩÏÑ±??
 	public VProduct_DeletedVo(){}
 	
-	public VProduct_DeletedVo(int product_no, String product_name,
+	public VProduct_DeletedVo(int product_no, String category_nm, String product_name,
 			String represent_img, int selling_price, int cost_price, int stock,
 			int all_sells) 
 	{
 		this.product_no = product_no;
+		this.category_nm = category_nm;
 		this.product_name = product_name;
 		this.represent_img = represent_img;
 		this.selling_price = selling_price;
@@ -34,6 +36,14 @@ public class VProduct_DeletedVo
 
 	public void setProduct_no(int product_no) {
 		this.product_no = product_no;
+	}
+	
+	public String getCategory_nm() {
+		return category_nm;
+	}
+
+	public void setCategory_nm(String category_nm) {
+		this.category_nm = category_nm;
 	}
 
 	public String getProduct_name() {

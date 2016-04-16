@@ -44,4 +44,10 @@ public class VProduct_DeletedSvcImpl implements IVProduct_DeletedSvc
 		return product_deletedDao.getAllDeletedProduct_by_all_sells(order);
 	}
 
+	@Override
+	public List<VProduct_DeletedVo> getAllDeletedProduct_by_category_nm(boolean order)
+	{
+		return product_deletedDao.getAllDeletedProduct_by_category_nm(order);
+	}
+
 }
