@@ -36,21 +36,21 @@ public class ProductSvcImpl implements IProductSvc
 	}
 
 	@Override
-	public int editDisplayState(ProductVo product, int state) 
+	public int editDisplayState(int product_no, int state) 
 	{
-		return productDao.editDisplayState(product, state);
+		return productDao.editDisplayState(product_no, state);
 	}
 
 	@Override
-	public int editSaleState(ProductVo product, int state) 
+	public int editSaleState(int product_no, int state) 
 	{
-		return productDao.editSaleState(product, state);
+		return productDao.editSaleState(product_no, state);
 	}
 
 	@Override
-	public int editDeletedState(ProductVo product, int state) 
+	public int editDeletedState(int product_no, int state) 
 	{
-		return productDao.editDeletedState(product, state);
+		return productDao.editDeletedState(product_no, state);
 	}
 
 	@Override

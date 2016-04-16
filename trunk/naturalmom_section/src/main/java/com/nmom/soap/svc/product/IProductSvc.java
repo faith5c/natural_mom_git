@@ -13,13 +13,13 @@ public interface IProductSvc
 	int addProduct(ProductVo product);
 	
 	// 진열 상태 변경
-	int editDisplayState(ProductVo product, int state);
+	int editDisplayState(int product_no, int state);
 	
 	// 판매 상태 변경
-	int editSaleState(ProductVo product, int state);
+	int editSaleState(int product_no, int state);
 	
 	// 삭제, 복원
-	int editDeletedState(ProductVo product, int state);
+	int editDeletedState(int product_no, int state);
 	
 	// 상품 수정
 	int editOneProduct(ProductVo product);

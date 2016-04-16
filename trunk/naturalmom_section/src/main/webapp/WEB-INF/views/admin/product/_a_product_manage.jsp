@@ -2,8 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<script src="resources/admin/js/jquery-1.11.3.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
 	<style type = "text/css">
 
 		#container   { width : 1024px; margin : 50px auto; color: #85858d; }
@@ -182,6 +181,7 @@
 				order_param = order_param + "false";
 			}
 		}
+		
 		else if(by == 'all')
 		{
 			var str = document.getElementById("all").innerHTML;
@@ -193,7 +193,7 @@
 				document.getElementById("all").innerHTML = "▲ 총 누적판매량";
 				order_param = order_param + "true";
 			}
-				
+			
 			else
 			{
 				document.getElementById("all").innerHTML = "▼ 총 누적판매량";	
@@ -211,7 +211,6 @@
 			$( ".data_part" ).html( data );
 			alert( "Load was performed." );
 		}); */
-	
 	}
 
 	function order_original()
@@ -228,20 +227,36 @@
 	
 	function state_change(id, state)
 	{
-		var url = "product.nm?page=process&" + id + "=" + state;
+		var url = "product.nm?page=process&item=" + id + "&order=" + state;
 		var checked = '';
 		$('input:checkbox[id="chk"]:checked').each(function(){
 			checked += '&no=' + $(this).val();
 		});
-		alert(url + checked);
-		// 프로세스로 주소 보내고 controller에 추가하기
+//		 alert(url + checked);
+		if(checked.indexOf('&no') == -1)
+		{
+			alert('상품을 선택해주세요.');
+		}			
+		else
+		{
+			location.href = url + checked;
+		}
+	}
+	
+	function all_check(all)
+	{
+		if( $(all).is(":checked") == true ){
+		    $("input[name=chk]").prop("checked", true );
+		   }else{
+		    $("input[name=chk]").prop("checked", false ); 
+		}
 	}
 	
 </script>
 	<h2 id = "reg_title">상품 관리</h2>
 		<table cellspacing = "0" class = "data_part">
 			<tr>
-				<td><input type = "checkbox" id = "all" onclick = "all_check();"/></td>
+				<td><input type = "checkbox" id = "all_chk" onclick = "all_check(this);"/></td>
 				<td>
 					<a href = "#" onclick="order_product('no');" id = "no">${param.by eq 'no' && param.order eq 'true' ? '▲' : '▼'} 상품번호</a>
 				</td>
@@ -257,7 +272,7 @@
 			</tr>
 			<c:forEach var="product" items="${p_list}">
 			<tr>
-				<td><input type = "checkbox" id = "chk" value = "${product.product_no}" /></td>
+				<td><input type = "checkbox" name = "chk" id = "chk" value = "${product.product_no}" /></td>
 				<td>${product.product_no}</td>
 				<td>${product.category_nm}</td>
 				<td><a href = "a_product.jsp?page=modify">${product.product_name}</a></td>
@@ -271,10 +286,10 @@
 			</c:forEach>
 		</table>
 		<div id = "buttons">
-			<input type = "button" id = "dis_y" value = "진열" onclick = "state_change('dis', 'true');" />
-			<input type = "button" id = "dis_n" value = "진열 안함" onclick = "state_change('dis', 'false');" />
-			<input type = "button" id = "sale_y" value = "판매" onclick = "state_change('sal', 'true');" />
-			<input type = "button" id = "sale_n" value = "판매 안함" onclick = "state_change('sal', 'false');" />
-			<input type = "button" id = "del" value = "삭제" onclick = "state_change('del', 'true');" />
+			<input type = "button" id = "dis_y" value = "진열" onclick = "state_change('dis', 1);" />
+			<input type = "button" id = "dis_n" value = "진열 안함" onclick = "state_change('dis', 0);" />
+			<input type = "button" id = "sale_y" value = "판매" onclick = "state_change('sal', 1);" />
+			<input type = "button" id = "sale_n" value = "판매 안함" onclick = "state_change('sal', 0);" />
+			<input type = "button" id = "del" value = "삭제" onclick = "state_change('del', 1);" />
 		</div>
 </html>

@@ -5,7 +5,7 @@
   <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script src="resources/admin/js/jquery-1.11.3.min.js"></script>
+	<script src="/soap/resources/admin/js/jquery-1.11.3.min.js"></script>
 	<!-- [if lt IE 9]><script src="js/html5shiv.js"></script><![endif] -->
 	
 	<link rel="apple-touch-icon" href="../../resources/images/logo.ico" /> <!--애플아이콘등록-->

@@ -47,13 +47,11 @@ public class ProductController
 		this.categorySvc = categorySvc;
 	}
 	
-	@RequestMapping(value ="/admin/product.nm", method=RequestMethod.GET, params="page=manage")
-	public ModelAndView product_manageList(HttpServletRequest request)
-	{
-		System.out.println("메소드 진입 - ");
-		String by = request.getParameter("by");
-		String order = request.getParameter("order");
-		
+	// 상품관리 페이지
+	@RequestMapping(value ="/admin/product.nm", method=RequestMethod.GET)
+	public ModelAndView product_manageList(HttpServletRequest request,
+			@RequestParam(value="by", required=false) String by, @RequestParam(value="order", required=false) String order)
+	{		
 		List<VProduct_ManageVo> list = null;
 		Map<String, Object> map = new HashMap<String, Object>();
 		
@@ -124,7 +122,52 @@ public class ProductController
 		return new ModelAndView("admin/product/a_product", map);
 	}
 	
-	
+	// 상품관리 페이지에서 상태 변경
+	@RequestMapping(value ="/admin/product.nm", method=RequestMethod.GET, params="page=process")
+	public String product_manageChangeState(HttpServletRequest request,
+			@RequestParam(value="item", required=false) String item, @RequestParam(value="order", required=false) int order,
+			@RequestParam(value="no", required=false) int[] no)
+	{
+		for (int i = 0; i < no.length; i++)
+		{
+			if (item.equals("dis"))
+			{
+				int r = productSvc.editDisplayState(no[i], order);
+				if(r == S.PROCESS_ERROR)
+				{
+					// 에러 페이지 이동
+					System.out.println("에러 발생");
+					return "redirect:/admin/product.nm";
+				}
+			}
+			else if (item.equals("sal"))
+			{
+				int r = productSvc.editSaleState(no[i], order);
+				if(r == S.PROCESS_ERROR)
+				{
+					// 에러 페이지 이동
+					System.out.println("에러 발생");
+					return "redirect:/admin/product.nm";
+				}
+			}
+			else if (item.equals("del"))
+			{
+				int r = productSvc.editDeletedState(no[i], order);
+				if(r == S.PROCESS_ERROR)
+				{
+					// 에러 페이지 이동
+					System.out.println("에러 발생");
+					return "redirect:/admin/product.nm";
+				}
+			}
+			else
+			{
+				// 에러 페이지
+			}
+		}
+		
+		return "redirect:/admin/product.nm";	
+	}
 	
 	
 	

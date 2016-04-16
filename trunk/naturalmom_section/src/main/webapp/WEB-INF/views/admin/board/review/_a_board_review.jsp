@@ -3,7 +3,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<script src="/resources/admin/js/jquery-1.11.3.min.js"></script>
 <!DOCTYPE>
 <html>
 <style type = "text/css">

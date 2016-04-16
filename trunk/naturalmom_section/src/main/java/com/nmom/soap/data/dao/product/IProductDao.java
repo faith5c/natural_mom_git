@@ -16,13 +16,13 @@ public interface IProductDao
 	int addProduct(ProductVo product) throws DataAccessException;
 	
 	// 진열 상태 변경
-	int editDisplayState(ProductVo product, int state) throws DataAccessException;
+	int editDisplayState(int product_no, int state) throws DataAccessException;
 	
 	// 판매 상태 변경
-	int editSaleState(ProductVo product, int state) throws DataAccessException;
+	int editSaleState(int product_no, int state) throws DataAccessException;
 	
 	// 삭제, 복원
-	int editDeletedState(ProductVo product, int state) throws DataAccessException;
+	int editDeletedState(int product_no, int state) throws DataAccessException;
 
 	// 상품 수정
 	int editOneProduct(ProductVo product) throws DataAccessException;

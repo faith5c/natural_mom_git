@@ -81,29 +81,29 @@ public class ProductDaoOraImpl extends NamedParameterJdbcDaoSupport implements I
 		return getNamedParameterJdbcTemplate().update(ADD_ONE_PRODUCT, msps);
 	}
 
-	public int editDisplayState(ProductVo product, int state) throws DataAccessException
+	public int editDisplayState(int product_no, int state) throws DataAccessException
 	{
 		MapSqlParameterSource msps = new MapSqlParameterSource();
 		msps.addValue("display_state", new Integer(state), Types.INTEGER);
-		msps.addValue("product_no", product.getProduct_no(), Types.INTEGER);
+		msps.addValue("product_no", product_no, Types.INTEGER);
 		
 		return getNamedParameterJdbcTemplate().update(EDIT_DISPLAY_STATE, msps);
 	}
 
-	public int editSaleState(ProductVo product, int state) throws DataAccessException
+	public int editSaleState(int product_no, int state) throws DataAccessException
 	{
 		MapSqlParameterSource msps = new MapSqlParameterSource();
 		msps.addValue("sale_state", new Integer(state), Types.INTEGER);
-		msps.addValue("product_no", product.getProduct_no(), Types.INTEGER);
+		msps.addValue("product_no", product_no, Types.INTEGER);
 		
 		return getNamedParameterJdbcTemplate().update(EDIT_SALE_STATE, msps);
 	}
 
-	public int editDeletedState(ProductVo product, int state) throws DataAccessException
+	public int editDeletedState(int product_no, int state) throws DataAccessException
 	{
 		MapSqlParameterSource msps = new MapSqlParameterSource();
 		msps.addValue("deleted_state", new Integer(state), Types.INTEGER);
-		msps.addValue("product_no", product.getProduct_no(), Types.INTEGER);
+		msps.addValue("product_no", product_no, Types.INTEGER);
 		
 		return getNamedParameterJdbcTemplate().update(EDIT_DELETED_STATE, msps);
 	}

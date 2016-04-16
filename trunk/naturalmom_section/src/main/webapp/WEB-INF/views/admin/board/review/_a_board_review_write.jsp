@@ -4,7 +4,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<script type="text/javascript" src="../resources/js/nicEdit.js"></script>
+<script type="text/javascript" src="/soap/resources/admin/js/nicEdit.js"></script>
 <script type="text/javascript">
 	bkLib.onDomLoaded(function(){
 		new nicEditor({maxHeight:300}).panelInstance('review_write')
@@ -20,7 +20,7 @@
 <style type="text/css">
 	
 	#in { font-family : "나눔바른고딕", "맑은 고딕"; }
-	#in { width : 764px; margin : 50px auto; }
+	#in { width : 800px; margin : 50px auto; }
 	#in h2 { color: #004523; margin-bottom : 15px; }
 	
 	table { width : 100%; margin : 0 auto; }
