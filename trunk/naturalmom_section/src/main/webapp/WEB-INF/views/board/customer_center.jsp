@@ -72,7 +72,7 @@
 					<% } else if(r.equals("2")){ %>
 					<%@include file="qna/_qna_read_secret.jsp" %>
 					<% } else if(w.equals("true")){ %>
-					<%@include file="qna/_qna_write.jsp" %>
+					<%-- <%@include file="qna/_qna_write.jsp" %> --%>
 					<% } %>
 <%				}else if(submenu.equals("faq")){%>
 					<% if(submenu.equals("faq") && r.equals("1")) { %>
