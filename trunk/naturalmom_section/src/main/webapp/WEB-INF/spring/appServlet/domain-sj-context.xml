@@ -51,6 +51,12 @@
 		</property>
 	</bean>
 	
+	<bean id="vOrdererDao" class="com.nmom.soap.data.impl.member.VOrdererDaoOraImpl">
+		<property name="dataSource">
+			<ref local="ds"/>
+		</property>
+	</bean>
+	
 <!-- DAO(saleStatement) -->
 		
 	<bean id="saleStatementDao" class="com.nmom.soap.data.impl.sales.SaleStatementOraDaoImpl">
@@ -102,6 +108,12 @@
 	<bean id="vOrderManagerSvc" class="com.nmom.soap.svc.order.VOrderManagerSvcImpl">
 		<property name="vOrderManagerDao">
 			<ref local="vOrderManagerDao"/>
+		</property>
+	</bean>
+	
+	<bean id="vOrdererSvc" class="com.nmom.soap.svc.member.VOrdererSvcImpl">
+		<property name="vOrdererDao">
+			<ref local="vOrdererDao"/>
 		</property>
 	</bean>
 	

@@ -42,6 +42,7 @@
 			
 			<div id="soap_table">
 				<table>
+				<form action="temporder.nm" method="post">
 					<tr>
 						<td colspan="2">${pvo.product_name}&nbsp;${pvo.weight}g</td>
 					</tr>
@@ -50,7 +51,7 @@
 					</tr>
 					<tr>
 						<td>판매 가격</td>
-						<td><label id="selling_price">${pvo.selling_price}</label>원</td>
+						<td><label id="selling_price" name="charge">${pvo.selling_price}</label>원</td>
 					</tr>
 					<tr>
 						<td>유통 기한</td>
@@ -62,21 +63,27 @@
 					</tr>
 					<tr>
 						<td>구매 수량</td>
-						<td><input id="purchase_count" type="number" min="1" max="100" step="1" value="1" size="3"/></td>
+						<td><input id="purchase_count" name="buy_num" type="number" min="1" max="100" step="1" value="1" size="3"/></td>
 					</tr>
 					<tr>
 						<td colspan="2">
 							총계
-							<label id="total_price">${pvo.selling_price}</label>원
+							<label id="total_price" >${pvo.selling_price}</label>원
 						</td>
 					</tr>
 					<tr>
 						<td colspan="2">
 						<button style="width:85px; padding : 13px 10px; margin : 0 5px;" >장바구니</button>
 						<button style="width:85px; padding : 13px 10px; margin : 0 5px;">관심상품</button>
-						<button style="width:85px; padding : 13px 10px; margin : 0 5px; background-color : #000000" onclick="location.href='order.jsp';">바로구매</button>
+						<button style="width:85px; padding : 13px 10px; margin : 0 5px; 
+						background-color : #000000" type="submit">바로구매</button>
 						</td>
 					</tr>
+						<!-- 서브밋 시 가져갈 것들 -->
+						<input type="hidden" name="product_no" value="${pvo.product_no}">
+						<input type="hidden" name="product_name" value="${pvo.product_name}">
+						<input type="hidden" name="represent_img" value="${pvo.represent_img}">
+					</form>
 				</table>
 			</div>
 			
