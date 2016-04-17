@@ -278,7 +278,7 @@
 				<tr>
 					<td colspan = "2" id = "buttons">
 						<input type = "button" value = "등록" onclick = "form_check();">
-						<input type = "button" value = "취소">
+						<input type = "button" value = "취소" onclick = "location.href='product.nm'">
 					</td>
 				</tr>
 			</table>

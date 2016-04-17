@@ -51,8 +51,14 @@
 	<% if(request.getParameter("rslt") != null 
 			&& request.getParameter("rslt").equals("true")){ %>		
 			alert('상품 등록에 성공했습니다.');				
-	<% } %>	
-
+	<% } else if (request.getParameter("rslt") != null
+			&& request.getParameter("rslt").equals("m_true")){ %>
+			alert('상품 수정에 성공했습니다.');	
+	<% } else if (request.getParameter("rslt") != null
+			&& request.getParameter("rslt").equals("m_false")){ %>	
+			alert('상품 수정에 실패했습니다.');	
+	<% } %>
+	
 	function order_product(by)
 	{
 		var by_param = "by=";
@@ -287,7 +293,7 @@
 				<td>${product.product_no}</td>
 				<td>${product.category_nm}</td>
 				<td><a href = "product.nm?page=modify&no=${product.product_no}">${product.product_name}</a></td>
-				<td><img src = "${product.represent_img}" alt = "${product.product_name}" width = "50" /></td>
+				<td><img src = "<%= request.getSession().getServletContext().getRealPath("/") +  "resources/product_images/" %>${product.represent_img}" alt = "${product.product_name}" width = "50" /></td>
 				<td>${product.selling_price}(${product.cost_price})</td>
 				<td>${product.stock}</td>
 				<td>${product.display_state eq 1 ? 'Y' : 'N'}</td>

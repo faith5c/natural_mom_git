@@ -225,7 +225,7 @@
 				<td>${product.product_no}</td>
 				<td>${product.category_nm}</td>
 				<td>${product.product_name}</td>
-				<td><img src = "${product.represent_img}" alt = "${product.product_name}" width = "50" /></td>
+				<td><img src = "<%= request.getSession().getServletContext().getRealPath("/") +  "resources/product_images/" %>${product.represent_img}" alt = "${product.product_name}" width = "50" /></td>
 				<td>${product.selling_price}(${product.cost_price})</td>
 				<td>${product.stock}</td>
 				<td>${product.all_sells}</td>
