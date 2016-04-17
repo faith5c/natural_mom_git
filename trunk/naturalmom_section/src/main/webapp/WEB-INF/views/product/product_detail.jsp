@@ -42,7 +42,7 @@
 			
 			<div id="soap_table">
 				<table>
-				<form action="temporder.nm" method="post">
+				<form action="/soap/order/temporder.nm" method="post">
 					<tr>
 						<td colspan="2">${pvo.product_name}&nbsp;${pvo.weight}g</td>
 					</tr>
@@ -51,7 +51,7 @@
 					</tr>
 					<tr>
 						<td>판매 가격</td>
-						<td><label id="selling_price" name="charge">${pvo.selling_price}</label>원</td>
+						<td><label id="selling_price" >${pvo.selling_price}</label>원</td>
 					</tr>
 					<tr>
 						<td>유통 기한</td>
@@ -83,6 +83,7 @@
 						<input type="hidden" name="product_no" value="${pvo.product_no}">
 						<input type="hidden" name="product_name" value="${pvo.product_name}">
 						<input type="hidden" name="represent_img" value="${pvo.represent_img}">
+						<input type="hidden" name="charge" value="${pvo.selling_price}">
 					</form>
 				</table>
 			</div>

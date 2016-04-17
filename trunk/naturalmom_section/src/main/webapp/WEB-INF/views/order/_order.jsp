@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -161,30 +162,25 @@ table tr .explain {
 				<td>가격</td>
 				<td>주문</td>
 			</tr>
+			<c:if test="${not empty temp}">
+			<c:forEach var="t" items="temp">
 			<tr>
-				<td>사진사진</td>
-				<td>쑥 비누</td>
-				<td>1개</td>
-				<td>4,300원</td>
+				<td><img width="20%" alt="" src="${ t.represent_img }"></td>
+				<td><label name="total_price" id="total_price">${ t.total_price }</label></td>
+				<td><input id="buy_num" name="buy_num" type="number" min="1" max="100" step="1" value="${ t.buy_num }" size="3"/></td>
+				<td><label name="total_price" id="total_price">${ t.total_price }</label>원</td>
 				<td class="buttons">
 					<!-- order_cencle() 매개변수는 행 번호를 넣을 것 --> <input type="button"
-					onclick="order_cencle(0)" value="취소">
+					onclick="order_cencle(${ t.product_no })" value="취소">
 				</td>
 			</tr>
+			</c:forEach>
+			</c:if>
+			<c:if test="${empty temp}">
 			<tr>
-				<td>사진사진</td>
-				<td>아마씨 비누</td>
-				<td>2개</td>
-				<td>7,000원</td>
-				<td class="buttons">
-					<!-- order_cencle() 매개변수는 행 번호를 넣을 것 --> <input type="button"
-					onclick="order_cencle(1)" value="취소">
-				</td>
+				<td colspan="5">주문하실 상품이 없습니다.</td>
 			</tr>
-			<tr>
-				<td colspan=5>총 주문금액 : 11,300 + 배송비 3,000원 = <b>14,300원</b>
-				</td>
-			</tr>
+			</c:if>
 		</table>
 		</div>
 		<!-- 주문하기 끝 -->

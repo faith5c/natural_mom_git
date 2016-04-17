@@ -34,6 +34,12 @@ public class TempOrderVo {
 		this.total_price = total_price;
 	}
 
+	@Override
+	public String toString() {
+		return "TempOrderVo [product_no=" + product_no + ", represent_img=" + represent_img + ", product_name="
+				+ product_name + ", buy_num=" + buy_num + ", charge=" + charge + ", total_price=" + total_price + "]";
+	}
+
 	public int getProduct_no() {
 		return product_no;
 	}
