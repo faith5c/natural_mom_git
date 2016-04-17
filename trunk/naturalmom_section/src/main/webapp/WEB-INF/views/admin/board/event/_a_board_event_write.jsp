@@ -14,7 +14,7 @@
 		
 	<title>자연맘</title>
 
-	<script type="text/javascript" src="../js/nicEdit_inBoard.js"></script>
+	<script type="text/javascript" src="/soap/resources/admin/js/nicEdit.js"></script>
 	<script type="text/javascript">
 		bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
 	</script>
@@ -111,7 +111,7 @@
 		var title =$('#title').val();
 		var content = nicEditors.findEditor('event_content').getContent();
 		
-		if(content=="" || content==null 
+		if(content=="<br>" || content==null 
 				|| title=="" || title==null ){
 			alert("제목과 내용을 빠짐없이 입력해주세요");
 		}else{

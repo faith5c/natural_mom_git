@@ -113,7 +113,7 @@
 		var title =$('#title').val();
 		var content = nicEditors.findEditor('event_content').getContent();
 		
-		if(content=="" || content==null 
+		if(content=="<br>" || content==null 
 				|| title=="" || title==null ){
 			alert("제목과 내용을 빠짐없이 입력해주세요");
 		}else{
