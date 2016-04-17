@@ -51,7 +51,7 @@
 		</property>
 	</bean>
 	
-	<bean id="vOrdererDao" class="com.nmom.soap.data.impl.member.VOrdererDaoOraImpl">
+	<bean id="ordererDao" class="com.nmom.soap.data.impl.member.VOrdererDaoOraImpl">
 		<property name="dataSource">
 			<ref local="ds"/>
 		</property>
@@ -112,8 +112,8 @@
 	</bean>
 	
 	<bean id="vOrdererSvc" class="com.nmom.soap.svc.member.VOrdererSvcImpl">
-		<property name="vOrdererDao">
-			<ref local="vOrdererDao"/>
+		<property name="ordererDao">
+			<ref local="ordererDao"/>
 		</property>
 	</bean>
 	
