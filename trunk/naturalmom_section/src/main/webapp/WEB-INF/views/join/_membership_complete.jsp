@@ -35,7 +35,7 @@
 	<hr><br>
 	<p>자연맘에 오신걸 환영합니다.<br><br>
 		이제 자연맘 회원으로서의 모든 혜택을 누리실 수 있습니다.</p><br>
-	<input id="button" type="button" value="확인" onclick="location.href='login.jsp'" />
+	<input id="button" type="button" value="확인" onclick="location.href='login.nm'" />
 
 </div>
 </html>

@@ -121,8 +121,8 @@ public class MemberController {
 	}
 	
 	// 회원가입 처리
-	@RequestMapping(value="join_complete.nm", method=RequestMethod.GET)
-	public ModelAndView join_complete_proc(HttpServletRequest req,
+	@RequestMapping(value="join_complete.nm", method=RequestMethod.POST)
+	public ModelAndView join_proc(HttpServletRequest req,
 										@RequestParam(value="id") String id,
 										@RequestParam(value="pw") String pw,
 										@RequestParam(value="name") String name,
@@ -131,22 +131,21 @@ public class MemberController {
 										@RequestParam(value="month") int month,
 										@RequestParam(value="day") int day,
 										@RequestParam(value="phone1") String phone1,
-										@RequestParam(value="phone2") int phone2,
-										@RequestParam(value="phone3") int phone3,
+										@RequestParam(value="phone2") String phone2,
+										@RequestParam(value="phone3") String phone3,
 										@RequestParam(value="email1") String email1,
 										@RequestParam(value="email2") String email2,
-										@RequestParam(value="post_num") int post_num,
+										@RequestParam(value="post_num") String post_num,
 										@RequestParam(value="address") String address,
 										@RequestParam(value="address_detail") String address_detail
-											){
-		int intYear = year.equals("") ? 0 : Integer.parseInt(year);
+											){		
+		String phone= mergePhone(phone1, phone2, phone3);
+		String email= mergeEmail(email1, email2);
+		Date birth = mergeBirth(year, month, day);
+		String address_all = mergeAddress(address, address_detail);
 		
-		System.out.println("들어옴");
-		System.out.println("#" + id + " : " + pw);
-		System.out.println(name + " " + gender +" "+ new Date(intYear, month, day));
-		System.out.println("phone " + phone1 +"-"+ phone2 +"-"+ phone3);
-		System.out.println("email " +email1 + "@"+email2);
-		System.out.println("address " + post_num + " " + address + "@" +address_detail);
+		System.out.println(memberSvc.addMember
+		(new MemberVo(id, pw, name, phone, post_num, address_all, email, birth, gender)));
 		
 		return new ModelAndView("join/membership");
 	}
@@ -171,6 +170,33 @@ public class MemberController {
 		map.put("address", address);
 		
 		return new ModelAndView("mypage/mypage", map);
+	}
+	
+	
+	// 회원정보 수정 실행
+	@RequestMapping(value="edit_complete.nm", method=RequestMethod.POST)
+	public ModelAndView edit_member_proc(HttpServletRequest req,
+										@RequestParam(value="id") String id,
+										@RequestParam(value="pw") String pw,
+										@RequestParam(value="phone1") String phone1,
+										@RequestParam(value="phone2") String phone2,
+										@RequestParam(value="phone3") String phone3,
+										@RequestParam(value="email1") String email1,
+										@RequestParam(value="email2") String email2,
+										@RequestParam(value="post_num") String post_num,
+										@RequestParam(value="address") String address,
+										@RequestParam(value="address_detail") String address_detail ){
+		String phone = mergePhone(phone1, phone2, phone3);
+		String email = mergeEmail(email1, email2);
+		String address_all = mergeAddress(address, address_detail);
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		System.out.println
+			(memberSvc.editMember(new MemberVo().edit_member_form(id, pw, phone, post_num, address_all, email)));
+		
+		map.put("page", "edit");
+		return new ModelAndView("redirect:myinfo_edit.nm", map) ;
 	}
 	
 	
@@ -284,6 +310,16 @@ public class MemberController {
 		}else{
 			return null;
 		}
+	}
+	
+	String mergeAddress(String address, String address_detail){
+		if( !address.equals("") && address !=null
+				&& !address_detail.equals("") && address_detail !=null){
+			return address+"@"+address_detail;
+		}else{
+			return null;
+		}
+		
 	}
 
 

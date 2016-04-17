@@ -51,7 +51,7 @@ td:FIRST-CHILD {
 <div id="inside">
 	<h2>&nbsp;&nbsp;회원가입</h2>
 	<br><hr>
-	<form action="join_complete.nm" method="get" name="join_naturalmom_form" id="join_form">
+	<form action="join_complete.nm" method="post" name="join_form" id="join_form">
 		<table>
 			<tr>
 				<td>아이디</td>
@@ -82,13 +82,13 @@ td:FIRST-CHILD {
 				<td>
 					<input id="year" name="year" type="number" placeholder="1999"/>년 
 					<select id="month" name="month">
-							<option value="none">&nbsp;선택&nbsp;</option>
+							<option value="0">&nbsp;선택&nbsp;</option>
                         <%for(int i=1; i<13; i++){ %>
                      		<option value="<%= i %>">&nbsp;<%= i %>&nbsp;</option>
                      	<%} %>
                      </select>월
                      <select id="day" name="day">
-                     		<option value="none">&nbsp;선택&nbsp;</option>
+                     		<option value="0">&nbsp;선택&nbsp;</option>
                      	<%for(int i=1; i<32; i++){ %>
                      		<option value="<%= i %>">&nbsp;<%= i %>&nbsp;</option>
                      	<%} %>
@@ -127,10 +127,10 @@ td:FIRST-CHILD {
 			<tr>
 				<td>주소</td>
 				<td>
-					<input type="number" id="post_num" name="post_num" disabled="disabled"/>
+					<input type="text" id="post_num" name="post_num" readonly="readonly" onclick="suggestButton()"/>
 					<!-- post_num1 + post_num2 = addr_post -->
 					<input type="button" value="우편번호 찾기" name="find_postnum" onclick="pop_postNum()"/><br>
-					<input type="text" id="address" name="address" disabled="disabled"/>
+					<input type="text" id="address" name="address" readonly="readonly" onclick="suggestButton()"/>
 				</td>
 			</tr>
 			<tr style="margin: -10px;">
@@ -190,7 +190,7 @@ td:FIRST-CHILD {
 		var var_pw2 = $('#pw2').val();
 		
 		if( ! (val_pw1 == var_pw2) ){
-			$("#check_pw2 span").css("color", "red").text("비밀번호가 일치하지 않습니다");
+			$("#check_pw2 span").css("color", "red").html("비밀번호가 일치하지 않습니다");
 			document.getElementById("nnPw2").value = "false";
 		}else{
 			$("#check_pw2 span").css("color", "gray").html("<i class='fa fa-check-circle' aria-hidden='true'></i>");
@@ -245,9 +245,13 @@ td:FIRST-CHILD {
 			alert("상세주소를 입력해주세요.");
 		}else{
 			$('#join_form').submit();
-			//document.join_form.submit();
+			document.join_form.submit();
 		}
 		
+	}
+	
+	function suggestButton() {
+		alert("우편번호 찾기를 이용해주세요")		
 	}
 	 
 	

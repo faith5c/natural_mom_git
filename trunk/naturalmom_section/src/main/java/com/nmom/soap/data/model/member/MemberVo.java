@@ -150,4 +150,15 @@ public class MemberVo {
 	}
 	
 	
+	public MemberVo edit_member_form(String id, String pw, String phone, String postNum, String address, String email){
+		this.mem_id= id;
+		this.mem_pw = pw;
+		this.mem_phone = phone;
+		this.mem_addr_post = postNum;
+		this.mem_addr_detail = address;
+		this.mem_email = email;
+		return this;
+	}
+	
+	
 }

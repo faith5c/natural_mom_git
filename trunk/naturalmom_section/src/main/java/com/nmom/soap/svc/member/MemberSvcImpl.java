@@ -37,8 +37,7 @@ public class MemberSvcImpl implements IMemberSvc {
 
 	@Override
 	public int addMember(MemberVo member) {
-		// TODO Auto-generated method stub
-		return 0;
+		return memberDao.addMember(member);
 	}
 
 	@Override
@@ -54,8 +53,7 @@ public class MemberSvcImpl implements IMemberSvc {
 
 	@Override
 	public int editMember(MemberVo member) {
-		// TODO Auto-generated method stub
-		return 0;
+		return memberDao.editMember(member);
 	}
 
 	@Override

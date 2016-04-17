@@ -75,7 +75,7 @@ td:FIRST-CHILD {
 			</tr>
 			<tr>
 				<td>아이디</td>
-				<td><input type="text" id="id" name="id" disabled="disabled" value="${m.mem_id}"/></td>
+				<td><input type="text" id="id" name="id" readonly="readonly" value="${m.mem_id}" onclick="cannotchange('아이디는')"/></td>
 			</tr>
 						<tr>
 				<td>비밀번호</td>
@@ -89,7 +89,7 @@ td:FIRST-CHILD {
 			</tr>
 			<tr>
 				<td>이름</td>
-				<td><input type="text" id="name" name="name" disabled="disabled" value="${m.mem_name}"/></td>
+				<td><input type="text" id="name" readonly="readonly" value="${m.mem_name}" onclick="cannotchange('이름은')"/></td>
 			</tr>
 			<tr>
 				<td>휴대폰번호</td>
@@ -123,16 +123,16 @@ td:FIRST-CHILD {
 			<tr>
 				<td>주소</td>
 				<td>
-					<input type="text" id="post_num" name="post_num" disabled="disabled" value="${m.mem_addr_post}"/>
+					<input type="text" id="post_num" name="post_num" readonly="readonly" value="${m.mem_addr_post}"/>
 					<!-- post_num1 + post_num2 = addr_post -->
 					<input type="button" value="우편번호 찾기" name="find_postnum" onclick="pop_postNum()"/><br>
-					<input type="text" id="address" name="address" disabled="disabled"  value="${address[0]}"/>
+					<input type="text" id="address" name="address" readonly="readonly"  value="${address[0]}"/>
 				</td>
 			</tr>
 			<tr style="margin: -10px;">
 				<td>상세주소</td>
 				<td>
-					<input type="text" id="address_detail" name="address_detail" value="${address[1]}"/>
+					<input type="text" id="address_detail" name="address_detail" value="${address[1]}" />
 					<!-- address+address_detail = addr_detail -->
 				</td>
 			</tr>
@@ -140,10 +140,14 @@ td:FIRST-CHILD {
 				<td colspan="2" style="text-align: right"><input type="button" id="drop_out" value="회원탈퇴" onclick="dropout()"/></td>
 			</tr>
 			<tr>
-				<td colspan="2"><p id="button"><input type="button" id="submit" value="확인" /></p></td>
+				<td colspan="2"><p id="button"><input type="submit" id="submit" value="확인" onclick="allSubmit()"/></p></td>
 			</tr>
 		</table>
 	</form>
+	
+	<input type="hidden" id="nnPw" name="nnPw" value="false"/>
+	<input type="hidden" id="nnPw2" name="nnPw2" value="false"/>
+	<input type="hidden" id="page" name="page" value="complete"/>
 
 </div>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -210,7 +214,8 @@ function check_pw2() {
 			}else if($('#address_detail').val()==""){
 				alert("상세주소를 입력해주세요.");
 			}else{
-				//$('#join_form').submit();
+				alert("성공적으로 수정되었습니다.");
+				//$('#edit_form').submit();
 				document.edit_form.submit();
 			}
 			
@@ -223,6 +228,10 @@ function check_pw2() {
 				location.href='dropout_proc.nm';
 			}
 			
+		}
+		
+		function cannotchange(object) {
+			alert(object + ' 수정할 수 없습니다. <br>고객센터로 연락바랍니다.')
 		}
 
 </script>
