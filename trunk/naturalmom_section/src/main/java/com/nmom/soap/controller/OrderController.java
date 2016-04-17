@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nmom.soap.S;
+import com.nmom.soap.data.model.member.VOrdererVo;
 import com.nmom.soap.data.model.order.TempOrderVo;
 import com.nmom.soap.data.model.order.VOrderManagerVo;
 import com.nmom.soap.svc.member.IVOrdererSvc;
@@ -139,12 +140,15 @@ public class OrderController {
 	
 	@RequestMapping(value="/order/order.rm")
 	public ModelAndView addOrder(HttpServletRequest req,
-			HttpSession ses){
+			HttpSession ses,
+			@RequestParam(value="page")String page){
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		if(ses.getAttribute(S.SESSION_LOGIN) != null 
 				&& ses.getAttribute(S.SESSION_ADMIN) == null){
 			
+			VOrdererVo orderer = this.vOrdererSvc.getOrderer((String)ses.getAttribute(S.SESSION_LOGIN));
+			map.put("orderer", orderer);
 			map.put("page", "order");
 			map.put("temp", (List)ses.getAttribute(S.SESSION_TEMP_ORDER));
 		}
