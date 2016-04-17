@@ -60,8 +60,7 @@ public class MemberSvcImpl implements IMemberSvc {
 
 	@Override
 	public List<MemberVo> getAllMember() {
-		// TODO Auto-generated method stub
-		return null;
+		return memberDao.getAllMember();
 	}
 
 	@Override

@@ -1,7 +1,9 @@
 package com.nmom.soap.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.jws.WebParam.Mode;
@@ -183,6 +185,36 @@ public class MemberController {
 		se.invalidate();
 		
 		return new ModelAndView("empty", map);
+	}
+	
+	
+	///////////////////////////////////////////////////////////////////////////////////////////관리자 회원관리
+	@RequestMapping(value ="/admin/member.nm", method=RequestMethod.GET)
+	public ModelAndView admin_member(HttpServletRequest req){
+		
+		Map<String, Object> map = new HashMap<>();
+		List<MemberVo> member_list = memberSvc.getAllMember();
+		
+		
+		for(int i=0; i < member_list.size(); i++){
+			member_list.get(i).setMem_addr_detail
+				(member_list.get(i).getMem_addr_detail().replace("@", "<br>"));
+			
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			member_list.get(i).setMem_pw
+				(format.format(member_list.get(i).getMem_birth())); 
+			
+			
+			// 관리자는 제외
+			if( member_list.get(i).getMem_level_cd()== S.LEVEL_ADMIN){
+				member_list.remove(i);
+				i--;
+			}
+		}
+		
+		map.put("member", member_list);
+		
+		return new ModelAndView("admin/member/a_member", map);
 	}
 
 

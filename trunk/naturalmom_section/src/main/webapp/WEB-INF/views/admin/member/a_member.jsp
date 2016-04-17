@@ -22,7 +22,7 @@
 		h2 { margin-bottom : 15px; font-size: 24px; }
 		
 		table { width: 100%; padding : 0px; }
-		table tr:first-child td, table tr:last-child td { border-top : 1px solid grey; }
+		table tr:first-child td { border-top : 1px solid grey; } 
 		table tr:not(:last-child) td:first-child { border-left : 1px solid grey; }
 		table tr:not(:last-child) td:last-child { border-right : 1px solid grey; }
 		table tr td { padding : 10px; }
@@ -79,7 +79,7 @@
 		#result_table { width: 100%; padding : 0px; }
 		#result_table tr:first-child td, table tr:first-child td a { text-align:center; background-color: #918686; color: white; }
 		#result_table tr:not(:first-child) td a { color: black; }
-		#result_table tr td { border-top : 1px solid grey; border-bottom : 1px solid grey; }
+		#result_table tr:last-child td { border-bottom : 1px solid grey; }
 		#result_table tr td { border-right : 1px solid lightgrey; }
 		#result_table tr td:first-child { border-left : 1px solid grey;  width: 50px;}
 		#result_table tr td:last-child { border-right: 1px solid grey; }
@@ -190,7 +190,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan = "2" id = "buttons">
+					<td colspan = "2" id = "buttons" style="border-top:1px solid grey; ">
 						<input type = "submit" value = "검색">
 					</td>
 				</tr>
@@ -209,17 +209,21 @@
 					<td><a href = "#">▼ 성별</a></td>
 					<td><a href = "#">▼ 회원상태</a></td>
 				</tr>
+				
+			<c:forEach var="m" items="${member}">
 				<tr>
-					<td style="text-align: center"><input type = "checkbox" name = "" /></td>
-					<td>admin</td>
-					<td>관리자</td>
-					<td>서울시 광진구 구의2동</td>
-					<td>010-0000-0000</td>
-					<td>admin@natural.com</td>
-					<td>1900-01-01</td>
-					<td>여</td>
-					<td>일반 회원</td>
+					<td style="text-align: center"><input type = "checkbox" name = "checkbox" /></td>
+					<td>${m.mem_id}</td>
+					<td>${m.mem_name}</td>
+					<td>${m.mem_addr_detail}</td>
+					<td>${m.mem_phone}</td>
+					<td>${m.mem_email}</td>
+					<td>${m.mem_pw}</td>
+					<td>${m.mem_gender==1? "남" : "여" }</td>
+					<td>${m.mem_level_cd==1? "일반회원" : "불량회원"}</td>
 				</tr>
+			</c:forEach>
+				
 			</table>
 			<div id = "buttons">
 				선택한 회원을
