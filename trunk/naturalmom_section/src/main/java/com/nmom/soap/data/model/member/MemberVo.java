@@ -1,6 +1,10 @@
 package com.nmom.soap.data.model.member;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+
+import com.nmom.soap.S;
 
 public class MemberVo {
 	
@@ -146,6 +150,4 @@ public class MemberVo {
 	}
 	
 	
-	
-
 }

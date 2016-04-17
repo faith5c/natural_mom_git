@@ -127,7 +127,7 @@ public class MemberController {
 										@RequestParam(value="pw") String pw,
 										@RequestParam(value="name") String name,
 										@RequestParam(value="gender") int gender,
-										@RequestParam(value="year") int year,
+										@RequestParam(value="year") String year,
 										@RequestParam(value="month") int month,
 										@RequestParam(value="day") int day,
 										@RequestParam(value="phone1") String phone1,
@@ -139,10 +139,11 @@ public class MemberController {
 										@RequestParam(value="address") String address,
 										@RequestParam(value="address_detail") String address_detail
 											){
+		int intYear = year.equals("") ? 0 : Integer.parseInt(year);
 		
 		System.out.println("들어옴");
 		System.out.println("#" + id + " : " + pw);
-		System.out.println(name + " " + gender +" "+ new Date(year, month, day));
+		System.out.println(name + " " + gender +" "+ new Date(intYear, month, day));
 		System.out.println("phone " + phone1 +"-"+ phone2 +"-"+ phone3);
 		System.out.println("email " +email1 + "@"+email2);
 		System.out.println("address " + post_num + " " + address + "@" +address_detail);
@@ -194,12 +195,55 @@ public class MemberController {
 		
 		Map<String, Object> map = new HashMap<>();
 		List<MemberVo> member_list = memberSvc.getAllMember();
+		admin_list_format(member_list);
 		
+		map.put("member", member_list);
 		
+		return new ModelAndView("admin/member/a_member", map);
+	}
+	
+	// 회원관리 검색
+	@RequestMapping(value="/admin/member_search.nm", method=RequestMethod.POST)
+	public ModelAndView admin_member_search(HttpServletRequest req,
+											@RequestParam(value="id") String id,
+											@RequestParam(value="name") String name,
+											@RequestParam(value="phone1") String phone1,
+											@RequestParam(value="phone2") String phone2,
+											@RequestParam(value="phone3") String phone3,
+											@RequestParam(value="email1") String email1,
+											@RequestParam(value="email2") String email2,
+											@RequestParam(value="year") String year,
+											@RequestParam(value="month") int month,
+											@RequestParam(value="day") int day,
+											@RequestParam(value="gender") int gender,
+											@RequestParam(value="level_no") int level_no
+											){
+		Map<String, Object> map = new HashMap<>();
+		
+		String phone= mergePhone(phone1, phone2, phone3);
+		String email= mergeEmail(email1, email2);
+		Date birth = mergeBirth(year, month, day);
+		
+		List<MemberVo> member_list = memberSvc.getMembersByCondition(id, name, phone, email, birth, gender, level_no);
+		
+		admin_list_format(member_list);
+		map.put("member", member_list);
+		
+		return new ModelAndView("admin/member/a_member", map);
+	}
+	
+	
+	
+	
+	
+	// ****************************************************************************************** method
+	void admin_list_format(List<MemberVo> member_list){
 		for(int i=0; i < member_list.size(); i++){
+			// 주소 변환
 			member_list.get(i).setMem_addr_detail
 				(member_list.get(i).getMem_addr_detail().replace("@", "<br>"));
 			
+			// 생년월일 변환
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 			member_list.get(i).setMem_pw
 				(format.format(member_list.get(i).getMem_birth())); 
@@ -211,10 +255,35 @@ public class MemberController {
 				i--;
 			}
 		}
-		
-		map.put("member", member_list);
-		
-		return new ModelAndView("admin/member/a_member", map);
+	}
+	
+	String mergePhone(String phone1, String phone2, String phone3){
+		if( !phone1.equals("") && phone1!=null
+				&&!phone2.equals("") && phone2!=null
+				&&!phone3.equals("") && phone3!=null ){
+			return phone1 +"-"+ phone2 +"-"+ phone3;
+		}else{
+			return null;
+		}
+	}
+	
+	String mergeEmail(String email1, String email2){
+		if ( !email1.equals("") && email1!=null
+				&& !email2.equals("") && email2!=null){
+			return email1 + "@" + email2;
+		}else{
+			return null;
+		}
+	}
+	
+	Date mergeBirth(String year, int month, int day){
+		if( !year.equals("") && year !=null
+				&& month != 0 && day != 0){
+			int intYear = Integer.parseInt(year);
+			return new Date(intYear, month, day);
+		}else{
+			return null;
+		}
 	}
 
 

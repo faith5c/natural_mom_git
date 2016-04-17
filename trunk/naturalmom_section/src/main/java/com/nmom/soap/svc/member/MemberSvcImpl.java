@@ -66,8 +66,7 @@ public class MemberSvcImpl implements IMemberSvc {
 	@Override
 	public List<MemberVo> getMembersByCondition(String id, String name, String phone, String email, Date birth,
 			int gender, int level) {
-		// TODO Auto-generated method stub
-		return null;
+		return memberDao.getMembersByCondition(id, name, phone, email, birth, gender, level);
 	}
 
 }

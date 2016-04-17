@@ -5,7 +5,7 @@
   <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script src="resources/admin/js/jquery-1.11.3.min.js"></script>
+	<script src="/soap/resources/admin/js/jquery-1.11.3.min.js"></script>
 	<!-- [if lt IE 9]><script src="js/html5shiv.js"></script><![endif] -->
 	
 	<link rel="apple-touch-icon" href="../resources/images/logo.ico" /> <!--애플아이콘등록-->
@@ -115,7 +115,7 @@
 <!--- 회원검색 ----------------------------------------------------------------->
 	<div id="container">
 		<h2 id = "reg_title">회원 검색</h2>
-		<form action = "#" method = "post">
+		<form action = "member_search.nm" method = "post">
 			<table id="search_table" cellspacing = "0">
 				<tr>
 					<td><label for = "id">아이디</label></td>
@@ -144,8 +144,8 @@
 					<td><label for = "email1">이메일</label></td>
 					<td>
 					<input type="text" id="email1" name="email1" />@<input type="text" id="email2" name="email2" />
-					<select id="email_select" name="email_select" onchange="email_change()">
-							<option value="empty">직접입력</option>
+					<select id="email_select" onchange="email_change()">
+							<option value="">직접입력</option>
 							<option value="naver.com">naver.com</option>	
 							<option value="hanmail.net">hanmail.net</option>
 							<option value="nate.com">nate.com</option>
@@ -159,13 +159,13 @@
 					<td>
 						<input id="year" name="year" type="number" placeholder="1999"/>년 
 						<select id="month" name="month">
-								<option value="none">&nbsp;선택&nbsp;</option>
+								<option value="0">&nbsp;선택&nbsp;</option>
               	 	         <%for(int i=1; i<13; i++){ %>
               		       		<option value="<%= i %>">&nbsp;<%= i %>&nbsp;</option>
                		      	<%} %>
                 	     </select>월
                   	   <select id="day" name="day">
-                  	   			<option value="none">&nbsp;선택&nbsp;</option>
+                  	   			<option value="0">&nbsp;선택&nbsp;</option>
                    		  	<%for(int i=1; i<32; i++){ %>
                     	 		<option value="<%= i %>">&nbsp;<%= i %>&nbsp;</option>
                    		  	<%} %>
@@ -174,18 +174,22 @@
 				</tr>
 				<tr>
 					<td><label for = "gender">성별</label></td>
-					<td><input type="radio" name="gender" id="none" value="none" checked="checked"/><label for="none">&nbsp;모두</label>&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type="radio" name="gender" id="male" value="male"/><label for="male">&nbsp;남</label>&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" name="gender" id="female" value="female"/><label for="female">&nbsp;여</label>
+					<td>
+						<input type="radio" name="gender" id="none" value="0" checked="checked"/>
+							<label for="none">&nbsp;모두</label>&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="gender" id="male" value="1"/>
+							<label for="male">&nbsp;남</label>&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="gender" id="female" value="2"/>
+							<label for="female">&nbsp;여</label>
 					</td>
 				</tr>
 				<tr>
 					<td><label for = "level_no">회원상태</label></td>
 					<td>
 						<select id="level_no" name="level_no">
-							<option value="all">&nbsp;모두&nbsp;</option>
-							<option value="common">&nbsp;일반&nbsp;</option>
-							<option value="blacklist">&nbsp;불량&nbsp;</option>
+							<option value="0">&nbsp;모두&nbsp;</option>
+							<option value="1">&nbsp;일반&nbsp;</option>
+							<option value="2">&nbsp;불량&nbsp;</option>
 						</select>
 					</td>
 				</tr>
@@ -195,16 +199,18 @@
 					</td>
 				</tr>
 			</table>
+		</form>
 <!--- 검색결과 ----------------------------------------------------------------->
+		<form action="">
 			<h2 id = "reg_title">검색 결과</h2>
 			<table id="result_table" cellspacing = "0">
 				<tr>
 					<td>체크</td>
 					<td><a href = "#">▼ 아이디</a></td>
 					<td><a href = "#">▼ 이름</a></td>
-					<td><a href = "#">▼ 주소</a></td>
-					<td><a href = "#">▼ 전화번호</a></td>
-					<td><a href = "#">▼ 이메일</a></td>
+					<td>주소</td>
+					<td>전화번호</td>
+					<td>이메일</td>
 					<td><a href = "#">▼ 생년월일</a></td>
 					<td><a href = "#">▼ 성별</a></td>
 					<td><a href = "#">▼ 회원상태</a></td>
@@ -223,6 +229,14 @@
 					<td>${m.mem_level_cd==1? "일반회원" : "불량회원"}</td>
 				</tr>
 			</c:forEach>
+			
+			<c:if test="${empty member}">
+				<tr>
+					<td colspan="9" style="text-align: center; font-size: 15px; padding: 20px">
+						 해당 검색 결과가 없습니다.
+					</td>
+				</tr>
+			</c:if>
 				
 			</table>
 			<div id = "buttons">
@@ -238,7 +252,7 @@
   
 	 function email_change() {
 		 var selectedEmail = $("#email_select").val();
-		 document.getElementById("email2").setAttribute("value", selectedEmail);
+		 document.getElementById("email2").value= selectedEmail;
 	 }
   
   </script>
