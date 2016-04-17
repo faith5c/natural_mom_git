@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.nmom.soap.S;
 import com.nmom.soap.data.model.member.VOrdererVo;
 import com.nmom.soap.data.model.order.TempOrderVo;
+import com.nmom.soap.data.model.order.VOrderListVo;
 import com.nmom.soap.data.model.order.VOrderManagerVo;
 import com.nmom.soap.svc.member.IVOrdererSvc;
 import com.nmom.soap.svc.member.VOrdererSvcImpl;
@@ -24,6 +25,8 @@ import com.nmom.soap.svc.order.IOrderSvc;
 import com.nmom.soap.svc.order.IProductOrderSvc;
 import com.nmom.soap.svc.order.IVOrderListSvc;
 import com.nmom.soap.svc.order.IVOrderManagerSvc;
+
+import oracle.net.aso.p;
 
 @Controller
 public class OrderController {
@@ -136,13 +139,7 @@ public class OrderController {
 						}
 						else tempList.remove(i);
 					}
-				}
-			
-			//구매 가격 넣기
-			for(TempOrderVo t : tempList){
-				t.setTotal_price(t.getBuy_num()*t.getCharge());
-			}
-			
+				}			
 			}
 			
 			
@@ -168,10 +165,62 @@ public class OrderController {
 			System.out.println((String)ses.getAttribute(S.SESSION_LOGIN));
 			VOrdererVo orderer = this.vOrdererSvc.getOrderer(((String)ses.getAttribute(S.SESSION_LOGIN)));
 			map.put("orderer", orderer);
+			map.put("phone1", orderer.getPhone().split("-")[0]);
+			map.put("phone2", orderer.getPhone().split("-")[1]);
+			map.put("phone3", orderer.getPhone().split("-")[2]);
+			map.put("email1", orderer.getEmail().split("@")[0]);
+			map.put("email2", orderer.getEmail().split("@")[1]);
+			map.put("post1", orderer.getAddr_post().split("-")[0]);
+			map.put("post2", orderer.getAddr_post().split("-")[1]);
 			map.put("page", (page == null) ? "order" : page);
 			map.put("temp", temp);
 		}
 		return new ModelAndView("order/order", map);
+	}
+	
+	@RequestMapping(value ="/orderlist.nm")
+	public ModelAndView showOrderlist(HttpServletRequest req,
+			HttpSession ses){
+		
+		String mem_id = (String)ses.getAttribute(S.SESSION_LOGIN);
+		List<VOrderListVo> list = this.vOrderListSvc.getAllOreder(1, this.vOrderListSvc.getAllCount(mem_id), mem_id);
+		Map<String, Object> map = new HashMap<>();
+		map.put("orderlist", list);
+		return new ModelAndView("order/orderlist", map);
+	}
+	
+	@RequestMapping(value ="orderlist_edit.nm")
+	public ModelAndView editOrderlist(HttpServletRequest req,
+			HttpSession ses,
+			@RequestParam(value="checks")String checks){
+		
+		String mem_id = (String)ses.getAttribute(S.SESSION_LOGIN);
+		String check[] = checks.split(",");
+		String process = null;
+		int order_no[] = new int[check.length-1];
+		for(int i = 0; i < check.length; i++){
+			if(i < check.length-1){
+				try{
+					order_no[i] = Integer.parseInt(check[i]);
+				}catch(NumberFormatException ne){
+					ne.printStackTrace();
+				}
+			}
+			else{
+				process = check[i];
+			}	
+		}
+		int r = 0;
+		if(process != null)
+		r = this.productOrderSvc.editOrder(order_no, 
+				(process.equals("구매확정")) ? S.BUY_DECISION : S.REFUND_PROCESS );
+		
+		if(r > 0)System.out.println("업데이트 성공");
+		else System.out.println("업데이트 실패");
+		List<VOrderListVo> list = this.vOrderListSvc.getAllOreder(1, this.vOrderListSvc.getAllCount(mem_id), mem_id);
+		Map<String, Object> map = new HashMap<>();
+		map.put("orderlist", list);
+		return new ModelAndView("order/orderlist", map);
 	}
 	
 	public void setOrderSvc(IOrderSvc orderSvc) {

@@ -81,7 +81,7 @@ public class TempOrderVo {
 	}
 
 	public int getTotal_price() {
-		return total_price;
+		return charge*buy_num;
 	}
 
 	public void setTotal_price(int total_price) {

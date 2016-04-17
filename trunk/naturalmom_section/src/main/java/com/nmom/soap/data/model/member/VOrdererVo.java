@@ -79,7 +79,7 @@ public class VOrdererVo {
 	}
 
 	public String getAddr_detail() {
-		return addr_detail;
+		return addr_detail.replaceAll("@", " ");
 	}
 
 	public void setAddr_detail(String addr_detail) {

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -63,9 +65,53 @@
 			window.open("refund_req_popup.jsp", "refund_req", "width=720px, height=400px, left="+center_width+", top="+center_height+", scrollbars=no, toolbar=no, location=no");
 		}
 	</script>
+		<script type="text/javascript">
+	
+	function refund(){
+ 	
+		alert('res');
+		var chk = document.getElementsByName("orderlist_sel"); 
+        var len = chk.length; 
+        var res = ""; 
+        for(var i=0; i<len; i++){ 
+            if(chk[i].checked == true){ 
+                res += chk[i].value + ","; 
+            }
+        }
+        
+        if(res != ""){
+        res += 'refund'
+        $('#checks').attr("value", res)
+      	alert($('#checks').val());
+      	alert(res); 
+      	
+      	document.orderlist_form.submit();
+	}
+	
+	function buy(){
+		 
+        var chk = document.getElementsByName("orderlist_sel"); 
+        var len = chk.length; 
+        var res = ""; 
+        for(var i=0; i<len; i++){ 
+            if(chk[i].checked == true){ 
+                res += chk[i].value + ","; 
+            }
+        }
+        if(res != ""){
+        res += 'buy'
+        $('#checks').attr("value", res)
+      	alert($('#checks').val());
+      	alert(res);
+      	document.orderlist_form.submit();
+      	}
+	}
+	</script>
+	<input  type="hidden">
 	<!--주문내역 조회 부분-->
-	<form action="#" method="post">
+	<form action="orderlist_edit.nm" method="post" name="orderlist_form">
 		<br><br>
+		<c:if test="${not empty orderlist}">
 		<table cellspacing="0">
 			<tr>
 				<td colspan = "8"><h2>주문내역 조회</h2></td>
@@ -80,63 +126,33 @@
 				<td>결제금액</td>
 				<td>처리상태</td>
 			</tr>
-			<tr>
-				<td><input type="checkbox" name="orderlist_sel" value="선택된주문번호 랑 상품번호"></td>
-				<td>155553</td>
-				<td>2016/03/05</td>
-				<td><img src="images/soap11.jpg" alt="쑥비누사진"></td>
-				<td><a href="#">쑥비누</a></td>
-				<td>1</td>
-				<td>4300원</td>
-				<td>배송준비중</td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" name="orderlist_sel" value="선택된주문번호 랑 상품번호"></td>
-				<td>155553</td>
-				<td>2016/03/05</td>
-				<td><img src="images/soap1.jpg" alt="아마씨비누사진"></td>
-				<td><a href="#">아마씨비누</a></td>
-				<td>2</td>
-				<td>7000원</td>
-				<td>배송준비중</td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" name="orderlist_sel" value="선택된주문번호 랑 상품번호"></td>
-				<td>122332</td>
-				<td>2015/01/12</td>
-				<td><img src="images/soap12.jpg" alt="뽕잎비누사진"></td>
-				<td><a href="#">뽕잎비누</a></td>
-				<td>2</td>
-				<td>7300원</td>
-				<td>구매확정</td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" name="orderlist_sel" value="선택된주문번호 랑 상품번호"></td>
-				<td>122332</td>
-				<td>2015/01/12</td>
-				<td><img src="images/soap1.jpg" alt="아마씨비누사진"></td>
-				<td><a href="#">아마씨비누</a></td>
-				<td>4</td>
-				<td>21300원</td>
-				<td>구매확정</td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" name="orderlist_sel" value="선택된주문번호 랑 상품번호"></td>
-				<td>112311</td>
-				<td>2014/09/01</td>
-				<td><img src="images/soap4.jpg" alt="함초비누사진"></td>
-				<td><a href="#">함초비누</a></td>
-				<td>1</td>
-				<td>4500원</td>
-				<td>배송완료</td>
-			</tr>
+			<c:forEach var="o" items="${orderlist}">
+				<tr>
+				<td><input type="checkbox" name="orderlist_sel"
+				<c:if test="${o.process_nm.equals('구매확정') || o.process_nm.equals('환불완료') || o.process_nm.equals('환불처리')}">disabled="disabled"</c:if>
+				 value="${o.order_no}"></td>
+				<td>${o.order_no}</td>
+				<td><fmt:formatDate value="${o.order_date}" type="Date" /></td>
+				<td><img src="${o.represent_img}" alt="사진"></td>
+				<td><a href="#">${o.product_name}</a></td>
+				<td>${o.buy_num}</td>
+				<td>${o.charge}원</td>
+				<td>${o.process_nm}</td>
+				</tr>
+			</c:forEach>
+			
 			<tr>
 				<td colspan="8">
-				<input type="button" onclick="pop_refund_req()" value="환불신청">
-				<input type="button" value="구매확정">
+				<input type="button" value="환불신청" onclick="refund()">
+				<input type="button" value="구매확정" onclick="buy()">
 				</td>
 			</tr>
 		</table>
+		</c:if>
+		<c:if test="${empty orderlist}">
+		주문 내역이 없습니다.
+		</c:if>
+		<input type="hidden" name="checks" id="checks"/>
 	</form>
 
 		</div>

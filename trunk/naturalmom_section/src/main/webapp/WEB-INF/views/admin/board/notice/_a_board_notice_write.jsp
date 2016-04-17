@@ -67,7 +67,7 @@
 		<tr>
 			<td colspan="2">
 				<input type=button value="확인" onclick="checkNull()">
-				<input type=button value="취소">
+				<input type=button value="취소" onclick="location.href='notice.nm'">
 			</td>
 		</tr>
 	</table>

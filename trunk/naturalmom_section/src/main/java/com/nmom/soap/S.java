@@ -40,7 +40,15 @@ public class S {
 	public final static String SESSION_LOGIN ="loggedin";
 	public final static String SESSION_ADMIN ="admin";
 	
-	// Session Temp Order
+	// [수진] Session Temp Order
 	public final static String SESSION_TEMP_ORDER = "tempOrder";
 	
+	// [수진] 프로세스 번호
+	public final static int DELIVERY_PREPARE = 11; //배송준비중
+	public final static int DELIVERY_WAITING = 12; //배송대기
+	public final static int DELIVER = 13; 			//배송중
+	public final static int DELIVERY_COMPLETE = 14; //배송완료
+	public final static int BUY_DECISION = 21; 	//구매확정
+	public final static int REFUND_PROCESS = 31; 	//환불처리
+	public final static int REFUND_COMPLETE = 32; 	//환불완료
 }
