@@ -118,6 +118,10 @@ public class ReviewController
 	{
 		Map<String, Object> map = new HashMap<String, Object>();
 		ReviewVo rvw = reviewSvc.getOneReview(review_no);
+		
+		String id = (String)session.getAttribute(S.SESSION_LOGIN);
+		Boolean isAdmin = ((Boolean)session.getAttribute(S.SESSION_ADMIN));
+		
 		int countReviews = review_adminSvc.getCountAllReviews();
 		
 		// 해당 글의 조회수를 증가시키는 작업
@@ -126,6 +130,8 @@ public class ReviewController
 			VReview_AdminVo review = review_adminSvc.getOneReview(review_no);
 			List<Review_ReVo> reply = review_reSvc.getAllRe(review_no);
 			map.put("count", new Integer(countReviews));
+			map.put("id", id);
+			map.put("isAdmin", isAdmin);
 			map.put("review", review);
 			map.put("reply", reply);
 		}
@@ -137,6 +143,7 @@ public class ReviewController
 		return new ModelAndView("admin/board/review/a_review", map);
 	}
 	
+	// 이전글, 다음글 이동
 	@RequestMapping(value="/admin/board/review_read_m.nm", method=RequestMethod.GET, params="r")
 	public ModelAndView read_review_move(HttpServletRequest request, HttpSession session,
 			@RequestParam(value="r") int review_no, @RequestParam(value="d") String direction)
@@ -174,5 +181,40 @@ public class ReviewController
 		}
 		
 		return new ModelAndView("admin/board/review/a_review", map);
+	}
+	
+	// 댓글 달기
+	@RequestMapping(value="/admin/board/review_reg_re_proc.nm", method=RequestMethod.POST)
+	public String register_review_reply(HttpServletRequest request, HttpSession session,
+			@RequestParam(value="rvw_re_content", required=false) String rvw_re_content,
+			@RequestParam(value="rvw_no", required=false) int rvw_no)
+	{
+		// 세션에서 아이디와 관리자인지 여부를 얻어옴
+		String id = (String)session.getAttribute(S.SESSION_LOGIN);
+		boolean isAdmin = ((Boolean)session.getAttribute(S.SESSION_ADMIN)).booleanValue();
+		
+		if (isAdmin)
+		{
+			Review_ReVo new_reply = new Review_ReVo();
+			new_reply.setMem_id(id);
+			new_reply.setRvw_no(rvw_no);
+			new_reply.setRvw_re_content(rvw_re_content);
+			
+			if (review_reSvc.addRe(new_reply) == S.PROCESS_SUCCESS)
+			{
+				return "redirect:/admin/board/review_read.nm?r=" + rvw_no;
+			}
+			else
+			{
+				// 에러 메시지
+				System.out.println("댓글 등록 실패");
+				return "login.nm";
+			}
+		}
+		else
+		{
+			// 관리자 로그인 해달라는 에러 메시지
+			return "login.nm";
+		}
 	}
 }

@@ -32,16 +32,15 @@
 	}
 	
 	#review tr td nth-child:(odd), #review tr td:(even) {border-top : 1px solid gray; }
-	#review tr:not(:last-child) td 
+	#review tr td 
 	{ 
 		padding : 8px 5px; 
 		color: black;
 		border-bottom : 1px solid lightgrey;
-		text-align:center;
 	}
-	
-	#review_write td { text-align : right; }
-	#page { text-align : center; margin-bottom: 15px; }
+	#review tr td:not(:nth-child(3)) { text-align:center; }
+
+	#page { text-align : center; margin-top: 20px; margin-bottom: 15px; }
 	#search { text-align:center; }
 	#search input, #search select
 	{
@@ -62,6 +61,7 @@
 		border : 0px;
 	}
 	
+/* 	#review_write td { text-align : right; }
 	#review_write input[type="button"] 
 	{
 		padding : 5px 30px; 
@@ -74,19 +74,21 @@
 		margin-top : 10px;
 		margin-left : 10px;
 	}
+	#review_write input[type="button"]:hover,  */
 	
-	#review_write input[type="button"]:hover, #search input[id="btn_search"]:hover { opacity : 0.7; }
+	#search input[id="btn_search"]:hover { opacity : 0.7; }
+	
 </style>
  <div id ="in">
 	<h2>상품 후기</h2>
 	<table id = "review" cellspacing="0">
 		<tr>
-			<th>번호</th>
-			<th>상품명</th>
+			<th style = "width:50px;">번호</th>
+			<th style = "width:120px;">상품명</th>
 			<th>제목</th>
-			<th>작성자</th>
-			<th>작성일</th>
-			<th>만족도</th>
+			<th style = "width:100px;">작성자</th>
+			<th style = "width:110px;">작성일</th>
+			<th style = "width:90px;">만족도</th>
 		</tr>
 		<c:forEach var="review" items="${rvw_list}">
 			<tr>
@@ -110,17 +112,24 @@
 				</td>
 			</tr>
 		</c:forEach>
-		<tr id = "review_write">
+<!--	<tr id = "review_write">
 			<td colspan="6">
-				<input type = "button" value = "글쓰기" onclick = "location.href='review.nm?w=true'">
+			 <input type = "button" value = "글쓰기" onclick = "location.href='review.nm?w=true'"> 
 			</td>
 		</tr>
+-->
 	</table>
 <!-- 페이지 부분 -->
 		<div id = "page">
 			<a href="#">〈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<c:forEach var = "i" begin="1" end="${(all_reviews + 9) / 10}" step = "1">
-				<a href="review.nm?page=${i}">${i}</a>
+				<c:if test="${param.page == i}">
+					<span>${i}</span>
+				</c:if>
+				<c:if test="${param.page != i}">
+					<a href="review.nm?page=${i}">${i}</a>
+				</c:if>
+				
 			</c:forEach>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="#">〉</a>
@@ -142,7 +151,7 @@
 				<option value="id">글쓴이</option>
 				<option value="title_n_content">제목+내용</option>
 			</select>
-			<input type="text" placeholder="제목, 내용, 글쓴이, 제목+내용" name="search" id = "text_search">
+		 	<input type="text" placeholder="제목, 내용, 글쓴이, 제목+내용" name="search" id = "text_search">
 			<input type="button" value="검색" onclick="search();" id ="btn_search">
 		</div>
 	</div>

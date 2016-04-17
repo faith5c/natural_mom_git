@@ -72,7 +72,7 @@
 	}
 	.dat span:hover { opacity : 0.7; }
 	
-	.dat_write input[type="submit"] 
+	.dat_write input[type="button"] 
 	{
 		background : #cec5ce;
 		border-radius : 5px;
@@ -81,13 +81,33 @@
 		border : 1px solid #85858d;
 		padding : 5px; 
 	}
-	.dat_write input[type="submit"]:hover {	opacity : 0.7; }
+	.dat_write input[type="button"]:hover {	opacity : 0.7; }
 	
 </style>
-
-<form action = "#" method = "post">
+<script type="text/javascript">
+		
+	function del_review(review_no)
+	{
+		
+	}
+	function reg_reply()
+	{
+		var content = $('#rvw_re_content').val();
+		if(content == '')
+		{
+			alert('댓글 내용을 입력해주세요.');
+			$('#rvw_re_content').focus();		
+		}
+		else
+		{
+			alert('자바스크립트 등록절차 완료');
+			document.reg_reply_form.submit();
+		}
+	}
+	
+</script>
 <h2>상품 후기</h2>
-
+<form action = "review_reg_re_proc.nm" method="post" name = "reg_reply_form">
 <table cellspacing = "0">
 <!-- 제목 부분 -->
 	<tr>
@@ -124,20 +144,24 @@
 		<td colspan="2">${reply.rvw_re_content}</td>
 		<td>
 			<fmt:formatDate value="${reply.rvw_re_write_day}" type = "date" />
-			<span onclick="location.href='#'"><i class="fa fa-times-circle"></i></span>
+			<span onclick="del_reply(${reply.review_re_no})"><i class="fa fa-times-circle"></i></span>
 		</td>
 	</tr>
 	</c:forEach>
 <!-- 댓글 쓰기 -->
 	<tr class = "dat_write">
-		<td>자연맘</td>
+
+		<td><c:out value="${id}" /></td>
 		<td colspan="2">
-			<textarea style="width:100%; resize : none;" cols="30"></textarea>
+			<textarea style="width:100%; resize : none;" cols="30" name = "rvw_re_content" id = "rvw_re_content"></textarea>
 		</td>
 		<td>
-			<input type="submit" style="padding : 2px 10px; " value="댓글등록">
+			<input type="hidden" value="${review.review_no}" name="rvw_no"/>
+			<input type="button" style="padding : 2px 10px; " value="댓글등록" onclick="reg_reply();">
 		</td>
+		
 	</tr>
+	
 	<tr>
 		<td colspan="2">
 		<!-- 숫자 받아서 유효하지 않을 경우 다음, 이전 숫자로 넘어가도록 -->
@@ -149,7 +173,7 @@
 			</c:if>
 		</td>
 		<td colspan="2">
-			<input type="button" value="삭제">
+			<input type="button" value="삭제" onclick = "del_review(${review.review_no});">
 			<input type="button" value="목록" onclick = "location.href='review.nm';">
 		</td>
 	</tr>
