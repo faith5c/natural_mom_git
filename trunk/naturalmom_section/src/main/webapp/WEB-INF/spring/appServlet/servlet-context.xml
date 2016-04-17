@@ -63,6 +63,12 @@
 		<beans:property name="categorySvc">
 			<beans:ref local="category_svc"/>
 		</beans:property>
+		<beans:property name="reviewSvc">
+			<beans:ref local="reviewSvc"/>
+		</beans:property>
+		<beans:property name="review_reSvc">
+			<beans:ref local="review_reSvc"/>
+		</beans:property>
 	</beans:bean>
 	
 	<beans:bean id="salesCtl" class="com.nmom.soap.controller.SalesController">
