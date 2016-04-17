@@ -27,4 +27,7 @@ public interface IQnaDao {
 	
 	//댓글 제외한 하나의 글 가져오기
 	QnaVo getOneSimpleQna(int qna_no) throws DataAccessException;
+	
+	//조회수 증가
+	int increaseQnaHits(int qna_no) throws DataAccessException;
 }

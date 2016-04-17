@@ -148,19 +148,24 @@ public class QnaController {
 				qnano = Integer.parseInt(qr_no);
 				qna_vo = vQnaQnareSvc.getOneQna(qnano);
 				qnare_list = qnaReSvc.getQnaReByQnaNo(qnano);
-				if(qna_vo!=null){
-					map.put("qvo", qna_vo);
-					if(qnare_list!=null){
-						map.put("qnare_list", qnare_list);
-					}
-				}
 				
-				if(qna_vo.getQna_pw()== null){ //일반글일때
+				if(qna_vo!=null && qnare_list!=null){
 					
-					return new ModelAndView("/board/qna/b_qna", map);
-					
-				}else { //비밀글일때
-					map.put("secret", true);
+					//조회수 증가하는 부분
+					if(qnaSvc.increaseQnaHits(qna_vo.getQna_no()) == 1){
+						//조회수 증가시 다시 가져옴
+						qna_vo = vQnaQnareSvc.getOneQna(qnano);
+						qnare_list = qnaReSvc.getQnaReByQnaNo(qnano);
+					} else {
+						System.out.println("조회수 증가 실패");
+					}
+					map.put("qvo", qna_vo);
+					map.put("qnare_list", qnare_list);
+
+					//일반글인지 비밀글인지 분류
+					if(qna_vo.getQna_pw()!= null){ //비밀글일때
+						map.put("secret", true);
+					}
 					return new ModelAndView("/board/qna/b_qna", map);
 				}
 			}
@@ -287,14 +292,14 @@ public class QnaController {
 	// QNA 글쓰기 사용자가 글편집 하는 과정
 	@RequestMapping(value="/board/qna/edit_proc.nm", method=RequestMethod.POST)
 	public String editOldQna(HttpServletRequest req,
-			@RequestParam(value="qna_no", required=false) String qna_no,
+			@RequestParam(value="qe_no", required=false) String qe_no,
 			@RequestParam(value="title", required=false) String title,
 			@RequestParam(value="writer", required=false) String writer,
 			@RequestParam(value="password", required=false) String password,
 			@RequestParam(value="secret_check", required=false) boolean secret_check,
 			@RequestParam(value="content", required=false) String content)
 	{
-		int qnaNum;
+		int qna_no;
 		String qna_pw = null;
 		
 		if(secret_check){
@@ -313,9 +318,9 @@ public class QnaController {
 		}
 		
 		try{
-			if(qna_no!=null){
-				qnaNum = Integer.parseInt(qna_no);
-				int r = qnaSvc.editQna(qnaNum, title, content, qna_pw);
+			if(qe_no!=null){
+				qna_no = Integer.parseInt(qe_no);
+				int r = qnaSvc.editQna(qna_no, title, content, qna_pw);
 				
 				if(r==1){
 					System.out.println("글 수정 성공");
@@ -332,5 +337,28 @@ public class QnaController {
 		
 		return "redirect:/board/qna.nm";
 	}
+	
+	
+	//  /soap/board/delete_proc.nm?
+	// QNA 글쓰기 사용자가 글편집 하는 과정
+	@RequestMapping(value="/board/qna/delete_proc.nm", method=RequestMethod.GET)
+	public String removeQnaProcess(HttpServletRequest req,
+			@RequestParam(value="qd_no") String qd_no){
+		int qna_no;
+		try{
+			if(qd_no!=null){
+				qna_no = Integer.parseInt(qd_no);
+				int r = qnaSvc.removeQna(qna_no);
 
+				if(r == 1){
+					qnaSvc.removeQnaByRef(qna_no); //하위에 연결된 답변글 모두 지움
+				}else{
+					System.out.println("글 삭제 실패");
+				}
+			}
+		} catch(Exception e){
+			System.out.println("글삭제 정보 받아오기 실패");
+		}
+		return "redirect:/board/qna.nm";
+	}
 }

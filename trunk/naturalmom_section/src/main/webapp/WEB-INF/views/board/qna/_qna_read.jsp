@@ -169,8 +169,10 @@
 		<input type="button" value="다음글">
 	</td>
 	<td colspan="2">
-		<input type="button" value="편집" onclick = "location.href='/soap/board/qna/edit_form.nm?qe_no=${qvo.qna_no}';"/>
-		<input type="button" value="삭제" onclick = "delQna(${qvo.qna_no});"/>
+		<c:if test="${qvo.mem_id == sessionScope.loggedin}">
+			<input type="button" value="편집" onclick = "location.href='/soap/board/qna/edit_form.nm?qe_no=${qvo.qna_no}';"/>
+			<input type="button" value="삭제" onclick = "delQna(${qvo.qna_no});"/>
+		</c:if>
 		<input type="button" value="목록" onclick = "location.href='/soap/board/qna.nm';"/>
 	</td>
 </tr>
@@ -181,7 +183,7 @@
 <script type="text/javascript">
 	function delQna(qr_no){
 		if(confirm("글을 삭제하시겠습니까?")){
-			location.href='/soap/board/delete_proc.nm?qd_no='+qr_no;
+			location.href='/soap/board/qna/delete_proc.nm?qd_no='+qr_no;
 		}
 	}
 

@@ -52,4 +52,9 @@ public class QnaSvcImpl implements IQnaSvc {
 		return qnaDao.getOneSimpleQna(qna_no);
 	}
 
+	@Override
+	public int increaseQnaHits(int qna_no) {
+		return qnaDao.increaseQnaHits(qna_no);
+	}
+
 }

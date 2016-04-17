@@ -81,7 +81,7 @@
 			<td>
 			<textarea id="qna_area" style="width:100%; resize:none;" rows="14">${qvo.qna_content}</textarea>
 			<input type="hidden" name="content" id="qna_content"/>
-			<input type="hidden" name="qna_no" value="${qvo.qna_no}"/>
+			<input type="hidden" name="qe_no" value="${qvo.qna_no}"/>
 			</td>
 		</tr>
 		<tr>

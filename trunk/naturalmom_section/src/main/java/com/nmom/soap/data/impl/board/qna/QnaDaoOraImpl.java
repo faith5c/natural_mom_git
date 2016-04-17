@@ -29,6 +29,8 @@ public class QnaDaoOraImpl extends NamedParameterJdbcDaoSupport implements IQnaD
 	
 	private final String SQL_SELECT_ONE_SIMPLE_QNA = "SELECT qna_no, qna_title, mem_id, qna_pw, qna_content  FROM tb_qna WHERE qna_no=:qna_no";
 	
+	private final String SQL_INCREASE_QNA_HITS = "UPDATE tb_qna SET qna_hits = qna_hits+1 WHERE qna_no=:qna_no";
+	
 	public boolean secretQnaPwCheck(int qna_no, String qna_pw) throws DataAccessException {
 		NamedParameterJdbcTemplate npjtem = this.getNamedParameterJdbcTemplate();
 		MapSqlParameterSource ps = new MapSqlParameterSource();
@@ -111,5 +113,14 @@ public class QnaDaoOraImpl extends NamedParameterJdbcDaoSupport implements IQnaD
 		ps.addValue("qna_no", qna_no, Types.INTEGER);
 
 		return npjtem.queryForObject(SQL_SELECT_ONE_SIMPLE_QNA, ps, new BeanPropertyRowMapper<QnaVo>(QnaVo.class));
+	}
+
+	@Override
+	public int increaseQnaHits(int qna_no) throws DataAccessException {
+		NamedParameterJdbcTemplate npjtem = this.getNamedParameterJdbcTemplate();
+		MapSqlParameterSource ps = new MapSqlParameterSource();
+		ps.addValue("qna_no", qna_no, Types.INTEGER);
+
+		return npjtem.update(SQL_INCREASE_QNA_HITS, ps);
 	}
 }
