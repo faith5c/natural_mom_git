@@ -16,7 +16,6 @@
 	</script>	
 	
 	<style type="text/css">
-/* 		h2, th, table tr:last-child input { font-family : "나눔바른고딕", "맑은 고딕"; } */
 		h2 { color: #004523; padding-top : 20px;}
 		td:first-child { padding : 10px; }
 		th { background-color : #918686;  

@@ -169,12 +169,22 @@
 		<input type="button" value="다음글">
 	</td>
 	<td colspan="2">
-		<input type="button" value="편집">
-		<input type="button" value="삭제">
-		<input type="button" value="목록" onclick = "location.href='/soap/board/qna.nm';">
+		<input type="button" value="편집" onclick = "location.href='/soap/board/qna/edit_form.nm?qe_no=${qvo.qna_no}';"/>
+		<input type="button" value="삭제" onclick = "delQna(${qvo.qna_no});"/>
+		<input type="button" value="목록" onclick = "location.href='/soap/board/qna.nm';"/>
 	</td>
 </tr>
 </table>
 
 </body>
+
+<script type="text/javascript">
+	function delQna(qr_no){
+		if(confirm("글을 삭제하시겠습니까?")){
+			location.href='/soap/board/delete_proc.nm?qd_no='+qr_no;
+		}
+	}
+
+</script>
+
 </html>

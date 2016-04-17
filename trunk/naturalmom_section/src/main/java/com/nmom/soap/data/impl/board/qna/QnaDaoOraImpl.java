@@ -3,6 +3,7 @@ package com.nmom.soap.data.impl.board.qna;
 import java.sql.Types;
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcDaoSupport;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -26,6 +27,7 @@ public class QnaDaoOraImpl extends NamedParameterJdbcDaoSupport implements IQnaD
 	private final String SQL_DELETE_QNA = "UPDATE tb_qna SET qna_del_check=1 WHERE qna_no=:qna_no";
 	private final String SQL_DELETE_QNA_BY_REF = "UPDATE tb_qna SET qna_del_check=1 WHERE qna_ref=:qna_ref";
 	
+	private final String SQL_SELECT_ONE_SIMPLE_QNA = "SELECT qna_no, qna_title, mem_id, qna_pw, qna_content  FROM tb_qna WHERE qna_no=:qna_no";
 	
 	public boolean secretQnaPwCheck(int qna_no, String qna_pw) throws DataAccessException {
 		NamedParameterJdbcTemplate npjtem = this.getNamedParameterJdbcTemplate();
@@ -102,4 +104,12 @@ public class QnaDaoOraImpl extends NamedParameterJdbcDaoSupport implements IQnaD
 		return npjtem.update(SQL_DELETE_QNA_BY_REF, ps);
 	}
 
+	@Override
+	public QnaVo getOneSimpleQna(int qna_no) throws DataAccessException {
+		NamedParameterJdbcTemplate npjtem = this.getNamedParameterJdbcTemplate();
+		MapSqlParameterSource ps = new MapSqlParameterSource();
+		ps.addValue("qna_no", qna_no, Types.INTEGER);
+
+		return npjtem.queryForObject(SQL_SELECT_ONE_SIMPLE_QNA, ps, new BeanPropertyRowMapper<QnaVo>(QnaVo.class));
+	}
 }

@@ -44,6 +44,7 @@ public class FaqController {
 		} catch(Exception e){
 			e.printStackTrace();
 			pi = 0;
+			System.out.println("자주하는 질문 목록 인덱스 받아오기 오류처리함");
 		}
 		
 		Map<String,Object> map = new HashMap<String,Object>();
@@ -77,6 +78,7 @@ public class FaqController {
 			kw = URLDecoder.decode(kw, "UTF-8");
 		} catch (UnsupportedEncodingException e1) {
 			e1.printStackTrace();
+			System.out.println("자주하는 질문 인코딩 문제 발생");
 		}
 		
 		try{
@@ -85,6 +87,7 @@ public class FaqController {
 		} catch(Exception e){
 			e.printStackTrace();
 			pi = 0;
+			System.out.println("자주하는 질문 인덱스 받아오기 오류처리함");
 		}
 		
 		Map<String,Object> map = new HashMap<String,Object>();
@@ -132,6 +135,7 @@ public class FaqController {
 			}
 		} catch(Exception e){
 			e.printStackTrace();
+			System.out.println("자주하는 질문 글 정보 받아오기 실패");
 		}
 		return new ModelAndView("redirect:/board/faq.nm", map);
 		

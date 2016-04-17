@@ -38,7 +38,6 @@ public class QnaController {
 		this.vQnaQnareSvc = vQnaQnareSvc;
 	}
 	
-	
 	@RequestMapping(value ="admin/board/qna.nm", method=RequestMethod.GET)
 	public String a_board_qna(HttpServletRequest req){
 		return "admin/board/qna/a_qna";
@@ -60,6 +59,7 @@ public class QnaController {
 		} catch(Exception e){
 			e.printStackTrace();
 			pi = 0;
+			System.out.println("QnA 인덱스 받아오기 오류 처리함");
 		}
 		
 		Map<String,Object> map = new HashMap<String,Object>();
@@ -95,6 +95,7 @@ public class QnaController {
 			System.out.println(kw);
 		} catch (UnsupportedEncodingException e1) {
 			e1.printStackTrace();
+			System.out.println("인코딩 문제 발생");
 		}
 		
 		try{
@@ -102,7 +103,8 @@ public class QnaController {
 			
 		} catch(Exception e){
 			e.printStackTrace();
-			pi = 0;
+			pi = 0;			
+			System.out.println("QnA 인덱스 받아오기 오류 처리함");
 		}
 		
 		Map<String,Object> map = new HashMap<String,Object>();
@@ -110,27 +112,15 @@ public class QnaController {
 		
 		if(sch.equals("tt")){
 			qna_list = vQnaQnareSvc.searchQnaTitle(kw, pi * S.PAGE_LIMIT, (pi+1) * S.PAGE_LIMIT);
-
-			for (VQnaQnaReVo ff : qna_list) {
-				System.out.println(ff);
-			}
-			System.out.println("tt");
 			
 		}else if(sch.equals("con")){
 			qna_list = vQnaQnareSvc.searchQnaContent(kw, pi * S.PAGE_LIMIT, (pi+1) * S.PAGE_LIMIT);
-			System.out.println("cn");
-			for (VQnaQnaReVo ff : qna_list) {
-				System.out.println(ff);
-			}
+		
 		}else if(sch.equals("ttcon")){
 			qna_list = vQnaQnareSvc.searchQnaTitleNContent(kw, pi * S.PAGE_LIMIT, (pi+1) * S.PAGE_LIMIT);
-			System.out.println("ttcon");
-			for (VQnaQnaReVo ff : qna_list) {
-				System.out.println(ff);
-			}
+		
 		}else {
 			qna_list = vQnaQnareSvc.getAllQna(pi * S.PAGE_LIMIT, (pi+1) * S.PAGE_LIMIT);
-			System.out.println("total");
 		}
 		
 		if(qna_list != null){
@@ -176,6 +166,7 @@ public class QnaController {
 			}
 		} catch(Exception e){
 			e.printStackTrace();
+			System.out.println("글읽기 정보 받아오기 실패");
 		}
 		return new ModelAndView("redirect:/board/qna.nm", map);
 	}
@@ -217,6 +208,7 @@ public class QnaController {
 			}
 		} catch(Exception e){
 			e.printStackTrace();
+			System.out.println("비밀글 읽기 정보 받아오기 실패");
 		}
 		return new ModelAndView("redirect:/board/qna.nm", map);
 	}
@@ -230,7 +222,7 @@ public class QnaController {
 		return new ModelAndView("board/qna/b_qna", map);
 	}
 
-	// QNA 글쓰기 사용자가 작성하는 화면
+	// QNA 글쓰기 사용자가 작성하는 과정
 	@RequestMapping(value="/board/qna/add_proc.nm", method=RequestMethod.POST)
 	public String addNewQna(HttpServletRequest req,
 			@RequestParam(value="title", required=false) String title,
@@ -239,12 +231,6 @@ public class QnaController {
 			@RequestParam(value="secret_check", required=false) boolean secret_check,
 			@RequestParam(value="content", required=false) String content)
 	{
-		System.out.println(title);
-		System.out.println(writer);
-		System.out.println(password);
-		System.out.println(secret_check);
-		System.out.println(content);
-		System.out.println();
 
 		if(title == null){
 			title = "(제목없음)";
@@ -256,6 +242,10 @@ public class QnaController {
 		String qna_pw = null;
 		
 		if(secret_check){
+			if(password == null || password.isEmpty()){
+				password = "0000";
+				System.out.println("기본 비밀번호 설정");
+			}
 			qna_pw = password;
 		}
 		int r = qnaSvc.addQna(title, content, qna_pw, writer);
@@ -269,32 +259,51 @@ public class QnaController {
 		return "redirect:/board/qna.nm";
 	}
 	
-/*
-	// QNA 글쓰기 사용자가 작성하는 화면
-	@RequestMapping(value="/board/qna/add_form.nm", method=RequestMethod.GET)
-	public ModelAndView prepareEditQnaForm(HttpServletRequest req){
+
+	// QNA 글쓰기 사용자가 글편집하는 화면
+	@RequestMapping(value="/board/qna/edit_form.nm", method=RequestMethod.GET)
+	public ModelAndView prepareEditQnaForm(HttpServletRequest req,
+			@RequestParam(value="qe_no") String qe_no){
+		
+		int qna_no;
+		QnaVo qna_vo;
 		
 		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("qwe", true);
+		try{
+			if(qe_no!=null){
+				qna_no = Integer.parseInt(qe_no);
+				qna_vo = qnaSvc.getOneSimpleQna(qna_no);
+				map.put("qvo", qna_vo);
+				map.put("qwe", true);
+			}
+		} catch(Exception e){
+			e.printStackTrace();
+			System.out.println("글 편집 정보 받아오기 실패");
+		}
+		
 		return new ModelAndView("board/qna/b_qna", map);
 	}
 	
-
-	// QNA 글쓰기 사용자가 작성하는 화면
-	@RequestMapping(value="/board/qna/add_proc.nm", method=RequestMethod.POST)
+	// QNA 글쓰기 사용자가 글편집 하는 과정
+	@RequestMapping(value="/board/qna/edit_proc.nm", method=RequestMethod.POST)
 	public String editOldQna(HttpServletRequest req,
+			@RequestParam(value="qna_no", required=false) String qna_no,
 			@RequestParam(value="title", required=false) String title,
 			@RequestParam(value="writer", required=false) String writer,
 			@RequestParam(value="password", required=false) String password,
 			@RequestParam(value="secret_check", required=false) boolean secret_check,
 			@RequestParam(value="content", required=false) String content)
 	{
-		System.out.println(title);
-		System.out.println(writer);
-		System.out.println(password);
-		System.out.println(secret_check);
-		System.out.println(content);
-		System.out.println();
+		int qnaNum;
+		String qna_pw = null;
+		
+		if(secret_check){
+			if(password == null || password.isEmpty()){
+				password = "0000";
+				System.out.println("기본 비밀번호 설정");
+			}
+			qna_pw = password;
+		}
 
 		if(title == null){
 			title = "(제목없음)";
@@ -303,20 +312,25 @@ public class QnaController {
 			content = "(내용없음)";
 		}
 		
-		String qna_pw = null;
-		
-		if(secret_check){
-			qna_pw = password;
-		}
-		int r = qnaSvc.addQna(title, content, qna_pw, writer);
-		
-		if(r==1){
-			System.out.println("글 등록 성공");
-		}else {
-			System.out.println("글 등록 실패");
+		try{
+			if(qna_no!=null){
+				qnaNum = Integer.parseInt(qna_no);
+				int r = qnaSvc.editQna(qnaNum, title, content, qna_pw);
+				
+				if(r==1){
+					System.out.println("글 수정 성공");
+				}else {
+					System.out.println("글 수정 실패");
+				}
+				
+			}
+
+		} catch(Exception e){
+			e.printStackTrace();
+			System.out.println("글 편집 정보 받아오기 실패");
 		}
 		
 		return "redirect:/board/qna.nm";
-	}*/
-	
+	}
+
 }

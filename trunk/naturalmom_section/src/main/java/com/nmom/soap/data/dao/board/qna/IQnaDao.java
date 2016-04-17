@@ -24,4 +24,7 @@ public interface IQnaDao {
 
 	//참조글번호로 삭제
 	int removeQnaByRef(int qna_ref) throws DataAccessException;
+	
+	//댓글 제외한 하나의 글 가져오기
+	QnaVo getOneSimpleQna(int qna_no) throws DataAccessException;
 }

@@ -47,4 +47,9 @@ public class QnaSvcImpl implements IQnaSvc {
 		return qnaDao.removeQnaByRef(qna_ref);
 	}
 
+	@Override
+	public QnaVo getOneSimpleQna(int qna_no) {
+		return qnaDao.getOneSimpleQna(qna_no);
+	}
+
 }
