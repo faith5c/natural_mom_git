@@ -2,6 +2,7 @@ package com.nmom.soap.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nmom.soap.S;
+import com.nmom.soap.data.model.board.review.Review_ReVo;
+import com.nmom.soap.data.model.board.review.VReview_FrontVo;
 import com.nmom.soap.data.model.category.CategoryVo;
 import com.nmom.soap.data.model.product.ProductVo;
 import com.nmom.soap.data.model.product.VProduct_DeletedVo;
@@ -618,6 +621,19 @@ public class ProductController
 
 				if(product_vo != null)
 					map.put("pvo", product_vo);
+				
+				// 리뷰 글 가져오는 부분		
+				List<VReview_FrontVo> rvw_list = review_frontSvc.getAllList(product_no, 1);
+				List<List<Review_ReVo>> rvws_re_list = new ArrayList<List<Review_ReVo>>();
+				for(VReview_FrontVo rvw : rvw_list)
+				{
+					int review_no = rvw.getReview_no();
+					rvws_re_list.add(review_reSvc.getAllRe(review_no));
+				}
+
+				map.put("rvw_list", rvw_list);
+				map.put("re_map", rvws_re_list);
+				// 리뷰 가져오는 부분 끝
 			}
 		} catch(Exception e){
 			e.printStackTrace();
