@@ -36,10 +36,10 @@ public class IndexController {
 		return "order/cart";
 	}*/
 	
-	@RequestMapping(value ="/orderlist.nm", method=RequestMethod.GET)
+/*	@RequestMapping(value ="/orderlist.nm", method=RequestMethod.GET)
 	public String menu_orderlist(HttpServletRequest req){
 		return "order/orderlist";
-	}
+	}*/
 	/*
 	@RequestMapping(value ="/mypage.nm", method=RequestMethod.GET)
 	public String menu_mypage(HttpServletRequest req){
