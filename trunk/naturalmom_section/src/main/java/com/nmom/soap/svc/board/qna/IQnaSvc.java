@@ -1,5 +1,7 @@
 package com.nmom.soap.svc.board.qna;
 
+import org.springframework.dao.DataAccessException;
+
 import com.nmom.soap.data.model.board.qna.QnaVo;
 
 public interface IQnaSvc {
@@ -28,4 +30,13 @@ public interface IQnaSvc {
 	
 	//조회수 증가
 	int increaseQnaHits(int qna_no);
+	
+	//ref에 해당하는 pos 하나씩 뒤로 넘김 (이후에 pos의 자리에 데이터 추가)
+	int pushRearPos(int qna_parent_ref, int qna_parent_pos);
+	
+	//ref에 해당하는 pos 하나씩 앞으로 넘김 (이전에 pos의 자리에 데이터 삭제)
+	int pushFrontPos(int qna_parent_ref, int qna_parent_pos);
+	
+	//ref와 pos로 qna_no 뽑음
+	QnaVo getSimpleQnaByRefNPos(int qna_ref, int qna_pos);
 }

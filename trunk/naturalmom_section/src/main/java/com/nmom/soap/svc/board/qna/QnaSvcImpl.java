@@ -57,4 +57,19 @@ public class QnaSvcImpl implements IQnaSvc {
 		return qnaDao.increaseQnaHits(qna_no);
 	}
 
+	@Override
+	public int pushRearPos(int qna_parent_ref, int qna_parent_pos) {
+		return qnaDao.pushRearPos(qna_parent_ref, qna_parent_pos);
+	}
+
+	@Override
+	public int pushFrontPos(int qna_parent_ref, int qna_parent_pos) {
+		return qnaDao.pushFrontPos(qna_parent_ref, qna_parent_pos);
+	}
+
+	@Override
+	public QnaVo getSimpleQnaByRefNPos(int qna_ref, int qna_pos) {
+		return qnaDao.getSimpleQnaByRefNPos(qna_ref, qna_pos);
+	}
+
 }

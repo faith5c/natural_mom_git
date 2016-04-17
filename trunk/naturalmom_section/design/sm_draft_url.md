@@ -137,8 +137,8 @@ _____________________________________________________________
 	/board/qna/add_answer.nm
 		
 	- 댓글 등록
-	/board/qna/read/add_form.nm
+	/board/qna/read/add_reply_proc.nm
 	
 	- 댓글 삭제
-	/board/qna/read/del_form.nm
+	/board/qna/read/del_reply_proc.nm
 

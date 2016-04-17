@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,14 +43,22 @@
 		table { width : 720px; }
 	</style>
 	
-	
 	<form action="/soap/board/qna/add_proc.nm" method="post">
 	<table cellspacing="2">
 		<tr><td colspan="2"><h2>Q&A</h2></td></tr>
 		<tr>
 			<th style="width:80px;"><label for="title">제목</label></th>
 			<td>
-			<input type="text" name="title" style="width:99%;" id="title" maxlength="127" placeholder="제목을 입력하세요" required="required"/>
+			
+			<c:choose>
+				<c:when test="${not empty answer}">
+					<input type="text" name="title" style="width:99%;" id="title" maxlength="127" value="Re : ${answer.qna_title}" required="required"/>
+				</c:when>
+				<c:otherwise>
+					<input type="text" name="title" style="width:99%;" id="title" maxlength="127" placeholder="제목을 입력하세요" required="required"/>	
+				</c:otherwise>
+			</c:choose>
+			
 			</td>
 		</tr>
 		
@@ -72,6 +81,12 @@
 			<td>
 			<textarea id="qna_area" style="width:100%; resize:none;" rows="14"></textarea>
 			<input type="hidden" name="content" id="qna_content"  value="content"/>
+			
+			<c:if test="${not empty answer}">
+				<input type="hidden" name="old_qna_ref" value="${answer.qna_ref}"/>
+				<input type="hidden" name="old_qna_pos" value="${answer.qna_pos}"/>
+			</c:if>
+			
 			</td>
 		</tr>
 		<tr>

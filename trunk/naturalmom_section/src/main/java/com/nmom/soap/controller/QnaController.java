@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -64,10 +65,14 @@ public class QnaController {
 		
 		Map<String,Object> map = new HashMap<String,Object>();
 		
-		List<VQnaQnaReVo> qna_list = vQnaQnareSvc.getAllQna(pi * S.PAGE_LIMIT, (pi+1) * S.PAGE_LIMIT);
-		
+		List<VQnaQnaReVo> qna_list = vQnaQnareSvc.getAllQna((pi * S.PAGE_LIMIT)+1, (pi+1) * S.PAGE_LIMIT);
+		//1~10  11~20  21~30
+				
 		if(qna_list != null){
 			map.put("qna_list", qna_list);
+
+			int qna_count = vQnaQnareSvc.getQnaCount();
+			map.put("qna_count", qna_count);
 		}
 		ModelAndView mav = new ModelAndView("board/qna/b_qna", map);
 		return mav;
@@ -109,22 +114,27 @@ public class QnaController {
 		
 		Map<String,Object> map = new HashMap<String,Object>();
 		List<VQnaQnaReVo> qna_list;
+		int qna_count;
 		
 		if(sch.equals("tt")){
-			qna_list = vQnaQnareSvc.searchQnaTitle(kw, pi * S.PAGE_LIMIT, (pi+1) * S.PAGE_LIMIT);
+			qna_list = vQnaQnareSvc.searchQnaTitle(kw, (pi * S.PAGE_LIMIT)+1, (pi+1) * S.PAGE_LIMIT);
+			qna_count = vQnaQnareSvc.getSearchQnaTitleCount(kw);;
 			
 		}else if(sch.equals("con")){
-			qna_list = vQnaQnareSvc.searchQnaContent(kw, pi * S.PAGE_LIMIT, (pi+1) * S.PAGE_LIMIT);
-		
+			qna_list = vQnaQnareSvc.searchQnaContent(kw, (pi * S.PAGE_LIMIT)+1, (pi+1) * S.PAGE_LIMIT);
+			qna_count = vQnaQnareSvc.getSearchQnaContentCount(kw);
+			
 		}else if(sch.equals("ttcon")){
-			qna_list = vQnaQnareSvc.searchQnaTitleNContent(kw, pi * S.PAGE_LIMIT, (pi+1) * S.PAGE_LIMIT);
-		
+			qna_list = vQnaQnareSvc.searchQnaTitleNContent(kw, (pi * S.PAGE_LIMIT)+1, (pi+1) * S.PAGE_LIMIT);
+			qna_count = vQnaQnareSvc.getSearchQnaTitleNContentCount(kw);
 		}else {
-			qna_list = vQnaQnareSvc.getAllQna(pi * S.PAGE_LIMIT, (pi+1) * S.PAGE_LIMIT);
+			qna_list = vQnaQnareSvc.getAllQna(pi * (pi * S.PAGE_LIMIT)+1, (pi+1) * S.PAGE_LIMIT);
+			qna_count = vQnaQnareSvc.getQnaCount();
 		}
 		
 		if(qna_list != null){
 			map.put("qna_list", qna_list);
+			map.put("qna_count", qna_count);
 		}
 		
 		ModelAndView mav = new ModelAndView("board/qna/b_qna", map);
@@ -220,10 +230,22 @@ public class QnaController {
 	
 	// QNA 글쓰기 사용자가 작성하는 화면
 	@RequestMapping(value="/board/qna/add_form.nm", method=RequestMethod.GET)
-	public ModelAndView prepareAddQnaForm(HttpServletRequest req){
-		
+	public ModelAndView prepareAddQnaForm(HttpServletRequest req,
+			@RequestParam(value="pos", required = false) String pos,
+			@RequestParam(value="ref", required = false) String ref)
+	{
 		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("qwa", true);
+		if(pos!=null && ref!=null){
+			try{
+				QnaVo ori_qvo = qnaSvc.getSimpleQnaByRefNPos(Integer.parseInt(ref), Integer.parseInt(pos));
+				map.put("answer", ori_qvo);
+				
+			} catch(Exception e){
+				System.out.println("원글정보 가져오기 실패");
+			}
+		}
+		
+		map.put("qwa", true); //qnq write add
 		return new ModelAndView("board/qna/b_qna", map);
 	}
 
@@ -234,7 +256,10 @@ public class QnaController {
 			@RequestParam(value="writer", required=false) String writer,
 			@RequestParam(value="password", required=false) String password,
 			@RequestParam(value="secret_check", required=false) boolean secret_check,
-			@RequestParam(value="content", required=false) String content)
+			@RequestParam(value="content", required=false) String content,
+			@RequestParam(value="old_qna_ref", required=false) String old_qna_ref,
+			@RequestParam(value="old_qna_pos", required=false) String old_qna_pos
+			)
 	{
 
 		if(title == null){
@@ -253,14 +278,57 @@ public class QnaController {
 			}
 			qna_pw = password;
 		}
-		int r = qnaSvc.addQna(title, content, qna_pw, writer);
 		
-		if(r==1){
-			System.out.println("글 등록 성공");
-		}else {
-			System.out.println("글 등록 실패");
+		if(old_qna_ref!=null && old_qna_pos!=null){ //답변글
+
+			int qna_parent_ref;
+			int qna_parent_pos;
+			
+			try{
+				int r;
+				
+				qna_parent_ref = Integer.parseInt(old_qna_ref);
+				qna_parent_pos = Integer.parseInt(old_qna_pos);
+				
+				System.out.println("old_qna_ref : "+old_qna_ref);
+				System.out.println("old_qna_pos : "+old_qna_pos);
+				
+				int move = qnaSvc.pushRearPos(qna_parent_ref, qna_parent_pos); //뒤로 밀어내 내 자리 마련함
+				r = qnaSvc.addQnaAnswer(title, content, qna_pw, writer, qna_parent_pos+1, qna_parent_ref);
+				
+				if(move==0){
+					System.out.println("내가 끝이야");
+				} else {
+					System.out.println("내가 밀었어");
+				}
+				
+				/*if(qna_pos == 0){ //다른 답글 없음. 내가 맨처음다는 답글
+					r = qnaSvc.addQnaAnswer(title, content, qna_pw, writer, 1, qna_ref);
+					System.out.println("내가 맨 처음");
+					
+				} else { //다른 답글들이 있었으면
+					
+				}
+				*/
+				if(r==1){
+					System.out.println("답변 등록 성공");
+				}else {
+					System.out.println("답변 등록 실패");
+				}
+				
+			} catch(Exception e){
+				e.printStackTrace();
+				System.out.println("답변추가시 정보 가져오기 실패");
+			}
+			
+		} else { //일반글
+			int r = qnaSvc.addQna(title, content, qna_pw, writer);
+			if(r==1){
+				System.out.println("글 등록 성공");
+			}else {
+				System.out.println("글 등록 실패");
+			}
 		}
-		
 		return "redirect:/board/qna.nm";
 	}
 	
@@ -279,7 +347,7 @@ public class QnaController {
 				qna_no = Integer.parseInt(qe_no);
 				qna_vo = qnaSvc.getOneSimpleQna(qna_no);
 				map.put("qvo", qna_vo);
-				map.put("qwe", true);
+				map.put("qwe", true); //qna write edit
 			}
 		} catch(Exception e){
 			e.printStackTrace();
@@ -338,27 +406,112 @@ public class QnaController {
 		return "redirect:/board/qna.nm";
 	}
 	
-	
 	//  /soap/board/delete_proc.nm?
-	// QNA 글쓰기 사용자가 글편집 하는 과정
+	// QNA 글쓰기 사용자가 글삭제 하는 과정
 	@RequestMapping(value="/board/qna/delete_proc.nm", method=RequestMethod.GET)
 	public String removeQnaProcess(HttpServletRequest req,
-			@RequestParam(value="qd_no") String qd_no){
-		int qna_no;
-		try{
-			if(qd_no!=null){
-				qna_no = Integer.parseInt(qd_no);
-				int r = qnaSvc.removeQna(qna_no);
+			@RequestParam(value="qd_no") String qd_no,
+			@RequestParam(value="ref") String ref,
+			@RequestParam(value="pos") String pos){
 
-				if(r == 1){
-					qnaSvc.removeQnaByRef(qna_no); //하위에 연결된 답변글 모두 지움
-				}else{
+		int qna_no;
+		int qna_ref;
+		int qna_pos;
+		
+		try{
+			if(qd_no!=null && ref!=null && pos!=null){
+				qna_no = Integer.parseInt(qd_no);
+				qna_ref = Integer.parseInt(ref);
+				qna_pos = Integer.parseInt(pos);
+				
+				int r = qnaSvc.removeQna(qna_no); //선택된 글 삭제
+				if(r != 1){
 					System.out.println("글 삭제 실패");
+					return "redirect:/board/qna.nm";
+				}
+				
+				if(qna_pos == 0){ //첫번째 글인 경우 하위에 연결된 답변글을 모두 지움
+					qnaSvc.removeQnaByRef(qna_ref); //하위 글 삭제
+				} 
+				else { //답글인 경우 하위에 연결된 글을 당겨와야함
+					qnaSvc.pushFrontPos(qna_ref, qna_pos);
 				}
 			}
 		} catch(Exception e){
 			System.out.println("글삭제 정보 받아오기 실패");
 		}
 		return "redirect:/board/qna.nm";
+	}
+	
+	
+	// /board/qna/read/add_reply_proc.nm
+	// 댓글 등록하기
+	@RequestMapping(value="/board/qna/read/add_reply_proc.nm", method=RequestMethod.POST)
+	public String addQnaReplyProcess(HttpServletRequest req, HttpSession ses,
+			@RequestParam(value="qr_no") String qr_no,
+			@RequestParam(value="rn") String rn,
+			@RequestParam(value="dat_text") String dat_text)
+	{
+		String dat_content="";
+		int qna_no;
+		int qna_rownum;
+		String writer = (String)ses.getAttribute("loggedin");
+		
+		if(writer!=null && qr_no!=null && rn!=null && dat_text!=null){
+			if(!dat_text.isEmpty()){
+				dat_content = dat_text;
+			}
+			
+			try{
+				qna_no = Integer.parseInt(qr_no);
+				qna_rownum = Integer.parseInt(rn);
+				int r = qnaReSvc.addQnaRe(dat_content, qna_no, writer);
+
+				if(r != 1){
+					System.out.println("댓글 등록 실패");
+				}
+				
+				return "redirect:/board/qna/read.nm?qr_no="+qna_no+"&rn="+qna_rownum;
+			} catch(Exception e){
+				System.out.println("댓글 등록 정보 못받아옴");
+				e.printStackTrace();
+			}
+		
+		}
+		return "redirect:/board/qna.nm";
+	}
+
+	// /board/qna/read/del_reply_proc.nm
+	// 댓글 삭제하기
+	@RequestMapping(value="/board/qna/read/del_reply_proc.nm", method=RequestMethod.GET)
+	public String removeQnaReplyProcess(HttpServletRequest req,
+			@RequestParam(value="qr_no") String qr_no,
+			@RequestParam(value="rn") String rn,
+			@RequestParam(value="reno") String reno)
+	{
+		int qna_no;
+		int qna_rownum;
+		int qna_re_no;
+		
+		if(reno!=null && qr_no!=null && rn!=null){
+			
+			try{
+				qna_no = Integer.parseInt(qr_no);
+				qna_rownum = Integer.parseInt(rn);
+				qna_re_no = Integer.parseInt(reno);
+				int r = qnaReSvc.removeQnaRe(qna_re_no);
+
+				if(r != 1){
+					System.out.println("댓글 삭제 실패");
+				}
+				
+				return "redirect:/board/qna/read.nm?qr_no="+qna_no+"&rn="+qna_rownum;
+			} catch(Exception e){
+				System.out.println("댓글 삭제 정보 못받아옴");
+				e.printStackTrace();
+			}
+		
+		}
+		return "redirect:/board/qna.nm";		
 	}
 }

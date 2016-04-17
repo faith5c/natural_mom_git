@@ -22,14 +22,19 @@ public class QnaDaoOraImpl extends NamedParameterJdbcDaoSupport implements IQnaD
 	"INSERT INTO tb_qna (qna_no, qna_title, qna_write_day, qna_hits, qna_content, qna_del_check, qna_pw, qna_pos, qna_ref, board_id, mem_id) "
 	+ "VALUES (QNA_NO_SEQ.NEXTVAL,:qna_title, SYSDATE, 0, :qna_content, 0, :qna_pw, :qna_pos, :qna_ref, 4, :mem_id)";
 	
-	private final String SQL_UPDATE_QNA = "UPDATE tb_qna SET qna_title=:qna_title, qna_write_day=SYSDATE, qna_content=:qna_content, qna_pw=:qna_pw WHERE qna_no=:qna_no";
+	private final String SQL_UPDATE_QNA = "UPDATE tb_qna SET qna_title=:qna_title, qna_content=:qna_content, qna_pw=:qna_pw WHERE qna_no=:qna_no";
 	
 	private final String SQL_DELETE_QNA = "UPDATE tb_qna SET qna_del_check=1 WHERE qna_no=:qna_no";
 	private final String SQL_DELETE_QNA_BY_REF = "UPDATE tb_qna SET qna_del_check=1 WHERE qna_ref=:qna_ref";
 	
-	private final String SQL_SELECT_ONE_SIMPLE_QNA = "SELECT qna_no, qna_title, mem_id, qna_pw, qna_content  FROM tb_qna WHERE qna_no=:qna_no";
+	private final String SQL_SELECT_ONE_SIMPLE_QNA = "SELECT qna_no, qna_title, mem_id, qna_pw, qna_content FROM tb_qna WHERE qna_no=:qna_no";
 	
 	private final String SQL_INCREASE_QNA_HITS = "UPDATE tb_qna SET qna_hits = qna_hits+1 WHERE qna_no=:qna_no";
+	
+	private final String SQL_PUSH_REAR_POS = "UPDATE tb_qna SET qna_pos=qna_pos+1 WHERE qna_ref=:qna_ref AND qna_pos>:qna_pos";
+	private final String SQL_PUSH_FRONT_POS = "UPDATE tb_qna SET qna_pos=qna_pos-1 WHERE qna_ref=:qna_ref AND qna_pos>:qna_pos";
+	
+	private final String SQL_SELECT_SIMPLE_QNA_BY_REF_N_POS = "SELECT qna_no, qna_title, qna_ref, qna_pos from tb_qna WHERE qna_pos=:qna_pos AND qna_ref=:qna_ref";
 	
 	public boolean secretQnaPwCheck(int qna_no, String qna_pw) throws DataAccessException {
 		NamedParameterJdbcTemplate npjtem = this.getNamedParameterJdbcTemplate();
@@ -122,5 +127,34 @@ public class QnaDaoOraImpl extends NamedParameterJdbcDaoSupport implements IQnaD
 		ps.addValue("qna_no", qna_no, Types.INTEGER);
 
 		return npjtem.update(SQL_INCREASE_QNA_HITS, ps);
+	}
+
+	@Override
+	public int pushRearPos(int qna_parent_ref, int qna_parent_pos) throws DataAccessException {
+		NamedParameterJdbcTemplate npjtem = this.getNamedParameterJdbcTemplate();
+		MapSqlParameterSource ps = new MapSqlParameterSource();
+		ps.addValue("qna_ref", qna_parent_ref, Types.INTEGER);
+		ps.addValue("qna_pos", qna_parent_pos, Types.INTEGER);
+
+		return npjtem.update(SQL_PUSH_REAR_POS, ps);
+	}
+
+	@Override
+	public int pushFrontPos(int qna_parent_ref, int qna_parent_pos) throws DataAccessException {
+		NamedParameterJdbcTemplate npjtem = this.getNamedParameterJdbcTemplate();
+		MapSqlParameterSource ps = new MapSqlParameterSource();
+		ps.addValue("qna_ref", qna_parent_ref, Types.INTEGER);
+		ps.addValue("qna_pos", qna_parent_pos, Types.INTEGER);
+
+		return npjtem.update(SQL_PUSH_FRONT_POS, ps);	
+	}
+
+	@Override
+	public QnaVo getSimpleQnaByRefNPos(int qna_ref, int qna_pos) throws DataAccessException {
+		NamedParameterJdbcTemplate npjtem = this.getNamedParameterJdbcTemplate();
+		MapSqlParameterSource ps = new MapSqlParameterSource();
+		ps.addValue("qna_ref", qna_ref, Types.INTEGER);
+		ps.addValue("qna_pos", qna_pos, Types.INTEGER);
+		return npjtem.queryForObject(SQL_SELECT_SIMPLE_QNA_BY_REF_N_POS, ps, new BeanPropertyRowMapper<QnaVo>(QnaVo.class));
 	}
 }

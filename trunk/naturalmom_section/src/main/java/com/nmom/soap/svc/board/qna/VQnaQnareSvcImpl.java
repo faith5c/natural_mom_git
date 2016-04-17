@@ -38,4 +38,24 @@ public class VQnaQnareSvcImpl implements IVQnaQnareSvc {
 		return vQnaQnareDao.searchQnaTitleNContent(keyword, start, end);
 	}
 
+	@Override
+	public int getQnaCount() {
+		return vQnaQnareDao.getQnaCount();
+	}
+
+	@Override
+	public int getSearchQnaTitleCount(String keyword) {
+		return vQnaQnareDao.getQnaSearchTitleCount(keyword);
+	}
+
+	@Override
+	public int getSearchQnaContentCount(String keyword) {
+		return vQnaQnareDao.getQnaSearchContentCount(keyword);
+	}
+
+	@Override
+	public int getSearchQnaTitleNContentCount(String keyword) {
+		return vQnaQnareDao.getQnaSearchTitleNContentCount(keyword);
+	}
+	
 }

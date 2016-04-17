@@ -130,14 +130,15 @@
 	<tr>
 		<td colspan = "5">
 		<div id = "pages">
-			〈
-			<c:forEach var="i" begin="1" end="${(fl.rnum/10)+1}" step="1">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<label onclick="findcurUrl()" id="pgidx"><c:out value="${i}"/></label>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			</c:forEach>
-			〉
-			<br/>&nbsp;
+		〈&nbsp;
+		<c:forEach var="i" begin="1" end="${qna_count}" step="10">
+			<fmt:parseNumber var="temp" integerOnly = "true" value="${i/10}"/>
+			<label onclick="findcurUrl(${temp+1})" id="pgidx">
+				${temp+1}
+			</label>
+		</c:forEach>
+		&nbsp;〉
+		<br/>&nbsp;
 		</div>
 		
 		<div id = "search">
@@ -166,7 +167,7 @@
 				//alert(decodeURIComponent(kw));
 			}
 			
-			function findcurUrl(){
+			function findcurUrl(index){
 				var mid;
 				
 				var curUrl = location.href;
@@ -192,7 +193,8 @@
 					console.log("changeUrl : "+curUrl);
 				} 
 				
-				location.href=curUrl+mid+"pgidx="+$("#pgidx").html();
+				/* location.href=curUrl+mid+"pgidx="+$("#pgidx").html(); */
+ 				 location.href=curUrl+mid+"pgidx="+index; 
 			}
 
 			</script>

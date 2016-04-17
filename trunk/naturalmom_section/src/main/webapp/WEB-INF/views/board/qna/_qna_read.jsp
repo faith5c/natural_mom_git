@@ -88,7 +88,9 @@
 <table cellspacing="0">
 <tr>
 	<td colspan = "1"><h2>Q&A</h2></td>
-	<td colspan="3"><input type="button" value="답변등록" onclick="location.href='customer_center.jsp?page=qna&w=true'"/></td>
+	<c:if test="${not empty sessionScope.loggedin}">
+	<td colspan="3"><input type="button" value="답변등록" onclick="location.href='/soap/board/qna/add_form.nm?ref=${qvo.qna_ref}&pos=${qvo.qna_pos}'"/></td>
+	</c:if>
 </tr>
 
 <tr style="background: #918686; color: white;">
@@ -132,26 +134,44 @@
 			
 			<td style="width:120px;">
 			<fmt:formatDate value="${qrl.qna_re_write_day}" pattern="yyyy/MM/dd"/>
-			<span onclick="location.href='#'"><i class="fa fa-times-circle"></i></span>
+			<c:if test="${qrl.mem_id eq loggedin}">
+				<span onclick="location.href='/soap/board/qna/read/del_reply_proc.nm?reno=${qrl.qna_re_no}&qr_no=${qvo.qna_no}&rn=${param.rn}'">
+				<i class="fa fa-times-circle"></i>
+				</span>
+			</c:if>
 			</td>
 			
 		</tr>
 	</c:forEach>
 </c:if>
 
+<form action="/soap/board/qna/read/add_reply_proc.nm" method="post">
 <c:if test="${sessionScope.loggedin !=null}">
 	<tr class="dat_write">
-		<td>${sessionScope.loggedin}</td>
+		<td>
+		<c:choose>
+			<c:when test='${fn:containsIgnoreCase(sessionScope.loggedin, "admin")}'>
+				관리자
+			</c:when>
+			<c:otherwise>
+				${sessionScope.loggedin}
+			</c:otherwise>
+			</c:choose>
+		</td>
 		
 		<td colspan="2">
-			<textarea style="width:100%; resize : none;" cols="30"></textarea>
+			<textarea style="width:100%; resize : none;" cols="30" name="dat_text"></textarea>
 		</td>
+		<input type="hidden" name="qr_no" value="${qvo.qna_no}"/>
+		<input type="hidden" name="rn" value="${param.rn}"/>
 		
 		<td style="width:120px;">
 			<input type="submit" style="padding : 2px 10px;" value="댓글등록">
 		</td>
+		
 	</tr>
 </c:if>
+</form>
 
 	<tr>
 		<td></td>
@@ -171,7 +191,7 @@
 	<td colspan="2">
 		<c:if test="${qvo.mem_id == sessionScope.loggedin}">
 			<input type="button" value="편집" onclick = "location.href='/soap/board/qna/edit_form.nm?qe_no=${qvo.qna_no}';"/>
-			<input type="button" value="삭제" onclick = "delQna(${qvo.qna_no});"/>
+			<input type="button" value="삭제" onclick = "delQna('${qvo.qna_no}', '${qvo.qna_ref}', '${qvo.qna_pos}');"/>
 		</c:if>
 		<input type="button" value="목록" onclick = "location.href='/soap/board/qna.nm';"/>
 	</td>
@@ -181,12 +201,15 @@
 </body>
 
 <script type="text/javascript">
-	function delQna(qr_no){
+	function delQna(qd_no, ref, pos){
 		if(confirm("글을 삭제하시겠습니까?")){
-			location.href='/soap/board/qna/delete_proc.nm?qd_no='+qr_no;
+			console.log("qd_no : "+ qd_no);
+			console.log("ref : "+ ref);
+			console.log("pos : " +pos);
+			
+			location.href='/soap/board/qna/delete_proc.nm?qd_no='+qd_no+'&ref='+ref+'&pos='+pos;
 		}
 	}
-
 </script>
 
 </html>

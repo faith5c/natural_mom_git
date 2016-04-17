@@ -45,6 +45,12 @@ public class VQnaQnareDaoOraImpl extends NamedParameterJdbcDaoSupport implements
 			+ "FROM v_qna_qnare WHERE (qna_title LIKE :keyword OR qna_content LIKE :keyword)) X WHERE rownum <= :end) A "
 			+ "WHERE A.qna_rnum >= :start ORDER BY A.qna_rnum DESC";
 	
+	private final String SQL_SELECT_QNA_COUNT = "SELECT COUNT(qna_no) FROM v_qna_qnare";
+	
+	private final String SQL_SELECT_QNA_SEARCH_TITLE_COUNT = "SELECT COUNT(qna_no) FROM v_qna_qnare WHERE qna_title LIKE :keyword";
+	private final String SQL_SELECT_QNA_SEARCH_CONTENT_COUNT = "SELECT COUNT(qna_no) FROM v_qna_qnare WHERE qna_content LIKE :keyword";
+	private final String SQL_SELECT_QNA_SEARCH_TITLE_N_CONTENT_COUNT = "SELECT COUNT(qna_no) FROM v_qna_qnare WHERE qna_content LIKE :keyword OR qna_content LIKE :keyword";
+	
 	public VQnaQnaReVo getOneQna(int qna_no) throws DataAccessException {
 		NamedParameterJdbcTemplate npjtem = this.getNamedParameterJdbcTemplate();
 		MapSqlParameterSource ps = new MapSqlParameterSource();
@@ -100,4 +106,40 @@ public class VQnaQnareDaoOraImpl extends NamedParameterJdbcDaoSupport implements
 		
 		return npjtem.query(SQL_SEARCH_QNA_TITLE_N_CONTENT, ps, new BeanPropertyRowMapper<VQnaQnaReVo>(VQnaQnaReVo.class));
 	}
+
+	@Override
+	public int getQnaCount() throws DataAccessException {
+		return this.getJdbcTemplate().queryForInt(SQL_SELECT_QNA_COUNT);
+	}
+
+	@Override
+	public int getQnaSearchTitleCount(String keyword) throws DataAccessException {
+		NamedParameterJdbcTemplate npjtem = this.getNamedParameterJdbcTemplate();
+		keyword = "%"+keyword+"%";
+		MapSqlParameterSource ps = new MapSqlParameterSource();
+		ps.addValue("keyword", keyword, Types.VARCHAR);
+		
+		return npjtem.queryForInt(SQL_SELECT_QNA_SEARCH_TITLE_COUNT, ps);
+	}
+
+	@Override
+	public int getQnaSearchContentCount(String keyword) throws DataAccessException {
+		NamedParameterJdbcTemplate npjtem = this.getNamedParameterJdbcTemplate();
+		keyword = "%"+keyword+"%";
+		MapSqlParameterSource ps = new MapSqlParameterSource();
+		ps.addValue("keyword", keyword, Types.VARCHAR);
+		
+		return npjtem.queryForInt(SQL_SELECT_QNA_SEARCH_CONTENT_COUNT, ps);
+	}
+
+	@Override
+	public int getQnaSearchTitleNContentCount(String keyword) throws DataAccessException {
+		NamedParameterJdbcTemplate npjtem = this.getNamedParameterJdbcTemplate();
+		keyword = "%"+keyword+"%";
+		MapSqlParameterSource ps = new MapSqlParameterSource();
+		ps.addValue("keyword", keyword, Types.VARCHAR);
+		
+		return npjtem.queryForInt(SQL_SELECT_QNA_SEARCH_TITLE_N_CONTENT_COUNT, ps);
+	}
+
 }

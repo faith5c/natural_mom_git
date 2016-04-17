@@ -22,5 +22,17 @@ public interface IVQnaQnareDao {
 	
 	//검색(제목+내용)
 	List<VQnaQnaReVo> searchQnaTitleNContent(String keyword, int start, int end) throws DataAccessException;
+
+	//모든 글개수 조회
+	int getQnaCount() throws DataAccessException;
+
+	//검색(제목) 글개수 조회
+	int getQnaSearchTitleCount(String keyword) throws DataAccessException;
+	
+	//검색(내용) 글개수 조회
+	int getQnaSearchContentCount(String keyword) throws DataAccessException;
+	
+	//검색(제목+내용) 글개수 조회
+	int getQnaSearchTitleNContentCount(String keyword) throws DataAccessException;
 	
 }
