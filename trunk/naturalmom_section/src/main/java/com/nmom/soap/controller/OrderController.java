@@ -94,7 +94,7 @@ public class OrderController {
 	
 	//임시 주문 세션에 저장!
 	@RequestMapping(value="/order/temporder.nm", method={RequestMethod.POST, RequestMethod.GET})
-	public String addtempOrder(HttpServletRequest req,
+	public ModelAndView addtempOrder(HttpServletRequest req,
 			HttpSession ses,
 			@RequestParam(value="product_no", required=false) int product_no,
 			@RequestParam(value="product_name", required=false) String product_name,
@@ -147,13 +147,14 @@ public class OrderController {
 			
 			
 			ses.setAttribute(S.SESSION_TEMP_ORDER, tempList);
-			
-			return "redirect:/order/order.nm";
+			Map<String, Object> map =  new HashMap<String, Object>();
+			map.put("page", "order");
+			return new ModelAndView("redirect:/order/order.nm", map);
 		}
-		return "redirect:detail.nm?pdno="+product_no;
+		return null;//"redirect:detail.nm?pdno="+product_no;
 	}
 	
-	@RequestMapping(value="order/order.nm")
+	@RequestMapping(value="/order/order.nm")
 	public ModelAndView addOrder(HttpServletRequest req,
 			HttpSession ses,
 			@RequestParam(value="page")String page){
@@ -164,7 +165,8 @@ public class OrderController {
 			
 			List<TempOrderVo> temp = (List)ses.getAttribute(S.SESSION_TEMP_ORDER);
 			System.out.println(temp.get(0) == null ? "템 널" : temp.get(0));
-			VOrdererVo orderer = this.vOrdererSvc.getOrderer((String)ses.getAttribute(S.SESSION_LOGIN));
+			System.out.println((String)ses.getAttribute(S.SESSION_LOGIN));
+			VOrdererVo orderer = this.vOrdererSvc.getOrderer(((String)ses.getAttribute(S.SESSION_LOGIN)));
 			map.put("orderer", orderer);
 			map.put("page", (page == null) ? "order" : page);
 			map.put("temp", temp);

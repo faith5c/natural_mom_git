@@ -2,6 +2,7 @@ package com.nmom.soap.data.model.member;
 
 //멤버 주문자 정보
 public class VOrdererVo {
+	private String id;
 	private String name;
 	private String phone;
 	private String email;
@@ -18,8 +19,27 @@ public class VOrdererVo {
 		this.addr_post = addr_post;
 		this.addr_detail = addr_detail;
 	}
-
 	
+	
+	//전체
+	public VOrdererVo(String id, String name, String phone, String email, String addr_post, String addr_detail) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.phone = phone;
+		this.email = email;
+		this.addr_post = addr_post;
+		this.addr_detail = addr_detail;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	@Override
 	public String toString() {
 		return "VOrdererVo [name=" + name + ", phone=" + phone + ", email=" + email + ", addr_post=" + addr_post

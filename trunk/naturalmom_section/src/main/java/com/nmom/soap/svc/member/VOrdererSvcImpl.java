@@ -18,6 +18,8 @@ public class VOrdererSvcImpl implements IVOrdererSvc {
 
 	@Override
 	public VOrdererVo getOrderer(String id) {
+		System.out.println("오더러 서비스");
+		System.out.println(vOrdererDao == null ? null : vOrdererDao);
 		return this.vOrdererDao.getOrderer(id);
 	}
 
