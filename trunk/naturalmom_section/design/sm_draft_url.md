@@ -123,8 +123,8 @@ _____________________________________________________________
 	----------------------------	
 	
 	- 글쓰기
-	/board/qna/write_form.nm
-	/board/qna/write_proc.nm
+	/board/qna/add_form.nm
+	/board/qna/add_proc.nm
 	
 	- 글 편집
 	/board/qna/edit_form.nm
