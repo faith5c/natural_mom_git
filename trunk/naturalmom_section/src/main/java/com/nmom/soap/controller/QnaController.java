@@ -232,7 +232,7 @@ public class QnaController {
 
 	// QNA 글쓰기 사용자가 작성하는 화면
 	@RequestMapping(value="/board/qna/add_proc.nm", method=RequestMethod.POST)
-	public String addQnaForm(HttpServletRequest req,
+	public String addNewQna(HttpServletRequest req,
 			@RequestParam(value="title", required=false) String title,
 			@RequestParam(value="writer", required=false) String writer,
 			@RequestParam(value="password", required=false) String password,
@@ -266,8 +266,57 @@ public class QnaController {
 			System.out.println("글 등록 실패");
 		}
 		
-//		Map<String,Object> map = new HashMap<String,Object>();
-//		return new ModelAndView("redirect:/board/qna.nm", map);
 		return "redirect:/board/qna.nm";
 	}
+	
+/*
+	// QNA 글쓰기 사용자가 작성하는 화면
+	@RequestMapping(value="/board/qna/add_form.nm", method=RequestMethod.GET)
+	public ModelAndView prepareEditQnaForm(HttpServletRequest req){
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("qwe", true);
+		return new ModelAndView("board/qna/b_qna", map);
+	}
+	
+
+	// QNA 글쓰기 사용자가 작성하는 화면
+	@RequestMapping(value="/board/qna/add_proc.nm", method=RequestMethod.POST)
+	public String editOldQna(HttpServletRequest req,
+			@RequestParam(value="title", required=false) String title,
+			@RequestParam(value="writer", required=false) String writer,
+			@RequestParam(value="password", required=false) String password,
+			@RequestParam(value="secret_check", required=false) boolean secret_check,
+			@RequestParam(value="content", required=false) String content)
+	{
+		System.out.println(title);
+		System.out.println(writer);
+		System.out.println(password);
+		System.out.println(secret_check);
+		System.out.println(content);
+		System.out.println();
+
+		if(title == null){
+			title = "(제목없음)";
+		}
+		if(content == null){
+			content = "(내용없음)";
+		}
+		
+		String qna_pw = null;
+		
+		if(secret_check){
+			qna_pw = password;
+		}
+		int r = qnaSvc.addQna(title, content, qna_pw, writer);
+		
+		if(r==1){
+			System.out.println("글 등록 성공");
+		}else {
+			System.out.println("글 등록 실패");
+		}
+		
+		return "redirect:/board/qna.nm";
+	}*/
+	
 }

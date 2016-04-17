@@ -6,7 +6,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="/soap/resources/js/jquery-1.11.3.min.js"></script>
-	<!-- [if lt IE 9]><script src="js/html5shiv.js"></script><![endif] -->
+	<!-- [if lt IE 9]><script src="/soap/resources/js/html5shiv.js"></script><![endif] -->
 	
 	<link rel="apple-touch-icon" href="/soap/resources/images/logo.ico" /> <!--애플아이콘등록-->
 	<link rel="shortcut icon" href="/soap/resources/images/logo.ico" /> <!--단축키아이콘등록-->
@@ -50,7 +50,10 @@
 			<div id="content_body">
 				<c:choose>
 					<c:when test="${not empty qwa}">
-						<%@ include file = "_qna_write.jsp" %>
+						<%@ include file = "_qna_add_form.jsp" %>
+					</c:when>
+					<c:when test="${not empty qwe}">
+						<%@ include file = "_qna_edit_form.jsp" %>
 					</c:when>
 					<c:when test="${not empty secret}">
 						<%@ include file = "_qna_read_secret.jsp" %>
