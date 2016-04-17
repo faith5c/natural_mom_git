@@ -34,13 +34,14 @@
 		table { margin : 0 auto; }
 		table { width : 100%; }
 	</style>
-	<form action="notice_add.nm" method="post" enctype="multipart/form-data" name="notice_form">
+	<form action="notice_write.nm" method="post" enctype="multipart/form-data" name="notice_form">
 	<table cellspacing="2">
 		<tr><td colspan="2"><h2>공지사항</h2></td></tr>
 		<tr>
 			<th style="width:100px;"><label for="title">제목</label></th>
 			<td>
-			<input style="width:100%;" type="text" id="title" name="title" maxlength="127" placeholder="제목을 입력하세요" />
+			<input style="width:100%;" type="text" id="title" name="title" maxlength="127" placeholder="제목을 입력하세요" <c:if test="${not empty no}" >value="${ no.ntc_title }"</c:if>/>
+			<input type="hidden" name="r"  value="${not empty no ? no.notice_no : 0}" />
 			</td>
 		</tr>
 		
@@ -60,7 +61,7 @@
 		<tr>
 			<th><label for="content">내용</label></th>
 			<td>
-			<textarea id="notice_content" name="notice_content" style="width:100%; cols="74" rows="14"></textarea>
+			<textarea id="content" name="content" style="width:100%; cols="74" rows="14">${ no.ntc_content }</textarea>
 			</td>
 		</tr>
 		<tr>
@@ -76,16 +77,16 @@
 
 function checkNull() {
 	var title =$('#title').val();
-	var content = nicEditors.findEditor('notice_content').getContent();
+	var content = nicEditors.findEditor('content').getContent();
 	
 	if(content=="" || content==null 
 			|| title=="" || title==null ){
 		alert("제목과 내용을 빠짐없이 입력해주세요");
 	}else{
-		$('#notice_content').text(content);
+		$('#content').text(content);
 		document.notice_form.submit();
 	}
 }
 
 </script>
-</html><!-- 이상이상 -->
+</html><!-- 이상이상 --></html>

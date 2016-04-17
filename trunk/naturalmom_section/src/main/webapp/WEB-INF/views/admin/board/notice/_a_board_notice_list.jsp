@@ -112,7 +112,7 @@
 			</c:if>
 	
 	<tr class="notice_write">
-		<td colspan="5"><a href="notice.nm?w=true"><span>글쓰기</span></a></td>
+		<td colspan="5"><a href="notice.nm?w=true&r=0"><span>글쓰기</span></a></td>
 	</tr>
 </table>
 	<div id="page">

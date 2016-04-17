@@ -34,8 +34,8 @@ public class NoticeSvcImpl implements INoticeSvc {
 	}
 
 	@Override
-	public int removeNotice(int notice_no, String mem_id) {
-		int r = this.noticeDao.removeNotice(notice_no, mem_id);
+	public int removeNotice(int notice_no) {
+		int r = this.noticeDao.removeNotice(notice_no);
 		return (r == 1)? r : -1;
 	}
 

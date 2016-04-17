@@ -31,6 +31,18 @@ public class NoticeVo {
 		this.mem_id = mem_id;
 	}
 	
+	public NoticeVo(int notice_no, String ntc_title, String ntc_content, String ntc_attached_file1, String ntc_attached_file2) {
+		this.notice_no = notice_no;
+		this.ntc_write_day = null;
+		this.ntc_hits = 0; // 기본 조회수 0
+		this.ntc_title = ntc_title;
+		this.ntc_content = ntc_content;
+		this.ntc_del_check = 0; // 0이면 삭제 안함
+		this.ntc_attached_file1 = ntc_attached_file1;
+		this.ntc_attached_file2 = ntc_attached_file2;
+		this.board_id = 1;
+		this.mem_id = null;
+	}
 	
 	//게시글 생성 시 생성자
 	public NoticeVo(String ntc_title, String ntc_content, String ntc_attached_file1, String ntc_attached_file2,

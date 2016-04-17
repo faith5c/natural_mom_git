@@ -25,7 +25,7 @@ public class NoticeDaoOraImpl extends NamedParameterJdbcDaoSupport implements IN
 			+ "WHERE notice_no = :notice_no AND mem_id = :mem_id";
 	
 	private final String REMOVE_NOTICE = "UPDATE NMDB.tb_notice SET ntc_del_check = 1 "
-			+ "WHERE mem_id = :mem_id AND notice_no = :notice_no";
+			+ "WHERE notice_no = :notice_no";
 
 	private final String INCRMENT_HIT_NOTICE = 
 			"UPDATE NMDB.tb_notice SET ntc_hits = ntc_hits+1 WHERE notice_no = :notice_no";
@@ -75,10 +75,9 @@ public class NoticeDaoOraImpl extends NamedParameterJdbcDaoSupport implements IN
 	}
 
 	
-	public int removeNotice(int notice_no, String mem_id) throws DataAccessException {
+	public int removeNotice(int notice_no) throws DataAccessException {
 		MapSqlParameterSource ps = new MapSqlParameterSource();
 		ps.addValue("notice_no", new Integer(notice_no), Types.INTEGER);
-		ps.addValue("mem_id", mem_id, Types.VARCHAR);
 		int r = this.getNamedParameterJdbcTemplate().update(REMOVE_NOTICE, ps);
 		return r;
 	}

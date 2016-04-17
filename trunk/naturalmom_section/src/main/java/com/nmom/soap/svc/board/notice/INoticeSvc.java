@@ -17,7 +17,7 @@ public interface INoticeSvc {
 	public int editNotice(NoticeVo notice);
 	
 	// 4. 공지사항 삭제
-	public int removeNotice(int notice_no, String mem_id);
+	public int removeNotice(int notice_no);
 
 	public int incrementHit(int notice_no);
 

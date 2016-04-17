@@ -136,6 +136,7 @@
 		</table>
 	</form>
 	<div id="buttonT">
+	<form action="notice_edit.nm?w=true" method="post">
 		<table>
 			<td width="10%">
 				<c:if test="${not empty prev}">
@@ -153,18 +154,23 @@
 			
 			</td>
 			<td width="10%">
-				<input type="button" value="수정"
-				onclick="location.href='/soap/board/notice_edit.nm?r=${ no.notice_no }'">
+				<input type="submit" value="수정">
 			</td>
 			<td width="10%">
 				<input type="button" value="삭제"
-				onclick="location.href='/soap/board/notice_delete_proc.nm?r=${ no.notice_no }'">
+				onclick="location.href='/soap/admin/board/notice_delete.nm?r=${ no.notice_no }'">
 			</td>
 			<td width="10%">
 				<input type="button" value="목록"
 				onclick="location.href='/soap/admin/board/notice.nm';">
 			</td>
+			
+			<input type="hidden" id="title" name="title" value="${no.ntc_title}"/>
+			<input type="hidden" id="content" name="content" value="${no.ntc_content}"/>
+			<input type="hidden" id="r" name="r" value="${no.notice_no}"/>
+			
 		</table>
+	</form>
 </div>
 
 
