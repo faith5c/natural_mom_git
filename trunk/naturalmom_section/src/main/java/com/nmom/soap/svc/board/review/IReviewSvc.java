@@ -14,7 +14,7 @@ public interface IReviewSvc
 	int editReview(ReviewVo review);
 	
 	// 리뷰 삭제하기
-	int removeReview(ReviewVo review);
+	int removeReview(int review_no);
 	
 	// 조회수 올리기
 	int updateReviewCount(ReviewVo review);

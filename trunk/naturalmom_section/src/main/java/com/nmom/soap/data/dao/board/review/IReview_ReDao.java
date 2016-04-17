@@ -19,5 +19,8 @@ public interface IReview_ReDao
 	int editRe(Review_ReVo re) throws DataAccessException;
 	
 	// 리플 삭제
-	int removeRe(Review_ReVo re) throws DataAccessException;
+	int removeRe(int review_re_no) throws DataAccessException;
+	
+	// 댓글 번호로 글 번호 알아내기
+	int getRvwNoOfRe(int review_re_no) throws DataAccessException;
 }

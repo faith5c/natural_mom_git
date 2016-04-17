@@ -46,9 +46,9 @@ public class ReviewSvcImpl implements IReviewSvc
 	}
 
 	@Override
-	public int removeReview(ReviewVo review) 
+	public int removeReview(int review_no) 
 	{
-		int result = reviewDao.removeReview(review);
+		int result = reviewDao.removeReview(review_no);
 
 		if (result == 1)
 			return S.PROCESS_SUCCESS;

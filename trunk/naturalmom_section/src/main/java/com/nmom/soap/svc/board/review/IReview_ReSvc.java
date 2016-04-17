@@ -16,6 +16,8 @@ public interface IReview_ReSvc
 	int editRe(Review_ReVo re);
 	
 	// 리플 삭제
-	int removeRe(Review_ReVo re);
+	int removeRe(int review_re_no);
 	
+	// 댓글 번호로 글 번호 알아오기
+	int getRvwNoOfRe(int review_re_no);
 }

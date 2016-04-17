@@ -48,9 +48,9 @@ public class Review_ReSvcImpl implements IReview_ReSvc
 	}
 
 	@Override
-	public int removeRe(Review_ReVo re) 
+	public int removeRe(int review_re_no) 
 	{
-		int result = review_reDao.removeRe(re);
+		int result = review_reDao.removeRe(review_re_no);
 		
 		if (result == 1)
 			return S.PROCESS_SUCCESS;
@@ -58,6 +58,12 @@ public class Review_ReSvcImpl implements IReview_ReSvc
 			return S.PROCESS_NO_RESULT;
 		else
 			return S.PROCESS_ERROR;
+	}
+
+	@Override
+	public int getRvwNoOfRe(int review_re_no)
+	{
+		return review_reDao.getRvwNoOfRe(review_re_no);
 	}
 	
 }

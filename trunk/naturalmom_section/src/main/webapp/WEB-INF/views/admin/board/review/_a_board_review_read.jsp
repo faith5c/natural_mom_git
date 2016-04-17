@@ -88,7 +88,17 @@
 		
 	function del_review(review_no)
 	{
-		
+		if(confirm("글을 삭제하시겠습니까?")) 
+		{
+	       location.href="review_del_proc.nm?c=r&no=" + review_no; 
+	    } 
+	}
+	function del_reply(re_no)
+	{
+		if(confirm("댓글을 삭제하시겠습니까?")) 
+		{
+	       location.href="review_del_proc.nm?c=rr&no=" + re_no; 
+	    } 
 	}
 	function reg_reply()
 	{
@@ -100,7 +110,6 @@
 		}
 		else
 		{
-			alert('자바스크립트 등록절차 완료');
 			document.reg_reply_form.submit();
 		}
 	}

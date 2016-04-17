@@ -25,6 +25,8 @@ public class Review_ReDaoOraImpl extends NamedParameterJdbcDaoSupport implements
 	// 댓글 삭제하기
 	private final String REMOVE_REPLY = "UPDATE tb_review_re SET rvw_re_del_check = 1"
 			+ "WHERE review_re_no = :review_re_no";
+	// 댓글 번호로 글 번호 알아내기
+	private final String GET_RVW_NO_OF_REPLY = "SELECT rvw_no FROM tb_review_re WHERE review_re_no = :review_re_no";
 	
 	public List<Review_ReVo> getAllRe(int review_no) throws DataAccessException
 	{
@@ -51,11 +53,19 @@ public class Review_ReDaoOraImpl extends NamedParameterJdbcDaoSupport implements
 		return getNamedParameterJdbcTemplate().update(EDIT_REPLY, msps);
 	}
 
-	public int removeRe(Review_ReVo re) throws DataAccessException
+	public int removeRe(int review_re_no) throws DataAccessException
 	{
 		MapSqlParameterSource msps = new MapSqlParameterSource();
-		msps.addValue("review_re_no", re.getReview_re_no(), Types.INTEGER);
+		msps.addValue("review_re_no", review_re_no, Types.INTEGER);
 		
 		return getNamedParameterJdbcTemplate().update(REMOVE_REPLY, msps);
+	}
+
+	@Override
+	public int getRvwNoOfRe(int review_re_no) throws DataAccessException 
+	{
+		MapSqlParameterSource msps = new MapSqlParameterSource();
+		msps.addValue("review_re_no", new Integer(review_re_no));
+		return getNamedParameterJdbcTemplate().queryForInt(GET_RVW_NO_OF_REPLY, msps);
 	}
 }

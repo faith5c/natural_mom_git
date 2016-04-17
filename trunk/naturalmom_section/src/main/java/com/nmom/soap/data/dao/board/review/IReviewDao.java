@@ -15,7 +15,7 @@ public interface IReviewDao
 	int addReview(ReviewVo review) throws DataAccessException;
 
 	// 상품 후기 삭제하기
-	int removeReview(ReviewVo review) throws DataAccessException;
+	int removeReview(int review_no) throws DataAccessException;
 	
 	// 상품 후기 수정하기
 	int editReview(ReviewVo review) throws DataAccessException;

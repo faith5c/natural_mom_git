@@ -50,10 +50,10 @@ public class ReviewDaoOraImpl extends NamedParameterJdbcDaoSupport implements IR
 		return getNamedParameterJdbcTemplate().update(ADD_REVIEW, msps);
 	}
 
-	public int removeReview(ReviewVo review) throws DataAccessException
+	public int removeReview(int review_no) throws DataAccessException
 	{
 		MapSqlParameterSource msps = new MapSqlParameterSource();
-		msps.addValue("review_no", review.getReview_no(), Types.INTEGER);
+		msps.addValue("review_no", review_no, Types.INTEGER);
 		
 		return getNamedParameterJdbcTemplate().update(REMOVE_REVIEW, msps);
 	}
