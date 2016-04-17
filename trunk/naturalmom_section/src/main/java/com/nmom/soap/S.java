@@ -40,4 +40,7 @@ public class S {
 	public final static String SESSION_LOGIN ="loggedin";
 	public final static String SESSION_ADMIN ="admin";
 	
+	// Session Temp Order
+	public final static String TEMP_ORDER = "tempOrder";
+	
 }
