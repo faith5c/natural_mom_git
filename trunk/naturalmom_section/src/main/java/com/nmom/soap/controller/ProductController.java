@@ -23,6 +23,7 @@ import com.nmom.soap.data.model.product.VProduct_DeletedVo;
 import com.nmom.soap.data.model.product.VProduct_ManageVo;
 import com.nmom.soap.svc.board.review.IReviewSvc;
 import com.nmom.soap.svc.board.review.IReview_ReSvc;
+import com.nmom.soap.svc.board.review.IVReview_FrontSvc;
 import com.nmom.soap.svc.category.ICategorySvc;
 import com.nmom.soap.svc.product.IProductSvc;
 import com.nmom.soap.svc.product.IVProduct_DeletedSvc;
@@ -37,6 +38,7 @@ public class ProductController
 	ICategorySvc categorySvc;
 	IReviewSvc reviewSvc;
 	IReview_ReSvc review_reSvc;
+	IVReview_FrontSvc review_frontSvc;
 	
 	public void setProductSvc(IProductSvc productSvc) 
 	{
@@ -65,6 +67,11 @@ public class ProductController
 	public void setReview_reSvc(IReview_ReSvc review_reSvc) 
 	{
 		this.review_reSvc = review_reSvc;
+	}
+	
+	public void setReview_frontSvc(IVReview_FrontSvc review_frontSvc) 
+	{
+		this.review_frontSvc = review_frontSvc;
 	}
 	
 	// 상품관리 페이지

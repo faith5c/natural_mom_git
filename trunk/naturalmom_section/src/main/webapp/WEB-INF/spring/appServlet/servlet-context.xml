@@ -69,6 +69,9 @@
 		<beans:property name="review_reSvc">
 			<beans:ref local="review_reSvc"/>
 		</beans:property>
+		<beans:property name="review_frontSvc">
+			<beans:ref local="vReview_frontSvc"/>
+		</beans:property>
 	</beans:bean>
 	
 	<beans:bean id="salesCtl" class="com.nmom.soap.controller.SalesController">
