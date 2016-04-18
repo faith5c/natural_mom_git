@@ -37,7 +37,7 @@
 		
 		
 			<div id="soap_img">
-				<img src="${pvo.represent_img}" alt="${pvo.product_name}사진"/>
+				<img src="<%= request.getSession().getServletContext().getRealPath("/") +  "resources/product_images/" %>${pvo.represent_img}" alt="${pvo.product_name}사진"/>
 			</div>
 			
 			<div id="soap_table">
@@ -90,7 +90,7 @@
 			
 			<p>상품설명</p>
 			<div>
-				<img id="soap_desc" src="${pvo.detail_img}" alt="${pvo.product_name}설명"/>
+				<img id="soap_desc" src="<%= request.getSession().getServletContext().getRealPath("/") +  "resources/product_images/" %>${pvo.detail_img}" alt="${pvo.product_name}설명"/>
 			</div>
 <!--
  			<div id="soap_img">
