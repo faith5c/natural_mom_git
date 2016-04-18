@@ -1,3 +1,17 @@
+-- 글 위치로 글번호 외 가져옴
+SELECT qna_no, qna_title, qna_ref, qna_pos from tb_qna WHERE qna_pos=0 AND qna_ref=1;
+
+-- ref에 해당하는 pos 하나씩 뒤로 넘김 (이후에 pos의 자리에 데이터 추가) 아래의 pos는 부모꺼
+UPDATE tb_qna SET qna_pos=qna_pos+1 WHERE qna_ref=4 AND qna_pos>1;
+
+-- ref에 해당하는 pos 하나씩 앞으로 넘김 (이전에 pos의 자리에 데이터 삭제) 아래의 pos는 부모꺼
+UPDATE tb_qna SET qna_pos=qna_pos-1 WHERE qna_ref=4 AND qna_pos>1;
+
+-- 조회수 증가
+UPDATE tb_qna SET qna_hits = qna_hits+1 WHERE qna_no=9;
+
+-- 글하나 가져옴
+SELECT qna_no, qna_title, mem_id, qna_pw, qna_content FROM tb_qna WHERE qna_no=1;
 
 -- 	비밀글에 비밀번호 맞나 확인 (qna_no, qna_pw로 찾음)
 SELECT COUNT(qna_no) FROM tb_qna WHERE qna_no=4 AND qna_pw='1234';
@@ -22,11 +36,10 @@ VALUES (QNA_NO_SEQ.NEXTVAL,
 
 
 -- 글 수정
--- 제목, 작성일, 내용, 비밀번호 입력 (글번호에 해당하는 거 변경)
+-- 제목, 내용, 비밀번호 입력 (글번호에 해당하는 거 변경)
 UPDATE tb_qna 
 SET 
 qna_title='비누 때문에 미끄러졌어요ㅠ', 
-qna_write_day=SYSDATE,
 qna_content='너무 미끄러워요. 안미끄러운 비누는 없나요???',
 qna_pw='1111'
 WHERE qna_no=10;

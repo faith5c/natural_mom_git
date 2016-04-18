@@ -3,6 +3,8 @@
 -- (html : qua_answer_check 가 1이면 '답변'말머리 달아줌, qna_secret이 1이면 '비밀글(자물쇠표시)' 제목뒤에 달아줌 )
 -- (html : 댓글 갯수가 0이 아니라면 표시해줌)
 
+-- 글개수 가져오기
+SELECT COUNT(qna_no) FROM v_qna_qnare;
 
 -- @@@@ 뷰 만듦
 CREATE OR REPLACE VIEW v_qna_qnare
@@ -34,7 +36,7 @@ SELECT A.* FROM
     FROM v_qna_qnare
     ) X 
   WHERE rownum <= 5) A 
-WHERE A.qna_rnum >= 1 ORDER BY A.qna_rnum DESC;
+WHERE A.qna_rnum > 1 ORDER BY A.qna_rnum DESC;
 
 
 --------------------------------------------------------------
@@ -94,6 +96,14 @@ SELECT A.* FROM
   WHERE rownum <= 5) A 
 WHERE A.qna_rnum >= 1 ORDER BY A.qna_rnum DESC;
 
+
+
+-- ## 제목 검색 개수
+SELECT COUNT(qna_no) FROM v_qna_qnare WHERE qna_title LIKE '%답변%'
+-- ## 내용 검색 개수
+SELECT COUNT(qna_no) FROM v_qna_qnare WHERE qna_content LIKE '%답변%'
+-- ## 제목과 내용 검색 개수
+SELECT COUNT(qna_no) FROM v_qna_qnare WHERE (qna_title LIKE '%답변%' OR qna_content LIKE '%답변%')
 
 -------------------------------------------------------------
 -- 쉽게 하는 ruwnum  <- 사용하면 안됨!
