@@ -163,6 +163,7 @@
 			<textarea style="width:100%; resize : none;" cols="30" name="dat_text"></textarea>
 		</td>
 		<input type="hidden" name="qr_no" value="${qvo.qna_no}"/>
+		<input type="hidden" name="q_pw" value="${qvo.qna_pw}"/>
 		<input type="hidden" name="rn" value="${param.rn}"/>
 		
 		<td style="width:120px;">
@@ -185,9 +186,10 @@
 
 <tr>
 	<td colspan="2">
-		<input type="button" value="이전글">
-		<input type="button" value="다음글">
+	<input type="button" value="이전글" onclick="location.href='/soap/board/qna/prev/read.nm?qr_no=${qvo.qna_no}&rn=${param.rn}';">
+	<input type="button" value="다음글" onclick="location.href='/soap/board/qna/next/read.nm?qr_no=${qvo.qna_no}&rn=${param.rn}';">
 	</td>
+
 	<td colspan="2">
 		<c:if test="${qvo.mem_id == sessionScope.loggedin}">
 			<input type="button" value="편집" onclick = "location.href='/soap/board/qna/edit_form.nm?qe_no=${qvo.qna_no}';"/>
@@ -197,10 +199,25 @@
 	</td>
 </tr>
 </table>
-
+	<input type="hidden" id="p_not" value="${param.prev_err}"/>
+	<input type="hidden" id="n_not" value="${param.next_err}"/>
 </body>
 
 <script type="text/javascript">
+$(function(){
+	console.log("p_not : "+$("#p_not").val());
+	console.log("n_not : "+$("#n_not").val());
+	
+    if($("#incorrect_pw").val()!=null){
+      alert($("#incorrect_pw").val());
+    }
+   
+    if($("#p_not").val()=="t"){
+    	alert("이전글이 없습니다");
+    }
+    if($("#n_not").val()=="t"){
+    	alert("다음글이 없습니다");
+    }
 	function delQna(qd_no, ref, pos){
 		if(confirm("글을 삭제하시겠습니까?")){
 			console.log("qd_no : "+ qd_no);
@@ -210,6 +227,7 @@
 			location.href='/soap/board/qna/delete_proc.nm?qd_no='+qd_no+'&ref='+ref+'&pos='+pos;
 		}
 	}
+});
 </script>
 
 </html>

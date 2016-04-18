@@ -22,34 +22,34 @@ public class VQnaQnareDaoOraImpl extends NamedParameterJdbcDaoSupport implements
 			+ "(SELECT rownum as qna_rnum, X.* FROM "
 			+ "(SELECT qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count "
 			+ "FROM v_qna_qnare) X WHERE rownum <= :end) A "
-			+ "WHERE A.qna_rnum >= :start ORDER BY A.qna_rnum DESC";
+			+ "WHERE A.qna_rnum > :start ORDER BY A.qna_rnum DESC";
 	
 	private final String SQL_SEARCH_QNA_TITLE = 
 			"SELECT A.* FROM "
 			+ "(SELECT rownum as qna_rnum, X.* FROM "
 			+ "(SELECT qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count "
 			+ "FROM v_qna_qnare WHERE qna_title LIKE :keyword) X WHERE rownum <= :end) A "
-			+ "WHERE A.qna_rnum >= :start ORDER BY A.qna_rnum DESC";
+			+ "WHERE A.qna_rnum > :start ORDER BY A.qna_rnum DESC";
 
 	private final String SQL_SEARCH_QNA_CONTENT = 
 			"SELECT A.* FROM "
 			+ "(SELECT rownum as qna_rnum, X.* FROM "
 			+ "(SELECT qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count "
 			+ "FROM v_qna_qnare WHERE qna_content LIKE :keyword) X WHERE rownum <= :end) A "
-			+ "WHERE A.qna_rnum >= :start ORDER BY A.qna_rnum DESC";
+			+ "WHERE A.qna_rnum > :start ORDER BY A.qna_rnum DESC";
 	
 	private final String SQL_SEARCH_QNA_TITLE_N_CONTENT = 
 			"SELECT A.* FROM "
 			+ "(SELECT rownum as qna_rnum, X.* FROM "
 			+ "(SELECT qna_no, qna_title, qna_write_day, qna_hits, qna_pw, qna_pos, qna_ref, mem_id, qna_re_count "
 			+ "FROM v_qna_qnare WHERE (qna_title LIKE :keyword OR qna_content LIKE :keyword)) X WHERE rownum <= :end) A "
-			+ "WHERE A.qna_rnum >= :start ORDER BY A.qna_rnum DESC";
+			+ "WHERE A.qna_rnum > :start ORDER BY A.qna_rnum DESC";
 	
 	private final String SQL_SELECT_QNA_COUNT = "SELECT COUNT(qna_no) FROM v_qna_qnare";
 	
 	private final String SQL_SELECT_QNA_SEARCH_TITLE_COUNT = "SELECT COUNT(qna_no) FROM v_qna_qnare WHERE qna_title LIKE :keyword";
 	private final String SQL_SELECT_QNA_SEARCH_CONTENT_COUNT = "SELECT COUNT(qna_no) FROM v_qna_qnare WHERE qna_content LIKE :keyword";
-	private final String SQL_SELECT_QNA_SEARCH_TITLE_N_CONTENT_COUNT = "SELECT COUNT(qna_no) FROM v_qna_qnare WHERE qna_content LIKE :keyword OR qna_content LIKE :keyword";
+	private final String SQL_SELECT_QNA_SEARCH_TITLE_N_CONTENT_COUNT = "SELECT COUNT(qna_no) FROM v_qna_qnare WHERE (qna_title LIKE :keyword OR qna_content LIKE :keyword)";
 	
 	public VQnaQnaReVo getOneQna(int qna_no) throws DataAccessException {
 		NamedParameterJdbcTemplate npjtem = this.getNamedParameterJdbcTemplate();

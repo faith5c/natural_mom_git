@@ -20,4 +20,5 @@ public interface IQnaReSvc {
 	//댓글 삭제
 	int removeQnaRe(QnaReVo qnare);
 	int removeQnaRe(int qna_re_no);
+	
 }

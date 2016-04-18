@@ -8,6 +8,8 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcDaoSupport;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 
 import com.nmom.soap.data.dao.board.qna.IQnaReDao;
 import com.nmom.soap.data.model.board.qna.QnaReVo;
@@ -26,7 +28,7 @@ public class QnaReDaoOraImpl extends NamedParameterJdbcDaoSupport implements IQn
 	
 	private final String DELETE_QNA_RE = 
 			"UPDATE tb_qna_re SET qna_re_del_check=1 WHERE qna_re_no=:qna_re_no"; 
-
+	
 	public List<QnaReVo> getQnaReByQnaNo(int qna_no) throws DataAccessException {
 		NamedParameterJdbcTemplate npjtem = this.getNamedParameterJdbcTemplate();
 		MapSqlParameterSource ps = new MapSqlParameterSource();
@@ -35,6 +37,8 @@ public class QnaReDaoOraImpl extends NamedParameterJdbcDaoSupport implements IQn
 	}
 
 	public int addQnaRe(QnaReVo qnare) throws DataAccessException {
+		KeyHolder kh = new GeneratedKeyHolder();
+		
 		NamedParameterJdbcTemplate npjtem = this.getNamedParameterJdbcTemplate();
 		MapSqlParameterSource ps = new MapSqlParameterSource();
 		
@@ -42,7 +46,7 @@ public class QnaReDaoOraImpl extends NamedParameterJdbcDaoSupport implements IQn
 		ps.addValue("qna_no", qnare.getQna_no(), Types.INTEGER);
 		ps.addValue("mem_id", qnare.getMem_id(), Types.VARCHAR);
 		
-		return npjtem.update(INSERT_QNA_RE, ps);
+		return npjtem.update(INSERT_QNA_RE, ps, kh);
 
 	}
 
@@ -94,4 +98,5 @@ public class QnaReDaoOraImpl extends NamedParameterJdbcDaoSupport implements IQn
 		
 		return npjtem.update(DELETE_QNA_RE, ps);
 	}
+
 }

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,52 +45,127 @@ public class QnaController {
 		return "admin/board/qna/a_qna";
 	}
 	
-	//QNA 목록보기
-	@RequestMapping(value="/board/qna.nm", method={RequestMethod.GET})
-	public ModelAndView boardQna(HttpServletRequest req, 
-			@RequestParam(value="pgidx", required=false) String pageindex){
-		int pi;
-
-		if(pageindex == null){
-			pageindex = "1";
+	//QNA 전체 목록 보여주기 페이지네이션
+	@RequestMapping(value="/board/qna/{pp}/list.nm", method = RequestMethod.GET)
+	public ModelAndView showQnaBoard(HttpServletRequest req, 
+			@PathVariable(value="pp") int pp)
+	{
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		//오라클 rownum 의 start, end 계산
+		int count = vQnaQnareSvc.getQnaCount();
+		int start = count - (S.PAGE_LIMIT * pp);
+		int end = start + S.PAGE_LIMIT;
+		
+		List<VQnaQnaReVo> qna_list = vQnaQnareSvc.getAllQna(start, end);
+		
+		//페이지수 계산
+		int total_pages = (int)Math.ceil((double)count/S.PAGE_LIMIT);
+		
+		if(qna_list != null){
+			map.put("qna_count", count);
+			map.put("qna_list", qna_list);
+			map.put("pp", pp);
+			map.put("total", total_pages);
+			
 		}
 		
-		try{
-			pi = Integer.parseInt(pageindex)-1; //실제 인덱스는 0부터 시작
+		ModelAndView mav = new ModelAndView("board/qna/b_qna", map);
+		return mav;
+		
+	}
 	
+	//QNA 목록보기
+	@RequestMapping(value="/board/qna.nm", method={RequestMethod.GET})
+	public String boardQna(HttpServletRequest req)
+	{
+		return "redirect:/board/qna/1/list.nm";
+	}
+	
+	//QNA 다음글 가기
+	@RequestMapping(value="/board/qna/next/read.nm", method=RequestMethod.GET)
+	public ModelAndView qnaNextRead(HttpServletRequest req,
+			@RequestParam(value="qr_no") String qr_no,
+			@RequestParam(value="rn") String rn)
+	{
+		Map<String,Object> map = new HashMap<String,Object>();
+		List<VQnaQnaReVo> qnare_list;
+		int rownum;
+		
+		try{
+			if(rn != null && qr_no!=null){
+				rownum = Integer.parseInt(rn);
+				qnare_list = vQnaQnareSvc.getAllQna(rownum, rownum+1);
+				
+				if(qnare_list.size() == 1){ //다음글 있음
+					map.put("qr_no", qnare_list.get(0).getQna_no());
+					map.put("rn", rownum+1);
+					
+				} else {
+					map.put("qr_no", qr_no);
+					map.put("rn", rownum);
+					map.put("next_err", "t");
+					System.out.println("다음글이 없습니다");
+				}
+			}
 		} catch(Exception e){
 			e.printStackTrace();
-			pi = 0;
-			System.out.println("QnA 인덱스 받아오기 오류 처리함");
+			System.out.println("다음글 가려는데 정보 못받아옴");
+			return new ModelAndView("redirect:/board/qna.nm", map);
 		}
+		
+		return new ModelAndView("redirect:/board/qna/read.nm", map);
+	}
+	
+	//QNA 이전글 가기
+	@RequestMapping(value="/board/qna/prev/read.nm", method=RequestMethod.GET)
+	public ModelAndView qnaPreviousRead(HttpServletRequest req,
+			@RequestParam(value="qr_no") String qr_no,
+			@RequestParam(value="rn") String rn)
+	{
+		Map<String,Object> map = new HashMap<String,Object>();
+		List<VQnaQnaReVo> qnare_list;
+		int rownum;
+		
+		try{
+			if(rn != null && qr_no!=null){
+				rownum = Integer.parseInt(rn);
+				qnare_list = vQnaQnareSvc.getAllQna(rownum-2, rownum-1);
+				
+				if(qnare_list.size() == 1){ //이전글 있음
+					map.put("qr_no", qnare_list.get(0).getQna_no());
+					map.put("rn", rownum-1);
+					
+				} else {
+					map.put("qr_no", qr_no);
+					map.put("rn", rownum);
+					map.put("prev_err", "t");
+					System.out.println("이전글이 없습니다");
+				}
+			}
+		} catch(Exception e){
+			e.printStackTrace();
+			System.out.println("이전글 가려는데 정보 못받아옴");
+			return new ModelAndView("redirect:/board/qna.nm", map);
+		}
+		
+		return new ModelAndView("redirect:/board/qna/read.nm", map);
+	}
+	
+	//QNA 질문 검색 페이지네이션
+	@RequestMapping(value ="/board/qna/{pp}/search.nm", method=RequestMethod.GET)
+	public ModelAndView boardSearchQna(HttpServletRequest req, 
+			@PathVariable(value="pp") int pp,
+			@RequestParam(value="sch") String sch,
+			@RequestParam(value="kw", required=false) String kw){
 		
 		Map<String,Object> map = new HashMap<String,Object>();
 		
-		List<VQnaQnaReVo> qna_list = vQnaQnareSvc.getAllQna((pi * S.PAGE_LIMIT)+1, (pi+1) * S.PAGE_LIMIT);
-		//1~10  11~20  21~30
-				
-		if(qna_list != null){
-			map.put("qna_list", qna_list);
-
-			int qna_count = vQnaQnareSvc.getQnaCount();
-			map.put("qna_count", qna_count);
-		}
-		ModelAndView mav = new ModelAndView("board/qna/b_qna", map);
-		return mav;
-	}
-	
-
-	//QNA 질문 검색
-	@RequestMapping(value ="/board/qna/search.nm", method=RequestMethod.GET)
-	public ModelAndView boardSearchQna(HttpServletRequest req, 
-			@RequestParam(value="pgidx", required=false) String pageindex,
-			@RequestParam(value="sch") String sch,
-			@RequestParam(value="kw", required=false) String kw){
-		int pi;
-		
-		if(pageindex == null){
-			pageindex = "1";
-		}
+		List<VQnaQnaReVo> qna_list = null;
+		int count = 0;
+		int start = 0;
+		int end = 0;
+		int total_pages = 0;
 		
 		if(kw==null){
 			kw="";
@@ -97,44 +173,38 @@ public class QnaController {
 		
 		try {
 			kw = URLDecoder.decode(kw, "UTF-8");
-			System.out.println(kw);
 		} catch (UnsupportedEncodingException e1) {
 			e1.printStackTrace();
 			System.out.println("인코딩 문제 발생");
 		}
-		
-		try{
-			pi = Integer.parseInt(pageindex)-1; //실제 인덱스는 0부터 시작
-			
-		} catch(Exception e){
-			e.printStackTrace();
-			pi = 0;			
-			System.out.println("QnA 인덱스 받아오기 오류 처리함");
-		}
-		
-		Map<String,Object> map = new HashMap<String,Object>();
-		List<VQnaQnaReVo> qna_list;
-		int qna_count;
-		
+
 		if(sch.equals("tt")){
-			qna_list = vQnaQnareSvc.searchQnaTitle(kw, (pi * S.PAGE_LIMIT)+1, (pi+1) * S.PAGE_LIMIT);
-			qna_count = vQnaQnareSvc.getSearchQnaTitleCount(kw);;
+			count = vQnaQnareSvc.getSearchQnaTitleCount(kw);
+			start = count - (S.PAGE_LIMIT * pp);
+			end = start + S.PAGE_LIMIT;
+			total_pages = (int)Math.ceil((double)count/S.PAGE_LIMIT);
+			qna_list = vQnaQnareSvc.searchQnaTitle(kw, start, end);
 			
 		}else if(sch.equals("con")){
-			qna_list = vQnaQnareSvc.searchQnaContent(kw, (pi * S.PAGE_LIMIT)+1, (pi+1) * S.PAGE_LIMIT);
-			qna_count = vQnaQnareSvc.getSearchQnaContentCount(kw);
+			count = vQnaQnareSvc.getSearchQnaContentCount(kw);
+			start = count - (S.PAGE_LIMIT * pp);
+			end = start + S.PAGE_LIMIT;
+			total_pages = (int)Math.ceil((double)count/S.PAGE_LIMIT);
+			qna_list = vQnaQnareSvc.searchQnaContent(kw, start, end);
 			
 		}else if(sch.equals("ttcon")){
-			qna_list = vQnaQnareSvc.searchQnaTitleNContent(kw, (pi * S.PAGE_LIMIT)+1, (pi+1) * S.PAGE_LIMIT);
-			qna_count = vQnaQnareSvc.getSearchQnaTitleNContentCount(kw);
-		}else {
-			qna_list = vQnaQnareSvc.getAllQna(pi * (pi * S.PAGE_LIMIT)+1, (pi+1) * S.PAGE_LIMIT);
-			qna_count = vQnaQnareSvc.getQnaCount();
+			count = vQnaQnareSvc.getSearchQnaTitleNContentCount(kw);
+			start = count - (S.PAGE_LIMIT * pp);
+			end = start + S.PAGE_LIMIT;
+			total_pages = (int)Math.ceil((double)count/S.PAGE_LIMIT);
+			qna_list = vQnaQnareSvc.searchQnaTitleNContent(kw, start, end);
 		}
 		
 		if(qna_list != null){
+			map.put("qna_count", count);
 			map.put("qna_list", qna_list);
-			map.put("qna_count", qna_count);
+			map.put("pp", pp);
+			map.put("total", total_pages);
 		}
 		
 		ModelAndView mav = new ModelAndView("board/qna/b_qna", map);
@@ -174,7 +244,7 @@ public class QnaController {
 
 					//일반글인지 비밀글인지 분류
 					if(qna_vo.getQna_pw()!= null){ //비밀글일때
-						map.put("secret", true);
+						map.put("secret", true); 
 					}
 					return new ModelAndView("/board/qna/b_qna", map);
 				}
@@ -302,14 +372,6 @@ public class QnaController {
 					System.out.println("내가 밀었어");
 				}
 				
-				/*if(qna_pos == 0){ //다른 답글 없음. 내가 맨처음다는 답글
-					r = qnaSvc.addQnaAnswer(title, content, qna_pw, writer, 1, qna_ref);
-					System.out.println("내가 맨 처음");
-					
-				} else { //다른 답글들이 있었으면
-					
-				}
-				*/
 				if(r==1){
 					System.out.println("답변 등록 성공");
 				}else {
@@ -447,7 +509,7 @@ public class QnaController {
 	// /board/qna/read/add_reply_proc.nm
 	// 댓글 등록하기
 	@RequestMapping(value="/board/qna/read/add_reply_proc.nm", method=RequestMethod.POST)
-	public String addQnaReplyProcess(HttpServletRequest req, HttpSession ses,
+	public ModelAndView addQnaReplyProcess(HttpServletRequest req, HttpSession ses,
 			@RequestParam(value="qr_no") String qr_no,
 			@RequestParam(value="rn") String rn,
 			@RequestParam(value="dat_text") String dat_text)
@@ -456,6 +518,8 @@ public class QnaController {
 		int qna_no;
 		int qna_rownum;
 		String writer = (String)ses.getAttribute("loggedin");
+		Map<String,Object> map = new HashMap<String,Object>();
+		
 		
 		if(writer!=null && qr_no!=null && rn!=null && dat_text!=null){
 			if(!dat_text.isEmpty()){
@@ -466,25 +530,61 @@ public class QnaController {
 				qna_no = Integer.parseInt(qr_no);
 				qna_rownum = Integer.parseInt(rn);
 				int r = qnaReSvc.addQnaRe(dat_content, qna_no, writer);
-
-				if(r != 1){
-					System.out.println("댓글 등록 실패");
-				}
 				
-				return "redirect:/board/qna/read.nm?qr_no="+qna_no+"&rn="+qna_rownum;
+				if(r == 1){ 
+					if(qnaSvc.getOneSimpleQna(Integer.parseInt(qr_no)).getQna_pw()!=null){
+						//비밀글일 경우 정보를 다시 받아 뿌려줌
+						
+						VQnaQnaReVo qna_vo;
+						List<QnaReVo> qnare_list;
+						
+						try{
+							if(qr_no != null){
+								int qnano = Integer.parseInt(qr_no);
+								qna_vo = vQnaQnareSvc.getOneQna(qnano);
+								qnare_list = qnaReSvc.getQnaReByQnaNo(qnano);
+								
+								if(qna_vo!=null && qnare_list!=null){
+									
+									//조회수 증가하는 부분
+									if(qnaSvc.increaseQnaHits(qna_vo.getQna_no()) == 1){
+										//조회수 증가시 다시 가져옴
+										qna_vo = vQnaQnareSvc.getOneQna(qnano);
+										qnare_list = qnaReSvc.getQnaReByQnaNo(qnano);
+									} else {
+										System.out.println("조회수 증가 실패");
+									}
+									map.put("qvo", qna_vo);
+									map.put("qnare_list", qnare_list);
+									return new ModelAndView("/board/qna/b_qna", map);
+								}
+							}
+						} catch(Exception e){
+							e.printStackTrace();
+							System.out.println("댓글 작성시 비밀글 정보 가져오기 실패");
+						}
+					} // ~ 비밀글에 댓글 등록
+					
+					//일반글에 댓글 등록
+					map.put("qr_no", qna_no);
+					map.put("rn", qna_rownum);
+					return new ModelAndView("redirect:/board/qna/read.nm", map);
+				}
+				System.out.println("댓글 등록 실패");
+				
 			} catch(Exception e){
 				System.out.println("댓글 등록 정보 못받아옴");
 				e.printStackTrace();
 			}
 		
 		}
-		return "redirect:/board/qna.nm";
+		return new ModelAndView("redirect:/board/qna.nm", map);
 	}
 
 	// /board/qna/read/del_reply_proc.nm
 	// 댓글 삭제하기
 	@RequestMapping(value="/board/qna/read/del_reply_proc.nm", method=RequestMethod.GET)
-	public String removeQnaReplyProcess(HttpServletRequest req,
+	public ModelAndView removeQnaReplyProcess(HttpServletRequest req,
 			@RequestParam(value="qr_no") String qr_no,
 			@RequestParam(value="rn") String rn,
 			@RequestParam(value="reno") String reno)
@@ -492,6 +592,7 @@ public class QnaController {
 		int qna_no;
 		int qna_rownum;
 		int qna_re_no;
+		Map<String,Object> map = new HashMap<String,Object>();
 		
 		if(reno!=null && qr_no!=null && rn!=null){
 			
@@ -501,17 +602,54 @@ public class QnaController {
 				qna_re_no = Integer.parseInt(reno);
 				int r = qnaReSvc.removeQnaRe(qna_re_no);
 
-				if(r != 1){
-					System.out.println("댓글 삭제 실패");
+				if(r == 1){
+					if(qnaSvc.getOneSimpleQna(Integer.parseInt(qr_no)).getQna_pw()!=null){
+						//비밀글일 경우 정보를 다시 받아 뿌려줌
+						
+						VQnaQnaReVo qna_vo;
+						List<QnaReVo> qnare_list;
+						
+						try{
+							if(qr_no != null){
+								qna_vo = vQnaQnareSvc.getOneQna(qna_no);
+								qnare_list = qnaReSvc.getQnaReByQnaNo(qna_no);
+								
+								if(qna_vo!=null && qnare_list!=null){
+									
+									//조회수 증가하는 부분
+									if(qnaSvc.increaseQnaHits(qna_vo.getQna_no()) == 1){
+										//조회수 증가시 다시 가져옴
+										qna_vo = vQnaQnareSvc.getOneQna(qna_no);
+										qnare_list = qnaReSvc.getQnaReByQnaNo(qna_no);
+									} else {
+										System.out.println("조회수 증가 실패");
+									}
+									map.put("qvo", qna_vo);
+									map.put("qnare_list", qnare_list);
+									return new ModelAndView("/board/qna/b_qna", map);
+								}
+							}
+						} catch(Exception e){
+							e.printStackTrace();
+							System.out.println("댓글 작성시 비밀글 정보 가져오기 실패");
+						}
+					} // ~ 비밀글에 댓글 삭제
+					
+					//일반글에 단 댓글 삭제
+					map.put("qr_no", qna_no);
+					map.put("rn", qna_rownum);
+					return new ModelAndView("redirect:/board/qna/read.nm", map);
 				}
+				System.out.println("댓글 삭제 실패");
 				
-				return "redirect:/board/qna/read.nm?qr_no="+qna_no+"&rn="+qna_rownum;
 			} catch(Exception e){
 				System.out.println("댓글 삭제 정보 못받아옴");
 				e.printStackTrace();
 			}
 		
 		}
-		return "redirect:/board/qna.nm";		
+		return new ModelAndView("redirect:/board/qna.nm", map);		
 	}
+	
+	
 }

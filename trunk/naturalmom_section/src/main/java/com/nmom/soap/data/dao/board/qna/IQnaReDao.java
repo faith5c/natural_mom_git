@@ -22,4 +22,5 @@ public interface IQnaReDao {
 	//댓글 삭제
 	int removeQnaRe(QnaReVo qnare) throws DataAccessException;
 	int removeQnaRe(int qna_re_no) throws DataAccessException;
+	
 }

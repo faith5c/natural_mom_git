@@ -48,4 +48,5 @@ public class QnaReSvcImpl implements IQnaReSvc {
 		return qnaReDao.removeQnaRe(qna_re_no);
 	}
 
+
 }

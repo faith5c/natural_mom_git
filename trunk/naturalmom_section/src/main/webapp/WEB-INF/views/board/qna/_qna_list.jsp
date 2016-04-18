@@ -68,6 +68,7 @@
 		#search input[type = "text"], #search select { font : 16px "나눔바른고딕", "맑은 고딕", Arial; }
 		input[type = "button"]:hover { opacity : 0.7; }
 		
+		#pages a:hover { text-decoration : underline; }
 	</style>
 </head>
 <body>
@@ -130,15 +131,46 @@
 	<tr>
 		<td colspan = "5">
 		<div id = "pages">
-		〈&nbsp;
-		<c:forEach var="i" begin="1" end="${qna_count}" step="10">
-			<fmt:parseNumber var="temp" integerOnly = "true" value="${i/10}"/>
-			<label onclick="findcurUrl(${temp+1})" id="pgidx">
-				${temp+1}
-			</label>
+		
+		<c:if test="${pp>1}">
+			<a href="<c:url value='/board/qna/${pp-1}/list.nm'/>">
+				〈
+			</a>&nbsp;&nbsp;&nbsp;
+		</c:if>
+		<c:if test="${pp==1}">
+			〈 &nbsp;&nbsp;&nbsp;
+		</c:if>
+		
+		<c:forEach var="pi" begin="1" end="${total}" step="1">
+		
+		<c:if test="${pi>1}">
+			&nbsp;&nbsp;&nbsp;
+		</c:if>
+		
+		<c:if test="${pi == pp}">
+			<b><c:out value="${pi}"/></b>
+		</c:if>
+		
+		<c:if test="${pi!=pp}">
+			<a href="<c:url value='/board/qna/${pi}/list.nm'/>">
+			<c:out value="${pi}"/>
+			</a>
+		</c:if>
+		
 		</c:forEach>
-		&nbsp;〉
-		<br/>&nbsp;
+		
+		<c:if test="${pp<total}">
+			&nbsp;&nbsp;&nbsp;
+			<a href="<c:url value='/board/qna/${pp+1}/list.nm'/>">
+				 〉
+			</a>
+		</c:if>
+		<c:if test="${pp==total}">
+			&nbsp;&nbsp;&nbsp; 〉
+		</c:if>
+		
+		<p>&nbsp;
+		
 		</div>
 		
 		<div id = "search">
@@ -148,7 +180,7 @@
 				<option value="ttcon">제목+내용</option>
 			</select>
 			<input type = "text" name = "kw" id="kw"/>
-			<input type = "button" value = "검색" onclick="searchKeyword()"/>
+			<input type = "button" value = "검색" onclick="searchKeyword(${pp})"/>
 		</div>
 		
 	</tr>
@@ -156,47 +188,16 @@
 </table>
 	
 </form>
-
-		<script type="text/javascript">
-			function searchKeyword(){
-				kw = $("#kw").val();
-				console.log("kw:"+kw);
-				sch = $("#sch").val();
-				console.log("sch:"+sch);
-				location.href="/soap/board/qna/search.nm?sch="+sch+"&kw="+encodeURIComponent(kw);
-				//alert(decodeURIComponent(kw));
-			}
-			
-			function findcurUrl(index){
-				var mid;
-				
-				var curUrl = location.href;
-				console.log("curUrl : "+curUrl);
-				
-				var curQuery = location.search;
-				console.log("curQuery : "+curQuery);
-
-				if(curQuery){ //쿼리가 있어
-					if(curUrl.indexOf("?pgidx") != -1){ //?pgidx가 있으면
-						mid = "?" //?pgidx를 없애버릴거니까 ? 추가
-					}else {
-						mid = "&" //없으면 &로 연결
-					}
-				}else{ //쿼리가없어
-					mid = "?"
-				}
-				
-				var temp1 = curUrl.indexOf("pgidx");
+	<script type="text/javascript">
+		function searchKeyword(pp){
+			kw = $("#kw").val();
+			console.log("kw:"+kw);
+			sch = $("#sch").val();
+			console.log("sch:"+sch);
+			location.href="/soap/board/qna/"+pp+"/search.nm?sch="+sch+"&kw="+encodeURIComponent(kw)+"";
+			//alert(decodeURIComponent(kw));
+		}
 	
-				if(temp1 != -1){ //pgidx가 있으면
-					curUrl = curUrl.slice(0,temp1-1); //&pgidx, ?pgidx부터 없애기 위해 -1 붙임
-					console.log("changeUrl : "+curUrl);
-				} 
-				
-				/* location.href=curUrl+mid+"pgidx="+$("#pgidx").html(); */
- 				 location.href=curUrl+mid+"pgidx="+index; 
-			}
-
-			</script>
+	</script>
 </body>
 </html>
