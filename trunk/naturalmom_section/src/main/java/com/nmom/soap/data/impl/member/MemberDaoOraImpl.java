@@ -38,7 +38,7 @@ public class MemberDaoOraImpl extends NamedParameterJdbcDaoSupport implements IM
 		="UPDATE NMDB.tb_member SET "
 				+ "mem_pw=:mem_pw, mem_phone=:mem_phone, mem_addr_post=:mem_addr_post, mem_addr_detail=:mem_addr_detail, mem_email=:mem_email "
 				+ "WHERE mem_id=:mem_id";
-	private final String SQL_MEMBER_SELECT_ALL ="SELECT * FROM TB_MEMBER";
+	private final String SQL_MEMBER_SELECT_ALL ="SELECT * FROM TB_MEMBER WHERE drop_out = 0";
 	private final String SQL_MEMBER_SELECT_BY_CONDITION 
 		="SELECT mem_id, mem_name, mem_addr_detail, mem_phone, mem_email, "
 				+ "mem_birth, mem_gender, MEM_LEVEL_CD FROM tb_member WHERE (drop_out='0' ";

@@ -201,8 +201,9 @@
  	$(function(){
  	   if($("#resultId").val()=="없음"){
  	      alert('아이디 정보가 존재하지 않습니다.');
+ 	   }else if($("#resultId").val()=="탈퇴"){
+ 		   alert('탈퇴한 회원입니다.');
  	   }else if($("#resultId").val()==""){
- 		   
  	   }else{
  		   alert('고객님의 아이디는 "' + $("#resultId").val()+'"입니다.')
  	   }
@@ -211,6 +212,8 @@
  	$(function(){
   	   if($("#resultPw").val()=="없음"){
   	      alert('아이디 정보가 존재하지 않습니다.');
+  	 	}else if($("#resultPw").val()=="탈퇴"){
+		   alert('탈퇴한 회원입니다.');
   	   }else if($("#resultPw").val()==""){
   		   
   	   }else{

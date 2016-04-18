@@ -201,24 +201,32 @@
 			</table>
 		</form>
 <!--- 검색결과 ----------------------------------------------------------------->
-		<form action="">
+		<form action="member.nm" method="get" name="sort_table">
 			<h2 id = "reg_title">검색 결과</h2>
 			<table id="result_table" cellspacing = "0">
 				<tr>
 					<td>체크</td>
-					<td><a href = "#">▼ 아이디</a></td>
-					<td><a href = "#">▼ 이름</a></td>
+					<td><a href = "#" onclick="sortby('id')" id="l_id">${sort eq 'id' && m eq 'asc'? '▲' : '▼' } 아이디</a></td>
+					<td><a href = "#" onclick="sortby('name')" id="l_name">${sort eq 'name' && m eq 'asc'? '▲' : '▼' } 이름</a></td>
 					<td>주소</td>
 					<td>전화번호</td>
 					<td>이메일</td>
-					<td><a href = "#">▼ 생년월일</a></td>
-					<td><a href = "#">▼ 성별</a></td>
-					<td><a href = "#">▼ 회원상태</a></td>
+					<td><a href = "#" onclick="sortby('birth')" id="l_birth">${sort eq 'birth' && m eq 'asc'? '▲' : '▼' } 생년월일</a></td>
+					<td><a href = "#" onclick="sortby('gender')" id="l_gender">${sort eq 'gender' && m eq 'asc'? '▲' : '▼' } 성별</a></td>
+					<td><a href = "#" onclick="sortby('level')" id="l_level">${sort eq 'level' && m eq 'asc'? '▲' : '▼' } 회원상태</a></td>
+					
+					<input type="hidden" name="h_id" id="h_id" value="desc"/>
+					<input type="hidden" name="h_name" id="h_name" value="desc"/>
+					<input type="hidden" name="h_birth" id="h_birth" value="desc"/>
+					<input type="hidden" name="h_gender" id="h_gender" value="desc"/>
+					<input type="hidden" name="h_level" id="h_level" value="desc"/>
 				</tr>
 				
 			<c:forEach var="m" items="${member}">
 				<tr>
-					<td style="text-align: center"><input type = "checkbox" name = "checkbox" /></td>
+					<td style="text-align: center">
+						<input type="checkbox" id="chk" name="checkbox" value="${m.mem_id}"/>
+					</td>
 					<td>${m.mem_id}</td>
 					<td>${m.mem_name}</td>
 					<td>${m.mem_addr_detail}</td>
@@ -241,8 +249,8 @@
 			</table>
 			<div id = "buttons">
 				선택한 회원을
-				<input type = "button" id = "set_drop_out" value = "회원탈퇴 처리" />
-				<input type = "button" id = "set_blacklist" value = "불량회원 처리" />
+				<input type = "button" id = "set_drop_out" value = "회원탈퇴 처리" onclick="change_member_state('drop')"/>
+				<input type = "button" id = "set_blacklist" value = "불량회원 처리" onclick="change_member_state('black')"/>
 			</div>
 		</form>
 	</div>
@@ -254,6 +262,84 @@
 		 var selectedEmail = $("#email_select").val();
 		 document.getElementById("email2").value= selectedEmail;
 	 }
+	 
+	 function change_member_state(state) {
+		var word = state=="drop"? "탈퇴" : "불량회원";
+		 
+		if(confirm("정말로 "+word+" 처리하시겠습니까?")){
+			var checked = '';
+	      	$('input:checkbox[id="chk"]:checked').each(function(){
+	        	 checked += '&id=' + $(this).val();
+	     	 });
+	      	
+	      	if(checked==''){
+	      		alert('회원을 선택해주세요');
+	      	}else{
+	      		location.href='member_manage.nm?proc='+ state + checked;
+	      	}
+		}
+	}
+	 
+	 function sortby(sth) {
+		 
+		 if(sth == 'id'){
+			 var id = document.getElementById("l_id");
+			 if(id.innerHTML == '▼ 아이디'){
+				 id.innerHTML ='▲ 아이디';
+				 location.href='member.nm?Lineup=true&sort=id&m=asc';
+				 
+			 }else if(id.innerHTML =='▲ 아이디'){
+				 id.innerHTML ='▼ 아이디';
+				 location.href='member.nm?Lineup=true&sort=id&m=desc';
+			 }
+			 
+		 }else if(sth == 'name'){
+			 var name = document.getElementById("l_name");
+			 if(name.innerHTML == '▼ 이름'){
+				 name.innerHTML ='▲ 이름';
+				 location.href='member.nm?Lineup=true&sort=name&m=asc';
+				 
+			 }else if(name.innerHTML =='▲ 이름'){
+				 name.innerHTML ='▼ 이름';
+				 location.href='member.nm?Lineup=true&sort=name&m=desc';
+			 }
+			 
+		 }else if(sth == 'birth'){
+			 var birth = document.getElementById("l_birth");
+			 if(birth.innerHTML == '▼ 생년월일'){
+				 birth.innerHTML ='▲ 생년월일';
+				 location.href='member.nm?Lineup=true&sort=birth&m=asc';
+				 
+			 }else if(birth.innerHTML =='▲ 생년월일'){
+				 birth.innerHTML ='▼ 생년월일';
+				 location.href='member.nm?Lineup=true&sort=birth&m=desc';
+			 }
+			 
+		 }else if(sth == 'gender'){
+			 var gender = document.getElementById("l_gender");
+			 if(gender.innerHTML == '▼ 성별'){
+				 gender.innerHTML ='▲ 성별';
+				 location.href='member.nm?Lineup=true&sort=gender&m=asc';
+				 
+			 }else if(gender.innerHTML =='▲ 성별'){
+				 gender.innerHTML ='▼ 성별';
+				 location.href='member.nm?Lineup=true&sort=gender&m=desc';
+			 }
+			 
+		 }else if(sth == 'level'){
+			 var level = document.getElementById("l_level");
+			 if(level.innerHTML == '▼ 회원상태'){
+				 level.innerHTML ='▲ 회원상태';
+				 location.href='member.nm?Lineup=true&sort=level&m=asc';
+				 
+			 }else if(level.innerHTML =='▲ 회원상태'){
+				 level.innerHTML ='▼ 회원상태';
+				 location.href='member.nm?Lineup=true&sort=level&m=desc';
+			 }
+		 }
+		
+	}
+	 
   
   </script>
 

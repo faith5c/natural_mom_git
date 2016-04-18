@@ -18,6 +18,8 @@ public class S {
 	public final static int LEVEL_MEMBER = 1;
 	public final static int LEVEL_BLACKLIST = 2;
 	public final static int LEVEL_NONMEMBER = 3;
+	public final static int DROP_TRUE = 1;
+	public final static int DROP_FALSE = 0;
 	
 	// [소라] 수정, 삭제 시 실행 결과 값
 	public final static int PROCESS_SUCCESS = 1;

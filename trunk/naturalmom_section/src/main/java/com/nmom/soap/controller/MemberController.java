@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.jws.WebParam.Mode;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -24,6 +23,7 @@ import com.nmom.soap.svc.member.IMemberSvc;
 public class MemberController {
 	
 	IMemberSvc memberSvc;
+	public static List<MemberVo> s_member_list;
 	
 	public void setMemberSvc(IMemberSvc memberSvc) {
 		this.memberSvc = memberSvc;
@@ -68,6 +68,7 @@ public class MemberController {
 		String email = mergeEmail(email1, email2);
 		MemberVo mem =  memberSvc.getOneMember(name1, email);
 		String foundId = mem.getMem_id()!=null? mem.getMem_id() : "없음" ;
+		if(mem.getDrop_out()==1){ foundId ="탈퇴"; }
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("resultId", foundId);
@@ -88,6 +89,7 @@ public class MemberController {
 
 		String foundPw = mem.getMem_pw()!=null? mem.getMem_pw() : "없음";
 		if(!mem.getMem_id().equals(id)){ foundPw ="없음"; }
+		if(mem.getDrop_out()==1){ foundPw ="탈퇴"; }
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("resultPw", foundPw);
@@ -190,7 +192,6 @@ public class MemberController {
 		return new ModelAndView("join/membership");
 	}
 	
-	// 아이디 비밀번호 찾기
 	
 	
 	
@@ -266,10 +267,26 @@ public class MemberController {
 	public ModelAndView admin_member(HttpServletRequest req){
 		
 		Map<String, Object> map = new HashMap<>();
-		List<MemberVo> member_list = memberSvc.getAllMember();
-		admin_list_format(member_list);
+		s_member_list = memberSvc.getAllMember();
+		admin_list_format(s_member_list);
 		
-		map.put("member", member_list);
+		map.put("member", s_member_list);
+		
+		return new ModelAndView("admin/member/a_member", map);
+	}
+	
+	// SORT
+	@RequestMapping(value ="/admin/member.nm", method=RequestMethod.GET, params="Lineup=true")
+	public ModelAndView admin_member_sort(HttpServletRequest req,
+										@RequestParam(value="sort") String sort,
+										@RequestParam(value="m") String m ){
+		System.out.println(sort);
+		System.out.println(m);
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("member", s_member_list);
+		map.put("sort", sort);
+		map.put("m", m);
 		
 		return new ModelAndView("admin/member/a_member", map);
 	}
@@ -296,11 +313,44 @@ public class MemberController {
 		String email= mergeEmail(email1, email2);
 		Date birth = mergeBirth(year, month, day);
 		
-		List<MemberVo> member_list = memberSvc.getMembersByCondition(id, name, phone, email, birth, gender, level_no);
+		s_member_list = memberSvc.getMembersByCondition(id, name, phone, email, birth, gender, level_no);
 		
-		admin_list_format(member_list);
-		map.put("member", member_list);
+		admin_list_format(s_member_list);
+		map.put("member", s_member_list);
 		
+		return new ModelAndView("admin/member/a_member", map);
+	}
+	
+	// 회원 상태 변경 처리
+	@RequestMapping(value="/admin/member_manage.nm", method=RequestMethod.GET)
+	public ModelAndView admin_member_manage(HttpServletRequest req,
+											@RequestParam(value="proc") String proc,
+											@RequestParam(value="id") String[] id){
+		
+		if(proc.equals("drop")){
+			for(int i=0; i< id.length; i++){
+				memberSvc.removeMember(id[i]);
+			}
+			
+		}else if(proc.equals("black")){
+			
+			for(int i=0; i< id.length; i++){
+				MemberVo one = memberSvc.getOneMember(id[i]);
+			
+				if(one.getMem_level_cd()==S.LEVEL_MEMBER){
+					memberSvc.editMemberLevel(id[i], S.LEVEL_BLACKLIST);
+				}else if(one.getMem_level_cd()==S.LEVEL_BLACKLIST){
+					memberSvc.editMemberLevel(id[i], S.LEVEL_MEMBER);
+				}
+			}
+		}
+		
+		
+		Map<String, Object> map = new HashMap<>();
+		s_member_list = memberSvc.getAllMember();
+		admin_list_format(s_member_list);
+		
+		map.put("member", s_member_list);
 		return new ModelAndView("admin/member/a_member", map);
 	}
 	

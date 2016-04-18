@@ -41,8 +41,7 @@ public class MemberSvcImpl implements IMemberSvc {
 
 	@Override
 	public int editMemberLevel(String id, int level) {
-		// TODO Auto-generated method stub
-		return 0;
+		return memberDao.editMemberLevel(id, level);
 	}
 
 	@Override
