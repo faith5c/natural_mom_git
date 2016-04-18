@@ -42,7 +42,7 @@
          
          <div id="soap_table">
             <table>
-            <form action="/soap/order/temporder.nm" method="post">
+            <form action="/soap/order/detailorder.nm" method="post">
                <tr>
                   <td colspan="2">${pvo.product_name}&nbsp;${pvo.weight}g</td>
                </tr>
