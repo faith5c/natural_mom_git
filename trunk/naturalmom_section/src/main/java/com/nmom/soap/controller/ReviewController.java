@@ -71,6 +71,7 @@ public class ReviewController
 			List<VReview_AdminVo> review_list = review_adminSvc.getAllList(page);
 			
 			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("rp", new Integer(page));
 			map.put("rvw_list", review_list);
 			map.put("all_reviews", new Integer(all_reviews));
 			

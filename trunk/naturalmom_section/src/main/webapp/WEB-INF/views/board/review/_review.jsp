@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,32 +38,32 @@
 	
 	function write_popup()
 	{
-		window.open("review_write_popup.jsp", "카테고리 등록", "width = 800px, height = 500px, left = 200px, top = 200px, scrollbars = no, toobar = no, menubar = no, status = no, location = no, resizeable = no");
+		window.open("review_write_popup.nm", "카테고리 등록", "width = 800px, height = 500px, left = 200px, top = 200px, scrollbars = no, toobar = no, menubar = no, status = no, location = no, resizeable = no");
 	}
 	
 </script>
 
 <style type = "text/css">
-
+	
 	#in 
 	{ 
-		width : 1100px; 
-		margin : 0 auto; padding: 0px; 
+		width : 1000px; 
+		margin : 0 auto; padding: 0 auto; 
 		color: #85858d; 
 		font-style: bold;
 		font-family : "나눔바른고딕", "맑은 고딕"; 
 	}
-		
+			
 	#in h2 
 	{ 
 		margin : 5px; 
 		color: #004523;
 	}
-	
+
 	#review a { text-decoration : none; color : black; }
 	#review a:hover  { opacity : 0.7; }
 		
-	#review { width: 100%; padding : 0px; }
+	#review { width: 100%; padding : 0px;}
 	#review tr { border-top : 1px solid grey; }
 	#review tr:nth-child(2) td { background-color: #CCCCCC; color: white; font-style:bold; }
 	#review tr:not(:first-child) td { color: black; }
@@ -134,161 +137,82 @@
 			</td>
 		</tr>
 		<tr id = "title">
-			<td>제목</td>
+			<td style="width:600px;">제목</td>
 			<td>작성자</td>
 			<td>작성일</td>
 			<td>만족도</td>
 		</tr>
+		<c:if test = "${rvw_list != null}" >
+		<c:forEach var = "review" items = "${rvw_list}" varStatus="stat">
 		<tr id = "sub_title">
-			<td><a href="javascript:void();">향이 너무 좋아요~</a></td>
-			<td>hook4u</td>
-			<td>2015/06/17</td>
-			<td>★★★★☆</td>
+			<td>
+				<a href="javascript:void();">
+					${review.rvw_title}
+					<c:if test="${fn:length(re_list[stat.index]) > 0}">
+					&nbsp;&nbsp;[${fn:length(re_list[stat.index])}]
+					</c:if>
+				</a>
+			</td>
+			<td>${review.mem_id}</td>
+			<td><fmt:formatDate value="${review.rvw_write_day}" type = "date" /></td>
+			<td>
+					<c:forEach var="i" begin="0" end="5" step="1">
+						<c:if test="${i < review.rvw_satisfaction}">
+							★
+						</c:if>
+						<c:if test="${i > review.rvw_satisfaction}">
+							☆
+						</c:if>
+					</c:forEach>
+			</td>
 		</tr>
 		<tr id = "sub_content">
 			<td colspan = "5">
 				<div class = "review_body">
 					<div class = "review_content">
-					 	향기가 좋아요~
-					 	향기가 좋아요~향기가 좋아요~향기가 좋아요~향기가 좋아요~				
-						향기가 좋아요~향기가 좋아요~향기가 좋아요~향기가 좋아요~
-						향기가 좋아요~향기가 좋아요~향기가 좋아요~향기가 좋아요~
-						향기가 좋아요~향기가 좋아요~향기가 좋아요~향기가 좋아요~
-						향기가 좋아요~향기가 좋아요~향기가 좋아요~향기가 좋아요~
-						향기가 좋아요~향기가 좋아요~향기가 좋아요~향기가 좋아요~
-						향기가 좋아요~!향기가 좋아요~!!!향기가 좋아요~!향기가 좋아요~
+					 	${review.rvw_content}
 					 </div>
 					 <div class = "review_buttons">
+					 	<c:if test="${id eq review.mem_id}">
 					 	<input type = "button" value = "수정" />
 						<input type = "button" value = "삭제" />
+						</c:if>
 					</div>		 			 
 				</div>
 				<div class = "reply_body">
+					<c:if test = "${re_list[stat.index] != null}" >
+					<c:forEach var = "re" items = "${re_list[stat.index]}">
 					<div class = "reply_content">
 						<div class = "reply_writer">
-							자연맘
+							${re.mem_id}
 						</div>
 						<div class = "reply_sub">
-							구매해주셔서 고맙습니다. ^^
+							${re.rvw_re_content}
 						</div>
 						<div class = "reply_date">
-							2016/03/22
+							<fmt:formatDate value="${re.rvw_re_write_day}" type = "date" />
 						</div>
 						<div class = "reply_buttons">
+							<c:if test="${id eq re.mem_id}">
 							<i class="fa fa-times-circle"></i>
+							</c:if>
 						</div>
 					</div>
-					<div class = "reply_content">
-						<div class = "reply_writer">
-							hook4u
-						</div>
-						<div class = "reply_sub">
-							또 살게여~
-						</div>
-						<div class = "reply_date">
-							2016/03/22
-						</div>
-						<div class = "reply_buttons">
-							<i class="fa fa-times-circle"></i>
-						</div>
-					</div>
+					</c:forEach>
+					</c:if>
 					<div id = "line">
 						<div class = "reply_write">
 							<textarea rows="4" cols="100" ></textarea>
 						</div>
 						<div class = "reply_button">
-							<input type = "button" value = "댓글등록" />
+							<input type = "button" value = "댓글등록"/>
 						</div>
 					</div>
 				</div>
 			</td>
-		<tr id = "sub_title">
-			<td><a href="javascript:void();">피부가 부들부들해요~~</a></td>
-			<td>agamom</td>
-			<td>2015/06/17</td>
-			<td>★★★★★</td>
-		</tr>
-		<tr id = "sub_content">
-			<td colspan = "5" >
-				<div class = "review_body">
-					<div class = "review_content">
-					 	부들부들해져여~~~~~짱좋
-					 </div>
-					 <div class = "review_buttons">
-						<input type = "button" value = "수정" />
-						<input type = "button" value = "삭제" />
-					</div>		 			 
-				</div>
-				<div class = "reply_body">
-					<div class = "reply_content">
-						<div class = "reply_writer">
-							자연맘
-						</div>
-						<div class = "reply_sub">
-							구매해주셔서 고맙습니다. ^^
-						</div>
-						<div class = "reply_date">
-							2016/03/22
-						</div>
-						<div class = "reply_buttons">
-							<i class="fa fa-times-circle"></i>
-						</div>
-					</div>
-					<div id = "line">
-						<div class = "reply_write">
-							<textarea rows="4" cols="100" ></textarea>
-						</div>
-						<div class = "reply_button">
-							<input type = "button" value = "댓글등록" />
-						</div>
-					</div>
-				</div>
-			</td>
-		</tr>
-		<tr id = "sub_title">
-			<td><a href="javascript:void();">거품이 까매요...</a></td>
-			<td>maniac</td>
-			<td>2015/06/17</td>
-			<td>★★★☆☆</td>
-		</tr>
-		<tr id = "sub_content">
-			<td colspan = "5" >
-				<div class = "review_body">
-					<div class = "review_content">
-					 	원래 이렇게 까매요...?
-					 </div>
-					 <div class = "review_buttons">
-						<input type = "button" value = "수정" />
-						<input type = "button" value = "삭제" />
-					</div>		 			 
-				</div>
-				<div class = "reply_body">
-					<div class = "reply_content">
-						<div class = "reply_writer">
-							자연맘
-						</div>
-						<div class = "reply_sub">
-							구매해주셔서 고맙습니다. ^^
-						</div>
-						<div class = "reply_date">
-							2016/03/22
-						</div>
-						<div class = "reply_buttons">
-							<i class="fa fa-times-circle"></i>
-						</div>
-					</div>
-					<div id = "line">
-						<div class = "reply_write">
-							<textarea rows="4" cols="100" ></textarea>
-						</div>
-						<div class = "reply_button">
-							<input type = "button" value = "댓글등록" />
-						</div>
-					</div>
-				</div>
-			</td>
-		</tr>
-
+			
+		</c:forEach>
+		</c:if>
 	</table>
 		<div class="page">
 			<a href="#">〈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

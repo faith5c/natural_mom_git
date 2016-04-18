@@ -96,7 +96,7 @@
 				<td>${review.product_name}</td>
 				<td>
 					<a href="review_read.nm?&r=${review.review_no}">
-						${review.rvw_title} <c:if test="${review.re_num > 0}">[${review.re_num}]</c:if>
+						${review.rvw_title}&nbsp;<c:if test="${review.re_num > 0}">[${review.re_num}]</c:if>
 					</a></td>
 				<td>${review.mem_id}</td>
 				<td><fmt:formatDate value="${review.rvw_write_day}" type = "date" /></td>
@@ -112,7 +112,8 @@
 				</td>
 			</tr>
 		</c:forEach>
-<!--	<tr id = "review_write">
+<!--	
+		<tr id = "review_write">
 			<td colspan="6">
 			 <input type = "button" value = "글쓰기" onclick = "location.href='review.nm?w=true'"> 
 			</td>
@@ -121,9 +122,15 @@
 	</table>
 <!-- 페이지 부분 -->
 		<div id = "page">
-			<a href="#">〈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<c:if test="${rp eq 1 }">
+				&lt;
+			</c:if>
+			<c:if test="${rq > 1 }">
+				<a href="review.nm?page=${rp - 1}">〈</a>
+			</c:if>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<c:forEach var = "i" begin="1" end="${(all_reviews + 9) / 10}" step = "1">
-				<c:if test="${param.page == i}">
+				<c:if test="${rp == i}">
 					<span>${i}</span>
 				</c:if>
 				<c:if test="${param.page != i}">
@@ -132,7 +139,7 @@
 				
 			</c:forEach>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="#">〉</a>
+			<a href="#">&gt;</a>
 		</div>
 <!-- 검색 부분 -->
 <script type="text/javascript">
