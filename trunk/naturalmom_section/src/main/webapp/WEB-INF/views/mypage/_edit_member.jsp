@@ -125,7 +125,7 @@ td:FIRST-CHILD {
 				<td>
 					<input type="text" id="post_num" name="post_num" readonly="readonly" value="${m.mem_addr_post}"/>
 					<!-- post_num1 + post_num2 = addr_post -->
-					<input type="button" value="우편번호 찾기" name="find_postnum" onclick="pop_postNum()"/><br>
+					<input type="button" value="우편번호 찾기" id="find_post_num" name="find_postnum" onclick="pop_postNum()"/><br>
 					<input type="text" id="address" name="address" readonly="readonly"  value="${address[0]}"/>
 				</td>
 			</tr>

@@ -36,6 +36,18 @@ h2{color: #004523;
 			border : 0px;
 }
 
+#check_id_double, #find_post_num{
+	padding : 3px 15px;
+	margin-left : 5px;
+	margin-right : 5px; 
+	background-color : #85858D;
+	color : white;
+	font-family : "나눔바른고딕", "맑은 고딕";
+	font-size : 14px;
+	border-radius : 10px; 
+	border : 0px;
+}
+
 td:FIRST-CHILD {
 	width: 85px;
 	vertical-align: top;
@@ -44,7 +56,7 @@ td:FIRST-CHILD {
 #id, #name, #email1, #email2 { width: 100px; }
 #phone1, #phone2, #phone3, #post_num1, #post_num2, #year
 	{ width: 70px; }
-#address, #address_detail { width: 250px; }
+#address, #address_detail { width: 300px; }
 
 </style>
 <html>
@@ -56,7 +68,8 @@ td:FIRST-CHILD {
 			<tr>
 				<td>아이디</td>
 				<td id="check_id"><input type="text" id="id" name="id" onchange="check_id()"/>
-					<input type="button" value="중복확인" name="check_id_double" onclick="pop_id()"/>&nbsp;&nbsp;<span>(6-18자 입력)</span></td>
+					<input type="button" value="중복확인" name="check_id_double" id="check_id_double" onclick="pop_id()"/>
+					&nbsp;&nbsp;<span>(6-18자 입력)</span></td>
 			</tr>
 			<tr>
 				<td>비밀번호</td>
@@ -129,7 +142,7 @@ td:FIRST-CHILD {
 				<td>
 					<input type="text" id="post_num" name="post_num" readonly="readonly" onclick="suggestButton()"/>
 					<!-- post_num1 + post_num2 = addr_post -->
-					<input type="button" value="우편번호 찾기" name="find_postnum" onclick="pop_postNum()"/><br>
+					<input type="button" value="우편번호 찾기" id="find_post_num" name="find_postnum" onclick="pop_postNum()"/><br>
 					<input type="text" id="address" name="address" readonly="readonly" onclick="suggestButton()"/>
 				</td>
 			</tr>
