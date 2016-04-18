@@ -27,6 +27,8 @@ public class ProductSvc extends ConSvc
 		System.out.println("4. EDIT SALE STATE");
 		System.out.println("5. EDIT DELETED STATE");
 		System.out.println("6. ADD ONE PRODUCT");
+		System.out.println("7. ADD STOCK");
+		System.out.println("8. REMOVE STOCK");
 		System.out.println("9. EXIT");
 		System.out.print(" >> ");
 		execFunctions(inputNumber(inputUser()));
@@ -59,6 +61,14 @@ public class ProductSvc extends ConSvc
 			
 		case ADD_ONE_PRODUCT:
 			showResult(productDao.addProduct(test));
+			break;
+			
+		case 7:
+			showResult(productDao.addStock(2, 10002));
+			break;
+			
+		case 8:
+			showResult(productDao.removeStock(2, 10002));
 			break;
 			
 		case EXIT:
