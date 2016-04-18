@@ -24,7 +24,7 @@ h2{color: #004523;
 	padding-top: 100px;}
 
 
-#submit { 
+#join_submit { 
 			padding : 7px 30px;
 			margin-left : 5px;
 			margin-right : 5px; 
@@ -141,7 +141,7 @@ td:FIRST-CHILD {
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2" style="text-align: center"><input type="submit" id="submit" value="확인" onclick="allSubmit()"/></td>
+				<td colspan="2" style="text-align: center"><input type="button" id="join_submit" value="확인" onclick="allSubmit()"/></td>
 			</tr>
 		</table>
 		

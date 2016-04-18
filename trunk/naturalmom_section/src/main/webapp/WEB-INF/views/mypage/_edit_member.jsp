@@ -27,7 +27,7 @@ h2{color: #004523;}
 
 #button { text-align: center; }
 
-#submit { 
+#edit_submit { 
 	padding : 7px 30px;
 	margin-left : 5px;
 	margin-right : 5px; 
@@ -140,7 +140,7 @@ td:FIRST-CHILD {
 				<td colspan="2" style="text-align: right"><input type="button" id="drop_out" value="회원탈퇴" onclick="dropout()"/></td>
 			</tr>
 			<tr>
-				<td colspan="2"><p id="button"><input type="submit" id="submit" value="확인" onclick="allSubmit()"/></p></td>
+				<td colspan="2"><p id="button"><input type="button" id="edit_submit" value="확인" onclick="allSubmit()"/></p></td>
 			</tr>
 		</table>
 	</form>
