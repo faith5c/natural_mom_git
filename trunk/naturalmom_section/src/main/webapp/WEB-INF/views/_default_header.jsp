@@ -5,7 +5,7 @@
 
 
 
-<script src="/resources/js/jquery-1.11.3.min.js"></script>
+<script src="/soap/resources/js/jquery-1.11.3.min.js"></script>
 
 <!--유저메뉴-->
 		<nav id = "user_menu_pc">

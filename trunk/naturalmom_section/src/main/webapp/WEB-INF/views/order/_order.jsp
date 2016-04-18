@@ -247,10 +247,9 @@ table tr .explain {
 		</table>
 	<script type="text/javascript">
 	$('#order_same').on("click",function() {
-    	alert('ㅅㅂ');
-    	var check =	$('#order_same').attr('checked');
-		
-		if ( check == 'checked' ){
+    	var check =	document.getElementById("order_same");
+    	
+		if ( check.checked ){
   			var name = $('#name').attr("value");
 			var phone1 = $('#phone1').attr("value");
 			var phone2 = $('#phone2').attr("value");
