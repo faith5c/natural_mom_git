@@ -624,6 +624,7 @@ public class ProductController
             
             // 리뷰 글 가져오는 부분      
             String id = (String)session.getAttribute(S.SESSION_LOGIN);
+            Boolean isAdmin = (Boolean)session.getAttribute(S.SESSION_ADMIN);
             List<VReview_FrontVo> rvw_list = review_frontSvc.getAllList(product_no, 1);
             List<List<Review_ReVo>> rvws_re_list = new ArrayList<List<Review_ReVo>>();
             for(VReview_FrontVo rvw : rvw_list)
@@ -631,9 +632,9 @@ public class ProductController
                int review_no = rvw.getReview_no();
                rvws_re_list.add(review_reSvc.getAllRe(review_no));
             }
-            System.out.println(rvw_list.size());
-            System.out.println(rvws_re_list.size());
+            System.out.println(isAdmin);
             map.put("id", id);
+            map.put("isAdmin", isAdmin);
             map.put("rvw_list", rvw_list);
             map.put("re_list", rvws_re_list);
             // 리뷰 가져오는 부분 끝

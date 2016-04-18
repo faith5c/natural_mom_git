@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -226,7 +227,7 @@ public class ReviewController
 	
 	// 댓글 달기
 	@RequestMapping(value="/admin/board/review_reg_re_proc.nm", method=RequestMethod.POST)
-	public String register_review_reply(HttpServletRequest request, HttpSession session,
+	public String register_reviewReply_a(HttpServletRequest request, HttpSession session,
 			@RequestParam(value="rvw_re_content", required=false) String rvw_re_content,
 			@RequestParam(value="rvw_no", required=false) int rvw_no)
 	{
@@ -305,4 +306,101 @@ public class ReviewController
 	}
 	
 //*********************************************************************************************관리자 페이지 영역	
+//*********************************************************************************************사용자 페이지 영역	
+	
+	// 글쓰기 페이지 준비하기
+	@RequestMapping(value="/product/review_write_popup.nm", method=RequestMethod.GET)
+	public ModelAndView prepareWriteReview(HttpServletRequest request, HttpSession session,
+			@RequestParam(value="p_no", defaultValue = "0") int product_no)
+	{
+		if (session.getAttribute(S.SESSION_LOGIN) == null)
+			return new ModelAndView("redirect:/login.nm", null);
+		
+		// 세션처리
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("product_no", product_no);
+		
+		return new ModelAndView("board/review/review_write_popup", map);
+	}
+	
+	// 리뷰 등록하기
+	@RequestMapping(value="/product/reg_review_proc.nm", method=RequestMethod.POST)
+	public String registerReview(HttpServletRequest request, HttpSession session,
+			ReviewVo review)
+	{
+		if (reviewSvc.addReview(review) == S.PROCESS_SUCCESS)
+		{
+			System.out.println(review);
+			return "redirect:/product/review_write_popup.nm?rst=true";
+		}
+		else
+		{
+			System.out.println("에러 발생");
+			return "redirect:/product/review_write_popup.nm?rst=false";
+		}
+	}
+	
+	// 수정 페이지 준비하기
+	@RequestMapping(value="/product/review_modify_popup.nm", method=RequestMethod.GET)
+	public ModelAndView prepareModifyReview(HttpServletRequest request, HttpSession session,
+			@RequestParam(value="r_no", defaultValue = "0") int review_no)
+	{
+		// 세션처리
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("review", reviewSvc.getOneReview(review_no));
+		
+		return new ModelAndView("board/review/review_modify_popup", map);
+	}
+	
+	// 리뷰 수정하기
+	@RequestMapping(value="/product/modi_review_proc.nm", method=RequestMethod.POST)
+	public String modifyReview(HttpServletRequest request, HttpSession session,
+			ReviewVo review)
+	{
+		int result = reviewSvc.editReview(review);
+		if (result == S.PROCESS_SUCCESS)
+		{
+			return "redirect:/product/review_modify_popup.nm?rst=true";
+		}
+		else
+		{
+			System.out.println("에러 발생 : " + result);
+			System.out.println(review.toString());
+			return "redirect:/product/review_modify_popup.nm?rst=false";
+		}
+	}
+	
+	// 댓글 달기
+	@RequestMapping(value="/product/review_reg_re_proc.nm", method=RequestMethod.POST)
+	public String register_reviewReply(HttpServletRequest request, HttpSession session,
+			@RequestParam(value="rvw_re_content", required=false) String rvw_re_content,
+			@RequestParam(value="rvw_no", required=false) int rvw_no,
+			@RequestParam(value="product_no") int product_no)
+	{
+		String id = (String)session.getAttribute(S.SESSION_LOGIN);
+		
+		if (id != null && !id.isEmpty())
+		{
+			Review_ReVo new_reply = new Review_ReVo();
+			new_reply.setMem_id(id);
+			new_reply.setRvw_no(rvw_no);
+			new_reply.setRvw_re_content(rvw_re_content);
+			
+			if (review_reSvc.addRe(new_reply) == S.PROCESS_SUCCESS)
+			{
+				return "redirect:/product/detail.nm?pdno=" + product_no;
+			}
+			else
+			{
+				// 에러 메시지
+				System.out.println("댓글 등록 실패");
+				return "redirect:/product/detail.nm?pdno=" + product_no;
+			}
+		}
+		else
+		{
+			// 로그인 해달라는 에러 메시지
+			return "redirect:/login.nm";
+		}
+	}
 }

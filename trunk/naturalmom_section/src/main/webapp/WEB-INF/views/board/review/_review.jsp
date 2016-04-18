@@ -9,40 +9,6 @@
 <title>자연맘</title>
   <script type = "text/javascript" src = "http://code.jquery.com/jquery-1.12.0.min.js"> </script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-<script>
-	$(document).ready(function(){
-		
-		// 초기화
-		$("#review tr:not(:nth-child(2)):nth-child(even) td").css("display", "none");	
-
-		$("#review tr:gt(1) td a").click(function(){
-			if ($(this).parent().parent().next().children("td").css("display") == "none")
-			{
-				$("#review tr:not(:nth-child(2)):nth-child(even) td").slideUp(0);	
-				$(this).parent().parent().next().children("td").slideDown(0);		
-				$("#review tr:not(:nth-child(2)):nth-child(even) td").removeClass("selected");		
-				$(this).parent().parent().next().children("td").addClass("selected");			
-			}
-			else
-			{
-				$("#review tr:not(:nth-child(2)):nth-child(even) td").slideUp(0);		
-				$(this).parent().parent().next().children("td").removeClass("selected");
-				$("#review tr:not(:nth-child(2)):nth-child(even) td").css("display", "none");
-			}
-		}).mouseover(function(){
-			$(this).addClass("over");
-		}).mouseout(function(){
-			$(this).removeClass("over");
-		});
-	});
-	
-	function write_popup()
-	{
-		window.open("review_write_popup.nm", "카테고리 등록", "width = 800px, height = 500px, left = 200px, top = 200px, scrollbars = no, toobar = no, menubar = no, status = no, location = no, resizeable = no");
-	}
-	
-</script>
-
 <style type = "text/css">
 	
 	#in 
@@ -92,14 +58,15 @@
 	.reply_content { background : #EAEAEA; margin : 0 20px; padding: 5px; border-bottom: 1px dotted white; }
 	.review_content { padding: 20px 50px; }
 	.review td .review_body:last-child { border-bottom: 1px solid lightgrey; padding-bottom: 10px; margin-bottom: 10px; }
-	.review_content, .reply_write { display:inline-block; width : 75%; vertical-align: middle; }
-	.review_buttons, .reply_button { display:inline-block; text-align:center; width : 15%; }	
+	.review_content, .reply_write { display:inline-block; width : 70%; vertical-align: middle; }
+	.review_buttons	{ display:inline-block; text-align:center; width : 15%; }	
+	.reply_button { display: inline-block; width: 15%; }	
 	.review_buttons { margin-bottom: 5px; }
 	
 	#line { margin-top: 10px; border-top: 1px solid lightgrey; }
-	.reply_write { padding: 10px; }
+	.reply_write { padding: 10px; width: 98%; }
 	.reply_write { text-align:right; }
-	.reply_write textarea { width: 95%; resize: none; }
+	.reply_write textarea { width: 100%; resize: none; }
 	.reply_button input, .review_buttons input
 	{
 		padding: 3px;
@@ -126,14 +93,64 @@
 </header>
 <!-----------------------------------------------------------end header ----------->	
 <!---Start container----------------------------------------------------------------->
- 
+ <script>
+	$(document).ready(function(){
+		
+		// 초기화
+		$("#review tr:not(:nth-child(2)):nth-child(even) td").css("display", "none");	
+
+		$("#review tr:gt(1) td a").click(function(){
+			if ($(this).parent().parent().next().children("td").css("display") == "none")
+			{
+				$("#review tr:not(:nth-child(2)):nth-child(even) td").slideUp(0);	
+				$(this).parent().parent().next().children("td").slideDown(0);		
+				$("#review tr:not(:nth-child(2)):nth-child(even) td").removeClass("selected");		
+				$(this).parent().parent().next().children("td").addClass("selected");			
+			}
+			else
+			{
+				$("#review tr:not(:nth-child(2)):nth-child(even) td").slideUp(0);		
+				$(this).parent().parent().next().children("td").removeClass("selected");
+				$("#review tr:not(:nth-child(2)):nth-child(even) td").css("display", "none");
+			}
+		}).mouseover(function(){
+			$(this).addClass("over");
+		}).mouseout(function(){
+			$(this).removeClass("over");
+		});
+	});
+	
+	function write_popup(product_no)
+	{
+		window.open("review_write_popup.nm?p_no=" + product_no, "상품후기 쓰기", "width = 800px, height = 600px, left = 200px, top = 200px, scrollbars = no, toobar = no, menubar = no, status = no, location = no, resizeable = no");
+	}
+	
+	function modify_popup(review_no)
+	{
+		window.open("review_modify_popup.nm?r_no=" + review_no, "상품후기 수정", "width = 800px, height = 600px, left = 200px, top = 200px, scrollbars = no, toobar = no, menubar = no, status = no, location = no, resizeable = no");
+	}
+	function reg_reply()
+	{
+		var content = $('#rvw_re_content').val();
+		if(content == '')
+		{
+			alert('댓글 내용을 입력해주세요.');
+			$('#rvw_re_content').focus();		
+		}
+		else
+		{
+			document.reg_reply_form.submit();
+		}
+	}
+	
+</script>
  <div id ="in">
  
  <h2>구매 후기</h2>
   	<table id="review" cellspacing="0">
 		<tr id = "write">
-			<td colspan="5">
-				<input type = "button" value = "글쓰기" onclick = "write_popup();" />
+			<td colspan="4">
+				<input type = "button" value = "글쓰기" onclick = "write_popup(${pvo.product_no});" />
 			</td>
 		</tr>
 		<tr id = "title">
@@ -167,14 +184,16 @@
 			</td>
 		</tr>
 		<tr id = "sub_content">
-			<td colspan = "5">
+			<td colspan = "4">
 				<div class = "review_body">
 					<div class = "review_content">
 					 	${review.rvw_content}
 					 </div>
 					 <div class = "review_buttons">
-					 	<c:if test="${id eq review.mem_id}">
-					 	<input type = "button" value = "수정" />
+					 	<c:if test="${id eq review.mem_id || isAdmin}">
+					 		<c:if test="${id eq review.mem_id}">
+					 			<input type = "button" value = "수정" onclick = "modify_popup(${review.review_no});"/>
+					 		</c:if>
 						<input type = "button" value = "삭제" />
 						</c:if>
 					</div>		 			 
@@ -193,7 +212,7 @@
 							<fmt:formatDate value="${re.rvw_re_write_day}" type = "date" />
 						</div>
 						<div class = "reply_buttons">
-							<c:if test="${id eq re.mem_id}">
+							<c:if test="${id eq re.mem_id || isAdmin}">
 							<i class="fa fa-times-circle"></i>
 							</c:if>
 						</div>
@@ -202,10 +221,14 @@
 					</c:if>
 					<div id = "line">
 						<div class = "reply_write">
-							<textarea rows="4" cols="100" ></textarea>
-						</div>
-						<div class = "reply_button">
-							<input type = "button" value = "댓글등록"/>
+						<form action = "review_reg_re_proc.nm" method = "post" name = "reg_reply_form">
+							<textarea rows="4" cols="100" name = "rvw_re_content" id = "rvw_re_content"></textarea>
+							<input type = "hidden" name = "rvw_no" id = "rvw_no" value = "${review.review_no}" />
+							<input type = "hidden" name = "product_no" id = "product_no" value = "${pvo.product_no}" />
+							<span class = "reply_button">
+							<input type = "submit" value = "댓글등록" />
+							</span>
+						</form>
 						</div>
 					</div>
 				</div>

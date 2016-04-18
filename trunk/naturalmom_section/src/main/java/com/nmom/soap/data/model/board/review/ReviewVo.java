@@ -4,25 +4,25 @@ import java.util.Date;
 
 public class ReviewVo 
 {
-	// 멤버 �?��
+	// 멤버 �?��
 	int review_no;
 	String rvw_title;
 	Date rvw_write_day;
 	int rvw_hits;
 	String rvw_content;
 	int rvw_del_check;
-	int satisfaction;
+	int rvw_satisfaction;
 	int product_no;
 	int board_id;
 	String mem_id;
 	
-	// ?�성??
+	// ?�성??
 	public ReviewVo() {}
 	
-	// 모두 ?�력: ?�품 ?�기 ?�록 ??
+	// 모두 ?�력: ?�품 ?�기 ?�록 ??
 	public ReviewVo(int review_no, String rvw_title, Date rvw_write_day,
 			int rvw_hits, String rvw_content, int rvw_del_check,
-			int satisfaction, int product_no, int board_id, String mem_id) {
+			int rvw_satisfaction, int product_no, int board_id, String mem_id) {
 		super();
 		this.review_no = review_no;
 		this.rvw_title = rvw_title;
@@ -30,15 +30,15 @@ public class ReviewVo
 		this.rvw_hits = rvw_hits;
 		this.rvw_content = rvw_content;
 		this.rvw_del_check = rvw_del_check;
-		this.satisfaction = satisfaction;
+		this.rvw_satisfaction = rvw_satisfaction;
 		this.product_no = product_no;
 		this.board_id = board_id;
 		this.mem_id = mem_id;
 	}
 	
-	// ??�� ?�태, 게시???�이??빠짐 (기본 false, 5): ?�품 ?�기 ?�정 ???�용 �?��?�기 �??�품 ?�정
+	// ??�� ?�태, 게시???�이??빠짐 (기본 false, 5): ?�품 ?�기 ?�정 ???�용 �?��?�기 �??�품 ?�정
 //	public ReviewVo(int review_no, String rvw_title, Date rvw_write_day,
-//			int rvw_hits, String rvw_content, int satisfaction, 
+//			int rvw_hits, String rvw_content, int rvw_satisfaction, 
 //			int product_no, int mem_id) 
 //	{
 //		this.review_no = review_no;
@@ -47,7 +47,7 @@ public class ReviewVo
 //		this.rvw_hits = rvw_hits;
 //		this.rvw_content = rvw_content;
 //		this.rvw_del_check = 0;
-//		this.satisfaction = satisfaction;
+//		this.rvw_satisfaction = rvw_satisfaction;
 //		this.product_no = product_no;
 //		this.board_id = 5;
 //		this.mem_id = mem_id;
@@ -90,11 +90,11 @@ public class ReviewVo
 	public void setRvw_del_check(int rvw_del_check) {
 		this.rvw_del_check = rvw_del_check;
 	}
-	public int getSatisfaction() {
-		return satisfaction;
+	public int getRvw_satisfaction() {
+		return rvw_satisfaction;
 	}
-	public void setSatisfaction(int satisfaction) {
-		this.satisfaction = satisfaction;
+	public void setRvw_satisfaction(int rvw_satisfaction) {
+		this.rvw_satisfaction = rvw_satisfaction;
 	}
 	public int getProduct_no() {
 		return product_no;
@@ -119,7 +119,7 @@ public class ReviewVo
 	public String toString() {
 		return "ReviewVo [review_no=" + review_no + ", rvw_title=" + rvw_title + ", rvw_write_day=" + rvw_write_day
 				+ ", rvw_hits=" + rvw_hits + ", rvw_content=" + rvw_content + ", rvw_del_check=" + rvw_del_check
-				+ ", satisfaction=" + satisfaction + ", product_no=" + product_no + ", board_id=" + board_id
+				+ ", rvw_satisfaction=" + rvw_satisfaction + ", product_no=" + product_no + ", board_id=" + board_id
 				+ ", mem_id=" + mem_id + "]";
 	}
 }

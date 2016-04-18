@@ -18,7 +18,7 @@ public class ReviewDaoOraImpl extends NamedParameterJdbcDaoSupport implements IR
 			+ "rvw_del_check, rvw_satisfaction, product_no, board_id, mem_id, review_no) "
 			+ "VALUES (:rvw_title,SYSDATE,0,:rvw_content,0,:rvw_satisfaction,:product_no,5,:mem_id, REVIEW_NO_SEQ.NEXTVAL)";
 	// 상품 후기 수정하기
-	private final String EDIT_REVIEW = "UPDATE tb_review SET rvw_title = :rvw_title,"
+	private final String EDIT_REVIEW = "UPDATE tb_review SET rvw_title = :rvw_title, rvw_satisfaction = :rvw_satisfaction, "
 			+ " rvw_content = :rvw_content WHERE review_no = :review_no";
 	// 상품 후기 삭제하기
 	private final String REMOVE_REVIEW = "UPDATE tb_review SET rvw_del_check = 1 WHERE review_no = :review_no";
@@ -43,7 +43,7 @@ public class ReviewDaoOraImpl extends NamedParameterJdbcDaoSupport implements IR
 		MapSqlParameterSource msps = new MapSqlParameterSource();
 		msps.addValue("rvw_title", review.getRvw_title(), Types.VARCHAR);
 		msps.addValue("rvw_content", review.getRvw_content(), Types.VARCHAR);
-		msps.addValue("rvw_satisfaction", review.getSatisfaction(), Types.INTEGER);
+		msps.addValue("rvw_satisfaction", review.getRvw_satisfaction(), Types.INTEGER);
 		msps.addValue("product_no", review.getProduct_no(), Types.INTEGER);
 		msps.addValue("mem_id", review.getMem_id(), Types.VARCHAR);
 		
@@ -62,6 +62,7 @@ public class ReviewDaoOraImpl extends NamedParameterJdbcDaoSupport implements IR
 	{
 		MapSqlParameterSource msps = new MapSqlParameterSource();
 		msps.addValue("rvw_title", review.getRvw_title(), Types.VARCHAR);
+		msps.addValue("rvw_satisfaction", review.getRvw_satisfaction(), Types.INTEGER);
 		msps.addValue("rvw_content", review.getRvw_content(), Types.VARCHAR);
 		msps.addValue("review_no", review.getReview_no(), Types.INTEGER);
 		
