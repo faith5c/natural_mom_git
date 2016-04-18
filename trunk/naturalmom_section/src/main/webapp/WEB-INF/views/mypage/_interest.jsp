@@ -50,7 +50,7 @@
 		<c:forEach var="il" items="${interest_list}">
 			<tr>
 				<td><input type="checkbox" name="product_sel" value="${il.product_no}"></td>
-				<td><img src="${il.represent_img}" alt="${il.product_name}"></td>
+				<td><img src="/soap/resources/product_images/${il.represent_img}" alt="${il.product_name}"></td>
 				<td><a href="#">${il.product_name}</a></td>
 				<td>${il.selling_price}원</td>
 			</tr>
