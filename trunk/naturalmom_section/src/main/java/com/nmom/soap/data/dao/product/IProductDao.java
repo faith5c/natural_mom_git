@@ -27,6 +27,14 @@ public interface IProductDao
 	// 상품 수정
 	int editOneProduct(ProductVo product) throws DataAccessException;
 
+	// 해당 상품의 재고 가져오기
+	int getStockOfProduct(int product_no);
+
+	// 해당 상품의 재고 줄이기
+	int subStockOfProduct(int amount, int product_no);
+
+	// 해당 상품의 재고 늘리기
+	int addStockOfProduct(int amount, int product_no);
 
 	//****************************************************************//
 	
@@ -38,4 +46,5 @@ public interface IProductDao
 	
 	//상품이름으로 상품 가져옴
 	List<ProductVo> getProductByProductName(String product_name) throws DataAccessException;
+
 }

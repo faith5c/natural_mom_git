@@ -36,6 +36,13 @@ public class ProductDaoOraImpl extends NamedParameterJdbcDaoSupport implements I
 			+ ":product_name, :selling_price, :cost_price, :stock, 1, 1, :represent_img,"
 			+ ":detail_img, :summary_ex, :detail_ex, 0, :weight, :category_cd, PRODUCT_NO_SEQ.NEXTVAL)";
 	
+	// 재고 가져오기
+	private final String GET_STOCK_OF_PRODUCT = "SELECT stock FROM tb_product WHERE product_no = ?";
+	// 재고 빼기
+	private final String SUB_STOCK_OF_PRODUCT = "UPDATE tb_product SET stock = stock - :amount WHERE product_no = :product_no";
+	// 재고 더하기
+	private final String ADD_STOCK_OF_PRODUCT = "UPDATE tb_product SET stock = stock + :amount WHERE product_no = :product_no";
+	
 
 	//************************************************************//
 	
@@ -50,8 +57,6 @@ public class ProductDaoOraImpl extends NamedParameterJdbcDaoSupport implements I
 	
 	//************************************************************//
 
-	
-	
 	public ProductVo getOneProduct(int product_no) throws DataAccessException
 	{
 		List<ProductVo> list = getJdbcTemplate().query(GET_ONE_PRODUCT, 
@@ -128,7 +133,32 @@ public class ProductDaoOraImpl extends NamedParameterJdbcDaoSupport implements I
 		return getNamedParameterJdbcTemplate().update(EDIT_ONE_PRODUCT, msps);
 	}
 	
+	@Override
+	public int getStockOfProduct(int product_no)
+	{
+		return getJdbcTemplate().queryForInt(GET_STOCK_OF_PRODUCT, new Integer(product_no), Types.INTEGER);
+	}
 
+	@Override
+	public int subStockOfProduct(int amount, int product_no)
+	{
+		MapSqlParameterSource msps = new MapSqlParameterSource();
+		msps.addValue("amount", new Integer(amount), Types.INTEGER);
+		msps.addValue("product_no", new Integer(product_no), Types.INTEGER);
+		
+		return getNamedParameterJdbcTemplate().update(SUB_STOCK_OF_PRODUCT, msps);
+	}
+
+	@Override
+	public int addStockOfProduct(int amount, int product_no) 
+	{
+		MapSqlParameterSource msps = new MapSqlParameterSource();
+		msps.addValue("amount", new Integer(amount), Types.INTEGER);
+		msps.addValue("product_no", new Integer(product_no), Types.INTEGER);
+		
+		return getNamedParameterJdbcTemplate().update(ADD_STOCK_OF_PRODUCT, msps);
+	}
+	
 	//************************************************************//
 	
 	public List<ProductVo> getAllProduct() throws DataAccessException {

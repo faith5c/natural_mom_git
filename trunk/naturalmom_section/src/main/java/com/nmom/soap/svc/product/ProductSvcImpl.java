@@ -59,6 +59,24 @@ public class ProductSvcImpl implements IProductSvc
 		return productDao.editOneProduct(product);
 	}
 	
+	@Override
+	public int getStockOfProduct(int product_no) 
+	{
+		return productDao.getStockOfProduct(product_no);
+	}
+
+	@Override
+	public int subStockOfProduct(int amount, int product_no) 
+	{
+		return productDao.subStockOfProduct(amount, product_no);
+	}
+
+	@Override
+	public int addStockOfProduct(int amount, int product_no) 
+	{
+		return productDao.addStockOfProduct(amount, product_no);
+	}
+	
 ////////////////////////////////////////////////////////////////////////////	
 
 	@Override
@@ -75,5 +93,4 @@ public class ProductSvcImpl implements IProductSvc
 	public List<ProductVo> getProductByProductName(String product_name) {
 		return productDao.getProductByProductName(product_name);
 	}
-
 }

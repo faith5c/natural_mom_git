@@ -32,5 +32,14 @@ public interface IProductSvc
 	
 	// 상품이름으로 상품 가져옴
 	List<ProductVo> getProductByProductName(String product_name);
+	
+	// 해당 상품의 재고 가져오기
+	int getStockOfProduct(int product_no);
+	
+	// 해당 상품의 재고 빼기
+	int subStockOfProduct(int amount, int product_no);
+
+	// 해당 상품의 재고 더학
+	int addStockOfProduct(int amount, int product_no);
 
 }
