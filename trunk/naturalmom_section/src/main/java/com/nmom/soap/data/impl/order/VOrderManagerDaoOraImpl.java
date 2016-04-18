@@ -13,11 +13,18 @@ public class VOrderManagerDaoOraImpl extends JdbcDaoSupport implements IVOrderMa
 
 	
 	final String GET_ALL_ORDER_MANAGER = 
-			"SELECT order_date, order_no, mem_name, product_name, buy_num, charge, "
-			+ "delivery_msg, tracking_num, process_nm FROM v_order_manager ";
+			"SELECT order_date, order_no, mem_name, "
+			+ "LISTAGG(product_name, ',')WITHIN GROUP (ORDER BY product_name)"
+			+ " as product_name, SUM(buy_num) as buy_num, charge, delivery_msg,"
+			+ " tracking_num, process_nm FROM v_order_manager "
+			+ "GROUP BY order_date, order_no, mem_name, charge, delivery_msg, "
+			+ "tracking_num, process_nm ";
+			
+			//"SELECT order_date, order_no, mem_name, product_name, buy_num, charge, "
+			//+ "delivery_msg, tracking_num, process_nm FROM v_order_manager ";
 	
 	final String ORDER_BY_ORDER_DATE = 
-			GET_ALL_ORDER_MANAGER+"ORDER BY order_date  ";
+			GET_ALL_ORDER_MANAGER+"ORDER BY order_date ";
 	
 	final String ORDER_BY_ORDER_NO = 
 			GET_ALL_ORDER_MANAGER+"ORDER BY order_no ";

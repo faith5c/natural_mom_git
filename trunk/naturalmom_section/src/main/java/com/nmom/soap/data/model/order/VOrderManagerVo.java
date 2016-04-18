@@ -64,6 +64,10 @@ public class VOrderManagerVo {
 	}
 
 	public String getProduct_name() {
+		String name[] = product_name.split(",");
+		if(name.length > 1){
+			return name[0]+" 외 "+ (name.length-1)+"종";
+		}
 		return product_name;
 	}
 

@@ -54,7 +54,7 @@ public class VOrderListVo {
 	}
 
 	public String getRepresent_img() {
-		return represent_img;
+		return represent_img.split(",")[0];
 	}
 
 	public void setRepresent_img(String represent_img) {
@@ -62,6 +62,10 @@ public class VOrderListVo {
 	}
 
 	public String getProduct_name() {
+		String name[] = product_name.split(",");
+		if(name.length > 1){
+			return name[0]+" 외 "+ (name.length-1)+"종";
+		}
 		return product_name;
 	}
 

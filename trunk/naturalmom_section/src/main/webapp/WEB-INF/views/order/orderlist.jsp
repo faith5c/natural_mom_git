@@ -85,7 +85,10 @@
       	alert($('#checks').val());
       	alert(res); 
       	
-      	document.orderlist_form.submit();
+      	//document.orderlist_form.submit();
+        }
+        	alert("환불하실 주문을 체크해 주세요");
+        
 	}
 	
 	function buy(){
@@ -99,12 +102,15 @@
             }
         }
         if(res != ""){
-        res += 'buy'
-        $('#checks').attr("value", res)
-      	alert($('#checks').val());
-      	alert(res);
-      	document.orderlist_form.submit();
+        	res += 'buy'
+        	$('#checks').attr("value", res)
+      		alert($('#checks').val());
+      		alert(res);
+      		document.getElementsByName("orderlist_form").submit();
       	}
+        
+        if(res == ""){alert("구매확정하실 주문을 체크해 주세요");}
+        
 	}
 	</script>
 	<input  type="hidden">
@@ -143,8 +149,8 @@
 			
 			<tr>
 				<td colspan="8">
-				<input type="button" value="환불신청" onclick="refund()">
-				<input type="button" value="구매확정" onclick="buy()">
+				<input type="button" value="환불신청" onclick="refund()" />
+				<input type="button" value="구매확정" onclick="buy()" />
 				</td>
 			</tr>
 		</table>

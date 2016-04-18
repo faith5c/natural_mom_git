@@ -13,8 +13,15 @@ import com.nmom.soap.data.model.order.VOrderListVo;
 
 public class VOrderListDaoOraImpl extends NamedParameterJdbcDaoSupport implements IVOrderListDao {
 	
-	final String GET_ALL_ORDER = "SELECT order_no, order_date, represent_img, product_name, buy_num, "
-			+ "charge, process_nm, mem_id FROM v_order_list WHERE ROWNUM >= :start AND ROWNUM <= :end AND mem_id = :mem_id";
+	final String GET_ALL_ORDER = 
+			"SELECT order_no, order_date, "
+			+ "LISTAGG(represent_img, ',') WITHIN GROUP (ORDER BY represent_img) "
+			+ "as represent_img, "
+			+ "LISTAGG(product_name, ',')WITHIN GROUP (ORDER BY product_name) "
+			+ "as product_name, SUM(buy_num) AS buy_num, charge, process_nm, mem_id "
+			+ "FROM v_order_list "
+			+ "WHERE ROWNUM >= :start AND ROWNUM <= :end AND mem_id = :mem_id "
+			+ "GROUP BY order_no, order_date, charge, process_nm, mem_id";
 
 	final String GET_ALL_COUNT = "SELECT COUNT(order_no) FROM v_order_list WHERE mem_id = :mem_id";
 	

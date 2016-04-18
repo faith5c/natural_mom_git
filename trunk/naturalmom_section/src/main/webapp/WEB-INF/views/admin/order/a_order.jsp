@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -51,10 +52,10 @@
 		table tr:not(:first-child) td:nth-child(9) { text-align: right; }
 
 		table tr:first-child td:nth-child(1){ width:7%; }
-		table tr:first-child td:nth-child(2){ width:11%; }
-		table tr:first-child td:nth-child(3){ width:10%; }
-		table tr:first-child td:nth-child(4){ width:10%; }
-		table tr:first-child td:nth-child(5){ width:10%; }
+		table tr:first-child td:nth-child(2){ width:9%; }
+		table tr:first-child td:nth-child(3){ width:9%; }
+		table tr:first-child td:nth-child(4){ width:9%; }
+		table tr:first-child td:nth-child(5){ width:14%; }
 		table tr:first-child td:nth-child(6){ width:8%; }
 		table tr:first-child td:nth-child(7){ width:9%; }
 		table tr:first-child td:nth-child(8){ width:14%; } 
@@ -93,7 +94,9 @@
 		}
 
 		#delivery_register { float : left; }
-
+		
+		.msg {overflow:hidden;text-overflow:ellipsis;}
+		
 	</style>
    </head>
 
@@ -124,14 +127,14 @@
 			<c:forEach var="om" items="${orderManeger}"> 
 				<tr>
 					<td><input type = "checkbox" name = "check" value="om.order_no"/></td>
-					<td>${ om.order_date }</td>
+					<td style="text-align: center;"><fmt:formatDate value="${ om.order_date }" type="Date" /></td>
 					<td>${ om.order_no }</td>
 					<td>${ om.mem_name }</td>
 					<td>${ om.product_name }</td>
 					<td>${ om.buy_num }</td>
 					<td>${ om.charge }</td>
-					<td>${ om.delivery_msg }</td>
-					<td>${ om.tracking_num }</td>
+					<td class="msg" >${ om.delivery_msg }</td>
+					<td><c:if test="${ 0 ne om.tracking_num }">${ om.tracking_num }</c:if></td>
 					<td>
 						<select name="process_no">
 							<option value="11" <c:if test="${ om.process_nm.equals('배송준비중') }">selected="selected"</c:if> >&nbsp;배송준비중&nbsp;</option>
