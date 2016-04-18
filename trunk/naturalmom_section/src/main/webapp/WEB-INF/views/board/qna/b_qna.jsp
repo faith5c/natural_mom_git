@@ -15,15 +15,6 @@
 	<title>자연맘</title>  
 <%
 	request.setCharacterEncoding("UTF-8");
-	/* String submenu = request.getParameter("page");
-	boolean write = request.getParameter("w")!=null? true : false;
-	
-	
-	// 게시글 내용 보기인지 글쓰기인지 확인하는 부분
-	String w = request.getParameter("w");
-	if (w == null || w.isEmpty()) w = "false"; //여기도 boolean형으로 처리 안해놨음
-	String r = request.getParameter("r");	// 일단 int형 처리 안함
-	if (r == null) r = ""; */
 %>
   </head>
 
@@ -66,18 +57,6 @@
 					</c:otherwise>
 				</c:choose>
 		
-				<%-- 
-					<% if(r.equals("") && w.equals("false")){ %>
-					<%@include file="_qna_list.jsp" %>	
-					<% } else if(r.equals("3")){ %>
-					<%@include file="_qna_read.jsp" %>		
-					<% } else if(r.equals("2")){ %>
-					<%@include file="_qna_read_secret.jsp" %>
-					<% } else if(w.equals("true")){ %>
-					<%@include file="_qna_write.jsp" %>
-					<% } %>
-				 --%>
-
 			</div>	
 		</div>
 		<!--------------------------------------------------end content--------->

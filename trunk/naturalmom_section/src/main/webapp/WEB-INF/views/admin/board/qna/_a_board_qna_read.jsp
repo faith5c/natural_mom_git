@@ -1,6 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>    
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -88,59 +90,147 @@
 	}
 </style>
 
-<form>
 <table cellspacing="0">
 <tr>
-	<td colspan="1"><h2>Q&A</h2></td>
-	<td colspan="3"><input type="button" value="답변등록" onclick="location.href='admin_board.jsp?page=qna&w=true'"/></td>
+	<td colspan = "1"><h2>Q&A</h2></td>
+	<c:if test="${not empty sessionScope.loggedin}">
+	<td colspan="3"><input type="button" value="답변등록" onclick="location.href='/soap/admin/board/qna/add_form.nm?ref=${qvo.qna_ref}&pos=${qvo.qna_pos}'"/></td>
+	</c:if>
 </tr>
+
 <tr style="background: #918686; color: white;">
-	<th style="width:80px;">3</th>
-	<td colspan="3">재입고 언제 되나요</td>
+	<th style="width:80px;"><c:out value="${param.rn}"/></th>
+	<td colspan="3">${qvo.qna_title}</td>
 </tr>
 <tr>
 	<td colspan="4">
-	<div>hook4u | 2016/06/17 | 조회수 24</div> 
+	<div>
+	<c:choose>
+		<c:when test='${fn:containsIgnoreCase(qvo.mem_id, "admin")}'>
+			관리자
+		</c:when>
+		<c:otherwise>
+			${qvo.mem_id}
+		</c:otherwise>
+	</c:choose> | <fmt:formatDate value="${qvo.qna_write_day}" pattern="yyyy/MM/dd"/> | 조회수 ${qvo.qna_hits}
+	</div> 
 	</td>
 </tr>
 <tr>
-	<td colspan = "4">라벤더 비누 언제 재입고 되나요</td>
+	<td colspan = "4">${qvo.qna_content}</td>
 </tr>
-<tr class="dat">
-	<td>관리자</td>
-	<td colspan="2">안녕하세요 hook4u님! 라벤더 비누는 6월 말 재입고 예정입니다.^^</td>
-	<td style="width:120px;">2015/06/27
-	<span onclick="location.href='#'"><i class="fa fa-times-circle"></i></span>
-	</td>
-</tr>
-<tr class="dat">
-	<td>gag2</td>
-	<td colspan="2">빨리 재입고 해주세요</td>
-	<td>2015/06/27
-	<span onclick="location.href='#'"><i class="fa fa-times-circle"></i></span>
-	</td>
-</tr>
-<tr class="dat_write">
-	<td>관리자</td>
-	<td colspan="2">
-		<textarea style="width:100%; resize : none;" cols="30"></textarea>
-	</td>
-	<td>
-		<input type="submit" style="padding : 2px 10px; " value="댓글등록">
-	</td>
-</tr>
+
+<c:if test="${qnare_list !=null}">
+	<c:forEach items="${qnare_list}" var="qrl" >
+		<tr class="dat">
+		
+			<td>
+			<c:choose>
+				<c:when test='${fn:containsIgnoreCase(qrl.mem_id, "admin")}'>
+					관리자
+				</c:when>
+				<c:otherwise>
+					${qrl.mem_id}
+				</c:otherwise>
+			</c:choose>
+			</td>
+			
+			<td colspan="2">${qrl.qna_re_content}</td>
+			
+			<td style="width:120px;">
+			<fmt:formatDate value="${qrl.qna_re_write_day}" pattern="yyyy/MM/dd"/>
+				<span onclick="location.href='/soap/admin/board/qna/read/del_reply_proc.nm?reno=${qrl.qna_re_no}&qr_no=${qvo.qna_no}&rn=${param.rn}'">
+				<i class="fa fa-times-circle"></i>
+				</span>
+			</td>
+			
+		</tr>
+	</c:forEach>
+</c:if>
+
+<form action="/soap/admin/board/qna/read/add_reply_proc.nm" method="post">
+<c:if test="${sessionScope.loggedin !=null}">
+	<tr class="dat_write">
+		<td>
+		<c:choose>
+			<c:when test='${fn:containsIgnoreCase(sessionScope.loggedin, "admin")}'>
+				관리자
+			</c:when>
+			<c:otherwise>
+				${sessionScope.loggedin}
+			</c:otherwise>
+			</c:choose>
+		</td>
+		
+		<td colspan="2">
+			<textarea style="width:100%; resize : none;" cols="30" name="dat_text"></textarea>
+		</td>
+		<input type="hidden" name="qr_no" value="${qvo.qna_no}"/>
+		<input type="hidden" name="q_pw" value="${qvo.qna_pw}"/>
+		<input type="hidden" name="rn" value="${param.rn}"/>
+		
+		<td style="width:120px;">
+			<input type="submit" style="padding : 2px 10px;" value="댓글등록">
+		</td>
+		
+	</tr>
+</c:if>
+</form>
+
+	<tr>
+		<td></td>
+		
+		<td colspan="2">
+		</td>
+		
+		<td style="width:120px;">
+		</td>
+	</tr>
+
 <tr>
 	<td colspan="2">
-		<input type="button" value="이전글">
-		<input type="button" value="다음글">
+	<input type="button" value="이전글" onclick="location.href='/soap/admin/board/qna/prev/read.nm?qr_no=${qvo.qna_no}&rn=${param.rn}';">
+	<input type="button" value="다음글" onclick="location.href='/soap/admin/board/qna/next/read.nm?qr_no=${qvo.qna_no}&rn=${param.rn}';">
 	</td>
+
 	<td colspan="2">
-		<input type="button" value="삭제">
-		<input type="button" value="목록" onclick = "location.href='admin_board.jsp?page=qna';">
+		<c:if test="${qvo.mem_id == sessionScope.loggedin}">
+			<input type="button" value="편집" onclick = "location.href='/soap/admin/board/qna/edit_form.nm?qe_no=${qvo.qna_no}';"/>
+		</c:if>
+			<input type="button" value="삭제" onclick = "delQna('${qvo.qna_no}', '${qvo.qna_ref}', '${qvo.qna_pos}');"/>
+		<input type="button" value="목록" onclick = "location.href='/soap/admin/board/qna.nm';"/>
 	</td>
 </tr>
 </table>
-</form>
+	<input type="hidden" id="p_not" value="${param.prev_err}"/>
+	<input type="hidden" id="n_not" value="${param.next_err}"/>
+</body>
 
+<script type="text/javascript">
+$(function(){
+	console.log("p_not : "+$("#p_not").val());
+	console.log("n_not : "+$("#n_not").val());
+	
+    if($("#incorrect_pw").val()!=null){
+      alert($("#incorrect_pw").val());
+    }
+   
+    if($("#p_not").val()=="t"){
+    	alert("이전글이 없습니다");
+    }
+    if($("#n_not").val()=="t"){
+    	alert("다음글이 없습니다");
+    }
+});
+function delQna(qd_no, ref, pos){
+	if(confirm("글을 삭제하시겠습니까?")){
+		console.log("qd_no : "+ qd_no);
+		console.log("ref : "+ ref);
+		console.log("pos : " +pos);
+		
+		location.href='/soap/admin/board/qna/delete_proc.nm?qd_no='+qd_no+'&ref='+ref+'&pos='+pos;
+	}
+}
+</script>
 </body>
 </html>

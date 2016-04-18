@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
+    
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -59,7 +61,7 @@
 		border : solid 1px #85858D;
 		color : #555555;
 	}
-	.pw_write input[type="button"] { 
+	.pw_write input[type="submit"] { 
 		padding : 2px 10px; 
 		background : #cec5ce;
 		border-radius : 5px;
@@ -67,17 +69,17 @@
 		border : none;
 		border : 1px solid #85858d;
 	}
-	.pw_write input[type="button"]:hover { 
+	.pw_write input[type="submit"]:hover { 
 		opacity : 0.7;
 	}
 </style>
 
-<form>
+<form action="/soap/admin/board/qna/secret.nm" method="post">
 <table cellspacing="0">
 <tr><td colspan = "4"><h2>Q&A</h2></td></tr>
 <tr style="background: #918686; color: white;">
-	<th style="width:80px;">2</th>
-	<td colspan="3">배송일 문의 [1]<span>&nbsp;<i class="fa fa-lock"></i></span></td>
+	<th style="width:80px;">${param.rn}</th>
+	<td colspan="3">${qvo.qna_title}<span>&nbsp;<i class="fa fa-lock"></i></span></td>
 </tr>
 
 <tr>
@@ -88,7 +90,11 @@
 	<hr/>
 	<br/>
 	이 글은 비밀글입니다. 관리자는 확인 버튼을 눌러주세요<br/><br/>
-	<input type="button" name="secret_check" value="확인">
+	
+	<input type="hidden" name="q_pw" value="${qvo.qna_pw}">
+	<input type="hidden" name="qr_no" value="${qvo.qna_no}"/>
+	<input type="hidden" name="rn" value="${param.rn}"/>
+	<input type="submit" value="확인">
 	<br/>&nbsp;
 	</div>
 	</td>
@@ -101,16 +107,36 @@
 </tr>
 <tr>
 	<td colspan="2">
-		<input type="button" value="이전글">
-		<input type="button" value="다음글">
+		<input type="button" value="이전글" onclick="location.href='/soap/admin/board/qna/prev/read.nm?qr_no=${qvo.qna_no}&rn=${param.rn}';">
+		<input type="button" value="다음글" onclick="location.href='/soap/admin/board/qna/next/read.nm?qr_no=${qvo.qna_no}&rn=${param.rn}';">
 	</td>
 	<td colspan="2">
-		<input type="button" value="삭제">
-		<input type="button" value="목록" onclick = "location.href='admin_board.jsp?page=qna';">
+		<input type="button" value="목록" onclick = "location.href='/soap/admin/board/qna.nm';">
 	</td>
 </tr>
 </table>
 </form>
-
+	<input type="hidden" id="p_not" value="${param.prev_err}"/>
+	<input type="hidden" id="n_not" value="${param.next_err}"/>
 </body>
+
+<script type="text/javascript">
+$(function(){
+	console.log("p_not : "+$("#p_not").val());
+	console.log("n_not : "+$("#n_not").val());
+	
+    if($("#incorrect_pw").val()!=null){
+      alert($("#incorrect_pw").val());
+    }
+   
+    if($("#p_not").val()=="t"){
+    	alert("이전글이 없습니다");
+    }
+    if($("#n_not").val()=="t"){
+    	alert("다음글이 없습니다");
+    }
+	
+});
+</script>
+
 </html>

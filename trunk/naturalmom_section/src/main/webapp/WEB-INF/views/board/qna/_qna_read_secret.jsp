@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -119,8 +119,8 @@ $(function(){
 </tr>
 <tr>
 	<td colspan="2">
-		<input type="button" value="이전글">
-		<input type="button" value="다음글">
+	<input type="button" value="이전글" onclick="location.href='/soap/board/qna/prev/read.nm?qr_no=${qvo.qna_no}&rn=${param.rn}';">
+	<input type="button" value="다음글" onclick="location.href='/soap/board/qna/next/read.nm?qr_no=${qvo.qna_no}&rn=${param.rn}';">
 	</td>
 	<td colspan="2">
 		<input type="button" value="목록" onclick = "location.href='/soap/board/qna.nm';">
@@ -128,6 +128,26 @@ $(function(){
 </tr>
 </table>
 </form>
-
+	<input type="hidden" id="p_not" value="${param.prev_err}"/>
+	<input type="hidden" id="n_not" value="${param.next_err}"/>
 </body>
+
+<script type="text/javascript">
+$(function(){
+	console.log("p_not : "+$("#p_not").val());
+	console.log("n_not : "+$("#n_not").val());
+	
+    if($("#incorrect_pw").val()!=null){
+      alert($("#incorrect_pw").val());
+    }
+   
+    if($("#p_not").val()=="t"){
+    	alert("이전글이 없습니다");
+    }
+    if($("#n_not").val()=="t"){
+    	alert("다음글이 없습니다");
+    }
+	
+});
+</script>
 </html>

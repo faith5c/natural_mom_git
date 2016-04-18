@@ -218,16 +218,16 @@ $(function(){
     if($("#n_not").val()=="t"){
     	alert("다음글이 없습니다");
     }
-	function delQna(qd_no, ref, pos){
-		if(confirm("글을 삭제하시겠습니까?")){
-			console.log("qd_no : "+ qd_no);
-			console.log("ref : "+ ref);
-			console.log("pos : " +pos);
-			
-			location.href='/soap/board/qna/delete_proc.nm?qd_no='+qd_no+'&ref='+ref+'&pos='+pos;
-		}
-	}
 });
+function delQna(qd_no, ref, pos){
+	if(confirm("글을 삭제하시겠습니까?")){
+		console.log("qd_no : "+ qd_no);
+		console.log("ref : "+ ref);
+		console.log("pos : " +pos);
+		
+		location.href='/soap/board/qna/delete_proc.nm?qd_no='+qd_no+'&ref='+ref+'&pos='+pos;
+	}
+}
 </script>
 
 </html>
