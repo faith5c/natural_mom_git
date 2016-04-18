@@ -112,4 +112,20 @@ public class ProductDaoOraImpl extends NamedParameterJdbcDaoSupport implements I
 		return getNamedParameterJdbcTemplate().update(EDIT_ONE_PRODUCT, msps);
 	}
 
+	public int addStock(int mount, int product_no) {
+		
+		final String UPDATE = "UPDATE tb_product SET stock = stock + :mount WHERE product_no = :product_no";
+		
+		MapSqlParameterSource msps = new MapSqlParameterSource();
+		msps.addValue("mount", new Integer(mount), Types.INTEGER);
+		msps.addValue("product_no", new Integer(product_no), Types.INTEGER);
+		
+		return getNamedParameterJdbcTemplate().update(UPDATE, msps);
+	}
+
+	public int removeStock(int i, int j) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
