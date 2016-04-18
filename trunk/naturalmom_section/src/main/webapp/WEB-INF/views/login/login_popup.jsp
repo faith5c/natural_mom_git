@@ -120,26 +120,28 @@
 		
 		<!-- hidden result -->
 		<input type="hidden" id="resultId" value="${resultId}"/>
-		
 	</form>
+
+	<!-- ------------------------------------------------------------------------------------------------------------- -->
+
 	<br><hr>
-	<form action="">
+	<form action="pop_findId2.nm" name="findPw_form" method="post">
 		<h3><label for = "reg">비밀번호 찾기</label></h3>
 		<table>
 				<tr>
 					<td style="text-align: right"><label for="id">아이디</label> </td>
-					<td><input type="text" id="id"></td>
+					<td><input type="text" id="id" name="id"></td>
 				</tr>
 				<tr>
 					<td style="text-align: right"><label for="name2">이름</label> </td>
-					<td><input type="text" id="name2"></td>
+					<td><input type="text" id="name2" name="name2"></td>
 				</tr>
 				<tr>
 					<td style="text-align: right"><label for="email3" style="text-align: right">이메일</label></td>
 					<td>
 						<input type="text" id="email3" name="email3" />@<input type="text" id="email4" name="email4" />
-						<select id="email_select2" name="email_select2" onchange="email_change2()">
-							<option>직접입력</option>
+						<select id="email_select2" onchange="email_change2()">
+							<option value="">직접입력</option>
 							<option value="naver.com">naver.com</option>
 							<option value="hanmail.net">hanmail.net</option>
 							<option value="nate.com">nate.com</option>
@@ -150,8 +152,11 @@
 				</tr>
 			</table>
 		<div id="findpw">
-			<input type = "submit" id = "btn_pw" value = "비밀번호 찾기" />
+			<input type = "button" id = "btn_pw" value = "비밀번호 찾기" onclick="findPw_proc()"/>
 		</div>
+		
+		<!-- hidden result -->
+		<input type="hidden" id="resultPw" value="${resultPw}"/>
 	</form>
 	<div id = "close">
 		<input type = "button" id = "btn_close" onclick = "window.close();" value = "닫기" />
@@ -181,6 +186,18 @@
  		}
 	}
  	
+ 	function findPw_proc() {
+ 		if($('#id').val() != "" && $('#id').val() !=null
+ 				&& $('#name2').val() != "" && $('#name2').val() !=null
+ 				&& $('#email3').val() !="" && $('#email3').val() !=null
+ 				&& $('#email4').val() !="" && $('#email4').val() !=null){
+ 			document.findPw_form.submit();
+ 			
+ 		}else{
+ 			alert('공란없이 입력해주세요.');
+ 		}
+	}
+ 	
  	$(function(){
  	   if($("#resultId").val()=="없음"){
  	      alert('아이디 정보가 존재하지 않습니다.');
@@ -190,6 +207,18 @@
  		   alert('고객님의 아이디는 "' + $("#resultId").val()+'"입니다.')
  	   }
  	});
+ 	
+ 	$(function(){
+  	   if($("#resultPw").val()=="없음"){
+  	      alert('아이디 정보가 존재하지 않습니다.');
+  	   }else if($("#resultPw").val()==""){
+  		   
+  	   }else{
+  		   alert('고객님의 비밀번호는 "' + $("#resultPw").val()+'"입니다.')
+  	   }
+  	});
+ 	
+
  
  </script>
 </html>

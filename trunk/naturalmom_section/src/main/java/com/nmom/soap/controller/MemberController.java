@@ -58,7 +58,7 @@ public class MemberController {
 		return new ModelAndView("login/login_popup");
 	}
 	
-	
+	// 아이디 찾기
 	@RequestMapping(value="pop_findId1.nm", method=RequestMethod.POST)
 	public ModelAndView popup_findId1(HttpServletRequest req, 
 									@RequestParam(value="name1") String name1,
@@ -71,6 +71,26 @@ public class MemberController {
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("resultId", foundId);
+		
+		return new ModelAndView("login/login_popup", map);
+	}
+	
+	// 비밀번호 찾기
+	@RequestMapping(value="pop_findId2.nm", method=RequestMethod.POST)
+	public ModelAndView popup_findId2(HttpServletRequest req,
+									@RequestParam(value="id")String id,
+									@RequestParam(value="name2")String name2,
+									@RequestParam(value="email3")String email3,
+									@RequestParam(value="email4")String email4
+									){
+		String email = mergeEmail(email3, email4);
+		MemberVo mem =  memberSvc.getOneMember(name2, email);
+
+		String foundPw = mem.getMem_pw()!=null? mem.getMem_pw() : "없음";
+		if(!mem.getMem_id().equals(id)){ foundPw ="없음"; }
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("resultPw", foundPw);
 		
 		return new ModelAndView("login/login_popup", map);
 	}
