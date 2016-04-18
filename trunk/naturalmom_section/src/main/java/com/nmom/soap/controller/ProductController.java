@@ -606,7 +606,7 @@ public class ProductController
 	}
 	
 	@RequestMapping(value="product/detail.nm", method=RequestMethod.GET)
-	public ModelAndView product_description(HttpServletRequest req, 
+	public ModelAndView product_description(HttpServletRequest req, HttpSession session,
 			@RequestParam (value="pdno") String pdno){
 		
 		int product_no;
@@ -623,6 +623,7 @@ public class ProductController
 					map.put("pvo", product_vo);
 				
 				// 리뷰 글 가져오는 부분		
+				String id = (String)session.getAttribute(S.SESSION_LOGIN);
 				List<VReview_FrontVo> rvw_list = review_frontSvc.getAllList(product_no, 1);
 				List<List<Review_ReVo>> rvws_re_list = new ArrayList<List<Review_ReVo>>();
 				for(VReview_FrontVo rvw : rvw_list)
@@ -630,9 +631,11 @@ public class ProductController
 					int review_no = rvw.getReview_no();
 					rvws_re_list.add(review_reSvc.getAllRe(review_no));
 				}
-
+				System.out.println(rvw_list.size());
+				System.out.println(rvws_re_list.size());
+				map.put("id", id);
 				map.put("rvw_list", rvw_list);
-				map.put("re_map", rvws_re_list);
+				map.put("re_list", rvws_re_list);
 				// 리뷰 가져오는 부분 끝
 			}
 		} catch(Exception e){
