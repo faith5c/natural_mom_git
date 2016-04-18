@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-<script src="resources/js/jquery-1.11.3.min.js"></script>
-<!DOCTYPE html>
-<html lang="ko">
+
 
 <style type="text/css">
 .order_title {
@@ -249,25 +246,26 @@ table tr .explain {
 			</tr>
 		</table>
 	<script type="text/javascript">
-	$("input:checkbox").on("click",function() {
+	$('#order_same').on("click",function() {
+    	alert('ㅅㅂ');
     	var check =	$('#order_same').attr('checked');
-			
-			if ( check == 'checked' ){
-      		var name = $('#name').attr("value");
-    			var phone1 = $('#phone1').attr("value");
-    			var phone2 = $('#phone2').attr("value");
-    			var phone3 = $('#phone3').attr("value");
-    			var post_num1 = $('#post_num1').attr("value");
-    			var post_num2 = $('#post_num2').attr("value");
-    			var address_detail = $('#address_detail').attr("value");
-				$('#nameRe').attr("value", name);
-				$('#phoneRe1').attr("value", phone1);
-				$('#phoneRe2').attr("value", phone2);
-				$('#phoneRe3').attr("value", phone3);
-				$('#post_numRe1').attr("value", post_num1);
-				$('#post_numRe2').attr("value", post_num2);
-				$('#address_detailRe').attr("value", address_detail);
-		}
+		
+		if ( check == 'checked' ){
+  			var name = $('#name').attr("value");
+			var phone1 = $('#phone1').attr("value");
+			var phone2 = $('#phone2').attr("value");
+			var phone3 = $('#phone3').attr("value");
+			var post_num1 = $('#post_num1').attr("value");
+			var post_num2 = $('#post_num2').attr("value");
+			var address_detail = $('#address_detail').attr("value");
+			$('#nameRe').attr("value", name);
+			$('#phoneRe1').attr("value", phone1);
+			$('#phoneRe2').attr("value", phone2);
+			$('#phoneRe3').attr("value", phone3);
+			$('#post_numRe1').attr("value", post_num1);
+			$('#post_numRe2').attr("value", post_num2);
+			$('#address_detailRe').attr("value", address_detail);
+	}
 	});
 
 	</script>
@@ -384,4 +382,3 @@ table tr .explain {
 			</p>
 			<!--------------------------------------------------------end container------------->
 		</form>
-</html>

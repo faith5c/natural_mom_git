@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
+
 <section>
 			<!--검색-->
 			<p id="search_pc"><label for="find">search </label><input type="text" size = 10; id="find"><a href="#"><img src="<c:url value = '/resources/images/btn_search.gif' />"></a></p>
@@ -21,4 +20,3 @@
 				</ul>
 			</nav>
 		</section>
-</html>

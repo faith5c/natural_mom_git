@@ -5,12 +5,11 @@
   <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script src="js/jquery-1.11.3.min.js"></script>
 	<!-- [if lt IE 9]><script src="js/html5shiv.js"></script><![endif] -->
-	
-	<link rel="apple-touch-icon" href="../images/logo.ico" /> <!--애플아이콘등록-->
-	<link rel="shortcut icon" href="../images/logo.ico" /> <!--단축키아이콘등록-->
-	<link rel="stylesheet" href="../css/second.css"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link rel="apple-touch-icon" href="/soap/resources/images/logo.ico" /> <!--애플아이콘등록-->
+	<link rel="shortcut icon" href="/soap/resources/images/logo.ico" /> <!--단축키아이콘등록-->
+	<link rel="stylesheet" href="/soap/resources/css/index.css"/>
 		
 	<title>자연맘</title>
 <%

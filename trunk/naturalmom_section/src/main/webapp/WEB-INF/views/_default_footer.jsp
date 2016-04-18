@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
+
 <!--회사메뉴-->
 		<nav id="company_menu">
 			<ul>
@@ -19,4 +18,3 @@
 		<em>copyright&copy; 자연맘 All Right Reserved</em><br>
 		</address>
 
-</html>

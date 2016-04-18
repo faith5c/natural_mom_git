@@ -12,7 +12,7 @@
 	
 	<link rel="apple-touch-icon" href="resources/images/logo.ico" /> <!--애플아이콘등록-->
 	<link rel="shortcut icon" href="resources/images/logo.ico" /> <!--단축키아이콘등록-->
-	<link rel="stylesheet" href="resources/css/membership.css" />
+	<link rel="stylesheet" href="resources/css/index.css"/>
 
 	<title>자연맘</title>  
   </head>
