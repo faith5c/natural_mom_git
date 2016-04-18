@@ -164,13 +164,13 @@ table tr .explain {
 			<c:if test="${not empty temp}">
 			<c:forEach var="t" items="${temp}">
 			<tr>
-				<td><img width="20%" alt="" src="${t.represent_img}"></td>
+				<td><img width="20%" alt="" src="/soap/resources/product_images/${t.represent_img}" /></td>
 				<td><label name="product_name" id="product_name">${t.product_name}</label></td>
 				<td><input id="buy_num" name="buy_num" type="number" min="1" max="100" step="1" value="${t.buy_num}" size="3"/></td>
 				<td><label name="total_price" id="total_price" >${t.total_price}</label>원</td>
 				<td class="buttons">
-					<!-- order_cencle() 매개변수는 행 번호를 넣을 것 --> <input type="button"
-					onclick="order_cencle(${t.product_no})" value="취소">
+					 <!-- order_cencle() 매개변수는 행 번호를 넣을 것 -->
+					<input type="button" onclick="order_cencle(${t.product_no})" value="취소" />
 				</td>
 			</tr>
 			</c:forEach>
