@@ -104,7 +104,7 @@ public class MemberDaoOraImpl extends NamedParameterJdbcDaoSupport implements IM
 													rs.getInt("mem_level_cd"));
 				return member;
 				}
-			}, new Object[]{ new Integer(name), email } );
+			}, new Object[]{ name, email } );
 		
 		if( member_list != null && member_list.size() == 1 )
 			return member_list.get(0);

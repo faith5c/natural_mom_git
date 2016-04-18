@@ -6,7 +6,7 @@
   <head>
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="css/main.css" />
-	<script src="resources/js/jquery-1.11.3.min.js"></script>
+	<script src="/soap/resources/js/jquery-1.11.3.min.js"></script>
 	<!--[if lt IE 9]>
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
@@ -92,20 +92,20 @@
 	</div>
 	
 	
-	<form action="">
+	<form action="pop_findId1.nm" name="findId_form" method="post">
 		<div>
 			<h3>아이디 찾기</h3>
 			<table>
 				<tr>
-					<td style="text-align: right"><label for="name_id">이름</label> </td>
-					<td><input type="text" id="name_id"></td>
+					<td style="text-align: right"><label for="name1">이름</label> </td>
+					<td><input type="text" id="name1" name="name1"></td>
 				</tr>
 				<tr>
 					<td style="text-align: right"><label for="email1" style="text-align: right">이메일</label></td>
 					<td>
 						<input type="text" id="email1" name="email1" />@<input type="text" id="email2" name="email2" />
-						<select id="email_select_id" name="email_select_id" onchange="email_change1()">
-							<option>직접입력</option>
+						<select id="email_select1" onchange="email_change1()">
+							<option value="">직접입력</option>
 							<option value="naver.com">naver.com</option>
 							<option value="hanmail.net">hanmail.net</option>
 							<option value="nate.com">nate.com</option>
@@ -116,11 +116,13 @@
 				</tr>
 			</table>
 		</div>
-		<div id="findId"><input type="submit" id ="btn_id" value = "아이디 찾기" /></div>
+		<div id="findId"><input type="button" id ="btn_id" value = "아이디 찾기" onclick="findId_proc()"/></div>
+		
+		<!-- hidden result -->
+		<input type="hidden" id="resultId" value="${resultId}"/>
+		
 	</form>
-	
 	<br><hr>
-	
 	<form action="">
 		<h3><label for = "reg">비밀번호 찾기</label></h3>
 		<table>
@@ -129,14 +131,14 @@
 					<td><input type="text" id="id"></td>
 				</tr>
 				<tr>
-					<td style="text-align: right"><label for="name_pw">이름</label> </td>
-					<td><input type="text" id="name_pw"></td>
+					<td style="text-align: right"><label for="name2">이름</label> </td>
+					<td><input type="text" id="name2"></td>
 				</tr>
 				<tr>
-					<td style="text-align: right"><label for="email1" style="text-align: right">이메일</label></td>
+					<td style="text-align: right"><label for="email3" style="text-align: right">이메일</label></td>
 					<td>
 						<input type="text" id="email3" name="email3" />@<input type="text" id="email4" name="email4" />
-						<select id="email_select_pw" name="email_select_pw" onchange="email_change2()">
+						<select id="email_select2" name="email_select2" onchange="email_change2()">
 							<option>직접입력</option>
 							<option value="naver.com">naver.com</option>
 							<option value="hanmail.net">hanmail.net</option>
@@ -166,6 +168,28 @@
 		var selectedEmail = $("#email_select_pw").val();
 	 	document.getElementById("email4").setAttribute("value", selectedEmail);
 	}
+ 	
+ 	
+ 	function findId_proc() {
+ 		if($('#name1').val() != "" && $('#name1').val() !=null
+ 				&& $('#email1').val() !="" && $('#email1').val() !=null
+ 				&& $('#email2').val() !="" && $('#email2').val() !=null){
+ 			document.findId_form.submit();
+ 			
+ 		}else{
+ 			alert('공란없이 입력해주세요.');
+ 		}
+	}
+ 	
+ 	$(function(){
+ 	   if($("#resultId").val()=="없음"){
+ 	      alert('아이디 정보가 존재하지 않습니다.');
+ 	   }else if($("#resultId").val()==""){
+ 		   
+ 	   }else{
+ 		   alert('고객님의 아이디는 "' + $("#resultId").val()+'"입니다.')
+ 	   }
+ 	});
  
  </script>
 </html>

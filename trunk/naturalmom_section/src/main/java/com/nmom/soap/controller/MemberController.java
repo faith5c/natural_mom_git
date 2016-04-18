@@ -52,10 +52,30 @@ public class MemberController {
 	}
 	///////////////////////////////////////////////////////////// 아이디 패스워드 찾기
 	@RequestMapping(value="pop_findId.nm", method=RequestMethod.GET)
-	public String popup_findId(HttpServletRequest req){
+	public ModelAndView popup_findId(HttpServletRequest req){
+		Map<String, Object> map = new HashMap<>();
 		
-		return "login/login_popup";
+		return new ModelAndView("login/login_popup");
 	}
+	
+	
+	@RequestMapping(value="pop_findId1.nm", method=RequestMethod.POST)
+	public ModelAndView popup_findId1(HttpServletRequest req, 
+									@RequestParam(value="name1") String name1,
+									@RequestParam(value="email1") String email1,
+									@RequestParam(value="email2") String email2
+									){
+		String email = mergeEmail(email1, email2);
+		MemberVo mem =  memberSvc.getOneMember(name1, email);
+		String foundId = mem.getMem_id()!=null? mem.getMem_id() : "없음" ;
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("resultId", foundId);
+		
+		return new ModelAndView("login/login_popup", map);
+	}
+	
+	
 	
 	///////////////////////////////////////////////////////////// 로그아웃
 	@RequestMapping(value="logout_proc.nm", method=RequestMethod.GET)
@@ -149,6 +169,12 @@ public class MemberController {
 		
 		return new ModelAndView("join/membership");
 	}
+	
+	// 아이디 비밀번호 찾기
+	
+	
+	
+	
 	
 	
 	
@@ -321,6 +347,8 @@ public class MemberController {
 		}
 		
 	}
+	
+	
 
 
 }

@@ -26,8 +26,7 @@ public class MemberSvcImpl implements IMemberSvc {
 
 	@Override
 	public MemberVo getOneMember(String name, String email) {
-		// TODO Auto-generated method stub
-		return null;
+		return memberDao.getOneMember(name, email);
 	}
 
 	@Override
