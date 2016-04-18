@@ -21,7 +21,7 @@
 	<title>자연맘</title>  
 <%
 	request.setCharacterEncoding("UTF-8");
-	String submenu = request.getParameter("page");
+	/* String submenu = request.getParameter("page");
 	boolean write = request.getParameter("w")!=null? true : false;
 	
 	
@@ -29,7 +29,7 @@
 	String w = request.getParameter("w");
 	if (w == null || w.isEmpty()) w = "false"; //여기도 boolean형으로 처리 안해놨음
 	String r = request.getParameter("r");	// 일단 int형 처리 안함
-	if (r == null) r = "";
+	if (r == null) r = ""; */
 %>
   </head>
 

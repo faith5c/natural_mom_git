@@ -64,10 +64,10 @@
 		border : 0px;
 	}
 
+	#search input[type = "text"], #search select { font : 16px "나눔바른고딕", "맑은 고딕", Arial; }
 	input[type = "button"]:hover { opacity : 0.7; }
+	#pages a:hover { text-decoration : underline; }
 	
-	#pgidx { padding : 10px; }
-	#pgidx:hover { text-decoration : underline; }
 </style>
 	
 <!-- content_body 부분 -->	
@@ -86,17 +86,50 @@
 	</c:forEach>
 		
 	</table>
-	<div id = "pages">
-		〈
-		<c:forEach var="i" begin="1" end="${(fl.rnum/10)+1}" step="1">
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<%-- <a href='<c:url value="/board/faq.nm?pgidx=${i}"/>' id="pgidx"><c:out value="${i}"/></a> --%>
-			<label onclick="findcurUrl()" id="pgidx"><c:out value="${i}"/></label>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		</c:forEach>
-		〉
-	</div>
 	
+	<div id = "pages">
+		
+		<c:if test="${pp>1}">
+			<a href="<c:url value='/board/qna/${pp-1}/list.nm'/>">
+				〈
+			</a>&nbsp;&nbsp;&nbsp;
+		</c:if>
+		<c:if test="${pp==1}">
+			〈 &nbsp;&nbsp;&nbsp;
+		</c:if>
+		
+		<c:forEach var="pi" begin="1" end="${total}" step="1">
+		
+		<c:if test="${pi>1}">
+			&nbsp;&nbsp;&nbsp;
+		</c:if>
+		
+		<c:if test="${pi == pp}">
+			<b><c:out value="${pi}"/></b>
+		</c:if>
+		
+		<c:if test="${pi!=pp}">
+			<a href="<c:url value='/board/qna/${pi}/list.nm'/>">
+			<c:out value="${pi}"/>
+			</a>
+		</c:if>
+		
+		</c:forEach>
+		
+		<c:if test="${pp<total}">
+			&nbsp;&nbsp;&nbsp;
+			<a href="<c:url value='/board/qna/${pp+1}/list.nm'/>">
+				 〉
+			</a>
+		</c:if>
+		<c:if test="${pp==total}">
+			&nbsp;&nbsp;&nbsp; 〉
+		</c:if>
+		
+		<p>&nbsp;
+		
+		</div>
+		
 	
 	<div id = "search">
 		<select id="sch">
@@ -105,47 +138,19 @@
 			<option value="ttcon">제목+내용</option>
 		</select>
 		<input type = "text" name = "kw" id="kw"/>
-		<input type = "button" value = "검색" onclick="searchKeyword()"/>
+		<input type = "button" value = "검색" onclick="searchKeyword(${pp})"/>
 	</div>
 		
 	<script type="text/javascript">
-		function searchKeyword(){
+		function searchKeyword(pp){
 			kw = $("#kw").val();
 			console.log("kw:"+kw);
 			sch = $("#sch").val();
 			console.log("sch:"+sch);
-			location.href="/soap/board/faq/search.nm?sch="+sch+"&kw="+encodeURIComponent(kw);
+			location.href="/soap/board/faq/"+pp+"/search.nm?sch="+sch+"&kw="+encodeURIComponent(kw)+"";
 			//alert(decodeURIComponent(kw));
 		}
 		
-		function findcurUrl(){
-			var mid;
-			
-			var curUrl = location.href;
-			console.log("curUrl : "+curUrl);
-			
-			var curQuery = location.search;
-			console.log("curQuery : "+curQuery);
-
-			if(curQuery){ //쿼리가 있어
-				if(curUrl.indexOf("?pgidx") != -1){ //?pgidx가 있으면
-					mid = "?" //?pgidx를 없애버릴거니까 ? 추가
-				}else {
-					mid = "&" //없으면 &로 연결
-				}
-			}else{ //쿼리가없어
-				mid = "?"
-			}
-			
-			var temp1 = curUrl.indexOf("pgidx");
-
-			if(temp1 != -1){ //pgidx가 있으면
-				curUrl = curUrl.slice(0,temp1-1); //&pgidx, ?pgidx부터 없애기 위해 -1 붙임
-				console.log("changeUrl : "+curUrl);
-			} 
-			
-			location.href=curUrl+mid+"pgidx="+$("#pgidx").html();
-		}
 	</script>
 		
 </html>

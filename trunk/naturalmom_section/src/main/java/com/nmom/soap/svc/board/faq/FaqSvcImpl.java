@@ -68,4 +68,24 @@ public class FaqSvcImpl implements IFaqSvc{
 		return faqDao.removeFaq(faq_no);
 	}
 
+	@Override
+	public int getFaqCount() {
+		return faqDao.getFaqCount();
+	}
+
+	@Override
+	public int getSearchFaqTitleCount(String keyword) {
+		return faqDao.getSearchFaqTitleCount(keyword);
+	}
+
+	@Override
+	public int getSearchFaqContentCount(String keyword) {
+		return faqDao.getSearchFaqContentCount(keyword);
+	}
+
+	@Override
+	public int getSearchFaqTitleNContentCount(String keyword) {
+		return faqDao.getSearchFaqTitleNContentCount(keyword);
+	}
+
 }

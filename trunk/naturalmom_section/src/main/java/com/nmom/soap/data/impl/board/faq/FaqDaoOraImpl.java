@@ -21,7 +21,7 @@ public class FaqDaoOraImpl extends NamedParameterJdbcDaoSupport implements IFaqD
 			+ "(SELECT rownum as faq_rnum, X.* FROM "
 			+ "(SELECT faq_no, faq_title from tb_faq WHERE board_id=3 AND faq_del_check=0 ORDER BY faq_no ASC) X "
 			+ "WHERE rownum <= :end) A "
-			+ "WHERE A.faq_rnum >= :start ORDER BY A.faq_rnum DESC";
+			+ "WHERE A.faq_rnum > :start ORDER BY A.faq_rnum DESC";
 	
 	private final String SQL_SEARCH_FAQ_TITLE = 
 			"SELECT A.* FROM "
@@ -29,7 +29,7 @@ public class FaqDaoOraImpl extends NamedParameterJdbcDaoSupport implements IFaqD
 			+ "(SELECT faq_no, faq_title from tb_faq WHERE board_id=3 AND faq_del_check=0 "
 			+ "AND faq_title LIKE :keyword ORDER BY faq_no ASC) X "
 			+ "WHERE rownum <= :end) A "
-			+ "WHERE A.faq_rnum >= :start ORDER BY A.faq_rnum DESC";
+			+ "WHERE A.faq_rnum > :start ORDER BY A.faq_rnum DESC";
 	
 	private final String SQL_SEARCH_FAQ_CONTENT = 
 			"SELECT A.* FROM "
@@ -37,7 +37,7 @@ public class FaqDaoOraImpl extends NamedParameterJdbcDaoSupport implements IFaqD
 			+ "(SELECT faq_no, faq_title from tb_faq WHERE board_id=3 AND faq_del_check=0 AND "
 			+ "faq_content LIKE :keyword ORDER BY faq_no ASC) X "
 			+ "WHERE rownum <= :end) A "
-			+ "WHERE A.faq_rnum >= :start ORDER BY A.faq_rnum DESC";
+			+ "WHERE A.faq_rnum > :start ORDER BY A.faq_rnum DESC";
 	
 	private final String SQL_SEARCH_FAQ_TITLE_N_CONTENT = 
 			"SELECT A.* FROM "
@@ -45,12 +45,19 @@ public class FaqDaoOraImpl extends NamedParameterJdbcDaoSupport implements IFaqD
 			+ "(SELECT faq_no, faq_title from tb_faq WHERE board_id=3 AND faq_del_check=0 "
 			+ "AND (faq_title LIKE :keyword OR faq_content LIKE :keyword) ORDER BY faq_no ASC) X "
 			+ "WHERE rownum <= :end) A "
-			+ "WHERE A.faq_rnum >= :start ORDER BY A.faq_rnum DESC";
+			+ "WHERE A.faq_rnum > :start ORDER BY A.faq_rnum DESC";
 
 	private final String SQL_INSERT_FAQ = "INSERT INTO tb_faq (faq_title, faq_content, faq_del_check, board_id, mem_id, faq_no) VALUES (:faq_title, :faq_content, 0, 3, :mem_id, FAQ_NO_SEQ.NEXTVAL)";
 	private final String SQL_UPDATE_FAQ = "UPDATE tb_faq SET faq_title=:faq_title, faq_content=:faq_content WHERE faq_no=:faq_no";
 	private final String SQL_DELETE_FAQ = "UPDATE tb_faq SET faq_del_check=1 WHERE faq_no=:faq_no";
 
+	private final String SQL_SELECT_FAQ_COUNT = "SELECT COUNT(faq_no) FROM tb_faq";
+	
+	private final String SQL_SELECT_FAQ_SEARCH_TITLE_COUNT = "SELECT COUNT(faq_no) FROM tb_faq WHERE faq_title LIKE :keyword";
+	private final String SQL_SELECT_FAQ_SEARCH_CONTENT_COUNT = "SELECT COUNT(faq_no) FROM tb_faq WHERE faq_content LIKE :keyword";
+	private final String SQL_SELECT_FAQ_SEARCH_TITLE_N_CONTENT_COUNT = "SELECT COUNT(faq_no) FROM tb_faq WHERE (faq_title LIKE :keyword OR faq_content LIKE :keyword)";
+	
+	
 	public FaqVo getOneFaq(int faq_no) throws DataAccessException {
 		NamedParameterJdbcTemplate npjtem = this.getNamedParameterJdbcTemplate();
 		MapSqlParameterSource ps = new MapSqlParameterSource();
@@ -162,5 +169,40 @@ public class FaqDaoOraImpl extends NamedParameterJdbcDaoSupport implements IFaqD
 		ps.addValue("faq_no", faq_no, Types.INTEGER);
 		
 		return npjtem.update(SQL_DELETE_FAQ, ps);
+	}
+
+	@Override
+	public int getFaqCount() throws DataAccessException {
+		return this.getJdbcTemplate().queryForInt(SQL_SELECT_FAQ_COUNT);
+	}
+
+	@Override
+	public int getSearchFaqTitleCount(String keyword) throws DataAccessException {
+		NamedParameterJdbcTemplate npjtem = this.getNamedParameterJdbcTemplate();
+		keyword = "%"+keyword+"%";
+		MapSqlParameterSource ps = new MapSqlParameterSource();
+		ps.addValue("keyword", keyword, Types.VARCHAR);
+		
+		return npjtem.queryForInt(SQL_SELECT_FAQ_SEARCH_TITLE_COUNT, ps);
+	}
+
+	@Override
+	public int getSearchFaqContentCount(String keyword) throws DataAccessException {
+		NamedParameterJdbcTemplate npjtem = this.getNamedParameterJdbcTemplate();
+		keyword = "%"+keyword+"%";
+		MapSqlParameterSource ps = new MapSqlParameterSource();
+		ps.addValue("keyword", keyword, Types.VARCHAR);
+		
+		return npjtem.queryForInt(SQL_SELECT_FAQ_SEARCH_CONTENT_COUNT, ps);
+	}
+
+	@Override
+	public int getSearchFaqTitleNContentCount(String keyword) throws DataAccessException {
+		NamedParameterJdbcTemplate npjtem = this.getNamedParameterJdbcTemplate();
+		keyword = "%"+keyword+"%";
+		MapSqlParameterSource ps = new MapSqlParameterSource();
+		ps.addValue("keyword", keyword, Types.VARCHAR);
+		
+		return npjtem.queryForInt(SQL_SELECT_FAQ_SEARCH_TITLE_N_CONTENT_COUNT, ps);
 	}
 }

@@ -73,20 +73,30 @@
 		<table cellspacing = "0" id = "buttons">
 			<tr>
 				<td>
-					
-					<input type = "button" value = "이전글" id = "prev" name = "prev">
-					<input type = "button" value = "다음글" id = "next" name = "next">
+				<input type="button" value="이전글" onclick="location.href='/soap/board/faq/prev/read.nm?fr_no=${fvo.faq_no}&rn=${param.rn}';">
+				<input type="button" value="다음글" onclick="location.href='/soap/board/faq/next/read.nm?fr_no=${fvo.faq_no}&rn=${param.rn}';">
+	
 				</td>
 				<td>
-					<input type = "button" value = "목록" id = "list" name = "list" onclick = "go_list();">
+					<input type = "button" value = "목록" id = "list" name = "list" onclick = "location.href='/soap/board/faq.nm'"/>
 				</td>
 			</tr>
 		</table>
-		<script>
-			function go_list()
-			{
-				location.href = "/soap/board/faq.nm";
-			}
-		</script>
+	<input type="hidden" id="p_not" value="${param.prev_err}"/>
+	<input type="hidden" id="n_not" value="${param.next_err}"/>
+	
+	<script type="text/javascript">
+	$(function(){
+		console.log("p_not : "+$("#p_not").val());
+		console.log("n_not : "+$("#n_not").val());
+
+	    if($("#p_not").val()=="t"){
+	    	alert("이전글이 없습니다");
+	    }
+	    if($("#n_not").val()=="t"){
+	    	alert("다음글이 없습니다");
+	    }
+	});
+	</script>
 		
 </html>

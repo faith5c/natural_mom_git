@@ -40,11 +40,6 @@ public class QnaController {
 		this.vQnaQnareSvc = vQnaQnareSvc;
 	}
 	
-	@RequestMapping(value ="admin/board/qna.nm", method=RequestMethod.GET)
-	public String a_board_qna(HttpServletRequest req){
-		return "admin/board/qna/a_qna";
-	}
-	
 	//QNA 전체 목록 보여주기 페이지네이션
 	@RequestMapping(value="/board/qna/{pp}/list.nm", method = RequestMethod.GET)
 	public ModelAndView showQnaBoard(HttpServletRequest req, 
@@ -651,5 +646,11 @@ public class QnaController {
 		return new ModelAndView("redirect:/board/qna.nm", map);		
 	}
 	
+	/////////////////////////////////////////////////////////////////////////
+
+	@RequestMapping(value ="admin/board/qna.nm", method=RequestMethod.GET)
+	public String a_board_qna(HttpServletRequest req){
+		return "admin/board/qna/a_qna";
+	}
 	
 }

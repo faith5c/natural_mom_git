@@ -2,6 +2,8 @@ package com.nmom.soap.svc.board.faq;
 
 import java.util.List;
 
+import org.springframework.dao.DataAccessException;
+
 import com.nmom.soap.data.model.board.faq.FaqVo;
 
 public interface IFaqSvc {
@@ -20,6 +22,18 @@ public interface IFaqSvc {
 	
 	//검색(제목+내용)
 	List<FaqVo> searchFaqTitleNContent(String keyword, int start, int end);
+
+	//모든 글개수 조회
+	int getFaqCount();
+
+	//검색(제목) 글개수 조회
+	int getSearchFaqTitleCount(String keyword);
+	
+	//검색(내용) 글개수 조회
+	int getSearchFaqContentCount(String keyword);
+	
+	//검색(제목+내용) 글개수 조회
+	int getSearchFaqTitleNContentCount(String keyword);
 	
 	//글쓰기
 	int addFaq(FaqVo faq);

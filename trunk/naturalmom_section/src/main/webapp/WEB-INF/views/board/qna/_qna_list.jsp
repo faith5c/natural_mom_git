@@ -13,8 +13,6 @@
 		table a { text-decoration : none; color : black; }
 		table a:hover  { opacity : 0.7; }
 		
-		/* table, table input, div, div input { font-family : "나눔바른고딕", "맑은 고딕";}
-		 */
 		table { width : 720px; }
 		h2 { color : #004523; text-align : left; padding-top : 20px; }
 		th { background-color : #918686;  font-weight : normal; color : white; 
@@ -63,12 +61,10 @@
 			border-radius : 20px; 
 			border : 0px;
 		}
-		#pgidx { padding : 10px; }
-		#pgidx:hover { text-decoration : underline; }
 		#search input[type = "text"], #search select { font : 16px "나눔바른고딕", "맑은 고딕", Arial; }
 		input[type = "button"]:hover { opacity : 0.7; }
-		
 		#pages a:hover { text-decoration : underline; }
+
 	</style>
 </head>
 <body>
