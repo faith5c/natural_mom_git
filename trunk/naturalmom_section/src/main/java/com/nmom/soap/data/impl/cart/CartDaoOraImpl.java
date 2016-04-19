@@ -16,6 +16,7 @@ public class CartDaoOraImpl extends NamedParameterJdbcDaoSupport implements ICar
 	private final String SQL_INSERT_CART = "INSERT INTO tb_cart (product_no, mem_id, buy_num) values (:product_no, :mem_id, :buy_num)"; 
 	private final String SQL_DELETE_CART = "DELETE FROM tb_cart WHERE product_no=:product_no AND mem_id=:mem_id";
 	private final String SQL_UPDATE_CART = "UPDATE tb_cart SET buy_num=:buy_num WHERE product_no=:product_no AND mem_id=:mem_id";
+	private final String SQL_SELECT_BUY_NUM = "SELECT buy_num FROM tb_cart WHERE product_no=:product_no and mem_id=:mem_id";
 
 	public boolean duplicationCartProduct(int product_no, String mem_id) throws DataAccessException {
 		NamedParameterJdbcTemplate npjtem = this.getNamedParameterJdbcTemplate();
@@ -92,6 +93,16 @@ public class CartDaoOraImpl extends NamedParameterJdbcDaoSupport implements ICar
 		ps.addValue("buy_num", buy_num, Types.INTEGER);
 		
 		return npjtem.update(SQL_UPDATE_CART, ps);
+	}
+
+	@Override
+	public int getBuyNum(int product_no, String mem_id) {
+		NamedParameterJdbcTemplate npjtem = this.getNamedParameterJdbcTemplate();
+		MapSqlParameterSource ps = new MapSqlParameterSource();
+		ps.addValue("product_no", product_no, Types.INTEGER);
+		ps.addValue("mem_id", mem_id, Types.VARCHAR);
+		
+		return npjtem.queryForInt(SQL_SELECT_BUY_NUM, ps);
 	}
 
 }

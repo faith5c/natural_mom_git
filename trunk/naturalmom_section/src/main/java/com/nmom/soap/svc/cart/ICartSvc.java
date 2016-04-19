@@ -18,4 +18,7 @@ public interface ICartSvc {
 	//장바구니 상품(구매개수) 수정
 	int editCartProduct(CartVo cart);
 	int editCartProduct(int product_no, String mem_id, int buy_num);
+	
+	//장바구니 상품하나의 개수 확인
+	int getBuyNum(int product_no, String mem_id);
 }

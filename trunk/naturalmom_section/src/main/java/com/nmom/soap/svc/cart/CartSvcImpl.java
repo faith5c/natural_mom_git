@@ -46,4 +46,9 @@ public class CartSvcImpl implements ICartSvc {
 		return cartDao.editCartProduct(product_no, mem_id, buy_num);
 	}
 
+	@Override
+	public int getBuyNum(int product_no, String mem_id) {
+		return cartDao.getBuyNum(product_no, mem_id);
+	}
+
 }

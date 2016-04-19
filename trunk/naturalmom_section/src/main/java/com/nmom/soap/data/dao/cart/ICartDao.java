@@ -21,4 +21,7 @@ public interface ICartDao {
 	int editCartProduct(CartVo cart) throws DataAccessException;
 	int editCartProduct(int product_no, String mem_id, int buy_num) throws DataAccessException;
 	
+	//장바구니 상품하나의 개수 확인
+	int getBuyNum(int product_no, String mem_id) throws DataAccessException;
+	
 }

@@ -176,7 +176,11 @@
     	  } else if($("#purchase_count").val() > stock){
     			alert("상품 재고가 부족해서 장바구니에 추가할 수 없습니다"); 	
     	  } else {
-		     	location.href="/soap/cart.nm?c_pn="+cart_poductno+"&c_bn="+$("#purchase_count").val();
+    		  if(confirm("추가된 장바구니를 확인하겠습니까?")){
+			     location.href="/soap/cart/add_proc.nm?c_pn="+cart_poductno+"&c_bn="+$("#purchase_count").val()+"&cart_check=t";
+    		  } else {
+    			 location.href="/soap/cart/add_proc.nm?c_pn="+cart_poductno+"&c_bn="+$("#purchase_count").val()+"&cart_check=f";
+    		  }
     	  } 
       }
       function go_to_interest(interest_poductno, loggedin){

@@ -66,75 +66,90 @@
 		text-align : center;
 		}
 	</style>
-	<form action="#" method="post">
-		<br><br>
-		<table cellspacing="0" class="cart">
-			<tr>
-				<td colspan = "8"><h2>장바구니</h2></td>
-			</tr>
-			<tr>
-				<th style="width:9.5%">선택</th>
-				<th style="width:15.5%">상품이미지</th>
-				<th style="width:30%" >상품명</th>
-				<th style="width:20%">수량</th>
-				<th style="width:10%">가격</th>
-				<th style="width:15%">판매상태</th>
-			</tr>
-			
-			<c:set var="cart_price" scope="page">0</c:set>
-			<c:forEach var="cl" items="${cart_list}">
-			<tr>
-				<td><input type="checkbox" name="product_sel" value="${cl.product_no}"></td>
-				<td><img src="/soap/resources/product_images/${cl.represent_img}" alt="${cl.product_name}"></td>
-				<td><a href="#">${cl.product_name}</a></td>
-				<td>
-					<input type="number" name="${cl.buy_num}" size="5" value="1" min = "1">&nbsp;&nbsp;
-					<input type="button" value="변경"/>
-				</td>
-				<td>${cl.selling_price}원</td>
-				<c:set var="cart_price" scope="page">${cart_price + (cl.selling_price * cl.buy_num)}</c:set>
-				<td>
-				${cl.stock}
-<%-- 					<c:if test="${cl.stock<=0}">
-						품절
-					</c:if>
-					<c:if test="${cl.stock>0}">
-						판매중
-					</c:if> --%>
-				</td>
-			</tr>
-			</c:forEach>
-			
-			
+	<br><br>
+	<table cellspacing="0" class="cart">
+		<tr>
+			<td colspan = "8"><h2>장바구니</h2></td>
+		</tr>
+		<tr>
+			<th style="width:9.5%">선택</th>
+			<th style="width:15.5%">상품이미지</th>
+			<th style="width:30%" >상품명</th>
+			<th style="width:20%">수량</th>
+			<th style="width:10%">가격</th>
+			<th style="width:15%">판매상태</th>
+		</tr>
+		
+		<c:set var="cart_price" scope="page">0</c:set>
+		<c:forEach var="cl" items="${cart_list}">
+		<tr>
+			<td><input type="checkbox" id="no" value="${cl.product_no}"></td>
+			<td><a href="<c:url value='/product/detail.nm?pdno=${cl.product_no}'/>">
+			<img src="/soap/resources/product_images/${cl.represent_img}" alt="${cl.product_name}">
+			</a></td>
+			<td><a href="<c:url value='/product/detail.nm?pdno=${cl.product_no}'/>">${cl.product_name}</a></td>
+			<td>
+			<form action="/soap/cart/edit_proc.nm">
+				<input type="hidden" name="c_pn" value="${cl.product_no}">	
+				<input type="number" name="c_bn" size="5" value="${cl.buy_num}" min = "1">&nbsp;&nbsp;
+				<input type="submit" value="변경"/>
+			</form>
+			</td>
+			<td>
 			<c:choose>
-				<c:when test="${cart_list != null}">
-					<tr style="background-color:#f0f0f0; ">
-						<td></td>
-						<td></td>
-						<td>배송료  +3000</td>
-						<td>총계</td>
-						<td>${cart_price+3000}</td>
-					</tr>
+ 				<c:when test="${cl.stock<=0 || cl.sale_state==0}">
+					<label id="sell_price">0</label>원
 				</c:when>
-	
 				<c:otherwise>
-					<tr style="background-color:#f0f0f0; ">
-						<td colspan="5"><br/>장바구니에 담겨진 상품이 없습니다.<br/>&nbsp;</td>
-					</tr>
+					<label id="sell_price">${cl.selling_price * cl.buy_num}</label>원
+					<c:set var="cart_price" scope="page">${cart_price + (cl.selling_price * cl.buy_num)}</c:set>
 				</c:otherwise>
-			</c:choose>
-			
-			<tr>
-				<td colspan="3">
-				<input type="button" value="상품삭제">
-				<input type="button" value="관심상품 등록">
-				</td>
-				<td colspan="2">
-				<input type="button" value="주문하기" onclick="location.href='order.jsp';">
-				</td>
-			</tr>
-		</table>
-	</form>
+				</c:choose>
+			</td>
+			<td>
+ 				<c:choose>
+ 				<c:when test="${cl.stock<=0 || cl.sale_state==0}">
+					품절
+				</c:when>
+				
+				<c:otherwise>
+					판매중
+				</c:otherwise>
+				</c:choose>
+			</td>
+		</tr>
+		</c:forEach>
+		
+		<c:choose>
+			<c:when test="${cart_list != null}">
+				<tr style="background-color:#f0f0f0; ">
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>배송료  +3000</td>
+					<td>${cart_price+3000}원</td>
+					<td></td>
+				</tr>
+			</c:when>
+
+			<c:otherwise>
+				<tr style="background-color:#f0f0f0; ">
+					<td colspan="5"><br/>장바구니에 담겨진 상품이 없습니다.<br/>&nbsp;</td>
+				</tr>
+			</c:otherwise>
+		</c:choose>
+		
+		<tr>
+			<td colspan="3">
+			<input type="button" value="상품삭제" onclick='deleteCartProduct();'>
+			<input type="button" value="관심상품 등록" onclick='cartToInterest();'>
+			</td>
+			<td></td>
+			<td colspan="2">
+			<input type="button" value="주문하기" onclick="location.href='order.jsp';">
+			</td>
+		</tr>
+	</table>
 		
 	
 	</div>
@@ -147,5 +162,39 @@
 	</footer>
 	
   </body>
+  <script type="text/javascript">
   
+  function deleteCartProduct(){
+  	var checked="";
+  	
+  	$('input:checkbox[id="no"]:checked').each(function(){
+        checked += '&no=' + $(this).val();
+    });
+	console.log(checked);
+	if(checked==""){
+		alert("삭제할 상품을 선택하세요");
+		return;
+	}
+	var temp = checked.substring(1);
+	console.log(temp);
+	
+	location.href="/soap/cart/del_proc.nm?"+temp;
+  }
+  function cartToInterest(){
+	  	var checked="";
+	  	
+	  	$('input:checkbox[id="no"]:checked').each(function(){
+	        checked += '&no=' + $(this).val();
+	    });
+		console.log(checked);
+		if(checked==""){
+			alert("관심상품 등록할 상품을 선택하세요");
+			return;
+		}
+		var temp = checked.substring(1);
+		console.log(temp);
+		
+		location.href="/soap/interest/from_cart.nm?"+temp;
+	  }
+  </script>
 </html>
