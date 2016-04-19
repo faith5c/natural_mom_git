@@ -57,25 +57,34 @@ _____________________________________________________________
 	- 장바구니 보기
 	/cart.nm
 	
+	- 장바구니 상품 추가
+	/cart/add_proc.nm
+	
 	- 장바구니 상품 개수 수정
 	/cart/edit_proc.nm
 	
 	- 장바구니 상품 삭제
 	/cart/del_proc.nm
+
+	- 장바구니 -> 관심상품 
+	/cart/to_interest 장바구니에서 삭제
+	/interest/from_cart 관심상품에 등록
 	
-	- 장바구니를 관심상품에 등록
-	/cart/to_interest.nm
+	- 관심상품 -> 장바구니
+	/interest/to_cart 관심상품에서 삭제
+	/cart/from_interest 장바구니에 등록
 	
 * 관심상품
 	
 	- 관심상품 보기
 	/interest.nm
 	
+	- 관심상품 추가
+	/interest/add_proc.nm
+	
 	- 관심상품 삭제
 	/interest/del_proc.nm
 	
-	- 관심상품을 장바구니에 등록
-	/interest/to_cart.nm
 
 * 자주하는 질문 (FAQ)
 
