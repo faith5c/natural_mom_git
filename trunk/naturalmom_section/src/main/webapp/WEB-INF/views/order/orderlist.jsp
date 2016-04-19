@@ -7,12 +7,12 @@
   <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script src="resources/js/jquery-1.11.3.min.js"></script>
+	<script src="/soap/resources/js/jquery-1.11.3.min.js"></script>
 	<!-- [if lt IE 9]><script src="js/html5shiv.js"></script><![endif] -->
 	
-	<link rel="apple-touch-icon" href="resources/images/logo.ico" /> <!--애플아이콘등록-->
-	<link rel="shortcut icon" href="resources/images/logo.ico" /> <!--단축키아이콘등록-->
-	<link rel="stylesheet" href="resources/css/index.css"/>
+	<link rel="apple-touch-icon" href="/soap/resources/images/logo.ico" /> <!--애플아이콘등록-->
+	<link rel="shortcut icon" href="/soap/resources/images/logo.ico" /> <!--단축키아이콘등록-->
+	<link rel="stylesheet" href="/soap/resources/css/index.css"/>
 
 	<title>자연맘</title>  
   </head>
@@ -68,54 +68,49 @@
 		<script type="text/javascript">
 	
 	function refund(){
- 	
-		alert('res');
-		var chk = document.getElementsByName("orderlist_sel"); 
+		var chk = document.getElementsByName("order_sel"); 
         var len = chk.length; 
-        var res = ""; 
+        var res = 0; 
         for(var i=0; i<len; i++){ 
             if(chk[i].checked == true){ 
-                res += chk[i].value + ","; 
+                res += 1; 
             }
         }
         
-        if(res != ""){
-        res += 'refund'
-        $('#checks').attr("value", res)
-      	alert($('#checks').val());
-      	alert(res); 
+        if(res > 0){
+        
+        $('#process').attr("value", "환불처리");
+      	//alert($('#process').val());
       	
-      	//document.orderlist_form.submit();
+      	document.orderlist_form.submit();
         }
-        	alert("환불하실 주문을 체크해 주세요");
+        else{alert("환불하실 주문을 체크해 주세요");}
         
 	}
 	
 	function buy(){
 		 
-        var chk = document.getElementsByName("orderlist_sel"); 
+        var chk = document.getElementsByName("order_sel"); 
         var len = chk.length; 
-        var res = ""; 
+        var res = 0; 
         for(var i=0; i<len; i++){ 
             if(chk[i].checked == true){ 
-                res += chk[i].value + ","; 
+                res += 1; 
             }
         }
-        if(res != ""){
-        	res += 'buy'
-        	$('#checks').attr("value", res)
-      		alert($('#checks').val());
-      		alert(res);
-      		document.getElementsByName("orderlist_form").submit();
+        if(res > 0){
+        	$('#process').attr("value", "구매확정");
+          	//alert($('#process').val());
+          	document.orderlist_form.submit();
       	}
         
-        if(res == ""){alert("구매확정하실 주문을 체크해 주세요");}
+        else{alert("구매확정하실 주문을 체크해 주세요");}
         
 	}
 	</script>
 	<input  type="hidden">
 	<!--주문내역 조회 부분-->
-	<form action="orderlist_edit.nm" method="post" name="orderlist_form">
+	<form action="/soap/order/orderlist_edit.nm" method="post" name="orderlist_form">
 		<br><br>
 		<c:if test="${not empty orderlist}">
 		<table cellspacing="0">
@@ -134,8 +129,8 @@
 			</tr>
 			<c:forEach var="o" items="${orderlist}">
 				<tr>
-				<td><input type="checkbox" name="orderlist_sel"
-				<c:if test="${o.process_nm.equals('구매확정') || o.process_nm.equals('환불완료') || o.process_nm.equals('환불처리')}">disabled="disabled"</c:if>
+				<td><input type="checkbox" name="order_sel"
+				<c:if test="${o.process_nm.equals('구매확정') || o.process_nm.equals('환불완료') || o.process_nm.equals('환불신청')}">disabled="disabled"</c:if>
 				 value="${o.order_no}"></td>
 				<td>${o.order_no}</td>
 				<td><fmt:formatDate value="${o.order_date}" type="Date" /></td>
@@ -158,7 +153,7 @@
 		<c:if test="${empty orderlist}">
 		주문 내역이 없습니다.
 		</c:if>
-		<input type="hidden" name="checks" id="checks"/>
+		<input type="hidden" name="process" id="process"/>
 	</form>
 
 		</div>

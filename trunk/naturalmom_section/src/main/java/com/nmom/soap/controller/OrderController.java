@@ -347,32 +347,34 @@ public class OrderController {
 	}
 	
 	//주문 환불/구매확정  orderlist_edit.nm
-	@RequestMapping(value ="orderlist_edit.nm")
+	@RequestMapping(value ="order/orderlist_edit.nm")
 	public ModelAndView editOrderlist(HttpServletRequest req,
 			HttpSession ses,
-			@RequestParam(value="checks")String checks){
+			@RequestParam(value="process")String process){
 		
 		String mem_id = (String)ses.getAttribute(S.SESSION_LOGIN);
-		String check[] = checks.split(",");
-		String process = null;
-		int order_no[] = new int[check.length-1];
-		for(int i = 0; i < check.length; i++){
-			if(i < check.length-1){
-				try{
-					order_no[i] = Integer.parseInt(check[i]);
-				}catch(NumberFormatException ne){
-					ne.printStackTrace();
-				}
+		String check[] = req.getParameterValues("order_sel");
+		int order_no[] = new int[check.length];
+		System.out.println("check[]"+check.length);
+		for (int i = 0; i < check.length; i++) {
+			try {
+				System.out.println(check[i]);
+				order_no[i] = Integer.parseInt(check[i]);
+			} catch (NumberFormatException ne) {
+				ne.printStackTrace();
 			}
-			else{
-				process = check[i];
-			}	
 		}
 		int r = 0;
-		if(process != null)
-		r = this.productOrderSvc.editOrder(order_no, 
-				(process.equals("구매확정")) ? S.BUY_DECISION : S.REFUND_PROCESS );
-		
+		if(process != null && order_no.length > 1){
+			for(int i : order_no)
+			r = this.productOrderSvc.editOrder(i, 
+					(process.equals("구매확정")) ? S.BUY_DECISION : S.REFUND_PROCESS );
+		}
+		/*else if(order_no.length == 1){
+			r = this.productOrderSvc.editOrder(order_no[0], 
+					(process.equals("구매확정")) ? S.BUY_DECISION : S.REFUND_PROCESS );
+		}*/
+			
 		if(r > 0)System.out.println("업데이트 성공");
 		else System.out.println("업데이트 실패");
 		List<VOrderListVo> list = this.vOrderListSvc.getAllOreder(1, this.vOrderListSvc.getAllCount(mem_id), mem_id);

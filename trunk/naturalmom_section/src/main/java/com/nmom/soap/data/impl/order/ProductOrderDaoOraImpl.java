@@ -18,7 +18,7 @@ public class ProductOrderDaoOraImpl extends NamedParameterJdbcDaoSupport impleme
 			"UPDATE NMDB.tb_product_n_order SET process_cd = :process_cd WHERE order_no = :order_no";
 	
 	String EDIT_MANY_ORDER = 
-			"UPDATE NMDB.tb_product_n_order SET process_cd = :process_cd WHERE ";
+			"UPDATE NMDB.tb_product_n_order SET process_cd = :process_cd WHERE";
 	
 	final String EDIT_ONT_ORDER = 
 			"UPDATE tb_product_n_order po SET po.process_cd = :process_cd "
@@ -50,15 +50,18 @@ public class ProductOrderDaoOraImpl extends NamedParameterJdbcDaoSupport impleme
 		MapSqlParameterSource ps = new MapSqlParameterSource();
 		ps.addValue("process_cd", process_cd);
 		if (order_no.length > 0) {
+			System.out.println(order_no.length);
 			for (int i = 0; i < order_no.length; i++) {
-				if (i == 0)
-					EDIT_MANY_ORDER += "order_no = :order_no" + i;
-				else
+				System.out.println(i);
+				if (i == 0){
+					EDIT_MANY_ORDER += " order_no = :order_no" + i;
+				}
+				else{
 					EDIT_MANY_ORDER += " OR order_no = :order_no" + i;
-
+				}
 				ps.addValue("order_no" + i, new Integer(order_no[i]));
 			}
-			
+			System.out.println(EDIT_MANY_ORDER);
 			int r = this.getNamedParameterJdbcTemplate().update(EDIT_MANY_ORDER, ps);
 			return r;
 		}
