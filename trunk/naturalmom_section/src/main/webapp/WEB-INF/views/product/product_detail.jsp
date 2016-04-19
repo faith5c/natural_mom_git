@@ -14,6 +14,10 @@
       
    <title>자연맘</title>
    
+   <style type="text/css">
+   #stock { font-size : 15px; font-weight : normal; }
+   </style>
+   
   </head>
   <body>
 
@@ -44,7 +48,17 @@
             <table>
             <form action="/soap/order/detailorder.nm" method="post">
                <tr>
-                  <td colspan="2">${pvo.product_name}&nbsp;${pvo.weight}g</td>
+                  <td colspan="2">${pvo.product_name}&nbsp;${pvo.weight}g
+                  
+                  <span id="stock">
+		            <c:if test ="${pvo.stock <= 0}">
+		            	&nbsp;&nbsp;품절
+		            </c:if>
+		            <c:if test ="${pvo.stock > 0}">
+		            	&nbsp;&nbsp;판매중
+		            </c:if>
+		          </span>
+                  </td>
                </tr>
                <tr>
                   <td colspan="2">${pvo.summary_ex}</td>

@@ -14,6 +14,11 @@
    <link rel="stylesheet" href="../resources/css/product_menu.css"/>
       
    <title>자연맘</title>
+   
+   <style type="text/css">
+   		#stock { font-size : 14px; }
+   </style>
+   
   </head>
   <body>
 
@@ -37,6 +42,14 @@
             <a href="/soap/product/detail.nm?pdno=${pl.product_no}"><img src = "/soap/resources/product_images/${pl.represent_img}" alt="${pl.product_name}"></a>
             <p><span>${pl.summary_ex}</span>&nbsp;${pl.product_name}</p>
             <p>${pl.selling_price}원</p>
+            <p id="stock">
+            <c:if test ="${pl.stock <= 0}">
+            	품절
+            </c:if>
+            <c:if test ="${pl.stock > 0}">
+            	판매중
+            </c:if>
+            </p>
             </div>
          </c:forEach>
          

@@ -557,7 +557,8 @@ public class ProductController
       }
    
    //*********************************************************************//
-
+   //TODO  안녕
+      
    @RequestMapping(value ="/index.nm", method=RequestMethod.GET)
    public ModelAndView product_index_menu(HttpServletRequest req){
       

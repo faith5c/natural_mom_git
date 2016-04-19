@@ -47,13 +47,13 @@ public class ProductDaoOraImpl extends NamedParameterJdbcDaoSupport implements I
 	//************************************************************//
 	
 	//상품 목록 페이지
-	private final String SELECT_ALL_PRODUCT = "SELECT product_no, product_name, selling_price, sale_state, represent_img, summary_ex FROM tb_product WHERE display_state=1 AND deleted_state=0";
+	private final String SELECT_ALL_PRODUCT = "SELECT product_no, product_name, selling_price, sale_state, represent_img, summary_ex, stock FROM tb_product WHERE display_state=1 AND deleted_state=0";
 	
 	//카테고리에 따라 상품목록 가져옴
-	private final String SELECT_PRODUCT_BY_CATEGORY_CD="SELECT product_no, product_name, selling_price, sale_state, represent_img, summary_ex FROM tb_product WHERE display_state=1 AND deleted_state=0 AND category_cd=:category_cd";
+	private final String SELECT_PRODUCT_BY_CATEGORY_CD="SELECT product_no, product_name, selling_price, sale_state, represent_img, summary_ex, stock FROM tb_product WHERE display_state=1 AND deleted_state=0 AND category_cd=:category_cd";
 	
 	//상품이름으로 상품 가져옴
-	private final String SELECT_PRODUCT_BY_PRODUCT_NAME = "SELECT product_no, product_name, selling_price, sale_state, represent_img, summary_ex FROM tb_product WHERE display_state=1 AND deleted_state=0 AND product_name LIKE :product_name";
+	private final String SELECT_PRODUCT_BY_PRODUCT_NAME = "SELECT product_no, product_name, selling_price, sale_state, represent_img, summary_ex, stock FROM tb_product WHERE display_state=1 AND deleted_state=0 AND product_name LIKE :product_name";
 	
 	//************************************************************//
 
