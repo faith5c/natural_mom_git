@@ -74,10 +74,11 @@
 			</tr>
 			<tr>
 				<th style="width:9.5%">선택</th>
-				<th style="width:25.5%">상품이미지</th>
+				<th style="width:15.5%">상품이미지</th>
 				<th style="width:30%" >상품명</th>
-				<th style="width:10%">수량</th>
-				<th style="width:25%">가격</th>
+				<th style="width:20%">수량</th>
+				<th style="width:10%">가격</th>
+				<th style="width:15%">판매상태</th>
 			</tr>
 			
 			<c:set var="cart_price" scope="page">0</c:set>
@@ -86,9 +87,21 @@
 				<td><input type="checkbox" name="product_sel" value="${cl.product_no}"></td>
 				<td><img src="/soap/resources/product_images/${cl.represent_img}" alt="${cl.product_name}"></td>
 				<td><a href="#">${cl.product_name}</a></td>
-				<td><input type="number" name="${cl.buy_num}" size="5" value="1" min = "1"></td>
+				<td>
+					<input type="number" name="${cl.buy_num}" size="5" value="1" min = "1">&nbsp;&nbsp;
+					<input type="button" value="변경"/>
+				</td>
 				<td>${cl.selling_price}원</td>
 				<c:set var="cart_price" scope="page">${cart_price + (cl.selling_price * cl.buy_num)}</c:set>
+				<td>
+				${cl.stock}
+<%-- 					<c:if test="${cl.stock<=0}">
+						품절
+					</c:if>
+					<c:if test="${cl.stock>0}">
+						판매중
+					</c:if> --%>
+				</td>
 			</tr>
 			</c:forEach>
 			
