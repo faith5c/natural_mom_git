@@ -87,7 +87,7 @@
                </tr>
                <tr>
                   <td colspan="2">
-                  <input type="button" style="width:85px; padding : 13px 10px; margin : 0 5px;" onclick='go_to_cart(${pvo.product_no}, "${sessionScope.loggedin}");' value="장바구니"></button>
+                  <input type="button" style="width:85px; padding : 13px 10px; margin : 0 5px;" onclick='go_to_cart(${pvo.product_no}, "${sessionScope.loggedin}", ${pvo.stock});' value="장바구니"></button>
                   <input type="button" style="width:85px; padding : 13px 10px; margin : 0 5px;" onclick='go_to_interest(${pvo.product_no}, "${sessionScope.loggedin}");' value="관심상품"></button>
                  
                   <button style="width:85px; padding : 13px 10px; margin : 0 5px; 
@@ -152,14 +152,17 @@
          		alert($("#back_interest").val());
          
       })
-      function go_to_cart(cart_poductno, loggedin){
+      function go_to_cart(cart_poductno, loggedin, stock){
     	  console.log(loggedin);
-    	  if(loggedin != null && loggedin != ""){
-		    	location.href="/soap/cart.nm?c_pn="+cart_poductno+"&c_bn="+$("#purchase_count").val();
+    	  
+    	  if(loggedin == null || loggedin == ""){
+		    	alert("장바구니에 추가하려면 로그인이 필요합니다");
+	    		location.href="/soap/login.nm";
+    	  } else if($("#purchase_count").val() > stock){
+    			alert("상품 재고가 부족해서 장바구니에 추가할 수 없습니다"); 	
     	  } else {
-    		  alert("장바구니에 추가하려면 로그인이 필요합니다");
-    		  location.href="/soap/login.nm";
-    	  }
+		     	location.href="/soap/cart.nm?c_pn="+cart_poductno+"&c_bn="+$("#purchase_count").val();
+    	  } 
       }
       function go_to_interest(interest_poductno, loggedin){
     	  console.log(loggedin);
