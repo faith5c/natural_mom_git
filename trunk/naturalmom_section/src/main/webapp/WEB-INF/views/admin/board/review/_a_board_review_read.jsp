@@ -113,7 +113,6 @@
 			document.reg_reply_form.submit();
 		}
 	}
-	
 </script>
 <h2>상품 후기</h2>
 <form action = "review_reg_re_proc.nm" method="post" name = "reg_reply_form">

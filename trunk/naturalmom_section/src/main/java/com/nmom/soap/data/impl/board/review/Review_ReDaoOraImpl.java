@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcDaoSupport;
 
 import com.nmom.soap.data.dao.board.review.IReview_ReDao;
+import com.nmom.soap.data.model.board.review.ReviewVo;
 import com.nmom.soap.data.model.board.review.Review_ReVo;
 
 public class Review_ReDaoOraImpl extends NamedParameterJdbcDaoSupport implements IReview_ReDao
@@ -27,6 +28,8 @@ public class Review_ReDaoOraImpl extends NamedParameterJdbcDaoSupport implements
 			+ "WHERE review_re_no = :review_re_no";
 	// 댓글 번호로 글 번호 알아내기
 	private final String GET_RVW_NO_OF_REPLY = "SELECT rvw_no FROM tb_review_re WHERE review_re_no = :review_re_no";
+	// 댓글 하나 가져오기
+	private final String GET_ONE_REPLY = "SELECT * FROM tb_review_re WHERE review_re_no = ?";
 	
 	public List<Review_ReVo> getAllRe(int review_no) throws DataAccessException
 	{
@@ -67,5 +70,17 @@ public class Review_ReDaoOraImpl extends NamedParameterJdbcDaoSupport implements
 		MapSqlParameterSource msps = new MapSqlParameterSource();
 		msps.addValue("review_re_no", new Integer(review_re_no));
 		return getNamedParameterJdbcTemplate().queryForInt(GET_RVW_NO_OF_REPLY, msps);
+	}
+
+	@Override
+	public Review_ReVo getOneReply(int review_re_no) throws DataAccessException 
+	{
+		List<Review_ReVo> result_list = getJdbcTemplate().query(GET_ONE_REPLY, 
+				new BeanPropertyRowMapper<Review_ReVo>(Review_ReVo.class), new Integer(review_re_no));
+		
+		if (result_list != null && result_list.size() > 0)
+			return result_list.get(0);
+		else
+			return null; 
 	}
 }

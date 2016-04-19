@@ -72,6 +72,8 @@
 	%>	write_result('true');
 	<%  } else if (result != null && result.equals("false")) { %>
 		write_result('false');
+	<%  } else if (result != null && result.equals("login")) { %>
+		write_result('login');
 	<%  } %>
 
 	function modi_review()

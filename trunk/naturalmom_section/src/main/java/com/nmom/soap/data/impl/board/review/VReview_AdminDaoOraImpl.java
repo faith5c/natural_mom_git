@@ -21,32 +21,32 @@ public class VReview_AdminDaoOraImpl extends NamedParameterJdbcDaoSupport implem
 //	private final String GET_ALL_LIST = "SELECT A.* FROM (SELECT rownum as re_rnum, X.* FROM"
 //			+ " (SELECT * from V_REVIEW_ADMIN ORDER BY review_no ASC) X WHERE rownum <= :end) A WHERE A.re_rnum >= :start"
 //			+ " ORDER BY rownum DESC";
-	private final String GET_ALL_LIST = "SELECT A.* FROM (SELECT rownum, X.* FROM"
-	+ " (SELECT * from V_REVIEW_ADMIN ORDER BY review_no DESC) X WHERE rownum <= :end) A WHERE rownum >= :start"
+	private final String GET_ALL_LIST = "SELECT A.* FROM (SELECT rownum as rvw_rnum, X.* FROM"
+	+ " (SELECT * from V_REVIEW_ADMIN ORDER BY review_no DESC) X WHERE rownum <= :end) A WHERE A.rvw_rnum >= :start"
 	+ " ORDER BY rownum ASC";
 	// 게시판 내용 조회
-	private final String GET_ONE_REVIEW = "SELECT A.* FROM (SELECT rownum, X.* FROM "
+	private final String GET_ONE_REVIEW = "SELECT A.* FROM (SELECT rownum as rvw_rnum, X.* FROM "
 			+ "(SELECT * from V_REVIEW_ADMIN ORDER BY review_no DESC) X ) A WHERE review_no = ?";
 	// rownum으로 내용 조회
 	private final String GET_ONE_REVIEW_R_NUM = "SELECT A.* FROM "
-			+ "(SELECT rownum as re_rnum, V.* from V_REVIEW_ADMIN V) A "
+			+ "(SELECT rownum as rvw_rnum, V.* from V_REVIEW_ADMIN V) A "
 			+ "WHERE A.re_rnum >= 2 AND A.re_rnum <= 4";
 	// 제목으로 검색하기
-	private final String GET_SEARCH_BY_TITLE = "SELECT A.* FROM (SELECT rownum as re_rnum, X.* FROM"
+	private final String GET_SEARCH_BY_TITLE = "SELECT A.* FROM (SELECT rownum as rvw_rnum, X.* FROM"
 			+ " (SELECT * from V_REVIEW_ADMIN ORDER BY review_no DESC) X WHERE rownum <= :end) A"
-			+ " WHERE A.re_rnum >= :start AND rvw_title LIKE :search ORDER BY rownum ASC";
+			+ " WHERE A.rvw_rnum >= :start AND rvw_title LIKE :search ORDER BY rownum ASC";
 	// 내용으로 검색하기
-	private final String GET_SEARCH_BY_CONTENT = "SELECT A.* FROM (SELECT rownum as re_rnum, X.* FROM"
+	private final String GET_SEARCH_BY_CONTENT = "SELECT A.* FROM (SELECT rownum as rvw_rnum, X.* FROM"
 			+ " (SELECT * from V_REVIEW_ADMIN ORDER BY review_no DESC) X WHERE rownum <= :end) A"
-			+ " WHERE A.re_rnum >= :start AND rvw_content LIKE :search ORDER BY rownum ASC";
+			+ " WHERE A.rvw_rnum >= :start AND rvw_content LIKE :search ORDER BY rownum ASC";
 	// 글쓴이로 검색하기
-	private final String GET_SEARCH_BY_ID = "SELECT A.* FROM (SELECT rownum as re_rnum, X.* FROM"
+	private final String GET_SEARCH_BY_ID = "SELECT A.* FROM (SELECT rownum as rvw_rnum, X.* FROM"
 			+ " (SELECT * from V_REVIEW_ADMIN ORDER BY review_no DESC) X WHERE rownum <= :end) A"
-			+ " WHERE A.re_rnum >= :start AND mem_id LIKE :search ORDER BY rownum ASC";
+			+ " WHERE A.rvw_rnum >= :start AND mem_id LIKE :search ORDER BY rownum ASC";
 	// 제목+내용으로 검색하기
-	private final String GET_SEARCH_BY_TITLE_CONTENT = "SELECT A.* FROM (SELECT rownum as re_rnum, X.* FROM"
+	private final String GET_SEARCH_BY_TITLE_CONTENT = "SELECT A.* FROM (SELECT rownum as rvw_rnum, X.* FROM"
 			+ " (SELECT * from V_REVIEW_ADMIN ORDER BY review_no DESC) X WHERE rownum <= :end) A"
-			+ " WHERE A.re_rnum >= :start AND rvw_title LIKE :search OR rvw_content LIKE :search ORDER BY rownum ASC";
+			+ " WHERE A.rvw_rnum >= :start AND rvw_title LIKE :search OR rvw_content LIKE :search ORDER BY rownum ASC";
 	// 전체 글 수 가져오기
 	private final String GET_COUNT_ALL_REVIEWS = "SELECT COUNT(review_no) FROM V_REVIEW_ADMIN";
 	// 제목으로 검색한 글 수 가져오기
@@ -64,6 +64,7 @@ public class VReview_AdminDaoOraImpl extends NamedParameterJdbcDaoSupport implem
 		MapSqlParameterSource msps = new MapSqlParameterSource();
 		msps.addValue("start", new Integer(start));
 		msps.addValue("end", new Integer(end));
+		System.out.println(start + "," + end);
 		
 		return getNamedParameterJdbcTemplate().query(GET_ALL_LIST, msps, 
 				new BeanPropertyRowMapper<VReview_AdminVo>(VReview_AdminVo.class));

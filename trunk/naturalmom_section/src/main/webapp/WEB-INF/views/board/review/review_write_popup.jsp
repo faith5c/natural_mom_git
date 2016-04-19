@@ -72,6 +72,8 @@
 	%>	write_result('true');
 	<%  } else if (result != null && result.equals("false")) { %>
 		write_result('false');
+	<%  } else if (result != null && result.equals("login")) { %>
+		write_result('login');
 	<%  } %>
 
 	function reg_review()
@@ -112,16 +114,23 @@
 		if(result == 'true')
 		{
 			alert('상품 후기가 등록되었습니다.');
-			opener.location.reload()
+			opener.location.reload();
 			self.close();
 		}
-		else
+		else if (result == 'false')
 		{
 			alert('상품 후기 등록에 실패하였습니다.');
-			opener.location.reload()
+			opener.location.reload();
+			self.close();
+		}
+		else if(result == 'login')
+		{
+			alert('로그인 후 이용해주세요.');
+			opener.location.href="/soap/login.nm";
 			self.close();
 		}
 	}
+	
 </script>
 <div id="in">
 	<h2>상품후기 - 글쓰기</h2>

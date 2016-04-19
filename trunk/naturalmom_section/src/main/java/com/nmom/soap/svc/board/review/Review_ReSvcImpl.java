@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.nmom.soap.S;
 import com.nmom.soap.data.dao.board.review.IReview_ReDao;
+import com.nmom.soap.data.model.board.review.ReviewVo;
 import com.nmom.soap.data.model.board.review.Review_ReVo;
 
 public class Review_ReSvcImpl implements IReview_ReSvc 
@@ -64,6 +65,12 @@ public class Review_ReSvcImpl implements IReview_ReSvc
 	public int getRvwNoOfRe(int review_re_no)
 	{
 		return review_reDao.getRvwNoOfRe(review_re_no);
+	}
+
+	@Override
+	public Review_ReVo getOneReply(int review_re_no)
+	{
+		return review_reDao.getOneReply(review_re_no);
 	}
 	
 }

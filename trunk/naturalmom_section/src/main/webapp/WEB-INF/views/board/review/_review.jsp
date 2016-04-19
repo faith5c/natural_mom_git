@@ -94,6 +94,17 @@
 <!-----------------------------------------------------------end header ----------->	
 <!---Start container----------------------------------------------------------------->
  <script>
+	<% 
+		String result = (String)request.getParameter("rst");
+		if (result != null && result.equals("true")) {
+	%>	write_result('true');
+	<%  } else if (result != null && result.equals("false")) { %>
+		write_result('false');
+	<%  } else if (result != null && result.equals("login")) { %>
+		write_result('login');
+	<%  } %>
+ 
+ 
 	$(document).ready(function(){
 		
 		// 초기화
@@ -143,7 +154,40 @@
 		}
 	}
 	
+	function write_result(result)
+	{
+		if(result == 'true')
+		{
+			alert('댓글이 등록되었습니다.');
+
+		}
+		else if (result == 'false')
+		{
+			alert('댓글 등록에 실패하였습니다.');
+		}
+		else if(result == 'login')
+		{
+			alert('로그인 후 이용해주세요.');
+			location.href="/soap/login.nm";
+		}
+	}
+	function del_review(review_no, product_no)
+	{
+		if(confirm("글을 삭제하시겠습니까?")) 
+		{
+	       location.href="review_del_proc.nm?c=r&no=" + review_no + "&p_no=" + product_no; 
+	    } 
+	}
+	function del_reply(re_no, product_no)
+	{
+		if(confirm("댓글을 삭제하시겠습니까?")) 
+		{
+	       location.href="review_del_proc.nm?c=rr&no=" + re_no + "&p_no=" + product_no; 
+	    } 
+	}
 </script>
+<!-- a name 태그를 생성하면 주소창 뒤에 #네임명으로 스크롤을 움직일 수 있음 -->
+<a name = "review" />
  <div id ="in">
  
  <h2>구매 후기</h2>
@@ -194,7 +238,7 @@
 					 		<c:if test="${id eq review.mem_id}">
 					 			<input type = "button" value = "수정" onclick = "modify_popup(${review.review_no});"/>
 					 		</c:if>
-						<input type = "button" value = "삭제" />
+						<input type = "button" value = "삭제" onclick = "del_review(${review.review_no}, ${pvo.product_no});"/>
 						</c:if>
 					</div>		 			 
 				</div>
@@ -213,7 +257,7 @@
 						</div>
 						<div class = "reply_buttons">
 							<c:if test="${id eq re.mem_id || isAdmin}">
-							<i class="fa fa-times-circle"></i>
+							<i class="fa fa-times-circle" onclick="del_reply(${re.review_re_no}, ${pvo.product_no});"></i>
 							</c:if>
 						</div>
 					</div>

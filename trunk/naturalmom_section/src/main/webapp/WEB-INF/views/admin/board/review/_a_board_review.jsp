@@ -129,14 +129,13 @@
 				<a href="review.nm?page=${rp - 1}">〈</a>
 			</c:if>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<c:forEach var = "i" begin="1" end="${(all_reviews + 9) / 10}" step = "1">
+			<c:forEach var = "i" begin="1" end="${all_pages}" step = "1">
 				<c:if test="${rp == i}">
 					<span>${i}</span>
 				</c:if>
-				<c:if test="${param.page != i}">
+				<c:if test="${rp != i}">
 					<a href="review.nm?page=${i}">${i}</a>
 				</c:if>
-				
 			</c:forEach>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="#">&gt;</a>

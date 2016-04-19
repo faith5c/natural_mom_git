@@ -59,22 +59,21 @@ public class ReviewController
 	// 상품후기 목록
 	@RequestMapping(value ="/admin/board/review.nm", method=RequestMethod.GET)
 	public ModelAndView review_list(HttpServletRequest req, HttpSession session, 
-			@RequestParam(value="p", required=false) String p)
+			@RequestParam(value="page", defaultValue="1") int page)
 	{
 		Boolean isAdmin = ((Boolean)session.getAttribute(S.SESSION_ADMIN));
 		
 		if (isAdmin!= null && isAdmin.booleanValue())
 		{
-			int page = 0;
-			try { page = Integer.parseInt(p); }
-			catch(NumberFormatException e) { page = 1; }
 			int all_reviews = review_adminSvc.getCountAllReviews();
+		
+			int all_pages = (int)(Math.ceil((double)all_reviews / S.PAGE_LIMIT));
 			List<VReview_AdminVo> review_list = review_adminSvc.getAllList(page);
-			
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("rp", new Integer(page));
 			map.put("rvw_list", review_list);
-			map.put("all_reviews", new Integer(all_reviews));
+			map.put("all_pages", all_pages);
+			System.out.println(all_reviews + "," + all_pages + "/" + page);
 			
 			return new ModelAndView("admin/board/review/a_review", map);
 		}
@@ -262,7 +261,7 @@ public class ReviewController
 	
 	// 댓글 및 글 삭제
 	@RequestMapping(value="/admin/board/review_del_proc.nm", method=RequestMethod.GET)
-	public String delete_review_n_re(HttpServletRequest request, HttpSession session,
+	public String delete_reviewNRe_a(HttpServletRequest request, HttpSession session,
 			@RequestParam(value="c", required=false) String c,
 			@RequestParam(value="no", required=false) int no)
 	{
@@ -313,9 +312,9 @@ public class ReviewController
 	public ModelAndView prepareWriteReview(HttpServletRequest request, HttpSession session,
 			@RequestParam(value="p_no", defaultValue = "0") int product_no)
 	{
-		if (session.getAttribute(S.SESSION_LOGIN) == null)
-			return new ModelAndView("redirect:/login.nm", null);
-		
+		if (session.getAttribute(S.SESSION_LOGIN) == null && request.getParameter("rst") == null)
+			return new ModelAndView("redirect:/product/review_write_popup.nm?rst=login", null);
+
 		// 세션처리
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("product_no", product_no);
@@ -328,6 +327,10 @@ public class ReviewController
 	public String registerReview(HttpServletRequest request, HttpSession session,
 			ReviewVo review)
 	{
+		// 세션처리
+		if (session.getAttribute(S.SESSION_LOGIN) == null && request.getParameter("rst") == null)
+			return "redirect:/product/review_write_popup.nm?rst=login";
+		
 		if (reviewSvc.addReview(review) == S.PROCESS_SUCCESS)
 		{
 			System.out.println(review);
@@ -346,6 +349,9 @@ public class ReviewController
 			@RequestParam(value="r_no", defaultValue = "0") int review_no)
 	{
 		// 세션처리
+		if (session.getAttribute(S.SESSION_LOGIN) == null && request.getParameter("rst") == null)
+			return new ModelAndView("redirect:/product/review_modify_popup.nm?rst=login", null);
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("review", reviewSvc.getOneReview(review_no));
 		
@@ -357,6 +363,10 @@ public class ReviewController
 	public String modifyReview(HttpServletRequest request, HttpSession session,
 			ReviewVo review)
 	{
+		// 세션처리
+		if (session.getAttribute(S.SESSION_LOGIN) == null && request.getParameter("rst") == null)
+			return "redirect:/product/review_modify_popup.nm?rst=login";
+		
 		int result = reviewSvc.editReview(review);
 		if (result == S.PROCESS_SUCCESS)
 		{
@@ -388,18 +398,70 @@ public class ReviewController
 			
 			if (review_reSvc.addRe(new_reply) == S.PROCESS_SUCCESS)
 			{
-				return "redirect:/product/detail.nm?pdno=" + product_no;
+				return "redirect:/product/detail.nm?pdno=" + product_no + "&rst=true#review";
+				// rst 파라미터 처리하기 -> ProductController
 			}
 			else
 			{
 				// 에러 메시지
 				System.out.println("댓글 등록 실패");
-				return "redirect:/product/detail.nm?pdno=" + product_no;
+				return "redirect:/product/detail.nm?pdno=" + product_no + "&rst=false#review";
 			}
 		}
 		else
 		{
 			// 로그인 해달라는 에러 메시지
+			return "redirect:/login.nm";
+		}
+	}
+	
+	// 댓글 및 글 삭제
+	@RequestMapping(value="/product/review_del_proc.nm", method=RequestMethod.GET)
+	public String delete_review_n_re(HttpServletRequest request, HttpSession session,
+			@RequestParam(value="c", required=false) String c,
+			@RequestParam(value="no", required=false) int no,
+			@RequestParam(value="p_no", required=false) int p_no)
+	{
+		// 세션에서 아이디와 관리자인지 여부를 얻어옴
+		String id = (String)session.getAttribute(S.SESSION_LOGIN);
+		Boolean isAdmin = (Boolean)session.getAttribute(S.SESSION_ADMIN);
+		String wroteId = (c.equals("r") ? reviewSvc.getOneReview(no).getMem_id() : review_reSvc.getOneReply(no).getMem_id()); 
+		
+		if ((id != null && id.equals(wroteId))
+				|| (isAdmin!= null && isAdmin.booleanValue()))
+		{
+			// 글 삭제인 경우
+			if(c.equals("r"))
+			{
+				if (reviewSvc.removeReview(no) == S.PROCESS_SUCCESS)
+					return "redirect:/product/detail.nm?pdno=" + p_no + "#review";
+				else
+				{
+					System.out.println("글 삭제 실패");
+					return "redirect:/product/detail.nm?pdno=" + p_no + "#review";
+				}
+					
+			}
+			// 댓글 삭제인 경우
+			else if(c.equals("rr"))
+			{				
+				if (review_reSvc.removeRe(no) == S.PROCESS_SUCCESS)
+					return "redirect:/product/detail.nm?pdno=" + p_no + "#review";
+				else
+				{
+					System.out.println("댓글 삭제 실패");
+					return "redirect:/product/detail.nm?pdno=" + p_no + "#review";
+				}
+			}
+			else
+			{
+				System.out.println("잘못된 파라미터 값");
+				return "redirect:/product/detail.nm?pdno=" + p_no;
+			}
+		}
+		else
+		{
+			// 관리자 로그인 해달라는 에러 메시지
 			return "redirect:/login.nm";
 		}
 	}

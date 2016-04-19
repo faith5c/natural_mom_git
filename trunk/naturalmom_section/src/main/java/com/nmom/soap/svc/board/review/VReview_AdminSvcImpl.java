@@ -2,6 +2,7 @@ package com.nmom.soap.svc.board.review;
 
 import java.util.List;
 
+import com.nmom.soap.S;
 import com.nmom.soap.data.dao.board.review.IVReview_AdminDao;
 import com.nmom.soap.data.model.board.review.VReview_AdminVo;
 
@@ -17,7 +18,7 @@ public class VReview_AdminSvcImpl implements IVReview_AdminSvc
 	@Override
 	public List<VReview_AdminVo> getAllList(int page)
 	{
-		return review_adminDao.getAllList(((page - 1) * 15) + 1, page * 15);
+		return review_adminDao.getAllList(((page - 1) * S.PAGE_LIMIT) + 1, page * S.PAGE_LIMIT);
 	}
 
 	@Override

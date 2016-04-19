@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
+import com.nmom.soap.data.model.board.review.ReviewVo;
 import com.nmom.soap.data.model.board.review.Review_ReVo;
 
 
@@ -23,4 +24,7 @@ public interface IReview_ReDao
 	
 	// 댓글 번호로 글 번호 알아내기
 	int getRvwNoOfRe(int review_re_no) throws DataAccessException;
+
+	// 댓글 하나 가져오기
+	Review_ReVo getOneReply(int review_re_no) throws DataAccessException;
 }
