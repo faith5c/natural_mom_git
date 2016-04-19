@@ -608,7 +608,9 @@ public class ProductController
    
    @RequestMapping(value="product/detail.nm", method=RequestMethod.GET)
    public ModelAndView product_description(HttpServletRequest req, HttpSession session,
-         @RequestParam (value="pdno") String pdno){
+         @RequestParam (value="pdno") String pdno,
+         @RequestParam(value="page", defaultValue="1") int page)
+   {
       
       int product_no;
 
@@ -626,18 +628,22 @@ public class ProductController
             // 리뷰 글 가져오는 부분      
             String id = (String)session.getAttribute(S.SESSION_LOGIN);
             Boolean isAdmin = (Boolean)session.getAttribute(S.SESSION_ADMIN);
-            List<VReview_FrontVo> rvw_list = review_frontSvc.getAllList(product_no, 1);
+            int all_reviews = review_frontSvc.getCountReviews(product_no);
+            int all_pages = (int)(Math.ceil((double)all_reviews / S.PAGE_LIMIT));
+            List<VReview_FrontVo> rvw_list = review_frontSvc.getAllList(product_no, page);
             List<List<Review_ReVo>> rvws_re_list = new ArrayList<List<Review_ReVo>>();
             for(VReview_FrontVo rvw : rvw_list)
             {
                int review_no = rvw.getReview_no();
                rvws_re_list.add(review_reSvc.getAllRe(review_no));
             }
-            System.out.println(isAdmin);
+
             map.put("id", id);
             map.put("isAdmin", isAdmin);
             map.put("rvw_list", rvw_list);
             map.put("re_list", rvws_re_list);
+            map.put("rp", new Integer(page));
+            map.put("all_pages", all_pages);
             // 리뷰 가져오는 부분 끝
          }
       } catch(Exception e){
