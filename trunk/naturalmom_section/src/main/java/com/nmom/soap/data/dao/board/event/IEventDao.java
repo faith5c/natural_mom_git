@@ -18,6 +18,7 @@ public interface IEventDao {
 	
 	// 글읽기, 수정할 글 불러오기
 	EventVo getOneEvent(int event_no) throws DataAccessException;
+	EventVo getOneEventByRn(int evt_rnum) throws DataAccessException;
 	
 	// 검색
 	List<EventVo> getEvents_by_title(String search) throws DataAccessException;

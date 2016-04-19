@@ -50,6 +50,7 @@ public class MemberController {
 			return new ModelAndView("login/login", map);
 		}
 	}
+	
 	///////////////////////////////////////////////////////////// 아이디 패스워드 찾기
 	@RequestMapping(value="pop_findId.nm", method=RequestMethod.GET)
 	public ModelAndView popup_findId(HttpServletRequest req){
@@ -64,10 +65,16 @@ public class MemberController {
 									@RequestParam(value="email1") String email1,
 									@RequestParam(value="email2") String email2
 									){
+		String foundId;
 		String email = mergeEmail(email1, email2);
 		MemberVo mem =  memberSvc.getOneMember(name1, email);
-		String foundId = mem.getMem_id()!=null? mem.getMem_id() : "없음" ;
-		if(mem.getDrop_out()==1){ foundId ="탈퇴"; }
+		
+		if(mem== null){
+			foundId = "없음";
+		}else{
+			foundId = mem.getMem_id()!=null ? mem.getMem_id() : "없음" ;
+			if(mem.getDrop_out()==1){ foundId ="탈퇴"; }
+		}
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("resultId", foundId);
@@ -83,13 +90,18 @@ public class MemberController {
 									@RequestParam(value="email3")String email3,
 									@RequestParam(value="email4")String email4
 									){
+		String foundPw;
 		String email = mergeEmail(email3, email4);
 		MemberVo mem =  memberSvc.getOneMember(name2, email);
+		
+		if(mem== null){
+			foundPw = "없음";
+		}else{
 
-		String foundPw = mem.getMem_pw()!=null? mem.getMem_pw() : "없음";
+		foundPw = mem.getMem_pw()!=null? mem.getMem_pw() : "없음";
 		if(!mem.getMem_id().equals(id)){ foundPw ="없음"; }
 		if(mem.getDrop_out()==1){ foundPw ="탈퇴"; }
-		
+		}
 		Map<String, Object> map = new HashMap<>();
 		map.put("resultPw", foundPw);
 		

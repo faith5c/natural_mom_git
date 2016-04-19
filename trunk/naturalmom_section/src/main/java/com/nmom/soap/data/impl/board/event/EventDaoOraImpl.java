@@ -32,6 +32,8 @@ public class EventDaoOraImpl extends NamedParameterJdbcDaoSupport implements IEv
 	
 	private final String SQL_EVENT_SELECT_ONE 
 		= "SELECT * FROM tb_event WHERE evt_del_check=0 and event_no=?";
+	private final String SQL_EVENT_SELECT_ONE_BY_ROWNUM
+		= "SELECT * FROM NMDB.V_EVENT_LIST_RN WHERE EVT_RNUM = ?";
 	
 	private final String SQL_EVENT_SELECT_BY_TITLE 
 		="SELECT A.* FROM (SELECT rownum as evt_rnum, V.* from V_EVENT_LIST V ORDER BY V.EVENT_NO DESC) A WHERE evt_title LIKE ?";
@@ -125,6 +127,14 @@ public class EventDaoOraImpl extends NamedParameterJdbcDaoSupport implements IEv
 		}
 		
 	}
+	
+	
+	@Override	// 로우넘으로 검색
+	public EventVo getOneEventByRn(int evt_rnum) throws DataAccessException {
+		return jtem.query(SQL_EVENT_SELECT_ONE_BY_ROWNUM, 
+							new BeanPropertyRowMapper<EventVo>(EventVo.class), evt_rnum).get(0);
+	}
+	
 
 	
 	@Override	// 제목으로 검색

@@ -40,6 +40,11 @@ public class EventSvcImpl implements IEventSvc {
 	public EventVo getOneEvent(int event_no) throws DataAccessException {
 		return eventDao.getOneEvent(event_no);
 	}
+	
+	@Override
+	public EventVo getOneEventByRn(int evt_rnum) throws DataAccessException {
+		return eventDao.getOneEventByRn(evt_rnum);
+	}
 
 	@Override
 	public List<EventVo> getEvents_by_title(String search) throws DataAccessException {

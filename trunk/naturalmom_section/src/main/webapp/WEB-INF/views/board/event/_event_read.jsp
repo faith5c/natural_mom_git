@@ -127,8 +127,19 @@
 			<table cellspacing = "0" id = "buttons" style="margin-bottom: 80px;">
 				<tr>
 					<td>
-						<input type = "button" value = "이전글" id = "prev" name = "prev">
-						<input type = "button" value = "다음글" id = "next" name = "next">
+						<c:if test="${con.evt_rnum gt 1 }">
+							<input type = "button" value = "이전글" id = "prev" name = "prev" onclick="location.href='event_read.nm?next=y&r=${con.evt_rnum -1}'">
+						</c:if>
+						<c:if test="${con.evt_rnum eq 1 }">
+							<input type = "button" value = "이전글" id = "prev" name = "prev" onclick="lastRead()">
+						</c:if>
+						
+						<c:if test="${con.evt_rnum lt total_page }">
+							<input type = "button" value = "다음글" id = "next" name = "next" onclick="location.href='event_read.nm?next=y&r=${con.evt_rnum +1}'">
+						</c:if>
+						<c:if test="${con.evt_rnum eq total_page }">
+							<input type = "button" value = "다음글" id = "next" name = "next"onclick="lastRead()">
+						</c:if>
 					</td>
 					<td>
 				<c:if test="${not empty loggedin and loggedin eq con.mem_id}">
@@ -161,6 +172,10 @@ function checkNull() {
 	}else{
 		document.reply_form.submit();
 	}
+}
+
+function lastRead() {
+	alert("마지막 게시글입니다");
 }
 
 </script>	

@@ -28,7 +28,7 @@
 		<div id="content">
 		
 		<!--로그인 폼-->
-		<form action="login_proc.nm" method="post">
+		<form action="/soap/login_proc.nm" method="post">
 				<div id = "login_input">
 				<table>
 					<tr>
@@ -47,7 +47,7 @@
 					</tr>
 					<tr>
 						<td colspan="3" style="text-align: center;padding-top: 10px;">
-							<b style="color: black;">${err_msg}</b>
+							<b style="color: black;"><c:out value="${err_msg}"></c:out></b>
 						</td>
 					</tr>
 					<tr>
