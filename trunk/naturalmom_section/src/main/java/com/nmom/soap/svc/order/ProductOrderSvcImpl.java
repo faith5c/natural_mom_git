@@ -13,25 +13,25 @@ public class ProductOrderSvcImpl implements IProductOrderSvc {
 	@Override
 	public int addOrder(ProductOrderVo po) {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.productOrderDao.addOrder(po);
 	}
 
 	@Override
 	public int editOrder(int order_no, int process_cd) {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.productOrderDao.editOrder(order_no, process_cd);
 	}
 
 	@Override
 	public int editOrder(int[] order_no, int process_cd) {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.productOrderDao.editOrder(order_no, process_cd);
 	}
 
 	@Override
 	public int editPartOrder(int order_no, String product_name, int process_cd) {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.editPartOrder(order_no, product_name, process_cd);
 	}
 
 	

@@ -259,6 +259,7 @@ table tr .explain {
 			$('#phoneRe2').attr("value", phone2);
 			$('#phoneRe3').attr("value", phone3);
 			$('#post_numRe').attr("value", post_num);
+			$('#post_numS').attr("value", post_num);
 			$('#address_detailRe').attr("value", address_detail);
 	}
 	});
@@ -267,6 +268,7 @@ table tr .explain {
 		 new daum.Postcode({
 		        oncomplete: function(data) {
 		            $('#post_numRe').val(data.zonecode);
+		            $('#post_numS').val(data.zonecode);
 		            $('#address_detailRe').val(data.address);
                     $('#address_detailRe').focus();
 		        }
@@ -304,7 +306,7 @@ table tr .explain {
 	 
 	</script>
 		<div>
-		<form action="order_proc.nm" method="post" name="order_from">
+		<form action="/soap/order/order_proc.nm" method="post" name="order_from">
 			<!-- 배송지정보 시작 -->
 			<table cellspacing="0" class="info">
 				<tr>
@@ -323,7 +325,7 @@ table tr .explain {
 				</tr>
 				<tr>
 					<td>우편번호</td>
-					<td><input type="text" id="post_numRe" name="post_num"
+					<td><input type="text" id="post_numRe"
 						disabled="disabled" />
 						<button type="button" id="find_post_num" onclick="pop_postNum()">우편번호 찾기</button>
 						<br></td>
@@ -357,13 +359,13 @@ table tr .explain {
 				</tr>
 				<tr>
 					<td>신용카드 선택</td>
-					<td><input type="radio" name="card" value="sinhan">&nbsp;신한&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" name="card" value="samsung">&nbsp;삼성&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" name="card" value="hana">&nbsp;하나&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" name="card" value="lotte">&nbsp;롯데&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" name="card" value="kb">&nbsp;KB국민&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" name="card" value="nh">&nbsp;NH채움&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" name="card" value="bc">&nbsp;비씨&nbsp;&nbsp;&nbsp;&nbsp;
+					<td><input type="radio" name="card" value="신한">&nbsp;신한&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="card" value="삼성">&nbsp;삼성&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="card" value="하나">&nbsp;하나&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="card" value="롯데">&nbsp;롯데&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="card" value="KB국민">&nbsp;KB국민&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="card" value="NH채움">&nbsp;NH채움&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="card" value="비씨">&nbsp;비씨&nbsp;&nbsp;&nbsp;&nbsp;
 						<input type="radio" name="card" value="woori">&nbsp;우리&nbsp;&nbsp;&nbsp;&nbsp;
 
 					</td>
@@ -380,21 +382,6 @@ table tr .explain {
 						value="" size="4" maxlength="4" />
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 						유효기간 
-						<select name="expiry_month" id="expiry_month">
-							<option value="-">&nbsp;-&nbsp;</option>
-							<option value="01">&nbsp;01&nbsp;</option>
-							<option value="02">&nbsp;02&nbsp;</option>
-							<option value="03">&nbsp;03&nbsp;</option>
-							<option value="04">&nbsp;04&nbsp;</option>
-							<option value="05">&nbsp;05&nbsp;</option>
-							<option value="06">&nbsp;06&nbsp;</option>
-							<option value="07">&nbsp;07&nbsp;</option>
-							<option value="08">&nbsp;08&nbsp;</option>
-							<option value="09">&nbsp;09&nbsp;</option>
-							<option value="10">&nbsp;10&nbsp;</option>
-							<option value="11">&nbsp;11&nbsp;</option>
-							<option value="12">&nbsp;12&nbsp;</option>
-						</select> 
 						<select name="expiry_year" id="expiry_year">
 							<option value="-">&nbsp;-&nbsp;</option>
 							<option value="16">&nbsp;16&nbsp;</option>
@@ -412,10 +399,27 @@ table tr .explain {
 							<option value="28">&nbsp;28&nbsp;</option>
 							<option value="29">&nbsp;29&nbsp;</option>
 							<option value="39">&nbsp;30&nbsp;</option>
-					</select></td>
+						</select>
+						<select name="expiry_month" id="expiry_month">
+							<option value="-">&nbsp;-&nbsp;</option>
+							<option value="01">&nbsp;01&nbsp;</option>
+							<option value="02">&nbsp;02&nbsp;</option>
+							<option value="03">&nbsp;03&nbsp;</option>
+							<option value="04">&nbsp;04&nbsp;</option>
+							<option value="05">&nbsp;05&nbsp;</option>
+							<option value="06">&nbsp;06&nbsp;</option>
+							<option value="07">&nbsp;07&nbsp;</option>
+							<option value="08">&nbsp;08&nbsp;</option>
+							<option value="09">&nbsp;09&nbsp;</option>
+							<option value="10">&nbsp;10&nbsp;</option>
+							<option value="11">&nbsp;11&nbsp;</option>
+							<option value="12">&nbsp;12&nbsp;</option>
+						</select>
+					</td>
 				</tr>
 			</table>
 			<input type="hidden" name="charge" value="${charge}">
+			<input type="hidden" name="post_num" id="post_numS">
 			<p id="pay">
 				<input type="button" value="결제하기" class="buttons" onclick="allSubmit()">
 			</p>

@@ -1,5 +1,6 @@
 package com.nmom.soap.svc.sales;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import org.springframework.dao.DataAccessException;
@@ -11,22 +12,26 @@ public class SaleStatementSvcImpl implements ISaleStatementSvc {
 
 	private ISaleStatementDao saleStatementDao;
 	
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	
 	@Override
 	public SaleStatementVo getSaleStatement() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.saleStatementDao.getSaleStatement();
 	}
 
 	@Override
 	public SaleStatementVo getSaleStatement(Calendar today) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return this.saleStatementDao.getSaleStatement(
+				sdf.format(today.getTime()));
 	}
 
 	@Override
 	public SaleStatementVo getSaleStatement(Calendar start, Calendar end) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.saleStatementDao.getSaleStatement(
+				sdf.format(start.getTime()), 
+				sdf.format(end.getTime()));
 	}
 
 	

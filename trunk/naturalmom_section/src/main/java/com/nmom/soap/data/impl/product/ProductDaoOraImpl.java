@@ -136,7 +136,7 @@ public class ProductDaoOraImpl extends NamedParameterJdbcDaoSupport implements I
 	@Override
 	public int getStockOfProduct(int product_no)
 	{
-		return getJdbcTemplate().queryForInt(GET_STOCK_OF_PRODUCT, new Integer(product_no), Types.INTEGER);
+		return getJdbcTemplate().queryForInt(GET_STOCK_OF_PRODUCT, new Integer(product_no));
 	}
 
 	@Override

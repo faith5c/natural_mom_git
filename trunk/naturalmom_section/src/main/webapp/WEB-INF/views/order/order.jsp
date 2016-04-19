@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -14,7 +15,7 @@
 	<title>자연맘</title>
 <%
 	request.setCharacterEncoding("UTF-8");
-	String orderPage = request.getParameter("page");
+	String orderPage = (String)request.getParameter("page");
 	
 	if(orderPage==null){ orderPage = "order"; }
 %>
@@ -31,12 +32,13 @@
 		<%@include file="../_default_menu.jsp" %>
 		<!-------------Start content--------------------------------------------------->
 		<div id="content">
-		<%if( orderPage.equals("order") ) {%>
+		<c:if test="${page.equals('order') }">
 			<%@include file="_order.jsp" %>
-		<%} else {%>
+		</c:if>
+		<c:if test="${page.equals('order_complete') }">
 			<!-- 결제하기 버튼을 누르면 주문완료페이지 include -->
 			<%@include file="_order_complete.jsp" %>
-		<%} %>
+		</c:if>
 		</div>
 		<!--------------------------------------------------end content--------->
 	</div><!-- end container -->

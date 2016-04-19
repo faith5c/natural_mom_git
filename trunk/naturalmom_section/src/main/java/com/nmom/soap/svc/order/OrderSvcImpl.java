@@ -9,16 +9,16 @@ public class OrderSvcImpl implements IOrderSvc {
 
 	private IOrderDao orderDao;
 	
-	@Override
-	public int addOrder(OrderVo order, String credit_nm, String delivery_com_nm) {
+	@Override	
+	public int addOrder(OrderVo order, String credit_nm) {
 		
-		return 0;
+		return this.orderDao.addOrder(order, credit_nm);
 	}
 
 	@Override
-	public int editTrackingNumOrder(int order_no, int tracking_num) {
+	public int editTrackingNumOrder(int order_no, int tracking_num, String delivery_com_nm) {
 
-		return 0;
+		return this.orderDao.editTrackingNumOrder(order_no, tracking_num, delivery_com_nm);
 	}
 	
 	

@@ -3,6 +3,7 @@ package com.nmom.soap.data.model.order;
 import java.util.Calendar;
 
 public class OrderVo {
+	private int order_no;
 	private int charge;
 	private String credit_num;
 	private String credit_exp;
@@ -16,8 +17,20 @@ public class OrderVo {
 
 	public OrderVo(){}
 	
+	public OrderVo(int charge, String credit_num, String credit_exp, String rcv_name, String rcv_phone,
+			String rcv_addr_post, String rcv_addr_detail, String delivery_msg, String mem_id) {
+		this.charge = charge;
+		this.credit_num = credit_num;
+		this.credit_exp = credit_exp;
+		this.rcv_name = rcv_name;
+		this.rcv_phone = rcv_phone;
+		this.rcv_addr_post = rcv_addr_post;
+		this.rcv_addr_detail = rcv_addr_detail;
+		this.delivery_msg = delivery_msg;
+		this.mem_id = mem_id;
+	}
 	
-	
+	//주문 생성시 
 	public OrderVo(int charge, String credit_num, String credit_exp, String rcv_name, String rcv_phone,
 			String rcv_addr_post, String rcv_addr_detail, String delivery_msg, int tracking_num, String mem_id) {
 		super();
@@ -33,6 +46,23 @@ public class OrderVo {
 		this.mem_id = mem_id;
 	}
 	
+	//전체
+	public OrderVo(int order_no, int charge, String credit_num, String credit_exp, String rcv_name, String rcv_phone,
+			String rcv_addr_post, String rcv_addr_detail, String delivery_msg, int tracking_num, String mem_id) {
+		super();
+		this.order_no = order_no;
+		this.charge = charge;
+		this.credit_num = credit_num;
+		this.credit_exp = credit_exp;
+		this.rcv_name = rcv_name;
+		this.rcv_phone = rcv_phone;
+		this.rcv_addr_post = rcv_addr_post;
+		this.rcv_addr_detail = rcv_addr_detail;
+		this.delivery_msg = delivery_msg;
+		this.tracking_num = tracking_num;
+		this.mem_id = mem_id;
+	}
+
 	@Override
 	public String toString() {
 		return "OrderVo [charge=" + charge + ", credit_num=" + credit_num + ", credit_exp=" + credit_exp + ", rcv_name="

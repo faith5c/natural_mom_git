@@ -31,8 +31,14 @@ public class VOrderListSvcImpl implements IVOrderListSvc {
 		return this.vOrderListDao.getAllCount(mem_id);
 	}
 
+	@Override
+	public VOrderListVo getOneOrder(int order_no) throws DataAccessException {
+		return this.vOrderListDao.getOneOrder(order_no);
+	}
+	
 	public void setVOrderListDao(IVOrderListDao vOrderListDao) {
 		this.vOrderListDao = vOrderListDao;
 	}
+
 
 }

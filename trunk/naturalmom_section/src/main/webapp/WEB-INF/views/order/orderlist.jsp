@@ -140,7 +140,7 @@
 				<td>${o.order_no}</td>
 				<td><fmt:formatDate value="${o.order_date}" type="Date" /></td>
 				<td><img src="/soap/resources/product_images/${o.represent_img}" alt="사진"></td>
-				<td><a href="#">${o.product_name}</a></td>
+				<td>${o.product_name}</td>
 				<td>${o.buy_num}</td>
 				<td>${o.charge}원</td>
 				<td>${o.process_nm}</td>

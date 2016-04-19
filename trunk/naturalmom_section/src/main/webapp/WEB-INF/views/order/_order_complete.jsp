@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
 	<meta charset="utf-8">
@@ -81,42 +83,35 @@
 	</style>
 
 <!---Start container----------------------------------------------------------------->
+		<c:set var="o" value="${order}"/>
+		
 		<h3 class = "order_title">주문완료</h3>
 			<table cellspacing = "0" id="product_list">
 				<tr>
 					<td width="14%">주문번호</td>
 					<td width="16%">주문일자</td>
-					<td width="14%">제품이미지</td>
+					<td width="14%">상품이미지</td>
 					<td width="19%">상품명</td>
 					<td width="7%">수량</td>
 					<td width="14%">결제금액</td>
 					<td width="16%">처리상태</td>
 				</tr>
 				<tr>
-					<td>155553</td>
-					<td>2016-03-17</td>
-					<td>사진사진</td>
-					<td>쑥 비누</td>
-					<td>1개</td>
-					<td>4,300원</td>
-					<td>배송준비중</td>
-				</tr>
-				<tr>
-					<td>155553</td>
-					<td>2016-03-17</td>
-					<td>사진사진</td>
-					<td>아마씨 비누</td>
-					<td>2개</td>
-					<td>7,000원</td>
-					<td>배송준비중</td>
+				<td>${o.order_no}</td>
+				<td><fmt:formatDate value="${o.order_date}" type="Date" /></td>
+				<td><img width="80%" src="/soap/resources/product_images/${o.represent_img}" alt="사진"></td>
+				<td>${o.product_name}</td>
+				<td>${o.buy_num}</td>
+				<td>${o.charge}원</td>
+				<td>${o.process_nm}</td>
 				</tr>
 				<tr>
 					<td colspan = 7>
-						총 주문금액 : 11,300 + 배송비 3,000원 = <b>14,300원</b>
+						총 주문금액 : ${charge-3000}원 + 배송비 3000원 = <b>${charge}원</b>
 					</td>
 				</tr>
 			</table> 
-		<p id="button"><input type="button" value="확인" class="button" onclick="location.href='index.jsp';"></p>
+		<p id="button"><input type="button" value="확인" class="button" onclick="location.href='/soap/index.nm';"></p>
 
 <!--------------------------------------------------------end container------------->
 </html>
