@@ -76,7 +76,7 @@ public class ReviewController
 			
 			return new ModelAndView("admin/board/review/a_review", map);
 		}
-		else
+		else	// 관리자 계정으로 로그인 하지 않았을 때
 		{
 			return new ModelAndView("redirect:/login.nm", null);
 		}
@@ -134,7 +134,7 @@ public class ReviewController
 			
 			return new ModelAndView("admin/board/review/a_review", map);
 		}
-		else
+		else	// 관리자 모드로 로그인하지 않았을 때
 		{
 			return new ModelAndView("redirect:/login.nm", null);
 		}
@@ -153,30 +153,20 @@ public class ReviewController
 			
 			Map<String, Object> map = new HashMap<String, Object>();
 			ReviewVo rvw = reviewSvc.getOneReview(review_no);
-			
-	
-			
+
 			int countReviews = review_adminSvc.getCountAllReviews();
 			
-			// 해당 글의 조회수를 증가시키는 작업
-			if (reviewSvc.updateReviewCount(rvw) == S.PROCESS_SUCCESS)
-			{
-				VReview_AdminVo review = review_adminSvc.getOneReview(review_no);
-				List<Review_ReVo> reply = review_reSvc.getAllRe(review_no);
-				map.put("count", new Integer(countReviews));
-				map.put("id", id);
-				map.put("isAdmin", isAdmin);
-				map.put("review", review);
-				map.put("reply", reply);
-			}
-			else
-			{
-				// 에러 페이지로 이동
-			}
+			VReview_AdminVo review = review_adminSvc.getOneReview(review_no);
+			List<Review_ReVo> reply = review_reSvc.getAllRe(review_no);
+			map.put("count", new Integer(countReviews));
+			map.put("id", id);
+			map.put("isAdmin", isAdmin);
+			map.put("review", review);
+			map.put("reply", reply);
 			
 			return new ModelAndView("admin/board/review/a_review", map);
 		}
-		else
+		else	// 관리자 계정으로 로그인 안됐을 시
 		{
 			return new ModelAndView("redirect:/login.nm", null);
 		}
@@ -209,20 +199,12 @@ public class ReviewController
 			
 			int countReviews = review_adminSvc.getCountAllReviews();
 			
-			// 해당 글의 조회수를 증가시키는 작업
-			if (reviewSvc.updateReviewCount(rvw) == S.PROCESS_SUCCESS)
-			{
-				VReview_AdminVo review = review_adminSvc.getOneReview(chn_no);
-				List<Review_ReVo> reply = review_reSvc.getAllRe(chn_no);
-				map.put("count", new Integer(countReviews));
-				map.put("review", review);
-				map.put("reply", reply);
-			}
-			else
-			{
-				// 에러 페이지로 이동
-			}
-			
+			VReview_AdminVo review = review_adminSvc.getOneReview(chn_no);
+			List<Review_ReVo> reply = review_reSvc.getAllRe(chn_no);
+			map.put("count", new Integer(countReviews));
+			map.put("review", review);
+			map.put("reply", reply);
+		
 			return new ModelAndView("admin/board/review/a_review", map);
 		}
 		else
@@ -254,9 +236,9 @@ public class ReviewController
 			}
 			else
 			{
-				// 에러 메시지
+				// TODO 댓글 등록 실패 시 alert 창
 				System.out.println("댓글 등록 실패");
-				return "login.nm";
+				return "redirect:/admin/board/review_read.nm?r=" + rvw_no + "&rst=rrfalse";
 			}
 		}
 		else
@@ -282,8 +264,8 @@ public class ReviewController
 			{
 				if (reviewSvc.removeReview(no) == S.PROCESS_SUCCESS)
 					return "redirect:/admin/board/review.nm";
-				else 
-					return "redirect:/admin/board/review_read.nm?r=" + no;
+				else // TODO 글 삭제에 실패한 경우
+					return "redirect:/admin/board/review_read.nm?r=" + no + "&rst=dfalse";
 			}
 			// 댓글 삭제인 경우
 			else if(c.equals("rr"))
@@ -292,17 +274,14 @@ public class ReviewController
 				
 				if (review_reSvc.removeRe(no) == S.PROCESS_SUCCESS)
 					return "redirect:/admin/board/review_read.nm?r=" + review_no;
-				else
+				else	// TODO 댓글 삭제에 실패한 경우
 				{
 					System.out.println("댓글 삭제 실패");
-					return "redirect:/admin/board/review_read.nm?r=" + review_no;
+					return "redirect:/admin/board/review_read.nm?r=" + review_no + "&rst=rdfalse";
 				}
 			}
 			else
-			{
-				System.out.println("잘못된 파라미터 값");
 				return "redirect:/admin/board/review.nm";
-			}
 		}
 		else
 		{
@@ -334,20 +313,14 @@ public class ReviewController
 	public String registerReview(HttpServletRequest request, HttpSession session,
 			ReviewVo review)
 	{
-		// 세션처리
+		// 세션처리 (request.getParameter("rst") == null -> 글쓰기 등록 후 세션이 null이 돼 if문에 들어오는 것 방지
 		if (session.getAttribute(S.SESSION_LOGIN) == null && request.getParameter("rst") == null)
 			return "redirect:/product/review_write_popup.nm?rst=login";
 		
 		if (reviewSvc.addReview(review) == S.PROCESS_SUCCESS)
-		{
-			System.out.println(review);
 			return "redirect:/product/review_write_popup.nm?rst=true";
-		}
 		else
-		{
-			System.out.println("에러 발생");
 			return "redirect:/product/review_write_popup.nm?rst=false";
-		}
 	}
 	
 	// 수정 페이지 준비하기
@@ -376,15 +349,9 @@ public class ReviewController
 		
 		int result = reviewSvc.editReview(review);
 		if (result == S.PROCESS_SUCCESS)
-		{
 			return "redirect:/product/review_modify_popup.nm?rst=true";
-		}
 		else
-		{
-			System.out.println("에러 발생 : " + result);
-			System.out.println(review.toString());
 			return "redirect:/product/review_modify_popup.nm?rst=false";
-		}
 	}
 	
 	// 댓글 달기
@@ -405,14 +372,14 @@ public class ReviewController
 			
 			if (review_reSvc.addRe(new_reply) == S.PROCESS_SUCCESS)
 			{
-				return "redirect:/product/detail.nm?pdno=" + product_no + "&rst=true#review";
-				// rst 파라미터 처리하기 -> ProductController
+				return "redirect:/product/detail.nm?pdno=" + product_no + "&rst=rrtrue#review";
+				// TODO rst 파라미터 처리하기 -> ProductController
 			}
 			else
 			{
-				// 에러 메시지
+				// TODO 에러 메시지
 				System.out.println("댓글 등록 실패");
-				return "redirect:/product/detail.nm?pdno=" + product_no + "&rst=false#review";
+				return "redirect:/product/detail.nm?pdno=" + product_no + "&rst=rrfalse#review";
 			}
 		}
 		else
@@ -439,32 +406,29 @@ public class ReviewController
 		{
 			// 글 삭제인 경우
 			if(c.equals("r"))
-			{
+			{	//TODO
 				if (reviewSvc.removeReview(no) == S.PROCESS_SUCCESS)
 					return "redirect:/product/detail.nm?pdno=" + p_no + "#review";
 				else
 				{
 					System.out.println("글 삭제 실패");
-					return "redirect:/product/detail.nm?pdno=" + p_no + "#review";
+					return "redirect:/product/detail.nm?pdno=" + p_no + "&rst=dfalse#review";
 				}
 					
 			}
 			// 댓글 삭제인 경우
 			else if(c.equals("rr"))
-			{				
+			{	//TODO				
 				if (review_reSvc.removeRe(no) == S.PROCESS_SUCCESS)
 					return "redirect:/product/detail.nm?pdno=" + p_no + "#review";
 				else
 				{
 					System.out.println("댓글 삭제 실패");
-					return "redirect:/product/detail.nm?pdno=" + p_no + "#review";
+					return "redirect:/product/detail.nm?pdno=" + p_no + "&rst=rdfalse#review";
 				}
 			}
 			else
-			{
-				System.out.println("잘못된 파라미터 값");
 				return "redirect:/product/detail.nm?pdno=" + p_no;
-			}
 		}
 		else
 		{
