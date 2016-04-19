@@ -6,15 +6,11 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="/soap/resources/admin/js/jquery-1.11.3.min.js"></script>
-	
-	<script type="text/javascript" src="/soap/resources/tablesorter/jquery-latest.js"></script> 
-	<script type="text/javascript" src="/soap/resources/tablesorter/jquery.tablesorter.js"></script>
 	<!-- [if lt IE 9]><script src="js/html5shiv.js"></script><![endif] -->
 	
-	<link rel="apple-touch-icon" href="/soap/resources/images/logo.ico" /> <!--애플아이콘등록-->
-	<link rel="shortcut icon" href="/soap/resources/images/logo.ico" /> <!--단축키아이콘등록-->
-	<link rel="stylesheet" href="/soap/resources/admin/css/admin_common.css"/>
-	
+	<link rel="apple-touch-icon" href="../resources/images/logo.ico" /> <!--애플아이콘등록-->
+	<link rel="shortcut icon" href="../resources/images/logo.ico" /> <!--단축키아이콘등록-->
+	<link rel="stylesheet" href="../resources/admin/css/admin_common.css"/>
 		
 	<title>자연맘</title>
 		<style type = "text/css">
@@ -26,7 +22,7 @@
 		h2 { margin-bottom : 15px; font-size: 24px; }
 		
 		table { width: 100%; padding : 0px; }
-		table tr:first-child td, #result_table th { border-top : 1px solid grey; } 
+		table tr:first-child td { border-top : 1px solid grey; } 
 		table tr:not(:last-child) td:first-child { border-left : 1px solid grey; }
 		table tr:not(:last-child) td:last-child { border-right : 1px solid grey; }
 		table tr td { padding : 10px; }
@@ -81,11 +77,7 @@
 
 		
 		#result_table { width: 100%; padding : 0px; }
-		#result_table th, th a { text-align:center; 
-									background-color: #918686; 
-									color: white; 
-									padding-top: 7px; padding-bottom: 7px;
-									font-weight: normal;}
+		#result_table tr:first-child td, table tr:first-child td a { text-align:center; background-color: #918686; color: white; }
 		#result_table tr:not(:first-child) td a { color: black; }
 		#result_table tr:last-child td { border-bottom : 1px solid grey; }
 		#result_table tr td { border-right : 1px solid lightgrey; }
@@ -108,19 +100,7 @@
 		}
 		#buttons input[type = "button"]:hover { opacity : 0.7; }
 		
-		th.header { 
-    		background-image: url(/soap/resources/tablesorter/themes/blue/bg.gif); 
-    		cursor: pointer; 
-    		background-repeat: no-repeat; 
-    		background-position: center right; 
-    		border-right: 1px solid #dad9c7; 
-		} 
-		th.headerSortUp { 
-   			background-image: url(/soap/resources/tablesorter/themes/blue/asc.gif); 
-		} 
-		th.headerSortDown { 
-   			background-image: url(/soap/resources/tablesorter/themes/blue/desc.gif); 
-		} 
+		
 	</style>
 	
    </head>
@@ -223,21 +203,25 @@
 <!--- 검색결과 ----------------------------------------------------------------->
 		<form action="member.nm" method="get" name="sort_table">
 			<h2 id = "reg_title">검색 결과</h2>
-			<table id="result_table" class="tablesorter" cellspacing = "0">
-			<thead> 
+			<table id="result_table" cellspacing = "0">
 				<tr>
-					<th>체크</th>
-					<th><a href = "#"> 아이디</a></th>
-					<th><a href = "#"> 이름</a></th>
-					<th><a href = "#">주소</a></th>
-					<th><a href = "#">전화번호</a></th>
-					<th><a href = "#">이메일</a></th>
-					<th><a href = "#"> 생년월일</a></th>
-					<th><a href = "#"> 성별</a></th>
-					<th><a href = "#"> 회원상태</a></th>
+					<td>체크</td>
+					<td><a href = "#" onclick="sortby('id')" id="l_id">${sort eq 'id' && m eq 'asc'? '▲' : '▼' } 아이디</a></td>
+					<td><a href = "#" onclick="sortby('name')" id="l_name">${sort eq 'name' && m eq 'asc'? '▲' : '▼' } 이름</a></td>
+					<td>주소</td>
+					<td>전화번호</td>
+					<td>이메일</td>
+					<td><a href = "#" onclick="sortby('birth')" id="l_birth">${sort eq 'birth' && m eq 'asc'? '▲' : '▼' } 생년월일</a></td>
+					<td><a href = "#" onclick="sortby('gender')" id="l_gender">${sort eq 'gender' && m eq 'asc'? '▲' : '▼' } 성별</a></td>
+					<td><a href = "#" onclick="sortby('level')" id="l_level">${sort eq 'level' && m eq 'asc'? '▲' : '▼' } 회원상태</a></td>
+					
+					<input type="hidden" name="h_id" id="h_id" value="desc"/>
+					<input type="hidden" name="h_name" id="h_name" value="desc"/>
+					<input type="hidden" name="h_birth" id="h_birth" value="desc"/>
+					<input type="hidden" name="h_gender" id="h_gender" value="desc"/>
+					<input type="hidden" name="h_level" id="h_level" value="desc"/>
 				</tr>
-			</thead> 
-			<tbody>
+				
 			<c:forEach var="m" items="${member}">
 				<tr>
 					<td style="text-align: center">
@@ -253,6 +237,7 @@
 					<td>${m.mem_level_cd==1? "일반회원" : "불량회원"}</td>
 				</tr>
 			</c:forEach>
+			
 			<c:if test="${empty member}">
 				<tr>
 					<td colspan="9" style="text-align: center; font-size: 15px; padding: 20px">
@@ -260,7 +245,7 @@
 					</td>
 				</tr>
 			</c:if>
-			 </tbody>
+				
 			</table>
 			<div id = "buttons">
 				선택한 회원을
@@ -272,15 +257,6 @@
 <!--------------------------------------------------------end container------------->
   </body>
   <script type="text/javascript">
-  
-  $(document).ready(function() 
-		    { 
-		        $("#result_table").tablesorter(); 
-		    } 
-		); 
-
-  
-		     
   
 	 function email_change() {
 		 var selectedEmail = $("#email_select").val();
@@ -310,45 +286,55 @@
 			 var id = document.getElementById("l_id");
 			 if(id.innerHTML == '▼ 아이디'){
 				 id.innerHTML ='▲ 아이디';
+				 location.href='member.nm?Lineup=true&sort=id&m=asc';
 				 
 			 }else if(id.innerHTML =='▲ 아이디'){
 				 id.innerHTML ='▼ 아이디';
+				 location.href='member.nm?Lineup=true&sort=id&m=desc';
 			 }
 			 
 		 }else if(sth == 'name'){
 			 var name = document.getElementById("l_name");
 			 if(name.innerHTML == '▼ 이름'){
 				 name.innerHTML ='▲ 이름';
+				 location.href='member.nm?Lineup=true&sort=name&m=asc';
 				 
 			 }else if(name.innerHTML =='▲ 이름'){
 				 name.innerHTML ='▼ 이름';
+				 location.href='member.nm?Lineup=true&sort=name&m=desc';
 			 }
 			 
 		 }else if(sth == 'birth'){
 			 var birth = document.getElementById("l_birth");
 			 if(birth.innerHTML == '▼ 생년월일'){
 				 birth.innerHTML ='▲ 생년월일';
+				 location.href='member.nm?Lineup=true&sort=birth&m=asc';
 				 
 			 }else if(birth.innerHTML =='▲ 생년월일'){
 				 birth.innerHTML ='▼ 생년월일';
+				 location.href='member.nm?Lineup=true&sort=birth&m=desc';
 			 }
 			 
 		 }else if(sth == 'gender'){
 			 var gender = document.getElementById("l_gender");
 			 if(gender.innerHTML == '▼ 성별'){
 				 gender.innerHTML ='▲ 성별';
+				 location.href='member.nm?Lineup=true&sort=gender&m=asc';
 				 
 			 }else if(gender.innerHTML =='▲ 성별'){
 				 gender.innerHTML ='▼ 성별';
+				 location.href='member.nm?Lineup=true&sort=gender&m=desc';
 			 }
 			 
 		 }else if(sth == 'level'){
 			 var level = document.getElementById("l_level");
 			 if(level.innerHTML == '▼ 회원상태'){
 				 level.innerHTML ='▲ 회원상태';
+				 location.href='member.nm?Lineup=true&sort=level&m=asc';
 				 
 			 }else if(level.innerHTML =='▲ 회원상태'){
 				 level.innerHTML ='▼ 회원상태';
+				 location.href='member.nm?Lineup=true&sort=level&m=desc';
 			 }
 		 }
 		
