@@ -69,12 +69,12 @@ footer {
 	margin-left : 120px;
 }
 
-#soap_table tr:nth-child(8) td {
+#soap_table tr:nth-child(8) td{
 	padding-top : 20px;
 	padding-bottom : 20px; 
 	text-align : center;
 }
-#soap_table tr:nth-child(8) td button{
+#soap_table tr:nth-child(8) td button, #soap_table tr:nth-child(8) td input[type="button"]{
 	padding : 7px 30px;
 	margin-left : 10px;
 	margin-right : 10px; 
@@ -85,7 +85,7 @@ footer {
 	border-radius : 10px; 
 	border : 0px;
 }
-#soap_table tr:nth-child(8) td button:hover{
+#soap_table tr:nth-child(8) td button:hover, #soap_table tr:nth-child(8) td input[type="button"]:hover{
 	opacity : 0.7;
 }
 #content div img {
