@@ -112,7 +112,7 @@ public class OrderController {
 			@RequestParam(value="buy_num", required=false) int buy_num,
 			@RequestParam(value="cost_price", required=false) int cost_price){
 		
-		System.out.println("주문에 들어옴!");
+		System.out.println("주문페이지에 들어옴!");
 		List<TempOrderVo> tempList = null;
 		if(ses.getAttribute(S.SESSION_LOGIN) != null 
 				&& ses.getAttribute(S.SESSION_ADMIN) == null){
@@ -194,9 +194,13 @@ public class OrderController {
 			//주문 정보		
 			@RequestParam(value="charge", required=false) int charge){
 		
-		//재고 확인 후 없으면 인덱스 페이지 ㄱㄳ
-		
-		
+		System.out.println("주문proc에 들어옴!");
+		//로그인 확인 후 회원 아니면 로그인 페이지 ㄱㄳ
+		if(ses.getAttribute(S.SESSION_LOGIN) != null 
+				&& ses.getAttribute(S.SESSION_ADMIN) == null){
+			//재고 확인 후 없으면 인덱스 페이지 ㄱㄳ	
+			
+		}
 		return new ModelAndView("redirect:soap/login.nm");
 	}
 	
