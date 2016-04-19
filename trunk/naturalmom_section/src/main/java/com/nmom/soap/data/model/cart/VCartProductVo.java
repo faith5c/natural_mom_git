@@ -8,11 +8,12 @@ public class VCartProductVo {
 	private int sale_state;
 	private String represent_img;
 	private int buy_num;
+	private int stock;
 	private String mem_id;
 	
 	public VCartProductVo(){}
 	public VCartProductVo(int product_no, String product_name, int selling_price, int sale_state, String represent_img,
-			int buy_num, String mem_id) {
+			int buy_num, int stock, String mem_id) {
 		super();
 		this.product_no = product_no;
 		this.product_name = product_name;
@@ -20,6 +21,7 @@ public class VCartProductVo {
 		this.sale_state = sale_state;
 		this.represent_img = represent_img;
 		this.buy_num = buy_num;
+		this.stock = stock;
 		this.mem_id = mem_id;
 	}
 	
@@ -65,11 +67,18 @@ public class VCartProductVo {
 	public void setMem_id(String mem_id) {
 		this.mem_id = mem_id;
 	}
+	public int getStock() {
+		return stock;
+	}
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
 	
 	@Override
 	public String toString() {
-		return "VCartProductVO [product_no=" + product_no + ", product_name=" + product_name + ", selling_price="
+		return "VCartProductVo [product_no=" + product_no + ", product_name=" + product_name + ", selling_price="
 				+ selling_price + ", sale_state=" + sale_state + ", represent_img=" + represent_img + ", buy_num="
-				+ buy_num + ", mem_id=" + mem_id + "]";
+				+ buy_num + ", stock=" + stock + ", mem_id=" + mem_id + "]";
 	}
+	
 }

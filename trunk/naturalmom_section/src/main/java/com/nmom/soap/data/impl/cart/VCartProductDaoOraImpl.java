@@ -15,8 +15,8 @@ import com.nmom.soap.data.model.cart.VCartProductVo;
 
 public class VCartProductDaoOraImpl extends NamedParameterJdbcDaoSupport implements IVCartProductDao{
 
-	private final String SELECT_ALL_CART_PRODUCT = "SELECT product_no, product_name, selling_price, sale_state, represent_img, buy_num, mem_id FROM V_CART_PRODUCT";
-	private final String SELECT_CART_PRODUCT_BY_MEM_ID = "SELECT product_no, product_name, selling_price, sale_state, represent_img, buy_num, mem_id FROM V_CART_PRODUCT WHERE mem_id=:mem_id";
+	private final String SELECT_ALL_CART_PRODUCT = "SELECT product_no, product_name, selling_price, sale_state, represent_img, buy_num, stock, mem_id FROM V_CART_PRODUCT";
+	private final String SELECT_CART_PRODUCT_BY_MEM_ID = "SELECT product_no, product_name, selling_price, sale_state, represent_img, buy_num, stock, mem_id FROM V_CART_PRODUCT WHERE mem_id=:mem_id";
 	
 	public List<VCartProductVo> getAllCart() throws DataAccessException {
 		return this.getJdbcTemplate().query(SELECT_ALL_CART_PRODUCT, new BeanPropertyRowMapper<VCartProductVo>(VCartProductVo.class));

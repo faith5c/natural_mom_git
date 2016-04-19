@@ -7,17 +7,19 @@ public class VInterestProductVo {
 	private int selling_price;
 	private int sale_state;
 	private String represent_img;
+	private int stock;
 	private String mem_id;
 	
 	public VInterestProductVo(){}
 	public VInterestProductVo(int product_no, String product_name, int selling_price, int sale_state, String represent_img,
-			String mem_id) {
+			int stock, String mem_id) {
 		super();
 		this.product_no = product_no;
 		this.product_name = product_name;
 		this.selling_price = selling_price;
 		this.sale_state = sale_state;
 		this.represent_img = represent_img;
+		this.stock = stock;
 		this.mem_id = mem_id;
 	}
 	
@@ -57,11 +59,16 @@ public class VInterestProductVo {
 	public void setMem_id(String mem_id) {
 		this.mem_id = mem_id;
 	}
-	
+	public int getStock() {
+		return stock;
+	}
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
 	@Override
 	public String toString() {
-		return "VInterestVO [product_no=" + product_no + ", product_name=" + product_name + ", selling_price="
-				+ selling_price + ", sale_state=" + sale_state + ", represent_img=" + represent_img + ", mem_id="
-				+ mem_id + "]";
+		return "VInterestProductVo [product_no=" + product_no + ", product_name=" + product_name + ", selling_price="
+				+ selling_price + ", sale_state=" + sale_state + ", represent_img=" + represent_img + ", stock=" + stock
+				+ ", mem_id=" + mem_id + "]";
 	}
 }

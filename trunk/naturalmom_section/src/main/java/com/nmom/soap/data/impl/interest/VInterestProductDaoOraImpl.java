@@ -15,8 +15,8 @@ import com.nmom.soap.data.model.interest.VInterestProductVo;
 
 public class VInterestProductDaoOraImpl extends NamedParameterJdbcDaoSupport implements IVInterestProductDao {
 
-	private final String SELECT_ALL_INTEREST_PRODUCT = "SELECT product_no, product_name, selling_price, sale_state, represent_img, mem_id FROM V_INTEREST_PRODUCT";
-	private final String SELECT_INTEREST_PRODUCT_BY_MEM_ID = "SELECT product_no, product_name, selling_price, sale_state, represent_img, mem_id FROM V_INTEREST_PRODUCT WHERE mem_id=:mem_id";
+	private final String SELECT_ALL_INTEREST_PRODUCT = "SELECT product_no, product_name, selling_price, sale_state, represent_img, stock, mem_id FROM V_INTEREST_PRODUCT";
+	private final String SELECT_INTEREST_PRODUCT_BY_MEM_ID = "SELECT product_no, product_name, selling_price, sale_state, represent_img, stock, mem_id FROM V_INTEREST_PRODUCT WHERE mem_id=:mem_id";
 	
 	public List<VInterestProductVo> getAllInterest() throws DataAccessException {
 		return this.getJdbcTemplate().query(SELECT_ALL_INTEREST_PRODUCT, new BeanPropertyRowMapper<VInterestProductVo>(VInterestProductVo.class));
