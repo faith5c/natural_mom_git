@@ -68,9 +68,8 @@ public class EventController {
 			}
 		}
 		int size = eventSvc.getEventList().size();
-		int total = (int)Math.ceil((double)(size/S.PAGE_LIMIT));
-		
-		e_list = eventSvc.getEventList(page);
+		int total = (int)Math.ceil(((double)size/S.PAGE_LIMIT));
+		e_list = eventSvc.getEventList(page, size);
 		map.put("e_list", e_list);
 		map.put("total_page", total);
 		map.put("page", page);
@@ -116,7 +115,8 @@ public class EventController {
 									HttpSession se,
 									@RequestParam(value="title")String title,
 									@RequestParam(value="event_content") String event_content,
-									@RequestParam(value="no") int no){
+									@RequestParam(value="no") int no,
+									@RequestParam(value="page", defaultValue="1") int page){
 		// event_no가 0이 아니면 수정
 		if(no !=0 ){
 			System.out.println(eventSvc.editEvent(new EventVo().editform(no, title, event_content)));
@@ -127,10 +127,14 @@ public class EventController {
 		}
 		// 이벤트 리스트 불러오기
 		Map<String, Object> map = new HashMap<>();
-//TODO		List<EventVo> e_list = eventSvc.getEventList(1, S.PAGE_LIMIT);
-//TODO		map.put("e_list", e_list);
+		int size = eventSvc.getEventList().size();
+		int total = (int)Math.ceil(((double)size/S.PAGE_LIMIT));
+		List<EventVo> e_list = eventSvc.getEventList(page, total);
+		map.put("e_list", e_list);
+		map.put("total_page", total);
+		map.put("page", page);
 		
-		return new ModelAndView("redirect:board/event/b_event", map);
+		return new ModelAndView("board/event/b_event", map);
 	}
 	
 	// 리플 쓰기 -> 읽기페이지

@@ -49,7 +49,7 @@
 
 		#pages { margin-top: 15px;}
 
-		#pages a { color: #85858d; font-size: 20px;}
+		#pages a { color: #85858d; font-size: 18px; }
 		#pages a:hover { opacity : 0.7; }
 		#pages, #search { text-align: center; width: 720px;}
 		#search { width: 764px; margin-top: 20px; }
@@ -83,6 +83,7 @@
 				<td width="8%">조회</td>
 			</tr>
 			
+		<!-- -- List -- -->
 		<c:forEach var="e" items="${e_list}">
 			<tr>
 				<td id = "no">${e.evt_rnum}</td>
@@ -113,25 +114,33 @@
 				</td>
 		</c:if>
 			</tr>
-		
-			
 		</table>
+		
+		
+		<!-- -- page -- -->
 		<div id = "pages">
 			<c:if test="${page gt 1 }">
-				<c:url value='event.nm?page=${page-1}' />
-				<a href ="">&lsaquo;</a>
+				<a href ="event.nm?page=${page-1}">&lsaquo;</a>
 			</c:if>
 			<c:if test="${page eq 1 }">
-				<a href = "#">&lsaquo;</a>
+				<a>&lsaquo;</a>
 			</c:if>
-				&nbsp;&nbsp;&nbsp;
-				1
-				&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;
+			<c:forEach begin="1" end="${total_page}" step="1" var="m">
+			&nbsp;
+				<c:if test="${m eq page}">
+					<a><b><c:out value="${m}"></c:out></b></a>
+				</c:if>
+				<c:if test="${m ne page}">
+					<a href="event.nm?page=${m}"><c:out value="${m}"></c:out></a>
+				</c:if>
+			</c:forEach>
+			&nbsp;&nbsp;&nbsp;
 			<c:if test="${page lt total_page}">
-				<a href = "<c:url='event.nm?page=${page+1 }'/>">&rsaquo;</a>
+				<a href="event.nm?page=${page+1 }">&rsaquo;</a>
 			</c:if>	
 			<c:if test="${page eq total_page}">
-				<a href = "#">&rsaquo;</a>
+				<a>&rsaquo;</a>
 			</c:if>	
 		</div>
 		<div id = "search" style="margin-bottom: 80px;">

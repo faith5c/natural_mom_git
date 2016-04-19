@@ -12,7 +12,7 @@ public interface IEventSvc {
 	// 리스트
 	List<EventVo> getAllEvents() throws DataAccessException;
 	List<EventVo> getEventList() throws DataAccessException;
-	List<EventVo> getEventList(int page) throws DataAccessException;
+	List<EventVo> getEventList(int page, int total) throws DataAccessException;
 	
 	// 글읽기, 수정할 글 불러오기
 	EventVo getOneEvent(int event_no) throws DataAccessException;
