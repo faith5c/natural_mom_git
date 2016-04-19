@@ -102,6 +102,9 @@
 		<beans:property name="v_cart_product_svc">
 			<beans:ref local="v_cart_product_svc" />
 		</beans:property>
+		<beans:property name="productSvc">
+			<beans:ref local="productSvc"/>
+		</beans:property>
 	</beans:bean>
 
 	<beans:bean id="cartCtl" class="com.nmom.soap.controller.CartController">

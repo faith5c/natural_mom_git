@@ -27,6 +27,8 @@ import com.nmom.soap.svc.order.IOrderSvc;
 import com.nmom.soap.svc.order.IProductOrderSvc;
 import com.nmom.soap.svc.order.IVOrderListSvc;
 import com.nmom.soap.svc.order.IVOrderManagerSvc;
+import com.nmom.soap.svc.product.IProductSvc;
+import com.nmom.soap.svc.product.ProductSvcImpl;
 
 import oracle.net.aso.p;
 
@@ -39,7 +41,9 @@ public class OrderController {
 	private IVOrderManagerSvc vOrderManagerSvc;
 	private IVOrdererSvc vOrdererSvc;
 	private IVCartProductSvc v_cart_product_svc;
+	private IProductSvc productSvc;
 	
+	//관리자 주문 관리 페이지
 	@RequestMapping(value="/admin/order.nm", method=RequestMethod.GET)
 	public ModelAndView getOrderManager(HttpServletRequest req){
 		System.out.println("@RequestMapping(value=/admin/order.nm)");
@@ -155,15 +159,17 @@ public class OrderController {
 			VOrdererVo orderer = this.vOrdererSvc.getOrderer(((String)ses.getAttribute(S.SESSION_LOGIN)));
 			
 			map.put("orderer", orderer);
-			map.put("phone1", orderer.getPhone().split("-")[0]);
-			map.put("phone2", orderer.getPhone().split("-")[1]);
-			map.put("phone3", orderer.getPhone().split("-")[2]);
-			map.put("email1", orderer.getEmail().split("@")[0]);
-			map.put("email2", orderer.getEmail().split("@")[1]);
+			String phone[] = orderer.getPhone().split("-");
+			String email[] = orderer.getEmail().split("@");
+			map.put("phone1", phone[0]);
+			map.put("phone2", phone[1]);
+			map.put("phone3", phone[2]);
+			map.put("email1", email[0]);
+			map.put("email2", email[1]);
 			
 			return new ModelAndView("order/order", map);
 		}
-		return null;//"redirect:detail.nm?pdno="+product_no;
+		return new ModelAndView("redirect:soap/login.nm");//"redirect:detail.nm?pdno="+product_no;
 	}
 	
 	//주문 프로세스 order_proc.nm
@@ -190,7 +196,8 @@ public class OrderController {
 		
 		//재고 확인 후 없으면 인덱스 페이지 ㄱㄳ
 		
-		return null;
+		
+		return new ModelAndView("redirect:soap/login.nm");
 	}
 	
 //	@RequestMapping(value="/order/order.nm")
@@ -285,6 +292,9 @@ public class OrderController {
 	}
 	public void setV_cart_product_svc(IVCartProductSvc v_cart_product_svc) {
 		this.v_cart_product_svc = v_cart_product_svc;
+	}
+	public void setProductSvc(IProductSvc productSvc) {
+		this.productSvc = productSvc;
 	}
 	
 	
