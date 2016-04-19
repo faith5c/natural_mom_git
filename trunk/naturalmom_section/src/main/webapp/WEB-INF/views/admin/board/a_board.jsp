@@ -61,7 +61,7 @@
 			<% } else if(r.equals("2")){ %>
 			<%@include file="qna/_a_board_qna_read_secret.jsp" %>
 			<% } else if(w.equals("true")){ %>
-			<%@include file="qna/_a_board_qna_write.jsp" %>
+<!-- 			%@include file="qna/_a_board_qna_write.jsp" % -->
 			<% } %>	
 			
 
