@@ -296,6 +296,13 @@ public class NoticeController {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
+		// 관리자여부 확인
+		Boolean isAdmin = ((Boolean)ses.getAttribute(S.SESSION_ADMIN));
+		if(isAdmin==null || !isAdmin.booleanValue()){
+			map.put("err_msg", "관리자로 로그인 바랍니다.");
+			return new ModelAndView("redirect:/login.nm", map);
+		}
+		
 		if( nowBlock != null && !nowBlock.isEmpty() && !nowBlock.equals("")){
 			try{
 				block = Integer.parseInt(nowBlock);
@@ -369,6 +376,14 @@ public class NoticeController {
 				HttpSession ses,
 				@RequestParam(value="r", required=false) int notice_no,	
 				@RequestParam(value="d", required=false) int notice_re_no){
+			Map<String, Object> map = new HashMap<>();
+			
+			// 관리자 여부 확인
+			Boolean isAdmin = ((Boolean)ses.getAttribute(S.SESSION_ADMIN));
+			if(isAdmin==null || !isAdmin.booleanValue()){
+				map.put("err_msg", "관리자로 로그인 바랍니다.");
+				return new ModelAndView("redirect:/login.nm", map);
+			}
 			
 			int n = 0;
 			if(notice_re_no != 0 ){
@@ -385,7 +400,7 @@ public class NoticeController {
 			System.out.println(notice);
 			
 			if(notice != null){
-				Map<String, Object> map = new HashMap<>();
+				
 				List<NoticeReVo> reply = this.noticeReSvc.getAllNoticeRe(notice_no);
 				int prev_notice = this.noticeSvc.getPrevNoticeNo(notice_no);
 				if( prev_notice > 0 ) map.put("prev", prev_notice);
@@ -421,9 +436,18 @@ public class NoticeController {
 		System.out.println("공지사항 글 추가하기 진입 성공");
 		String id = null;
 		id = (String) ses.getAttribute(S.SESSION_LOGIN);
-
+		Map<String, Object> map = new HashMap<>();
 		String title = null;
 		String content = null;
+		
+		// 관리자 여부 확인
+		Boolean isAdmin = ((Boolean)ses.getAttribute(S.SESSION_ADMIN));
+		if(isAdmin==null || !isAdmin.booleanValue()){
+			map.put("err_msg", "관리자로 로그인 바랍니다.");
+			return new ModelAndView("redirect:/login.nm", map);
+		}
+		
+		
 		// 어드민으로 세션에 등록 되지 않으면 아무것도 못한다.
 		if ((boolean) ses.getAttribute(S.SESSION_ADMIN) 
 				&& id != null && !id.isEmpty() && !id.equals("")) {
@@ -481,7 +505,7 @@ public class NoticeController {
 					System.out.println(notice);
 
 					if (notice != null) {
-						Map<String, Object> map = new HashMap<>();
+						
 						List<NoticeReVo> reply = this.noticeReSvc.getAllNoticeRe(notice_no);
 						int prev_notice = this.noticeSvc.getPrevNoticeNo(notice_no);
 						if (prev_notice > 0)
@@ -514,7 +538,6 @@ public class NoticeController {
 		if (allPages > 0) {
 			blockNums = (int) Math.ceil((double) allPages / S.PAGE_LIMIT);
 		}
-		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("ab", blockNums);
 		map.put("nb", block);
 		map.put("no_list", list);
@@ -526,11 +549,20 @@ public class NoticeController {
 	// 수정페이지 불러오기 ->글쓰기 페이지
 	@RequestMapping(value="admin/board/notice_edit.nm", method=RequestMethod.POST)
 	public ModelAndView editNoticeA(HttpServletRequest req,
+			HttpSession ses,
 			@RequestParam(value="title") String title,
 			@RequestParam(value="content") String content,
 			@RequestParam(value="r") int notice_no ){
 		
 		Map<String, Object> map = new HashMap<String, Object>();
+		
+		// 관리자 여부 확인
+		Boolean isAdmin = ((Boolean)ses.getAttribute(S.SESSION_ADMIN));
+		if(isAdmin==null || !isAdmin.booleanValue()){
+			map.put("err_msg", "관리자로 로그인 바랍니다.");
+			return new ModelAndView("redirect:/login.nm", map);
+		}
+		
 		map.put("no", new NoticeVo(notice_no, title, content, null, null));
 		System.out.println(notice_no+title+content);
 		
@@ -560,6 +592,14 @@ public class NoticeController {
 			HttpSession ses,
 			@RequestParam(value="r", required=false) int notice_no,
 			@RequestParam(value="re_content", required=false) String re_content){
+		Map<String, Object> map = new HashMap<>();
+		
+		// 관리자 여부 확인
+		Boolean isAdmin = ((Boolean)ses.getAttribute(S.SESSION_ADMIN));
+		if(isAdmin==null || !isAdmin.booleanValue()){
+			map.put("err_msg", "관리자로 로그인 바랍니다.");
+			return new ModelAndView("redirect:/login.nm", map);
+		}
 		
 		String content = null;
 		if(re_content != null && !re_content.isEmpty() && !re_content.equals(""))
@@ -586,7 +626,7 @@ public class NoticeController {
 		System.out.println("notice_no"+notice_no);
 		System.out.println("notice_no"+notice);
 		if(notice != null){
-			Map<String, Object> map = new HashMap<>();
+			
 			List<NoticeReVo> reply = this.noticeReSvc.getAllNoticeRe(notice_no);
 			int prev_notice = this.noticeSvc.getPrevNoticeNo(notice_no);
 			if( prev_notice > 0 ) map.put("prev", prev_notice);
