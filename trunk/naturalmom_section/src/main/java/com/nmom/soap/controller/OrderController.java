@@ -106,21 +106,15 @@ public class OrderController {
 			@RequestParam(value="product_name", required=false) String product_name,
 			@RequestParam(value="represent_img", required=false) String represent_img,
 			@RequestParam(value="buy_num", required=false) int buy_num,
-			@RequestParam(value="charge", required=false) String cha){
+			@RequestParam(value="cost_price", required=false) int cost_price){
 		
 		System.out.println("주문에 들어옴!");
 		List<TempOrderVo> tempList = null;
 		if(ses.getAttribute(S.SESSION_LOGIN) != null 
 				&& ses.getAttribute(S.SESSION_ADMIN) == null){
 			System.out.println("회원으로 로그인 되어있음");
-			int charge = 0;
-			try{
-				System.out.println(cha);
-			charge = Integer.parseInt(cha);
-			}catch(NumberFormatException ne){
-				ne.printStackTrace();
-			}
-			TempOrderVo temp = new TempOrderVo(product_no, represent_img, product_name, buy_num, charge);
+			
+			TempOrderVo temp = new TempOrderVo(product_no, represent_img, product_name, buy_num, cost_price);
 		
 			tempList = new ArrayList<TempOrderVo>();
 

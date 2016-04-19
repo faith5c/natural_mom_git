@@ -65,7 +65,13 @@
                </tr>
                <tr>
                   <td>판매 가격</td>
-                  <td><label id="selling_price" >${pvo.selling_price}</label>원</td>
+                  <td><label id="selling_price" >
+                  	<c:if test ="${pvo.stock <= 0}">
+                     	0
+                     </c:if>
+                     <c:if test ="${pvo.stock > 0}">
+		            	${pvo.selling_price}</c:if></label>원
+		            </td>
                </tr>
                <tr>
                   <td>유통 기한</td>
@@ -77,12 +83,20 @@
                </tr>
                <tr>
                   <td>구매 수량</td>
-                  <td><input id="purchase_count" name="buy_num" type="number" min="1" max="100" step="1" value="1" size="3"/></td>
+                  <td><input id="purchase_count" name="buy_num" type="number" min="1" max="100" step="1" size="3" 
+                  <c:if test ="${pvo.stock > 0}">value="1"</c:if>
+                  <c:if test ="${pvo.stock <= 0}">value="0" disabled="disabled"</c:if>/></td>
                </tr>
                <tr>
                   <td colspan="2">
                      총계
-                     <label id="total_price" >${pvo.selling_price}</label>원
+                     <label id="total_price" >
+                     <c:if test ="${pvo.stock <= 0}">
+                     	0
+                     </c:if>
+                     <c:if test ="${pvo.stock > 0}">
+		            	${pvo.selling_price}</c:if>
+		            </label>원
                   </td>
                </tr>
                <tr>
@@ -91,7 +105,8 @@
                   <input type="button" style="width:85px; padding : 13px 10px; margin : 0 5px;" onclick='go_to_interest(${pvo.product_no}, "${sessionScope.loggedin}");' value="관심상품"></button>
                  
                   <button style="width:85px; padding : 13px 10px; margin : 0 5px; 
-                  background-color : #000000" type="submit">바로구매</button>
+                  background-color : #000000" type="submit"  
+                  	<c:if test ="${pvo.stock <= 0}">disabled="disabled"</c:if> >바로구매</button>
                  
                   </td>
                </tr>
@@ -99,7 +114,7 @@
                   <input type="hidden" name="product_no" value="${pvo.product_no}">
                   <input type="hidden" name="product_name" value="${pvo.product_name}">
                   <input type="hidden" name="represent_img" value="${pvo.represent_img}">
-                  <input type="hidden" name="charge" value="${pvo.selling_price}">
+                  <input type="hidden" name="cost_price" value="${pvo.selling_price}">
                   ${SessionScope.loggedin}
                </form>
             </table>
