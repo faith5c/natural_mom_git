@@ -8,9 +8,9 @@
 	<script src="resources/js/jquery-1.11.3.min.js"></script>
 	<!-- [if lt IE 9]><script src="js/html5shiv.js"></script><![endif] -->
 	
-	<link rel="apple-touch-icon" href="resources/images/logo.ico" /> <!--애플아이콘등록-->
-	<link rel="shortcut icon" href="resources/images/logo.ico" /> <!--단축키아이콘등록-->
-	<link rel="stylesheet" href="resources/css/login.css"/>
+	<link rel="apple-touch-icon" href="/soap/resources/images/logo.ico" /> <!--애플아이콘등록-->
+	<link rel="shortcut icon" href="/soap/resources/images/logo.ico" /> <!--단축키아이콘등록-->
+	<link rel="stylesheet" href="/soap/resources/css/login.css"/>
 		
 	<title>자연맘</title>
   </head>
@@ -51,7 +51,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td colspan=3><br><a href="join.nm">신규회원가입</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<td colspan=3><br><a href="join_term.nm">신규회원가입</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<a href="#" onclick="pop_idpw()">아이디·패스워드찾기</a></td>
 					</tr>
 				</table>

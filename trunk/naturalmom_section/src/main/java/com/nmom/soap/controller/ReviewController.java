@@ -62,6 +62,7 @@ public class ReviewController
 			@RequestParam(value="page", defaultValue="1") int page)
 	{
 		Boolean isAdmin = ((Boolean)session.getAttribute(S.SESSION_ADMIN));
+		Map<String, Object> map = new HashMap<String, Object>();
 		
 		if (isAdmin!= null && isAdmin.booleanValue())
 		{
@@ -69,7 +70,6 @@ public class ReviewController
 		
 			int all_pages = (int)(Math.ceil((double)all_reviews / S.PAGE_LIMIT));
 			List<VReview_AdminVo> review_list = review_adminSvc.getAllList(page);
-			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("rp", new Integer(page));
 			map.put("rvw_list", review_list);
 			map.put("all_pages", all_pages);
@@ -78,7 +78,8 @@ public class ReviewController
 		}
 		else	// 관리자 계정으로 로그인 하지 않았을 때
 		{
-			return new ModelAndView("redirect:/login.nm", null);
+			map.put("err_msg", "관리자로 로그인 바랍니다.");
+			return new ModelAndView("redirect:/login.nm", map);
 		}
 	}
 	
@@ -90,6 +91,7 @@ public class ReviewController
 			@RequestParam(value="page", defaultValue="1") int page)
 	{
 		Boolean isAdmin = ((Boolean)session.getAttribute(S.SESSION_ADMIN));
+		Map<String, Object> map = new HashMap<String, Object>();
 		
 		if (isAdmin!= null && isAdmin.booleanValue())
 		{
@@ -100,7 +102,7 @@ public class ReviewController
 			
 			int all_reviews = -1;
 			int all_pages = 1;
-			Map<String, Object> map = new HashMap<String, Object>();
+			
 			List<VReview_AdminVo> review_list = null;
 	
 			if(option.equals("title"))
@@ -136,7 +138,8 @@ public class ReviewController
 		}
 		else	// 관리자 모드로 로그인하지 않았을 때
 		{
-			return new ModelAndView("redirect:/login.nm", null);
+			map.put("err_msg", "관리자로 로그인 바랍니다.");
+			return new ModelAndView("redirect:/login.nm", map);
 		}
 	}
 	
@@ -146,12 +149,11 @@ public class ReviewController
 			@RequestParam(value="r", required=false) int review_no)
 	{
 		Boolean isAdmin = ((Boolean)session.getAttribute(S.SESSION_ADMIN));
+		Map<String, Object> map = new HashMap<String, Object>();
 		
 		if (isAdmin!= null && isAdmin.booleanValue())
 		{
 			String id = (String)session.getAttribute(S.SESSION_LOGIN);
-			
-			Map<String, Object> map = new HashMap<String, Object>();
 			ReviewVo rvw = reviewSvc.getOneReview(review_no);
 
 			int countReviews = review_adminSvc.getCountAllReviews();
@@ -168,7 +170,8 @@ public class ReviewController
 		}
 		else	// 관리자 계정으로 로그인 안됐을 시
 		{
-			return new ModelAndView("redirect:/login.nm", null);
+			map.put("err_msg", "관리자로 로그인 바랍니다.");
+			return new ModelAndView("redirect:/login.nm", map);
 		}
 	}
 	
@@ -178,10 +181,11 @@ public class ReviewController
 			@RequestParam(value="r") int review_no, @RequestParam(value="d") String direction)
 	{
 		Boolean isAdmin = ((Boolean)session.getAttribute(S.SESSION_ADMIN));
+		Map<String, Object> map = new HashMap<String, Object>();
 		
 		if (isAdmin!= null && isAdmin.booleanValue())
 		{
-			Map<String, Object> map = new HashMap<String, Object>();
+			
 			ReviewVo rvw = null;
 			int chn_no = review_no;
 			
@@ -209,7 +213,8 @@ public class ReviewController
 		}
 		else
 		{
-			return new ModelAndView("redirect:/login.nm", null);
+			map.put("err_msg", "관리자로 로그인 바랍니다.");
+			return new ModelAndView("redirect:/login.nm", map);
 		}
 	}
 	
