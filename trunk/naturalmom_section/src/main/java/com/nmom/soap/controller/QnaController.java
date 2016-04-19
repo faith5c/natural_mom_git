@@ -655,10 +655,18 @@ public class QnaController {
 
 	//QNA 전체 목록 보여주기 페이지네이션
 	@RequestMapping(value="/admin/board/qna/{pp}/list.nm", method = RequestMethod.GET)
-	public ModelAndView adminShowQnaBoard(HttpServletRequest req, 
+	public ModelAndView adminShowQnaBoard(HttpServletRequest req,
+			HttpSession se,
 			@PathVariable(value="pp") int pp)
 	{
 		Map<String,Object> map = new HashMap<String,Object>();
+		
+		// 관리자인지 확인
+		Boolean isAdmin = ((Boolean)se.getAttribute(S.SESSION_ADMIN));
+		if(isAdmin==null || !isAdmin.booleanValue()){
+			map.put("err_msg", "관리자로 로그인 바랍니다.");
+			return new ModelAndView("redirect:/login.nm", map);
+		}
 		
 		//오라클 rownum 의 start, end 계산
 		int count = vQnaQnareSvc.getQnaCount();
@@ -763,11 +771,19 @@ public class QnaController {
 	//QNA 질문 검색 페이지네이션
 	@RequestMapping(value ="/admin/board/qna/{pp}/search.nm", method=RequestMethod.GET)
 	public ModelAndView adminBoardSearchQna(HttpServletRequest req, 
+			HttpSession se,
 			@PathVariable(value="pp") int pp,
 			@RequestParam(value="sch") String sch,
 			@RequestParam(value="kw", required=false) String kw){
 		
 		Map<String,Object> map = new HashMap<String,Object>();
+		
+		// 관리자인지 확인
+		Boolean isAdmin = ((Boolean)se.getAttribute(S.SESSION_ADMIN));
+		if(isAdmin==null || !isAdmin.booleanValue()){
+			map.put("err_msg", "관리자로 로그인 바랍니다.");
+			return new ModelAndView("redirect:/login.nm", map);
+		}		
 		
 		List<VQnaQnaReVo> qna_list = null;
 		int count = 0;
@@ -823,11 +839,19 @@ public class QnaController {
 	//QNA 하나 읽기
 	@RequestMapping(value="/admin/board/qna/read.nm", method=RequestMethod.GET)
 	public ModelAndView adminQnaRead(HttpServletRequest req,
+		HttpSession se,
 		@RequestParam(value="qr_no") String qr_no)
 	{
 		Map<String,Object> map = new HashMap<String,Object>();
 		VQnaQnaReVo qna_vo;
 		List<QnaReVo> qnare_list;
+		
+		// 관리자인지 확인
+		Boolean isAdmin = ((Boolean)se.getAttribute(S.SESSION_ADMIN));
+		if(isAdmin==null || !isAdmin.booleanValue()){
+			map.put("err_msg", "관리자로 로그인 바랍니다.");
+			return new ModelAndView("redirect:/login.nm", map);
+		}	
 		
 		int qnano;
 		
@@ -867,6 +891,7 @@ public class QnaController {
 	//QNA 비밀글 하나 읽기
 	@RequestMapping(value="/admin/board/qna/secret.nm", method=RequestMethod.POST)
 	public ModelAndView adminQnaSecretRead(HttpServletRequest req,
+		HttpSession se,
 		@RequestParam(value="rn", required=false) String rn,
 		@RequestParam(value="qr_no") String qr_no,
 		@RequestParam(value="q_pw") String q_pw
@@ -875,6 +900,14 @@ public class QnaController {
 		Map<String,Object> map = new HashMap<String,Object>();
 		VQnaQnaReVo qna_vo;
 		List<QnaReVo> qnare_list;
+		
+		// 관리자인지 확인
+		Boolean isAdmin = ((Boolean)se.getAttribute(S.SESSION_ADMIN));
+		if(isAdmin==null || !isAdmin.booleanValue()){
+			map.put("err_msg", "관리자로 로그인 바랍니다.");
+			return new ModelAndView("redirect:/login.nm", map);
+		}
+		
 		
 		int qnano;
 		
@@ -909,10 +942,20 @@ public class QnaController {
 	// QNA 글쓰기 사용자가 작성하는 화면
 	@RequestMapping(value="/admin/board/qna/add_form.nm", method=RequestMethod.GET)
 	public ModelAndView adminPrepareAddQnaForm(HttpServletRequest req,
+			HttpSession se,
 			@RequestParam(value="pos", required = false) String pos,
 			@RequestParam(value="ref", required = false) String ref)
 	{
 		Map<String,Object> map = new HashMap<String,Object>();
+		
+		// 관리자인지 확인
+		Boolean isAdmin = ((Boolean)se.getAttribute(S.SESSION_ADMIN));
+		if(isAdmin==null || !isAdmin.booleanValue()){
+			map.put("err_msg", "관리자로 로그인 바랍니다.");
+			return new ModelAndView("redirect:/login.nm", map);
+		}
+		
+		
 		if(pos!=null && ref!=null){
 			try{
 				QnaVo ori_qvo = qnaSvc.getSimpleQnaByRefNPos(Integer.parseInt(ref), Integer.parseInt(pos));
@@ -1006,12 +1049,21 @@ public class QnaController {
 	// QNA 글쓰기 사용자가 글편집하는 화면
 	@RequestMapping(value="/admin/board/qna/edit_form.nm", method=RequestMethod.GET)
 	public ModelAndView adminPrepareEditQnaForm(HttpServletRequest req,
+			HttpSession se,
 			@RequestParam(value="qe_no") String qe_no){
 		
 		int qna_no;
 		QnaVo qna_vo;
 		
 		Map<String,Object> map = new HashMap<String,Object>();
+		
+		// 관리자인지 확인
+		Boolean isAdmin = ((Boolean)se.getAttribute(S.SESSION_ADMIN));
+		if(isAdmin==null || !isAdmin.booleanValue()){
+			map.put("err_msg", "관리자로 로그인 바랍니다.");
+			return new ModelAndView("redirect:/login.nm", map);
+		}
+		
 		try{
 			if(qe_no!=null){
 				qna_no = Integer.parseInt(qe_no);

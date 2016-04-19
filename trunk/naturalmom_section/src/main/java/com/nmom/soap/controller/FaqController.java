@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -227,6 +228,7 @@ public class FaqController {
 	//관리자단에서 보는 자주하는 질문 목록
 	@RequestMapping(value ="admin/board/faq.nm", method=RequestMethod.GET)
 	public ModelAndView adminBoardFaq(HttpServletRequest req, 
+			HttpSession se,
 			@RequestParam(value="pgidx", required=false) String pageindex){
 		int pi;
 
@@ -243,6 +245,15 @@ public class FaqController {
 		}
 		
 		Map<String,Object> map = new HashMap<String,Object>();
+		
+		// 관리자여부 확인
+		Boolean isAdmin = ((Boolean)se.getAttribute(S.SESSION_ADMIN));
+		if(isAdmin==null || !isAdmin.booleanValue()){
+			map.put("err_msg", "관리자로 로그인 바랍니다.");
+			return new ModelAndView("redirect:/login.nm", map);
+		}
+		
+		
 		List<FaqVo> faq_list = faqSvc.getAllFaq(pi * S.PAGE_LIMIT, (pi+1) * S.PAGE_LIMIT);
 		if(faq_list != null){
 			map.put("faq_list", faq_list);
