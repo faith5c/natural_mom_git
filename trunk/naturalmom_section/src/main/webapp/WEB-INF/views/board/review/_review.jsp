@@ -282,7 +282,7 @@
 		</c:if>
 	</table>
 		<div class="page">
-			<c:if test="${rp eq 1}">
+			<c:if test="${rp eq 1 && all_pages > 0}">
 				&lt;
 			</c:if>
 			<c:if test="${rp gt 1}">
@@ -298,7 +298,7 @@
 				</c:if>
 			</c:forEach>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<c:if test="${rp eq all_pages}">
+			<c:if test="${rp eq all_pages && all_pages > 0}">
 				&gt;
 			</c:if>
 			<c:if test="${rp lt all_pages}">

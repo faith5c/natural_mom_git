@@ -136,7 +136,7 @@
 <!-- 글쓴이 정보 -->
 	<tr>
 		<td colspan="4">
-			<div>${review.mem_id} | <fmt:formatDate value="${review.rvw_write_day}" type = "date" /> | 조회수 ${review.rvw_hits}</div> 
+			<div>${review.mem_id} | <fmt:formatDate value="${review.rvw_write_day}" type = "date" /></div> 
 		</td>
 	</tr>
 <!-- 내용 -->
@@ -173,10 +173,10 @@
 	<tr>
 		<td colspan="2">
 		<!-- 숫자 받아서 유효하지 않을 경우 다음, 이전 숫자로 넘어가도록 -->
-			<c:if test="${review.rownum < count}">
+			<c:if test="${review.rvw_rnum < count}">
 				<input type="button" value="이전글" onclick="location.href='review_read_m.nm?d=p&r=${review.review_no}'">
 			</c:if>
-			<c:if test = "${review.rownum > 1}" >
+			<c:if test = "${review.rvw_rnum > 1}" >
 				<input type="button" value="다음글" onclick="location.href='review_read_m.nm?d=n&r=${review.review_no}'">
 			</c:if>
 		</td>
