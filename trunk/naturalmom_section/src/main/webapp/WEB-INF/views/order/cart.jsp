@@ -194,7 +194,7 @@
 		var temp = checked.substring(1);
 		console.log(temp);
 		
-		location.href="/soap/interest/from_cart.nm?"+temp;
+		location.href="/soap/cart/to_interest?"+temp;
 	  }
   </script>
 </html>
