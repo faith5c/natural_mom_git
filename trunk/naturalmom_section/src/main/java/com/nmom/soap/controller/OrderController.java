@@ -98,9 +98,9 @@ public class OrderController {
 	}
 	
 	
-	//주문 프로세스
+	//주문하기 페이지   /order/detailorder.nm
 	@RequestMapping(value="/order/detailorder.nm", method={RequestMethod.POST, RequestMethod.GET})
-	public ModelAndView addtempOrder(HttpServletRequest req,
+	public ModelAndView indentation(HttpServletRequest req,
 			HttpSession ses,
 			@RequestParam(value="product_no", required=false) int product_no,
 			@RequestParam(value="product_name", required=false) String product_name,
@@ -108,7 +108,7 @@ public class OrderController {
 			@RequestParam(value="buy_num", required=false) int buy_num,
 			@RequestParam(value="charge", required=false) String cha){
 		
-		System.out.println("임시 주문에 들어옴!");
+		System.out.println("주문에 들어옴!");
 		List<TempOrderVo> tempList = null;
 		if(ses.getAttribute(S.SESSION_LOGIN) != null 
 				&& ses.getAttribute(S.SESSION_ADMIN) == null){
@@ -123,10 +123,12 @@ public class OrderController {
 			TempOrderVo temp = new TempOrderVo(product_no, represent_img, product_name, buy_num, charge);
 		
 			tempList = new ArrayList<TempOrderVo>();
-			
-			
+
 			tempList.add(temp);
 			System.out.println("temp "+temp);
+			
+			ses.setAttribute(S.SESSION_TEMP_ORDER, tempList);
+			
 			//세션에 1개 이상 상품이 저장 되어 있는경우 
 			//같은 상품이 있는 것을 체크하여 같을 경우 적게 산 거를 세션에서 삭제
 			
@@ -152,7 +154,7 @@ public class OrderController {
 			map.put("temp", tempList);
 			//주문이 하나이므로 토탈값은 0번에서 가져온다.+3000은 배송
 			map.put("total_price", temp.getTotal_price());
-			map.put("total", temp.getTotal_price()+3000);
+			map.put("charge", temp.getTotal_price()+3000);
 			map.put("page", "order");
 			
 			System.out.println((String)ses.getAttribute(S.SESSION_LOGIN));
@@ -168,6 +170,33 @@ public class OrderController {
 			return new ModelAndView("order/order", map);
 		}
 		return null;//"redirect:detail.nm?pdno="+product_no;
+	}
+	
+	//주문 프로세스 order_proc.nm
+	@RequestMapping(value="order_proc.nm", method=RequestMethod.POST)
+	public ModelAndView orderProc(HttpServletRequest req,
+			HttpSession ses,
+			//주문자 정보
+			@RequestParam(value="name", required=false) String name,
+			@RequestParam(value="phone1", required=false) String phone1,
+			@RequestParam(value="phone2", required=false) String phone2,
+			@RequestParam(value="phone3", required=false) String phone3,
+			@RequestParam(value="post_num", required=false) String post_num,
+			@RequestParam(value="address_detail", required=false) String address_detail,
+			@RequestParam(value="del_msg", required=false) String del_msg,
+			@RequestParam(value="card", required=false) String card,
+			@RequestParam(value="card_num1", required=false) String card_num1,
+			@RequestParam(value="card_num2", required=false) String card_num2,
+			@RequestParam(value="card_num3", required=false) String card_num3,
+			@RequestParam(value="card_num4", required=false) String card_num4,
+			@RequestParam(value="expiry_month", required=false) String expiry_month,
+			@RequestParam(value="expiry_year", required=false) String expiry_year,
+			//주문 정보		
+			@RequestParam(value="charge", required=false) int charge){
+		
+		//재고 확인 후 없으면 인덱스 페이지 ㄱㄳ
+		
+		return null;
 	}
 	
 //	@RequestMapping(value="/order/order.nm")
@@ -198,6 +227,7 @@ public class OrderController {
 		return new ModelAndView("order/order", map);
 	}
 	
+	//주문 리스트 보기 /orderlist.nm
 	@RequestMapping(value ="/orderlist.nm")
 	public ModelAndView showOrderlist(HttpServletRequest req,
 			HttpSession ses){
@@ -209,6 +239,7 @@ public class OrderController {
 		return new ModelAndView("order/orderlist", map);
 	}
 	
+	//주문 환불/구매확정  orderlist_edit.nm
 	@RequestMapping(value ="orderlist_edit.nm")
 	public ModelAndView editOrderlist(HttpServletRequest req,
 			HttpSession ses,

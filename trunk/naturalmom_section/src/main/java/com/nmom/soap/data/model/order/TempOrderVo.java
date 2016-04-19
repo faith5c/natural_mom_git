@@ -5,39 +5,40 @@ public class TempOrderVo {
 	private String represent_img;
 	private String product_name;
 	private int buy_num;
-	private int charge;
+	private int cost_price;
 	private int total_price;
-	
 	
 	public TempOrderVo() {}
 
 	//임시 주문 저장 시 
-	public TempOrderVo(int product_no, String represent_img, String product_name, int buy_num, int charge) {
+	public TempOrderVo(int product_no, String represent_img, String product_name, int buy_num, int cost_price) {
 		super();
 		this.product_no = product_no;
 		this.represent_img = represent_img;
 		this.product_name = product_name;
 		this.buy_num = buy_num;
-		this.charge = charge;
+		this.cost_price = cost_price;
 		this.total_price = 0;
 	}
 	
+	//장바구니 객체
+	
 	//전체 생성자
-	public TempOrderVo(int product_no, String represent_img, String product_name, int buy_num, int charge,
+	public TempOrderVo(int product_no, String represent_img, String product_name, int buy_num, int cost_price,
 			int total_price) {
 		super();
 		this.product_no = product_no;
 		this.represent_img = represent_img;
 		this.product_name = product_name;
 		this.buy_num = buy_num;
-		this.charge = charge;
+		this.cost_price = cost_price;
 		this.total_price = total_price;
 	}
 
 	@Override
 	public String toString() {
 		return "TempOrderVo [product_no=" + product_no + ", represent_img=" + represent_img + ", product_name="
-				+ product_name + ", buy_num=" + buy_num + ", charge=" + charge + ", total_price=" + total_price + "]";
+				+ product_name + ", buy_num=" + buy_num + ", cost_price=" + cost_price + ", total_price=" + total_price + "]";
 	}
 
 	public int getProduct_no() {
@@ -72,16 +73,16 @@ public class TempOrderVo {
 		this.buy_num = buy_num;
 	}
 
-	public int getCharge() {
-		return charge;
+	public int getcost_price() {
+		return cost_price;
 	}
 
-	public void setCharge(int charge) {
-		this.charge = charge;
+	public void setcost_price(int cost_price) {
+		this.cost_price = cost_price;
 	}
 
 	public int getTotal_price() {
-		return charge*buy_num;
+		return cost_price*buy_num;
 	}
 
 	public void setTotal_price(int total_price) {

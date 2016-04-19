@@ -133,7 +133,7 @@ table tr .explain {
 	border: 0px;
 }
 
-.buttons[type="submit"] {
+.buttons[type="button"] {
 	padding-top: 7px;
 	padding-bottom: 7px;
 	padding-right: 20px;
@@ -151,7 +151,7 @@ table tr .explain {
 	opacity: 0.7;
 }
 
-#submit {
+#pay {
 	text-align: center;
 }
 </style>
@@ -184,7 +184,7 @@ table tr .explain {
 			<tr>
 				<td colspan=4>
 				<c:if test="${ not empty temp}">
-				총 주문금액 : ${total_price}원&nbsp;+&nbsp;배송비 3000원&nbsp;=&nbsp;&nbsp;<b>${total}원</b>
+				총 주문금액 : ${total_price}원&nbsp;+&nbsp;배송비 3000원&nbsp;=&nbsp;&nbsp;<b>${charge}원</b>
 				</c:if>
 				</td>
 			</tr>
@@ -275,7 +275,8 @@ table tr .explain {
 	 }
 	 
 	 function allSubmit(){
-			
+			 var f = document.order_from;
+			 
 			if($('#nameRe').val()==""){
 				alert("이름을 입력해주세요.");
 			}else if($('#phoneRe1').val()=="" || $('#phoneRe2').val()=="" || $('#phoneRe3').val()==""){
@@ -284,15 +285,26 @@ table tr .explain {
 				alert("우편번호를 입력해주세요.");
 			}else if($('#address_detail').val()==""){
 				alert("주소를 입력해주세요.");
+			}else if(!f.card[0].checked &&
+					!f.card[1].checked &&
+					!f.card[2].checked &&
+					!f.card[3].checked &&
+					!f.card[4].checked &&
+					!f.card[5].checked &&
+					!f.card[6].checked &&
+					!f.card[7].checked){
+				alert("카드사를 선택하세요."); 
+			}else if($('#expiry_month').val()=="-" || $('#expiry_year').val()=="-"){
+				alert("카드 유효기간을 입력해주세요.");
 			}else{
-			//	$('#join_form').submit();
-			//	document.join_form.submit();
+				f.submit();
 			}
 			
 		}
+	 
 	</script>
 		<div>
-		<form action="order.jsp?page=order_complete" method="post">
+		<form action="order_proc.nm" method="post" name="order_from">
 			<!-- 배송지정보 시작 -->
 			<table cellspacing="0" class="info">
 				<tr>
@@ -336,8 +348,8 @@ table tr .explain {
 			<!-- 결제정보 시작 -->
 			<table cellspacing="0" class="info">
 				<tr>
-					<td for="name">결제금액</td>
-					<td>${total}원</td>
+					<td>결제금액</td>
+					<td>${charge}원</td>
 				</tr>
 				<tr>
 					<td>결제방식</td>
@@ -359,13 +371,16 @@ table tr .explain {
 				<tr>
 					<td>신용카드 번호</td>
 					<td><input type="number" id="card_num1" name="card_num1"
-						value="" size="4" maxlength="4" />&nbsp;&nbsp; <input type="number"
-						id="card_num2" name="card_num2" value="" size="4" maxlength="4" />&nbsp;&nbsp;
-						<input type="number" id="card_num3" name="card_num3" value=""
-						size="4" maxlength="4" />&nbsp;&nbsp; <input type="number"
-						id="card_num4" name="card_num4" value="" size="4" maxlength="4" />
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 유효기간 <select
-						name="expiry_month">
+						size="4" maxlength="4" />&nbsp;&nbsp; 
+						<input type="number" id="card_num2" name="card_num2" 
+						size="4" maxlength="4" />&nbsp;&nbsp;
+						<input type="number" id="card_num3" name="card_num3" 
+						size="4" maxlength="4" />&nbsp;&nbsp; 
+						<input type="number" id="card_num4" name="card_num4" 
+						value="" size="4" maxlength="4" />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						유효기간 
+						<select name="expiry_month" id="expiry_month">
 							<option value="-">&nbsp;-&nbsp;</option>
 							<option value="01">&nbsp;01&nbsp;</option>
 							<option value="02">&nbsp;02&nbsp;</option>
@@ -379,7 +394,8 @@ table tr .explain {
 							<option value="10">&nbsp;10&nbsp;</option>
 							<option value="11">&nbsp;11&nbsp;</option>
 							<option value="12">&nbsp;12&nbsp;</option>
-					</select> <select name="expiry_year">
+						</select> 
+						<select name="expiry_year" id="expiry_year">
 							<option value="-">&nbsp;-&nbsp;</option>
 							<option value="16">&nbsp;16&nbsp;</option>
 							<option value="17">&nbsp;17&nbsp;</option>
@@ -399,8 +415,8 @@ table tr .explain {
 					</select></td>
 				</tr>
 			</table>
-
-			<p id="submit">
+			<input type="hidden" name="charge" value="${charge}">
+			<p id="pay">
 				<input type="button" value="결제하기" class="buttons" onclick="allSubmit()">
 			</p>
 			<!--------------------------------------------------------end container------------->
