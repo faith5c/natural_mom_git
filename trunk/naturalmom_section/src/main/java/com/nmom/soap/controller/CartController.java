@@ -49,13 +49,13 @@ public class CartController {
 	
 	// 장바구니 상품 추가 /cart/add_proc.nm
 	@RequestMapping(value ="/cart/add_proc.nm", method=RequestMethod.GET)
-	public String addCart(HttpServletRequest req, HttpSession ses,
+	public ModelAndView addCart(HttpServletRequest req, HttpSession ses,
 			@RequestParam(value="c_pn") String c_pn,
-			@RequestParam(value="c_bn") String c_bn,
-			@RequestParam(value="cart_check") String cart_check)
+			@RequestParam(value="c_bn") String c_bn)
 	{
-			
-		if(c_pn !=null && c_bn!=null && cart_check!=null){
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		if(c_pn !=null && c_bn!=null){
 			try{
 				String loggedin = (String)ses.getAttribute("loggedin");
 				int product_no = Integer.parseInt(c_pn);
@@ -68,13 +68,10 @@ public class CartController {
 					int old_buy_num = cartSvc.getBuyNum(product_no, loggedin);
 					int r = cartSvc.editCartProduct(product_no, loggedin, old_buy_num + buy_num);
 					if(r == 1){
-						if(cart_check.equalsIgnoreCase("t")){
-							//장바구니 보기로 이동
-							return "redirect:/cart.nm";
-						} else {
-							//그냥 상품상세보기에 있음
-							return "redirect:/product/detail.nm?pdno="+c_pn;
-						}
+						map.put("pdno", c_pn);
+						map.put("add_c", "ok");
+						return new ModelAndView("redirect:/product/detail.nm", map);
+						
 					} else {
 						System.out.println("장바구니 추가부분에서 갱신 에러");
 					}
@@ -82,13 +79,9 @@ public class CartController {
 					int r = cartSvc.addCartProduct(new CartVo(product_no, loggedin, buy_num));
 					
 					if(r==1){
-						if(cart_check.equalsIgnoreCase("t")){
-							//장바구니 보기로 이동
-							return "redirect:/cart.nm";
-						} else {
-							//그냥 상품상세보기에 있음
-							return "redirect:/product/detail.nm?pdno="+c_pn;
-						}
+						map.put("pdno", c_pn);
+						map.put("add_c", "ok");
+						return new ModelAndView("redirect:/product/detail.nm", map);
 					} else {
 						System.out.println("장바구니 추가 에러");
 					}
@@ -101,7 +94,7 @@ public class CartController {
 		} else {
 			System.out.println("장바구니 추가에서 정보를 받아오지 못함");
 		}
-		return "redirect:/index.nm";
+		return new ModelAndView("redirect:/index.nm", map);
 	}
 	
 	// 장바구니 상품 개수 수정 /cart/edit_proc.nm

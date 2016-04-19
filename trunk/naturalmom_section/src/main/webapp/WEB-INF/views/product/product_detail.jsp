@@ -130,8 +130,8 @@
             <img src="/soap/resources/images/info_delivery.jpg" alt="배송정보"/>
          </div>
          
-         <input type="hidden" id="back_cart" value="${param.back_cart}"/>
-         <input type="hidden" id="back_interest" value="${param.back_interest}"/>
+         <input type="hidden" id="add_c" value="${param.add_c}"/>
+         <input type="hidden" id="add_i" value="${param.add_i}"/>
          
          <%@ include file="../board/review/_review.jsp" %>
       </div>
@@ -145,6 +145,24 @@
 
    <script type="text/javascript">
       $(function(){
+    	 
+    	 if($("#add_i").val() == "ok") {
+   		  	  if(confirm("관심상품이 등록되었습니다\n관심상품을 확인하시겠습니까?")){
+   		  		  location.href="/soap/interest.nm"
+   		  	  } 
+   		  	  
+    	 } else if($("#add_i").val() == "dup") {
+   		  	  alert("이미 등록된 관심상품입니다");
+    		 
+    	 }
+    	 if($("#add_c").val() == "ok") {
+  		  	  if(confirm("장바구니에 상품이 등록되었습니다\n장바구니를 확인하시겠습니까?")){
+  		  		  location.href="/soap/cart.nm"
+  		  	  } 
+  		  	  
+   	 	} 
+    	 //////////////////////////////////////////////
+    	 
          var selling_price = $("#selling_price").html();
          console.log("판매가 : "+selling_price);
          
@@ -176,22 +194,21 @@
     	  } else if($("#purchase_count").val() > stock){
     			alert("상품 재고가 부족해서 장바구니에 추가할 수 없습니다"); 	
     	  } else {
-    		  if(confirm("추가된 장바구니를 확인하겠습니까?")){
-			     location.href="/soap/cart/add_proc.nm?c_pn="+cart_poductno+"&c_bn="+$("#purchase_count").val()+"&cart_check=t";
-    		  } else {
-    			 location.href="/soap/cart/add_proc.nm?c_pn="+cart_poductno+"&c_bn="+$("#purchase_count").val()+"&cart_check=f";
-    		  }
+			     location.href="/soap/cart/add_proc.nm?c_pn="+cart_poductno+"&c_bn="+$("#purchase_count").val();
     	  } 
       }
+       
       function go_to_interest(interest_poductno, loggedin){
     	  console.log(loggedin);
-    	  if(loggedin != null && loggedin != ""){
-    			location.href="/soap/interest.nm?i_pn="+interest_poductno;
+
+    	  if(loggedin == null || loggedin == ""){
+		    	alert("관심상품에 추가하려면 로그인이 필요합니다");
+	    		location.href="/soap/login.nm";
     	  } else {
-    		  alert("관심상품에 추가하려면 로그인이 필요합니다");
-    		  location.href="/soap/login.nm";
-    	  }
-      }
+			    location.href="/soap/interest/add_proc.nm?i_pn="+interest_poductno;
+    	  } 
+      } 
+
    </script>
 
   </body>

@@ -49,9 +49,11 @@
 		
 		<c:forEach var="il" items="${interest_list}">
 			<tr>
-				<td><input type="checkbox" name="product_sel" value="${il.product_no}"></td>
-				<td><img src="/soap/resources/product_images/${il.represent_img}" alt="${il.product_name}"></td>
-				<td><a href="#">${il.product_name}</a></td>
+				<td><input type="checkbox" id="no" value="${il.product_no}"></td>
+				<td><a href="<c:url value='/product/detail.nm?pdno=${il.product_no}'/>">
+				<img src="/soap/resources/product_images/${il.represent_img}" alt="${il.product_name}">
+				</a></td>
+				<td><a href="<c:url value='/product/detail.nm?pdno=${il.product_no}'/>">${il.product_name}</a></td>
 				<td>${il.selling_price}원</td>
 			</tr>
 		</c:forEach>
@@ -65,12 +67,51 @@
 		<tr>
 			<td colspan = "4">
 			
-				<input type = "button" value="상품삭제">
+				<input type = "button" value="상품삭제" onclick='deleteInterestProduct();'>
 				<input type = "submit" value="장바구니등록">
 			</td>
 		</tr>
 	</table>
 	
 	</form>
+	
+<script type="text/javascript">
+
+  function deleteInterestProduct(){
+  	var checked="";
+  	
+  	$('input:checkbox[id="no"]:checked').each(function(){
+        checked += '&no=' + $(this).val();
+    });
+	console.log(checked);
+	if(checked==""){
+		alert("삭제할 상품을 선택하세요");
+		return;
+	}
+	var temp = checked.substring(1);
+	console.log(temp);
+	
+	location.href="/soap/interest/del_proc.nm?"+temp;
+  }
+  
+  /* 
+  function cartToInterest(){
+	  	var checked="";
+	  	
+	  	$('input:checkbox[id="no"]:checked').each(function(){
+	        checked += '&no=' + $(this).val();
+	    });
+		console.log(checked);
+		if(checked==""){
+			alert("관심상품 등록할 상품을 선택하세요");
+			return;
+		}
+		var temp = checked.substring(1);
+		console.log(temp);
+		
+		location.href="/soap/cart/to_interest?"+temp;
+  } */
+</script>
+
 </body>
 </html>
