@@ -665,7 +665,7 @@ public class QnaController {
 		Boolean isAdmin = ((Boolean)se.getAttribute(S.SESSION_ADMIN));
 		if(isAdmin==null || !isAdmin.booleanValue()){
 			map.put("err_msg", "관리자로 로그인 바랍니다.");
-			return new ModelAndView("redirect:/login.nm", map);
+			return new ModelAndView("login/login", map);
 		}
 		
 		//오라클 rownum 의 start, end 계산
@@ -782,7 +782,7 @@ public class QnaController {
 		Boolean isAdmin = ((Boolean)se.getAttribute(S.SESSION_ADMIN));
 		if(isAdmin==null || !isAdmin.booleanValue()){
 			map.put("err_msg", "관리자로 로그인 바랍니다.");
-			return new ModelAndView("redirect:/login.nm", map);
+			return new ModelAndView("login/login", map);
 		}		
 		
 		List<VQnaQnaReVo> qna_list = null;
@@ -850,7 +850,7 @@ public class QnaController {
 		Boolean isAdmin = ((Boolean)se.getAttribute(S.SESSION_ADMIN));
 		if(isAdmin==null || !isAdmin.booleanValue()){
 			map.put("err_msg", "관리자로 로그인 바랍니다.");
-			return new ModelAndView("redirect:/login.nm", map);
+			return new ModelAndView("login/login", map);
 		}	
 		
 		int qnano;
@@ -905,7 +905,7 @@ public class QnaController {
 		Boolean isAdmin = ((Boolean)se.getAttribute(S.SESSION_ADMIN));
 		if(isAdmin==null || !isAdmin.booleanValue()){
 			map.put("err_msg", "관리자로 로그인 바랍니다.");
-			return new ModelAndView("redirect:/login.nm", map);
+			return new ModelAndView("login/login", map);
 		}
 		
 		
@@ -952,7 +952,7 @@ public class QnaController {
 		Boolean isAdmin = ((Boolean)se.getAttribute(S.SESSION_ADMIN));
 		if(isAdmin==null || !isAdmin.booleanValue()){
 			map.put("err_msg", "관리자로 로그인 바랍니다.");
-			return new ModelAndView("redirect:/login.nm", map);
+			return new ModelAndView("login/login", map);
 		}
 		
 		
@@ -1061,7 +1061,7 @@ public class QnaController {
 		Boolean isAdmin = ((Boolean)se.getAttribute(S.SESSION_ADMIN));
 		if(isAdmin==null || !isAdmin.booleanValue()){
 			map.put("err_msg", "관리자로 로그인 바랍니다.");
-			return new ModelAndView("redirect:/login.nm", map);
+			return new ModelAndView("login/login", map);
 		}
 		
 		try{

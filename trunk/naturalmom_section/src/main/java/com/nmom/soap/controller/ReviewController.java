@@ -79,7 +79,7 @@ public class ReviewController
 		else	// 관리자 계정으로 로그인 하지 않았을 때
 		{
 			map.put("err_msg", "관리자로 로그인 바랍니다.");
-			return new ModelAndView("redirect:/login.nm", map);
+			return new ModelAndView("login/login", map);
 		}
 	}
 	
@@ -139,7 +139,7 @@ public class ReviewController
 		else	// 관리자 모드로 로그인하지 않았을 때
 		{
 			map.put("err_msg", "관리자로 로그인 바랍니다.");
-			return new ModelAndView("redirect:/login.nm", map);
+			return new ModelAndView("login/login", map);
 		}
 	}
 	
@@ -171,7 +171,7 @@ public class ReviewController
 		else	// 관리자 계정으로 로그인 안됐을 시
 		{
 			map.put("err_msg", "관리자로 로그인 바랍니다.");
-			return new ModelAndView("redirect:/login.nm", map);
+			return new ModelAndView("login/login", map);
 		}
 	}
 	
@@ -214,7 +214,7 @@ public class ReviewController
 		else
 		{
 			map.put("err_msg", "관리자로 로그인 바랍니다.");
-			return new ModelAndView("redirect:/login.nm", map);
+			return new ModelAndView("login/login", map);
 		}
 	}
 	

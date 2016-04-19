@@ -300,7 +300,7 @@ public class NoticeController {
 		Boolean isAdmin = ((Boolean)ses.getAttribute(S.SESSION_ADMIN));
 		if(isAdmin==null || !isAdmin.booleanValue()){
 			map.put("err_msg", "관리자로 로그인 바랍니다.");
-			return new ModelAndView("redirect:/login.nm", map);
+			return new ModelAndView("login/login", map);
 		}
 		
 		if( nowBlock != null && !nowBlock.isEmpty() && !nowBlock.equals("")){
@@ -382,7 +382,7 @@ public class NoticeController {
 			Boolean isAdmin = ((Boolean)ses.getAttribute(S.SESSION_ADMIN));
 			if(isAdmin==null || !isAdmin.booleanValue()){
 				map.put("err_msg", "관리자로 로그인 바랍니다.");
-				return new ModelAndView("redirect:/login.nm", map);
+				return new ModelAndView("login/login", map);
 			}
 			
 			int n = 0;
@@ -444,7 +444,7 @@ public class NoticeController {
 		Boolean isAdmin = ((Boolean)ses.getAttribute(S.SESSION_ADMIN));
 		if(isAdmin==null || !isAdmin.booleanValue()){
 			map.put("err_msg", "관리자로 로그인 바랍니다.");
-			return new ModelAndView("redirect:/login.nm", map);
+			return new ModelAndView("login/login", map);
 		}
 		
 		
@@ -560,7 +560,7 @@ public class NoticeController {
 		Boolean isAdmin = ((Boolean)ses.getAttribute(S.SESSION_ADMIN));
 		if(isAdmin==null || !isAdmin.booleanValue()){
 			map.put("err_msg", "관리자로 로그인 바랍니다.");
-			return new ModelAndView("redirect:/login.nm", map);
+			return new ModelAndView("login/login", map);
 		}
 		
 		map.put("no", new NoticeVo(notice_no, title, content, null, null));
@@ -598,7 +598,7 @@ public class NoticeController {
 		Boolean isAdmin = ((Boolean)ses.getAttribute(S.SESSION_ADMIN));
 		if(isAdmin==null || !isAdmin.booleanValue()){
 			map.put("err_msg", "관리자로 로그인 바랍니다.");
-			return new ModelAndView("redirect:/login.nm", map);
+			return new ModelAndView("login/login", map);
 		}
 		
 		String content = null;

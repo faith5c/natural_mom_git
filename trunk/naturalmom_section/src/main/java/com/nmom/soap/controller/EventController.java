@@ -203,7 +203,7 @@ public class EventController {
 		Boolean isAdmin = ((Boolean)se.getAttribute(S.SESSION_ADMIN));
 		if(isAdmin==null || !isAdmin.booleanValue()){
 			map.put("err_msg", "관리자로 로그인 바랍니다.");
-			return new ModelAndView("redirect:/login.nm", map);
+			return new ModelAndView("login/login", map);
 		}
 		
 		if(search!=null){
@@ -247,7 +247,7 @@ public class EventController {
 		Boolean isAdmin = ((Boolean)se.getAttribute(S.SESSION_ADMIN));
 		if(isAdmin==null || !isAdmin.booleanValue()){
 			map.put("err_msg", "관리자로 로그인 바랍니다.");
-			return new ModelAndView("redirect:/login.nm", map);
+			return new ModelAndView("login/login", map);
 		}
 
 		if(d != 0){
@@ -279,7 +279,7 @@ public class EventController {
 			Boolean isAdmin = ((Boolean)se.getAttribute(S.SESSION_ADMIN));
 			if(isAdmin==null || !isAdmin.booleanValue()){
 				map.put("err_msg", "관리자로 로그인 바랍니다.");
-				return new ModelAndView("redirect:/login.nm", map);
+				return new ModelAndView("login/login", map);
 			}
 			
 			// event_no가 0이 아니면 수정
@@ -337,7 +337,7 @@ public class EventController {
 			Boolean isAdmin = ((Boolean)se.getAttribute(S.SESSION_ADMIN));
 			if(isAdmin==null || !isAdmin.booleanValue()){
 				map.put("err_msg", "관리자로 로그인 바랍니다.");
-				return new ModelAndView("redirect:/login.nm", map);
+				return new ModelAndView("login/login", map);
 			}
 			
 			map.put("e", new EventVo().editform(no, title, content));

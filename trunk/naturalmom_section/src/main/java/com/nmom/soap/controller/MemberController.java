@@ -263,9 +263,18 @@ public class MemberController {
 	
 	///////////////////////////////////////////////////////////////////////////////////////////관리자 회원관리
 	@RequestMapping(value ="/admin/member.nm", method=RequestMethod.GET)
-	public ModelAndView admin_member(HttpServletRequest req){
+	public ModelAndView admin_member(HttpServletRequest req,
+									HttpSession se){
 		
 		Map<String, Object> map = new HashMap<>();
+		
+		// 관리자 여부 확인
+		Boolean isAdmin = ((Boolean)se.getAttribute(S.SESSION_ADMIN));
+		if(isAdmin==null || !isAdmin.booleanValue()){
+			map.put("err_msg", "관리자로 로그인 바랍니다.");
+			return new ModelAndView("login/login", map);
+		}
+		
 		s_member_list = memberSvc.getAllMember();
 		admin_list_format(s_member_list);
 		
@@ -277,11 +286,19 @@ public class MemberController {
 	// SORT
 	@RequestMapping(value ="/admin/member.nm", method=RequestMethod.GET, params="Lineup=true")
 	public ModelAndView admin_member_sort(HttpServletRequest req,
+										HttpSession se,
 										@RequestParam(value="sort") String sort,
 										@RequestParam(value="m") String m ){
 		System.out.println(sort);
 		System.out.println(m);
 		Map<String, Object> map = new HashMap<>();
+		
+		// 관리자 여부 확인
+		Boolean isAdmin = ((Boolean)se.getAttribute(S.SESSION_ADMIN));
+		if(isAdmin==null || !isAdmin.booleanValue()){
+			map.put("err_msg", "관리자로 로그인 바랍니다.");
+			return new ModelAndView("login/login", map);
+		}
 		
 		map.put("member", s_member_list);
 		map.put("sort", sort);
@@ -293,6 +310,7 @@ public class MemberController {
 	// 회원관리 검색
 	@RequestMapping(value="/admin/member_search.nm", method=RequestMethod.POST)
 	public ModelAndView admin_member_search(HttpServletRequest req,
+											HttpSession se,
 											@RequestParam(value="id") String id,
 											@RequestParam(value="name") String name,
 											@RequestParam(value="phone1") String phone1,
@@ -307,6 +325,13 @@ public class MemberController {
 											@RequestParam(value="level_no") int level_no
 											){
 		Map<String, Object> map = new HashMap<>();
+		
+		// 관리자 여부 확인
+		Boolean isAdmin = ((Boolean)se.getAttribute(S.SESSION_ADMIN));
+		if(isAdmin==null || !isAdmin.booleanValue()){
+			map.put("err_msg", "관리자로 로그인 바랍니다.");
+			return new ModelAndView("login/login", map);
+		}
 		
 		String phone= mergePhone(phone1, phone2, phone3);
 		String email= mergeEmail(email1, email2);
