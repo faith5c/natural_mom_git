@@ -87,10 +87,12 @@
                </tr>
                <tr>
                   <td colspan="2">
-                  <button style="width:85px; padding : 13px 10px; margin : 0 5px;" >장바구니</button>
-                  <button style="width:85px; padding : 13px 10px; margin : 0 5px;">관심상품</button>
+                  <input type="button" style="width:85px; padding : 13px 10px; margin : 0 5px;" onclick='go_to_cart(${pvo.product_no}, "${sessionScope.loggedin}");' value="장바구니"></button>
+                  <input type="button" style="width:85px; padding : 13px 10px; margin : 0 5px;" onclick='go_to_interest(${pvo.product_no}, "${sessionScope.loggedin}");' value="관심상품"></button>
+                 
                   <button style="width:85px; padding : 13px 10px; margin : 0 5px; 
                   background-color : #000000" type="submit">바로구매</button>
+                 
                   </td>
                </tr>
                   <!-- 서브밋 시 가져갈 것들 -->
@@ -98,6 +100,7 @@
                   <input type="hidden" name="product_name" value="${pvo.product_name}">
                   <input type="hidden" name="represent_img" value="${pvo.represent_img}">
                   <input type="hidden" name="charge" value="${pvo.selling_price}">
+                  ${SessionScope.loggedin}
                </form>
             </table>
          </div>
@@ -106,60 +109,15 @@
          <div>
             <img id="soap_desc" src="/soap/resources/product_images/${pvo.detail_img}" alt="${pvo.product_name}설명"/>
          </div>
-<!--
-          <div id="soap_img">
-            <img src="/soap/resources/product_images/soap1.jpg" alt="아마씨사진"/>
-         </div>
-         
-         <div id="soap_table">
-            <table>
-               <tr>
-                  <td colspan="2">아마씨 비누 100g</td>
-               </tr>
-               <tr>
-                  <td colspan="2">영양 가득한 생명의 씨앗</td>
-               </tr>
-               <tr>
-                  <td>판매 가격</td>
-                  <td><label id="selling_price">3500</label>원</td>
-               </tr>
-               <tr>
-                  <td>유통 기한</td>
-                  <td>상품 수령 후 1년</td>
-               </tr>
-               <tr>
-                  <td>중량</td>
-                  <td>100g</td>
-               </tr>
-               <tr>
-                  <td>구매 수량</td>
-                  <td><input id="purchase_count" type="number" min="1" max="100" step="1" value="1" size="3"/></td>
-               </tr>
-               <tr>
-                  <td colspan="2">
-                     총계
-                     <label id="total_price">3500</label>원
-                  </td>
-               </tr>
-               <tr>
-                  <td colspan="2">
-                  <button style="width:85px; padding : 13px 10px; margin : 0 5px;" >장바구니</button>
-                  <button style="width:85px; padding : 13px 10px; margin : 0 5px;">관심상품</button>
-                  <button style="width:85px; padding : 13px 10px; margin : 0 5px; background-color : #000000" onclick="location.href='order.jsp';">바로구매</button>
-                  </td>
-               </tr>
-            </table>
-         </div>
-         
-         <p>상품설명</p>
-         <div>
-            <img id="soap_desc" src="/soap/resources/product_images/soap1_desc.jpg" alt="아마씨설명"/>
-         </div>
-          -->
+
          <p>배송정보</p>
          <div>
             <img src="/soap/resources/images/info_delivery.jpg" alt="배송정보"/>
          </div>
+         
+         <input type="hidden" id="back_cart" value="${param.back_cart}"/>
+         <input type="hidden" id="back_interest" value="${param.back_interest}"/>
+         
          <%@ include file="../board/review/_review.jsp" %>
       </div>
       <!--------------------------------------------------end content--------->
@@ -186,7 +144,32 @@
             $("#total_price").html(total_price);
             console.log("총계 : "+ total_price);
          });
+         
+         if($("#back_cart").val() != null && $("#back_cart").val() != "")
+         		alert($("#back_cart").val());
+         
+         if($("#back_interest").val() != null && $("#back_interest").val() != "")
+         		alert($("#back_interest").val());
+         
       })
+      function go_to_cart(cart_poductno, loggedin){
+    	  console.log(loggedin);
+    	  if(loggedin != null && loggedin != ""){
+		    	location.href="/soap/cart.nm?c_pn="+cart_poductno+"&c_bn="+$("#purchase_count").val();
+    	  } else {
+    		  alert("장바구니에 추가하려면 로그인이 필요합니다");
+    		  location.href="/soap/login.nm";
+    	  }
+      }
+      function go_to_interest(interest_poductno, loggedin){
+    	  console.log(loggedin);
+    	  if(loggedin != null && loggedin != ""){
+    			location.href="/soap/interest.nm?i_pn="+interest_poductno;
+    	  } else {
+    		  alert("관심상품에 추가하려면 로그인이 필요합니다");
+    		  location.href="/soap/login.nm";
+    	  }
+      }
    </script>
 
   </body>
