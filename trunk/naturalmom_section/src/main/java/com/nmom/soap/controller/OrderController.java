@@ -150,6 +150,9 @@ public class OrderController {
 			
 			Map<String, Object> map =  new HashMap<String, Object>();
 			map.put("temp", tempList);
+			//주문이 하나이므로 토탈값은 0번에서 가져온다.+3000은 배송
+			map.put("total_price", temp.getTotal_price());
+			map.put("total", temp.getTotal_price()+3000);
 			map.put("page", "order");
 			
 			System.out.println((String)ses.getAttribute(S.SESSION_LOGIN));
@@ -161,8 +164,6 @@ public class OrderController {
 			map.put("phone3", orderer.getPhone().split("-")[2]);
 			map.put("email1", orderer.getEmail().split("@")[0]);
 			map.put("email2", orderer.getEmail().split("@")[1]);
-			map.put("post1", orderer.getAddr_post().split("-")[0]);
-			map.put("post2", orderer.getAddr_post().split("-")[1]);
 			
 			return new ModelAndView("order/order", map);
 		}

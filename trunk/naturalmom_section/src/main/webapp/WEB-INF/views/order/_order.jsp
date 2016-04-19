@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 <style type="text/css">
 .order_title {
@@ -105,11 +106,15 @@ table tr .explain {
 }
 
 #phone1, #phone2, #phone3, #card_num1, #card_num2, #card_num3,
-	#card_num4, #phoneRe1, #phoneRe2, #phoneRe3 {
-	width: 70px;
+	#card_num4, #phoneRe1, #phoneRe2, #phoneRe3{
+	width: 70px; 
 }
 
-#post_num1, #post_num2, #email1, #email2, #post_numRe1, #post_numRe2, {
+#post_num, #post_numRe {
+	width: 120px;
+}
+
+#email1, #email2 {
 	width: 100px;
 }
 
@@ -159,31 +164,27 @@ table tr .explain {
 				<td width="35%">제품명</td>
 				<td width="10%">수량</td>
 				<td width="10%">가격</td>
-				<td width="10%">주문</td>
 			</tr>
 			<c:if test="${not empty temp}">
 			<c:forEach var="t" items="${temp}">
 			<tr>
 				<td><img width="20%" alt="" src="/soap/resources/product_images/${t.represent_img}" /></td>
-				<td><label name="product_name" id="product_name">${t.product_name}</label></td>
-				<td><input id="buy_num" name="buy_num" type="number" min="1" max="100" step="1" value="${t.buy_num}" size="3"/></td>
-				<td><label name="total_price" id="total_price" >${t.total_price}</label>원</td>
-				<td class="buttons">
-					 <!-- order_cencle() 매개변수는 행 번호를 넣을 것 -->
-					<input type="button" onclick="order_cencle(${t.product_no})" value="취소" />
-				</td>
+				<td>${t.product_name}</td>
+				<td>${t.buy_num}</td>
+				<td>${t.total_price}원</td>
+				
 			</tr>
 			</c:forEach>
 			</c:if>
 			<c:if test="${empty temp}">
 			<tr>
-				<td colspan="5">주문하실 상품이 없습니다.</td>
+				<td colspan="4">주문하실 상품이 없습니다.</td>
 			</tr>
 			</c:if>
 			<tr>
-				<td colspan=5>
+				<td colspan=4>
 				<c:if test="${ not empty temp}">
-				총 주문금액 : <label class="total" >${t.total_price}</label> + 배송비 3,000원 = <b><label name="total" id="total" >${t.total_price+3000}</label>원</b>
+				총 주문금액 : ${total_price}원&nbsp;+&nbsp;배송비 3000원&nbsp;=&nbsp;&nbsp;<b>${total}원</b>
 				</c:if>
 				</td>
 			</tr>
@@ -198,37 +199,34 @@ table tr .explain {
 			<table cellspacing="0" class="info">
 				<tr>
 					<td for="name">이름</td>
-					<td><input type="text" id="name" name="name" maxlength="20"
+					<td><input type="text" id="name" maxlength="20"
 						value="${orderer.name}"></td>
 				</tr>
 				<tr>
 					<td>휴대폰번호</td>
-					<td><input id="phone1" type="text" name="phone1" size="4"
+					<td><input id="phone1" type="text" size="4"
 						maxlength="4" value="${phone1}">
-					- <input id="phone2" type="text" name="phone2" size="4"
+					- <input id="phone2" type="text" size="4"
 						maxlength="4" value="${phone2}">- <input id="phone3" type="text"
-						name="phone3" size="4" maxlength="4" value="${phone3}"> <!-- input 가로 사이즈 주기 -->
+						size="4" maxlength="4" value="${phone3}"> <!-- input 가로 사이즈 주기 -->
 					</td>
 				</tr>
 				<tr>
 					<td>이메일</td>
-					<td><input type="text" id="email1" name="email1" value="${email1}" />@<input
-						type="text" id="email2" name="email2" value="${email2}" />
+					<td><input type="text" id="email1" value="${email1}" />@<input
+						type="text" id="email2" value="${email2}" />
 					</td>
 				</tr>
 				<tr>
 					<td>우편번호</td>
-					<td><input type="text" id="post_num1" name="post_num1"
-						disabled="disabled" value="${post1}" />- 
-						<input type="text" id="post_num2" name="post_num2" 
-						disabled="disabled" value="${post2}" />
-						<button id="find_post_num">우편번호 찾기</button>
-						<br></td>
+					<td><input type="text" id="post_num"
+						disabled="disabled" value="${orderer.addr_post}" />
+					</td>
 				</tr>
 				<tr style="margin: -10px;">
 					<td for="address_detail">상세주소</td>
 					<td><input type="text" id="address_detail"
-						name="address_detail" value="${orderer.addr_detail}" /></td>
+						value="${orderer.addr_detail}" /></td>
 				</tr>
 			</table>
 		</div>
@@ -238,7 +236,7 @@ table tr .explain {
 			<tr>
 				<td width="150px"><h3 class="order_title">배송지정보</h3></td>
 				<td style="padding-bottom: 5px;">&nbsp;
-				<input type="checkbox" value="true" name="order_same" 
+				<input type="checkbox" value="true" 
 				id="order_same" style="vertical-align: text-bottim; margin-top: 
 				100px;" >
 				&nbsp; <label style="vertical-align: text-bottim; margin-top: 100px;">위와
@@ -254,19 +252,44 @@ table tr .explain {
 			var phone1 = $('#phone1').attr("value");
 			var phone2 = $('#phone2').attr("value");
 			var phone3 = $('#phone3').attr("value");
-			var post_num1 = $('#post_num1').attr("value");
-			var post_num2 = $('#post_num2').attr("value");
+			var post_num = $('#post_num').attr("value");
 			var address_detail = $('#address_detail').attr("value");
 			$('#nameRe').attr("value", name);
 			$('#phoneRe1').attr("value", phone1);
 			$('#phoneRe2').attr("value", phone2);
 			$('#phoneRe3').attr("value", phone3);
-			$('#post_numRe1').attr("value", post_num1);
-			$('#post_numRe2').attr("value", post_num2);
+			$('#post_numRe').attr("value", post_num);
 			$('#address_detailRe').attr("value", address_detail);
 	}
 	});
 
+	 function pop_postNum() {
+		 new daum.Postcode({
+		        oncomplete: function(data) {
+		            $('#post_numRe').val(data.zonecode);
+		            $('#address_detailRe').val(data.address);
+                    $('#address_detailRe').focus();
+		        }
+		    }).open();
+//		window.open("membership_pop_post.jsp", "FindPostNumber", "width=402px, height=480px, left=600px, top=200px, scrollbars=no, toolbar=no, location=no");
+	 }
+	 
+	 function allSubmit(){
+			
+			if($('#nameRe').val()==""){
+				alert("이름을 입력해주세요.");
+			}else if($('#phoneRe1').val()=="" || $('#phoneRe2').val()=="" || $('#phoneRe3').val()==""){
+				alert("휴대폰 번호를 입력해주세요.");
+			}else if($('#post_numRe').val()==""){
+				alert("우편번호를 입력해주세요.");
+			}else if($('#address_detail').val()==""){
+				alert("주소를 입력해주세요.");
+			}else{
+			//	$('#join_form').submit();
+			//	document.join_form.submit();
+			}
+			
+		}
 	</script>
 		<div>
 		<form action="order.jsp?page=order_complete" method="post">
@@ -274,28 +297,27 @@ table tr .explain {
 			<table cellspacing="0" class="info">
 				<tr>
 					<td for="nameRe">받는 분 성명</td>
-					<td><input type="text" id="nameRe" name="nameRe" maxlength="20"
+					<td><input type="text" id="nameRe" name="name" maxlength="20"
 						value=""></td>
 				</tr>
 				<tr>
 					<td>휴대폰번호</td>
-					<td><input id="phoneRe1" type="text" name="phoneRe1" size="4"
+					<td><input id="phoneRe1" type="text" name="phone1" size="4"
 						maxlength="4" value="">
-					- <input id="phoneRe2" type="text" name="phoneRe2" size="4"
+					- <input id="phoneRe2" type="text" name="phone2" size="4"
 						maxlength="4" value="">- <input id="phoneRe3" type="text"
-						name="phoneRe3" size="4" maxlength="4" value=""> <!-- input 가로 사이즈 주기 -->
+						name="phone3" size="4" maxlength="4" value=""> <!-- input 가로 사이즈 주기 -->
 					</td>
 				</tr>
 				<tr>
 					<td>우편번호</td>
-					<td><input type="text" id="post_numRe1" name="post_numRe1"
-						disabled="disabled" value="" />- <input type="text"
-						id="post_numRe2" name="post_numRe2" disabled="disabled" value="" />
-						<button id="find_post_num">우편번호 찾기</button>
+					<td><input type="text" id="post_numRe" name="post_num"
+						disabled="disabled" />
+						<button type="button" id="find_post_num" onclick="pop_postNum()">우편번호 찾기</button>
 						<br></td>
 				</tr>
 				<tr style="margin: -10px;">
-					<td for="address_detailRe">상세주소</td>
+					<td for="address_detail">상세주소</td>
 					<td><input type="text" id="address_detailRe"
 						name="address_detail" value="" /></td>
 				</tr>
@@ -315,7 +337,7 @@ table tr .explain {
 			<table cellspacing="0" class="info">
 				<tr>
 					<td for="name">결제금액</td>
-					<td><label name="charge">14,300</label>원</td>
+					<td>${total}원</td>
 				</tr>
 				<tr>
 					<td>결제방식</td>
@@ -344,6 +366,7 @@ table tr .explain {
 						id="card_num4" name="card_num4" value="" size="4" maxlength="4" />
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 유효기간 <select
 						name="expiry_month">
+							<option value="-">&nbsp;-&nbsp;</option>
 							<option value="01">&nbsp;01&nbsp;</option>
 							<option value="02">&nbsp;02&nbsp;</option>
 							<option value="03">&nbsp;03&nbsp;</option>
@@ -357,6 +380,7 @@ table tr .explain {
 							<option value="11">&nbsp;11&nbsp;</option>
 							<option value="12">&nbsp;12&nbsp;</option>
 					</select> <select name="expiry_year">
+							<option value="-">&nbsp;-&nbsp;</option>
 							<option value="16">&nbsp;16&nbsp;</option>
 							<option value="17">&nbsp;17&nbsp;</option>
 							<option value="18">&nbsp;18&nbsp;</option>
@@ -377,7 +401,7 @@ table tr .explain {
 			</table>
 
 			<p id="submit">
-				<input type="submit" value="결제하기" class="buttons">
+				<input type="button" value="결제하기" class="buttons" onclick="allSubmit()">
 			</p>
 			<!--------------------------------------------------------end container------------->
 		</form>
