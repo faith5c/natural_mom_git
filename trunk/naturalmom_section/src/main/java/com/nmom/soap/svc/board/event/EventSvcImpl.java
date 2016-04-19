@@ -30,6 +30,7 @@ public class EventSvcImpl implements IEventSvc {
 
 	@Override
 	public List<EventVo> getEventList(int page, int size) throws DataAccessException {
+		size = size < S.PAGE_LIMIT? 11 : size;
 		int start = size - (S.PAGE_LIMIT * page);
 		int end = start + S.PAGE_LIMIT;
 		return eventDao.getEventList(start, end);
