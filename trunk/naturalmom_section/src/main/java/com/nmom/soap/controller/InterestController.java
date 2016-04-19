@@ -133,4 +133,78 @@ public class InterestController {
 		return "redirect:/index.nm";
 	}
 	
+	
+	//- 관심상품 -> 장바구니
+	// /interest/to_cart 관심상품에서 삭제
+	// /cart/from_interest 장바구니에 등록
+	@RequestMapping(value ="/interest/to_cart.nm", method=RequestMethod.GET)
+	public ModelAndView delInterestForMoveCart(HttpServletRequest req, HttpSession ses,
+			@RequestParam(value="no") int no[])
+	{	
+		Map<String,Object> map = new HashMap<String,Object>();
+
+		//관심상품 삭제 부분
+		String loggedin = (String)ses.getAttribute("loggedin");
+		if(no !=null){
+			try{
+				for(int i=0; i<no.length; i++){
+					int r = interestSvc.removeInterestProduct(no[i], loggedin);
+					if(r != 1){
+						System.out.println("관심상품 삭제 에러(관심상품 -> 장바구니)");
+						return new ModelAndView("redirect:/index.nm");
+					} 
+				} //end for
+				
+				//관심상품 삭제 성공
+				//장바구니에 등록할 부분
+				map.put("no", no);
+				return new ModelAndView("redirect:/cart/from_interest.nm", map);
+				
+			} catch(Exception e){
+				e.printStackTrace();
+				System.out.println("관심상품 -> 장바구니에서 잘못된 관심상품 정보가져옴");
+			}
+		} else {
+			System.out.println("관심상품 -> 장바구니에서 정보를 받아오지 못함");
+		}
+		return new ModelAndView("redirect:/index.nm");
+	}
+	
+
+	// - 장바구니 -> 관심상품 
+	// /cart/to_interest 장바구니에서 삭제
+	// /interest/from_cart 관심상품에 등록
+	@RequestMapping(value ="/interest/from_cart", method=RequestMethod.GET)
+	public ModelAndView addInterestFromCart(HttpServletRequest req, HttpSession ses,
+			@RequestParam(value="no") int no[])
+	{	
+		Map<String,Object> map = new HashMap<String,Object>();
+
+		//관심상품 등록 부분
+		String loggedin = (String)ses.getAttribute("loggedin");
+		if(no !=null){
+			try{
+				for(int i=0; i<no.length; i++){
+					if(interestSvc.duplicationInterestProduct(no[i], loggedin) == false){
+						int r = interestSvc.addInterestProduct(no[i], loggedin);
+
+						if(r != 1){
+							System.out.println("관심상품 등록 에러(장바구니 -> 관심상품)");
+						}
+					}
+				} //end for
+				
+				//관심상품 등록 성공
+				return new ModelAndView("redirect:/interest.nm");
+				
+			} catch(Exception e){
+				e.printStackTrace();
+				System.out.println("장바구니 -> 관심상품에서 잘못된 관심상품 정보가져옴");
+			}
+		} else {
+			System.out.println("장바구니 -> 관심상품에서 정보를 받아오지 못함");
+		}
+		return new ModelAndView("redirect:/index.nm");
+	}
+	
 }

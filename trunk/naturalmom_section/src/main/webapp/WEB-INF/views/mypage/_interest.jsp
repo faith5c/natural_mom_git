@@ -34,7 +34,6 @@
 	table a { text-decoration : none; color : #000000; }
 
 	</style>
-	<form action="#" method="post">
 	<br><br>
 	<table cellspacing="0">
 		<tr>
@@ -68,12 +67,10 @@
 			<td colspan = "4">
 			
 				<input type = "button" value="상품삭제" onclick='deleteInterestProduct();'>
-				<input type = "submit" value="장바구니등록">
+				<input type = "submit" value="장바구니등록" onclick='interestToCart();'>
 			</td>
 		</tr>
 	</table>
-	
-	</form>
 	
 <script type="text/javascript">
 
@@ -94,23 +91,25 @@
 	location.href="/soap/interest/del_proc.nm?"+temp;
   }
   
-  /* 
-  function cartToInterest(){
-	  	var checked="";
+  function interestToCart(){
+	  var checked="";
 	  	
 	  	$('input:checkbox[id="no"]:checked').each(function(){
 	        checked += '&no=' + $(this).val();
 	    });
 		console.log(checked);
-		if(checked==""){
-			alert("관심상품 등록할 상품을 선택하세요");
-			return;
-		}
 		var temp = checked.substring(1);
 		console.log(temp);
-		
-		location.href="/soap/cart/to_interest?"+temp;
-  } */
+
+		if(checked==""){
+			alert("장바구니에 등록할 상품을 선택하세요");
+		} else {
+			if(confirm("선택된 상품을 장바구니로 이동하시겠습니까?")){
+				location.href="/soap/interest/to_cart.nm?"+temp;
+			}			
+		}
+
+  }
 </script>
 
 </body>

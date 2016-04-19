@@ -134,7 +134,7 @@
 
 			<c:otherwise>
 				<tr style="background-color:#f0f0f0; ">
-					<td colspan="5"><br/>장바구니에 담겨진 상품이 없습니다.<br/>&nbsp;</td>
+					<td colspan="6"><br/>장바구니에 담겨진 상품이 없습니다.<br/>&nbsp;</td>
 				</tr>
 			</c:otherwise>
 		</c:choose>
@@ -187,15 +187,17 @@
 	        checked += '&no=' + $(this).val();
 	    });
 		console.log(checked);
-		if(checked==""){
-			alert("관심상품 등록할 상품을 선택하세요");
-			return;
-		}
 		var temp = checked.substring(1);
 		console.log(temp);
 		
-		location.href="/soap/cart/to_interest?"+temp;
-	  }
+		if(checked==""){
+			alert("관심상품에 등록할 상품을 선택하세요");
+		} else {
+			if(confirm("선택한 상품을 관심상품으로 이동하시겠습니까?")){
+				location.href="/soap/cart/to_interest.nm?"+temp;
+			}
+		}
+	}
   
   function order(){
 	  alert('체크되나?'); 
