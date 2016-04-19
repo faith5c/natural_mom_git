@@ -53,7 +53,6 @@ public class MemberController {
 	///////////////////////////////////////////////////////////// 아이디 패스워드 찾기
 	@RequestMapping(value="pop_findId.nm", method=RequestMethod.GET)
 	public ModelAndView popup_findId(HttpServletRequest req){
-		Map<String, Object> map = new HashMap<>();
 		
 		return new ModelAndView("login/login_popup");
 	}

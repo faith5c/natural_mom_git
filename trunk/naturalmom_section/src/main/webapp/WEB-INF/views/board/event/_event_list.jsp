@@ -117,11 +117,22 @@
 			
 		</table>
 		<div id = "pages">
-			<a href = "#">&lsaquo;</a>
-			&nbsp;&nbsp;&nbsp;
-			1
-			&nbsp;&nbsp;&nbsp;
-			<a href = "#">&rsaquo;</a>
+			<c:if test="${page gt 1 }">
+				<c:url value='event.nm?page=${page-1}' />
+				<a href ="">&lsaquo;</a>
+			</c:if>
+			<c:if test="${page eq 1 }">
+				<a href = "#">&lsaquo;</a>
+			</c:if>
+				&nbsp;&nbsp;&nbsp;
+				1
+				&nbsp;&nbsp;&nbsp;
+			<c:if test="${page lt total_page}">
+				<a href = "<c:url='event.nm?page=${page+1 }'/>">&rsaquo;</a>
+			</c:if>	
+			<c:if test="${page eq total_page}">
+				<a href = "#">&rsaquo;</a>
+			</c:if>	
 		</div>
 		<div id = "search" style="margin-bottom: 80px;">
 			<select id = "option" name="by">

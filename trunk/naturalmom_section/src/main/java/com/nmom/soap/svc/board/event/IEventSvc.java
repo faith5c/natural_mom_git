@@ -10,9 +10,9 @@ import com.nmom.soap.data.model.board.event.EventVo;
 public interface IEventSvc {
 	
 	// 리스트
-	void getAllEvents() throws DataAccessException;
-	void getEventList() throws DataAccessException;
-	List<EventVo> getEventList(int start, int end) throws DataAccessException;
+	List<EventVo> getAllEvents() throws DataAccessException;
+	List<EventVo> getEventList() throws DataAccessException;
+	List<EventVo> getEventList(int page) throws DataAccessException;
 	
 	// 글읽기, 수정할 글 불러오기
 	EventVo getOneEvent(int event_no) throws DataAccessException;

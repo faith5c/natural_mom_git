@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
+import com.nmom.soap.S;
 import com.nmom.soap.data.dao.board.event.IEventDao;
 import com.nmom.soap.data.model.board.event.EventVo;
 
@@ -18,19 +19,19 @@ public class EventSvcImpl implements IEventSvc {
 	
 	// Override Method
 	@Override
-	public void getAllEvents() throws DataAccessException {
-		// TODO Auto-generated method stub
-
+	public List<EventVo> getAllEvents() throws DataAccessException {
+		return null;
+	}
+	
+	@Override
+	public List<EventVo> getEventList() throws DataAccessException {
+		return eventDao.getEventList();
 	}
 
 	@Override
-	public void getEventList() throws DataAccessException {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public List<EventVo> getEventList(int start, int end) throws DataAccessException {
+	public List<EventVo> getEventList(int page) throws DataAccessException {
+		int start = (page-1) * S.PAGE_LIMIT +1;
+		int end = page * S.PAGE_LIMIT;
 		return eventDao.getEventList(start, end);
 	}
 

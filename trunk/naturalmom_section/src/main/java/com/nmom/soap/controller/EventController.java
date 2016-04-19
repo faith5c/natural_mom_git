@@ -42,7 +42,8 @@ public class EventController {
 	/////////////////////////////// 사용자 페이지////////////////////////////////////////////////////////////////
 	// 이벤트 리스트 with 검색기능
 	@RequestMapping(value ="/board/event.nm", method=RequestMethod.GET)
-	public ModelAndView board_event(HttpServletRequest req){
+	public ModelAndView board_event(HttpServletRequest req,
+									@RequestParam(value="page", defaultValue="1") int page){
 		Map<String, Object> map = new HashMap<>();
 		List<EventVo> e_list =null;
 		String search = req.getParameter("search");
@@ -66,9 +67,14 @@ public class EventController {
 				return new ModelAndView("board/event/b_event", map);
 			}
 		}
+		int size = eventSvc.getEventList().size();
+		int total = (int)Math.ceil((double)(size/S.PAGE_LIMIT));
 		
-		e_list = eventSvc.getEventList(1, S.PAGE_LIMIT);
+		e_list = eventSvc.getEventList(page);
 		map.put("e_list", e_list);
+		map.put("total_page", total);
+		map.put("page", page);
+		
 		return new ModelAndView("board/event/b_event", map);
 	}
 	
@@ -121,10 +127,10 @@ public class EventController {
 		}
 		// 이벤트 리스트 불러오기
 		Map<String, Object> map = new HashMap<>();
-		List<EventVo> e_list = eventSvc.getEventList(1, S.PAGE_LIMIT);
-		map.put("e_list", e_list);
+//TODO		List<EventVo> e_list = eventSvc.getEventList(1, S.PAGE_LIMIT);
+//TODO		map.put("e_list", e_list);
 		
-		return new ModelAndView("board/event/b_event", map);
+		return new ModelAndView("redirect:board/event/b_event", map);
 	}
 	
 	// 리플 쓰기 -> 읽기페이지
@@ -206,8 +212,8 @@ public class EventController {
 			}
 		}
 		
-		e_list = eventSvc.getEventList(1, S.PAGE_LIMIT);
-		map.put("e_list", e_list);
+//TODO		e_list = eventSvc.getEventList(1, S.PAGE_LIMIT);
+//TODO		map.put("e_list", e_list);
 		
 		return new ModelAndView("admin/board/event/a_event", map);
 	}
@@ -254,8 +260,8 @@ public class EventController {
 			}
 			// 이벤트 리스트 불러오기
 			Map<String, Object> map = new HashMap<>();
-			List<EventVo> e_list = eventSvc.getEventList(1, S.PAGE_LIMIT);
-			map.put("e_list", e_list);
+//TODO			List<EventVo> e_list = eventSvc.getEventList(1, S.PAGE_LIMIT);
+//TODO			map.put("e_list", e_list);
 			
 			return new ModelAndView("admin/board/event/a_event", map);
 		}
