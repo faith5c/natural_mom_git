@@ -1,5 +1,7 @@
 package com.nmom.soap.data.model.order;
 
+import com.nmom.soap.data.model.cart.VCartProductVo;
+
 public class TempOrderVo {
 	private int product_no;
 	private String represent_img;
@@ -23,6 +25,13 @@ public class TempOrderVo {
 	}
 	
 	//장바구니 객체
+	public TempOrderVo(VCartProductVo cart){
+		this.product_no = cart.getProduct_no();
+		this.represent_img = cart.getRepresent_img();
+		this.product_name = cart.getProduct_name();
+		this.buy_num = cart.getBuy_num();
+		this.cost_price = cart.getSelling_price();
+	}
 	
 	//전체 생성자
 	public TempOrderVo(int product_no, String represent_img, String product_name, int buy_num, int cost_price,

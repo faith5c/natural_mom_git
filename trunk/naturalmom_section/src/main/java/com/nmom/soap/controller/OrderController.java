@@ -184,6 +184,82 @@ public class OrderController {
 		return new ModelAndView("redirect:soap/login.nm");//"redirect:detail.nm?pdno="+product_no;
 	}
 	
+	//주문하기 페이지   /order/cartorder.nm
+		@RequestMapping(value="/order/cartorder.nm", method={RequestMethod.POST, RequestMethod.GET})
+		public ModelAndView cartIndentation(HttpServletRequest req,
+				HttpSession ses,
+				@RequestParam(value="product_no", required=false) String product_no){
+			
+			System.out.println("주문페이지에 들어옴!");
+			List<TempOrderVo> tempList = null;
+			if(ses.getAttribute(S.SESSION_LOGIN) != null 
+					&& ses.getAttribute(S.SESSION_ADMIN) == null){
+				System.out.println("회원으로 로그인 되어있음");
+				
+				/*TempOrderVo temp = new TempOrderVo(product_no, represent_img, product_name, buy_num, cost_price);
+			
+				tempList = new ArrayList<TempOrderVo>();
+				System.out.println("temp꺼"+temp);
+				tempList.add(temp);
+				System.out.println("temp "+temp);
+				
+				ses.setAttribute(S.SESSION_TEMP_ORDER, tempList);
+				
+				List<TempOrderVo> t = (List<TempOrderVo>)(ses.getAttribute(S.SESSION_TEMP_ORDER));
+				
+				System.out.println("ses꺼"+((t.get(0)==null)? null : t.get(0)));
+				
+				//세션에 1개 이상 상품이 저장 되어 있는경우 
+				//같은 상품이 있는 것을 체크하여 같을 경우 적게 산 거를 세션에서 삭제
+				
+				
+				if(tempList.size() > 1)
+				for(int i = tempList.size()-1;  i >= 0 ; i--){
+					for(int j = tempList.size()-2; j >= 0; j--){
+						//같은 상품번호
+						if(tempList.get(i).getProduct_no() == tempList.get(j).getProduct_no()){
+							if(tempList.get(i).getBuy_num() > tempList.get(j).getBuy_num()){
+								tempList.remove(j);
+							}
+							else tempList.remove(i);
+						}
+					}			
+				}
+				System.out.println("tempList");
+				for(TempOrderVo o : tempList){
+					System.out.println(o);
+				}
+				
+				Map<String, Object> map =  new HashMap<String, Object>();
+				
+				System.out.println((String)ses.getAttribute(S.SESSION_LOGIN));
+				//주문자객체 생성
+				VOrdererVo orderer = this.vOrdererSvc.getOrderer(((String)ses.getAttribute(S.SESSION_LOGIN)));
+				//번호, 메일 생성
+				String phone[] = orderer.getPhone().split("-");
+				String email[] = orderer.getEmail().split("@");
+				
+				//오더 페이지 표시
+				map.put("page", "order");
+				
+				map.put("temp", tempList);
+				//주문이 하나이므로 토탈값은 0번에서 가져온다.+3000은 배송
+				map.put("total_price", temp.getTotal_price());
+				map.put("charge", temp.getTotal_price()+3000);
+				
+				map.put("orderer", orderer);
+				
+				map.put("phone1", phone[0]);
+				map.put("phone2", phone[1]);
+				map.put("phone3", phone[2]);
+				map.put("email1", email[0]);
+				map.put("email2", email[1]);
+				
+				return new ModelAndView("order/order", map);*/
+			}
+			return new ModelAndView("redirect:soap/login.nm");//"redirect:detail.nm?pdno="+product_no;
+		}
+	
 	//주문 프로세스 order_proc.nm
 	@RequestMapping(value="/order/order_proc.nm", method=RequestMethod.POST)
 	public ModelAndView orderProc(HttpServletRequest req,

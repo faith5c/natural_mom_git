@@ -83,7 +83,7 @@
 		<c:set var="cart_price" scope="page">0</c:set>
 		<c:forEach var="cl" items="${cart_list}">
 		<tr>
-			<td><input type="checkbox" id="no" value="${cl.product_no}"></td>
+			<td><input type="checkbox" id="no" name="no" value="${cl.product_no}"></td>
 			<td><a href="<c:url value='/product/detail.nm?pdno=${cl.product_no}'/>">
 			<img src="/soap/resources/product_images/${cl.represent_img}" alt="${cl.product_name}">
 			</a></td>
@@ -146,7 +146,7 @@
 			</td>
 			<td></td>
 			<td colspan="2">
-			<input type="button" value="주문하기" onclick="location.href='order.jsp';">
+			<input type="button" value="주문하기" onclick="order()">
 			</td>
 		</tr>
 	</table>
@@ -196,5 +196,35 @@
 		
 		location.href="/soap/cart/to_interest?"+temp;
 	  }
+  
+  function order(){
+	  alert('체크되나?'); 
+      var chk = document.getElementsByName("no"); 
+      var len = chk.length; 
+      var res = ""; 
+      for(var i=0; i<len; i++){ 
+          if(chk[i].checked == true && i < (len-1)){ 
+              res += chk[i].value+","; 
+          }
+      }
+      if(res != ""){
+        	alert(res);
+         	var f = document.createElement("form"); // form 엘리멘트 생성 
+        	f.setAttribute("method","post"); // method 속성 설정 
+        	f.setAttribute("action","/soap/order/cartorder.nm"); // action 속성 설정 
+        	document.body.appendChild(f); // 현재 페이지에 form 엘리멘트 추가 
+
+        	var i = document.createElement("input"); // input 엘리멘트 생성 
+        	i.setAttribute("type","hidden"); // type 속성을 hidden으로 설정 
+        	i.setAttribute("name","product_no"); // name 속성을 'nick'으로 설정 
+        	i.setAttribute("value",res); // value 속성을 '지앤미'로 설정 
+        	f.appendChild(i); // form 엘리멘트에 input 엘리멘트 추가  
+        	f.submit(); // 전송 
+    	}
+      
+      else{alert("구매하실 상품을 체크해 주세요");}
+      
+	}
+  
   </script>
 </html>
