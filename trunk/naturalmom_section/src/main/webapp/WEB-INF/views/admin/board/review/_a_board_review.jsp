@@ -17,6 +17,7 @@
 	}
 	#in h2 { margin-bottom : 15px; color: #004523; }
 	#in a { text-decoration : none; color : black; }
+	#in #page a:hover { text-decoration : underline; }
 	#in a:hover  { opacity : 0.7; }
 		
 	#review { width: 100%; padding : 0px; margin: 0 auto; }
@@ -122,11 +123,11 @@
 	</table>
 <!-- 페이지 부분 -->
 		<div id = "page">
-			<c:if test="${rp eq 1 }">
+			<c:if test="${rp eq 1}">
 				&lt;
 			</c:if>
-			<c:if test="${rq > 1 }">
-				<a href="review.nm?page=${rp - 1}">〈</a>
+			<c:if test="${rp gt 1}">
+				<a href="review.nm?page=${rp - 1}">&lt;</a>
 			</c:if>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<c:forEach var = "i" begin="1" end="${all_pages}" step = "1">
@@ -138,7 +139,12 @@
 				</c:if>
 			</c:forEach>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="#">&gt;</a>
+			<c:if test="${rp eq all_pages}">
+				&gt;
+			</c:if>
+			<c:if test="${rp lt all_pages}">
+				<a href="review.nm?page=${rp + 1}">&gt;</a>
+			</c:if>
 		</div>
 <!-- 검색 부분 -->
 <script type="text/javascript">

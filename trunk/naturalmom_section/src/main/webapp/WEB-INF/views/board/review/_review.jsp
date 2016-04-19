@@ -282,9 +282,28 @@
 		</c:if>
 	</table>
 		<div class="page">
-			<a href="#">〈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="#">〉</a>
+			<c:if test="${rp eq 1}">
+				&lt;
+			</c:if>
+			<c:if test="${rp gt 1}">
+				<a href="detail.nm?pdno=${pvo.product_no}&page=${rp - 1}#review">&lt;</a>
+			</c:if>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<c:forEach var = "i" begin="1" end="${all_pages}" step = "1">
+				<c:if test="${rp == i}">
+					<span>${i}</span>
+				</c:if>
+				<c:if test="${rp != i}">
+					<a href="detail.nm?pdno=${pvo.product_no}&page=${i}#review">${i}</a>
+				</c:if>
+			</c:forEach>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<c:if test="${rp eq all_pages}">
+				&gt;
+			</c:if>
+			<c:if test="${rp lt all_pages}">
+				<a href="detail.nm?pdno=${pvo.product_no}&page=${rp + 1}#review">&gt;</a>
+			</c:if>
 		</div>
 	</div>
  </body>

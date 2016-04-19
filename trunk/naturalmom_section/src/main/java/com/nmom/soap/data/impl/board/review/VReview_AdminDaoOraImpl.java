@@ -30,7 +30,7 @@ public class VReview_AdminDaoOraImpl extends NamedParameterJdbcDaoSupport implem
 	// rownum으로 내용 조회
 	private final String GET_ONE_REVIEW_R_NUM = "SELECT A.* FROM "
 			+ "(SELECT rownum as rvw_rnum, V.* from V_REVIEW_ADMIN V) A "
-			+ "WHERE A.re_rnum >= 2 AND A.re_rnum <= 4";
+			+ "WHERE A.rvw_rnum = ?";
 	// 제목으로 검색하기
 	private final String GET_SEARCH_BY_TITLE = "SELECT A.* FROM (SELECT rownum as rvw_rnum, X.* FROM"
 			+ " (SELECT * from V_REVIEW_ADMIN ORDER BY review_no DESC) X WHERE rownum <= :end) A"
@@ -64,7 +64,6 @@ public class VReview_AdminDaoOraImpl extends NamedParameterJdbcDaoSupport implem
 		MapSqlParameterSource msps = new MapSqlParameterSource();
 		msps.addValue("start", new Integer(start));
 		msps.addValue("end", new Integer(end));
-		System.out.println(start + "," + end);
 		
 		return getNamedParameterJdbcTemplate().query(GET_ALL_LIST, msps, 
 				new BeanPropertyRowMapper<VReview_AdminVo>(VReview_AdminVo.class));

@@ -73,7 +73,6 @@ public class ReviewController
 			map.put("rp", new Integer(page));
 			map.put("rvw_list", review_list);
 			map.put("all_pages", all_pages);
-			System.out.println(all_reviews + "," + all_pages + "/" + page);
 			
 			return new ModelAndView("admin/board/review/a_review", map);
 		}
@@ -86,7 +85,9 @@ public class ReviewController
 	// 검색 결과 표시
 	@RequestMapping(value ="/admin/board/review_search.nm", method=RequestMethod.GET)
 	public ModelAndView review_list_search(HttpServletRequest req, HttpSession session,
-			@RequestParam(value="option", required=false) String option, @RequestParam(value="search", required=false) String search)
+			@RequestParam(value="option", required=false) String option,
+			@RequestParam(value="search", required=false) String search,
+			@RequestParam(value="page", defaultValue="1") int page)
 	{
 		Boolean isAdmin = ((Boolean)session.getAttribute(S.SESSION_ADMIN));
 		
@@ -98,32 +99,38 @@ public class ReviewController
 			} catch (UnsupportedEncodingException e) {e.printStackTrace();}
 			
 			int all_reviews = -1;
+			int all_pages = 1;
 			Map<String, Object> map = new HashMap<String, Object>();
 			List<VReview_AdminVo> review_list = null;
 	
 			if(option.equals("title"))
 			{
-				review_list = review_adminSvc.getReviews_by_title(search, 1);
+				review_list = review_adminSvc.getReviews_by_title(search, page);
 				all_reviews = review_adminSvc.getCountReviewsByTitle(search);
+				all_pages = (int)(Math.ceil((double)all_reviews / S.PAGE_LIMIT));
 			}
 			else if(option.equals("content"))
 			{
-				review_list = review_adminSvc.getReviews_by_content(search, 1);
+				review_list = review_adminSvc.getReviews_by_content(search, page);
 				all_reviews = review_adminSvc.getCountReviewsByContent(search);
+				all_pages = (int)(Math.ceil((double)all_reviews / S.PAGE_LIMIT));
 			}
 			else if(option.equals("id"))
 			{
-				review_list = review_adminSvc.getReviews_by_id(search, 1);
+				review_list = review_adminSvc.getReviews_by_id(search, page);
 				all_reviews = review_adminSvc.getCountReviewsById(search);
+				all_pages = (int)(Math.ceil((double)all_reviews / S.PAGE_LIMIT));
 			}
 			else if(option.equals("title_n_content"))
 			{
-				review_list = review_adminSvc.getReviews_by_title_n_content(search, 1);
+				review_list = review_adminSvc.getReviews_by_title_n_content(search, page);
 				all_reviews = review_adminSvc.getCountReviewsByTitleNContent(search);
+				all_pages = (int)(Math.ceil((double)all_reviews / S.PAGE_LIMIT));
 			}
 			
+			map.put("rp", new Integer(page));
 			map.put("rvw_list", review_list);
-			map.put("all_reviews", new Integer(all_reviews));
+			map.put("all_pages", all_pages);
 			
 			return new ModelAndView("admin/board/review/a_review", map);
 		}

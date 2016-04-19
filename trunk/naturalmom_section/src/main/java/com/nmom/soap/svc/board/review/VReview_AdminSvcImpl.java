@@ -36,25 +36,25 @@ public class VReview_AdminSvcImpl implements IVReview_AdminSvc
 	@Override
 	public List<VReview_AdminVo> getReviews_by_title(String search, int page) 
 	{
-		return review_adminDao.getReviews_by_title(search, ((page - 1) * 15) + 1, page * 15);
+		return review_adminDao.getReviews_by_title(search, ((page - 1) * S.PAGE_LIMIT) + 1, page * S.PAGE_LIMIT);
 	}
 
 	@Override
 	public List<VReview_AdminVo> getReviews_by_content(String search, int page) 
 	{
-		return review_adminDao.getReviews_by_content(search, ((page - 1) * 15) + 1, page * 15);
+		return review_adminDao.getReviews_by_content(search, ((page - 1) * S.PAGE_LIMIT) + 1, page * S.PAGE_LIMIT);
 	}
 
 	@Override
 	public List<VReview_AdminVo> getReviews_by_id(String search, int page) 
 	{
-		return review_adminDao.getReviews_by_id(search, ((page - 1) * 15) + 1, page * 15);
+		return review_adminDao.getReviews_by_id(search, ((page - 1) * S.PAGE_LIMIT) + 1, page * S.PAGE_LIMIT);
 	}
 
 	@Override
 	public List<VReview_AdminVo> getReviews_by_title_n_content(String search, int page) 
 	{
-		return review_adminDao.getReviews_by_title_n_content(search, ((page - 1) * 15) + 1, page * 15);
+		return review_adminDao.getReviews_by_title_n_content(search, ((page - 1) * S.PAGE_LIMIT) + 1, page * S.PAGE_LIMIT);
 	}
 
 	@Override
