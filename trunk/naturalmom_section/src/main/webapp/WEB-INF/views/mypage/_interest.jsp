@@ -44,6 +44,7 @@
 			<td>상품이미지</td> 
 			<td>상품명</td> 
 			<td>가격</td>
+			<td>판매상태</td>
 		</tr>
 		
 		<c:forEach var="il" items="${interest_list}">
@@ -54,6 +55,17 @@
 				</a></td>
 				<td><a href="<c:url value='/product/detail.nm?pdno=${il.product_no}'/>">${il.product_name}</a></td>
 				<td>${il.selling_price}원</td>
+				
+				<td>
+				<c:choose>
+	            <c:when test ="${il.stock <= 0 || il.sale_state==0}">
+	            	품절
+	            </c:when>
+	            <c:otherwise>
+	            	판매중
+	            </c:otherwise>
+            	</c:choose>
+				</td>
 			</tr>
 		</c:forEach>
 		
@@ -64,8 +76,7 @@
 		</c:if>		
 				
 		<tr>
-			<td colspan = "4">
-			
+			<td colspan = "5">
 				<input type = "button" value="상품삭제" onclick='deleteInterestProduct();'>
 				<input type = "submit" value="장바구니등록" onclick='interestToCart();'>
 			</td>
