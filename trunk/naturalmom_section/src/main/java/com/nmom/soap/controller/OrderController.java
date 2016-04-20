@@ -15,24 +15,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nmom.soap.S;
+import com.nmom.soap.data.model.cart.VCartProductVo;
 import com.nmom.soap.data.model.member.VOrdererVo;
 import com.nmom.soap.data.model.order.OrderVo;
 import com.nmom.soap.data.model.order.ProductOrderVo;
 import com.nmom.soap.data.model.order.TempOrderVo;
 import com.nmom.soap.data.model.order.VOrderListVo;
 import com.nmom.soap.data.model.order.VOrderManagerVo;
+import com.nmom.soap.data.model.product.ProductVo;
 import com.nmom.soap.svc.cart.IVCartProductSvc;
-import com.nmom.soap.svc.cart.VCartProductSvcImpl;
 import com.nmom.soap.svc.member.IVOrdererSvc;
-import com.nmom.soap.svc.member.VOrdererSvcImpl;
 import com.nmom.soap.svc.order.IOrderSvc;
 import com.nmom.soap.svc.order.IProductOrderSvc;
 import com.nmom.soap.svc.order.IVOrderListSvc;
 import com.nmom.soap.svc.order.IVOrderManagerSvc;
 import com.nmom.soap.svc.product.IProductSvc;
-import com.nmom.soap.svc.product.ProductSvcImpl;
-
-import oracle.net.aso.p;
 
 @Controller
 public class OrderController {
@@ -46,18 +43,26 @@ public class OrderController {
 	private IProductSvc productSvc;
 	
 	//관리자 주문 관리 페이지
-	@RequestMapping(value="/admin/order.nm", method=RequestMethod.GET)
-	public ModelAndView getOrderManager(HttpServletRequest req){
-		System.out.println("@RequestMapping(value=/admin/order.nm)");
-		String by = null;
-		String order = null;
-		if(req != null){
-			by = (String)req.getAttribute("by");
-			order = (String)req.getAttribute("order");
-		}
-		System.out.println("by - " + by + ", order - " + order);
-		Map<String, Object> map = new HashMap<String, Object>();
-		List<VOrderManagerVo> list = new ArrayList<VOrderManagerVo>();
+	   @RequestMapping(value="/admin/order.nm", method=RequestMethod.GET)
+	   public ModelAndView getOrderManager(HttpServletRequest req,
+	                              HttpSession se){
+	      System.out.println("@RequestMapping(value=/admin/order.nm)");
+	      String by = null;
+	      String order = null;
+	      if(req != null){
+	         by = (String)req.getAttribute("by");
+	         order = (String)req.getAttribute("order");
+	      }
+	      System.out.println("by - " + by + ", order - " + order);
+	      Map<String, Object> map = new HashMap<String, Object>();
+	      
+	      Boolean isAdmin = ((Boolean)se.getAttribute(S.SESSION_ADMIN));
+	      if(isAdmin==null || !isAdmin.booleanValue()){
+	         map.put("err_msg", "관리자로 로그인 바랍니다.");
+	         return new ModelAndView("login/login", map);
+	      }
+	      
+	      List<VOrderManagerVo> list = new ArrayList<VOrderManagerVo>();
 		if ( by == null || by.isEmpty() || by.equals(""))
 		{
 			System.out.println("by가 널일 때 진입");
@@ -188,43 +193,75 @@ public class OrderController {
 		@RequestMapping(value="/order/cartorder.nm", method={RequestMethod.POST, RequestMethod.GET})
 		public ModelAndView cartIndentation(HttpServletRequest req,
 				HttpSession ses,
-				@RequestParam(value="product_no", required=false) String product_no){
+				@RequestParam(value="cart_po", required=false) String cart){
 			
-			System.out.println("주문페이지에 들어옴!");
+			System.out.println("장바구니에서 주문페이지로 들어옴!");
 			List<TempOrderVo> tempList = null;
 			if(ses.getAttribute(S.SESSION_LOGIN) != null 
 					&& ses.getAttribute(S.SESSION_ADMIN) == null){
 				System.out.println("회원으로 로그인 되어있음");
 				
-				/*TempOrderVo temp = new TempOrderVo(product_no, represent_img, product_name, buy_num, cost_price);
-			
-				tempList = new ArrayList<TempOrderVo>();
-				System.out.println("temp꺼"+temp);
-				tempList.add(temp);
-				System.out.println("temp "+temp);
+				String mem_id = (String)ses.getAttribute(S.SESSION_LOGIN);
 				
-				ses.setAttribute(S.SESSION_TEMP_ORDER, tempList);
+				//장바구니에서 불러온 애들
+				String temp_carts[] = cart.split(",");
 				
-				List<TempOrderVo> t = (List<TempOrderVo>)(ses.getAttribute(S.SESSION_TEMP_ORDER));
+				//재고 상태를 체크하기 위한 임시 int 배열
+				int temp_cart_po[] = new int[temp_carts.length];
 				
-				System.out.println("ses꺼"+((t.get(0)==null)? null : t.get(0)));
-				
-				//세션에 1개 이상 상품이 저장 되어 있는경우 
-				//같은 상품이 있는 것을 체크하여 같을 경우 적게 산 거를 세션에서 삭제
-				
-				
-				if(tempList.size() > 1)
-				for(int i = tempList.size()-1;  i >= 0 ; i--){
-					for(int j = tempList.size()-2; j >= 0; j--){
-						//같은 상품번호
-						if(tempList.get(i).getProduct_no() == tempList.get(j).getProduct_no()){
-							if(tempList.get(i).getBuy_num() > tempList.get(j).getBuy_num()){
-								tempList.remove(j);
-							}
-							else tempList.remove(i);
-						}
-					}			
+				List<VCartProductVo> temp_cart_list = new ArrayList<VCartProductVo>();
+				//int로 변환
+				for(int i = 0; i < temp_carts.length; i++){
+					try{
+						temp_cart_list.add(this.v_cart_product_svc.getOneCart(mem_id, Integer.parseInt(temp_carts[i])));
+						System.out.println("임시 장바구니"+temp_cart_po[i]);
+					}catch(NumberFormatException ne){ne.printStackTrace();}
 				}
+				
+				
+				//진열 및 판매 재고 상태 체크
+				for(int i = 0; i < temp_cart_list.size(); i++){
+					//재고 보다 작으면 주문에서 지워버림..
+					int r = this.productSvc.getStockOfProduct(temp_cart_list.get(i).getProduct_no());
+					ProductVo p = this.productSvc.getOneProduct(temp_cart_list.get(i).getProduct_no());
+					//판매 상태 및 진열 상태가 0(안 팔음)일때도 주문에서 제외 시킨다.
+					if( r < temp_cart_list.get(i).getBuy_num() 
+							|| p.getDisplay_state() == 0 || p.getSale_state() == 0){
+						//리스트에서 지운다
+						temp_cart_list.remove(i);
+					}
+				}
+				
+				//임시 주문 객체에 넣기
+				
+				//임시 주문 세션에 넣기
+				
+				//배송료
+				int charge = 3000;
+				//전체 가격 구하기
+				for(VCartProductVo c : temp_cart_list){
+					charge += (c.getBuy_num()*c.getSelling_price());
+				}
+				
+				
+//				TempOrderVo temp = new TempOrderVo(product_no, represent_img, product_name, buy_num, cost_price);
+//			
+//				tempList = new ArrayList<TempOrderVo>();
+//				System.out.println("temp꺼"+temp);
+//				tempList.add(temp);
+//				System.out.println("temp "+temp);
+//				
+//				ses.setAttribute(S.SESSION_TEMP_ORDER, tempList);
+//				
+//				List<TempOrderVo> t = (List<TempOrderVo>)(ses.getAttribute(S.SESSION_TEMP_ORDER));
+//				
+//				System.out.println("ses꺼"+((t.get(0)==null)? null : t.get(0)));
+				
+				
+				
+				
+	
+				
 				System.out.println("tempList");
 				for(TempOrderVo o : tempList){
 					System.out.println(o);
@@ -244,8 +281,8 @@ public class OrderController {
 				
 				map.put("temp", tempList);
 				//주문이 하나이므로 토탈값은 0번에서 가져온다.+3000은 배송
-				map.put("total_price", temp.getTotal_price());
-				map.put("charge", temp.getTotal_price()+3000);
+//				map.put("total_price", temp.getTotal_price());
+//				map.put("charge", temp.getTotal_price()+3000);
 				
 				map.put("orderer", orderer);
 				
@@ -255,7 +292,7 @@ public class OrderController {
 				map.put("email1", email[0]);
 				map.put("email2", email[1]);
 				
-				return new ModelAndView("order/order", map);*/
+				return new ModelAndView("order/order", map);
 			}
 			return new ModelAndView("redirect:soap/login.nm");//"redirect:detail.nm?pdno="+product_no;
 		}
@@ -298,8 +335,11 @@ public class OrderController {
 				
 				//재고 보다 작으면 주문에서 지워버림..
 				int r = this.productSvc.getStockOfProduct(list.get(i).getProduct_no());
+				ProductVo p = this.productSvc.getOneProduct(list.get(i).getProduct_no());
 				System.out.println(list.get(0).getProduct_name()+"재고 개수"+r);
-				if( r < list.get(i).getBuy_num()){
+				//판매 상태 및 진열 상태가 0(안 팔음)일때도 주문에서 제외 시킨다.
+				if( r < list.get(i).getBuy_num() 
+						|| p.getDisplay_state() == 0 || p.getSale_state() == 0){
 					//전체 주문 금액에서 제외 시깈나.
 					charge -= list.get(i).getTotal_price();
 					//리스트에서 지운다
