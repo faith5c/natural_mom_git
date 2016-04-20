@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -102,8 +102,19 @@
                </tr>
                <tr>
                   <td colspan="2">
-                  <input type="button" style="width:85px; padding : 13px 10px; margin : 0 5px;" onclick='go_to_cart(${pvo.product_no}, "${sessionScope.loggedin}", ${pvo.stock});' value="장바구니"></button>
-                  <input type="button" style="width:85px; padding : 13px 10px; margin : 0 5px;" onclick='go_to_interest(${pvo.product_no}, "${sessionScope.loggedin}");' value="관심상품"></button>
+               		<c:choose>
+
+           			<c:when test="${not empty sessionScope.admin && sessionScope.admin == true}">
+               		<input type="button" style="width:85px; padding : 13px 10px; margin : 0 5px;" onclick='alert("장바구니 등록은 회원 메뉴입니다")' value="장바구니"></button>
+                  	<input type="button" style="width:85px; padding : 13px 10px; margin : 0 5px;" onclick='alert("관심상품 등록은 회원 메뉴입니다")' value="관심상품"></button>
+               		</c:when>
+
+               		<c:otherwise>
+                 	<input type="button" style="width:85px; padding : 13px 10px; margin : 0 5px;" onclick='go_to_cart(${pvo.product_no}, "${sessionScope.loggedin}", ${pvo.stock});' value="장바구니"></button>
+                  	<input type="button" style="width:85px; padding : 13px 10px; margin : 0 5px;" onclick='go_to_interest(${pvo.product_no}, "${sessionScope.loggedin}");' value="관심상품"></button>
+               		</c:otherwise>	
+
+               		</c:choose>
                  
                   <input type="button" style="width:85px; padding : 13px 10px; margin : 0 5px; 
                   background-color : #000000" value="바로구매" onclick="go_to_order(${sessionScope.admin})"
