@@ -44,70 +44,28 @@ public class OrderController {
 	private IProductSvc productSvc;
 	private ICartSvc cartSvc;
 	
-	//관리자 주문 관리 페이지
-	   @RequestMapping(value="/admin/order.nm", method=RequestMethod.GET)
-	   public ModelAndView getOrderManager(HttpServletRequest req,
-	                              HttpSession se){
-	      System.out.println("@RequestMapping(value=/admin/order.nm)");
-	      String by = null;
-	      String order = null;
-	      if(req != null){
-	         by = (String)req.getAttribute("by");
-	         order = (String)req.getAttribute("order");
-	      }
-	      System.out.println("by - " + by + ", order - " + order);
-	      Map<String, Object> map = new HashMap<String, Object>();
-	      
-	      Boolean isAdmin = ((Boolean)se.getAttribute(S.SESSION_ADMIN));
-	      if(isAdmin==null || !isAdmin.booleanValue()){
-	         map.put("err_msg", "관리자로 로그인 바랍니다.");
-	         return new ModelAndView("login/login", map);
-	      }
-	      
-	      List<VOrderManagerVo> list = new ArrayList<VOrderManagerVo>();
-		if ( by == null || by.isEmpty() || by.equals(""))
-		{
-			System.out.println("by가 널일 때 진입");
-			list = this.vOrderManagerSvc.getAllOrederByDate(true);
-		}else if( by.equals("date") ){
-			if( order == null || order.equals("true") )
-				list = this.vOrderManagerSvc.getAllOrederByDate(true);
-			else
-				list = this.vOrderManagerSvc.getAllOrederByDate(false);		
-		}else if( by.equals("no") ){
-			if( order == null || order.equals("true") )
-				list = this.vOrderManagerSvc.getAllOrederByNo(true);
-			else
-				list = this.vOrderManagerSvc.getAllOrederByNo(false);		
-		}else if( by.equals("name") ){
-			if( order == null || order.equals("true") )
-				list = this.vOrderManagerSvc.getAllOrederByName(true);
-			else
-				list = this.vOrderManagerSvc.getAllOrederByName(false);		
-		}else if( by.equals("prod") ){
-			if( order == null || order.equals("true") )
-				list = this.vOrderManagerSvc.getAllOrederByProduct(true);
-			else
-				list = this.vOrderManagerSvc.getAllOrederByProduct(false);		
-		}else if( by.equals("num") ){
-			if( order == null || order.equals("true") )
-				list = this.vOrderManagerSvc.getAllOrederByNum(true);
-			else
-				list = this.vOrderManagerSvc.getAllOrederByNum(false);		
-		}else if( by.equals("charge") ){
-			if( order == null || order.equals("true") )
-				list = this.vOrderManagerSvc.getAllOrederByCharge(true);
-			else
-				list = this.vOrderManagerSvc.getAllOrederByCharge(false);		
-		}else if( by.equals("pro") ){
-			if( order == null || order.equals("true") )
-				list = this.vOrderManagerSvc.getAllOrederByProcess(true);
-			else
-				list = this.vOrderManagerSvc.getAllOrederByProcess(false);		
+	// 관리자 주문 관리 페이지
+	@RequestMapping(value = "/admin/order.nm", method = RequestMethod.GET)
+	public ModelAndView getOrderManager(HttpServletRequest req, HttpSession ses) {
+		System.out.println("@RequestMapping(value=/admin/order.nm)");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+
+//		Boolean isAdmin = ((Boolean) ses.getAttribute(S.SESSION_ADMIN));
+//		if (isAdmin == null || !isAdmin.booleanValue()) {
+//			map.put("err_msg", "관리자로 로그인 바랍니다.");
+//			return new ModelAndView("login/login", map);
+//		}
+
+		List<VOrderManagerVo> list = new ArrayList<VOrderManagerVo>();
+
+		System.out.println("vOrderManagerSvc null?"+((vOrderManagerSvc == null)? "null" : vOrderManagerSvc));
+		list = this.vOrderManagerSvc.getAllOrederByNo(false);
+		for(VOrderManagerVo m : list){
+			System.out.println(m);
 		}
-		if(list == null)System.out.println("리스트 널");
 		map.put("orderManeger", list);
-		return new ModelAndView("admin/order/a_order",map);
+		return new ModelAndView("admin/order/a_order", map);
 	}
 	
 	
@@ -342,6 +300,7 @@ public class OrderController {
 			String credit_num = card_num1+card_num2+card_num3+card_num4;
 			String credit_exp = expiry_year+expiry_month;
 			String mem_id = (String)ses.getAttribute(S.SESSION_LOGIN);
+			delivery_msg = ((delivery_msg == null || delivery_msg.isEmpty() || delivery_msg.equals(""))? "-" : delivery_msg);
 			OrderVo order = 
 					new OrderVo(charge, 
 							credit_num, 
@@ -350,10 +309,10 @@ public class OrderController {
 							phone, 
 							addr_post, 
 							addr_detail, 
-							delivery_msg, 
-							0,
+							delivery_msg, //null일시 안나옴
 							mem_id);
-
+			System.out.println("delivery_msg"+delivery_msg);
+			System.out.println("order객체생성"+order);
 			//주문이 생성되지 않는다면 주문 삭제 및 홈페이지로 다시 감
 			if(order == null){
 				System.out.println("재고 아예 읍슴");

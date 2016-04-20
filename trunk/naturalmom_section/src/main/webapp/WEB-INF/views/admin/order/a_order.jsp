@@ -13,7 +13,11 @@
 	<link rel="apple-touch-icon" href="../resources/images/logo.ico" /> <!--애플아이콘등록-->
 	<link rel="shortcut icon" href="../resources/images/logo.ico" /> <!--단축키아이콘등록-->
 	<link rel="stylesheet" href="../resources/admin/css/admin_common.css"/>
-			
+	
+	<script type="text/javascript" src="/soap/resources/tablesorter/jquery-latest.js"></script> 
+	<script type="text/javascript" src="/soap/resources/tablesorter/jquery.tablesorter.js"></script>
+	
+	
 	<title>자연맘</title>
 	
 	<script type="text/javascript" src="js/nicEdit.js"></script>

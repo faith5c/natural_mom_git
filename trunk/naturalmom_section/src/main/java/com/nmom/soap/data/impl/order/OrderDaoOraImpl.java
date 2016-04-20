@@ -19,10 +19,10 @@ public class OrderDaoOraImpl extends NamedParameterJdbcDaoSupport implements IOr
 	
 	final String ADD_ORDER = 
 			"INSERT INTO tb_order (charge, credit_num, credit_exp, rcv_name, rcv_phone, "
-			+ "rcv_addr_post, rcv_addr_detail, delivery_msg, credit_cd, mem_id, order_no) "
+			+ "rcv_addr_post, rcv_addr_detail, delivery_msg, credit_cd, mem_id, tracking_num, order_no) "
 			+ "VALUES (:charge, :credit_num, :credit_exp, :rcv_name, :rcv_phone, :rcv_addr_post, :rcv_addr_detail,"
 			+ " :delivery_msg, (SELECT credit_cd FROM tb_credit WHERE credit_nm = :credit_nm),"
-			+ " :mem_id, ORDER_NO_SEQ.NEXTVAL)";
+			+ " :mem_id, 0, ORDER_NO_SEQ.NEXTVAL)";
 	
 	final String EDIT_TRACKING_NUM_ORDER = 
 			"UPDATE NMDB.tb_order "

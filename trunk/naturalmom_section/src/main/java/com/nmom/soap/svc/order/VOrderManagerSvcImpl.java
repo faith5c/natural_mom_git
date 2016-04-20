@@ -22,6 +22,7 @@ public class VOrderManagerSvcImpl implements IVOrderManagerSvc {
 
 	@Override
 	public List<VOrderManagerVo> getAllOrederByNo(boolean orderBy) {
+		System.out.println("오더매니저 서비스");
 		List<VOrderManagerVo> list = 
 				this.vOrderManagerDao.getAllOrederByNo(orderBy); 
 		System.out.println("getAllOrederByNo");

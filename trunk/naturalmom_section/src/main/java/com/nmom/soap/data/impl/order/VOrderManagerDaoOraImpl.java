@@ -61,6 +61,7 @@ public class VOrderManagerDaoOraImpl extends JdbcDaoSupport implements IVOrderMa
 	}
 
 	public List<VOrderManagerVo> getAllOrederByNo(boolean orderBy) throws DataAccessException {
+		System.out.println("오더매니저 다오");
 		if(orderBy == ASC){
 			return getJdbcTemplate().query(ORDER_BY_ORDER_NO, 
 					BeanPropertyRowMapper.newInstance(VOrderManagerVo.class));

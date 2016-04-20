@@ -128,7 +128,7 @@ public class OrderVo {
 	}
 
 	public String getDelivery_msg() {
-		return delivery_msg.replaceAll("null;", " ");
+		return delivery_msg;
 	}
 
 	public void setDelivery_msg(String delivery_msg) {
