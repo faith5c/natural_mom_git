@@ -206,18 +206,14 @@ public class OrderController {
 				//장바구니에서 불러온 애들
 				String temp_carts[] = cart.split(",");
 				
-				//재고 상태를 체크하기 위한 임시 int 배열
-				int temp_cart_po[] = new int[temp_carts.length];
 				
 				List<VCartProductVo> temp_cart_list = new ArrayList<VCartProductVo>();
-				//int로 변환
+				//int로 변환해서 일단 임시 장바구니로 ㄱㄱ
 				for(int i = 0; i < temp_carts.length; i++){
 					try{
 						temp_cart_list.add(this.v_cart_product_svc.getOneCart(mem_id, Integer.parseInt(temp_carts[i])));
-						System.out.println("임시 장바구니"+temp_cart_po[i]);
 					}catch(NumberFormatException ne){ne.printStackTrace();}
 				}
-				
 				
 				//진열 및 판매 재고 상태 체크
 				for(int i = 0; i < temp_cart_list.size(); i++){
@@ -232,9 +228,14 @@ public class OrderController {
 					}
 				}
 				
+				List<TempOrderVo> temp_list = new ArrayList<TempOrderVo>();
 				//임시 주문 객체에 넣기
+				for(VCartProductVo c : temp_cart_list){
+					temp_list.add(new TempOrderVo(c));
+				}
 				
 				//임시 주문 세션에 넣기
+				ses.setAttribute(S.SESSION_TEMP_ORDER, temp_list);
 				
 				//배송료
 				int charge = 3000;
