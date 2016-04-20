@@ -21,15 +21,7 @@
 	<title>자연맘</title>
 	
 	<script type="text/javascript" src="js/nicEdit.js"></script>
-	<script type="text/javascript">
-		bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
-	</script>
-	<script>
-		function order_popup()
-		{
-			window.open("_a_order_popup.jsp", "운송장 등록", "width = 420px, height = 410px, left = 500px, top = 200px, scrollbars = no, toobar = no, menubar = no, status = no, location = no, resizeable = no");
-		}
-	</script>
+
 	<style type = "text/css">
 
 		* { margin: 0px; padding: 0px; }
@@ -138,7 +130,7 @@
 					<td>${ om.buy_num }</td>
 					<td>${ om.charge }</td>
 					<td class="msg" >${ om.delivery_msg }</td>
-					<td><c:if test="${ 0 ne om.tracking_num }">${ om.tracking_num }</c:if></td>
+					<td onclick="tracking_num_input(${ om.order_no })"><c:if test="${ 0 ne om.tracking_num }">${ om.tracking_num }</c:if></td>
 					<td>
 						<select name="process_no">
 							<option value="11" <c:if test="${ om.process_nm.equals('배송준비중') }">selected="selected"</c:if> >&nbsp;배송준비중&nbsp;</option>
@@ -157,12 +149,17 @@
 		
 		<br>
 		<div id = "buttons">
-			<input type = "button" id = "save" value = "저장" />
 			<input type = "button" id = "delivery_stand_by" value = "배송대기" />
 			<input type = "button" id = "refund_process" value = "환불처리"/>
 			<input type = "button" id = "refund_complete" value = "환불완료" />
 		</div>
 	</div>
+		<script type="text/javascript">
+		function order_popup()
+		{
+			window.open("_a_order_popup.jsp", "운송장 등록", "width = 420px, height = 410px, left = 500px, top = 200px, scrollbars = no, toobar = no, menubar = no, status = no, location = no, resizeable = no");
+		}
+	</script>
 <!--------------------------------------------------------end container------------->
   </body>
 

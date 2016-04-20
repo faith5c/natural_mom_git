@@ -91,8 +91,7 @@ table tr:last-child td{ padding-top : 40px; text-align : center; }
 				</tr>
 
 				<tr>
-					<td><textarea id="order_nums" name="order_nums" cols="60"
-							row="3">242424 242425</textarea></td>
+					<td><input readonly="readonly" id="order_no" name="order_no" ></td>
 				</tr>
 
 				<tr>
