@@ -218,7 +218,7 @@
 
         	var i = document.createElement("input"); // input 엘리멘트 생성 
         	i.setAttribute("type","hidden"); // type 속성을 hidden으로 설정 
-        	i.setAttribute("name","product_no"); // name 속성을 'nick'으로 설정 
+        	i.setAttribute("name","cart_po"); // name 속성을 'nick'으로 설정 
         	i.setAttribute("value",res); // value 속성을 '지앤미'로 설정 
         	f.appendChild(i); // form 엘리멘트에 input 엘리멘트 추가  
         	f.submit(); // 전송 
