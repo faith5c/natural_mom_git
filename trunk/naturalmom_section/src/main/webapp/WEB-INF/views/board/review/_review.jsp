@@ -34,9 +34,12 @@
 	#review tr:nth-child(2) td { background-color: #CCCCCC; color: white; font-style:bold; }
 	#review tr:not(:first-child) td { color: black; }
 	#review tr td { border-bottom : 1px solid grey; }
-	#review tr td { padding : 5px; color: black; border-bottom : 1px solid lightgrey;}	
+	#review tr td { padding : 5px; color: black; border-bottom : 1px solid lightgrey;}
 	
 	#review tr:nth-child(2), #sub_title { text-align: center; }
+	
+	#no_review { text-align: center; height: 100px; }
+	
 	#write { text-align: right; }
 	
 	#write input
@@ -296,8 +299,13 @@
 					</div>
 				</div>
 			</td>
-			
+		</tr>	
 		</c:forEach>
+		</c:if>
+		<c:if test = "${(rvw_list == null) || (rvw_list != null && fn:length(rvw_list) == 0)}" >
+			<tr>
+				<td colspan = "4" id = "no_review">등록된 리뷰가 없습니다. 첫 리뷰의 주인공이 되어주세요.</td>
+			</tr>
 		</c:if>
 	</table>
 		<div class="page">
