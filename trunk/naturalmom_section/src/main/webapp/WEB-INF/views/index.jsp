@@ -67,11 +67,37 @@
       <!--기타배너 : 주문/회원/배송/계좌번호)-->
       <aside>
          <img src="/soap/resources/images/banner_order.jpg">
-         <a href="<c:url value='join.nm'/>"><img src="/soap/resources/images/banner_membership.jpg"></a>
+         <!-- 비회원 -->
+		 <c:if test="${empty loggedin}">
+        	 <a href="<c:url value='/join_term.nm'/>"><img src="/soap/resources/images/banner_membership.jpg"></a>
+         </c:if>
+         <!-- 회원 -->
+         <c:if test="${not empty loggedin && empty admin}">
+         	<a href="" onclick="preventJoin()"><img src="/soap/resources/images/banner_membership.jpg"></a>
+         </c:if>
+         <c:if test="${admin eq true}">
+         	<a href="" onclick="preventAdmin()"><img src="/soap/resources/images/banner_membership.jpg"></a>
+         </c:if>
          <a href="<c:url value='delivery.nm'/>"><img src="/soap/resources/images/banner_delivery.jpg"></a>
          <img src="/soap/resources/images/banner_account.jpg">
       </aside>
    </div>
+   
+<script type="text/javascript">
+	
+	function preventJoin() {
+		alert('이미 자연맘의 회원입니다');
+	}
+	
+	function adviceJoin() {
+		alert('로그인 후 이용해주세요');
+	}
+	
+	function preventAdmin() {
+		alert('관리자 계정으로 접속 중입니다');
+	}
+
+</script>		
 <!--------------------------------------------------------end container------------->
 <!--Start footer---------------------------------------------------------------------->
    <footer>
