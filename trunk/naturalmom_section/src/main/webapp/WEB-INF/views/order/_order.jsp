@@ -420,6 +420,7 @@ table tr .explain {
 			</table>
 			<input type="hidden" name="charge" value="${charge}">
 			<input type="hidden" name="post_num" id="post_numS">
+			<input type="hidden" name="way" value="${way}">
 			<p id="pay">
 				<input type="button" value="결제하기" class="buttons" onclick="allSubmit()">
 			</p>

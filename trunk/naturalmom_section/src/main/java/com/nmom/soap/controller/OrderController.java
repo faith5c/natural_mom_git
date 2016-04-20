@@ -23,6 +23,7 @@ import com.nmom.soap.data.model.order.TempOrderVo;
 import com.nmom.soap.data.model.order.VOrderListVo;
 import com.nmom.soap.data.model.order.VOrderManagerVo;
 import com.nmom.soap.data.model.product.ProductVo;
+import com.nmom.soap.svc.cart.ICartSvc;
 import com.nmom.soap.svc.cart.IVCartProductSvc;
 import com.nmom.soap.svc.member.IVOrdererSvc;
 import com.nmom.soap.svc.order.IOrderSvc;
@@ -41,6 +42,7 @@ public class OrderController {
 	private IVOrdererSvc vOrdererSvc;
 	private IVCartProductSvc v_cart_product_svc;
 	private IProductSvc productSvc;
+	private ICartSvc cartSvc;
 	
 	//관리자 주문 관리 페이지
 	   @RequestMapping(value="/admin/order.nm", method=RequestMethod.GET)
@@ -170,6 +172,7 @@ public class OrderController {
 			
 			//오더 페이지 표시
 			map.put("page", "order");
+			map.put("way", "detail");
 			
 			map.put("temp", tempList);
 			//주문이 하나이므로 토탈값은 0번에서 가져온다.+3000은 배송
@@ -256,6 +259,7 @@ public class OrderController {
 				
 				//오더 페이지 표시
 				map.put("page", "order");
+				map.put("way", "cart");
 				
 				map.put("temp", temp_list);
 				//주문이 하나이므로 토탈값은 0번에서 가져온다.+3000은 배송
@@ -280,6 +284,7 @@ public class OrderController {
 	public ModelAndView orderProc(HttpServletRequest req,
 			HttpSession ses,
 			//주문자 정보
+			@RequestParam(value="way", required=false) String way,
 			@RequestParam(value="name", required=false) String name,
 			@RequestParam(value="phone1", required=false) String phone1,
 			@RequestParam(value="phone2", required=false) String phone2,
@@ -379,10 +384,23 @@ public class OrderController {
 				}
 				
 			}
+
+			//장바구니에서 가져온 경우 장바구니 삭제
+			System.out.println("장바구니 삭제를 시작한다.");
+			if(way.equals("cart")){
+				for(TempOrderVo t : list){
+					int r = this.cartSvc.removeCartProduct(t.getProduct_no(), mem_id);
+					if(r > 0){
+						System.out.println("장바구니 삭제 성공");
+					}
+					else{
+						System.out.println("장바구니 삭제 실패");
+					}
+				}
+			}
 			
 			//주문이 완료 되었으므로 세션에서 삭제
 			ses.removeAttribute(S.SESSION_TEMP_ORDER);
-			
 
 			//주문완료 페이지에서 보여줄 주문리스트 객체 가져오기
 			VOrderListVo new_order = this.vOrderListSvc.getOneOrder(order_no);
@@ -398,34 +416,6 @@ public class OrderController {
 			return new ModelAndView("order/order", map);
 		}
 		return new ModelAndView("redirect:soap/login.nm");
-	}
-	
-//	@RequestMapping(value="/order/order.nm")
-	public ModelAndView addOrder(HttpServletRequest req,
-			HttpSession ses,
-			@RequestParam(value="temp") List<TempOrderVo> temp,
-			@RequestParam(value="page") String page){
-		System.out.println("주문 페이지로 옴");
-		Map<String, Object> map = new HashMap<String, Object>();
-		if(ses.getAttribute(S.SESSION_LOGIN) != null 
-				&& ses.getAttribute(S.SESSION_ADMIN) == null){
-			
-			System.out.println(temp.get(0) == null ? "템 널" : temp.get(0));
-			System.out.println((String)ses.getAttribute(S.SESSION_LOGIN));
-			VOrdererVo orderer = this.vOrdererSvc.getOrderer(((String)ses.getAttribute(S.SESSION_LOGIN)));
-			
-			map.put("orderer", orderer);
-			map.put("phone1", orderer.getPhone().split("-")[0]);
-			map.put("phone2", orderer.getPhone().split("-")[1]);
-			map.put("phone3", orderer.getPhone().split("-")[2]);
-			map.put("email1", orderer.getEmail().split("@")[0]);
-			map.put("email2", orderer.getEmail().split("@")[1]);
-			map.put("post1", orderer.getAddr_post().split("-")[0]);
-			map.put("post2", orderer.getAddr_post().split("-")[1]);
-			map.put("page", (page == null) ? "order" : page);
-			map.put("temp", temp);
-		}
-		return new ModelAndView("order/order", map);
 	}
 	
 	//주문 리스트 보기 /orderlist.nm
@@ -498,6 +488,8 @@ public class OrderController {
 	public void setProductSvc(IProductSvc productSvc) {
 		this.productSvc = productSvc;
 	}
-	
+	public void setCartSvc(ICartSvc cartSvc) {
+		this.cartSvc = cartSvc;
+	}
 	
 }

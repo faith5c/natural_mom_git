@@ -245,7 +245,7 @@
     	  alert('품절된 상품은 주문하실 수 없습니다.');
       }
       else if(res != ""){
-        	alert(res);
+        	//alert(res);
          	var f = document.createElement("form"); // form 엘리멘트 생성 
         	f.setAttribute("method","post"); // method 속성 설정 
         	f.setAttribute("action","/soap/order/cartorder.nm"); // action 속성 설정 
