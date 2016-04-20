@@ -107,15 +107,14 @@
 				</c:choose>
 			</td>
 			<td>
- 				<c:choose>
- 				<c:when test="${cl.stock<=0 || cl.sale_state==0}">
-					품절
-				</c:when>
-				
-				<c:otherwise>
-					판매중
-				</c:otherwise>
-				</c:choose>
+				<c:choose>
+	            <c:when test ="${cl.stock <= 0 || cl.sale_state==0}">
+	            	품절
+	            </c:when>
+	            <c:otherwise>
+	            	판매중
+	            </c:otherwise>
+            	</c:choose>
 			</td>
 		</tr>
 		</c:forEach>
