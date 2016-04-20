@@ -7,4 +7,6 @@ import com.nmom.soap.data.model.cart.VCartProductVo;
 public interface IVCartProductSvc {
 	List<VCartProductVo> getAllCart();
 	List<VCartProductVo> getCartByMemId(String mem_id);
+	List<VCartProductVo> getOneCart(String mem_id, int product_no);
+	
 }

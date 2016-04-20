@@ -23,4 +23,9 @@ public class VCartProductSvcImpl implements IVCartProductSvc {
 		return vCartProductDao.getCartByMemId(mem_id);
 	}
 
+	@Override
+	public List<VCartProductVo> getOneCart(String mem_id, int product_no) {
+		return vCartProductDao.getOneCart(mem_id, product_no);
+	}
+
 }

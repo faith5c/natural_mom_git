@@ -17,6 +17,7 @@ public class VCartProductDaoOraImpl extends NamedParameterJdbcDaoSupport impleme
 
 	private final String SELECT_ALL_CART_PRODUCT = "SELECT product_no, product_name, selling_price, sale_state, represent_img, buy_num, stock, mem_id FROM V_CART_PRODUCT";
 	private final String SELECT_CART_PRODUCT_BY_MEM_ID = "SELECT product_no, product_name, selling_price, sale_state, represent_img, buy_num, stock, mem_id FROM V_CART_PRODUCT WHERE mem_id=:mem_id";
+	private final String SELECT_ONE_CART_PRODUCT = "SELECT product_no, product_name, selling_price, sale_state, represent_img, stock, buy_num, mem_id FROM V_CART_PRODUCT WHERE mem_id=:mem_id AND product_no=:product_no";
 	
 	public List<VCartProductVo> getAllCart() throws DataAccessException {
 		return this.getJdbcTemplate().query(SELECT_ALL_CART_PRODUCT, new BeanPropertyRowMapper<VCartProductVo>(VCartProductVo.class));
@@ -27,5 +28,14 @@ public class VCartProductDaoOraImpl extends NamedParameterJdbcDaoSupport impleme
 		MapSqlParameterSource ps = new MapSqlParameterSource();
 		ps.addValue("mem_id", mem_id, Types.VARCHAR);
 		return npjtem.query(SELECT_CART_PRODUCT_BY_MEM_ID, ps, new BeanPropertyRowMapper<VCartProductVo>(VCartProductVo.class));
+	}
+
+	@Override
+	public List<VCartProductVo> getOneCart(String mem_id, int product_no) throws DataAccessException {
+		NamedParameterJdbcTemplate npjtem = this.getNamedParameterJdbcTemplate();
+		MapSqlParameterSource ps = new MapSqlParameterSource();
+		ps.addValue("mem_id", mem_id, Types.VARCHAR);
+		ps.addValue("product_no", product_no, Types.INTEGER);
+		return npjtem.query(SELECT_ONE_CART_PRODUCT, ps, new BeanPropertyRowMapper<VCartProductVo>(VCartProductVo.class));
 	}
 }

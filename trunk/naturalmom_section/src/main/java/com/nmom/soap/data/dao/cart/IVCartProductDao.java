@@ -9,4 +9,5 @@ import com.nmom.soap.data.model.cart.VCartProductVo;
 public interface IVCartProductDao {
 	List<VCartProductVo> getAllCart() throws DataAccessException;
 	List<VCartProductVo> getCartByMemId(String mem_id) throws DataAccessException;
+	List<VCartProductVo> getOneCart(String mem_id, int product_no) throws DataAccessException;	
 }
