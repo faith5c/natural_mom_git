@@ -174,15 +174,6 @@ public class ProductDaoOraImpl extends NamedParameterJdbcDaoSupport implements I
 		return npjtem.query(SELECT_PRODUCT_BY_CATEGORY_CD, ps, new BeanPropertyRowMapper<ProductVo>(ProductVo.class));
 	}
 
-	public List<ProductVo> getProductByProductName(String product_name) throws DataAccessException {
-		product_name = "%"+product_name+"%";
-		
-		NamedParameterJdbcTemplate npjtem = this.getNamedParameterJdbcTemplate();
-		MapSqlParameterSource ps = new MapSqlParameterSource();
-		ps.addValue("product_name", product_name, Types.VARCHAR);
-		return npjtem.query(SELECT_PRODUCT_BY_PRODUCT_NAME, ps, new BeanPropertyRowMapper<ProductVo>(ProductVo.class));
-	}
-
 	@Override
 	public List<ProductVo> searchProduct(String keyword) throws DataAccessException {
 		keyword = "%"+keyword+"%";

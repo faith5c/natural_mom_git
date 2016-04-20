@@ -30,9 +30,6 @@ public interface IProductSvc
 	// 카테고리에 따라 상품목록 가져옴
 	List<ProductVo> getProductByCategoryCd(int category_cd);
 	
-	// 상품이름으로 상품 가져옴
-	List<ProductVo> getProductByProductName(String product_name);
-	
 	// 해당 상품의 재고 가져오기
 	int getStockOfProduct(int product_no);
 	
