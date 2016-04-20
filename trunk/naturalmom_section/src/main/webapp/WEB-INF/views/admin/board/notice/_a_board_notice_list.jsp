@@ -115,17 +115,23 @@
 		<td colspan="5"><a href="notice.nm?w=true&r=0"><span>글쓰기</span></a></td>
 	</tr>
 </table>
-	<div id="page">
-	<a href="#">〈〈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="#">〈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+		<!--  page control -->
+		<div id="page">
+			<a href="/soap/admin/board/notice.nm?ab=${ ab }&nb=1">〈〈</a>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+			<a href="/soap/admin/board/notice.nm?ab=${ ab }&nb=${ nb eq 1 ? nb :nb-1 }">〈</a>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<c:forEach begin="1" end="${ ab }" varStatus="abN">
 						&nbsp;<a href="/soap/admin/board/notice.nm?ab=${ ab }&nb=${ abN.index }">${ abN.index }</a>&nbsp;
 					</c:forEach>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="#">〉</a>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="#">〉〉</a>
-	</div>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+			<a href="/soap/admin/board/notice.nm?ab=${ ab }&nb=${ nb eq ab ? nb :nb+1 }">〉</a> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+			<a href="/soap/admin/board/notice.nm?ab=${ ab }&nb=${ ab }">〉〉</a>
+		</div>
+		
+		
 	<div class="search">
 			<select name="k" id="kind">
 				<option value="제목">제목</option>

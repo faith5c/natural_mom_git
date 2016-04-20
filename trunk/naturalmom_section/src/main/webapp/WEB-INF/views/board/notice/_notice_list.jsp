@@ -96,12 +96,17 @@
 			</c:if>
 		</table>
 		<div id="page">
-			<a href="#">〈〈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="#">〈</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="/soap/board/notice.nm?ab=${ ab }&nb=1">〈〈</a>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+			<a href="/soap/board/notice.nm?ab=${ ab }&nb=${ nb eq 1 ? nb :nb-1 }">〈</a>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<c:forEach begin="1" end="${ ab }" varStatus="abN">
 						&nbsp;<a href="/soap/board/notice.nm?ab=${ ab }&nb=${ abN.index }">${ abN.index }</a>&nbsp;
 					</c:forEach>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
-				href="#">〉</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="#">〉〉</a>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+			<a href="/soap/board/notice.nm?ab=${ ab }&nb=${ nb eq ab ? nb :nb+1 }">〉</a> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+			<a href="/soap/board/notice.nm?ab=${ ab }&nb=${ ab }">〉〉</a>
 		</div>
 		<div class="search">
 			<select name="k" id="kind">
