@@ -136,10 +136,10 @@ public class IndexController {
 		return "admin/board/a_board";
 	}
 	
-	@RequestMapping(value ="/admin/sales.nm", method=RequestMethod.GET)
-	public String admin_sales(HttpServletRequest req){
-		return "admin/sales/a_sales";
-	}
+//	@RequestMapping(value ="/admin/sales.nm", method=RequestMethod.GET)
+//	public String admin_sales(HttpServletRequest req){
+//		return "admin/sales/a_sales";
+//	}
 	
 	
 	
