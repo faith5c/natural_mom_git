@@ -1,6 +1,5 @@
 package com.nmom.soap.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -15,11 +14,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nmom.soap.S;
-import com.nmom.soap.data.model.board.event.EventVo;
 import com.nmom.soap.data.model.board.notice.NoticeReVo;
 import com.nmom.soap.data.model.board.notice.NoticeVo;
 import com.nmom.soap.data.model.board.notice.VNoticeVo;
@@ -62,11 +59,9 @@ public class NoticeController {
 			search = URLDecoder.decode(s, "UTF-8");
 			System.out.println(kind+search);
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		System.out.println("콘트롤러 공지사항 리스트 진입");
 		//블럭은 페이지 10개씩의 단위 첫페이지는 무조건 1
 		int block = 1;
 		
@@ -90,7 +85,6 @@ public class NoticeController {
 			switch(kind){
 			case "제목":
 				allPages = vNoticeSvc.getAllCountByTitle(search);
-				System.out.println("콘트롤러 검색 제목 페이지 삽입 진입");
 				List<VNoticeVo> tList = this.vNoticeSvc.getSearchByTitleNotice(search, block, allPages);
 				
 				if(allPages > 0)
@@ -103,7 +97,6 @@ public class NoticeController {
 				
 			case "내용" :
 				allPages = vNoticeSvc.getAllCountByContent(search);
-				System.out.println("콘트롤러 검색 내용 페이지 삽입 진입");
 				List<VNoticeVo> cList = this.vNoticeSvc.getSearchByContentNotice(search, block, allPages);
 				
 				if(allPages > 0)
@@ -116,7 +109,6 @@ public class NoticeController {
 				
 			case "제목+내용" :
 				allPages = vNoticeSvc.getAllCountByTitleNContent(search);
-				System.out.println("콘트롤러 검색 제목+내용 페이지 삽입 진입");
 				List<VNoticeVo> tcList = this.vNoticeSvc.getSearchByTitleNContentNotice(search, block, allPages);
 				
 				if(allPages > 0)
@@ -130,12 +122,10 @@ public class NoticeController {
 		}
 		else{
 			allPages = vNoticeSvc.getAllCount();
-			System.out.println("콘트롤러 기본 페이지 삽입 진입");
 			List<VNoticeVo> list = this.vNoticeSvc.getAllNotice(block, allPages);
 			
 			if(allPages > 0)
 			blockNums = (int)Math.ceil((double)allPages/S.PAGE_LIMIT);
-		
 			map.put("ab", blockNums);
 			map.put("nb", block);
 			map.put("no_list", list);
@@ -159,12 +149,8 @@ public class NoticeController {
 			if(n > 0) System.out.println("댓글 삭제 성공!"); 
 		}
 		
-		System.out.println("/board/notice_read.nm 진입");
-		System.out.println(notice_no);
 		int r = this.noticeSvc.incrementHit(notice_no);
-		System.out.println();
 		NoticeVo notice = this.noticeSvc.getNotice(notice_no);
-		System.out.println("notice_no"+notice_no);
 		
 		if(notice != null){
 			Map<String, Object> map = new HashMap<>();
@@ -174,7 +160,6 @@ public class NoticeController {
 			
 			int next_notice = this.noticeSvc.getNextNoticeNo(notice_no);
 			if( next_notice > 0 ) map.put("next", next_notice);
-			System.out.println("이전"+prev_notice+" 다음"+next_notice);
 			
 			if(reply.size() > 0){
 				map.put("re_list", reply);
@@ -215,12 +200,9 @@ public class NoticeController {
 						notice_no, 
 						(String)ses.getAttribute(S.SESSION_LOGIN)));
 		
-			System.out.println((r == 1) ? "리플 달기 성공" : "리플달기 실패");
 		}
 		//게시글 다시 가져오는 부분
 		NoticeVo notice = this.noticeSvc.getNotice(notice_no);
-		System.out.println("notice_no"+notice_no);
-		System.out.println("notice_no"+notice);
 		if(notice != null){
 			Map<String, Object> map = new HashMap<>();
 			List<NoticeReVo> reply = this.noticeReSvc.getAllNoticeRe(notice_no);
@@ -229,7 +211,6 @@ public class NoticeController {
 			
 			int next_notice = this.noticeSvc.getNextNoticeNo(notice_no);
 			if( next_notice > 0 ) map.put("next", next_notice);
-			System.out.println("이전"+prev_notice+" 다음"+next_notice);
 			
 			if(reply.size() > 0){
 				map.put("re_list", reply);
@@ -264,7 +245,6 @@ public class NoticeController {
 			@RequestParam(value="k", required=false) String k,
 			@RequestParam(value="s", required=false) String s){
 		
-		System.out.println("콘트롤러 공지사항 리스트 진입");
 		//블럭은 페이지 10개씩의 단위 첫페이지는 무조건 1
 		
 		//어드민이 투루가 아닐경우 프론트 페이지로 ㄱㄱ
@@ -315,7 +295,6 @@ public class NoticeController {
 			switch(kind){
 			case "제목":
 				allPages = vNoticeSvc.getAllCountByTitle(search);
-				System.out.println("콘트롤러 검색 제목 페이지 삽입 진입");
 				List<VNoticeVo> tList = this.vNoticeSvc.getSearchByTitleNotice(search, block, allPages);
 				
 				if(allPages > 0)
@@ -328,7 +307,6 @@ public class NoticeController {
 				
 			case "내용" :
 				allPages = vNoticeSvc.getAllCountByContent(search);
-				System.out.println("콘트롤러 검색 내용 페이지 삽입 진입");
 				List<VNoticeVo> cList = this.vNoticeSvc.getSearchByContentNotice(search, block, allPages);
 				
 				if(allPages > 0)
@@ -341,7 +319,6 @@ public class NoticeController {
 				
 			case "제목+내용" :
 				allPages = vNoticeSvc.getAllCountByTitleNContent(search);
-				System.out.println("콘트롤러 검색 제목+내용 페이지 삽입 진입");
 				List<VNoticeVo> tcList = this.vNoticeSvc.getSearchByTitleNContentNotice(search, block, allPages);
 				
 				if(allPages > 0)
@@ -355,7 +332,6 @@ public class NoticeController {
 		}
 		else{
 			allPages = vNoticeSvc.getAllCount();
-			System.out.println("콘트롤러 기본 페이지 삽입 진입");
 			List<VNoticeVo> list = this.vNoticeSvc.getAllNotice(block, allPages);
 			
 			if(allPages > 0)
@@ -391,13 +367,8 @@ public class NoticeController {
 				if(n > 0) System.out.println("댓글 삭제 성공!"); 
 			}
 			
-			System.out.println("/board/notice_read.nm 진입");
-			System.out.println(notice_no);
 			int r = this.noticeSvc.incrementHit(notice_no);
-			System.out.println();
 			NoticeVo notice = this.noticeSvc.getNotice(notice_no);
-			System.out.println("notice_no"+notice_no);
-			System.out.println(notice);
 			
 			if(notice != null){
 				
@@ -407,7 +378,6 @@ public class NoticeController {
 				
 				int next_notice = this.noticeSvc.getNextNoticeNo(notice_no);
 				if( next_notice > 0 ) map.put("next", next_notice);
-				System.out.println("이전"+prev_notice+" 다음"+next_notice);
 				
 				if(reply.size() > 0){
 					map.put("re_list", reply);
@@ -433,7 +403,6 @@ public class NoticeController {
 			@RequestParam(value="content", required=false) String c,
 			@RequestParam(value="r", required=false) int notice_no) 
 					throws IllegalStateException, IOException {
-		System.out.println("공지사항 글 추가하기 진입 성공");
 		String id = null;
 		id = (String) ses.getAttribute(S.SESSION_LOGIN);
 		Map<String, Object> map = new HashMap<>();
@@ -455,7 +424,6 @@ public class NoticeController {
 			try {
 				title = URLDecoder.decode(t, "UTF-8");
 				content = URLDecoder.decode(c, "UTF-8");
-				System.out.println(title + content);
 			} catch (UnsupportedEncodingException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -501,8 +469,6 @@ public class NoticeController {
 					
 					//수정된 게시글 상세보기를 위한 객체
 					NoticeVo notice = this.noticeSvc.getNotice(notice_no);
-					System.out.println("notice_no" + notice_no);
-					System.out.println(notice);
 
 					if (notice != null) {
 						
@@ -514,7 +480,6 @@ public class NoticeController {
 						int next_notice = this.noticeSvc.getNextNoticeNo(notice_no);
 						if (next_notice > 0)
 							map.put("next", next_notice);
-						System.out.println("이전" + prev_notice + " 다음" + next_notice);
 
 						if (reply.size() > 0) {
 							map.put("re_list", reply);
@@ -564,7 +529,6 @@ public class NoticeController {
 		}
 		
 		map.put("no", new NoticeVo(notice_no, title, content, null, null));
-		System.out.println(notice_no+title+content);
 		
 		return new ModelAndView("admin/board/notice/a_notice", map);
 	}

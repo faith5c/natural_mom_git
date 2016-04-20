@@ -20,13 +20,9 @@ public class VNoticeSvcImpl implements IVNoticeSvc {
 	
 	@Override                         // 블록은 페이지 모음
 	public List<VNoticeVo> getAllNotice(int block, int allPages) {
-		int start = 1; // 
-		//모든 페이지는 1부터 시작
-		for(int i = 1; i > block; i++){
-			start+=S.PAGE_LIMIT;
-		}
-						//스타트에서 1 더했으므로 여기서 뺌
-		int end = start + (S.PAGE_LIMIT-1);
+		int start = S.PAGE_LIMIT * (block-1) +1 ;
+		int end = S.PAGE_LIMIT * block > allPages? allPages : S.PAGE_LIMIT * block;
+		
 		List<VNoticeVo> list = this.vNoticeDao.getAllNotice(start, end);
 		return (list != null && list.size() > 0) ? list : null;
 	}
