@@ -83,7 +83,7 @@
 		<c:set var="cart_price" scope="page">0</c:set>
 		<c:forEach var="cl" items="${cart_list}">
 		<tr>
-			<td><input type="checkbox" id="no" name="no" value="${cl.product_no}"></td>
+			<td><input type="checkbox" id="no" name="no" value="${cl.product_no}" ></td>
 			<td><a href="<c:url value='/product/detail.nm?pdno=${cl.product_no}'/>">
 			<img src="/soap/resources/product_images/${cl.represent_img}" alt="${cl.product_name}">
 			</a></td>
