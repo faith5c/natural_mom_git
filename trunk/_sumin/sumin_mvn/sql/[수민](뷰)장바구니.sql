@@ -9,3 +9,8 @@ ON (p.product_no=c.product_no);
 SELECT product_no, product_name, selling_price, sale_state, represent_img, stock, buy_num, mem_id
 FROM V_CART_PRODUCT
 WHERE mem_id='soomin';
+
+-- 장바구니 하나 뽑는 SQL
+SELECT product_no, product_name, selling_price, sale_state, represent_img, stock, buy_num, mem_id
+FROM V_CART_PRODUCT
+WHERE mem_id='soomin' AND product_no=10006;
