@@ -51,12 +51,14 @@
                   <td colspan="2">${pvo.product_name}&nbsp;${pvo.weight}g
                   
                   <span id="stock">
-		            <c:if test ="${pvo.stock <= 0}">
+	                <c:choose>
+		            	<c:when test ="${pvo.stock <= 0 || pvo.sale_state==0}">
 		            	&nbsp;&nbsp;품절
-		            </c:if>
-		            <c:if test ="${pvo.stock > 0}">
+		            	</c:when>
+		            	<c:otherwise>
 		            	&nbsp;&nbsp;판매중
-		            </c:if>
+		            	</c:otherwise>
+	            	</c:choose>
 		          </span>
                   </td>
                </tr>
