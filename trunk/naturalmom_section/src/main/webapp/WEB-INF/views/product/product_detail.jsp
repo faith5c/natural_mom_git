@@ -5,7 +5,6 @@
   <head>
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
-   <script src="resources/js/jquery-1.11.3.min.js"></script>
    <!-- [if lt IE 9]><script src="js/html5shiv.js"></script><![endif] -->
    
    <link rel="apple-touch-icon" href="/soap/resources/images/logo.ico" /> <!--애플아이콘등록-->
@@ -46,7 +45,7 @@
          
          <div id="soap_table">
             <table>
-            <form action="/soap/order/detailorder.nm" method="post">
+            <form action="/soap/order/detailorder.nm" method="post" name="cart_form">
                <tr>
                   <td colspan="2">${pvo.product_name}&nbsp;${pvo.weight}g
                   
@@ -106,9 +105,9 @@
                   <input type="button" style="width:85px; padding : 13px 10px; margin : 0 5px;" onclick='go_to_cart(${pvo.product_no}, "${sessionScope.loggedin}", ${pvo.stock});' value="장바구니"></button>
                   <input type="button" style="width:85px; padding : 13px 10px; margin : 0 5px;" onclick='go_to_interest(${pvo.product_no}, "${sessionScope.loggedin}");' value="관심상품"></button>
                  
-                  <button style="width:85px; padding : 13px 10px; margin : 0 5px; 
-                  background-color : #000000" type="submit"  
-                  	<c:if test ="${pvo.stock <= 0}">disabled="disabled"</c:if> >바로구매</button>
+                  <input type="button" style="width:85px; padding : 13px 10px; margin : 0 5px; 
+                  background-color : #000000" value="바로구매" onclick="go_to_order(${sessionScope.admin})"
+                  	<c:if test ="${pvo.stock <= 0}">disabled="disabled"</c:if> >
                  
                   </td>
                </tr>
@@ -210,6 +209,14 @@
 			    location.href="/soap/interest/add_proc.nm?i_pn="+interest_poductno;
     	  } 
       } 
+      function go_to_order(admin){
+    	  if(admin == null){
+    		  document.cart_form.submit()
+    	  }
+    	  else if(admin == true){
+    		  alert("회원만 구매 가능합니다.");
+    	  }
+      }
 
    </script>
 

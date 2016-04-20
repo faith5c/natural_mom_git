@@ -189,7 +189,7 @@ public class OrderController {
 			
 			return new ModelAndView("order/order", map);
 		}
-		return new ModelAndView("redirect:soap/login.nm");//"redirect:detail.nm?pdno="+product_no;
+		return new ModelAndView("login/login");//"redirect:detail.nm?pdno="+product_no;
 	}
 	
 	//주문하기 페이지   /order/cartorder.nm
@@ -276,7 +276,7 @@ public class OrderController {
 				
 				return new ModelAndView("order/order", map);
 			}
-			return new ModelAndView("redirect:soap/login.nm");//"redirect:detail.nm?pdno="+product_no;
+			return new ModelAndView("login/login");//"redirect:detail.nm?pdno="+product_no;
 		}
 	
 	//주문 프로세스 order_proc.nm
@@ -415,7 +415,7 @@ public class OrderController {
 			
 			return new ModelAndView("order/order", map);
 		}
-		return new ModelAndView("redirect:soap/login.nm");
+		return new ModelAndView("login/login");
 	}
 	
 	//주문 리스트 보기 /orderlist.nm
