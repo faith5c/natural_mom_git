@@ -84,12 +84,12 @@ public class ProductController
    {      
       // 세션에서 아이디와 관리자인지 여부를 얻어옴
       Boolean isAdmin = ((Boolean)session.getAttribute(S.SESSION_ADMIN));
+      Map<String, Object> map = new HashMap<String, Object>();
       
       if (isAdmin!= null && isAdmin.booleanValue())
       {      
          List<VProduct_ManageVo> list = null;
-         Map<String, Object> map = new HashMap<String, Object>();
-         
+                  
          if (by == null || order == null)
             list = product_manageSvc.getAllProduct_by_product_no(S.ASC);
          else if (by.equals("no"))
@@ -158,7 +158,8 @@ public class ProductController
       }
       else
       {
-         return new ModelAndView("redirect:/login.nm", null);
+    	  map.put("err_msg", "관리자로 로그인 바랍니다.");
+    	  return new ModelAndView("login/login", map);
       }
    }
    
@@ -170,12 +171,12 @@ public class ProductController
    {
       // 세션에서 아이디와 관리자인지 여부를 얻어옴
       Boolean isAdmin = ((Boolean)session.getAttribute(S.SESSION_ADMIN));
+      Map<String, Object> map = new HashMap<String, Object>();
       
       if (isAdmin!= null && isAdmin.booleanValue())
       {
          List<VProduct_DeletedVo> list = null;
-         Map<String, Object> map = new HashMap<String, Object>();
-         
+                  
          if (by == null || order == null)
             list = product_deletedSvc.getAllDeletedProduct_by_product_no(S.ASC);
          else if (by.equals("no"))
@@ -230,13 +231,14 @@ public class ProductController
       }
       else
       {
-         return new ModelAndView("redirect:/login.nm", null);
+    	  map.put("err_msg", "관리자로 로그인 바랍니다.");
+    	  return new ModelAndView("login/login", map);
       }
    }
    
    // 상품관리 & 상품삭제 페이지에서 상태 변경
    @RequestMapping(value ="/admin/product.nm", method=RequestMethod.GET, params="page=process")
-   public String product_changeState(HttpServletRequest request, HttpSession session,
+   public ModelAndView product_changeState(HttpServletRequest request, HttpSession session,
          @RequestParam(value="item", required=false) String item, @RequestParam(value="order", required=false) int order,
          @RequestParam(value="no", required=false) int[] no)
    {
@@ -254,7 +256,7 @@ public class ProductController
                {
                   // 에러 페이지 이동
                   System.out.println("에러 발생");
-                  return "redirect:/admin/product.nm";
+                  return new ModelAndView("redirect:/admin/product.nm?rslt=error", null);
                }
             }
             else if (item.equals("sal"))
@@ -264,7 +266,7 @@ public class ProductController
                {
                   // 에러 페이지 이동
                   System.out.println("에러 발생");
-                  return "redirect:/admin/product.nm";
+                  return new ModelAndView("redirect:/admin/product.nm?rslt=error", null);
                }
             }
             else if (item.equals("del"))
@@ -275,23 +277,27 @@ public class ProductController
                {
                   // 에러 페이지 이동
                   System.out.println("에러 발생");
-                  return "redirect:/admin/product.nm";
+                  return new ModelAndView("redirect:/admin/product.nm?rslt=error", null);
                }
             }
             else
             {
-               // 에러 페이지
+            	// 에러 페이지 이동
+                System.out.println("에러 발생");
+                return new ModelAndView("redirect:/admin/product.nm?rslt=error", null);
             }
          }
          
          if(item.equals("del")&& order == S.STATE_FALSE)
-            return "redirect:/admin/product.nm?page=deleted";
+            return new ModelAndView("redirect:/admin/product.nm?page=deleted", null);
          else
-            return "redirect:/admin/product.nm";   
+            return new ModelAndView("redirect:/admin/product.nm", null);  
       }
       else
       {
-         return "redirect:/login.nm";
+    	 Map<String, Object> map = new HashMap<String, Object>();
+    	 map.put("err_msg", "관리자로 로그인 바랍니다.");
+         return new ModelAndView("login/login", map);
       }
    }
 
@@ -301,30 +307,32 @@ public class ProductController
    {
       // 세션에서 아이디와 관리자인지 여부를 얻어옴
       Boolean isAdmin = ((Boolean)session.getAttribute(S.SESSION_ADMIN));
+      Map<String, Object> map = new HashMap<String, Object>();
       
       if (isAdmin!= null && isAdmin.booleanValue())
       {
          List<CategoryVo> c_list = categorySvc.getAllCategory();
-         Map<String, Object> map = new HashMap<String, Object>();
-         
+                  
          map.put("c_list", c_list);
          return new ModelAndView("admin/product/a_product", map);
       }
       else
       {
+    	 map.put("err_msg", "관리자로 로그인 바랍니다.");
          return new ModelAndView("redirect:/login.nm", null);
       }
    }
    
    // 상품 등록하는 페이지
    @RequestMapping(value ="/admin/product_reg_proc.nm", method=RequestMethod.POST)
-   public String product_register(HttpServletRequest request, HttpSession session,
+   public ModelAndView product_register(HttpServletRequest request, HttpSession session,
          @RequestParam (value="represent_img") MultipartFile represent_img,
          @RequestParam (value="detail_img") MultipartFile detail_img,
          @RequestParam Map<String, String> pro_param) throws IllegalStateException, IOException
    {
       // 세션에서 아이디와 관리자인지 여부를 얻어옴
       Boolean isAdmin = ((Boolean)session.getAttribute(S.SESSION_ADMIN));
+      Map<String, Object> map = new HashMap<String, Object>();
       
       if (isAdmin!= null && isAdmin.booleanValue())
       {
@@ -404,17 +412,18 @@ public class ProductController
           if (result == S.PROCESS_SUCCESS)
           {
              // 상품 등록 성공 페이지로 이동
-             return "redirect:/admin/product.nm?page=manage&rslt=true";
+             return new ModelAndView("redirect:/admin/product.nm?page=manage&rslt=true", null);
           }
           else   // 실패
           {
              // 에러 메세지
-             return "redirect:/admin/product.nm?page=register&rslt=false";
+             return new ModelAndView("redirect:/admin/product.nm?page=register&rslt=false", null);
           }
       }
       else
       {
-         return "redirect:/login.nm";
+    	 map.put("err_msg", "관리자로 로그인 바랍니다.");
+         return new ModelAndView("redirect:/login.nm", map);
       }
    }
    
@@ -425,26 +434,27 @@ public class ProductController
    {
       // 세션에서 아이디와 관리자인지 여부를 얻어옴
       Boolean isAdmin = ((Boolean)session.getAttribute(S.SESSION_ADMIN));
+      Map<String, Object> map = new HashMap<String, Object>();
       
       if (isAdmin!= null && isAdmin.booleanValue())
       {
          List<CategoryVo> c_list = categorySvc.getAllCategory();
          ProductVo old_product = productSvc.getOneProduct(product_no);
-         Map<String, Object> map = new HashMap<String, Object>();
-         
+                  
          map.put("c_list", c_list);
          map.put("productVo", old_product);
          return new ModelAndView("admin/product/a_product", map);
       }
       else
       {
-         return new ModelAndView("redirect:/login.nm", null);
+    	  map.put("err_msg", "관리자로 로그인 바랍니다.");
+          return new ModelAndView("redirect:/login.nm", map);
       }
    }
    
    // 상품 수정하는 페이지
       @RequestMapping(value ="/admin/product_modi_proc.nm", method=RequestMethod.POST)
-      public String product_modify(HttpServletRequest request, HttpSession session,
+      public ModelAndView product_modify(HttpServletRequest request, HttpSession session,
             @RequestParam (value="re_img", required=false) MultipartFile represent_img,
             @RequestParam (value="de_img", required=false) MultipartFile detail_img,
             @RequestParam Map<String, String> pro_param) throws IllegalStateException, IOException
@@ -460,7 +470,7 @@ public class ProductController
             
             // 이미지 업로드 경로 지정
             String root_path = request.getSession().getServletContext().getRealPath("/");  
-             String attach_path = "resources/product_images/";
+            String attach_path = "resources/product_images/";
              
             File re_img = null;
             File de_img = null;
@@ -542,17 +552,19 @@ public class ProductController
              if (result == S.PROCESS_SUCCESS)
              {
                 // 상품 등록 성공 페이지로 이동
-                return "redirect:/admin/product.nm?page=manage&rslt=m_true";
+                return new ModelAndView("redirect:/admin/product.nm?page=manage&rslt=m_true", null);
              }
              else   // 실패
              {
                 // 에러 메세지
-                return "redirect:/admin/product.nm?page=manage&rslt=m_false";
+                return new ModelAndView("redirect:/admin/product.nm?page=manage&rslt=m_false", null);
              }
          }
          else
          {
-            return "redirect:/login.nm";
+	       	 Map<String, Object> map = new HashMap<String, Object>();
+	       	 map.put("err_msg", "관리자로 로그인 바랍니다.");
+	         return new ModelAndView("login/login", map);
          }
       }
    

@@ -148,6 +148,7 @@
 		</div>
 <!-- 검색 부분 -->
 <script type="text/javascript">
+
 	function search()
 	{
 		var option = document.getElementById("option").value;

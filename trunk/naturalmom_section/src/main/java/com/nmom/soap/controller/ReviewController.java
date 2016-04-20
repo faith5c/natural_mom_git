@@ -220,13 +220,15 @@ public class ReviewController
 	
 	// 댓글 달기
 	@RequestMapping(value="/admin/board/review_reg_re_proc.nm", method=RequestMethod.POST)
-	public String register_reviewReply_a(HttpServletRequest request, HttpSession session,
+	public ModelAndView register_reviewReply_a(HttpServletRequest request, HttpSession session,
 			@RequestParam(value="rvw_re_content", required=false) String rvw_re_content,
 			@RequestParam(value="rvw_no", required=false) int rvw_no)
 	{
 		// 세션에서 아이디와 관리자인지 여부를 얻어옴
 		String id = (String)session.getAttribute(S.SESSION_LOGIN);
 		Boolean isAdmin = ((Boolean)session.getAttribute(S.SESSION_ADMIN));
+		
+		Map<String, Object> map = new HashMap<String, Object>();
 		
 		if (isAdmin!= null && isAdmin.booleanValue())
 		{
@@ -237,30 +239,30 @@ public class ReviewController
 			
 			if (review_reSvc.addRe(new_reply) == S.PROCESS_SUCCESS)
 			{
-				return "redirect:/admin/board/review_read.nm?r=" + rvw_no;
+				return new ModelAndView("redirect:/admin/board/review_read.nm?r=" + rvw_no, null);
 			}
 			else
 			{
-				// TODO 댓글 등록 실패 시 alert 창
 				System.out.println("댓글 등록 실패");
-				return "redirect:/admin/board/review_read.nm?r=" + rvw_no + "&rst=rrfalse";
+				return new ModelAndView("redirect:/admin/board/review_read.nm?r=" + rvw_no + "&rst=rrfalse", null);
 			}
 		}
 		else
 		{
-			// 관리자 로그인 해달라는 에러 메시지
-			return "redirect:/login.nm";
+			map.put("err_msg", "관리자로 로그인 바랍니다.");
+			return new ModelAndView("login/login", null);
 		}
 	}
 	
 	// 댓글 및 글 삭제
 	@RequestMapping(value="/admin/board/review_del_proc.nm", method=RequestMethod.GET)
-	public String delete_reviewNRe_a(HttpServletRequest request, HttpSession session,
+	public ModelAndView delete_reviewNRe_a(HttpServletRequest request, HttpSession session,
 			@RequestParam(value="c", required=false) String c,
 			@RequestParam(value="no", required=false) int no)
 	{
 		// 세션에서 아이디와 관리자인지 여부를 얻어옴
 		Boolean isAdmin = ((Boolean)session.getAttribute(S.SESSION_ADMIN));
+		Map<String, Object> map = new HashMap<String, Object>();
 		
 		if (isAdmin!= null && isAdmin.booleanValue())
 		{
@@ -268,9 +270,9 @@ public class ReviewController
 			if(c.equals("r"))
 			{
 				if (reviewSvc.removeReview(no) == S.PROCESS_SUCCESS)
-					return "redirect:/admin/board/review.nm";
-				else // TODO 글 삭제에 실패한 경우
-					return "redirect:/admin/board/review_read.nm?r=" + no + "&rst=dfalse";
+					return new ModelAndView("redirect:/admin/board/review.nm", null);
+				else
+					return new ModelAndView("redirect:/admin/board/review_read.nm?r=" + no + "&rst=dfalse", null);
 			}
 			// 댓글 삭제인 경우
 			else if(c.equals("rr"))
@@ -278,20 +280,20 @@ public class ReviewController
 				int review_no = review_reSvc.getRvwNoOfRe(no);
 				
 				if (review_reSvc.removeRe(no) == S.PROCESS_SUCCESS)
-					return "redirect:/admin/board/review_read.nm?r=" + review_no;
-				else	// TODO 댓글 삭제에 실패한 경우
+					return new ModelAndView("redirect:/admin/board/review_read.nm?r=" + review_no, null);
+				else
 				{
 					System.out.println("댓글 삭제 실패");
-					return "redirect:/admin/board/review_read.nm?r=" + review_no + "&rst=rdfalse";
+					return new ModelAndView("redirect:/admin/board/review_read.nm?r=" + review_no + "&rst=rdfalse", null);
 				}
 			}
 			else
-				return "redirect:/admin/board/review.nm";
+				return new ModelAndView("redirect:/admin/board/review.nm", null);
 		}
 		else
 		{
-			// 관리자 로그인 해달라는 에러 메시지
-			return "redirect:/login.nm";
+			map.put("err_msg", "관리자로 로그인 바랍니다.");
+			return new ModelAndView("login/login", map);
 		}
 	}
 	
@@ -361,12 +363,13 @@ public class ReviewController
 	
 	// 댓글 달기
 	@RequestMapping(value="/product/review_reg_re_proc.nm", method=RequestMethod.POST)
-	public String register_reviewReply(HttpServletRequest request, HttpSession session,
+	public ModelAndView register_reviewReply(HttpServletRequest request, HttpSession session,
 			@RequestParam(value="rvw_re_content", required=false) String rvw_re_content,
 			@RequestParam(value="rvw_no", required=false) int rvw_no,
 			@RequestParam(value="product_no") int product_no)
 	{
 		String id = (String)session.getAttribute(S.SESSION_LOGIN);
+		Map<String, Object> map = new HashMap<String, Object>();
 		
 		if (id != null && !id.isEmpty())
 		{
@@ -377,26 +380,27 @@ public class ReviewController
 			
 			if (review_reSvc.addRe(new_reply) == S.PROCESS_SUCCESS)
 			{
-				return "redirect:/product/detail.nm?pdno=" + product_no + "&rst=rrtrue#review";
+				return new ModelAndView("redirect:/product/detail.nm?pdno=" + product_no + "&rst=rrtrue#review", null);
 				// TODO rst 파라미터 처리하기 -> ProductController
 			}
 			else
 			{
 				// TODO 에러 메시지
 				System.out.println("댓글 등록 실패");
-				return "redirect:/product/detail.nm?pdno=" + product_no + "&rst=rrfalse#review";
+				return new ModelAndView("redirect:/product/detail.nm?pdno=" + product_no + "&rst=rrfalse#review", null);
 			}
 		}
 		else
 		{
 			// 로그인 해달라는 에러 메시지
-			return "redirect:/login.nm";
+			map.put("err_msg", "관리자로 로그인 바랍니다.");
+			return new ModelAndView("login/login", map);
 		}
 	}
 	
 	// 댓글 및 글 삭제
 	@RequestMapping(value="/product/review_del_proc.nm", method=RequestMethod.GET)
-	public String delete_review_n_re(HttpServletRequest request, HttpSession session,
+	public ModelAndView delete_review_n_re(HttpServletRequest request, HttpSession session,
 			@RequestParam(value="c", required=false) String c,
 			@RequestParam(value="no", required=false) int no,
 			@RequestParam(value="p_no", required=false) int p_no)
@@ -405,6 +409,7 @@ public class ReviewController
 		String id = (String)session.getAttribute(S.SESSION_LOGIN);
 		Boolean isAdmin = (Boolean)session.getAttribute(S.SESSION_ADMIN);
 		String wroteId = (c.equals("r") ? reviewSvc.getOneReview(no).getMem_id() : review_reSvc.getOneReply(no).getMem_id()); 
+		Map<String, Object> map = new HashMap<String, Object>();
 		
 		if ((id != null && id.equals(wroteId))
 				|| (isAdmin!= null && isAdmin.booleanValue()))
@@ -413,11 +418,11 @@ public class ReviewController
 			if(c.equals("r"))
 			{	//TODO
 				if (reviewSvc.removeReview(no) == S.PROCESS_SUCCESS)
-					return "redirect:/product/detail.nm?pdno=" + p_no + "#review";
+					return new ModelAndView("redirect:/product/detail.nm?pdno=" + p_no + "#review", null);
 				else
 				{
 					System.out.println("글 삭제 실패");
-					return "redirect:/product/detail.nm?pdno=" + p_no + "&rst=dfalse#review";
+					return new ModelAndView("redirect:/product/detail.nm?pdno=" + p_no + "&rst=dfalse#review", null);
 				}
 					
 			}
@@ -425,20 +430,21 @@ public class ReviewController
 			else if(c.equals("rr"))
 			{	//TODO				
 				if (review_reSvc.removeRe(no) == S.PROCESS_SUCCESS)
-					return "redirect:/product/detail.nm?pdno=" + p_no + "#review";
+					return new ModelAndView("redirect:/product/detail.nm?pdno=" + p_no + "&rst=rdtrue#review", null);
 				else
 				{
 					System.out.println("댓글 삭제 실패");
-					return "redirect:/product/detail.nm?pdno=" + p_no + "&rst=rdfalse#review";
+					return new ModelAndView("redirect:/product/detail.nm?pdno=" + p_no + "&rst=rdfalse#review", null);
 				}
 			}
 			else
-				return "redirect:/product/detail.nm?pdno=" + p_no;
+				return new ModelAndView("redirect:/product/detail.nm?pdno=" + p_no, null);
 		}
 		else
 		{
-			// 관리자 로그인 해달라는 에러 메시지
-			return "redirect:/login.nm";
+			// 로그인 해달라는 에러 메시지
+			map.put("err_msg", "관리자로 로그인 바랍니다.");
+			return new ModelAndView("login/login", map);
 		}
 	}
 }

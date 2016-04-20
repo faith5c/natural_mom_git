@@ -56,7 +56,10 @@
          alert('상품 수정에 성공했습니다.');   
    <% } else if (request.getParameter("rslt") != null
          && request.getParameter("rslt").equals("m_false")){ %>   
-         alert('상품 수정에 실패했습니다.');   
+         alert('상품 수정에 실패했습니다.');
+   <% } else if (request.getParameter("rslt") != null
+         && request.getParameter("rslt").equals("error")){ %>   
+         alert('상태 변경에 실패했습니다.');   
    <% } %>
    
    function order_product(by)

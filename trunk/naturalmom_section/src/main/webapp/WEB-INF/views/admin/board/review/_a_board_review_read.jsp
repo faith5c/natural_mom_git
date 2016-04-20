@@ -85,7 +85,33 @@
 	
 </style>
 <script type="text/javascript">
-		
+	<% 
+		String result = (String)request.getParameter("rst");
+		if (result != null && result.equals("rrfalse")) {
+	%>		write_result('rrfalse');
+	<%  } else if (result != null && result.equals("dfalse")) { %>
+		write_result('rrfalse');
+	<%  } else if (result != null && result.equals("rdfalse")) { %>
+		write_result('rrfalse');
+	<%  } %>
+	
+	
+	function write_result(rst)
+	{
+		if(rst == 'rrfalse')
+		{
+			alert('댓글 등록에 실패했습니다.');
+		}
+		else if(rst == 'dfalse')
+		{
+			alert('게시글 삭제에 실패했습니다.');
+		}
+		else if(rst == 'rdfalse')
+		{
+			alert('댓글 삭제에 실패했습니다.');
+		}
+	}
+	
 	function del_review(review_no)
 	{
 		if(confirm("글을 삭제하시겠습니까?")) 

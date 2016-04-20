@@ -96,10 +96,16 @@
  <script>
 	<% 
 		String result = (String)request.getParameter("rst");
-		if (result != null && result.equals("true")) {
-	%>	write_result('true');
-	<%  } else if (result != null && result.equals("false")) { %>
-		write_result('false');
+		if (result != null && result.equals("rrtrue")) {
+	%>	write_result('rrtrue');
+	<%  } else if (result != null && result.equals("rrfalse")) { %>
+		write_result('rrfalse');
+	<%  } else if (result != null && result.equals("dfalse")) { %>
+		write_result('dfalse');
+	<%  } else if (result != null && result.equals("rdtrue")) { %>
+		write_result('rdtrue');
+	<%  } else if (result != null && result.equals("rdfalse")) { %>
+		write_result('rdfalse');
 	<%  } else if (result != null && result.equals("login")) { %>
 		write_result('login');
 	<%  } %>
@@ -156,14 +162,27 @@
 	
 	function write_result(result)
 	{
-		if(result == 'true')
+		if(result == 'rrtrue')
 		{
 			alert('댓글이 등록되었습니다.');
 
 		}
-		else if (result == 'false')
+		else if (result == 'rrfalse')
 		{
 			alert('댓글 등록에 실패하였습니다.');
+		}
+		if(result == 'dfalse')
+		{
+			alert('게시물 삭제에 실패하였습니다.');
+
+		}
+		else if (result == 'rdtrue')
+		{
+			alert('댓글이 삭제되었습니다.');
+		}
+		else if (result == 'rdfalse')
+		{
+			alert('댓글 삭제에 실패하였습니다.');
 		}
 		else if(result == 'login')
 		{
