@@ -5,12 +5,13 @@
   <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script src="../js/jquery-1.11.3.min.js"></script>
+	<script src="/soap/resources/js/jquery-1.11.3.min.js"></script>
 	<!-- [if lt IE 9]><script src="js/html5shiv.js"></script><![endif] -->
 	
-	<link rel="apple-touch-icon" href="../resources/images/logo.ico" /> <!--애플아이콘등록-->
-	<link rel="shortcut icon" href="../resources/images/logo.ico" /> <!--단축키아이콘등록-->
-	<link rel="stylesheet" href="../resources/admin/css/admin_common.css"/>
+	<link rel="apple-touch-icon" href="/soap/resources/images/logo.ico" /> <!--애플아이콘등록-->
+	<link rel="shortcut icon" href="/soap/resources/images/logo.ico" /> <!--단축키아이콘등록-->
+	<link rel="stylesheet" href="/soap/resources/admin/css/admin_common.css"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	
 	<title>자연맘</title>
 <style type="text/css">
@@ -39,7 +40,7 @@ h2{color: #004523;}
 
 #button { text-align: center; }
 
-#submit { 
+#edit_submit { 
 	padding : 7px 30px;
 	margin-left : 5px;
 	margin-right : 5px; 
@@ -51,7 +52,7 @@ h2{color: #004523;}
 	border : 0px;
 }
 
-#submit:hover { opacity : 0.7; }
+#edit_submit:hover { opacity : 0.7; }
 
 td:FIRST-CHILD {
 	width: 20%;
@@ -70,29 +71,33 @@ td:FIRST-CHILD {
 <!---Start container----------------------------------------------------------------->
 	
 	<div id="container">
-	<form action="" method="post">
+	<form action="edited.nm" method="post" name="admin_edit_form">
 		<table>
 			<tr>
 				<td colspan="2"><h2>관리자 비밀번호 수정</h2><br><hr><br></td>
 			</tr>
 			<tr>
 				<td>아이디</td>
-				<td><input type="text" id="id" name="id" disabled="disabled"/></td>
+				<td><input type="text" id="id" readonly="readonly" value="${loggedin}"/></td>
 			</tr>
 						<tr>
 				<td>비밀번호</td>
-				<td id="check_pw"><input type="password" id="pw" name="pw" onchange="check_pw()"/>
-					&nbsp;&nbsp;<span>(영문, 숫자포함 6-18자 입력)</span></td>
+				<td id="check_pw"><input type="password" id="pw" name="pw" onblur="check_pw()"/>
+					&nbsp;&nbsp;<span id="">(영문, 숫자포함 6-18자 입력)</span></td>
 			</tr>
 			<tr>
 				<td>비밀번호 확인</td>
-				<td id="check_pw2"><input type="password" id="pw2" name="pw2" onchange="check_pw2()"/>&nbsp;
+				<td id="check_pw2"><input type="password" id="pw2" name="pw2" onblur="check_pw2()"/>&nbsp;&nbsp;
 					<span>비밀번호를 한번 더 입력하세요</span></td>
 			</tr>
 			
 			<tr>
-				<td colspan="2"><p id="button"><input type="submit" id="submit" value="확인" /></p></td>
-			</tr>
+				<td colspan="2"><p id="button"><input type="button" id="edit_submit" value="확인" onclick="allSubmit()"/></p></td>
+			
+			<td>
+				<input type="hidden" id="nnPw" name="nnPw" value="false"/>
+				<input type="hidden" id="nnPw2" name="nnPw2" value="false"/>
+			<td>
 		</table>
 	</form>
 
@@ -108,8 +113,10 @@ td:FIRST-CHILD {
 		console.log(length_pw);
 		if( length_pw < 6){
 			$("#check_pw span").css("color", "red").text("비밀번호가 너무 짧습니다");
+			document.getElementById("nnPw").value = "false";
 		} else {
-			$("#check_pw span").text("");
+			$("#check_pw span").css("color", "gray").html("<i class='fa fa-check-circle' aria-hidden='true'></i>");
+			document.getElementById("nnPw").value = "true";
 		}
 	}
 
@@ -118,9 +125,22 @@ td:FIRST-CHILD {
 		var var_pw2 = $('#pw2').val();
 		
 		if( ! (val_pw1 == var_pw2) ){
-			$("#check_pw2 span").css("color", "red").text("비밀번호가 일치하지 않습니다");
+			$("#check_pw2 span").css("color", "red").html("비밀번호가 일치하지 않습니다");
+			document.getElementById("nnPw2").value = "false";
 		}else{
-			$("#check_pw2 span").css("color", "gray").text("비밀번호가 일치합니다");
+			$("#check_pw2 span").css("color", "gray").html("<i class='fa fa-check-circle' aria-hidden='true'></i>");
+			document.getElementById("nnPw2").value = "true";
+		}
+	}
+	
+	function allSubmit() {
+		if($('#nnPw').val()=="false"){
+			alert("비밀번호를 확인해주세요.");
+		}else if($('#nnPw2').val()=="false"){
+			alert("비밀번호가 일치하는지 확인해주세요.");
+		}else{
+			alert("성공적으로 수정되었습니다.");
+			document.admin_edit_form.submit();
 		}
 	}
  

@@ -390,6 +390,18 @@ public class MemberController {
 		return new ModelAndView("admin/member/a_member", map);
 	}
 	
+	// 관리자 비밀번호 변경
+	@RequestMapping(value="/admin/edited.nm", method=RequestMethod.POST)
+	public String admin_edit_pw(HttpServletRequest req,
+								HttpSession se,
+								@RequestParam(value="pw") String pw){
+		String id = (String) se.getAttribute(S.SESSION_LOGIN);
+		MemberVo admin = memberSvc.getOneMember(id);
+		admin.setMem_pw(pw);
+		memberSvc.editMember(admin);
+		
+		return "redirect:edit.nm";
+	}
 	
 	
 	

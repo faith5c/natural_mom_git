@@ -231,7 +231,7 @@ function check_pw2() {
 		}
 		
 		function cannotchange(object) {
-			alert(object + ' 수정할 수 없습니다. <br>고객센터로 연락바랍니다.')
+			alert(object + ' 수정할 수 없습니다. 고객센터로 연락바랍니다.')
 		}
 
 </script>
