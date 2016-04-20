@@ -92,10 +92,10 @@ _____________________________________________________________
 	
 	- 글 리스트(페이지네이션)
 	/board/faq/list.nm
+	/board/faq/pp/list.nm
 	
 	- 글보기
 	/board/faq/read.nm
-	
 	- 글 검색
 	/board/faq/search.nm
 
