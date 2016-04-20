@@ -327,10 +327,10 @@ public class QnaController {
 			)
 	{
 
-		if(title == null){
+		if(title == null || title.equals("")){
 			title = "(제목없음)";
 		}
-		if(content == null){
+		if(content == null || content.equals("")){
 			content = "(내용없음)";
 		}
 		
@@ -435,10 +435,10 @@ public class QnaController {
 			qna_pw = password;
 		}
 
-		if(title == null){
+		if(title == null || title.equals("")){
 			title = "(제목없음)";
 		}
-		if(content == null){
+		if(content == null || content.equals("")){
 			content = "(내용없음)";
 		}
 		
@@ -983,10 +983,10 @@ public class QnaController {
 			)
 	{
 
-		if(title == null){
+		if(title == null || title.equals("")){
 			title = "(제목없음)";
 		}
-		if(content == null){
+		if(content == null || content.equals("")){
 			content = "(내용없음)";
 		}
 		
@@ -1100,10 +1100,10 @@ public class QnaController {
 			qna_pw = password;
 		}
 
-		if(title == null){
+		if(title == null || title.equals("")){
 			title = "(제목없음)";
 		}
-		if(content == null){
+		if(content == null || content.equals("")){
 			content = "(내용없음)";
 		}
 		
