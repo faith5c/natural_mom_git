@@ -673,17 +673,16 @@ public class ProductController
    {
 	   Map<String,Object> map = new HashMap<String,Object>();
 
-      try{
-	         
+      try{ 
          List<ProductVo> product_list = productSvc.searchProduct(kw);
          
          if(product_list != null && product_list.size() != 0)
-           map.put("product_list", product_list);
-        
+            map.put("product_list", product_list);
+         	map.put("kw", kw);
 	     } catch(Exception e){
 	        e.printStackTrace();
 	     }
 	     
-	     return new ModelAndView("index", map);
+	     return new ModelAndView("product/product_menu", map);
    }
 }

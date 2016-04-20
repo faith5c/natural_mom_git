@@ -5,12 +5,12 @@
   <head>
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
-   <script src="resources/js/jquery-1.11.3.min.js"></script>
-   <!-- [if lt IE 9]><script src="js/html5shiv.js"></script><![endif] -->
+   <script src="/soap/resources/js/jquery-1.11.3.min.js"></script>
+   <!-- [if lt IE 9]><script src="/soap/resources/js/html5shiv.js"></script><![endif] -->
    
-   <link rel="apple-touch-icon" href="resources/images/logo.ico" /> <!--애플아이콘등록-->
-   <link rel="shortcut icon" href="resources/images/logo.ico" /> <!--단축키아이콘등록-->
-   <link rel="stylesheet" href="resources/css/index.css"/>
+   <link rel="apple-touch-icon" href="/soap/resources/images/logo.ico" /> <!--애플아이콘등록-->
+   <link rel="shortcut icon" href="/soap/resources/images/logo.ico" /> <!--단축키아이콘등록-->
+   <link rel="stylesheet" href="/soap/resources/css/index.css"/>
       
    <title>자연맘</title>
    
@@ -36,7 +36,7 @@
       <!--JSP로 구현해야 하는 부분-->
       <section>
          <p>상품종류 : ${category_name}</p>
-
+         
          <c:forEach var="pl" items="${product_list}">
             <div>
             <a href="/soap/product/detail.nm?pdno=${pl.product_no}"><img src="/soap/resources/product_images/${pl.represent_img}" alt="${pl.product_name}"></a>
@@ -62,14 +62,14 @@
       <!--------------------------------------------------end content--------->
       
       <!--회사이념-->
-      <img id="info_naturalmom" src="resources/images/info_naturalmom.jpg">
+      <img id="info_naturalmom" src="/soap/resources/images/info_naturalmom.jpg">
 
       <!--기타배너 : 주문/회원/배송/계좌번호)-->
       <aside>
-         <img src="resources/images/banner_order.jpg">
-         <a href="<c:url value='join.nm'/>"><img src="resources/images/banner_membership.jpg"></a>
-         <a href="<c:url value='delivery.nm'/>"><img src="resources/images/banner_delivery.jpg"></a>
-         <img src="resources/images/banner_account.jpg">
+         <img src="/soap/resources/images/banner_order.jpg">
+         <a href="<c:url value='join.nm'/>"><img src="/soap/resources/images/banner_membership.jpg"></a>
+         <a href="<c:url value='delivery.nm'/>"><img src="/soap/resources/images/banner_delivery.jpg"></a>
+         <img src="/soap/resources/images/banner_account.jpg">
       </aside>
    </div>
 <!--------------------------------------------------------end container------------->

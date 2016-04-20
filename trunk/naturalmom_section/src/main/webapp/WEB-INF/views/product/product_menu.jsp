@@ -35,7 +35,20 @@
       <!--상품나열(천연비누모음)-->
       <!-- JSP로 구현해야할 부분 -->
       <section>
-         <p>상품종류 : ${category_name}</p>
+         <p>
+         <c:choose>
+         	<c:when test="${not empty category_name}">
+		        상품종류 : ${category_name}
+         	</c:when>
+         	<c:when test="${not empty kw}">
+         		검색결과 : ${kw}
+         	</c:when>
+         </c:choose>
+         </p>
+         
+         <c:if test="${empty product_list}">
+         	<p style="text-align : center;">검색 결과에 포함되는 상품이 없습니다</p>
+         </c:if>
          
          <c:forEach var="pl" items="${product_list}">
             <div>
@@ -68,13 +81,6 @@
       <%@include file="../_default_footer.jsp" %>
    </footer>
 
-
   </body>
-  
-  
-  
-  
-  
-  
   
 </html>
