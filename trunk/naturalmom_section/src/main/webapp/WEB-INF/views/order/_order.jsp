@@ -184,7 +184,7 @@ table tr .explain {
 			<tr>
 				<td colspan=4>
 				<c:if test="${ not empty temp}">
-				총 주문금액 : ${total_price}원&nbsp;+&nbsp;배송비 3000원&nbsp;=&nbsp;&nbsp;<b>${charge}원</b>
+				총 주문금액 : ${charge-3000}원&nbsp;+&nbsp;배송비 3000원&nbsp;=&nbsp;&nbsp;<b>${charge}원</b>
 				</c:if>
 				</td>
 			</tr>

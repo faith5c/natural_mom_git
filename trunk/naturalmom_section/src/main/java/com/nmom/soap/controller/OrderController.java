@@ -173,7 +173,7 @@ public class OrderController {
 			
 			map.put("temp", tempList);
 			//주문이 하나이므로 토탈값은 0번에서 가져온다.+3000은 배송
-			map.put("total_price", temp.getTotal_price());
+//			map.put("total_price", temp.getTotal_price());
 			map.put("charge", temp.getTotal_price()+3000);
 			
 			map.put("orderer", orderer);
@@ -196,7 +196,6 @@ public class OrderController {
 				@RequestParam(value="cart_po", required=false) String cart){
 			
 			System.out.println("장바구니에서 주문페이지로 들어옴!");
-			List<TempOrderVo> tempList = null;
 			if(ses.getAttribute(S.SESSION_LOGIN) != null 
 					&& ses.getAttribute(S.SESSION_ADMIN) == null){
 				System.out.println("회원으로 로그인 되어있음");
@@ -208,6 +207,7 @@ public class OrderController {
 				
 				
 				List<VCartProductVo> temp_cart_list = new ArrayList<VCartProductVo>();
+				
 				//int로 변환해서 일단 임시 장바구니로 ㄱㄱ
 				for(int i = 0; i < temp_carts.length; i++){
 					try{
@@ -240,39 +240,16 @@ public class OrderController {
 				//배송료
 				int charge = 3000;
 				//전체 가격 구하기
-				for(VCartProductVo c : temp_cart_list){
-					charge += (c.getBuy_num()*c.getSelling_price());
+				for(TempOrderVo t : temp_list){
+					charge += t.getTotal_price(); //갯수랑 가격 곱한거
 				}
-				
-				
-//				TempOrderVo temp = new TempOrderVo(product_no, represent_img, product_name, buy_num, cost_price);
-//			
-//				tempList = new ArrayList<TempOrderVo>();
-//				System.out.println("temp꺼"+temp);
-//				tempList.add(temp);
-//				System.out.println("temp "+temp);
-//				
-//				ses.setAttribute(S.SESSION_TEMP_ORDER, tempList);
-//				
-//				List<TempOrderVo> t = (List<TempOrderVo>)(ses.getAttribute(S.SESSION_TEMP_ORDER));
-//				
-//				System.out.println("ses꺼"+((t.get(0)==null)? null : t.get(0)));
-				
-				
-				
-				
-	
-				
-				System.out.println("tempList");
-				for(TempOrderVo o : tempList){
-					System.out.println(o);
-				}
+					
 				
 				Map<String, Object> map =  new HashMap<String, Object>();
 				
 				System.out.println((String)ses.getAttribute(S.SESSION_LOGIN));
 				//주문자객체 생성
-				VOrdererVo orderer = this.vOrdererSvc.getOrderer(((String)ses.getAttribute(S.SESSION_LOGIN)));
+				VOrdererVo orderer = this.vOrdererSvc.getOrderer(mem_id);
 				//번호, 메일 생성
 				String phone[] = orderer.getPhone().split("-");
 				String email[] = orderer.getEmail().split("@");
@@ -280,10 +257,10 @@ public class OrderController {
 				//오더 페이지 표시
 				map.put("page", "order");
 				
-				map.put("temp", tempList);
+				map.put("temp", temp_list);
 				//주문이 하나이므로 토탈값은 0번에서 가져온다.+3000은 배송
 //				map.put("total_price", temp.getTotal_price());
-//				map.put("charge", temp.getTotal_price()+3000);
+				map.put("charge", charge);
 				
 				map.put("orderer", orderer);
 				
