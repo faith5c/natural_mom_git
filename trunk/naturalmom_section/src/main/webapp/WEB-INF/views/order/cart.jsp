@@ -141,12 +141,12 @@
 		
 		<tr>
 			<td colspan="3">
-			<input type="button" value="상품삭제" onclick='deleteCartProduct();'>
-			<input type="button" value="관심상품 등록" onclick='cartToInterest();'>
+			<input type="button" value="상품삭제" onclick='deleteCartProduct();'/>
+			<input type="button" value="관심상품 등록" onclick='cartToInterest();'/>
 			</td>
 			<td></td>
 			<td colspan="2">
-			<input type="button" value="주문하기" onclick="order()">
+			<input type="button" value="주문하기" onclick="order()"/>
 			</td>
 		</tr>
 	</table>
@@ -200,13 +200,16 @@
 	}
   
   function order(){
-	  alert('체크되나?'); 
+	  //alert('체크되나?'); 
       var chk = document.getElementsByName("no"); 
       var len = chk.length; 
       var res = ""; 
       for(var i=0; i<len; i++){ 
           if(chk[i].checked == true && i < (len-1)){ 
               res += chk[i].value+","; 
+          }
+          else if(chk[i].checked == true){
+        	  res += chk[i].value;
           }
       }
       if(res != ""){
