@@ -381,11 +381,9 @@ public class ReviewController
 			if (review_reSvc.addRe(new_reply) == S.PROCESS_SUCCESS)
 			{
 				return new ModelAndView("redirect:/product/detail.nm?pdno=" + product_no + "&rst=rrtrue#review", null);
-				// TODO rst 파라미터 처리하기 -> ProductController
 			}
 			else
 			{
-				// TODO 에러 메시지
 				System.out.println("댓글 등록 실패");
 				return new ModelAndView("redirect:/product/detail.nm?pdno=" + product_no + "&rst=rrfalse#review", null);
 			}
@@ -416,7 +414,7 @@ public class ReviewController
 		{
 			// 글 삭제인 경우
 			if(c.equals("r"))
-			{	//TODO
+			{
 				if (reviewSvc.removeReview(no) == S.PROCESS_SUCCESS)
 					return new ModelAndView("redirect:/product/detail.nm?pdno=" + p_no + "#review", null);
 				else
@@ -428,7 +426,7 @@ public class ReviewController
 			}
 			// 댓글 삭제인 경우
 			else if(c.equals("rr"))
-			{	//TODO				
+			{				
 				if (review_reSvc.removeRe(no) == S.PROCESS_SUCCESS)
 					return new ModelAndView("redirect:/product/detail.nm?pdno=" + p_no + "&rst=rdtrue#review", null);
 				else
