@@ -130,7 +130,7 @@
 			<c:forEach var="o" items="${orderlist}">
 				<tr>
 				<td><input type="checkbox" name="order_sel"
-				<c:if test="${o.process_nm.equals('구매확정') || o.process_nm.equals('환불완료') || o.process_nm.equals('환불신청')}">disabled="disabled"</c:if>
+				<c:if test="${o.process_nm.equals('구매확정') || o.process_nm.equals('환불완료') || o.process_nm.equals('환불요청')}">disabled="disabled"</c:if>
 				 value="${o.order_no}"></td>
 				<td>${o.order_no}</td>
 				<td><fmt:formatDate value="${o.order_date}" type="Date" /></td>
