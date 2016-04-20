@@ -210,9 +210,9 @@
 	  var isSoldOut = false;
 	  
 	  var res = ""; 
-	  var size = 0;
+	  /* var size = 0;
 	  var i = 0;
-	  $('input:checkbox[id="no"]:checked').each(function(){
+	   $('input:checkbox[id="no"]:checked').each(function(){
 		  size += 1;
 		  var next = $(this).next();
 		  if(next.val() == '품절'){
@@ -231,8 +231,16 @@
 		  i += 1;
 		  
 	   });
-	  }
+	  } */
       
+	  $('input:checkbox[id="no"]:checked').each(function(){
+		  res += $(this).val()+',';
+		  var next = $(this).next();
+		  if(next.val() == '품절'){
+			  isSoldOut = true;
+		  }
+	   });
+	  
       if(isSoldOut == true){
     	  alert('품절된 상품은 주문하실 수 없습니다.');
       }
