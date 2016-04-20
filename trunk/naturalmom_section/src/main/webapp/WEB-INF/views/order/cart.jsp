@@ -210,14 +210,28 @@
 	  var isSoldOut = false;
 	  
 	  var res = ""; 
+	  var size = 0;
+	  var i = 0;
 	  $('input:checkbox[id="no"]:checked').each(function(){
-		  res += $(this).val()+',';
+		  size += 1;
 		  var next = $(this).next();
 		  if(next.val() == '품절'){
 			  isSoldOut = true;
 		  }
 	   });
-	  
+	  if(isSoldOut == false){
+	  $('input:checkbox[id="no"]:checked').each(function(){
+		   
+		  if(i < (size-1)){
+			  res += $(this).val()+',';
+		  }
+		  else{
+			  res += $(this).val();
+		  }
+		  i += 1;
+		  
+	   });
+	  }
       
       if(isSoldOut == true){
     	  alert('품절된 상품은 주문하실 수 없습니다.');
@@ -234,7 +248,7 @@
         	i.setAttribute("name","cart_po"); // name 속성을 'nick'으로 설정 
         	i.setAttribute("value",res); // value 속성을 '지앤미'로 설정 
         	f.appendChild(i); // form 엘리멘트에 input 엘리멘트 추가  
-        	//f.submit(); // 전송 
+        	f.submit(); // 전송 
     }else{alert("구매하실 상품을 체크해 주세요");}
       
 	}
