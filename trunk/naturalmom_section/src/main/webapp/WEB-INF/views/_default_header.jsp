@@ -14,6 +14,7 @@
 				<li><a href="<c:url value = '/admin/product.nm' />">관리자모드</a></li>
 				</c:if>
 				
+				<!-- 비회원 -->
 				<c:if test="${empty loggedin}">
 				<li><a href="<c:url value = '/board/notice.nm' />">고객센터</a></li>
 				<li><a href="<c:url value = '/login.nm' />" onclick="adviceJoin()">마이페이지</a></li>
@@ -23,13 +24,23 @@
 				<li><a href="<c:url value = '/login.nm' />">로그인</a></li>
 				</c:if>
 				
-				
-				<c:if test="${not empty loggedin}">
+				<!-- 회원 -->
+				<c:if test="${not empty loggedin && empty admin}">
 				<li><a href="<c:url value = '/board/notice.nm' />">고객센터</a></li>
 				<li><a href="<c:url value = '/mypage.nm' />">마이페이지</a></li>
 				<li><a href="<c:url value = '/orderlist.nm' />">주문조회</a></li>
 				<li><a href="<c:url value = '/cart.nm' />">장바구니</a></li>
 				<li><a href="" onclick="preventJoin()"> 회원가입</a></li>
+				<li><a href="<c:url value = '/logout_proc.nm' />">로그아웃</a></li>
+				</c:if>
+				
+				
+				<c:if test="${admin eq true}">
+				<li><a href="<c:url value = '/board/notice.nm' />">고객센터</a></li>
+				<li><a href="" onclick="preventAdmin()">마이페이지</a></li>
+				<li><a href="" onclick="preventAdmin()">주문조회</a></li>
+				<li><a href="" onclick="preventAdmin()">장바구니</a></li>
+				<li><a href="" onclick="preventAdmin()"> 회원가입</a></li>
 				<li><a href="<c:url value = '/logout_proc.nm' />">로그아웃</a></li>
 				</c:if>
 			</ul>
@@ -48,6 +59,10 @@
 	
 	function adviceJoin() {
 		alert('로그인 후 이용해주세요');
+	}
+	
+	function preventAdmin() {
+		alert('관리자 계정으로 접속 중입니다');
 	}
 
 </script>		
