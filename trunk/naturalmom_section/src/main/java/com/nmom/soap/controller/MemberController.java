@@ -390,17 +390,25 @@ public class MemberController {
 		return new ModelAndView("admin/member/a_member", map);
 	}
 	
+	
 	// 관리자 비밀번호 변경
 	@RequestMapping(value="/admin/edited.nm", method=RequestMethod.POST)
-	public String admin_edit_pw(HttpServletRequest req,
+	public ModelAndView admin_edit_pw(HttpServletRequest req,
 								HttpSession se,
 								@RequestParam(value="pw") String pw){
+	    Map<String, Object> map = new HashMap<>();
+		Boolean isAdmin = ((Boolean)se.getAttribute(S.SESSION_ADMIN));
+	    if(isAdmin==null || !isAdmin.booleanValue()){
+	       map.put("err_msg", "관리자로 로그인 바랍니다.");
+	       return new ModelAndView("login/login", map);
+	    }
+		
 		String id = (String) se.getAttribute(S.SESSION_LOGIN);
 		MemberVo admin = memberSvc.getOneMember(id);
 		admin.setMem_pw(pw);
 		memberSvc.editMember(admin);
 		
-		return "redirect:edit.nm";
+		return new ModelAndView("redirect:edit.nm");
 	}
 	
 	
