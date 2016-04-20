@@ -79,8 +79,7 @@ public class ProductController
    
    // 상품관리 페이지
    @RequestMapping(value ="/admin/product.nm", method=RequestMethod.GET)
-   public ModelAndView product_manageList(HttpServletRequest request, HttpSession session,
-         @RequestParam(value="by", required=false) String by, @RequestParam(value="order", required=false) String order)
+   public ModelAndView product_manageList(HttpServletRequest request, HttpSession session)
    {      
       // 세션에서 아이디와 관리자인지 여부를 얻어옴
       Boolean isAdmin = ((Boolean)session.getAttribute(S.SESSION_ADMIN));
@@ -88,71 +87,7 @@ public class ProductController
       
       if (isAdmin!= null && isAdmin.booleanValue())
       {      
-         List<VProduct_ManageVo> list = null;
-                  
-         if (by == null || order == null)
-            list = product_manageSvc.getAllProduct_by_product_no(S.ASC);
-         else if (by.equals("no"))
-         {
-            if (order.equals("true"))
-               list = product_manageSvc.getAllProduct_by_product_no(S.ASC);
-            else
-               list = product_manageSvc.getAllProduct_by_product_no(S.DESC);
-         }
-         else if (by.equals("ct"))
-         {
-            if (order.equals("true"))
-               list = product_manageSvc.getAllProduct_by_category_nm(S.ASC);
-            else
-               list = product_manageSvc.getAllProduct_by_category_nm(S.DESC);
-         }
-         else if (by.equals("nm"))
-         {
-            if (order.equals("true"))
-               list = product_manageSvc.getAllProduct_by_product_name(S.ASC);
-            else
-               list = product_manageSvc.getAllProduct_by_product_name(S.DESC);
-         }
-         else if (by.equals("pr"))
-         {
-            if (order.equals("true"))
-               list = product_manageSvc.getAllProduct_by_selling_price(S.ASC);
-            else
-               list = product_manageSvc.getAllProduct_by_selling_price(S.DESC);
-         }
-         else if (by.equals("st"))
-         {
-            if (order.equals("true"))
-               list = product_manageSvc.getAllProduct_by_stock(S.ASC);
-            else
-               list = product_manageSvc.getAllProduct_by_stock(S.DESC);
-         }
-         else if (by.equals("dis"))
-         {
-            if (order.equals("true"))
-               list = product_manageSvc.getAllProduct_by_display_state(S.ASC);
-            else
-               list = product_manageSvc.getAllProduct_by_display_state(S.DESC);
-         }
-         else if (by.equals("sal"))
-         {
-            if (order.equals("true"))
-               list = product_manageSvc.getAllProduct_by_sale_state(S.ASC);
-            else
-               list = product_manageSvc.getAllProduct_by_sale_state(S.DESC);
-         }
-         else if (by.equals("all"))
-         {
-            if (order.equals("true"))
-               list = product_manageSvc.getAllProduct_by_all_sells(S.ASC);
-            else
-               list = product_manageSvc.getAllProduct_by_all_sells(S.DESC);
-         }
-         else
-         {
-            list = product_manageSvc.getAllProduct_by_product_no(S.ASC);
-         }
-   
+         List<VProduct_ManageVo> list = product_manageSvc.getAllProduct_by_product_no(S.ASC);
          map.put("p_list", list);
          return new ModelAndView("admin/product/a_product", map);
       }
@@ -166,8 +101,7 @@ public class ProductController
    
    // 삭제된 상품관리
    @RequestMapping(value="/admin/product.nm", method=RequestMethod.GET, params="page=deleted")
-   public ModelAndView product_deletedList(HttpServletRequest request, HttpSession session,
-         @RequestParam(value="by", required=false) String by, @RequestParam(value="order", required=false) String order)
+   public ModelAndView product_deletedList(HttpServletRequest request, HttpSession session)
    {
       // 세션에서 아이디와 관리자인지 여부를 얻어옴
       Boolean isAdmin = ((Boolean)session.getAttribute(S.SESSION_ADMIN));
@@ -175,57 +109,7 @@ public class ProductController
       
       if (isAdmin!= null && isAdmin.booleanValue())
       {
-         List<VProduct_DeletedVo> list = null;
-                  
-         if (by == null || order == null)
-            list = product_deletedSvc.getAllDeletedProduct_by_product_no(S.ASC);
-         else if (by.equals("no"))
-         {
-            if (order.equals("true"))
-               list = product_deletedSvc.getAllDeletedProduct_by_product_no(S.ASC);
-            else
-               list = product_deletedSvc.getAllDeletedProduct_by_product_no(S.DESC);
-         }
-         else if (by.equals("ct"))
-         {
-            if (order.equals("true"))
-               list = product_deletedSvc.getAllDeletedProduct_by_category_nm(S.ASC);
-            else
-               list = product_deletedSvc.getAllDeletedProduct_by_category_nm(S.DESC);
-         }
-         else if (by.equals("nm"))
-         {
-            if (order.equals("true"))
-               list = product_deletedSvc.getAllDeletedProduct_by_product_name(S.ASC);
-            else
-               list = product_deletedSvc.getAllDeletedProduct_by_product_name(S.DESC);
-         }
-         else if (by.equals("pr"))
-         {
-            if (order.equals("true"))
-               list = product_deletedSvc.getAllDeletedProduct_by_selling_price(S.ASC);
-            else
-               list = product_deletedSvc.getAllDeletedProduct_by_selling_price(S.DESC);
-         }
-         else if (by.equals("st"))
-         {
-            if (order.equals("true"))
-               list = product_deletedSvc.getAllDeletedProduct_by_stock(S.ASC);
-            else
-               list = product_deletedSvc.getAllDeletedProduct_by_stock(S.DESC);
-         }
-         else if (by.equals("all"))
-         {
-            if (order.equals("true"))
-               list = product_deletedSvc.getAllDeletedProduct_by_all_sells(S.ASC);
-            else
-               list = product_deletedSvc.getAllDeletedProduct_by_all_sells(S.DESC);
-         }
-         else
-         {
-            list = product_deletedSvc.getAllDeletedProduct_by_product_no(S.ASC);
-         }
-         
+         List<VProduct_DeletedVo> list = product_deletedSvc.getAllDeletedProduct_by_product_no(S.ASC);  
          map.put("p_list", list);
          return new ModelAndView("admin/product/a_product", map);
       }
