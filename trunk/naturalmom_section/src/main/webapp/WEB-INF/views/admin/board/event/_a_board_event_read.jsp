@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <script src="resources/js/jquery-1.11.3.min.js"></script>
 <style type = "text/css">
@@ -70,7 +71,7 @@
 					<td id = "no" width="15%">${con.evt_rnum}</td>
 					<td id = "title" width="55%" colspan="2" >${con.evt_title}</td>
 					<td id = "id" width="13%">${con.mem_id}</td>
-					<td id = "write_day" width="20%">${con.evt_write_day}</td>
+					<td id = "write_day" width="20%"><fmt:formatDate value="${con.evt_write_day}" type = "date" /></td>
 					<td id = "hits" width="5%">${con.evt_hits}</td>
 				</tr>
 				<tr><td colspan="6" id="event_content">${con.evt_content}</td></tr>
@@ -105,8 +106,19 @@
 			<table cellspacing = "0" id = "buttons">
 				<tr>
 					<td>
-						<input type = "button" value = "이전글" id = "prev" name = "prev">
-						<input type = "button" value = "다음글" id = "next" name = "next">
+						<c:if test="${con.evt_rnum gt 1 }">
+							<input type = "button" value = "이전글" id = "prev" name = "prev" onclick="location.href='event_read.nm?next=y&r=${con.evt_rnum -1}'">
+						</c:if>
+						<c:if test="${con.evt_rnum eq 1 }">
+							<input type = "button" value = "이전글" id = "prev" name = "prev" onclick="lastRead()">
+						</c:if>
+						
+						<c:if test="${con.evt_rnum lt total_page }">
+							<input type = "button" value = "다음글" id = "next" name = "next" onclick="location.href='event_read.nm?next=y&r=${con.evt_rnum +1}'">
+						</c:if>
+						<c:if test="${con.evt_rnum eq total_page }">
+							<input type = "button" value = "다음글" id = "next" name = "next"onclick="lastRead()">
+						</c:if>
 					</td>
 					<td>
 						<input type = "submit" value = "수정" id = "mod" name = "mod">
@@ -137,6 +149,10 @@
 		}else{
 			document.reply_form.submit();
 		}
+	}
+	
+	function lastRead() {
+		alert("마지막 게시글입니다");
 	}
 
 </script>

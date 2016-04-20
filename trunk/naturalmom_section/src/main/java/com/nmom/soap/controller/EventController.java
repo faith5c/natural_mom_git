@@ -266,7 +266,7 @@ public class EventController {
 									HttpSession se,
 									@RequestParam(value="r") int r,	// 이벤트no
 									@RequestParam(value="rn") int rn,	// 이벤트 RowNom
-									@RequestParam(value="d") int d){	// 이벤트 리플 넘버
+									@RequestParam(value="d") int d){	// 이벤트 리플 넘버 (삭제시 이용)
 		Map<String, Object> map = new HashMap<>();
 		
 		Boolean isAdmin = ((Boolean)se.getAttribute(S.SESSION_ADMIN));
@@ -288,6 +288,32 @@ public class EventController {
 		// 댓글 내용 불러오기
 		List<Event_reVo> event_re = eventReSvc.getEventRe(r);
 		map.put("re", event_re);
+		// 총 페이지수 확인
+		int total = eventSvc.getEventList().size();
+		map.put("total_page", total);
+		
+		return new ModelAndView("admin/board/event/a_event", map);
+	}
+	
+	
+	// 이전글/다음글
+	@RequestMapping(value ="/admin/board/event_read.nm", method=RequestMethod.GET, params="next=y")
+	public ModelAndView a_board_event_r_prev(HttpServletRequest req,
+										@RequestParam(value="r") int r){
+		Map<String, Object> map = new HashMap<>();
+		
+		EventVo event = eventSvc.getOneEventByRn(r);
+		int e_no = event.getEvent_no();
+		
+		// 조회수 증가
+		eventSvc.addReadCount(e_no);
+		map.put("con", event);
+		// 댓글 내용 불러오기
+		List<Event_reVo> event_re = eventReSvc.getEventRe(e_no);
+		map.put("re", event_re);
+		// 총 페이지수 확인
+		int total = eventSvc.getEventList().size();
+		map.put("total_page", total);
 		
 		return new ModelAndView("admin/board/event/a_event", map);
 	}
