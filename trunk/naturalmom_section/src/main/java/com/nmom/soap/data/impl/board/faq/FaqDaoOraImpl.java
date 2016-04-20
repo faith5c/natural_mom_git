@@ -51,7 +51,7 @@ public class FaqDaoOraImpl extends NamedParameterJdbcDaoSupport implements IFaqD
 	private final String SQL_UPDATE_FAQ = "UPDATE tb_faq SET faq_title=:faq_title, faq_content=:faq_content WHERE faq_no=:faq_no";
 	private final String SQL_DELETE_FAQ = "UPDATE tb_faq SET faq_del_check=1 WHERE faq_no=:faq_no";
 
-	private final String SQL_SELECT_FAQ_COUNT = "SELECT COUNT(faq_no) FROM tb_faq";
+	private final String SQL_SELECT_FAQ_COUNT = "SELECT COUNT(faq_no) FROM tb_faq WHERE FAQ_DEL_CHECK=0";
 	
 	private final String SQL_SELECT_FAQ_SEARCH_TITLE_COUNT = "SELECT COUNT(faq_no) FROM tb_faq WHERE faq_title LIKE :keyword";
 	private final String SQL_SELECT_FAQ_SEARCH_CONTENT_COUNT = "SELECT COUNT(faq_no) FROM tb_faq WHERE faq_content LIKE :keyword";
