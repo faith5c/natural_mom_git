@@ -43,7 +43,9 @@ public class ProductDaoOraImpl extends NamedParameterJdbcDaoSupport implements I
 	// 재고 더하기
 	private final String ADD_STOCK_OF_PRODUCT = "UPDATE tb_product SET stock = stock + :amount WHERE product_no = :product_no";
 	
-
+	// 상품 찾기
+	private final String SEARCH_PRODUCT = "SELECT product_no, product_name, selling_price, sale_state, represent_img, summary_ex, stock FROM tb_product WHERE display_state=1 AND deleted_state=0 AND (product_name LIKE :keyword OR summary_ex LIKE :keyword)";
+	
 	//************************************************************//
 	
 	//상품 목록 페이지
@@ -179,6 +181,16 @@ public class ProductDaoOraImpl extends NamedParameterJdbcDaoSupport implements I
 		MapSqlParameterSource ps = new MapSqlParameterSource();
 		ps.addValue("product_name", product_name, Types.VARCHAR);
 		return npjtem.query(SELECT_PRODUCT_BY_PRODUCT_NAME, ps, new BeanPropertyRowMapper<ProductVo>(ProductVo.class));
+	}
+
+	@Override
+	public List<ProductVo> searchProduct(String keyword) throws DataAccessException {
+		keyword = "%"+keyword+"%";
+		
+		NamedParameterJdbcTemplate npjtem = this.getNamedParameterJdbcTemplate();
+		MapSqlParameterSource ps = new MapSqlParameterSource();
+		ps.addValue("keyword", keyword, Types.VARCHAR);
+		return npjtem.query(SEARCH_PRODUCT, ps, new BeanPropertyRowMapper<ProductVo>(ProductVo.class));
 	}
 	
 	//************************************************************//

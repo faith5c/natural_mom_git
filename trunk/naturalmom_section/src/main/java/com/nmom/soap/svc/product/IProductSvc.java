@@ -42,4 +42,7 @@ public interface IProductSvc
 	// 해당 상품의 재고 더학
 	int addStockOfProduct(int amount, int product_no);
 
+	//검색상품 찾기
+	List<ProductVo> searchProduct(String kw);
+
 }

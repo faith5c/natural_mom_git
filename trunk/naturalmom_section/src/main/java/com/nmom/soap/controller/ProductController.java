@@ -664,12 +664,26 @@ public class ProductController
       
       return new ModelAndView("product/product_detail", map);
    }
-   /*
-   //"/soap/product/detail.nm?pdno=${pl.product_no}"
-   @RequestMapping(value ="/product/detail.nm", method=RequestMethod.GET)
-   public String product_category_menu(HttpServletRequest req){
-      return "product/product_detail";
-   }*/
    
-   
+   // 상품 검색하는 부분
+   // /product/search.nm
+   @RequestMapping(value="product/search.nm", method=RequestMethod.GET)
+   public ModelAndView product_description(HttpServletRequest req, HttpSession session,
+         @RequestParam (value="kw", required=false) String kw)
+   {
+	   Map<String,Object> map = new HashMap<String,Object>();
+
+      try{
+	         
+         List<ProductVo> product_list = productSvc.searchProduct(kw);
+         
+         if(product_list != null && product_list.size() != 0)
+           map.put("product_list", product_list);
+        
+	     } catch(Exception e){
+	        e.printStackTrace();
+	     }
+	     
+	     return new ModelAndView("index", map);
+   }
 }

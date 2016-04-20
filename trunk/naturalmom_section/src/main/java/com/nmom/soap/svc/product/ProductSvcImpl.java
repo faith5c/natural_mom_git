@@ -93,4 +93,9 @@ public class ProductSvcImpl implements IProductSvc
 	public List<ProductVo> getProductByProductName(String product_name) {
 		return productDao.getProductByProductName(product_name);
 	}
+
+	@Override
+	public List<ProductVo> searchProduct(String kw) {
+		return productDao.searchProduct(kw);
+	}
 }

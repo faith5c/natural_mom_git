@@ -47,4 +47,6 @@ public interface IProductDao
 	//상품이름으로 상품 가져옴
 	List<ProductVo> getProductByProductName(String product_name) throws DataAccessException;
 
+	List<ProductVo> searchProduct(String kw) throws DataAccessException;
+
 }
