@@ -90,7 +90,7 @@
 	<div id = "pages">
 		
 		<c:if test="${pp>1}">
-			<a href="<c:url value='/board/qna/${pp-1}/list.nm'/>">
+			<a href="<c:url value='/board/faq/${pp-1}/list.nm'/>">
 				〈
 			</a>&nbsp;&nbsp;&nbsp;
 		</c:if>
@@ -109,7 +109,7 @@
 		</c:if>
 		
 		<c:if test="${pi!=pp}">
-			<a href="<c:url value='/board/qna/${pi}/list.nm'/>">
+			<a href="<c:url value='/board/faq/${pi}/list.nm'/>">
 			<c:out value="${pi}"/>
 			</a>
 		</c:if>
@@ -118,7 +118,7 @@
 		
 		<c:if test="${pp<total}">
 			&nbsp;&nbsp;&nbsp;
-			<a href="<c:url value='/board/qna/${pp+1}/list.nm'/>">
+			<a href="<c:url value='/board/faq/${pp+1}/list.nm'/>">
 				 〉
 			</a>
 		</c:if>
