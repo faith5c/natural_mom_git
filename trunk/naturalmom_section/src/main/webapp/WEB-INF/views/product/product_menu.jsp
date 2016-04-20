@@ -43,12 +43,16 @@
             <p><span>${pl.summary_ex}</span>&nbsp;${pl.product_name}</p>
             <p>${pl.selling_price}원</p>
             <p id="stock">
-            <c:if test ="${pl.stock <= 0}">
-            	품절
-            </c:if>
-            <c:if test ="${pl.stock > 0}">
-            	판매중
-            </c:if>
+            
+            <c:choose>
+	            <c:when test ="${pl.stock <= 0 || pl.sale_state==0}">
+	            	품절
+	            </c:when>
+	            <c:otherwise>
+	            	판매중
+	            </c:otherwise>
+            </c:choose>
+                        
             </p>
             </div>
          </c:forEach>
