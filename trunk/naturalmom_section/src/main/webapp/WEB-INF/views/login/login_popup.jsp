@@ -166,12 +166,12 @@
  
  
  	function email_change1() {
-		var selectedEmail = $("#email_select_id").val();
-	 	document.getElementById("email2").setAttribute("value", selectedEmail);
+		var selectedEmail = $("#email_select1").val();
+	 	document.getElementById("email2").value= selectedEmail;
 	}
  	function email_change2() {
-		var selectedEmail = $("#email_select_pw").val();
-	 	document.getElementById("email4").setAttribute("value", selectedEmail);
+		var selectedEmail = $("#email_select2").val();
+	 	document.getElementById("email4").value= selectedEmail;
 	}
  	
  	
