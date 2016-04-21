@@ -4,13 +4,15 @@ public class GenderGroupVo
 {
 	int mem_gender;
 	int amount;
+	float ratio;
 	
 	public GenderGroupVo() {}
-	
-	public GenderGroupVo(int mem_gender, int amount) 
+
+	public GenderGroupVo(int mem_gender, int amount, float ratio)
 	{
 		this.mem_gender = mem_gender;
 		this.amount = amount;
+		this.ratio = ratio;
 	}
 
 	public int getMem_gender() {
@@ -27,5 +29,13 @@ public class GenderGroupVo
 
 	public void setAmount(int amount) {
 		this.amount = amount;
+	}
+
+	public float getRatio() {
+		return ratio;
+	}
+
+	public void setRatio(float ratio) {
+		this.ratio = ratio;
 	}
 }
