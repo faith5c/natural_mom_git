@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.nmom.soap.S;
 import com.nmom.soap.data.dao.sales.IVRank_SellsDao;
+import com.nmom.soap.data.model.sales.SaleStatementVo;
 import com.nmom.soap.data.model.sales.VRank_SellsVo;
 import com.nmom.soap.data.model.sales.stat.AgeGroupStat;
 import com.nmom.soap.data.model.sales.stat.AgeGroupStatList;
@@ -108,6 +109,24 @@ public class SalesController
 		{
 			List<VRank_SellsVo> rank_list = rank_sellsSvc.getAllRank(true);
 			map.put("rank_list", rank_list);
+			return new ModelAndView("admin/sales/a_sales", map);
+		}
+		else
+		{
+			map.put("err_msg", "관리자로 로그인 바랍니다.");
+			return new ModelAndView("login/login", map);
+		}
+	}
+	
+	@RequestMapping(value="/admin/sales.nm", method=RequestMethod.GET)
+	public ModelAndView sales_table(HttpServletRequest reqeust, HttpSession session)
+	{
+		// 세션에서 아이디와 관리자인지 여부를 얻어옴
+	    Boolean isAdmin = ((Boolean)session.getAttribute(S.SESSION_ADMIN));
+		Map<String, Object> map = new HashMap<String,Object>();
+		
+		if (isAdmin!= null && isAdmin.booleanValue())
+		{
 			return new ModelAndView("admin/sales/a_sales", map);
 		}
 		else
