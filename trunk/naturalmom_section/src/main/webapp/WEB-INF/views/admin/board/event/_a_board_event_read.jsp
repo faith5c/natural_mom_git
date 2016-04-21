@@ -128,7 +128,7 @@
 						
 						<!-- hidden values -->
 						<input type="hidden" id="title" name="title" value="${con.evt_title}"/>
-						<input type="hidden" id="content" name="content" value="${con.evt_content}"/>
+						<input type="hidden" id="content" name="content" value='${con.evt_content}'/>
 						<input type="hidden" id="no" name="no" value="${con.event_no}"/>
 						
 						
