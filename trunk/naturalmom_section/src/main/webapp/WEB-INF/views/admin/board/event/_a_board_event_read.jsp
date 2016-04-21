@@ -71,7 +71,7 @@
 					<td id = "no" width="15%">${con.evt_rnum}</td>
 					<td id = "title" width="55%" colspan="2" >${con.evt_title}</td>
 					<td id = "id" width="13%">${con.mem_id}</td>
-					<td id = "write_day" width="20%"><fmt:formatDate value="${con.evt_write_day}" type = "date" /></td>
+					<td id = "write_day" width="20%"><fmt:formatDate value="${con.evt_write_day}" pattern="yyyy-MM-dd" /></td>
 					<td id = "hits" width="5%">${con.evt_hits}</td>
 				</tr>
 				<tr><td colspan="6" id="event_content">${con.evt_content}</td></tr>
