@@ -2,6 +2,8 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE>
 <html>
 
@@ -27,9 +29,8 @@
 		table tr td:last-child { border-right: 1px solid grey; }
 		table tr td { padding : 5px; color: black;}
 
-		table tr:not(:first-child) td:nth-child(1), table tr:not(:first-child) td:nth-child(3), table tr:not(:first-child) td:nth-child(4), 
-		table tr:not(:first-child) td:nth-child(5), table tr:not(:first-child) td:nth-child(8), table tr:not(:first-child) td:nth-child(9) { text-align: center; }
-		table tr:nth-child(2) { text-align: right; }
+		table tr:not(:first-child) td { text-align: center; }
+		
 
 
 		#option_time input[type="button"]{ margin-top: 10px; text-align: left; }
@@ -51,7 +52,7 @@
 
 		#yuback {padding:30px;}
 		
-		
+		#option-period { float: right; }
 
 	</style>
    </head>
@@ -67,43 +68,178 @@
 <div id="in">
 	<h2>매출조회</h2>
 		<div id="option_time">
-			<input id="option-today" value="오늘" type="button">
-			<input id="option-week" value="7일" type="button">
-			<input id="option-month" value="1개월" type="button">
-			<input id="option-month3" value="3개월" type="button">
-			<input id="option-month6" value="6개월" type="button">
-			<input id="start" value="" type="date">
-			<input id="end" value="" type="date">
+			<input id="option-today" value="오늘" type="button" onclick="date('today')">
+			<input id="option-week" value="7일" type="button" onclick="date('week')">
+			<input id="option-month1" value="1개월" type="button" onclick="date('month1')">
+			<input id="option-month3" value="3개월" type="button" onclick="date('month3')">
+			<input id="option-month6" value="6개월" type="button" onclick="date('month6')">
+			<input id="start" value="" type="date" >
+			<input id="end" value="" type="date" >
+			<input id="option-period" value="입력" type="button" onclick="date('period')">
 		</div>
 		
 		<div id="yuback"></div>
 		<h2 id="product_table">표</h2>
 		<table cellspacing="0">
 			<tbody><tr>
-				<td><a href="#">▼ 주문수</a></td>
-				<td><a href="#">▼ 품목수</a></td>
-				<td><a href="#">▼ 상품구매 금액</a></td>
-				<td><a href="#">▼ 배송비</a></td>
-				<td><a href="#">▼ 결제 합계</a></td>
-				<td><a href="#">▼ 환불상품 금액 합계</a></td>
-				<td><a href="#">▼ 환불 합계</a></td>
-				<td><a href="#">▼ 순매출</a></td>
+				<td>주문수</td>
+				<td>품목수</td>
+				<td>상품구매 금액</td>
+				<td>배송비</td>
+				<td>결제 합계</td>
+				<td>환불상품 금액 합계</td>
+				<td>환불 합계</td>
+				<td>순매출</td>
 			</tr>
 			<tr>
-				<td>150</td>
-				<td>14</td>
-				<td>655,000</td>
-				<td>22,500</td>
-				<td>677,550</td>
-				<td>0</td>
-				<td>0</td>
-				<td>4000,000</td>
+				<td>
+					<fmt:formatNumber value="${sale.order_no}" type="number"/>
+				</td>
+				<td>
+					<fmt:formatNumber value="${sale.product_no}" type="number"/>
+				</td>
+				<td>
+					<fmt:formatNumber value="${sale.sale_sum}" type="number"/>원
+				</td>
+				<td>
+					<fmt:formatNumber value="${sale.delivery_sum}" type="number"/>원
+				</td>
+				<td>
+					<fmt:formatNumber value="${sale.sale_total_sum}" type="number"/>원
+				</td>
+				<td>
+					<fmt:formatNumber value="${sale.refund_sum}" type="number"/>원
+				</td>
+				<td>
+					<fmt:formatNumber value="${sale.refund_total_sum}" type="number"/>원
+				</td>
+				<td>
+					<fmt:formatNumber value="${sale.net_sale}" type="number"/>원
+				</td>
 			</tr>
 		</tbody></table>
 		<div id="yuback"></div>
-		<h2>그래프</h2>
 
 	</div>
+<script type="text/javascript">
+		function date(kind)
+		{
+			if(kind == 'today'){
+				var f = document.createElement("form"); // form 엘리멘트 생성 
+	        	f.setAttribute("method","post"); // method 속성 설정 
+	        	f.setAttribute("action","/soap/admin/sales.nm"); // action 속성 설정 
+	        	document.body.appendChild(f); // 현재 페이지에 form 엘리멘트 추가 
+				
+	        	//nowdate.getFullYear() + "-" + (nowdate.getMonth()+1) + "-" + nowdate.getDate()
+	        	var i = document.createElement("input"); // input 엘리멘트 생성 
+	        	i.setAttribute("type","hidden"); // type 속성을 hidden으로 설정 
+	        	i.setAttribute("name","t"); // name 속성을 'nick'으로 설정 
+	        	i.setAttribute("value", new Date()); // value 속성을 '지앤미'로 설정 
+	        	f.appendChild(i); // form 엘리멘트에 input 엘리멘트 추가  
+	        	f.submit(); // 전송 
+			}
+			else if(kind == 'week'){
+				var f = document.createElement("form"); // form 엘리멘트 생성 
+	        	f.setAttribute("method","post"); // method 속성 설정 
+	        	f.setAttribute("action","/soap/admin/sales.nm"); // action 속성 설정 
+	        	document.body.appendChild(f); // 현재 페이지에 form 엘리멘트 추가 
 
+	        	var i = document.createElement("input"); // input 엘리멘트 생성 
+	        	i.setAttribute("type","hidden"); // type 속성을 hidden으로 설정 
+	        	i.setAttribute("name","t"); // name 속성을 'nick'으로 설정 
+	        	i.setAttribute("value", new Date()); // value 속성을 '지앤미'로 설정 
+	        	f.appendChild(i); // form 엘리멘트에 input 엘리멘트 추가  
+	        	var i = document.createElement("input"); // input 엘리멘트 생성 
+	        	i.setAttribute("type","hidden"); // type 속성을 hidden으로 설정 
+	        	i.setAttribute("name","p"); // name 속성을 'nick'으로 설정 
+	        	i.setAttribute("value", 'week'); // value 속성을 '지앤미'로 설정 
+	        	f.appendChild(i); // form 엘리멘트에 input 엘리멘트 추가
+	        	f.submit(); // 전송 
+			}
+			else if(kind == 'month1'){
+				var f = document.createElement("form"); // form 엘리멘트 생성 
+	        	f.setAttribute("method","post"); // method 속성 설정 
+	        	f.setAttribute("action","/soap/admin/sales.nm"); // action 속성 설정 
+	        	document.body.appendChild(f); // 현재 페이지에 form 엘리멘트 추가 
+
+	        	var i = document.createElement("input"); // input 엘리멘트 생성 
+	        	i.setAttribute("type","hidden"); // type 속성을 hidden으로 설정 
+	        	i.setAttribute("name","t"); // name 속성을 'nick'으로 설정 
+	        	i.setAttribute("value", new Date()); // value 속성을 '지앤미'로 설정 
+	        	f.appendChild(i); // form 엘리멘트에 input 엘리멘트 추가  
+	        	var i = document.createElement("input"); // input 엘리멘트 생성 
+	        	i.setAttribute("type","hidden"); // type 속성을 hidden으로 설정 
+	        	i.setAttribute("name","p"); // name 속성을 'nick'으로 설정 
+	        	i.setAttribute("value", 'month1'); // value 속성을 '지앤미'로 설정 
+	        	f.appendChild(i); // form 엘리멘트에 input 엘리멘트 추가
+	        	f.submit(); // 전송 
+			}
+			else if(kind == 'month2'){
+				var f = document.createElement("form"); // form 엘리멘트 생성 
+	        	f.setAttribute("method","post"); // method 속성 설정 
+	        	f.setAttribute("action","/soap/admin/sales.nm"); // action 속성 설정 
+	        	document.body.appendChild(f); // 현재 페이지에 form 엘리멘트 추가 
+
+	        	var i = document.createElement("input"); // input 엘리멘트 생성 
+	        	i.setAttribute("type","hidden"); // type 속성을 hidden으로 설정 
+	        	i.setAttribute("name","t"); // name 속성을 'nick'으로 설정 
+	        	i.setAttribute("value", new Date()); // value 속성을 '지앤미'로 설정 
+	        	f.appendChild(i); // form 엘리멘트에 input 엘리멘트 추가  
+	        	var i = document.createElement("input"); // input 엘리멘트 생성 
+	        	i.setAttribute("type","hidden"); // type 속성을 hidden으로 설정 
+	        	i.setAttribute("name","p"); // name 속성을 'nick'으로 설정 
+	        	i.setAttribute("value", 'month2'); // value 속성을 '지앤미'로 설정 
+	        	f.appendChild(i); // form 엘리멘트에 input 엘리멘트 추가
+	        	f.submit(); // 전송 
+			}
+			else if(kind == 'month3'){
+				var f = document.createElement("form"); // form 엘리멘트 생성 
+	        	f.setAttribute("method","post"); // method 속성 설정 
+	        	f.setAttribute("action","/soap/admin/sales.nm"); // action 속성 설정 
+	        	document.body.appendChild(f); // 현재 페이지에 form 엘리멘트 추가 
+
+	        	var i = document.createElement("input"); // input 엘리멘트 생성 
+	        	i.setAttribute("type","hidden"); // type 속성을 hidden으로 설정 
+	        	i.setAttribute("name","t"); // name 속성을 'nick'으로 설정 
+	        	i.setAttribute("value", new Date()); // value 속성을 '지앤미'로 설정 
+	        	f.appendChild(i); // form 엘리멘트에 input 엘리멘트 추가  
+	        	var i = document.createElement("input"); // input 엘리멘트 생성 
+	        	i.setAttribute("type","hidden"); // type 속성을 hidden으로 설정 
+	        	i.setAttribute("name","p"); // name 속성을 'nick'으로 설정 
+	        	i.setAttribute("value", 'month3'); // value 속성을 '지앤미'로 설정 
+	        	f.appendChild(i); // form 엘리멘트에 input 엘리멘트 추가
+	        	f.submit(); // 전송 
+			}
+			else if(kind == 'period'){
+				
+				var start = document.getElementById('start').value; //$('#start').val();
+				var end = document.getElementById('end').value; //$('#end').val();
+				if(start != null && end != null){
+				
+				var f = document.createElement("form"); // form 엘리멘트 생성 
+	        	f.setAttribute("method","post"); // method 속성 설정 
+	        	f.setAttribute("action","/soap/admin/sales.nm"); // action 속성 설정 
+	        	document.body.appendChild(f); // 현재 페이지에 form 엘리멘트 추가 
+
+	        	var i = document.createElement("input"); // input 엘리멘트 생성 
+	        	i.setAttribute("type","hidden"); // type 속성을 hidden으로 설정 
+	        	i.setAttribute("name","s"); // name 속성을 'nick'으로 설정 
+	        	i.setAttribute("value", start); // value 속성을 '지앤미'로 설정 
+	        	f.appendChild(i); // form 엘리멘트에 input 엘리멘트 추가  
+	        	var i = document.createElement("input"); // input 엘리멘트 생성 
+	        	i.setAttribute("type","hidden"); // type 속성을 hidden으로 설정 
+	        	i.setAttribute("name","e"); // name 속성을 'nick'으로 설정 
+	        	i.setAttribute("value", end); // value 속성을 '지앤미'로 설정 
+	        	f.appendChild(i); // form 엘리멘트에 input 엘리멘트 추가
+	        	f.submit(); // 전송 
+				}
+				else{
+					alert("날짜를 모두 입력해주세요.");
+				}
+			}
+			
+		}
+		
+	</script>
   </body>
 </html>

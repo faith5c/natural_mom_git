@@ -21,14 +21,14 @@ public class SaleStatementSvcImpl implements ISaleStatementSvc {
 
 	@Override
 	public SaleStatementVo getSaleStatement(Calendar today) {
-		
+		System.out.println(sdf.format(today.getTime()));
 		return this.saleStatementDao.getSaleStatement(
 				sdf.format(today.getTime()));
 	}
 
 	@Override
 	public SaleStatementVo getSaleStatement(Calendar start, Calendar end) {
-		// TODO Auto-generated method stub
+		System.out.println(sdf.format(start.getTime())+sdf.format(end.getTime()));
 		return this.saleStatementDao.getSaleStatement(
 				sdf.format(start.getTime()), 
 				sdf.format(end.getTime()));

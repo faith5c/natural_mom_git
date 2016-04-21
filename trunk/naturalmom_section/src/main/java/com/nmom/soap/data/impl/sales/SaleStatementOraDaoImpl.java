@@ -1,5 +1,6 @@
 package com.nmom.soap.data.impl.sales;
 
+import java.sql.Types;
 import java.util.List;
 
 import org.springframework.dao.DataAccessException;
@@ -44,39 +45,39 @@ public class SaleStatementOraDaoImpl extends NamedParameterJdbcDaoSupport implem
 	
 	final String SELECT_PERIOD_SALESTATEMENT = 
 			"SELECT (SELECT COUNT(o.order_no) FROM tb_order o "
-			+ "WHERE to_char(o.order_date, 'YYYY-MM-DD') = :start "
-			+ "AND to_char(o.order_date, 'YYYY-MM-DD') = :end) || 0 AS order_no, "
+			+ "WHERE to_char(o.order_date, 'YYYY-MM-DD') >= :start "
+			+ "AND to_char(o.order_date, 'YYYY-MM-DD') <= :end) || 0 AS order_no, "
 			+ "(SELECT COUNT(DISTINCT po.product_no) FROM tb_product_n_order po, tb_order o "
-			+ "WHERE po.order_no = o.order_no AND to_char(o.order_date, 'YYYY-MM-DD') = :start "
-			+ "AND to_char(o.order_date, 'YYYY-MM-DD') = :end) || 0 AS product_no, ((SELECT SUM(o.charge) "
+			+ "WHERE po.order_no = o.order_no AND to_char(o.order_date, 'YYYY-MM-DD') >= :start "
+			+ "AND to_char(o.order_date, 'YYYY-MM-DD') <= :end) || 0 AS product_no, ((SELECT SUM(o.charge) "
 			+ "FROM tb_order o, tb_product_n_order po WHERE o.order_no = po.order_no AND "
-			+ "po.process_cd = 21 AND to_char(o.order_date, 'YYYY-MM-DD') = :start "
-			+ "AND to_char(o.order_date, 'YYYY-MM-DD') = :end) - (SELECT COUNT(o.order_no) "
+			+ "po.process_cd = 21 AND to_char(o.order_date, 'YYYY-MM-DD') >= :start "
+			+ "AND to_char(o.order_date, 'YYYY-MM-DD') <= :end) - (SELECT COUNT(o.order_no) "
 			+ "FROM tb_order o, tb_product_n_order po WHERE o.order_no = po.order_no "
-			+ "AND po.process_cd = 21 AND to_char(o.order_date, 'YYYY-MM-DD') = :start "
-			+ "AND to_char(o.order_date, 'YYYY-MM-DD') = :end)*3000 ) || 0 AS sale_sum,(SELECT COUNT(o.order_no) "
+			+ "AND po.process_cd = 21 AND to_char(o.order_date, 'YYYY-MM-DD') >= :start "
+			+ "AND to_char(o.order_date, 'YYYY-MM-DD') <= :end)*3000 ) || 0 AS sale_sum,(SELECT COUNT(o.order_no) "
 			+ "FROM tb_order o, tb_product_n_order po WHERE o.order_no = po.order_no "
-			+ "AND po.process_cd = 21 AND to_char(o.order_date, 'YYYY-MM-DD') = :start "
-			+ "AND to_char(o.order_date, 'YYYY-MM-DD') = :end)*3000 || 0 AS delivery_sum,(SELECT SUM(o.charge) "
+			+ "AND po.process_cd = 21 AND to_char(o.order_date, 'YYYY-MM-DD') >= :start "
+			+ "AND to_char(o.order_date, 'YYYY-MM-DD') <= :end)*3000 || 0 AS delivery_sum,(SELECT SUM(o.charge) "
 			+ "FROM tb_order o, tb_product_n_order po WHERE o.order_no = po.order_no AND "
-			+ "po.process_cd = 21 AND to_char(o.order_date, 'YYYY-MM-DD') = :start "
-			+ "AND to_char(o.order_date, 'YYYY-MM-DD') = :end) || 0 AS sale_total_sum,(SELECT SUM(o.charge) "
+			+ "po.process_cd = 21 AND to_char(o.order_date, 'YYYY-MM-DD') >= :start "
+			+ "AND to_char(o.order_date, 'YYYY-MM-DD') <= :end) || 0 AS sale_total_sum,(SELECT SUM(o.charge) "
 			+ "FROM tb_order o, tb_product_n_order po WHERE o.order_no = po.order_no "
-			+ "AND po.process_cd = 32 AND to_char(o.order_date, 'YYYY-MM-DD') = :start "
-			+ "AND to_char(o.order_date, 'YYYY-MM-DD') = :end) || 0 AS refund_sum,((SELECT SUM(o.charge) "
+			+ "AND po.process_cd = 32 AND to_char(o.order_date, 'YYYY-MM-DD') >= :start "
+			+ "AND to_char(o.order_date, 'YYYY-MM-DD') <= :end) || 0 AS refund_sum,((SELECT SUM(o.charge) "
 			+ "FROM tb_order o, tb_product_n_order po WHERE o.order_no = po.order_no "
-			+ "AND po.process_cd = 32 AND to_char(o.order_date, 'YYYY-MM-DD') = :start "
-			+ "AND to_char(o.order_date, 'YYYY-MM-DD') = :end) - (SELECT COUNT(o.charge) "
+			+ "AND po.process_cd = 32 AND to_char(o.order_date, 'YYYY-MM-DD') >= :start "
+			+ "AND to_char(o.order_date, 'YYYY-MM-DD') <= :end) - (SELECT COUNT(o.charge) "
 			+ "FROM tb_order o, tb_product_n_order po WHERE o.order_no = po.order_no "
-			+ "AND po.process_cd = 32 AND to_char(o.order_date, 'YYYY-MM-DD') = :start "
-			+ "AND to_char(o.order_date, 'YYYY-MM-DD') = :end)*3000) || 0 AS refund_total_sum, "
+			+ "AND po.process_cd = 32 AND to_char(o.order_date, 'YYYY-MM-DD') >= :start "
+			+ "AND to_char(o.order_date, 'YYYY-MM-DD') <= :end)*3000) || 0 AS refund_total_sum, "
 			+ "((SELECT SUM(o.charge) FROM tb_order o, tb_product_n_order po "
 			+ "WHERE o.order_no = po.order_no AND po.process_cd = 21 "
-			+ "AND to_char(o.order_date, 'YYYY-MM-DD') = :start "
-			+ "AND to_char(o.order_date, 'YYYY-MM-DD') = :end) - (SELECT COUNT(o.order_no) "
+			+ "AND to_char(o.order_date, 'YYYY-MM-DD') >= :start "
+			+ "AND to_char(o.order_date, 'YYYY-MM-DD') <= :end) - (SELECT COUNT(o.order_no) "
 			+ "FROM tb_order o, tb_product_n_order po WHERE o.order_no = po.order_no "
-			+ "AND po.process_cd = 21 AND to_char(o.order_date, 'YYYY-MM-DD') = :start "
-			+ "AND to_char(o.order_date, 'YYYY-MM-DD') = :end)*3000) || 0 AS net_sale FROM DUAL";
+			+ "AND po.process_cd = 21 AND to_char(o.order_date, 'YYYY-MM-DD') >= :start "
+			+ "AND to_char(o.order_date, 'YYYY-MM-DD') <= :end)*3000) || 0 AS net_sale FROM DUAL";
 	
 	final String SELECT_ALL_SALESTATEMENT = 
 			"SELECT (SELECT COUNT(order_no) FROM tb_order) || 0 AS order_no, (SELECT COUNT(product_no) "
@@ -109,7 +110,7 @@ public class SaleStatementOraDaoImpl extends NamedParameterJdbcDaoSupport implem
 	
 	public SaleStatementVo getSaleStatement(String today) throws DataAccessException {
 		MapSqlParameterSource ps = new MapSqlParameterSource();
-		ps.addValue("today", today);
+		ps.addValue("today", today, Types.VARCHAR);
 		List<SaleStatementVo> list = getNamedParameterJdbcTemplate().query(SELECT_TODAY_SALESTATEMENT, 
 				ps, BeanPropertyRowMapper.newInstance(SaleStatementVo.class));
 		if( list != null && list.get(0) != null ) return list.get(0);
