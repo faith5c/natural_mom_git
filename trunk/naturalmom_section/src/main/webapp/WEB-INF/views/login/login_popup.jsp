@@ -217,7 +217,7 @@
   	   }else if($("#resultPw").val()==""){
   		   
   	   }else{
-  		   alert('고객님의 비밀번호는 "' + $("#resultPw").val()+'"입니다.')
+  		   alert('고객님의 비밀번호를 "' + $("#resultPw").val()+'"해드렸습니다.')
   	   }
   	});
  	
