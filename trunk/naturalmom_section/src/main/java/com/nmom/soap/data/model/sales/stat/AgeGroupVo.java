@@ -1,4 +1,4 @@
-package com.nmom.soap.data.model.sales;
+package com.nmom.soap.data.model.sales.stat;
 
 public class AgeGroupVo 
 {
