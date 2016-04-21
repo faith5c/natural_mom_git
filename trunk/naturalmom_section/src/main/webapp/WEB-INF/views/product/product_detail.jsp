@@ -135,6 +135,7 @@
          <p>상품설명</p>
          <div>
             <img id="soap_desc" src="/soap/resources/product_images/${pvo.detail_img}" alt="${pvo.product_name}설명"/>
+            <span>${pvo.detail_ex}</span>
          </div>
 
          <p>배송정보</p>
