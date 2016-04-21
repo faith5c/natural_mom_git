@@ -117,9 +117,10 @@
 
                		</c:choose>
                  
-                  <input type="button" style="width:85px; padding : 13px 10px; margin : 0 5px; 
-                  background-color : #000000" value="바로구매" <c:if test ="${pvo.stock <= 0}"> disabled='disabled'</c:if> 
-                  onclick="go_to_order(${sessionScope.admin})" >
+                  <input type="button" 
+                  <c:if test="${not empty sessionScope.admin}">onclick='go_to_order(true, "${sessionScope.loggedin}", ${pvo.stock}, ${pvo.sale_state});'</c:if>
+				  <c:if test="${empty sessionScope.admin}">onclick='go_to_order(false, "${sessionScope.loggedin}", ${pvo.stock}, ${pvo.sale_state});'</c:if>
+                  style="width:85px; padding : 13px 10px; margin : 0.5px; background-color : #000000" value="바로구매" >
                  
                   </td>
                </tr>
@@ -227,12 +228,15 @@
 			    location.href="/soap/interest/add_proc.nm?i_pn="+interest_poductno;
     	  } 
       } 
-      function go_to_order(admin){
-    	  if(admin == null){
-    		  document.cart_form.submit()
-    	  }
-    	  else if(admin == true){
+      function go_to_order(admin, loggedin, stock, sale_state){
+    	  if(admin == true){
     		  alert("회원만 구매 가능합니다.");
+    	  }else if(loggedin == null || loggedin == ""){
+    		  alert("주문시 로그인이 필요합니다.")
+    	  }else if(stock <= 0 || sale_state == 0){
+    		  alert("품절된 상품입니다.");
+    	  }else{
+    		  document.cart_form.submit();
     	  }
       }
 
