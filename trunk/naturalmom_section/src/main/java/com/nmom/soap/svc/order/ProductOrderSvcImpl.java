@@ -1,5 +1,7 @@
 package com.nmom.soap.svc.order;
 
+import java.util.List;
+
 import org.springframework.dao.DataAccessException;
 
 import com.nmom.soap.data.dao.order.IProductOrderDao;
@@ -27,12 +29,18 @@ public class ProductOrderSvcImpl implements IProductOrderSvc {
 
 	@Override
 	public int editPartOrder(int order_no, String product_name, int process_cd) {
-		return this.editPartOrder(order_no, product_name, process_cd);
+		return this.productOrderDao.editPartOrder(order_no, product_name, process_cd);
 	}
 
+
+	@Override
+	public List<ProductOrderVo> getOrder(int order_no) {
+		return this.productOrderDao.getOneOrder(order_no);
+	}
 	
 	public void setProductOrderDao(IProductOrderDao productOrderDao) {
 		this.productOrderDao = productOrderDao;
 	}
+
 
 }

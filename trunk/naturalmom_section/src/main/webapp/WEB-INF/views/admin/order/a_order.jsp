@@ -7,12 +7,10 @@
   <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script src="resources/admin/js/jquery-1.11.3.min.js"></script>
+	<script src="/soap/resources/admin/js/jquery-1.11.3.min.js"></script>
 	<!-- [if lt IE 9]><script src="js/html5shiv.js"></script><![endif] -->
 	
-	<link rel="apple-touch-icon" href="../resources/images/logo.ico" /> <!--애플아이콘등록-->
-	<link rel="shortcut icon" href="../resources/images/logo.ico" /> <!--단축키아이콘등록-->
-	<link rel="stylesheet" href="../resources/admin/css/admin_common.css"/>
+	<link rel="stylesheet" href="/soap/resources/admin/css/admin_common.css"/>
 	
 	<script type="text/javascript" src="/soap/resources/tablesorter/jquery-latest.js"></script> 
 	<script type="text/javascript" src="/soap/resources/tablesorter/jquery.tablesorter.js"></script>
@@ -20,7 +18,7 @@
 	
 	<title>자연맘</title>
 	
-	<script type="text/javascript" src="js/nicEdit.js"></script>
+	<script type="text/javascript" src="/soap/resources/js/nicEdit.js"></script>
 
 	<style type = "text/css">
 
@@ -48,7 +46,7 @@
 		table tr:not(:first-child) td:nth-child(4), table tr:not(:first-child) td:nth-child(7), {  text-align: left; }
 		table tr:not(:first-child) td:nth-child(6) {  text-align: right; }
 
-		table tr:first-child td:nth-child(1){ width:9%; }
+		table tr:first-child td:first-child { width:9%; }
 		table tr:first-child td:nth-child(2){ width:9%; }
 		table tr:first-child td:nth-child(3){ width:9%; }
 		table tr:first-child td:nth-child(4){ width:16%; }
@@ -107,8 +105,7 @@
 	<div id="container">
 		<h2 id = "order_title">주문 관리</h2>
 		<table cellspacing = "0">
-			
-				
+			<tr>
 				<td><a href = "#">▼ 주문일</a></td>
 				<td><a href = "#">▼ 주문번호</a></td>
 				<td><a href = "#">▼ 주문자</a></td>
@@ -118,8 +115,7 @@
 				<td> 배송메세지</td>
 				<td> 운송장번호</td>
 				<td><a href = "#">▼ 처리상태</a></td>
-			
-			
+			</tr>
 			<c:forEach var="om" items="${orderManeger}"> 
 				<tr>
 					<td style="text-align: center;"><fmt:formatDate value="${ om.order_date }" type="Date" /></td>
@@ -129,9 +125,14 @@
 					<td>${ om.buy_num }</td>
 					<td><fmt:formatNumber value="${ om.charge }" type="number"/>원</td>
 					<td class="msg" >${ om.delivery_msg }</td>
-					<td onclick="tracking_num_input(${ om.order_no })"><c:if test="${ 0 ne om.tracking_num }">${ om.tracking_num }</c:if></td>
 					<td>
-						<select name="process_no">
+						<input style="height: 20px; width: 100%;" type="number" readonly="readonly" 
+							<c:if test="${ 0 ne om.tracking_num }">value="${ om.tracking_num }"</c:if>
+							onclick="tracking_num_input(${ om.order_no },'${ om.process_nm }')"
+						>
+					</td>
+					<td>
+						<select name="process_no" onchange="process_change(${ om.order_no },'${ om.process_nm }')" <c:if test="${ om.process_nm.equals('구매확정') || om.process_nm.equals('환불완료') }">disabled="disabled"</c:if>>
 							<option value="배송준비중" <c:if test="${ om.process_nm.equals('배송준비중') }">selected="selected"</c:if> >&nbsp;배송준비중&nbsp;</option>
 							<option value="배송대기" <c:if test="${ om.process_nm.equals('배송대기') }">selected="selected"</c:if>>&nbsp;배송대기&nbsp;</option>
 							<option value="배송중" <c:if test="${ om.process_nm.equals('배송중') }">selected="selected"</c:if>>&nbsp;배송중&nbsp;</option>
@@ -147,11 +148,42 @@
 		<br>
 		
 		<br>
+		<form action="order.nm" method="post" name="tracking_num_form">
+			<input type="hidden" name="order_no" id="order_no">
+			<input type="hidden" name="delivery_company" id="delivery_company">
+			<input type="hidden" name="delivery_num" id="delivery_num">
+		</form>
+		
 	</div>
 	<script type="text/javascript">
-		function tracking_num_input(order_no)
+		function tracking_num_input(order_no, process)
 		{
+			if(process == '배송준비중' || process == '배송대기'){
 			window.open("/soap/admin/order_popup.nm?n="+order_no, "운송장 등록", "width = 420px, height = 410px, left = 500px, top = 200px, scrollbars = no, toobar = no, menubar = no, status = no, location = no, resizeable = no");
+			}
+			else{
+				alert("배송준비 혹은 배송대기 시에만 운송장을 등록/수정 하실 수 있습니다.");
+			}
+		}
+		function process_change(notice_no, process)
+		{	
+			if(process != '환불요청'){
+				alert("환불요청에 대한 처리만 가능합니다.");
+			}
+			else{
+				alert(notice_no)
+				var f = document.createElement("form"); // form 엘리멘트 생성 
+	        	f.setAttribute("method","post"); // method 속성 설정 
+	        	f.setAttribute("action","/soap/admin/order.nm"); // action 속성 설정 
+	        	document.body.appendChild(f); // 현재 페이지에 form 엘리멘트 추가 
+
+	        	var i = document.createElement("input"); // input 엘리멘트 생성 
+	        	i.setAttribute("type","hidden"); // type 속성을 hidden으로 설정 
+	        	i.setAttribute("name","refund_no"); // name 속성을 'nick'으로 설정 
+	        	i.setAttribute("value",notice_no); // value 속성을 '지앤미'로 설정 
+	        	f.appendChild(i); // form 엘리멘트에 input 엘리멘트 추가  
+	        	f.submit(); // 전송 
+			}
 		}
 	</script>
 <!--------------------------------------------------------end container------------->

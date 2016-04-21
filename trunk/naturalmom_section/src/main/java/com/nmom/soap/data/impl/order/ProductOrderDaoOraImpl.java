@@ -1,8 +1,10 @@
 package com.nmom.soap.data.impl.order;
 
 import java.sql.Types;
+import java.util.List;
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcDaoSupport;
 
@@ -11,20 +13,24 @@ import com.nmom.soap.data.model.order.ProductOrderVo;
 
 public class ProductOrderDaoOraImpl extends NamedParameterJdbcDaoSupport implements IProductOrderDao {
 	
-	final String ADD_ORDER = "INSERT INTO tb_product_n_order (product_no, order_no, buy_num, process_cd) "
+	
+
+	private static final String ADD_ORDER = "INSERT INTO tb_product_n_order (product_no, order_no, buy_num, process_cd) "
 			+ "VALUES (:product_no, :order_no, :buy_num, :process_cd)";
 	
-	final String EDIT_ORDER = 
+	private static final String EDIT_ORDER = 
 			"UPDATE NMDB.tb_product_n_order SET process_cd = :process_cd WHERE order_no = :order_no";
 	
-	String EDIT_MANY_ORDER = 
+	private static String EDIT_MANY_ORDER = 
 			"UPDATE NMDB.tb_product_n_order SET process_cd = :process_cd WHERE";
 	
-	final String EDIT_ONT_ORDER = 
+	private static final String EDIT_ONT_ORDER = 
 			"UPDATE tb_product_n_order po SET po.process_cd = :process_cd "
 			+ "WHERE EXISTS(SELECT p.product_no FROM tb_product p "
 			+ "WHERE p.product_no = po.product_no AND p.product_name = :product_name) AND order_no = :order_no";
 	
+	private static final String GET_ONE_ORDER = 
+			"SELECT * FROM tb_product_n_order WHERE order_no = :order_no";
 	
 	public int addOrder(ProductOrderVo po) throws DataAccessException {
 		MapSqlParameterSource ps = new MapSqlParameterSource();
@@ -79,6 +85,17 @@ public class ProductOrderDaoOraImpl extends NamedParameterJdbcDaoSupport impleme
 		ps.addValue("process_cd", new Integer(process_cd), Types.INTEGER);
 		int r = this.getNamedParameterJdbcTemplate().update(EDIT_ONT_ORDER, ps);
 		return r;
+	}
+
+
+	@Override
+	public List<ProductOrderVo> getOneOrder(int order_no) throws DataAccessException {
+		MapSqlParameterSource ps = new MapSqlParameterSource();
+		ps.addValue("order_no", new Integer(order_no), Types.INTEGER);
+		return this.getNamedParameterJdbcTemplate().query(
+				GET_ONE_ORDER, 
+				ps, 
+				BeanPropertyRowMapper.newInstance(ProductOrderVo.class));
 	}
 
 

@@ -122,7 +122,7 @@ table tr:first-child td {
 
 	<div id="container">
 		
-		<form action="#" method="post" name="tracking_num_form">
+		<form action="tracking_num_proc.nm" method="post" name="tracking_num_form" onsubmit="on_submit()">
 			<table>
 				<tr style="height: 20px;">
 					<td>주문번호</td>
@@ -138,6 +138,7 @@ table tr:first-child td {
 
 				<tr style="height: 50px;">
 					<td><select id="delivery_company" name="delivery_company">
+							<option value="-">&nbsp;-&nbsp;</option>
 							<option value="cj대한통운">&nbsp;cj대한통운&nbsp;</option>
 							<option value="로젠택배">&nbsp;로젠택배&nbsp;</option>
 							<option value="옐로우캡">&nbsp;옐로우캡&nbsp;</option>
@@ -151,7 +152,8 @@ table tr:first-child td {
 					<td><label class="order_title">운송장 번호 입력<label></td>
 				</tr>
 				<tr style="height: 50px;">
-					<td><input type="number" id="delivery_num" name="delivery_num" /></td>
+					<td><input type="number" id="delivery_num" name="delivery_num" 
+					onKeyUp="if ( isNaN(this.value) ) { alert('숫자만 입력가능합니다.'); this.value=''; } else { if(this.value > 9999999999) { this.value = this.value.substring(0,10); } }"/></td>
 				</tr>
 				
 				<tr>
@@ -161,10 +163,77 @@ table tr:first-child td {
 				</tr>
 
 			</table>
-			<input type="hidden" name="order_no" value="${order_no}">
+			<input type="hidden" id="order_no" name="order_no" value="${order_no}">
+
 		</form>
-		
 	</div>
+  <script type="text/javascript">
+   
+  function tracking_num_send(){
+	  
+	  var com = $('#delivery_company').val();
+	  var num = $('#delivery_num').val();
+	  var no = $('#order_no').val();
+	  
+	  if(com == '-'){
+		 alert('택배 회사를 선택해 주세요.');
+	  }else if(num == ''){
+		 alert('운송장 번호를 입력해 주세요.'); 
+	  }else{
+		  
+		  no = no.replace(/^\s+/, "");
+		  no = no.replace(/\s+$/, "");
+		
+		  num = num.replace(/^\s+/, "");
+		  num = num.replace(/\s+$/, "");
+		  
+		  com = com.replace(/^\s+/, "");
+		  com = com.replace(/\s+$/, "");
+		  
+		  opener.document.tracking_num_form.delivery_company.value=com;
+		  
+		  opener.document.tracking_num_form.delivery_num.value=num;
+		  
+		  opener.document.tracking_num_form.order_no.value=no;
+		 /*  alert(opener.document.tracking_num_form.delivery_company.value+
+				  opener.document.tracking_num_form.delivery_num.value+
+				  opener.document.tracking_num_form.order_no.value); */
+		  opener.document.tracking_num_form.submit();
+		  
+		  self.close();
+		  //
+		  //window.close();
+		  
+		  
+		  /*
+		  document.tracking_num_form.submit();
+		  
+		  opener.document.tracking_num_form.delivery_company.value = com;
+		  opener.document.tracking_num_form.delivery_num.value = num;
+		  opener.document.tracking_num_form.order_no.value = no;
+		  
+		  var form = document.tracking_num_form;
+		  form.target = opener.window.name;
+		  
+		  opener.window.name;
+
+		  form.submit();
+		  //self.close();
+
+		  window.name = 'oredermanager';
+		  
+		   document.tracking_num_form.submit();
+		  opener.location.href = '/soap/admin/order.nm';
+		  */
+
+	  }
+	}
+  function form_submit(){
+	  opener.location.reload();
+	  self.close(); 
+  }
+  
+  </script>
 	<!--------------------------------------------------------end container------------->
 </body>
 

@@ -45,8 +45,15 @@ public class OrderController {
 	private ICartSvc cartSvc;
 	
 	// 관리자 주문 관리 페이지
-	@RequestMapping(value = "/admin/order.nm", method = RequestMethod.GET)
-	public ModelAndView getOrderManager(HttpServletRequest req, HttpSession ses) {
+	@RequestMapping(value = "/admin/order.nm", method={RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView getOrderManager(HttpServletRequest req, 
+			HttpSession ses,
+			//배송관련 변수
+			@RequestParam(value="order_no", required=false) Object order_no,
+			@RequestParam(value="delivery_company", required=false) Object delivery_company,
+			@RequestParam(value="delivery_num", required=false) Object delivery_num,
+			@RequestParam(value="refund_no", required=false) Object refund_no//환불관련 변수
+			) {
 		System.out.println("@RequestMapping(value=/admin/order.nm)");
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -56,14 +63,64 @@ public class OrderController {
 			map.put("err_msg", "관리자로 로그인 바랍니다.");
 			return new ModelAndView("login/login", map);
 		}
+		
+		//운송장 등록
+		if(delivery_company != null){
+			
+			System.out.println("운송장 번호 업데이트로 들어옴");
+			/*String delivery_company = (String)req.getAttribute("delivery_company");
+			System.out.println(delivery_company);
+			
+			if(delivery_company != null){
+				int delivery_num = (int)req.getAttribute("delivery_num");
+				int order_no = (int)req.getAttribute("order_no");*/
 
+			String n = ((String)order_no).replace(" ", "");
+			String nu = ((String)delivery_num).replace(" ", "");
+			n = n.trim();
+			nu = nu.trim();
+			int no = Integer.parseInt(n);
+			int num = Integer.parseInt(nu);
+			int r = this.orderSvc.editTrackingNumOrder(no, num, (String)delivery_company);
+			
+			if(r > 0) {
+				System.out.println("운송장 등록 업데이트 성공");
+				int t = this.productOrderSvc.editOrder(no, S.DELIVERY_WAITING);
+				if(t > 0) System.out.println("배송대기로 변경 성공!");
+				else System.out.println("배송대기로 변경 실패");
+			}
+			else System.out.println("운송장 등록 실패");
+//			}
+		}
+		
+		
+		
+		//환불처리
+		if(refund_no != null){
+			System.out.println("환불처리로 들어옴");
+			System.out.println(refund_no);
+			String te = (String)refund_no;
+			te = te.trim();
+			te = te.replace(" ", "");
+			int no = Integer.parseInt(te);
+			int r = this.productOrderSvc.editOrder(no, S.REFUND_COMPLETE);
+			if(r > 0){
+				System.out.println("환불처리 완료/ 재고 처리 시작");
+				List<ProductOrderVo> re_list = this.productOrderSvc.getOrder(no);
+				
+				//재고 플러스 시킬것
+				for(ProductOrderVo po : re_list){
+					int p = this.productSvc.addStockOfProduct(po.getBuy_num(), po.getProduct_no());
+					System.out.println(po.getProduct_no()+"번"+po.getBuy_num()+"개 삭제");
+				}
+			}	
+			
+		}
+		
 		List<VOrderManagerVo> list = new ArrayList<VOrderManagerVo>();
 
-		System.out.println("vOrderManagerSvc null?"+((vOrderManagerSvc == null)? "null" : vOrderManagerSvc));
 		list = this.vOrderManagerSvc.getAllOrederByNo(false);
-		for(VOrderManagerVo m : list){
-			System.out.println(m);
-		}
+
 		map.put("orderManeger", list);
 		return new ModelAndView("admin/order/a_order", map);
 	}
@@ -93,10 +150,9 @@ public class OrderController {
 		public ModelAndView editOrderTrackingNum(HttpServletRequest req, 
 				HttpSession ses,
 				@RequestParam(value="order_no") int order_no,
-				@RequestParam(value="delivery_num") int delivery_num,
-				@RequestParam(value="delivery_company") String delivery_company
+				@RequestParam(value="delivery_num") int tracking_num,
+				@RequestParam(value="delivery_company") String delivery_com_nm
 				) {
-			
 			
 			System.out.println("@RequestMapping(admin/tracking_num_proc.nm)");
 			
@@ -107,12 +163,19 @@ public class OrderController {
 				map.put("err_msg", "관리자로 로그인 바랍니다.");
 				return new ModelAndView("login/login", map);
 			}
+
+			int r = this.orderSvc.editTrackingNumOrder(order_no, tracking_num, delivery_com_nm);
 			
-			map.put("order_no", order_no);
+			if(r > 0) System.out.println("운송장 등록 업데이트 성공");
+			else System.out.println("운송장 등록 실패");
 			
-			//가져와서 넣는다 세션 체크 목록
-			
-			return new ModelAndView("admin/order/_a_order_popup", map);
+			/*List<VOrderManagerVo> list = new ArrayList<VOrderManagerVo>();
+
+			list = this.vOrderManagerSvc.getAllOrederByNo(false);
+
+			map.put("orderManeger", list);
+			return new ModelAndView("admin/order/a_order", map);*/
+			return null;
 		}
 	
 	//주문하기 페이지   /order/detailorder.nm
