@@ -49,6 +49,29 @@
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.3.1</version>
 		</dependency>
+		
+		<!-- JacksonJSON mapper
+			:  http://www.mvnrepository.com/artifact/org.codehaus.jackson/jackson-mapper-asl/1.9.13 -->		
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId> 
+			<version>1.9.13</version>
+		</dependency>
+		
+		<!-- Email template -->
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<version>1.7</version>
+		</dependency>
+		
+		<!-- Java send mail
+			:  http://mvnrepository.com/artifact/javax.mail/mail/1.4.7 -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
 			
 		<!-- AspectJ -->
 		<dependency>

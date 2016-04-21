@@ -17,17 +17,24 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.nmom.soap.S;
 import com.nmom.soap.data.model.member.MemberVo;
+import com.nmom.soap.svc.member.IMailRegistrationNotification;
 import com.nmom.soap.svc.member.IMemberSvc;
 
 @Controller
 public class MemberController {
 	
 	IMemberSvc memberSvc;
+	IMailRegistrationNotification emailSvc;
+	
 	public static List<MemberVo> s_member_list;
 	
 	public void setMemberSvc(IMemberSvc memberSvc) {
 		this.memberSvc = memberSvc;
 	}
+	public void setEmailSvc(IMailRegistrationNotification emailSvc) {
+		this.emailSvc = emailSvc;
+	}
+	
 	
 	///////////////////////////////////////////////////////////// 로그인
 	@RequestMapping(value="login_proc.nm", method=RequestMethod.POST)

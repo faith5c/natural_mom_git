@@ -15,6 +15,8 @@
 	<beans:import resource="domain-se-context.xml"/>
 	<beans:import resource="domain-sj-context.xml"/>
 	
+	<beans:import resource="email_conf.xml"/>
+	
 	<!-- Controller -->
 	<beans:bean id="indexCtl" class="com.nmom.soap.controller.IndexController">
 	</beans:bean>
@@ -22,6 +24,9 @@
 		<beans:property name="memberSvc">
 			<beans:ref local="memberSvc"/>
 		</beans:property> 
+		<beans:property name="emailSvc">
+			<beans:ref local="myEmailSvc" />
+		</beans:property>
 	</beans:bean>
 	<beans:bean id="eventCtl" class="com.nmom.soap.controller.EventController">
 		<beans:property name="eventSvc">
