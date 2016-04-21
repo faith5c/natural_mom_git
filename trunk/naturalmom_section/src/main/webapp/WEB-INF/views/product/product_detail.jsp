@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -96,7 +97,7 @@
                      	0
                      </c:if>
                      <c:if test ="${pvo.stock > 0}">
-		            	${pvo.selling_price}</c:if>
+		            	<fmt:formatNumber value="${pl.selling_price}" type="number"/></c:if>
 		            </label>원
                   </td>
                </tr>

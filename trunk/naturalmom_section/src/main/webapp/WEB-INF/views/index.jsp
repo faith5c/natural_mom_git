@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -41,7 +41,7 @@
             <div>
             <a href="/soap/product/detail.nm?pdno=${pl.product_no}"><img src="/soap/resources/product_images/${pl.represent_img}" alt="${pl.product_name}"></a>
             <p><span>${pl.summary_ex}</span>&nbsp;${pl.product_name}</p>
-            <p>${pl.selling_price}원</p>
+            <p><fmt:formatNumber value="${pl.selling_price}" type="number"/>원</p>
             <p id="stock">
             
             <c:choose>
