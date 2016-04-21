@@ -118,8 +118,8 @@
                		</c:choose>
                  
                   <input type="button" style="width:85px; padding : 13px 10px; margin : 0 5px; 
-                  background-color : #000000" value="바로구매" onclick="go_to_order(${sessionScope.admin})"
-                  	<c:if test ="${pvo.stock <= 0}">disabled="disabled"</c:if> >
+                  background-color : #000000" value="바로구매" <c:if test ="${pvo.stock <= 0}"> disabled='disabled'</c:if> 
+                  onclick="go_to_order(${sessionScope.admin})" >
                  
                   </td>
                </tr>
