@@ -97,7 +97,7 @@
                      	0
                      </c:if>
                      <c:if test ="${pvo.stock > 0}">
-		            	<fmt:formatNumber value="${pl.selling_price}" type="number"/></c:if>
+                     ${pvo.selling_price}</c:if>
 		            </label>원
                   </td>
                </tr>
