@@ -204,7 +204,7 @@ public class SalesController
 				s.setYear(Integer.parseInt(sd[0])-1900);
 				e.setYear(Integer.parseInt(ed[0])-1900);
 				
-				s.setMonth(Integer.parseInt(sd[1])-1);
+				s.setMonth(Integer.parseInt(sd[1]));
 				e.setMonth(Integer.parseInt(ed[1]));
 				
 				s.setDate(Integer.parseInt(sd[2]));

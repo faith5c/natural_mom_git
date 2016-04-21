@@ -214,6 +214,7 @@
 				
 				var start = document.getElementById('start').value; //$('#start').val();
 				var end = document.getElementById('end').value; //$('#end').val();
+				alert(start+end);
 				if(start != null && end != null){
 				
 				var f = document.createElement("form"); // form 엘리멘트 생성 
@@ -221,16 +222,18 @@
 	        	f.setAttribute("action","/soap/admin/sales.nm"); // action 속성 설정 
 	        	document.body.appendChild(f); // 현재 페이지에 form 엘리멘트 추가 
 
-	        	var i = document.createElement("input"); // input 엘리멘트 생성 
-	        	i.setAttribute("type","hidden"); // type 속성을 hidden으로 설정 
-	        	i.setAttribute("name","s"); // name 속성을 'nick'으로 설정 
-	        	i.setAttribute("value", start); // value 속성을 '지앤미'로 설정 
-	        	f.appendChild(i); // form 엘리멘트에 input 엘리멘트 추가  
-	        	var i = document.createElement("input"); // input 엘리멘트 생성 
-	        	i.setAttribute("type","hidden"); // type 속성을 hidden으로 설정 
-	        	i.setAttribute("name","e"); // name 속성을 'nick'으로 설정 
-	        	i.setAttribute("value", end); // value 속성을 '지앤미'로 설정 
-	        	f.appendChild(i); // form 엘리멘트에 input 엘리멘트 추가
+	        	var i1 = document.createElement("input"); // input 엘리멘트 생성 
+	        	i1.setAttribute("type","hidden"); // type 속성을 hidden으로 설정 
+	        	i1.setAttribute("name","s"); // name 속성을 'nick'으로 설정 
+	        	i1.setAttribute("value", start); // value 속성을 '지앤미'로 설정 
+	        	f.appendChild(i1); // form 엘리멘트에 input 엘리멘트 추가  
+	        	
+	        	var i2 = document.createElement("input"); // input 엘리멘트 생성 
+	        	i2.setAttribute("type","hidden"); // type 속성을 hidden으로 설정 
+	        	i2.setAttribute("name","e"); // name 속성을 'nick'으로 설정 
+	        	i2.setAttribute("value", end); // value 속성을 '지앤미'로 설정 
+	        	f.appendChild(i2); // form 엘리멘트에 input 엘리멘트 추가
+	        	
 	        	f.submit(); // 전송 
 				}
 				else{
