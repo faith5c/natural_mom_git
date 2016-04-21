@@ -192,6 +192,7 @@ public class MemberController {
 										@RequestParam(value="address") String address,
 										@RequestParam(value="address_detail") String address_detail
 											){		
+		
 		String phone= mergePhone(phone1, phone2, phone3);
 		String email= mergeEmail(email1, email2);
 		Date birth = mergeBirth(year, month, day);
@@ -458,6 +459,7 @@ public class MemberController {
 		if( !year.equals("") && year !=null
 				&& month != 0 && day != 0){
 			int intYear = Integer.parseInt(year);
+			intYear = intYear-1900;
 			return new Date(intYear, month, day);
 		}else{
 			return null;
