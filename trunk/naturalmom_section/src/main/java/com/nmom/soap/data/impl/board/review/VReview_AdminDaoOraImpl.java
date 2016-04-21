@@ -33,20 +33,20 @@ public class VReview_AdminDaoOraImpl extends NamedParameterJdbcDaoSupport implem
 			+ "WHERE A.rvw_rnum = ?";
 	// 제목으로 검색하기
 	private final String GET_SEARCH_BY_TITLE = "SELECT A.* FROM (SELECT rownum as rvw_rnum, X.* FROM"
-			+ " (SELECT * from V_REVIEW_ADMIN ORDER BY review_no DESC) X WHERE rownum <= :end) A"
-			+ " WHERE A.rvw_rnum >= :start AND rvw_title LIKE :search ORDER BY rownum ASC";
+			+ " (SELECT * from V_REVIEW_ADMIN WHERE rvw_title LIKE :search ORDER BY review_no DESC) X WHERE rownum <= :end) A"
+			+ " WHERE A.rvw_rnum >= :start ORDER BY rownum ASC";
 	// 내용으로 검색하기
 	private final String GET_SEARCH_BY_CONTENT = "SELECT A.* FROM (SELECT rownum as rvw_rnum, X.* FROM"
-			+ " (SELECT * from V_REVIEW_ADMIN ORDER BY review_no DESC) X WHERE rownum <= :end) A"
-			+ " WHERE A.rvw_rnum >= :start AND rvw_content LIKE :search ORDER BY rownum ASC";
+			+ " (SELECT * from V_REVIEW_ADMIN WHERE rvw_content LIKE :search ORDER BY review_no DESC) X WHERE rownum <= :end) A"
+			+ " WHERE A.rvw_rnum >= :start ORDER BY rownum ASC";
 	// 글쓴이로 검색하기
 	private final String GET_SEARCH_BY_ID = "SELECT A.* FROM (SELECT rownum as rvw_rnum, X.* FROM"
-			+ " (SELECT * from V_REVIEW_ADMIN ORDER BY review_no DESC) X WHERE rownum <= :end) A"
-			+ " WHERE A.rvw_rnum >= :start AND mem_id LIKE :search ORDER BY rownum ASC";
+			+ " (SELECT * from V_REVIEW_ADMIN WHERE mem_id LIKE :search ORDER BY review_no DESC) X WHERE rownum <= :end) A"
+			+ " WHERE A.rvw_rnum >= :start ORDER BY rownum ASC";
 	// 제목+내용으로 검색하기
 	private final String GET_SEARCH_BY_TITLE_CONTENT = "SELECT A.* FROM (SELECT rownum as rvw_rnum, X.* FROM"
-			+ " (SELECT * from V_REVIEW_ADMIN ORDER BY review_no DESC) X WHERE rownum <= :end) A"
-			+ " WHERE A.rvw_rnum >= :start AND rvw_title LIKE :search OR rvw_content LIKE :search ORDER BY rownum ASC";
+			+ " (SELECT * from V_REVIEW_ADMIN WHERE rvw_title LIKE :search OR rvw_content LIKE :search ORDER BY review_no DESC) X WHERE rownum <= :end) A"
+			+ " WHERE A.rvw_rnum >= :start ORDER BY rownum ASC";
 	// 전체 글 수 가져오기
 	private final String GET_COUNT_ALL_REVIEWS = "SELECT COUNT(review_no) FROM V_REVIEW_ADMIN";
 	// 제목으로 검색한 글 수 가져오기
