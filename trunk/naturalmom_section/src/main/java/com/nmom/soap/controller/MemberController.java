@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.nmom.soap.S;
 import com.nmom.soap.data.model.member.MemberVo;
+import com.nmom.soap.data.model.member.MyEmail;
 import com.nmom.soap.svc.member.IMailRegistrationNotification;
 import com.nmom.soap.svc.member.IMemberSvc;
 
@@ -110,8 +111,16 @@ public class MemberController {
 		if(mem.getDrop_out()==1){ foundPw ="탈퇴"; }
 		}
 		Map<String, Object> map = new HashMap<>();
-		map.put("resultPw", foundPw);
 		
+		
+		
+		if(!foundPw.equals("없음") && !foundPw.equals("탈퇴")){
+			emailSvc.sendMyEmail(new MyEmail("manager@naturalmom.com", email, 
+										mem.getMem_name()+"님, 자연맘에서 전송한 메일입니다.", foundPw));
+			foundPw = "이메일 전송";
+		}
+		
+		map.put("resultPw", foundPw);
 		return new ModelAndView("login/login_popup", map);
 	}
 	
