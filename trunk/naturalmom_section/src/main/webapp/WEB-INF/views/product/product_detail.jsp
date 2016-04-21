@@ -112,7 +112,7 @@
 
                		<c:otherwise>
                  	<input type="button" style="width:85px; padding : 13px 10px; margin : 0 5px;" onclick='go_to_cart(${pvo.product_no}, "${sessionScope.loggedin}", ${pvo.stock}, ${pvo.sale_state});' value="장바구니"></button>
-                  	<input type="button" style="width:85px; padding : 13px 10px; margin : 0 5px;" onclick='go_to_interest(${pvo.product_no}, "${sessionScope.loggedin}");' value="관심상품"></button>
+                  	<input type="button" style="width:85px; padding : 13px 10px; margin : 0 5px;" onclick='go_to_interest(${pvo.product_no}, "${sessionScope.loggedin}",${pvo.sale_state});' value="관심상품"></button>
                		</c:otherwise>	
 
                		</c:choose>
@@ -215,12 +215,14 @@
     	  } 
       }
        
-      function go_to_interest(interest_poductno, loggedin){
+      function go_to_interest(interest_poductno, loggedin, sale_state){
     	  console.log(loggedin);
 
     	  if(loggedin == null || loggedin == ""){
 		    	alert("관심상품에 추가하려면 로그인이 필요합니다");
 	    		location.href="/soap/login.nm";
+    	  } else if(sale_state == 0){
+				alert("품절된 상품입니다");    		  
     	  } else {
 			    location.href="/soap/interest/add_proc.nm?i_pn="+interest_poductno;
     	  } 
