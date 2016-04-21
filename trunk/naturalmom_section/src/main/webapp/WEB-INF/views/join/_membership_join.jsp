@@ -192,7 +192,10 @@ td:FIRST-CHILD {
 		if( length_pw < 6){
 			$("#check_pw span").css("color", "red").text("비밀번호가 너무 짧습니다");
 			document.getElementById("nnPw").value = "false";
-		} else {
+		} else if(length_pw >18){
+			$("#check_pw span").css("color", "red").text("비밀번호가 너무 깁니다");
+			document.getElementById("nnPw").value = "false";
+		}else {
 			$("#check_pw span").css("color", "gray").html("<i class='fa fa-check-circle' aria-hidden='true'></i>");
 			document.getElementById("nnPw").value = "true";
 		}
