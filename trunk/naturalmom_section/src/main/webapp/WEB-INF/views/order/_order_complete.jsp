@@ -102,12 +102,16 @@
 				<td><img width="80%" src="/soap/resources/product_images/${o.represent_img}" alt="사진"></td>
 				<td>${o.product_name}</td>
 				<td>${o.buy_num}</td>
-				<td>${o.charge}원</td>
+				<td><fmt:formatNumber value="${o.charge}" type="number"/>원</td>
 				<td>${o.process_nm}</td>
 				</tr>
 				<tr>
 					<td colspan = 7>
-						총 주문금액 : ${charge-3000}원 + 배송비 3000원 = <b>${charge}원</b>
+						<c:if test="${ not empty temp}">
+						총 주문금액 : <fmt:formatNumber value="${charge-3000}" type="number"/>원&nbsp;+&nbsp;
+						배송비 <fmt:formatNumber value="3000" type="number"/>원&nbsp;=&nbsp;&nbsp;
+						<b><fmt:formatNumber value="${charge}" type="number"/>원</b>
+						</c:if>
 					</td>
 				</tr>
 			</table> 

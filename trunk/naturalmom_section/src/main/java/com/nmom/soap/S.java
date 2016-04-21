@@ -51,6 +51,6 @@ public class S {
 	public final static int DELIVER = 13; 			//배송중
 	public final static int DELIVERY_COMPLETE = 14; //배송완료
 	public final static int BUY_DECISION = 21; 	//구매확정
-	public final static int REFUND_PROCESS = 31; 	//환불처리
+	public final static int REFUND_PROCESS = 31; 	//환불요청
 	public final static int REFUND_COMPLETE = 32; 	//환불완료
 }

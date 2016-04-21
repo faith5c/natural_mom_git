@@ -41,22 +41,22 @@
 		table tr:last-child td { border-bottom : 1px solid grey; }
 		table tr td { padding : 10px; }
 
-		table tr:not(:first-child) td:nth-child(1), table tr:not(:first-child) td:nth-child(3), table tr:not(:first-child) td:nth-child(4), 
-		table tr:not(:first-child) td:nth-child(2), table tr:not(:first-child) td:nth-child(5), table tr:not(:first-child) td:nth-child(7), 
-		table tr:not(:first-child) td:nth-child(8), table tr:not(:first-child) td:nth-child(9),  td:nth-child(6) { text-align: center; }
-		table tr:not(:first-child) td:nth-child(2), table tr:not(:first-child),
-		table tr:not(:first-child) td:nth-child(9) { text-align: right; }
+		table tr:not(:first-child) td:nth-child(1), table tr:not(:first-child) td:nth-child(2), table tr:not(:first-child) td:nth-child(3), 
+		table tr:not(:first-child) td:nth-child(5), table tr:not(:first-child) td:nth-child(8), 
+		table tr:not(:first-child) td:nth-child(9){ text-align: center; }
+		
+		table tr:not(:first-child) td:nth-child(4), table tr:not(:first-child) td:nth-child(7), {  text-align: left; }
+		table tr:not(:first-child) td:nth-child(6) {  text-align: right; }
 
-		table tr:first-child td:nth-child(1){ width:7%; }
+		table tr:first-child td:nth-child(1){ width:9%; }
 		table tr:first-child td:nth-child(2){ width:9%; }
 		table tr:first-child td:nth-child(3){ width:9%; }
-		table tr:first-child td:nth-child(4){ width:9%; }
-		table tr:first-child td:nth-child(5){ width:14%; }
-		table tr:first-child td:nth-child(6){ width:8%; }
-		table tr:first-child td:nth-child(7){ width:9%; }
-		table tr:first-child td:nth-child(8){ width:14%; } 
-		table tr:first-child td:nth-child(9){ width:11%; } 
-		table tr:first-child td:nth-child(10){ width:10%; } 
+		table tr:first-child td:nth-child(4){ width:16%; }
+		table tr:first-child td:nth-child(5){ width:8%; }
+		table tr:first-child td:nth-child(6){ width:9%; }
+		table tr:first-child td:nth-child(7){ width:19%; } 
+		table tr:first-child td:nth-child(8){ width:11%; } 
+		table tr:first-child td:nth-child(9){ width:10%; } 
 
 		#buttons { margin-top: 20px; text-align: right; }
 		#buttons input[type = "button"]
@@ -108,7 +108,7 @@
 		<h2 id = "order_title">주문 관리</h2>
 		<table cellspacing = "0">
 			
-				<td>체크</td>
+				
 				<td><a href = "#">▼ 주문일</a></td>
 				<td><a href = "#">▼ 주문번호</a></td>
 				<td><a href = "#">▼ 주문자</a></td>
@@ -122,24 +122,23 @@
 			
 			<c:forEach var="om" items="${orderManeger}"> 
 				<tr>
-					<td><input type = "checkbox" name = "check" value="om.order_no"/></td>
 					<td style="text-align: center;"><fmt:formatDate value="${ om.order_date }" type="Date" /></td>
 					<td>${ om.order_no }</td>
 					<td>${ om.mem_name }</td>
 					<td>${ om.product_name }</td>
 					<td>${ om.buy_num }</td>
-					<td>${ om.charge }</td>
+					<td><fmt:formatNumber value="${ om.charge }" type="number"/>원</td>
 					<td class="msg" >${ om.delivery_msg }</td>
 					<td onclick="tracking_num_input(${ om.order_no })"><c:if test="${ 0 ne om.tracking_num }">${ om.tracking_num }</c:if></td>
 					<td>
 						<select name="process_no">
-							<option value="11" <c:if test="${ om.process_nm.equals('배송준비중') }">selected="selected"</c:if> >&nbsp;배송준비중&nbsp;</option>
-							<option value="12" <c:if test="${ om.process_nm.equals('배송대기') }">selected="selected"</c:if>>&nbsp;배송대기&nbsp;</option>
-							<option value="13" <c:if test="${ om.process_nm.equals('배송중') }">selected="selected"</c:if>>&nbsp;배송중&nbsp;</option>
-							<option value="14" <c:if test="${ om.process_nm.equals('배송완료') }">selected="selected"</c:if>>&nbsp;배송완료&nbsp;</option>
-							<option value="21" <c:if test="${ om.process_nm.equals('구매확정') }">selected="selected"</c:if>>&nbsp;구매확정&nbsp;</option>
-							<option value="31" <c:if test="${ om.process_nm.equals('환불처리') }">selected="selected"</c:if>>&nbsp;환불처리&nbsp;</option>
-							<option value="32" <c:if test="${ om.process_nm.equals('환불완료') }">selected="selected"</c:if>>&nbsp;환불완료&nbsp;</option>
+							<option value="배송준비중" <c:if test="${ om.process_nm.equals('배송준비중') }">selected="selected"</c:if> >&nbsp;배송준비중&nbsp;</option>
+							<option value="배송대기" <c:if test="${ om.process_nm.equals('배송대기') }">selected="selected"</c:if>>&nbsp;배송대기&nbsp;</option>
+							<option value="배송중" <c:if test="${ om.process_nm.equals('배송중') }">selected="selected"</c:if>>&nbsp;배송중&nbsp;</option>
+							<option value="배송완료" <c:if test="${ om.process_nm.equals('배송완료') }">selected="selected"</c:if>>&nbsp;배송완료&nbsp;</option>
+							<option value="구매확정" <c:if test="${ om.process_nm.equals('구매확정') }">selected="selected"</c:if>>&nbsp;구매확정&nbsp;</option>
+							<option value="환불요청" <c:if test="${ om.process_nm.equals('환불요청') }">selected="selected"</c:if>>&nbsp;환불요청&nbsp;</option>
+							<option value="환불완료" <c:if test="${ om.process_nm.equals('환불완료') }">selected="selected"</c:if>>&nbsp;환불완료&nbsp;</option>
 						</select>
 					</td>
 				</tr>
@@ -148,16 +147,11 @@
 		<br>
 		
 		<br>
-		<div id = "buttons">
-			<input type = "button" id = "delivery_stand_by" value = "배송대기" />
-			<input type = "button" id = "refund_process" value = "환불처리"/>
-			<input type = "button" id = "refund_complete" value = "환불완료" />
-		</div>
 	</div>
-		<script type="text/javascript">
-		function order_popup()
+	<script type="text/javascript">
+		function tracking_num_input(order_no)
 		{
-			window.open("_a_order_popup.jsp", "운송장 등록", "width = 420px, height = 410px, left = 500px, top = 200px, scrollbars = no, toobar = no, menubar = no, status = no, location = no, resizeable = no");
+			window.open("/soap/admin/order_popup.nm?n="+order_no, "운송장 등록", "width = 420px, height = 410px, left = 500px, top = 200px, scrollbars = no, toobar = no, menubar = no, status = no, location = no, resizeable = no");
 		}
 	</script>
 <!--------------------------------------------------------end container------------->

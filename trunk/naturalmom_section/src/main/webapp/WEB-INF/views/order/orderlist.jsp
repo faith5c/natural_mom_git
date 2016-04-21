@@ -57,15 +57,61 @@
 		table a { text-decoration : none; color : #000000; }
 		
 	</style>
-	
-	<script type="text/javascript">
+	<input  type="hidden">
+	<!--주문내역 조회 부분-->
+	<form action="/soap/order/orderlist_edit.nm" method="post" name="orderlist_form">
+		<br><br>
+		<c:if test="${not empty orderlist}">
+		<table cellspacing="0">
+			<tr>
+				<td colspan = "8"><h2>주문내역 조회</h2></td>
+			</tr>
+			<tr>
+				<td>선택</td>
+				<td>주문번호</td>
+				<td>주문일자</td>
+				<td>상품이미지</td>
+				<td>상품명</td>
+				<td>수량</td>
+				<td>결제금액</td>
+				<td>처리상태</td>
+			</tr>
+			<c:forEach var="o" items="${orderlist}">
+				<tr>
+				<td><input type="checkbox" 
+				<c:if test="${o.process_nm.equals('구매확정') || o.process_nm.equals('환불요청') || o.process_nm.equals('환불완료')}">disabled="disabled"</c:if>
+				 name="order_sel"
+				 value="${o.order_no}"></td>
+				<td>${o.order_no}</td>
+				<td><fmt:formatDate value="${o.order_date}" type="Date" /></td>
+				<td><img src="/soap/resources/product_images/${o.represent_img}" alt="사진"></td>
+				<td>${o.product_name}</td>
+				<td>${o.buy_num}</td>
+				<td><fmt:formatNumber value="${o.charge}" type="number"/>원</td>
+				<td>${o.process_nm}</td>
+				</tr>
+			</c:forEach>
+			
+			<tr>
+				<td colspan="8">
+				<input type="button" value="환불요청" onclick="refund()" />
+				<input type="button" value="구매확정" onclick="buy()" />
+				</td>
+			</tr>
+		</table>
+		</c:if>
+		<c:if test="${empty orderlist}">
+		주문 내역이 없습니다.
+		</c:if>
+		<input type="hidden" name="process" id="process"/>
+	</form>
+<script type="text/javascript">
 		function pop_refund_req(){
 			var center_width = (screen.width/2) - (720/2);
 			var center_height = (screen.height/2) - (400/2);
 			window.open("refund_req_popup.jsp", "refund_req", "width=720px, height=400px, left="+center_width+", top="+center_height+", scrollbars=no, toolbar=no, location=no");
 		}
-	</script>
-		<script type="text/javascript">
+	
 	
 	function refund(){
 		var chk = document.getElementsByName("order_sel"); 
@@ -79,7 +125,7 @@
         
         if(res > 0){
         
-        $('#process').attr("value", "환불처리");
+        $('#process').attr("value", "환불요청");
       	//alert($('#process').val());
       	
       	document.orderlist_form.submit();
@@ -107,55 +153,7 @@
         else{alert("구매확정하실 주문을 체크해 주세요");}
         
 	}
-	</script>
-	<input  type="hidden">
-	<!--주문내역 조회 부분-->
-	<form action="/soap/order/orderlist_edit.nm" method="post" name="orderlist_form">
-		<br><br>
-		<c:if test="${not empty orderlist}">
-		<table cellspacing="0">
-			<tr>
-				<td colspan = "8"><h2>주문내역 조회</h2></td>
-			</tr>
-			<tr>
-				<td>선택</td>
-				<td>주문번호</td>
-				<td>주문일자</td>
-				<td>상품이미지</td>
-				<td>상품명</td>
-				<td>수량</td>
-				<td>결제금액</td>
-				<td>처리상태</td>
-			</tr>
-			<c:forEach var="o" items="${orderlist}">
-				<tr>
-				<td><input type="checkbox" name="order_sel"
-				<c:if test="${o.process_nm.equals('구매확정') || o.process_nm.equals('환불완료') || o.process_nm.equals('환불요청')}">disabled="disabled"</c:if>
-				 value="${o.order_no}"></td>
-				<td>${o.order_no}</td>
-				<td><fmt:formatDate value="${o.order_date}" type="Date" /></td>
-				<td><img src="/soap/resources/product_images/${o.represent_img}" alt="사진"></td>
-				<td>${o.product_name}</td>
-				<td>${o.buy_num}</td>
-				<td>${o.charge}원</td>
-				<td>${o.process_nm}</td>
-				</tr>
-			</c:forEach>
-			
-			<tr>
-				<td colspan="8">
-				<input type="button" value="환불신청" onclick="refund()" />
-				<input type="button" value="구매확정" onclick="buy()" />
-				</td>
-			</tr>
-		</table>
-		</c:if>
-		<c:if test="${empty orderlist}">
-		주문 내역이 없습니다.
-		</c:if>
-		<input type="hidden" name="process" id="process"/>
-	</form>
-
+</script>
 		</div>
 		<!--------------------------------------------------end content--------->
 	</div><!--end container-->

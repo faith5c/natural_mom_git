@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 <style type="text/css">
@@ -171,7 +171,7 @@ table tr .explain {
 				<td><img width="20%" alt="" src="/soap/resources/product_images/${t.represent_img}" /></td>
 				<td>${t.product_name}</td>
 				<td>${t.buy_num}</td>
-				<td>${t.total_price}원</td>
+				<td><fmt:formatNumber value="${t.total_price}" type="number"/>원</td>
 				
 			</tr>
 			</c:forEach>
@@ -184,7 +184,9 @@ table tr .explain {
 			<tr>
 				<td colspan=4>
 				<c:if test="${ not empty temp}">
-				총 주문금액 : ${charge-3000}원&nbsp;+&nbsp;배송비 3000원&nbsp;=&nbsp;&nbsp;<b>${charge}원</b>
+				총 주문금액 : <fmt:formatNumber value="${charge-3000}" type="number"/>원&nbsp;+&nbsp;
+				배송비 <fmt:formatNumber value="3000" type="number"/>원&nbsp;=&nbsp;&nbsp;
+				<b><fmt:formatNumber value="${charge}" type="number"/>원</b>
 				</c:if>
 				</td>
 			</tr>
@@ -351,7 +353,7 @@ table tr .explain {
 			<table cellspacing="0" class="info">
 				<tr>
 					<td>결제금액</td>
-					<td>${charge}원</td>
+					<td><b><fmt:formatNumber value="${charge}" type="number"/>원</b></td>
 				</tr>
 				<tr>
 					<td>결제방식</td>

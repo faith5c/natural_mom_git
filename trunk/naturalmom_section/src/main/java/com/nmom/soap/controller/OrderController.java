@@ -51,11 +51,11 @@ public class OrderController {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 
-//		Boolean isAdmin = ((Boolean) ses.getAttribute(S.SESSION_ADMIN));
-//		if (isAdmin == null || !isAdmin.booleanValue()) {
-//			map.put("err_msg", "관리자로 로그인 바랍니다.");
-//			return new ModelAndView("login/login", map);
-//		}
+		Boolean isAdmin = ((Boolean) ses.getAttribute(S.SESSION_ADMIN));
+		if (isAdmin == null || !isAdmin.booleanValue()) {
+			map.put("err_msg", "관리자로 로그인 바랍니다.");
+			return new ModelAndView("login/login", map);
+		}
 
 		List<VOrderManagerVo> list = new ArrayList<VOrderManagerVo>();
 
@@ -68,6 +68,52 @@ public class OrderController {
 		return new ModelAndView("admin/order/a_order", map);
 	}
 	
+	//운송장 등록 폼 팝업 admin/order_popup.nm
+	@RequestMapping(value = "admin/order_popup.nm", method = RequestMethod.GET)
+	public ModelAndView getOrderManagerPopup(HttpServletRequest req, 
+			HttpSession ses,
+			@RequestParam(value="n") int order_no
+			) {
+		System.out.println("@RequestMapping(admin/order_popup.nm)");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		Boolean isAdmin = ((Boolean) ses.getAttribute(S.SESSION_ADMIN));
+		if (isAdmin == null || !isAdmin.booleanValue()) {
+			map.put("err_msg", "관리자로 로그인 바랍니다.");
+			return new ModelAndView("login/login", map);
+		}
+		
+		map.put("order_no", order_no);
+		return new ModelAndView("admin/order/_a_order_popup", map);
+	}
+	
+	//운송장 등록 프로세스 팝업 admin/order_popup.nm
+		@RequestMapping(value = "admin/tracking_num_proc.nm", method = RequestMethod.POST)
+		public ModelAndView editOrderTrackingNum(HttpServletRequest req, 
+				HttpSession ses,
+				@RequestParam(value="order_no") int order_no,
+				@RequestParam(value="delivery_num") int delivery_num,
+				@RequestParam(value="delivery_company") String delivery_company
+				) {
+			
+			
+			System.out.println("@RequestMapping(admin/tracking_num_proc.nm)");
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+
+			Boolean isAdmin = ((Boolean) ses.getAttribute(S.SESSION_ADMIN));
+			if (isAdmin == null || !isAdmin.booleanValue()) {
+				map.put("err_msg", "관리자로 로그인 바랍니다.");
+				return new ModelAndView("login/login", map);
+			}
+			
+			map.put("order_no", order_no);
+			
+			//가져와서 넣는다 세션 체크 목록
+			
+			return new ModelAndView("admin/order/_a_order_popup", map);
+		}
 	
 	//주문하기 페이지   /order/detailorder.nm
 	@RequestMapping(value="/order/detailorder.nm", method={RequestMethod.POST, RequestMethod.GET})
@@ -399,6 +445,7 @@ public class OrderController {
 		String check[] = req.getParameterValues("order_sel");
 		int order_no[] = new int[check.length];
 		System.out.println("check[]"+check.length);
+		if(check.length > 1){
 		for (int i = 0; i < check.length; i++) {
 			try {
 				System.out.println(check[i]);
@@ -409,17 +456,37 @@ public class OrderController {
 		}
 		int r = 0;
 		if(process != null && order_no.length > 1){
-			for(int i : order_no)
+			for(int i : order_no){
 			r = this.productOrderSvc.editOrder(i, 
 					(process.equals("구매확정")) ? S.BUY_DECISION : S.REFUND_PROCESS );
+			
+			if(r > 0)System.out.println("업데이트 성공");
+			else System.out.println("업데이트 실패");
+			}
+		}
+		}
+		else{
+			int order_no1 = 0;
+			try {
+				System.out.println(check[0]);
+				order_no1 = Integer.parseInt(check[0]);
+			} catch (NumberFormatException ne) {
+				ne.printStackTrace();
+			}
+			
+			int n = 0;
+			n = this.productOrderSvc.editOrder(order_no1, 
+					(process.equals("구매확정")) ? S.BUY_DECISION : S.REFUND_PROCESS );
+			
+			if(n > 0)System.out.println("업데이트 성공");
+			else System.out.println("업데이트 실패");
+			
 		}
 		/*else if(order_no.length == 1){
 			r = this.productOrderSvc.editOrder(order_no[0], 
 					(process.equals("구매확정")) ? S.BUY_DECISION : S.REFUND_PROCESS );
 		}*/
 			
-		if(r > 0)System.out.println("업데이트 성공");
-		else System.out.println("업데이트 실패");
 		List<VOrderListVo> list = this.vOrderListSvc.getAllOreder(1, this.vOrderListSvc.getAllCount(mem_id), mem_id);
 		Map<String, Object> map = new HashMap<>();
 		map.put("orderlist", list);
