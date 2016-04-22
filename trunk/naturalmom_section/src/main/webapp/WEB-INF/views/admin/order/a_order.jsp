@@ -196,7 +196,7 @@
 				alert("환불요청에 대한 처리만 가능합니다.");
 			}
 			else{
-				alert(notice_no)
+				//alert(notice_no)
 				var f = document.createElement("form"); // form 엘리멘트 생성 
 	        	f.setAttribute("method","post"); // method 속성 설정 
 	        	f.setAttribute("action","/soap/admin/order.nm"); // action 속성 설정 
