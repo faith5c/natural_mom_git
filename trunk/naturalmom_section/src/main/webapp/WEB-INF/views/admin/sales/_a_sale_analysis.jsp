@@ -120,6 +120,12 @@
 				        }, {
 				            name: bddata.data[2].name,
 				            data: [bddata.data[2].data]
+				        }, {
+				            name: bddata.data[3].name,
+				            data: [bddata.data[3].data]
+				        }, {
+				            name: bddata.data[4].name,
+				            data: [bddata.data[4].data]
 				        }]
 				};
 					
@@ -316,7 +322,7 @@
 				</tr>
 				</thead>
 				<tbody>
-				<c:forEach var="rank" items="${rank_list}" begin="0" end="2" step="1">
+				<c:forEach var="rank" items="${rank_list}" begin="0" end="4" step="1">
 				<tr>
 					<td>${rank.rownum}</td>
 					<td>${rank.product_name}</td>
