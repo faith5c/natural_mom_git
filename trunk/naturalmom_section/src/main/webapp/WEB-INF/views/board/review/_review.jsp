@@ -241,10 +241,10 @@
 			<td>
 					<c:forEach var="i" begin="0" end="5" step="1">
 						<c:if test="${i < review.rvw_satisfaction}">
-							★
+							<i class="fa fa-star" aria-hidden="true"></i>
 						</c:if>
 						<c:if test="${i > review.rvw_satisfaction}">
-							☆
+							<i class="fa fa-star-o" aria-hidden="true"></i>
 						</c:if>
 					</c:forEach>
 			</td>
