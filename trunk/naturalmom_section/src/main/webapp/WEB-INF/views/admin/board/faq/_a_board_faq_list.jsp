@@ -103,6 +103,13 @@
 				</td>
 			</tr>
 		</c:forEach>
+		
+		<c:if test="${empty faq_list}" >
+			<tr>
+				<td colspan="2">검색 결과가 없습니다.</td>
+			</tr>
+		</c:if>
+		
 		<tr class="faq_write" style="text-align : right;">
 			<td style="border : 0px solid blue; border-top : 1px solid lightgray;">
 			</td>

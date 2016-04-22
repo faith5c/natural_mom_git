@@ -114,6 +114,12 @@
 				</td>
 			</tr>
 		</c:forEach>
+		
+		<c:if test="${empty rvw_list}" >
+			<tr>
+				<td colspan="6">검색 결과가 없습니다.</td>
+			</tr>
+		</c:if>
 <!--	
 		<tr id = "review_write">
 			<td colspan="6">

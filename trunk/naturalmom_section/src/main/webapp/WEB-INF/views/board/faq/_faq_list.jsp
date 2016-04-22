@@ -84,6 +84,12 @@
 			<td><a href="<c:url value="/board/faq/read.nm?fr_no=${fl.faq_no}&rn=${fl.faq_rnum}"/>">${fl.faq_title}</a></td>
 		</tr>
 	</c:forEach>
+	
+	<c:if test="${empty faq_list}" >
+		<tr>
+			<td colspan="2">검색 결과가 없습니다.</td>
+		</tr>
+	</c:if>
 		
 	</table>
 	
