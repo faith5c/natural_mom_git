@@ -368,7 +368,7 @@ table tr .explain {
 						<input type="radio" name="card" value="KB국민">&nbsp;KB국민&nbsp;&nbsp;&nbsp;&nbsp;
 						<input type="radio" name="card" value="NH채움">&nbsp;NH채움&nbsp;&nbsp;&nbsp;&nbsp;
 						<input type="radio" name="card" value="비씨">&nbsp;비씨&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" name="card" value="woori">&nbsp;우리&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="card" value="우리">&nbsp;우리&nbsp;&nbsp;&nbsp;&nbsp;
 
 					</td>
 				</tr>

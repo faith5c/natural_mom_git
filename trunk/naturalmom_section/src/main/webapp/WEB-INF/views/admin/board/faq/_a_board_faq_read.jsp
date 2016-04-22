@@ -83,10 +83,6 @@
 		console.log("p_not : "+$("#p_not").val());
 		console.log("n_not : "+$("#n_not").val());
 		
-	    if($("#incorrect_pw").val()!=null){
-	      alert($("#incorrect_pw").val());
-	    }
-	   
 	    if($("#p_not").val()=="t"){
 	    	alert("이전글이 없습니다");
 	    }

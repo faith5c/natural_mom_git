@@ -52,13 +52,6 @@
 			</td>
 		</tr>
 		<tr>
-			<th>첨부</th>
-			<td>
-				<input type="file" name="file1" maxlength="15" style="width:30%" />
-				<input type="file" name="file2" maxlength="15" style="width:30%" />
-			</td>
-		</tr>
-		<tr>
 			<th><label for="content">내용</label></th>
 			<td>
 			<textarea id="content" name="content" style="width:100%; cols="74" rows="14">${ no.ntc_content }</textarea>

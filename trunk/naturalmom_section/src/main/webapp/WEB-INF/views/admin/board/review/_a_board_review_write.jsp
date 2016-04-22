@@ -13,7 +13,7 @@
 	function viewContent()
 	{
 		var write = nicEditors.findEditor('review_write').getContent();
-		alert(write);
+		//alert(write);
 	}
 </script>	
 	
