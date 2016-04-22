@@ -245,68 +245,7 @@ table tr .explain {
 						동일함<label></td>
 			</tr>
 		</table>
-	<script type="text/javascript">
-	$('#order_same').on("click",function() {
-    	var check =	document.getElementById("order_same");
-    	
-		if ( check.checked ){
-  			var name = $('#name').attr("value");
-			var phone1 = $('#phone1').attr("value");
-			var phone2 = $('#phone2').attr("value");
-			var phone3 = $('#phone3').attr("value");
-			var post_num = $('#post_num').attr("value");
-			var address_detail = $('#address_detail').attr("value");
-			$('#nameRe').attr("value", name);
-			$('#phoneRe1').attr("value", phone1);
-			$('#phoneRe2').attr("value", phone2);
-			$('#phoneRe3').attr("value", phone3);
-			$('#post_numRe').attr("value", post_num);
-			$('#post_numS').attr("value", post_num);
-			$('#address_detailRe').attr("value", address_detail);
-	}
-	});
 
-	 function pop_postNum() {
-		 new daum.Postcode({
-		        oncomplete: function(data) {
-		            $('#post_numRe').val(data.zonecode);
-		            $('#post_numS').val(data.zonecode);
-		            $('#address_detailRe').val(data.address);
-                    $('#address_detailRe').focus();
-		        }
-		    }).open();
-//		window.open("membership_pop_post.jsp", "FindPostNumber", "width=402px, height=480px, left=600px, top=200px, scrollbars=no, toolbar=no, location=no");
-	 }
-	 
-	 function allSubmit(){
-			 var f = document.order_from;
-			 
-			if($('#nameRe').val()==""){
-				alert("이름을 입력해주세요.");
-			}else if($('#phoneRe1').val()=="" || $('#phoneRe2').val()=="" || $('#phoneRe3').val()==""){
-				alert("휴대폰 번호를 입력해주세요.");
-			}else if($('#post_numRe').val()==""){
-				alert("우편번호를 입력해주세요.");
-			}else if($('#address_detail').val()==""){
-				alert("주소를 입력해주세요.");
-			}else if(!f.card[0].checked &&
-					!f.card[1].checked &&
-					!f.card[2].checked &&
-					!f.card[3].checked &&
-					!f.card[4].checked &&
-					!f.card[5].checked &&
-					!f.card[6].checked &&
-					!f.card[7].checked){
-				alert("카드사를 선택하세요."); 
-			}else if($('#expiry_month').val()=="-" || $('#expiry_year').val()=="-"){
-				alert("카드 유효기간을 입력해주세요.");
-			}else{
-				f.submit();
-			}
-			
-		}
-	 
-	</script>
 		<div>
 		<form action="/soap/order/order_proc.nm" method="post" name="order_from">
 			<!-- 배송지정보 시작 -->
@@ -375,13 +314,13 @@ table tr .explain {
 				<tr>
 					<td>신용카드 번호</td>
 					<td><input type="number" id="card_num1" name="card_num1"
-						size="4" maxlength="4" />&nbsp;&nbsp; 
+						size="4" maxlength="4" onchange="move_focus()"/>&nbsp;&nbsp; 
 						<input type="number" id="card_num2" name="card_num2" 
-						size="4" maxlength="4" />&nbsp;&nbsp;
+						size="4" maxlength="4" onkeyup="move_focus()"/>&nbsp;&nbsp;
 						<input type="number" id="card_num3" name="card_num3" 
-						size="4" maxlength="4" />&nbsp;&nbsp; 
+						size="4" maxlength="4" onkeyup="move_focus()"/>&nbsp;&nbsp; 
 						<input type="number" id="card_num4" name="card_num4" 
-						value="" size="4" maxlength="4" />
+						value="" size="4" maxlength="4"/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 						유효기간 
 						<select name="expiry_year" id="expiry_year">
@@ -428,3 +367,78 @@ table tr .explain {
 			</p>
 			<!--------------------------------------------------------end container------------->
 		</form>
+			<script type="text/javascript">
+	$('#order_same').on("click",function() {
+    	var check =	document.getElementById("order_same");
+    	
+		if ( check.checked ){
+  			var name = $('#name').attr("value");
+			var phone1 = $('#phone1').attr("value");
+			var phone2 = $('#phone2').attr("value");
+			var phone3 = $('#phone3').attr("value");
+			var post_num = $('#post_num').attr("value");
+			var address_detail = $('#address_detail').attr("value");
+			$('#nameRe').attr("value", name);
+			$('#phoneRe1').attr("value", phone1);
+			$('#phoneRe2').attr("value", phone2);
+			$('#phoneRe3').attr("value", phone3);
+			$('#post_numRe').attr("value", post_num);
+			$('#post_numS').attr("value", post_num);
+			$('#address_detailRe').attr("value", address_detail);
+	}
+	});
+
+	 function pop_postNum() {
+		 new daum.Postcode({
+		        oncomplete: function(data) {
+		            $('#post_numRe').val(data.zonecode);
+		            $('#post_numS').val(data.zonecode);
+		            $('#address_detailRe').val(data.address);
+                    $('#address_detailRe').focus();
+		        }
+		    }).open();
+//		window.open("membership_pop_post.jsp", "FindPostNumber", "width=402px, height=480px, left=600px, top=200px, scrollbars=no, toolbar=no, location=no");
+	 }
+	 
+	 function allSubmit(){
+			 var f = document.order_from;
+			 
+			if($('#nameRe').val()==""){
+				alert("이름을 입력해주세요.");
+			}else if($('#phoneRe1').val()=="" || $('#phoneRe2').val()=="" || $('#phoneRe3').val()==""){
+				alert("휴대폰 번호를 입력해주세요.");
+			}else if($('#post_numRe').val()==""){
+				alert("우편번호를 입력해주세요.");
+			}else if($('#address_detail').val()==""){
+				alert("주소를 입력해주세요.");
+			}else if(!f.card[0].checked &&
+					!f.card[1].checked &&
+					!f.card[2].checked &&
+					!f.card[3].checked &&
+					!f.card[4].checked &&
+					!f.card[5].checked &&
+					!f.card[6].checked &&
+					!f.card[7].checked){
+				alert("카드사를 선택하세요."); 
+			}else if($('#expiry_month').val()=="-" || $('#expiry_year').val()=="-"){
+				alert("카드 유효기간을 입력해주세요.");
+			}else{
+				f.submit();
+			}
+			
+		}
+	 function move_focus(){
+			if(order_from.card_num1.value.length == 4){
+				order_from.card_num2.focus();
+				return;
+			}
+			if(order_from.card_num2.value.length == 4){
+				order_from.card_num3.focus();
+				return;
+			}
+			if(order_from.card_num3.value.length == 4){
+				order_from.card_num4.focus();
+				return;
+			}
+		}
+	</script>
