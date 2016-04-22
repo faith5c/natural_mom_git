@@ -6,9 +6,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- [if lt IE 9]><script src="js/html5shiv.js"></script><![endif] -->
 	
-	<link rel="apple-touch-icon" href="images/logo.ico" /> <!--애플아이콘등록-->
-	<link rel="shortcut icon" href="images/logo.ico" /> <!--단축키아이콘등록-->
-	<link rel="stylesheet" href="css/admin_common.css"/>
+	<link rel="apple-touch-icon" href="/soap/resources/images/logo.ico" /> <!--애플아이콘등록-->
+	<link rel="shortcut icon" href="/soap/resources/images/logo.ico" /> <!--단축키아이콘등록-->
+	<link rel="stylesheet" href="/soap/resources/css/admin_common.css"/>
 		
 	<title>자연맘</title>
 

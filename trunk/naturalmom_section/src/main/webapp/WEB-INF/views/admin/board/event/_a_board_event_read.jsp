@@ -3,7 +3,7 @@
 <%@ taglib prefix = "c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-<script src="resources/js/jquery-1.11.3.min.js"></script>
+<script src="/soap/resources/js/jquery-1.11.3.min.js"></script>
 <style type = "text/css">
 		#container { width : 764px; margin : 50px auto;}
 		#inside { color: #85858d; font-size: 14px; }

@@ -236,17 +236,17 @@ public class EventController {
 			case "제목":
 				e_list = eventSvc.getEvents_by_title(search);
 				map.put("e_list", e_list);
-				return new ModelAndView("board/event/b_event", map);
+				return new ModelAndView("admin/board/event/a_event", map);
 				
 			case "내용":
 				e_list = eventSvc.getEvents_by_content(search);
 				map.put("e_list", e_list);
-				return new ModelAndView("board/event/b_event", map);
+				return new ModelAndView("admin/board/event/a_event", map);
 				
 			case "제목+내용":
 				e_list = eventSvc.getEvents_by_title_n_content(search);
 				map.put("e_list", e_list);
-				return new ModelAndView("board/event/b_event", map);
+				return new ModelAndView("admin/board/event/a_event", map);
 			}
 		}
 		

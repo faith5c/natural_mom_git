@@ -96,7 +96,13 @@
 				<td id = "hits" >${e.evt_hits}</td>
 				<td id = "realno" style="display: none">${e.event_no}</td>
 			</tr>
-		</c:forEach>		
+		</c:forEach>	
+		<c:if test="${empty e_list}">
+			<tr>
+				<td colspan="5" style="text-align: center; font-size: 15px; padding: 20px">
+					해당 검색 내용이 없습니다.</td>
+			</tr>
+		</c:if>	
 			
 			<tr>
 				<td colspan="5" style="text-align: right"><a id = "write" name = "write" 
