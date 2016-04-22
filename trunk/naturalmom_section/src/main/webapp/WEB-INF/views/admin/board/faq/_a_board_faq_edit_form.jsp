@@ -47,7 +47,7 @@
 	
 	<form action="/soap/admin/board/faq/edit_proc.nm" method="post">
 	<table cellspacing="2">
-		<tr><td colspan="2"><h2>Q&A</h2></td></tr>
+		<tr><td colspan="2"><h2>자주하는 질문</h2></td></tr>
 		<tr>
 			<th style="width:80px;"><label for="title">제목</label></th>
 			<td><input type="text" name="title" style="width:99%;" id="title" maxlength="127" value="${fvo.faq_title}" placeholder="제목을 입력하세요" required="required"/></td>
