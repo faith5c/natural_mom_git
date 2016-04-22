@@ -195,26 +195,28 @@ public class SalesController
 			}
 			//기간
 			else if(start != null && end != null){
-				System.out.println((String)start+(String)end);
-				String sd[] = ((String)start).split("-");
-				String ed[] = ((String)end).split("-");
-				Date s = new Date();
-				Date e = new Date();
-				
-				s.setYear(Integer.parseInt(sd[0])-1900);
-				e.setYear(Integer.parseInt(ed[0])-1900);
-				
-				s.setMonth(Integer.parseInt(sd[1]));
-				e.setMonth(Integer.parseInt(ed[1]));
-				
-				s.setDate(Integer.parseInt(sd[2]));
-				e.setDate(Integer.parseInt(ed[2]));
-				System.out.println(s.toLocaleString()+e.toLocaleString());
+				Date s = new Date((String)start);
+				Date e = new Date((String)end);
+//				System.out.println((String)start+(String)end);
+//				String sd[] = ((String)start).split("-");
+//				String ed[] = ((String)end).split("-");
+//				Date s = new Date();
+//				Date e = new Date();
+//				
+//				s.setYear(Integer.parseInt(sd[0])-1900);
+//				e.setYear(Integer.parseInt(ed[0])-1900);
+//				
+//				s.setMonth(Integer.parseInt(sd[1]));
+//				e.setMonth(Integer.parseInt(ed[1]));
+//				
+//				s.setDate(Integer.parseInt(sd[2]));
+//				e.setDate(Integer.parseInt(ed[2]));
+//				System.out.println(s.toLocaleString()+e.toLocaleString());
 				
 				Calendar sta = Calendar.getInstance();
 				sta.setTime(s);
 				Calendar en = Calendar.getInstance();
-				sta.setTime(e);
+				en.setTime(e);
 				SaleStatementVo sale7 = this.saleStatementSvc.getSaleStatement(sta, en);
 				map.put("sale", sale7);
 				return new ModelAndView("admin/sales/a_sales", map);

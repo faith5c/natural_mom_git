@@ -20,7 +20,6 @@ public class VOrderListDaoOraImpl extends NamedParameterJdbcDaoSupport implement
 			+ "LISTAGG(product_name, ',')WITHIN GROUP (ORDER BY product_name) "
 			+ "as product_name, SUM(buy_num) AS buy_num, charge, process_nm, mem_id "
 			+ "FROM v_order_list "
-			+ "WHERE ROWNUM >= :start AND ROWNUM <= :end AND mem_id = :mem_id "
 			+ "GROUP BY order_no, order_date, charge, process_nm, mem_id";
 	
 	final String GET_ONE_ORDER = 
@@ -35,10 +34,8 @@ public class VOrderListDaoOraImpl extends NamedParameterJdbcDaoSupport implement
 
 	final String GET_ALL_COUNT = "SELECT COUNT(order_no) FROM v_order_list WHERE mem_id = :mem_id";
 	
-	public List<VOrderListVo> getAllOreder(int start, int end, String mem_id) throws DataAccessException {
+	public List<VOrderListVo> getAllOreder(String mem_id) throws DataAccessException {
 		MapSqlParameterSource ps = new MapSqlParameterSource();
-		ps.addValue("start", new Integer(start), Types.INTEGER);
-		ps.addValue("end", new Integer(end), Types.INTEGER);
 		ps.addValue("mem_id", mem_id, Types.VARCHAR);
 		List<VOrderListVo> list = getNamedParameterJdbcTemplate().query(
 				GET_ALL_ORDER, 

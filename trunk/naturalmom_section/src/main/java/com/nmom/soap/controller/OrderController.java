@@ -492,7 +492,7 @@ public class OrderController {
 			HttpSession ses){
 		
 		String mem_id = (String)ses.getAttribute(S.SESSION_LOGIN);
-		List<VOrderListVo> list = this.vOrderListSvc.getAllOreder(1, this.vOrderListSvc.getAllCount(mem_id), mem_id);
+		List<VOrderListVo> list = this.vOrderListSvc.getAllOreder(mem_id);
 		Map<String, Object> map = new HashMap<>();
 		map.put("orderlist", list);
 		return new ModelAndView("order/orderlist", map);
@@ -550,7 +550,7 @@ public class OrderController {
 					(process.equals("구매확정")) ? S.BUY_DECISION : S.REFUND_PROCESS );
 		}*/
 			
-		List<VOrderListVo> list = this.vOrderListSvc.getAllOreder(1, this.vOrderListSvc.getAllCount(mem_id), mem_id);
+		List<VOrderListVo> list = this.vOrderListSvc.getAllOreder(mem_id);
 		Map<String, Object> map = new HashMap<>();
 		map.put("orderlist", list);
 		return new ModelAndView("order/orderlist", map);

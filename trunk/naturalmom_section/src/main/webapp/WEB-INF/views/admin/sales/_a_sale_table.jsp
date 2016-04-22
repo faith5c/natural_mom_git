@@ -68,14 +68,14 @@
 <div id="in">
 	<h2>매출조회</h2>
 		<div id="option_time">
-			<input id="option-today" value="오늘" type="button" onclick="date('today')">
-			<input id="option-week" value="7일" type="button" onclick="date('week')">
-			<input id="option-month1" value="1개월" type="button" onclick="date('month1')">
-			<input id="option-month3" value="3개월" type="button" onclick="date('month3')">
-			<input id="option-month6" value="6개월" type="button" onclick="date('month6')">
+			<input id="option-today" value="오늘" type="button" onclick="datefunc('today')">
+			<input id="option-week" value="7일" type="button" onclick="datefunc('week')">
+			<input id="option-month1" value="1개월" type="button" onclick="datefunc('month1')">
+			<input id="option-month3" value="3개월" type="button" onclick="datefunc('month3')">
+			<input id="option-month6" value="6개월" type="button" onclick="datefunc('month6')">
 			<input id="start" value="" type="date" >
 			<input id="end" value="" type="date" >
-			<input id="option-period" value="입력" type="button" onclick="date('period')">
+			<input id="option-period" value="입력" type="button" onclick="datefunc('period')">
 		</div>
 		
 		<div id="yuback"></div>
@@ -122,8 +122,9 @@
 
 	</div>
 <script type="text/javascript">
-		function date(kind)
+		function datefunc(kind)
 		{
+			console.log(kind);
 			if(kind == 'today'){
 				var f = document.createElement("form"); // form 엘리멘트 생성 
 	        	f.setAttribute("method","post"); // method 속성 설정 
@@ -211,10 +212,21 @@
 	        	f.submit(); // 전송 
 			}
 			else if(kind == 'period'){
+				var s = document.getElementById('start').value;
+				var e = document.getElementById('end').value;
+				console.log("s:"+ s);
+				console.log("e:"+e);
 				
-				var start = document.getElementById('start').value; //$('#start').val();
-				var end = document.getElementById('end').value; //$('#end').val();
-				alert(start+end);
+				var start = Date.parse(s); //$('#start').val();
+				var end = Date.parse(e); //$('#end').val();
+				
+				//console.log("start:" + start.toString('yyyy-MM-dd'));안됨
+				//console.log("end : "+end.toString('yyyy-MM-dd'));안됨
+				
+				var date = Date.parse('2010-08-10');
+				
+				
+				alert(start+end+new Date());
 				if(start != null && end != null){
 				
 				var f = document.createElement("form"); // form 엘리멘트 생성 

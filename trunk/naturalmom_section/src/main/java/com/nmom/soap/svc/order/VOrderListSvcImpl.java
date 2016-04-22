@@ -14,15 +14,9 @@ public class VOrderListSvcImpl implements IVOrderListSvc {
 	private IVOrderListDao vOrderListDao;
 	
 	@Override
-	public List<VOrderListVo> getAllOreder(int block, int allPages, String mem_id) {
-		int start = 1; // 
-		//모든 페이지는 1부터 시작
-		for(int i = 1; i > block; i++){
-			start+=S.PAGE_LIMIT;
-		}
-						//스타트에서 1 더했으므로 여기서 뺌
-		int end = start + (S.PAGE_LIMIT-1);
-		List<VOrderListVo> list = this.vOrderListDao.getAllOreder(start, end, mem_id);
+	public List<VOrderListVo> getAllOreder(String mem_id) {
+
+		List<VOrderListVo> list = this.vOrderListDao.getAllOreder(mem_id);
 		return (list != null && list.size() > 0) ? list : null; 
 	}
 
