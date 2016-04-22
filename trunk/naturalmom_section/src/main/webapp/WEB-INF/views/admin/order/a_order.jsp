@@ -46,9 +46,9 @@
 		table tr td:nth-child(4), table tr td:nth-child(7), {  text-align: left; }
 		table tr td:nth-child(6) {  text-align: right; }
 
-		table tr:first-child td:first-child { width:9%; }
+		table tr:first-child td:first-child { width:10%; }
 		table tr:first-child td:nth-child(2){ width:9%; }
-		table tr:first-child td:nth-child(3){ width:9%; }
+		table tr:first-child td:nth-child(3){ width:8%; }
 		table tr:first-child td:nth-child(4){ width:16%; }
 		table tr:first-child td:nth-child(5){ width:8%; }
 		table tr:first-child td:nth-child(6){ width:9%; }
@@ -128,8 +128,8 @@
 				<th>상품명</th>
 				<th>개수</th>
 				<th>결제금액</th>
-				<th> 배송메세지</th>
-				<th> 운송장번호</th>
+				<th>배송메세지</th>
+				<th>운송장번호</th>
 				<th>처리상태</th>
 			</tr>
 			</thead>
