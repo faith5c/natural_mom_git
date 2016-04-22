@@ -19,7 +19,7 @@ public class VOrderListDaoOraImpl extends NamedParameterJdbcDaoSupport implement
 			+ "as represent_img, "
 			+ "LISTAGG(product_name, ',')WITHIN GROUP (ORDER BY product_name) "
 			+ "as product_name, SUM(buy_num) AS buy_num, charge, process_nm, mem_id "
-			+ "FROM v_order_list "
+			+ "FROM v_order_list WHERE mem_id = :mem_id "
 			+ "GROUP BY order_no, order_date, charge, process_nm, mem_id";
 	
 	final String GET_ONE_ORDER = 
