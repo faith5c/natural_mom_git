@@ -37,7 +37,7 @@
 	
 		#option_time input[type = "button"]
 		{
-			padding : 7px 20px;
+			padding : 5px 15px;
 			margin-left : 3px;
 			margin-right : 3px; 
 			background-color : #85858D;
@@ -47,7 +47,7 @@
 			border-radius : 10px; 
 			border : 0px;
 		}
-		#option_time #start{ margin-left:260px; }
+		#option_time #start{ margin-left:230px; }
 		#option_time input[type = "button"]:hover { opacity : 0.7; }
 
 		#yuback {padding:30px;}
@@ -73,6 +73,7 @@
 			<input id="option-month1" value="1개월" type="button" onclick="datefunc('month1')">
 			<input id="option-month3" value="3개월" type="button" onclick="datefunc('month3')">
 			<input id="option-month6" value="6개월" type="button" onclick="datefunc('month6')">
+			<input id="option-all" value="전체" type="button" onclick="datefunc('all')">
 			<input id="start" value="" type="date" >
 			<input id="end" value="" type="date" >
 			<input id="option-period" value="입력" type="button" onclick="datefunc('period')">
@@ -124,7 +125,7 @@
 <script type="text/javascript">
 		function datefunc(kind)
 		{
-			console.log(kind);
+			//console.log(kind);
 			if(kind == 'today'){
 				var f = document.createElement("form"); // form 엘리멘트 생성 
 	        	f.setAttribute("method","post"); // method 속성 설정 
@@ -145,16 +146,16 @@
 	        	f.setAttribute("action","/soap/admin/sales.nm"); // action 속성 설정 
 	        	document.body.appendChild(f); // 현재 페이지에 form 엘리멘트 추가 
 
-	        	var i = document.createElement("input"); // input 엘리멘트 생성 
-	        	i.setAttribute("type","hidden"); // type 속성을 hidden으로 설정 
-	        	i.setAttribute("name","t"); // name 속성을 'nick'으로 설정 
-	        	i.setAttribute("value", new Date()); // value 속성을 '지앤미'로 설정 
-	        	f.appendChild(i); // form 엘리멘트에 input 엘리멘트 추가  
-	        	var i = document.createElement("input"); // input 엘리멘트 생성 
-	        	i.setAttribute("type","hidden"); // type 속성을 hidden으로 설정 
-	        	i.setAttribute("name","p"); // name 속성을 'nick'으로 설정 
-	        	i.setAttribute("value", 'week'); // value 속성을 '지앤미'로 설정 
-	        	f.appendChild(i); // form 엘리멘트에 input 엘리멘트 추가
+	        	var i1 = document.createElement("input"); // input 엘리멘트 생성 
+	        	i1.setAttribute("type","hidden"); // type 속성을 hidden으로 설정 
+	        	i1.setAttribute("name","t"); // name 속성을 'nick'으로 설정 
+	        	i1.setAttribute("value", new Date()); // value 속성을 '지앤미'로 설정 
+	        	f.appendChild(i1); // form 엘리멘트에 input 엘리멘트 추가  
+	        	var i2 = document.createElement("input"); // input 엘리멘트 생성 
+	        	i2.setAttribute("type","hidden"); // type 속성을 hidden으로 설정 
+	        	i2.setAttribute("name","p"); // name 속성을 'nick'으로 설정 
+	        	i2.setAttribute("value", 'week'); // value 속성을 '지앤미'로 설정 
+	        	f.appendChild(i2); // form 엘리멘트에 input 엘리멘트 추가
 	        	f.submit(); // 전송 
 			}
 			else if(kind == 'month1'){
@@ -163,34 +164,16 @@
 	        	f.setAttribute("action","/soap/admin/sales.nm"); // action 속성 설정 
 	        	document.body.appendChild(f); // 현재 페이지에 form 엘리멘트 추가 
 
-	        	var i = document.createElement("input"); // input 엘리멘트 생성 
-	        	i.setAttribute("type","hidden"); // type 속성을 hidden으로 설정 
-	        	i.setAttribute("name","t"); // name 속성을 'nick'으로 설정 
-	        	i.setAttribute("value", new Date()); // value 속성을 '지앤미'로 설정 
-	        	f.appendChild(i); // form 엘리멘트에 input 엘리멘트 추가  
-	        	var i = document.createElement("input"); // input 엘리멘트 생성 
-	        	i.setAttribute("type","hidden"); // type 속성을 hidden으로 설정 
-	        	i.setAttribute("name","p"); // name 속성을 'nick'으로 설정 
-	        	i.setAttribute("value", 'month1'); // value 속성을 '지앤미'로 설정 
-	        	f.appendChild(i); // form 엘리멘트에 input 엘리멘트 추가
-	        	f.submit(); // 전송 
-			}
-			else if(kind == 'month2'){
-				var f = document.createElement("form"); // form 엘리멘트 생성 
-	        	f.setAttribute("method","post"); // method 속성 설정 
-	        	f.setAttribute("action","/soap/admin/sales.nm"); // action 속성 설정 
-	        	document.body.appendChild(f); // 현재 페이지에 form 엘리멘트 추가 
-
-	        	var i = document.createElement("input"); // input 엘리멘트 생성 
-	        	i.setAttribute("type","hidden"); // type 속성을 hidden으로 설정 
-	        	i.setAttribute("name","t"); // name 속성을 'nick'으로 설정 
-	        	i.setAttribute("value", new Date()); // value 속성을 '지앤미'로 설정 
-	        	f.appendChild(i); // form 엘리멘트에 input 엘리멘트 추가  
-	        	var i = document.createElement("input"); // input 엘리멘트 생성 
-	        	i.setAttribute("type","hidden"); // type 속성을 hidden으로 설정 
-	        	i.setAttribute("name","p"); // name 속성을 'nick'으로 설정 
-	        	i.setAttribute("value", 'month2'); // value 속성을 '지앤미'로 설정 
-	        	f.appendChild(i); // form 엘리멘트에 input 엘리멘트 추가
+	        	var i1 = document.createElement("input"); // input 엘리멘트 생성 
+	        	i1.setAttribute("type","hidden"); // type 속성을 hidden으로 설정 
+	        	i1.setAttribute("name","t"); // name 속성을 'nick'으로 설정 
+	        	i1.setAttribute("value", new Date()); // value 속성을 '지앤미'로 설정 
+	        	f.appendChild(i1); // form 엘리멘트에 input 엘리멘트 추가  
+	        	var i2 = document.createElement("input"); // input 엘리멘트 생성 
+	        	i2.setAttribute("type","hidden"); // type 속성을 hidden으로 설정 
+	        	i2.setAttribute("name","p"); // name 속성을 'nick'으로 설정 
+	        	i2.setAttribute("value", 'month1'); // value 속성을 '지앤미'로 설정 
+	        	f.appendChild(i2); // form 엘리멘트에 input 엘리멘트 추가
 	        	f.submit(); // 전송 
 			}
 			else if(kind == 'month3'){
@@ -199,35 +182,41 @@
 	        	f.setAttribute("action","/soap/admin/sales.nm"); // action 속성 설정 
 	        	document.body.appendChild(f); // 현재 페이지에 form 엘리멘트 추가 
 
-	        	var i = document.createElement("input"); // input 엘리멘트 생성 
-	        	i.setAttribute("type","hidden"); // type 속성을 hidden으로 설정 
-	        	i.setAttribute("name","t"); // name 속성을 'nick'으로 설정 
-	        	i.setAttribute("value", new Date()); // value 속성을 '지앤미'로 설정 
-	        	f.appendChild(i); // form 엘리멘트에 input 엘리멘트 추가  
-	        	var i = document.createElement("input"); // input 엘리멘트 생성 
-	        	i.setAttribute("type","hidden"); // type 속성을 hidden으로 설정 
-	        	i.setAttribute("name","p"); // name 속성을 'nick'으로 설정 
-	        	i.setAttribute("value", 'month3'); // value 속성을 '지앤미'로 설정 
-	        	f.appendChild(i); // form 엘리멘트에 input 엘리멘트 추가
+	        	var i1 = document.createElement("input"); 
+	        	i1.setAttribute("type","hidden"); // type 속성을 hidden으로 설정 
+	        	i1.setAttribute("name","t"); // name 속성을 'nick'으로 설정 
+	        	i1.setAttribute("value", new Date()); // value 속성을 '지앤미'로 설정 
+	        	f.appendChild(i1); // form 엘리멘트에 input 엘리멘트 추가  
+	        	var i2 = document.createElement("input"); // input 엘리멘트 생성 
+	        	i2.setAttribute("type","hidden"); // type 속성을 hidden으로 설정 
+	        	i2.setAttribute("name","p"); // name 속성을 'nick'으로 설정 
+	        	i2.setAttribute("value", 'month3'); // value 속성을 '지앤미'로 설정 
+	        	f.appendChild(i2); // form 엘리멘트에 input 엘리멘트 추가
+	        	f.submit(); // 전송 
+			}
+			else if(kind == 'month6'){
+				var f = document.createElement("form"); // form 엘리멘트 생성 
+	        	f.setAttribute("method","post"); // method 속성 설정 
+	        	f.setAttribute("action","/soap/admin/sales.nm"); // action 속성 설정 
+	        	document.body.appendChild(f); // 현재 페이지에 form 엘리멘트 추가 
+
+	        	var i1 = document.createElement("input"); // input 엘리멘트 생성 
+	        	i1.setAttribute("type","hidden"); // type 속성을 hidden으로 설정 
+	        	i1.setAttribute("name","t"); // name 속성을 'nick'으로 설정 
+	        	i1.setAttribute("value", new Date()); // value 속성을 '지앤미'로 설정 
+	        	f.appendChild(i1); // form 엘리멘트에 input 엘리멘트 추가  
+	        	var i2 = document.createElement("input"); // input 엘리멘트 생성 
+	        	i2.setAttribute("type","hidden"); // type 속성을 hidden으로 설정 
+	        	i2.setAttribute("name","p"); // name 속성을 'nick'으로 설정 
+	        	i2.setAttribute("value", 'month6'); // value 속성을 '지앤미'로 설정 
+	        	f.appendChild(i2); // form 엘리멘트에 input 엘리멘트 추가
 	        	f.submit(); // 전송 
 			}
 			else if(kind == 'period'){
-				var s = document.getElementById('start').value;
-				var e = document.getElementById('end').value;
-				console.log("s:"+ s);
-				console.log("e:"+e);
-				
-				var start = Date.parse(s); //$('#start').val();
-				var end = Date.parse(e); //$('#end').val();
-				
-				//console.log("start:" + start.toString('yyyy-MM-dd'));안됨
-				//console.log("end : "+end.toString('yyyy-MM-dd'));안됨
-				
-				var date = Date.parse('2010-08-10');
-				
-				
-				alert(start+end+new Date());
-				if(start != null && end != null){
+				var start = document.getElementById('start').value;
+				var end = document.getElementById('end').value;
+
+				if(start != null && end != null && start != '' && end != ''){
 				
 				var f = document.createElement("form"); // form 엘리멘트 생성 
 	        	f.setAttribute("method","post"); // method 속성 설정 
@@ -248,9 +237,23 @@
 	        	
 	        	f.submit(); // 전송 
 				}
+				
 				else{
 					alert("날짜를 모두 입력해주세요.");
 				}
+			}
+			else if(kind == 'all'){
+				var f = document.createElement("form"); // form 엘리멘트 생성 
+	        	f.setAttribute("method","post"); // method 속성 설정 
+	        	f.setAttribute("action","/soap/admin/sales.nm"); // action 속성 설정 
+	        	document.body.appendChild(f); // 현재 페이지에 form 엘리멘트 추가 
+
+	        	var i = document.createElement("input"); // input 엘리멘트 생성 
+	        	i.setAttribute("type","hidden"); // type 속성을 hidden으로 설정 
+	        	i.setAttribute("name","a"); // name 속성을 'nick'으로 설정 
+	        	i.setAttribute("value", 'all'); // value 속성을 '지앤미'로 설정 
+	        	f.appendChild(i); // form 엘리멘트에 input 엘리멘트 추가  
+	        	f.submit(); // 전송 
 			}
 			
 		}

@@ -126,7 +126,8 @@ public class SalesController
 			@RequestParam(value="t", required=false) Object day, //Date
 			@RequestParam(value="p", required=false) Object prev, //String
 			@RequestParam(value="s", required=false) Object start, //Date
-			@RequestParam(value="e", required=false) Object end //Date
+			@RequestParam(value="e", required=false) Object end, //Date
+			@RequestParam(value="a", required=false) Object all //Date
 			)
 	{
 		// 세션에서 아이디와 관리자인지 여부를 얻어옴
@@ -135,8 +136,15 @@ public class SalesController
 		
 		if (isAdmin!= null && isAdmin.booleanValue())
 		{
+			
+			if(all != null){
+				SaleStatementVo sale = this.saleStatementSvc.getSaleStatement();
+				map.put("sale", sale);
+				return new ModelAndView("admin/sales/a_sales", map);
+			}
+			
 			//당일
-			if(day != null && prev == null){
+			else if(day != null && prev == null){
 				Date inputdate = new Date((String)day);
 				Calendar today = Calendar.getInstance();
 				today.setTime(inputdate);
@@ -195,23 +203,23 @@ public class SalesController
 			}
 			//기간
 			else if(start != null && end != null){
-				Date s = new Date((String)start);
-				Date e = new Date((String)end);
-//				System.out.println((String)start+(String)end);
-//				String sd[] = ((String)start).split("-");
-//				String ed[] = ((String)end).split("-");
-//				Date s = new Date();
-//				Date e = new Date();
-//				
-//				s.setYear(Integer.parseInt(sd[0])-1900);
-//				e.setYear(Integer.parseInt(ed[0])-1900);
-//				
-//				s.setMonth(Integer.parseInt(sd[1]));
-//				e.setMonth(Integer.parseInt(ed[1]));
-//				
-//				s.setDate(Integer.parseInt(sd[2]));
-//				e.setDate(Integer.parseInt(ed[2]));
-//				System.out.println(s.toLocaleString()+e.toLocaleString());
+//				Date s = new Date((String)start);
+//				Date e = new Date((String)end);
+				System.out.println((String)start+(String)end);
+				String sd[] = ((String)start).split("-");
+				String ed[] = ((String)end).split("-");
+				Date s = new Date();
+				Date e = new Date();
+				
+				s.setYear(Integer.parseInt(sd[0])-1900);
+				e.setYear(Integer.parseInt(ed[0])-1900);
+				
+				s.setMonth(Integer.parseInt(sd[1])-1);
+				e.setMonth(Integer.parseInt(ed[1])-1);
+				
+				s.setDate(Integer.parseInt(sd[2]));
+				e.setDate(Integer.parseInt(ed[2]));
+				System.out.println(s.toLocaleString()+e.toLocaleString());
 				
 				Calendar sta = Calendar.getInstance();
 				sta.setTime(s);
