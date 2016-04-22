@@ -103,7 +103,7 @@ public class SaleStatementOraDaoImpl extends NamedParameterJdbcDaoSupport implem
 	final String SELECT_ALL_SALESTATEMENT = 
 			"SELECT NVL((SELECT COUNT(o.order_no) FROM tb_order o, tb_product_n_order po "
 			+ "WHERE o.order_no = po.order_no AND po.process_cd = 21),0) AS order_no, "
-			+ "NVL((SELECT COUNT(p.product_no) FROM tb_product p, tb_product_n_order po "
+			+ "NVL((SELECT COUNT(DISTINCT p.product_no) FROM tb_product p, tb_product_n_order po "
 			+ "WHERE p.product_no = po.product_no AND po.process_cd = 21),0) AS product_no, "
 			+ "(NVL((SELECT SUM(o.charge) FROM tb_order o, tb_product_n_order po "
 			+ "WHERE o.order_no = po.order_no AND po.process_cd = 21 ),0) - NVL((SELECT COUNT(o.order_no) "
