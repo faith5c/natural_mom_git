@@ -79,7 +79,7 @@
 			<%if (r.equals("1")) {%>
 				<%@include file = "faq/_a_board_faq_read.jsp" %>
 			<%} else if (w.equals("true")) { %>
-				<%@include file = "faq/_a_board_faq_write.jsp" %>
+<%-- 				<%@include file = "faq/_a_board_faq_write.jsp" %> --%>
 			<%} else { %>
 				<%@include file="faq/_a_board_faq_list.jsp" %>
 			<%} %>			
