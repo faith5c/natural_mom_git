@@ -113,6 +113,11 @@
 				<td>${ql.qna_hits}</td>
 			</tr>
 		</c:forEach>
+		<c:if test="${empty qna_list}" >
+			<tr>
+				<td colspan="5">검색 결과가 없습니다.</td>
+			</tr>
+		</c:if>
 	<tr class="qna_write">
 		<td colspan="5" style="border-top: 1px solid grey">
 		
