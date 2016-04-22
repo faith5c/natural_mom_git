@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.9" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="com.nmom.soap.svc.cart.CartSvcImpl" project="naturalmom_section" 
+    file="/naturalmom_section/src/main/java/com/nmom/soap/svc/cart/CartSvcImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="54" width="159" x="5" y="318"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="2" language="java" name="com.nmom.soap.svc.cart.ICartSvc" project="naturalmom_section" 
+    file="/naturalmom_section/src/main/java/com/nmom/soap/svc/cart/ICartSvc.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="55" width="153" x="8" y="229"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="3" language="java" name="com.nmom.soap.svc.cart.IVCartProductSvc" project="naturalmom_section" 
+    file="/naturalmom_section/src/main/java/com/nmom/soap/svc/cart/IVCartProductSvc.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="59" width="149" x="190" y="229"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="4" language="java" name="com.nmom.soap.svc.cart.VCartProductSvcImpl" project="naturalmom_section" 
+    file="/naturalmom_section/src/main/java/com/nmom/soap/svc/cart/VCartProductSvcImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="55" width="150" x="182" y="319"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="com.nmom.soap.data.model.cart.VCartProductVo" project="naturalmom_section" 
+    file="/naturalmom_section/src/main/java/com/nmom/soap/data/model/cart/VCartProductVo.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="148" x="165" y="628"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="com.nmom.soap.data.model.cart.CartVo" project="naturalmom_section" 
+    file="/naturalmom_section/src/main/java/com/nmom/soap/data/model/cart/CartVo.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="148" x="166" y="566"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="com.nmom.soap.data.impl.cart.VCartProductDaoOraImpl" project="naturalmom_section" 
+    file="/naturalmom_section/src/main/java/com/nmom/soap/data/impl/cart/VCartProductDaoOraImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="173" x="193" y="479"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="com.nmom.soap.data.impl.cart.CartDaoOraImpl" project="naturalmom_section" 
+    file="/naturalmom_section/src/main/java/com/nmom/soap/data/impl/cart/CartDaoOraImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="54" width="173" x="7" y="478"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="9" language="java" name="com.nmom.soap.data.dao.cart.ICartDao" project="naturalmom_section" 
+    file="/naturalmom_section/src/main/java/com/nmom/soap/data/dao/cart/ICartDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="55" width="165" x="5" y="395"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="10" language="java" name="com.nmom.soap.data.dao.cart.IVCartProductDao" project="naturalmom_section" 
+    file="/naturalmom_section/src/main/java/com/nmom/soap/data/dao/cart/IVCartProductDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="56" width="153" x="193" y="397"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="11" language="java" name="com.nmom.soap.controller.CartController" project="naturalmom_section" 
+    file="/naturalmom_section/src/main/java/com/nmom/soap/controller/CartController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="56" width="126" x="17" y="108"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="com.nmom.soap.controller.IndexController" project="naturalmom_section" 
+    file="/naturalmom_section/src/main/java/com/nmom/soap/controller/IndexController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="121" x="10" y="566"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="com.nmom.soap.controller.EventController" project="naturalmom_section" 
+    file="/naturalmom_section/src/main/java/com/nmom/soap/controller/EventController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="121" x="10" y="628"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="com.nmom.soap.controller.FaqController" project="naturalmom_section" 
+    file="/naturalmom_section/src/main/java/com/nmom/soap/controller/FaqController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="121" x="12" y="693"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="com.nmom.soap.controller.HomeController" project="naturalmom_section" 
+    file="/naturalmom_section/src/main/java/com/nmom/soap/controller/HomeController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="121" x="15" y="764"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="com.nmom.soap.controller.InterestController" project="naturalmom_section" 
+    file="/naturalmom_section/src/main/java/com/nmom/soap/controller/InterestController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="124" x="14" y="833"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="com.nmom.soap.controller.MemberController" project="naturalmom_section" 
+    file="/naturalmom_section/src/main/java/com/nmom/soap/controller/MemberController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="127" x="12" y="957"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="com.nmom.soap.controller.NoticeController" project="naturalmom_section" 
+    file="/naturalmom_section/src/main/java/com/nmom/soap/controller/NoticeController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="121" x="14" y="898"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="com.nmom.soap.controller.OrderController" project="naturalmom_section" 
+    file="/naturalmom_section/src/main/java/com/nmom/soap/controller/OrderController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="129" x="167" y="111"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="com.nmom.soap.controller.ProductController" project="naturalmom_section" 
+    file="/naturalmom_section/src/main/java/com/nmom/soap/controller/ProductController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="125" x="307" y="787"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="com.nmom.soap.controller.ReviewController" project="naturalmom_section" 
+    file="/naturalmom_section/src/main/java/com/nmom/soap/controller/ReviewController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="129" x="328" y="700"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="com.nmom.soap.controller.SalesController" project="naturalmom_section" 
+    file="/naturalmom_section/src/main/java/com/nmom/soap/controller/SalesController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="121" x="359" y="636"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="com.nmom.soap.controller.QnaController" project="naturalmom_section" 
+    file="/naturalmom_section/src/main/java/com/nmom/soap/controller/QnaController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="121" x="353" y="567"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="24" language="java" name="com.nmom.soap.data.dao.board.event.IEvent_reDao" project="naturalmom_section" 
+    file="/naturalmom_section/src/main/java/com/nmom/soap/data/dao/board/event/IEvent_reDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="172" x="151" y="697"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="25" language="java" name="com.nmom.soap.data.dao.board.event.IEventDao" project="naturalmom_section" 
+    file="/naturalmom_section/src/main/java/com/nmom/soap/data/dao/board/event/IEventDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="172" x="156" y="759"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="26" language="java" name="com.nmom.soap.data.dao.board.faq.IFaqDao" project="naturalmom_section" 
+    file="/naturalmom_section/src/main/java/com/nmom/soap/data/dao/board/faq/IFaqDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="167" x="177" y="822"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="27" language="java" name="com.nmom.soap.data.dao.board.notice.INoticeDao" project="naturalmom_section" 
+    file="/naturalmom_section/src/main/java/com/nmom/soap/data/dao/board/notice/INoticeDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="173" x="220" y="879"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="28" language="java" name="com.nmom.soap.data.dao.board.notice.INoticeReDao" 
+    project="naturalmom_section" 
+    file="/naturalmom_section/src/main/java/com/nmom/soap/data/dao/board/notice/INoticeReDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="173" x="189" y="940"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="29" language="java" name="com.nmom.soap.data.dao.board.notice.IVNoticeDao" project="naturalmom_section" 
+    file="/naturalmom_section/src/main/java/com/nmom/soap/data/dao/board/notice/IVNoticeDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="173" x="425" y="940"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <association id="30">    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="31" name="cartSvc"/>      
+      <multiplicity id="32" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="33">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="2"/>  
+  </realization>  
+  <realization id="34">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="3"/>  
+  </realization>  
+  <association id="35">    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="36" name="v_cart_product_svc"/>      
+      <multiplicity id="37" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="38">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="39" name="vCartProductSvc"/>      
+      <multiplicity id="40" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="41">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="9"/>  
+  </realization>  
+  <association id="42">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="43" name="cartDao"/>      
+      <multiplicity id="44" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="45">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="10"/>  
+  </realization>  
+  <association id="46">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="47" name="cartSvc"/>      
+      <multiplicity id="48" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="49">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="50" name="vCartProductDao"/>      
+      <multiplicity id="51" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
