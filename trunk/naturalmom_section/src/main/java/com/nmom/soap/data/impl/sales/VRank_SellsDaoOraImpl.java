@@ -24,12 +24,12 @@ public class VRank_SellsDaoOraImpl extends JdbcDaoSupport implements IVRank_Sell
 	private final String GET_AGE_GROUP_COUNT = "SELECT m.mem_age * 10 AS age_group, "
 			+ "ROUND(COUNT(*) / (SELECT COUNT(mem_id) FROM tb_member), 2) AS ratio, COUNT(*) AS amount FROM "
 			+ "(SELECT FLOOR((117 - TO_NUMBER(SUBSTR(mem_birth, 1, 2)))/10) AS mem_age FROM "
-			+ "tb_member t WHERE t.mem_id NOT LIKE 'admin%') m GROUP BY m.mem_age ORDER BY age_group DESC";
+			+ "tb_member t WHERE t.mem_id NOT LIKE 'admin%' AND drop_out = 0) m GROUP BY m.mem_age ORDER BY age_group DESC";
 	
 	// 성별별 회원 수
 	private final String GET_GENDER_GROUP_COUNT = 
 			"SELECT mem_gender,  ROUND(COUNT(mem_id) / (SELECT COUNT(mem_id) FROM tb_member), 2) "
-			+ "AS ratio, COUNT(*) AS amount FROM tb_member WHERE tb_member.MEM_ID NOT LIKE 'admin%' GROUP BY mem_gender";
+			+ "AS ratio, COUNT(*) AS amount FROM tb_member WHERE tb_member.MEM_ID NOT LIKE 'admin%' AND drop_out = 0 GROUP BY mem_gender";
 	
 	public List<VRank_SellsVo> getAllRank(boolean order) throws DataAccessException 
 	{
