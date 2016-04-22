@@ -30,8 +30,8 @@
 		h2 { margin-bottom : 15px; }
 		
 		table { width: 100%; padding : 0px;  font-size : 12.5px;}
-		table tr:first-child td, table tr:first-child td a { text-align:center; background-color: #918686; color: white; }
-		table tr:not(:first-child) td a { color: black; }
+		table tr th { text-align:center; background-color: #918686; color: white; padding: 10px 20px; }
+		table tr td a { color: black; }
 		table tr td { border-bottom : 1px solid lightgrey; }
 		table tr td { border-right : 1px solid lightgrey; }
 		table tr td:first-child { border-left : 1px solid grey; }
@@ -39,12 +39,12 @@
 		table tr:last-child td { border-bottom : 1px solid grey; }
 		table tr td { padding : 10px; }
 
-		table tr:not(:first-child) td:nth-child(1), table tr:not(:first-child) td:nth-child(2), table tr:not(:first-child) td:nth-child(3), 
-		table tr:not(:first-child) td:nth-child(5), table tr:not(:first-child) td:nth-child(8), 
-		table tr:not(:first-child) td:nth-child(9){ text-align: center; }
+		table tr td:nth-child(1), table tr td:nth-child(2), table tr td:nth-child(3), 
+		table tr td:nth-child(5), table tr td:nth-child(8), 
+		table tr td:nth-child(9){ text-align: center; }
 		
-		table tr:not(:first-child) td:nth-child(4), table tr:not(:first-child) td:nth-child(7), {  text-align: left; }
-		table tr:not(:first-child) td:nth-child(6) {  text-align: right; }
+		table tr td:nth-child(4), table tr td:nth-child(7), {  text-align: left; }
+		table tr td:nth-child(6) {  text-align: right; }
 
 		table tr:first-child td:first-child { width:9%; }
 		table tr:first-child td:nth-child(2){ width:9%; }
@@ -91,6 +91,21 @@
 		
 		.msg {overflow:hidden;text-overflow:ellipsis;}
 		
+	 th:nth-child(1).header, th:nth-child(2).header, th:nth-child(3).header, th:nth-child(4).header,
+	 th:nth-child(5).header, th:nth-child(6).header { 
+    	background-image: url(/soap/resources/tablesorter/themes/blue/bg.gif); 
+    	cursor: pointer; 
+    	background-repeat: no-repeat; 
+    	background-position: center right; 
+    	border-right: 1px solid #dad9c7;
+      } 
+      th.headerSortUp { 
+   		background-image: url(/soap/resources/tablesorter/themes/blue/asc.gif); 
+	  } 
+	  th.headerSortDown { 
+   		background-image: url(/soap/resources/tablesorter/themes/blue/desc.gif); 
+	  } 
+		
 	</style>
    </head>
 
@@ -104,18 +119,21 @@
 	
 	<div id="container">
 		<h2 id = "order_title">주문 관리</h2>
-		<table cellspacing = "0">
+		<table cellspacing = "0" id = "order_part" class = "tablesorter">
+			<thead>
 			<tr>
-				<td><a href = "#">▼ 주문일</a></td>
-				<td><a href = "#">▼ 주문번호</a></td>
-				<td><a href = "#">▼ 주문자</a></td>
-				<td><a href = "#">▼ 상품명</a></td>
-				<td><a href = "#">▼ 개수</a></td>
-				<td><a href = "#">▼ 결제금액</a></td>
-				<td> 배송메세지</td>
-				<td> 운송장번호</td>
-				<td><a href = "#">▼ 처리상태</a></td>
+				<th>주문일</th>
+				<th>주문번호</th>
+				<th>주문자</th>
+				<th>상품명</th>
+				<th>개수</th>
+				<th>결제금액</th>
+				<th> 배송메세지</th>
+				<th> 운송장번호</th>
+				<th>처리상태</th>
 			</tr>
+			</thead>
+			<tbody>
 			<c:forEach var="om" items="${orderManeger}"> 
 				<tr>
 					<td style="text-align: center;"><fmt:formatDate value="${ om.order_date }" type="Date" /></td>
@@ -144,6 +162,7 @@
 					</td>
 				</tr>
 			</c:forEach>
+			</tbody>
 		</table>
 		<br>
 		
@@ -156,6 +175,12 @@
 		
 	</div>
 	<script type="text/javascript">
+		$(document).ready(function() 
+				{ 
+					$("#order_part").tablesorter(); 
+				} 
+		);
+	
 		function tracking_num_input(order_no, process)
 		{
 			if(process == '배송준비중' || process == '배송대기'){
