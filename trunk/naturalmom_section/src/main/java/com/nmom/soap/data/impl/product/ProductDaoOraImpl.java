@@ -28,7 +28,7 @@ public class ProductDaoOraImpl extends NamedParameterJdbcDaoSupport implements I
 	private final String EDIT_SALE_STATE = "UPDATE tb_product SET sale_state = :sale_state WHERE product_no = :product_no";	
 	// 삭제 상태 수정하기
 	private final String EDIT_DELETED_STATE = "UPDATE tb_product SET deleted_state = :deleted_state, "
-			+ "display_state = 1, sale_state = 1 WHERE product_no = :product_no";
+			+ "display_state = 0, sale_state = 0 WHERE product_no = :product_no";
 	// 상품 등록하기
 	private final String ADD_ONE_PRODUCT = "INSERT INTO tb_product ("
 			+ "product_name, selling_price, cost_price, stock, display_state, sale_state, represent_img, "
