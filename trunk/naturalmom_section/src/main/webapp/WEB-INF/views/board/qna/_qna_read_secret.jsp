@@ -75,14 +75,6 @@
 	
 </style>
 
-<script type="text/javascript">
-$(function(){
-	if($("#incorrect_pw").val()!=null){
-		alert($("#incorrect_pw").val());
-	}
-});
-</script>
-
 <c:if test="${not empty incorrect_pw}">
 	<input type="hidden" id="incorrect_pw" value="${incorrect_pw}">
 </c:if>
