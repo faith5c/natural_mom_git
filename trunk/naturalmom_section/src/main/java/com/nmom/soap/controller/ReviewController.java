@@ -391,7 +391,7 @@ public class ReviewController
 		else
 		{
 			// 로그인 해달라는 에러 메시지
-			map.put("err_msg", "관리자로 로그인 바랍니다.");
+			map.put("err_msg", "로그인 바랍니다.");
 			return new ModelAndView("login/login", map);
 		}
 	}
@@ -441,7 +441,7 @@ public class ReviewController
 		else
 		{
 			// 로그인 해달라는 에러 메시지
-			map.put("err_msg", "관리자로 로그인 바랍니다.");
+			map.put("err_msg", "로그인 바랍니다.");
 			return new ModelAndView("login/login", map);
 		}
 	}
