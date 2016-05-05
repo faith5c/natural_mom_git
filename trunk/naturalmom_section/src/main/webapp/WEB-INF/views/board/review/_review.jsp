@@ -142,7 +142,8 @@
 	
 	function write_popup(product_no)
 	{
-		<% if ((Boolean)session.getAttribute("admin")){ %>
+		<% boolean isAdmin = (Boolean)session.getAttribute("admin") != null ? (Boolean)session.getAttribute("admin") : false; %>
+		<% if (isAdmin){ %>
 			alert('관리자는 상품후기를 등록할 수 없습니다.');
 		<% } else { %>
 		window.open("review_write_popup.nm?p_no=" + product_no, "상품후기 쓰기", "width = 800px, height = 600px, left = 200px, top = 200px, scrollbars = no, toobar = no, menubar = no, status = no, location = no, resizeable = no");
