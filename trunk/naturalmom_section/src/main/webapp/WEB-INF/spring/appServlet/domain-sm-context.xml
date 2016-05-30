@@ -72,7 +72,7 @@
 	<bean id="interest_svc" class="com.nmom.soap.svc.interest.InterestSvcImpl">
 		<property name="interestDao" ref="interest_dao"/>
 	</bean>
-	<bean id="v_interest_product_svc" class="com.nmom.soap.svc.interest.VInterestProductImpl">
+	<bean id="v_interest_product_svc" class="com.nmom.soap.svc.interest.VInterestProductSvcImpl">
 		<property name="vInterestProductDao" ref="v_interest_product_dao"/>
 	</bean>
 
