@@ -5,7 +5,7 @@ import java.util.List;
 import com.nmom.soap.data.dao.interest.IVInterestProductDao;
 import com.nmom.soap.data.model.interest.VInterestProductVo;
 
-public class VInterestProductImpl implements IVInterestProductSvc {
+public class VInterestProductSvcImpl implements IVInterestProductSvc {
 
 	IVInterestProductDao vInterestProductDao;
 	
